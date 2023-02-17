@@ -34,8 +34,8 @@ String SSN = prop.getProperty("SSN");
 		System.out.println(SSN);
 		screenShot screen = new screenShot();
 	      String screenShotPath = screenShot.takeSnapShot(driver, "target\\LoginPage.jpg");
-	       test.log(Status.INFO,"HomePage");
-	       test.addScreenCaptureFromPath(screenShotPath);
+	      test.log(Status.INFO,"HomePage");
+	      test.addScreenCaptureFromPath(screenShotPath);
 		
 		  driver.findElement(By.xpath("//span[text()='LOG IN ']")).click();
 			Thread.sleep(5000);
