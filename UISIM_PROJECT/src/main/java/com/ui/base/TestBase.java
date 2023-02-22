@@ -13,6 +13,7 @@ import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 import org.checkerframework.checker.guieffect.qual.AlwaysSafe;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.WebDriver;
@@ -49,6 +50,8 @@ import com.beust.jcommander.Parameter;
 //import com.relevantcodes.extentreports.ExtentTest;
 import com.ui.utilities.TestUtil;
 import com.ui.utilities.screenShot;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -122,7 +125,7 @@ public class TestBase  {
 	
 		if(browser.equalsIgnoreCase("chrome"))
 		{
-			System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\Driver\\chromedriver.exe");
+			/*System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\Driver\\chromedriver.exe");
 			
 			
 			Map<String, Object> prefs = new HashMap<String,Object>();
@@ -138,7 +141,20 @@ public class TestBase  {
 		options.setCapability (CapabilityType.ACCEPT_SSL_CERTS, true);		
 		driver=new ChromeDriver(options);
 		
+		*/
+			//WebdriverManager
+			//driver = WebDriverManager.chromedriver().create();
+			WebDriverManager.chromedriver().setup();			
+			/*ChromeDriver driver = new ChromeDriver();
+			Capabilities cap = driver.getCapabilities();
+			Map<String, Object> mycap = cap.asMap();
+			System.out.println(mycap);*/
+			
 		// Add the WebDriver proxy capability.
+			
+			ChromeOptions opt=new ChromeOptions();			
+			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
+			driver = new ChromeDriver(opt);
 
 		
 		
