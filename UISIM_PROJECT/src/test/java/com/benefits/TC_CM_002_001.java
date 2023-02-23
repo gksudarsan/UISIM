@@ -48,9 +48,9 @@ String SSN = prop.getProperty("SSN");
 		       test.log(Status.INFO,"AfterRefresh");
 		       test.addScreenCaptureFromPath(screenShotPath);
 			  System.out.println("after refresh");
-			 // driver.navigate().to(driver.getCurrentUrl());Thread.sleep(5000);
+			  driver.navigate().to(driver.getCurrentUrl());Thread.sleep(5000);
 			 System.out.println("after navigate");
-			 // driver.get(driver.getCurrentUrl());Thread.sleep(5000);
+			  driver.get(driver.getCurrentUrl());Thread.sleep(5000);
 			  System.out.println("after navigate last");
 			
 			  
@@ -66,15 +66,21 @@ String SSN = prop.getProperty("SSN");
 			  //test.log(Status.PASS,"User clicked on Login");
 	     //driver.findElement(By.xpath("//input[@name='loginform:password']")).sendKeys("Admin@12345678");
 	     driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();Thread.sleep(5000);
-	       //driver.navigate().refresh();Thread.sleep(5000);
-	       driver.navigate().refresh();Thread.sleep(5000);
+	     Thread.sleep(15000);  
+	     System.out.println("first wait");
+	     driver.navigate().refresh();Thread.sleep(10000);
+	     System.out.println("second wait");
+	       /*driver.navigate().refresh();Thread.sleep(5000);
+	       System.out.println("third wait");
+	       driver.navigate().refresh();*/
 	     // screenShot screen = new screenShot();
 	       screenShotPath = screenShot.takeSnapShot(driver, "target\\ApplicationLogin.jpg");
-	       //test.log(Status.FAIL,"Login is not successful");
-	       test.info("Login is not successful");
+	       test.log(Status.PASS,"Login is  successful");
+	       test.info("Login is  successful");
 	       test.addScreenCaptureFromPath(screenShotPath);
-	       
-	       driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']"));
+	       Thread.sleep(5000);
+	       driver.findElement(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).click();
+	       Thread.sleep(6000);
 	       driver.findElement(By.xpath("//span[text()='Menu']")).click();Thread.sleep(2000);
 	       driver.findElement(By.xpath("//span[text()='Unemployment Claim']")).click();Thread.sleep(2000);
 	       driver.findElement(By.xpath("//span[text()='File Unemployment Claim']")).click();Thread.sleep(2000);

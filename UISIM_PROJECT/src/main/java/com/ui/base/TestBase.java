@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -116,7 +117,7 @@ public class TestBase  {
 	
 	@Parameters({"browser"})
 	
-	public static void initialization(String browser)
+	public static void initialization(String browser) throws IOException, InterruptedException
      
 	{
 		browser=prop.getProperty("browsername");
@@ -125,6 +126,10 @@ public class TestBase  {
 	
 		if(browser.equalsIgnoreCase("chrome"))
 		{
+			//Process process = new ProcessBuilder("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe","remote","debugging-port=9222","user-data-dir=D:\\chromeData").start();
+			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
+			//Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
+			Thread.sleep(3000);
 			/*System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\Driver\\chromedriver.exe");
 			
 			
@@ -143,7 +148,7 @@ public class TestBase  {
 		
 		*/
 			//WebdriverManager
-			//driver = WebDriverManager.chromedriver().create();
+			///driver = WebDriverManager.chromedriver().create();
 			WebDriverManager.chromedriver().setup();			
 			/*ChromeDriver driver = new ChromeDriver();
 			Capabilities cap = driver.getCapabilities();
@@ -154,6 +159,9 @@ public class TestBase  {
 			
 			ChromeOptions opt=new ChromeOptions();			
 			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
+			///opt.setAcceptInsecureCerts(true);
+			///opt.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
+			///opt.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
 			driver = new ChromeDriver(opt);
 
 		
@@ -189,7 +197,7 @@ public class TestBase  {
 	
 	@Parameters({"browser"})
 	@BeforeTest
-	public void setup(@Optional("browser")String browser) throws ClassNotFoundException, SQLException
+	public void setup(@Optional("browser")String browser) throws ClassNotFoundException, SQLException, IOException, InterruptedException
 	{
 		//public void LoginAccountProcess(@Optional("Abc")String name) throws
 	//	FileNotFoundException, IOException, InterruptedException {
