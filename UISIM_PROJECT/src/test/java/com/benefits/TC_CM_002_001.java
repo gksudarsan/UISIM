@@ -18,6 +18,8 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.utilities.screenShot;
 
+import stepDefinitions.commonStepDefinitions;
+
 
 @Listeners(com.ui.utilities.ListenerTest.class)
 public class TC_CM_002_001 extends TestBase
@@ -29,58 +31,20 @@ String SSN = prop.getProperty("SSN");
 	public void Testing123() throws Exception
 	{
 		 test = report.createTest("Log in to Benefits Unemployment Insurance");
-		//Logging in to application...
+		
 		claimsIntake cl = new claimsIntake();
 		System.out.println(SSN);
-		screenShot screen = new screenShot();
-	      String screenShotPath = screenShot.takeSnapShot(driver, "target\\LoginPage.jpg");
-	      test.log(Status.INFO,"HomePage");
-	      test.addScreenCaptureFromPath(screenShotPath);
 		
-		  driver.findElement(By.xpath("//span[text()='LOG IN ']")).click();
-			Thread.sleep(5000);
-			test.log(Status.PASS,"User Launched website");
-			//System.out.println("before refresh");
-			driver.navigate().refresh();Thread.sleep(5000);
-		
-			
-			 screenShotPath = screenShot.takeSnapShot(driver, "target\\AfterRefreshPage.jpg");
-		       test.log(Status.INFO,"AfterRefresh");
-		       test.addScreenCaptureFromPath(screenShotPath);
-			  System.out.println("after refresh");
-			  driver.navigate().to(driver.getCurrentUrl());Thread.sleep(5000);
-			 System.out.println("after navigate");
-			  driver.get(driver.getCurrentUrl());Thread.sleep(5000);
-			  System.out.println("after navigate last");
-			
-			  
-	     // driver.findElement(By.xpath("//input[@name='loginform:username']")).sendKeys("NDFJP3");
-			  enterTextbox("Username","NDFJP3");
-			  
-			  test.log(Status.PASS,"User entered Username");
-			  enterTextbox("Password","Admin@12345678");
-			  
-			  test.log(Status.PASS,"User entered Password");
-			  //clickButton("Sign In");
-			  
-			  //test.log(Status.PASS,"User clicked on Login");
-	     //driver.findElement(By.xpath("//input[@name='loginform:password']")).sendKeys("Admin@12345678");
-	     driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();Thread.sleep(5000);
-	     Thread.sleep(15000);  
-	     System.out.println("first wait");
-	     driver.navigate().refresh();Thread.sleep(10000);
-	     System.out.println("second wait");
-	       /*driver.navigate().refresh();Thread.sleep(5000);
-	       System.out.println("third wait");
-	       driver.navigate().refresh();*/
-	     // screenShot screen = new screenShot();
-	       screenShotPath = screenShot.takeSnapShot(driver, "target\\ApplicationLogin.jpg");
+		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		 commonFuntions.login("NDFJP3","Admin@12345678");
+	      screenShot screen = new screenShot();
+	     String  screenShotPath = screenShot.takeSnapShot(driver, "target\\ApplicationLogin.jpg");
 	       test.log(Status.PASS,"Login is  successful");
 	       test.info("Login is  successful");
 	       test.addScreenCaptureFromPath(screenShotPath);
 	       Thread.sleep(5000);
 	       driver.findElement(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).click();
-	       Thread.sleep(6000);
+	       Thread.sleep(000);
 	       driver.findElement(By.xpath("//span[text()='Menu']")).click();Thread.sleep(2000);
 	       driver.findElement(By.xpath("//span[text()='Unemployment Claim']")).click();Thread.sleep(2000);
 	       driver.findElement(By.xpath("//span[text()='File Unemployment Claim']")).click();Thread.sleep(2000);
