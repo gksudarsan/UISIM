@@ -39,6 +39,8 @@ public class commonStepDefinitions extends TestBase {
 	     screenShot("okPopUpButton","Pass","okPopUp");
 	     loginPage.okPopUpButton.click();	
 	     Thread.sleep(5000);
+	     driver.navigate().refresh();
+	     Thread.sleep(3000);
 	    
 	}
 	
@@ -54,6 +56,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[text()='"+xpathParameter+"'][1]")).click();	
 	}
 	
+	public void selectRadio(String xpathParameter) {
+		driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
+		
+	}
 	public void ScrollMenu(String xpathParameter) throws InterruptedException {		
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//*[text()='"+xpathParameter+"'][1]")));
 		 Thread.sleep(500); 
@@ -68,7 +74,7 @@ public class commonStepDefinitions extends TestBase {
 		 else {
 			 test.log(Status.FAIL,message); 
 		 }
-	       test.info(message);
+	       //test.info(message);
 	       test.addScreenCaptureFromPath(screenShotPath);
 		
 	}
