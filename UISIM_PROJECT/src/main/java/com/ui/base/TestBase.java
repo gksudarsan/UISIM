@@ -127,6 +127,9 @@ public class TestBase  {
 		if(browser.equalsIgnoreCase("chrome"))
 		{
 			//Process process = new ProcessBuilder("C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe","remote","debugging-port=9222","user-data-dir=D:\\chromeData").start();
+			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
+			Thread.sleep(2000);
 			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
 			//Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
 			Thread.sleep(3000);
