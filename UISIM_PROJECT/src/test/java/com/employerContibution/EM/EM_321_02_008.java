@@ -37,11 +37,11 @@ public class EM_321_02_008 extends TestBase
 
 
 	
-	@Test(priority=1, description = "EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.",groups = {"Regression"})
+	@Test(priority=1, description = "EM.321.02.008 - Verify Employer is able to Edit Trustee/Owner Details .",groups = {"Regression"})
 	public void EM_321_02_008() throws Exception
 	{
 		 
-		 test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
+		 test = report.createTest("EM.321.02.008 - Verify Employer is able to Edit Trustee/Owner Details .");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
