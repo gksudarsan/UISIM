@@ -65,6 +65,11 @@ public class commonStepDefinitions extends TestBase {
 		 Thread.sleep(500); 
 	}
 	
+	public void clickElement(WebElement ele) throws InterruptedException {
+		ele.click();
+		Thread.sleep(2000);
+	}
+	
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
 		 String  screenShotPath = screenShot.takeSnapShot(driver, "target\\"+fileName+".jpg");

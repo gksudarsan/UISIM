@@ -87,7 +87,7 @@ public class SRGE_544 {
 	public WebElement commentValue;
 	
 	
-	public Boolean submitWithoutDetails() {
+	public Boolean submitWithoutDetails() throws InterruptedException {
 		stepDef.clickElement(submitButton);
 		Boolean flag = requiredText.isDisplayed();
 		return flag;
