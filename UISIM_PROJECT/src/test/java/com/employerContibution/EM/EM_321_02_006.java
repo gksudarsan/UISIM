@@ -1,4 +1,4 @@
-package com.benefits;
+package com.employerContibution.EM;
 
 
 
@@ -32,72 +32,75 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EM_321_02_001 extends TestBase
+public class EM_321_02_006 extends TestBase
 {
 
 
 	
 	@Test(priority=1, description = "EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.",groups = {"Regression"})
-	public void EM_321_02_001() throws Exception
+	public void EM_321_02_006() throws Exception
 	{
 		 
 		 test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("tst_empr","Nysdol@0210");
+		 commonFuntions.login("manju@2004","Manhar2004@1234");
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Corporate Officer/Owner Details");
-		 commonFuntions.screenShot("Add Corporate Officer/Owner Details","Pass","Add Corporate Officer/Owner Details");
-		 commonFuntions.clickMenu("Add Corporate Officer/Owner Details");	
-		 String ssnValue = String.valueOf((long) (Math.random()*Math.pow(10,10)));	 
-		 ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
-	     populateFields(ssnValue);
+		 commonFuntions.ScrollMenu("Add Member/Managing Member Details");
+		 commonFuntions.screenShot("Add Member/Managing Member Details","Pass","Add Member/Managing Member Details");
+		 commonFuntions.clickMenu("Add Member/Managing Member Details");	
+		 String feinValue = String.valueOf((long) (Math.random()*Math.pow(10,9)));	 
+		 
+	     populateFields(feinValue);
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
-	     commonFuntions.screenShot("Success","Pass","Successfully added corporate officer/ownerdetaisl");
+	     commonFuntions.screenShot("Success","Pass","Successfully added Member/Managing Member Details");
 	     addCorporatePage.successLink.click();
 		 Thread.sleep(2000);
-	     verifyFields(ssnValue);		 
-	     commonFuntions.selectTable(ssnValue,9);
+	     verifyFields(feinValue);	
+	     feinValue = StringUtils.left(feinValue, 2)+"-"+StringUtils.right(feinValue, 7);
+	     commonFuntions.selectTable(feinValue,9,1,"Business as Member/Managing Member ");
 	     Thread.sleep(2000);
 	     commonFuntions.enterTextboxContains("Address Line 1", "Updated address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Updated address line 2");
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
-	     commonFuntions.screenShot("Success2","Pass","Successfully amended corporate officer/ownerdetaisl");
+	     commonFuntions.screenShot("Success2","Pass","Successfully amended Member/Managing Member Details");
 	     addCorporatePage.successLink.click();
 	     Thread.sleep(2000);		
-	     String address = commonFuntions.retrieveValueFromTable(ssnValue,4);	   
+	     
+	     String address = commonFuntions.retrieveValueFromTable(feinValue,6,1,"Business as Member/Managing Member ");	   
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true);
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true);
 	     
 	   	   
 	}
-	public void populateFields(String ssnValue) throws Exception {
+	public void populateFields(String feinValue) throws Exception {
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		Thread.sleep(2000);
-		commonFuntions.selectRadio("Individual");
-	     Random random = new Random();	     
-	     commonFuntions.enterTextbox("SSN ",ssnValue );
-	     commonFuntions.enterTextboxContains("First Name", "AutomationFirstName"+random.nextInt(10000));	    
-	     commonFuntions.enterTextboxContains("Last Name", "AutomationLastName"+random.nextInt(10000));
-	     commonFuntions.selectDropdown("Title", "Board Chairman");
-	     commonFuntions.screenShot("Populate","Pass","populate corporate officer/ownerdetaisl");
+		commonFuntions.selectRadio("Business Entity");
+	     Random random = new Random();
+	     commonFuntions.enterTextboxContains("Entity Name", "AutomationFirstName"+random.nextInt(10000));	    
+	     commonFuntions.enterTextboxContains("Federal Identification Number (FEIN)", feinValue);
+	     commonFuntions.selectDropdown("Title", "Managing Member");
+	     commonFuntions.screenShot("Populate","Pass","populate corporate officer/ownerdetais");
 	     commonFuntions.enterTextboxContains("Address Line 1", "Added address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Added address line 2");
 	     commonFuntions.enterTextboxContains("City", "Added City");	    
 	     commonFuntions.enterTextboxContains("Zip", String.valueOf((long) (Math.random()*Math.pow(10,6))));
 	     commonFuntions.enterTextboxContains("Contact Number", String.valueOf((long) (Math.random()*Math.pow(10,11))));
-	     commonFuntions.screenShot("Submit","Pass","Submit corporate officer/ownerdetaisl");	
+	     commonFuntions.screenShot("Submit","Pass","Submit corporate officer/ownerdetais");	
 	}
-	public void verifyFields(String ssnValue) {
+	public void verifyFields(String feinValue) throws InterruptedException {
+		feinValue = StringUtils.left(feinValue, 2)+"-"+StringUtils.right(feinValue, 7);
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		String  address = commonFuntions.retrieveValueFromTable(ssnValue,4);
+		Thread.sleep(3000);
+		String  address = commonFuntions.retrieveValueFromTable(feinValue,6,1,"Business as Member/Managing Member ");
 		System.out.println(address);
 		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
 		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);

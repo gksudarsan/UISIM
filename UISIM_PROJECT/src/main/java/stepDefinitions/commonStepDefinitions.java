@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import java.util.List;
+import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -71,7 +72,8 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	public void selectRadio(String xpathParameter) {
-		driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
+		//driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
 		
 	}
 	
@@ -101,8 +103,8 @@ public class commonStepDefinitions extends TestBase {
 		
 	}
 	
-	public void selectTable(String ssnValue,int columnValue) {
-		WebElement table = driver.findElement(By.xpath("//*[.='Individual as Corporate Officer ']//following::*[@id='dataTableId'][1]"));
+	public void selectTable(String ssnValue,int columnValue, int tableId,String tableName) {
+		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]"));
 
 	    List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -116,15 +118,15 @@ public class commonStepDefinitions extends TestBase {
 	        for (int column = 0; column < columns_count; column++) {
 	            String celtext = columns.get(column).getText();
 	            if (celtext.equals(ssnValue)) {
-	            	driver.findElement(By.xpath("//*[.='Individual as Corporate Officer ']//following::*[@id='dataTableId'][1]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]/a[1]")).click();
+	            	driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]/a[1]")).click();
 	            	break label1;
 	            }
 	        }
 	       
 	    }
 	}
-	public String retrieveValueFromTable(String ssnValue,int columnValue) {
-		WebElement table = driver.findElement(By.xpath("//*[.='Individual as Corporate Officer ']//following::*[@id='dataTableId'][1]"));
+	public String retrieveValueFromTable(String ssnValue,int columnValue, int tableId,String tableName) {
+		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]"));
         String value = "";
 	    List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -138,7 +140,7 @@ public class commonStepDefinitions extends TestBase {
 	        for (int column = 0; column < columns_count; column++) {
 	            String celtext = columns.get(column).getText();
 	            if (celtext.equals(ssnValue)) {
-	            	value = driver.findElement(By.xpath("//*[.='Individual as Corporate Officer ']//following::*[@id='dataTableId'][1]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]")).getText();
+	            	value = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]")).getText();
 	            	
 	            	break label1;
 	            }
@@ -147,5 +149,20 @@ public class commonStepDefinitions extends TestBase {
 	    }
 	    return value;
 	}
+	
+	public static long createRandomInteger(long aStart, long aEnd){
+	    if ( aStart > aEnd ) {
+	      throw new IllegalArgumentException("Start cannot exceed End.");
+	    }
+	    Random aRandom = new Random();
+	    long range = aEnd - (long)aStart + 1;
+	  
+	    long fraction = (long)(range * aRandom.nextDouble());
+	    
+	    long randomNumber =  fraction + (long)aStart;    
+	    System.out.println("Generated : " + randomNumber);
+	    return randomNumber;
+
+	  }
 
 }

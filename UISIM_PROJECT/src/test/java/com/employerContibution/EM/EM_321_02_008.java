@@ -32,47 +32,53 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EM_321_02_001 extends TestBase
+public class EM_321_02_008 extends TestBase
 {
 
 
 	
 	@Test(priority=1, description = "EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.",groups = {"Regression"})
-	public void EM_321_02_001() throws Exception
+	public void EM_321_02_008() throws Exception
 	{
 		 
 		 test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("tst_empr","Nysdol@0210");
+		 commonFuntions.login("peouseranup","Admin@12345678");
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Corporate Officer/Owner Details");
-		 commonFuntions.screenShot("Add Corporate Officer/Owner Details","Pass","Add Corporate Officer/Owner Details");
-		 commonFuntions.clickMenu("Add Corporate Officer/Owner Details");	
-		 String ssnValue = String.valueOf((long) (Math.random()*Math.pow(10,10)));	 
-		 ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
+		 commonFuntions.ScrollMenu("Add Trustee/Owner Details");
+		 commonFuntions.screenShot("Add Trustee/Owner Details","Pass","Add Trustee/Owner Details");
+		 commonFuntions.clickMenu("Add Trustee/Owner Details");	
+		 
+		 
+		 long number = commonFuntions.createRandomInteger(100000000,999999999);
+		 String ssnValue=Long.toString(number);
 	     populateFields(ssnValue);
+	     
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
-	     commonFuntions.screenShot("Success","Pass","Successfully added corporate officer/ownerdetaisl");
+	     commonFuntions.screenShot("Success","Pass","Successfully added Trustee/Owner Details Details");
 	     addCorporatePage.successLink.click();
 		 Thread.sleep(2000);
-	     verifyFields(ssnValue);		 
-	     commonFuntions.selectTable(ssnValue,9,1,"Individual as Corporate Officer ");
+	     verifyFields(ssnValue);	
+	     ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
+	     
+	     commonFuntions.selectTable(ssnValue,9,1," Individual as Trustee ");
 	     Thread.sleep(2000);
 	     commonFuntions.enterTextboxContains("Address Line 1", "Updated address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Updated address line 2");
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
-	     commonFuntions.screenShot("Success2","Pass","Successfully amended corporate officer/ownerdetaisl");
+	     commonFuntions.screenShot("Success2","Pass","Successfully amended Trustee/Owner Details");
 	     addCorporatePage.successLink.click();
 	     Thread.sleep(2000);		
-	     String address = commonFuntions.retrieveValueFromTable(ssnValue,4,1,"Individual as Corporate Officer ");	   
+	     
+	     String address = commonFuntions.retrieveValueFromTable(ssnValue,7,1," Individual as Trustee ");	   
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true);
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true);
 	     
@@ -81,23 +87,25 @@ public class EM_321_02_001 extends TestBase
 	public void populateFields(String ssnValue) throws Exception {
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		Thread.sleep(2000);
-		commonFuntions.selectRadio("Individual");
-	     Random random = new Random();	     
+		
+	     Random random = new Random();
 	     commonFuntions.enterTextbox("SSN ",ssnValue );
 	     commonFuntions.enterTextboxContains("First Name", "AutomationFirstName"+random.nextInt(10000));	    
 	     commonFuntions.enterTextboxContains("Last Name", "AutomationLastName"+random.nextInt(10000));
-	     commonFuntions.selectDropdown("Title", "Board Chairman");
-	     commonFuntions.screenShot("Populate","Pass","populate corporate officer/ownerdetaisl");
+	     commonFuntions.selectDropdown("Title", "Trustee");
+	     commonFuntions.screenShot("Populate","Pass","populate Trustee/Owner Details");	     
 	     commonFuntions.enterTextboxContains("Address Line 1", "Added address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Added address line 2");
 	     commonFuntions.enterTextboxContains("City", "Added City");	    
 	     commonFuntions.enterTextboxContains("Zip", String.valueOf((long) (Math.random()*Math.pow(10,6))));
 	     commonFuntions.enterTextboxContains("Contact Number", String.valueOf((long) (Math.random()*Math.pow(10,11))));
-	     commonFuntions.screenShot("Submit","Pass","Submit corporate officer/ownerdetaisl");	
+	     commonFuntions.screenShot("Submit","Pass","Submit Trustee/Owner Details");	
 	}
-	public void verifyFields(String ssnValue) {
+	public void verifyFields(String ssnValue) throws InterruptedException {
+		ssnValue = ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		String  address = commonFuntions.retrieveValueFromTable(ssnValue,4,1,"Individual as Corporate Officer ");
+		Thread.sleep(3000);
+		String  address = commonFuntions.retrieveValueFromTable(ssnValue,7,1," Individual as Trustee ");
 		System.out.println(address);
 		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
 		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);
