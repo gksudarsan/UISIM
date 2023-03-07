@@ -130,7 +130,7 @@ public class TestBase  {
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
 			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
 			Thread.sleep(2000);
-			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
+			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\vikas.singh\\Desktop"));
 			//Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
 			Thread.sleep(3000);
 			/*System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"\\Driver\\chromedriver.exe");
@@ -161,7 +161,7 @@ public class TestBase  {
 		// Add the WebDriver proxy capability.
 			
 			ChromeOptions opt=new ChromeOptions();			
-			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
+			opt.setExperimentalOption("debuggerAddress","localhost:35139 ");
 			///opt.setAcceptInsecureCerts(true);
 			///opt.setExperimentalOption("excludeSwitches", new String[]{"enable-automation"});
 			///opt.setCapability("chrome.switches", Arrays.asList("--ignore-certificate-errors"));
@@ -236,7 +236,15 @@ public class TestBase  {
 			 //}
 		  report.flush();
 	  driver.close(); driver.quit(); }
-	 
+	//sleep methods 
+	  public void sleep() throws InterruptedException
+	  {
+		  Thread.sleep(1000);
+	  }
+	  public void sleep(long value) throws InterruptedException
+	  {
+		  Thread.sleep(value);
+	  }
 	
 	
 }

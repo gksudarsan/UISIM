@@ -6,7 +6,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import com.ui.base.TestBase;
 
-public class employerManagement extends TestBase {
+public class employerManagementLocators extends TestBase {
 
 	public WebElement menuButton (){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Menu']")));
@@ -23,9 +23,15 @@ public class employerManagement extends TestBase {
 		return driver.findElement(By.xpath("//span[text()='Maintain Address']]"));
 
 	}
-	public WebElement editButton (){
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Business Physical Location']//following::u[text()='Edit")));
-		return driver.findElement(By.xpath("//mat-label[text()='Business Physical Location']//following::u[text()='Edit"));
+	public WebElement editButtonBusinessPhyLoc (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Business Physical Location']//following::u[text()='Edit']")));
+		return driver.findElement(By.xpath("//mat-label[text()='Business Physical Location']//following::u[text()='Edit']"));
+
+	}
+	
+	public WebElement editButtonPriBusinessPhyLoc (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Primary Business Physical Address']//following::u[text()='Edit'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Primary Business Physical Address']//following::u[text()='Edit'][1]"));
 
 	}
 	public WebElement addressLine1 (){
@@ -54,9 +60,33 @@ public class employerManagement extends TestBase {
 
 	}
 	
-	 
-   
-   
+	public WebElement EAN (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@formcontrolname='ean']")));
+		return driver.findElement(By.xpath("//input[@formcontrolname='ean']"));
+
+	} 
+	public WebElement continueButton (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Continue ']")));
+		return driver.findElement(By.xpath("//span[text()='Continue ']"));
+
+	} 
+	public WebElement select (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='--SELECT--']")));
+		return driver.findElement(By.xpath("//span[text()='--SELECT--']"));
+
+	}  
+	
+	public WebElement selectCorres (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()=' Correspondence/Email ']")));
+		return driver.findElement(By.xpath("//span[text()=' Correspondence/Email ']"));
+
+	}
+	
+	public WebElement successMsgSuc002 (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-card[@id='successMatCardId']")));
+		return driver.findElement(By.xpath("//mat-card[@id='successMatCardId']"));
+
+	}
 
 }
 

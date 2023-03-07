@@ -15,7 +15,7 @@ import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_001 {
+public class EM_260_02_001 {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
 	public class TC_CM_002_001 extends TestBase
@@ -24,7 +24,7 @@ public class EM_260_001 {
 		String EAN = prop.getProperty("EAN");
 
 		@Test(priority=1, description = "Test sample",groups = {"Regression"})
-		public void Testing123() throws Exception
+		public void accMaint() throws Exception
 		{
 			//claimsIntake cl = new claimsIntake();
 			employerManagement em =  new employerManagement();
@@ -32,14 +32,14 @@ public class EM_260_001 {
 			test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
 			LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 			commonStepDefinitions cf= new commonStepDefinitions();
-			cf.login("NDFJP3","Admin@12345678");
+			cf.login("Soleprop123","NewUser@123456");
 			cf.screenShot("ApplicationLogin","Pass","Login is successful");
 			cf.clickMenu("Menu");	
-			cf.clickMenu("Account Maintenance");sleep();
+			cf.clickMenu("Account Maintenance");
 			cf.clickMenu("Maintain Address");sleep();
-			cf.screenShot("Menu","Pass","AccountMaintenance");
+			cf.screenShot("Menu","Pass","Maintain Address");
 			//driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']")); Thread.sleep(2000);
-			em.updateAddress(EAN);
+			em.updateAddress();
 
 
 
