@@ -72,9 +72,13 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	public void selectRadio(String xpathParameter) {
-		//driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
-		driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
+		try {
+			driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
 		
+		}
+		catch(Exception e){
+			driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
+		}
 	}
 	
 	public void selectDropdown(String xpathParameter, String value) {
