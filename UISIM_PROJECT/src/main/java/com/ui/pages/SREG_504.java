@@ -53,17 +53,21 @@ public class SREG_504 {
 		Assert.assertEquals(name, actualPageName);
 	}
 	
-	public void verifyFilterValues() {
+	public void verifyFilterValues() throws Exception {
+		stepDef.screenShot("Filters", "INFO", "Filter validation");
 		Assert.assertTrue(successorERNText.isDisplayed());
 		Assert.assertTrue(successorERNValue.isDisplayed());
 		Assert.assertTrue(predecessorERNText.isDisplayed());
 		Assert.assertTrue(predecessorERNValue.isDisplayed());
 		Assert.assertTrue(totalOrPartialText.isDisplayed());
 		Assert.assertTrue(totalOrPartialValue.isDisplayed());
+		stepDef.screenShot("Filters", "PASS", "Filter validation");
 	}
 	
-	public void clickSubmitButton(){
+	public void clickSubmitButton() throws Exception{
 		submitButton.click();
+		Thread.sleep(2000);
+		stepDef.screenShot("Submit", "PASS", "Submit validation");
 	}
 	
 	

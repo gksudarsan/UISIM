@@ -47,7 +47,7 @@ public class EM_321_02_001 extends TestBase
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.login("tst_empr","Nysdol@0210");
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.clickMenu("Menu");
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 

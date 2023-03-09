@@ -36,16 +36,18 @@ public class SREG_434 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-error[text()='Required']")
 	public WebElement requiredText;
 	
-	public Boolean checkRequiredText() throws InterruptedException {
+	public Boolean checkRequiredText() throws Exception {
 		stepDef.clickElement(continueButton);
 		Thread.sleep(2000);
+		stepDef.screenShot("Required_Text", "Pass", "Required text");
 		Boolean flag = requiredText.isDisplayed();
 		return flag;
 		
 	}
-		public void enterEANNumber(String EAN) throws InterruptedException {
+		public void enterEANNumber(String EAN) throws Exception {
 			registerERN.sendKeys(EAN);
 			Thread.sleep(2000);
+			stepDef.screenShot("EnterErn", "Pass", "ERN text");
 			stepDef.clickElement(continueButton);	
 	
 	}

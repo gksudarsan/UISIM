@@ -93,22 +93,28 @@ public class SRGE_544 {
 		return flag;
 	}
 	
-	public void enterDetails() throws InterruptedException {
+	public void enterDetails() throws Exception {
+		stepDef.screenShot("Form", "INFO", "Form SS");
 		stepDef.clickElement(flagTypeDropDown);
 		Thread.sleep(2000);
 		stepDef.clickElement(firstReturnDropValue);
 		dateField.sendKeys("03/06/2023");
 		commentBox.sendKeys("Sample Text");
+		stepDef.screenShot("Form", "PASS", "Entered the details and click add button");
 		stepDef.clickElement(addButton);
 		Thread.sleep(2000);
+		stepDef.screenShot("Form", "PASS", "Add button clicked");
 	}
-	public void checkFilter() {
+	public void checkFilter() throws Exception {
+		stepDef.screenShot("Filter", "PASS", "Filter Screenshot");
 		String flagValueText = flagTypeValue.getText();
 		Assert.assertEquals(flagValueText, "First Returned Mail");
 		String commentValueText = commentValue.getText();
 		Assert.assertEquals(commentValueText, "Sample Text");
 	}
-	public void clickSubmit() {
+	public void clickSubmit() throws Exception {
 		submitButton.click();
+		Thread.sleep(3000);
+		stepDef.screenShot("Submit", "PASS", "Clicked Submit");
 	}
 }

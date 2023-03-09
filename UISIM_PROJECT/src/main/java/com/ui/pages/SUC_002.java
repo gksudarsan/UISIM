@@ -40,18 +40,21 @@ public class SUC_002 {
 	public WebElement homeButton;
 	
 	
-	public String validateSucessMessage() {
+	public String validateSucessMessage() throws Exception {
+		stepDef.screenShot("Success Message", "Pass", "Success message Screenshot");
 		String sucessMsg = accountFlagSuccessText.getText();
 		return sucessMsg;
 	}
 	
-	public String validateSaleOfBusinessText() {
+	public String validateSaleOfBusinessText() throws Exception {
+		stepDef.screenShot("Success Message", "Pass", "Success message Screenshot");
 		String sucessMsg = saleOfBusinessSuccessText.getText();
 		return sucessMsg;
 	}
 	
 
-	public void validateHomeButton() {
+	public void validateHomeButton() throws Exception {
+		stepDef.screenShot("Home", "Pass", "Home Screenshot");
 		Assert.assertTrue(homeButton.isDisplayed());
 	}
 }

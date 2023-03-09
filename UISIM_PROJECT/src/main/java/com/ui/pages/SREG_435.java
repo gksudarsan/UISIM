@@ -89,17 +89,20 @@ public class SREG_435 extends TestBase{
 		return flag;
 	}
 	
-	public void enterRequiredFields() throws InterruptedException {
+	public void enterRequiredFields() throws Exception {
+		stepDef.screenShot("RequiredField1", "Pass", "Required Field");
 		stepDef.clickElement(statusOfEmployerAccountDropdown);
 		Thread.sleep(2000);
 		stepDef.clickElement(statusOfEmployerAccountDropdownValue);
 		stepDef.clickElement(quarterDropdown);
 		Thread.sleep(2000);
+		stepDef.screenShot("RequiredField2", "Pass", "Required Field");
 		stepDef.clickElement(quarterDropdownValue);
 		stepDef.clickElement(yearDropdown);
 		Thread.sleep(2000);
 		stepDef.clickElement(yearDropdownValue);
 		enterComments.sendKeys("Testing Sample");
+		stepDef.screenShot("RequiredField3", "Pass", "Required Field");
 		Thread.sleep(2000);
 		System.out.println("Trying to click radio button");
 		//radioButton.click();
@@ -109,9 +112,10 @@ public class SREG_435 extends TestBase{
 		stepDef.clickElement(sourceDropdownValue);
 		Thread.sleep(2000);
 		stepDef.clickElement(selectSourceDropdown);
+		stepDef.screenShot("RequiredField4", "Pass", "Required Field");
 		stepDef.clickElement(selectSourceDropdownValue);
 		Thread.sleep(2000);
-		
+		stepDef.screenShot("RequiredField5", "Pass", "Required Field");
 	}
 	
 		//public void checkFilter() {
@@ -120,8 +124,10 @@ public class SREG_435 extends TestBase{
 			//String commentValueText = commentValue.getText();
 			//Assert.assertEquals(commentValueText, "Sample Text");
 		//}
-		public void clickSubmit() {
+		public void clickSubmit() throws Exception {
 			submitButton.click();
+			stepDef.screenShot("submitButton", "Pass", "submit button click");
+			Thread.sleep(2000);
 		}
 		
 	

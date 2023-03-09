@@ -1,6 +1,7 @@
 package com.employerContibution.EM;
 
 import org.openqa.selenium.By;
+import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
@@ -26,7 +27,7 @@ public class EM_449_001 extends TestBase {
 		@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 		public void Testing123() throws Exception {
 			String EAN = "0000160";
-			test = report.createTest("Logged into EC Application");
+			test = report.createTest("EM.449.001- Verify CSR is able to establish joint account for two or more account  with  'Principal Business Activity'");
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			SRGE_543 srge543Page = new SRGE_543(driver);
 			SRGE_544 srge544Page = new SRGE_544(driver);
@@ -34,16 +35,28 @@ public class EM_449_001 extends TestBase {
 			HomePage home = new HomePage(driver);
 			
 			test.log(Status.INFO, "Logging to the application");
-			stepDef.login("ndfjp3", "Admin@12345678");
+			stepDef.login(prop.getProperty("CSR_UserID"),prop.getProperty("CSR_Pass"));
 			test.log(Status.PASS, "Sucessfully login to the application");
-			test.log(Status.INFO, "Navigating to the account maintenance info tab");
+			test.log(Status.INFO, "Navigating to the maintenance account status tab");
 			home.navigateToAccountMaintenance();
+			test.log(Status.PASS, "Navigated to the maintenance account status tab");
 			srge543Page.checkRequiredText();
+			test.log(Status.PASS, "Required is displaying if user don't enter the data and click continue");
 			srge543Page.enterEANNumber(EAN);
-			srge544Page.submitWithoutDetails();
+			test.log(Status.PASS, "Entered the ERN number");
+			test.log(Status.INFO, "Submit the form without entering the details");
+			Boolean flag = srge544Page.submitWithoutDetails();
+			Assert.assertTrue(flag);
+			test.log(Status.PASS, "Required is displaying if user don't enter the data and click Submit");
+			test.log(Status.INFO, "Entering the Data in form");
 			srge544Page.enterDetails();
+			test.log(Status.PASS, "Form is filled");
+			test.log(Status.INFO, "Checking if the filters are displaying");
 			srge544Page.checkFilter();
+			test.log(Status.PASS, "Filter verified");
+			test.log(Status.INFO, "Click Submit button");
 			srge544Page.clickSubmit();
+			test.log(Status.PASS, "Submit button clicked");
 			suc002Page.validateSucessMessage();
 
 		}

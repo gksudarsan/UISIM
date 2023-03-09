@@ -32,11 +32,14 @@ public class EM_005 extends TestBase {
 	public WebElement pageNameText;
 	
 	
-	public String enterDetailInERNField(String ERN) throws InterruptedException {
+	public String enterDetailInERNField(String ERN) throws Exception {
+		stepDef.screenShot("ERN", "INFO", "ERN field Screenshot");
 		String pageNametext = pageNameText.getText();
 //		ERNInputField.sendKeys(ERN);
 		Thread.sleep(2000);
 		stepDef.clickElement(continueButton);
+		Thread.sleep(2000);
+		stepDef.screenShot("ERN", "INFO", "ERN field Screenshot");
 		return pageNametext;
 	}	
 }
