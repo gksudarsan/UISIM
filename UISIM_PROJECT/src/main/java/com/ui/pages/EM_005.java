@@ -35,8 +35,5 @@ public class EM_005 {
 		Thread.sleep(2000);
 		stepDef.clickElement(continueButton);
 		return pageNametext;
-	}
-	
-	
-	
+	}	
 }
