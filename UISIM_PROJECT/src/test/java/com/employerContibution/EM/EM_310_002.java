@@ -28,7 +28,7 @@ public class EM_310_002 {
 			
 			test.log(Status.INFO, "Logging to the application");
 			stepDef.login("ndfjp3", "Admin@12345678");
-			home.navigateToSaleOfBusiness();
+			home.navigateToSaleOfBussiness();
 			
 
 		}

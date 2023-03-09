@@ -37,7 +37,7 @@ public class EM_449_001 extends TestBase {
 			stepDef.login("ndfjp3", "Admin@12345678");
 			test.log(Status.PASS, "Sucessfully login to the application");
 			test.log(Status.INFO, "Navigating to the account maintenance info tab");
-			home.navigateToAccountMaintain();
+			home.navigateToAccountMaintenance();
 			srge543Page.checkRequiredText();
 			srge543Page.enterEANNumber(EAN);
 			srge544Page.submitWithoutDetails();
