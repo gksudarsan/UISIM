@@ -16,7 +16,7 @@ import com.ui.pages.SREG_507;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_449_002 extends TestBase {
+public class EM_449_001_Establish_joint_account_for_two_or_more_account extends TestBase {
 
 	@Test(priority=1, description = "EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.",groups = {"Regression"})
 	public void EM_321_02_001() throws Exception
