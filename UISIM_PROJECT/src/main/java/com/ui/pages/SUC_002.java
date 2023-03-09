@@ -19,14 +19,22 @@ public class SUC_002 {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//mat-card[text()='Account flag(s) successfully added.']")
-	public WebElement sucessMessageText;
+	//@FindBy(how = How.XPATH, using = "//mat-card[text()='Account flag(s) successfully added.']")
+	//public WebElement sucessMessageText;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[@id='SUC-002']")
+	public WebElement screenIdText;
+	
+	@FindBy(how = How.XPATH, using = "//mat-card[text()='Employer Registration Number 00-00022 has been closed successfully effective 1/2021']")
+	public WebElement successMessageText;
+	
+	@FindBy(how = How.XPATH, using = "//button[@id='SUC-002access.home']")
+	public WebElement homeButton;
 	
 	public String validateSucessMessage() {
-		String sucessMsg = sucessMessageText.getText();
+		String sucessMsg = successMessageText.getText();
 		return sucessMsg;
 	}
-	
 	
 	
 }
