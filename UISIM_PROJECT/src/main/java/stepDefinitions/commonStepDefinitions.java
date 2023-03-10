@@ -27,23 +27,23 @@ public class commonStepDefinitions extends TestBase {
 		screenShot("LoginPage", "Pass", "HomePage");
 		loginPage.loginLink.click();
 		Thread.sleep(2000);
-		test.log(Status.PASS, "User Launched website");
-		driver.navigate().refresh();
-		Thread.sleep(2000);
-		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
-		driver.navigate().to(driver.getCurrentUrl());
-		Thread.sleep(5000);
+//		test.log(Status.PASS, "User Launched website");
+//		driver.navigate().refresh();
+//		Thread.sleep(2000);
+//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
+//		driver.navigate().to(driver.getCurrentUrl());
+//		Thread.sleep(5000);
 
-		driver.get(driver.getCurrentUrl());
+//		driver.get(driver.getCurrentUrl());
 		Thread.sleep(5000);
 
 		enterTextbox("Username", userName);
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(5000);
-		Thread.sleep(15000);
+//		Thread.sleep(15000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");

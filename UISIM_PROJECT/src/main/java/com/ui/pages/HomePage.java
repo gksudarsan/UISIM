@@ -47,9 +47,16 @@ public class HomePage {
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Sale of Business']")
 	public WebElement saleOfBussiness;
-
+	
+	@FindBy(how = How.XPATH, using = "//a[@class='nav-link ng-tns-c112-41 ng-star-inserted']//span[@id='AccountMaintenanceEmployerAccountMaintenance']")
+	public WebElement employerAccountMaintenanceMain;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Accounts']")
+	public WebElement maintainAccounts;
+	
+	
 	public void navigateToAccountMaintenance() throws Exception {
-		stepDef.screenShot("Click_menu", "INFO", "Click menu");
+		stepDef.screenShot("Click_menu", "Pass", "Click menu");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.screenShot("Click_AC_Maintain_menu", "PASS", "Click AC Maintain menu");
@@ -64,26 +71,38 @@ public class HomePage {
 	}
 
 	public void navigateToSaleOfBussiness() throws Exception {
-		stepDef.screenShot("Menu", "INFO", "Navigating to menu");
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
 		stepDef.clickElement(saleOfBussiness);
-		stepDef.screenShot("Menu", "PASS", "Navigating to menu");
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 	}
 
 	public void navigateToEstablishJointAccount() throws Exception {
-		stepDef.screenShot("Menu", "INFO", "Navigating to menu");
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
 		stepDef.clickElement(jointAccount);
 		Thread.sleep(3000);
-		stepDef.screenShot("Menu", "INFO", "Navigating to menu");
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		stepDef.clickElement(establishJointAccount);
 		Thread.sleep(3000);
 		stepDef.screenShot("Menu", "PASS", "Navigating to menu");
 	}
+	
+	public void navigateToMaintainAccounts() throws Exception {
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu fail");
+		stepDef.clickElement(menuButton);
+		Thread.sleep(3000);
+		stepDef.clickElement(accountMaintenance);
+		Thread.sleep(3000);
+		stepDef.screenShot("Menu2", "INFO", "Navigating to employerAccountMaintenanceMain fail");
+		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
+		stepDef.waitForElementClicable(maintainAccounts);
+	}
+	
 }
