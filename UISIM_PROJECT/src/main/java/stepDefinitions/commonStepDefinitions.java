@@ -53,6 +53,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	public void enterTextbox(String xpathParameter,String value) {
+		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::input[1]")).clear();
 		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::input[1]")).sendKeys(value);
 	}
 	public void enterTextboxContains(String xpathParameter,String value) {
@@ -85,8 +86,15 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::mat-select[1]")).click();
 		driver.findElement(By.xpath("//*[contains(.,'"+value+"')][@class='mat-option-text']")).click();
 		
+	}
+	
+	public void errorLabel(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-error[.='"+xpathParameter+"'][1]")).isDisplayed();
+	}
+	
+	public void errorContent(String xpathParameter){
+		driver.findElement(By.xpath("//*[.='"+xpathParameter+"'][@id='businessError0'][1]")).isDisplayed();
 		
-			
 	}
 	public void ScrollMenu(String xpathParameter) throws InterruptedException {		
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//*[text()='"+xpathParameter+"'][1]")));
@@ -97,6 +105,8 @@ public class commonStepDefinitions extends TestBase {
 		ele.click();
 		Thread.sleep(2000);
 	}
+	
+	
 	
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
