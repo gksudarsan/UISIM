@@ -17,7 +17,7 @@ import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_449_001 extends TestBase {
+public class EM_013_001_Add_Account_Flag_First_Return_Mail extends TestBase {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
 	public class TC_CM_002_001 extends TestBase {
@@ -27,7 +27,7 @@ public class EM_449_001 extends TestBase {
 		@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 		public void Testing123() throws Exception {
 			String EAN = "0000160";
-			test = report.createTest("EM.449.001- Verify CSR is able to establish joint account for two or more account  with  'Principal Business Activity'");
+			test = report.createTest("EM.013.001 - Verify CSR is able to add account flags information for flag type  'First Return Mail'.");
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			SRGE_543 srge543Page = new SRGE_543(driver);
 			SRGE_544 srge544Page = new SRGE_544(driver);

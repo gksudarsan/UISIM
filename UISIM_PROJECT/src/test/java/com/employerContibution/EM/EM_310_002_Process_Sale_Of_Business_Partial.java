@@ -17,7 +17,7 @@ import com.ui.utilities.ConstantData;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_310_002 {
+public class EM_310_002_Process_Sale_Of_Business_Partial {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
 	public class TC_CM_002_001 extends TestBase {

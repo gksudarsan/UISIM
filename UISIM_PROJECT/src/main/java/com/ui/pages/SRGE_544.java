@@ -94,7 +94,7 @@ public class SRGE_544 {
 	}
 	
 	public void enterDetails() throws Exception {
-		stepDef.screenShot("Form", "INFO", "Form SS");
+		stepDef.screenShot("Form", "PASS", "Form SS");
 		stepDef.clickElement(flagTypeDropDown);
 		Thread.sleep(2000);
 		stepDef.clickElement(firstReturnDropValue);

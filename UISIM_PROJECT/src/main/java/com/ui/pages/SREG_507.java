@@ -70,21 +70,21 @@ public WebDriver driver;
 	public WebElement continueButton;
 	
 	public void fillForm(String ERN , String businessName , String fname , String lname , String address, String city , String zipcode , String tele , String emailID) throws Exception {
-		stepDef.screenShot("Establish_Joint_Account_Administrator","INFO","Redirected to SREG_507 Page");
+		stepDef.screenShot("Establish_Joint_Account_Administrator","Pass","Redirected to SREG_507 Page");
 		isJointACMemberRadio_NO.click();
 		stepDef.waitForElementClicable(havePOARadio_Yes);
 		jointAC_ERN_Input.sendKeys(ERN);
 		legalNameBusinessInput.sendKeys(businessName);
 		firstNameInput.sendKeys(fname);
 		lastNameInput.sendKeys(lname);
-		stepDef.screenShot("Establish_Joint_Account_Administrator","Pass","Entered details till Last Name");
+		stepDef.screenShot("Establish_Joint_Account_Administrator2","Pass","Entered details till Last Name");
 		addressLane1Input.sendKeys(address);
 		cityInput.sendKeys(city);
 		stateDropDown.click();
 		zipCode.sendKeys(zipcode);
 		telephoneInput.sendKeys(tele);
 		emailInput.sendKeys(emailID);
-		stepDef.screenShot("Establish_Joint_Account_Administrator","Pass","Entered all the Details and click continue");
+		stepDef.screenShot("Establish_Joint_Account_Administrator3","Pass","Entered all the Details and click continue");
 		stepDef.waitForElementClicable(continueButton);
 	}
 	

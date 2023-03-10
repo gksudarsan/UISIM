@@ -54,7 +54,7 @@ public class SREG_504 {
 	}
 	
 	public void verifyFilterValues() throws Exception {
-		stepDef.screenShot("Filters", "INFO", "Filter validation");
+		stepDef.screenShot("Filters", "Pass", "Filter validation");
 		Assert.assertTrue(successorERNText.isDisplayed());
 		Assert.assertTrue(successorERNValue.isDisplayed());
 		Assert.assertTrue(predecessorERNText.isDisplayed());

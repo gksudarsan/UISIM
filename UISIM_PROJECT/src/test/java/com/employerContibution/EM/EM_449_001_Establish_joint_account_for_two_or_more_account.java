@@ -18,11 +18,11 @@ import stepDefinitions.commonStepDefinitions;
 
 public class EM_449_001_Establish_joint_account_for_two_or_more_account extends TestBase {
 
-	@Test(priority=1, description = "EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.",groups = {"Regression"})
+	@Test(priority=1, description = "Test",groups = {"Regression"})
 	public void EM_321_02_001() throws Exception
 	{
 		 
-		 test = report.createTest("EM.449.002 - Verify CSR is able to establish joint account for two or more account with  'Common Financial Interest'.");
+		 test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();

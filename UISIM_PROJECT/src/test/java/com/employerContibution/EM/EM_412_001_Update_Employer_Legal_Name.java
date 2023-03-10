@@ -14,13 +14,13 @@ import com.ui.pages.SUC_002;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_412_001 extends TestBase{
+public class EM_412_001_Update_Employer_Legal_Name extends TestBase{
 
 
 	@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 	public void Testing123() throws Exception {
 		
-		test = report.createTest("EM.310.002 - Verify CSR is able to process sale of business and indicate transfer 'Partial'.");
+		test = report.createTest("EM.412.001- Verify CSR is able to update employer legal name of business for employer type 'Business'");
 		commonStepDefinitions stepDef = new commonStepDefinitions();
 		HomePage home = new HomePage(driver);
 		SREG_030 sreg030 = new SREG_030(driver);

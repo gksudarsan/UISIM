@@ -66,7 +66,7 @@ public class SREG_503 extends TestBase{
 	
 	
 	public void fillFormDetails() throws Exception {
-		stepDef.screenShot("Form", "INFO", "Form in blank state");
+		stepDef.screenShot("Form", "Pass", "Form in blank state");
 		haveYouSoldYourRadio.click();
 		successorInput.sendKeys(prop.getProperty("successor"));
 		saerchButton.click();
@@ -74,15 +74,15 @@ public class SREG_503 extends TestBase{
 		partRadioButton.click();
 		effectiveDateTransfer.sendKeys(prop.getProperty("Date_EM_310_02"));
 		sourceDropDown.click();
-		stepDef.screenShot("Form", "INFO", "Entering data");
+		stepDef.screenShot("Form1", "Pass", "Entering data");
 		Thread.sleep(2000);
 		sourceValue.click();
 		Thread.sleep(2000);
 		sourceTypeDropDown.click();
-		stepDef.screenShot("Form", "INFO", "Entering data");
+		stepDef.screenShot("Form2", "Pass", "Entering data");
 		Thread.sleep(2000);
 		sourceTypeValue.click();
-		stepDef.screenShot("Form", "INFO", "Entered data");
+		stepDef.screenShot("Form3", "Pass", "Entered data");
 		continueButton.click();
 		Thread.sleep(5000);
 	}
