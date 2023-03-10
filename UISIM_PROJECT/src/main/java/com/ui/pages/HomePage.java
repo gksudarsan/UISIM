@@ -24,11 +24,11 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Account Maintenance']")
 	public WebElement accountMaintenance;
 	
-	//@FindBy(how = How.XPATH, using = "//span[text()='Maintain Account Flag Information']")
-	//public WebElement maintenanceAccountFlagInfo;
+	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Account Flag Information']")
+	public WebElement maintenanceAccountFlagInfo;
 
-	//@FindBy(how = How.XPATH, using = "//span[text()='Maintain Account Flag Information']")
-	//public WebElement maintenanceAccountFla;
+	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Account Flag Information']")
+	public WebElement maintenanceAccountFla;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()='Employer Account Maintenance']") 
 	public WebElement empAccMaintenance;
@@ -39,6 +39,8 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Sale of Business']") 
 	public WebElement saleOfBussiness;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()='Void Transfer']") 
+	public WebElement voidTransfer;
 	
 	
 	public void navigateToAccountMaintenance() throws InterruptedException {
@@ -60,6 +62,16 @@ public class HomePage {
 			stepDef.clickElement(saleOfBussiness);
 			Thread.sleep(3000);	
 			
-	
 	}
+			public void navigateToVoidTransfer() throws InterruptedException {
+				stepDef.clickElement(menuButton);
+				Thread.sleep(3000);
+				stepDef.clickElement(accountMaintenance);
+				Thread.sleep(3000);
+				stepDef.clickElement(empAccMaintenance);
+				Thread.sleep(3000);	
+				stepDef.clickElement(voidTransfer);
+				
+	}		
+		
 }

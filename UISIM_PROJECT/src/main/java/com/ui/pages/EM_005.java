@@ -24,7 +24,8 @@ public class EM_005 extends TestBase {
 	@FindBy(how = How.XPATH, using = "//input[@id='eanId']")
 	public WebElement registerERN;
 	
-	@FindBy(how = How.XPATH, using = "//span[normalize-space()='Continue']")
+
+	@FindBy(how = How.XPATH, using = "//button[@type='submit']") 
 	public WebElement continueButton;
 	
 
@@ -36,7 +37,7 @@ public class EM_005 extends TestBase {
 		String pageNametext = pageNameText.getText();
 //		ERNInputField.sendKeys(ERN);
 		Thread.sleep(2000);
-		stepDef.clickElement(continueButton);
+	    stepDef.clickElement(continueButton);
 		return pageNametext;
 	}	
 }

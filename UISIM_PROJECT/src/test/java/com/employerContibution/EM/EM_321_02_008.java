@@ -107,7 +107,7 @@ public class EM_321_02_008 extends TestBase
 		Thread.sleep(3000);
 		String  address = commonFuntions.retrieveValueFromTable(ssnValue,7,1," Individual as Trustee ");
 		System.out.println(address);
-		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
-		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);
+		Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
+		Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);
 	}
 }
