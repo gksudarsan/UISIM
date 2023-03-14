@@ -180,6 +180,7 @@ public class EL_322_010 extends TestBase
 	     commonFuntions.screenShot("Acknowledgement","Pass","Statement Of Acknowledgement");
 	     commonFuntions.clickButtonContains("Accept & Submit");
 	     Thread.sleep(2000);
+	     commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
 	   
 	     

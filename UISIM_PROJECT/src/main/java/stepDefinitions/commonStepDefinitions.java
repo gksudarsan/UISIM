@@ -50,9 +50,9 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//Thread.sleep(5000);
 		Thread.sleep(5000);
-//		Thread.sleep(15000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");
@@ -65,35 +65,7 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(5000);
 		}
 
-	      screenShot("LoginPage","Pass","HomePage");
-	      loginPage.loginLink.click();		 
-			Thread.sleep(2000);
-			test.log(Status.PASS,"User Launched website");			
-			driver.navigate().refresh();
-			Thread.sleep(2000);
-			screenShot("AfterRefreshPage","Pass","AfterRefresh");
-			  driver.navigate().to(driver.getCurrentUrl());
-			  Thread.sleep(5000);
-			 
-			  driver.get(driver.getCurrentUrl());Thread.sleep(5000);		  
-			  enterTextbox("Username",userName);			  
-			  test.log(Status.PASS,"User entered Username");
-			  enterTextbox("Password",password);			  
-			  test.log(Status.PASS,"User entered Password");
-			      driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();Thread.sleep(5000);
-	     Thread.sleep(15000);     
-	     driver.navigate().refresh();
-	     Thread.sleep(10000);
-	     screenShot("okPopUpButton","Pass","okPopUp");
-	     loginPage.okPopUpButton.click();	
-	     Thread.sleep(5000);
-	     driver.navigate().refresh();
-	     Thread.sleep(3000);
-	     if(  driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0){
-	    	 loginPage.okPopUpButton.click();	
-		     Thread.sleep(5000); 
-	     }
-	    
+	      
 	}
 	
 	public void enterTextbox(String xpathParameter,String value) {
