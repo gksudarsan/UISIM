@@ -48,14 +48,12 @@ public class SUC_002 {
 	public String validateSucessMessage() throws Exception {
 		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");
 		String sucessMsg = accountFlagSuccessText.getText();
-		stepDef.screenShot("SuccessMessage", "Pass", "validation failed");
 		return sucessMsg;
 	}
 	
 	public String validateSaleOfBusinessText() throws Exception {
 		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");
 		String sucessMsg = saleOfBusinessSuccessText.getText();
-		stepDef.screenShot("SuccessMessage", "Pass", "validation failed");
 		return sucessMsg;
 	}
 	
@@ -63,11 +61,10 @@ public class SUC_002 {
 	public void validateHomeButton() throws Exception {
 		stepDef.screenShot("Home", "Pass", "Home Screenshot");
 		Assert.assertTrue(homeButton.isDisplayed());
-		stepDef.screenShot("SuccessMessage", "Pass", "validation failed");
 	}
 	
 	public void validateEmployerAccountMSG() throws Exception {
 		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
-		stepDef.screenShot("SuccessMessage", "Pass", "validation failed");
+		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}
 }

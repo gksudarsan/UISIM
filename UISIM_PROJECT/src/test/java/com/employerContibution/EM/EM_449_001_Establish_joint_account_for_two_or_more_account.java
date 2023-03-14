@@ -22,7 +22,7 @@ public class EM_449_001_Establish_joint_account_for_two_or_more_account extends 
 	public void EM_321_02_001() throws Exception
 	{
 		 
-		 test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
+		 test = report.createTest("EM.449.001- Verify CSR is able to establish joint account for two or more account  with  'Principal Business Activity'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
@@ -38,7 +38,7 @@ public class EM_449_001_Establish_joint_account_for_two_or_more_account extends 
 		 sreg507.verifyPageTitle();
 		 test.log(Status.PASS, "Page verified");
 		 test.log(Status.INFO, "Entering the Details");
-		 sreg507.fillForm("930006", "ABCDEFGH", "Abhinav", "Sharma", "302 Test Address", "Test City", "32147", "3522343234", "TestAdmin@gmail.com");
+		 sreg507.fillForm("9300016", "ABCDEFGH", "Abhinav", "Sharma", "302 Test Address", "Test City", "32147", "3522343234", "TestAdmin@gmail.com");
 		 test.log(Status.PASS, "Entered the details");
 		 
 		 

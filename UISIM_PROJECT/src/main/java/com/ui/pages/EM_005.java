@@ -13,16 +13,16 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_005 extends TestBase {
 	
 	public WebDriver driver;
-	
+
 	commonStepDefinitions stepDef = new commonStepDefinitions();
-	
-	public EM_005 (WebDriver drievr) {
-		this.driver=driver;
+
+	public EM_005(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='eanId']")
-	public WebElement registerERN;
+	public WebElement registerERNInput;
 	
 	@FindBy(how = How.XPATH, using = "//span[normalize-space()='Continue']")
 	public WebElement continueButton;
@@ -32,14 +32,16 @@ public class EM_005 extends TestBase {
 	public WebElement pageNameText;
 	
 	
-	public String enterDetailInERNField(String ERN) throws Exception {
-		stepDef.screenShot("ERN", "INFO", "ERN field Screenshot");
+	public void enterDetailInERNField(String ERN) throws Exception {
+		Thread.sleep(2000);
+		System.out.println("Inside the ERN page");
+		stepDef.screenShot("ERN", "Pass", "ERN field input field");
 		String pageNametext = pageNameText.getText();
-//		ERNInputField.sendKeys(ERN);
+		System.out.println(pageNametext);
+		registerERNInput.sendKeys(ERN);
 		Thread.sleep(2000);
 		stepDef.clickElement(continueButton);
 		Thread.sleep(2000);
-		stepDef.screenShot("ERN", "INFO", "ERN field Screenshot");
-		return pageNametext;
+//		return pageNametext;
 	}	
 }

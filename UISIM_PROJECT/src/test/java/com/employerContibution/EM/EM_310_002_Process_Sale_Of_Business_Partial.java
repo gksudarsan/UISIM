@@ -36,7 +36,7 @@ public class EM_310_002_Process_Sale_Of_Business_Partial {
 			SUC_002 suc002 = new SUC_002(driver);
 			
 			test.log(Status.INFO, "Logging to the application");
-			stepDef.login(prop.getProperty("SCR_UserID") , prop.getProperty("CSR_Pass"));
+			stepDef.login(prop.getProperty("CSR_UserID") , prop.getProperty("CSR_Pass"));
 			test.log(Status.PASS, "Login Success");
 			test.log(Status.INFO, "Navigating to Sales of Business tab");
 			home.navigateToSaleOfBussiness();

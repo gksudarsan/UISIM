@@ -26,7 +26,7 @@ public class EM_013_001_Add_Account_Flag_First_Return_Mail extends TestBase {
 
 		@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 		public void Testing123() throws Exception {
-			String EAN = "0000160";
+			String EAN = "0000257";
 			test = report.createTest("EM.013.001 - Verify CSR is able to add account flags information for flag type  'First Return Mail'.");
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			SRGE_543 srge543Page = new SRGE_543(driver);

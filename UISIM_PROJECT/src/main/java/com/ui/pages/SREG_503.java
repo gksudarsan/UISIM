@@ -1,5 +1,6 @@
 package com.ui.pages;
 
+import org.openqa.selenium.ElementClickInterceptedException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -49,13 +50,13 @@ public class SREG_503 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//label[@for='suppressPtPercentageId_No-input']//span[@class='mat-radio-outer-circle']")
 	public WebElement eAANoRadio;
 	
-	@FindBy(how = How.XPATH, using = "//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c156-120 ng-star-inserted']")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Source']/../../div/mat-form-field/div/div/div/following-sibling::div/following-sibling::div/mat-select")
 	public WebElement sourceDropDown;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Correspondence/Email ']")
 	public WebElement sourceValue;
 	
-	@FindBy(how = How.XPATH, using = "//span[@class='mat-select-placeholder mat-select-min-line ng-tns-c156-121 ng-star-inserted']")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Source Type']/../../div/mat-form-field/div/div/div/following-sibling::div/following-sibling::div/mat-select")
 	public WebElement sourceTypeDropDown;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Correspondence/Email ']")
@@ -75,13 +76,26 @@ public class SREG_503 extends TestBase{
 		effectiveDateTransfer.sendKeys(prop.getProperty("Date_EM_310_02"));
 		sourceDropDown.click();
 		stepDef.screenShot("Form1", "Pass", "Entering data");
-		Thread.sleep(2000);
-		sourceValue.click();
+		Thread.sleep(3000);
+		stepDef.ScrollMenu(" Correspondence/Email ");
+		try {
+			stepDef.waitForElementClicable(sourceValue);
+		}catch(ElementClickInterceptedException e) {
+			stepDef.safeJavaScriptClick(sourceValue);
+		}
+		System.out.println("Selected drop down 1");
 		Thread.sleep(2000);
 		sourceTypeDropDown.click();
+		stepDef.ScrollMenu(" Correspondence/Email ");
 		stepDef.screenShot("Form2", "Pass", "Entering data");
 		Thread.sleep(2000);
-		sourceTypeValue.click();
+		try {
+			stepDef.waitForElementClicable(sourceTypeValue);
+		}catch(ElementClickInterceptedException e) {
+			stepDef.safeJavaScriptClick(sourceTypeValue);
+		}
+		
+		System.out.println("Selected drop down 2");
 		stepDef.screenShot("Form3", "Pass", "Entered data");
 		continueButton.click();
 		Thread.sleep(5000);

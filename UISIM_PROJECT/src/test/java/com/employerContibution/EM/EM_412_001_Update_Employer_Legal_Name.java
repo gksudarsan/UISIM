@@ -29,7 +29,7 @@ public class EM_412_001_Update_Employer_Legal_Name extends TestBase{
 		
 		
 		test.log(Status.INFO, "Logging to the application");
-		stepDef.login(prop.getProperty("CSR_UserID"), prop.getProperty("SCR_Pass"));
+		stepDef.login(prop.getProperty("CSR_UserID"), prop.getProperty("CSR_Pass"));
 		test.log(Status.PASS, "Logged in to the application");
 		test.log(Status.INFO, "Navigating to Maintain Accounts");
 		home.navigateToMaintainAccounts();

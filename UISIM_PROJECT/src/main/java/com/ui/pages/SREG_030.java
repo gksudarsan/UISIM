@@ -62,14 +62,15 @@ public WebDriver driver;
 		Assert.assertEquals("84-3532423", feinValue.getText());
 		stepDef.waitForElementClicable(sourceDropDown);
 		stepDef.screenShot("FormSS2", "Pass", "failed");
+		Thread.sleep(3000);
 		sourceDropDownValue.click();
-		stepDef.waitForElementClicable(sourceDropDownValue);
+		stepDef.waitForElementClicable(sourceTypeDropDown);
 		sourceTypeDropDownValue.click();
 	}
 	
 	public void validatePageTitle() {
 		String title = pageTitle.getText();
-		Assert.assertEquals(title, "Modify Employer Account Details");
+		Assert.assertEquals(title, "Employer Account Maintenance – Enter ERN");
 	}
 	
 	public void clickSubmit() throws Exception {

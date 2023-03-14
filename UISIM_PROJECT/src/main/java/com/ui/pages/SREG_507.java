@@ -66,13 +66,14 @@ public WebDriver driver;
 	@FindBy(how = How.XPATH, using = "//input[@id='emailId']")
 	public WebElement emailInput;
 	
-	@FindBy(how = How.XPATH, using = "//span[normalize-space()='Continue']]")
+	@FindBy(how = How.XPATH, using = "//span[text()='Continue ']/..")
 	public WebElement continueButton;
 	
 	public void fillForm(String ERN , String businessName , String fname , String lname , String address, String city , String zipcode , String tele , String emailID) throws Exception {
 		stepDef.screenShot("Establish_Joint_Account_Administrator","Pass","Redirected to SREG_507 Page");
 		isJointACMemberRadio_NO.click();
-		stepDef.waitForElementClicable(havePOARadio_Yes);
+		stepDef.safeJavaScriptClick(havePOARadio_Yes);
+//		stepDef.waitForElementClicable(havePOARadio_Yes);
 		jointAC_ERN_Input.sendKeys(ERN);
 		legalNameBusinessInput.sendKeys(businessName);
 		firstNameInput.sendKeys(fname);
@@ -81,6 +82,8 @@ public WebDriver driver;
 		addressLane1Input.sendKeys(address);
 		cityInput.sendKeys(city);
 		stateDropDown.click();
+		Thread.sleep(2000);
+		stateDropDownValue.click();
 		zipCode.sendKeys(zipcode);
 		telephoneInput.sendKeys(tele);
 		emailInput.sendKeys(emailID);

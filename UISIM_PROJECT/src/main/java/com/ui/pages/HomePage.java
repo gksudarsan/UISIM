@@ -54,6 +54,12 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Accounts']")
 	public WebElement maintainAccounts;
 	
+	@FindBy(how = How.XPATH, using = "//span[@id='EmployerAccountMaintenanceJointAccount']")
+	public WebElement EAMjointAccount;
+	//span[@id='EmployerAccountMaintenanceJointAccount']
+	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Account Flag Information']")
+	public WebElement maintainAccountflagInfo;
+	
 	
 	public void navigateToAccountMaintenance() throws Exception {
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
@@ -62,12 +68,7 @@ public class HomePage {
 		stepDef.screenShot("Click_AC_Maintain_menu", "PASS", "Click AC Maintain menu");
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
-		stepDef.clickElement(empAccMaintenance);
-		Thread.sleep(3000);
-		stepDef.screenShot("Click_empu_AC_maintainmenu", "PASS", "Click empu AC maintainmenu");
-		stepDef.clickElement(maintainAccStatus);
-		Thread.sleep(3000);
-		stepDef.screenShot("Click_menu_final_ss", "PASS", "Click menu");
+		stepDef.clickElement(maintainAccountflagInfo);
 	}
 
 	public void navigateToSaleOfBussiness() throws Exception {
@@ -91,7 +92,7 @@ public class HomePage {
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		stepDef.clickElement(establishJointAccount);
 		Thread.sleep(3000);
-		stepDef.screenShot("Menu", "PASS", "Navigating to menu");
+		stepDef.screenShot("Menu2", "PASS", "Navigating to menu");
 	}
 	
 	public void navigateToMaintainAccounts() throws Exception {
@@ -100,9 +101,19 @@ public class HomePage {
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
-		stepDef.screenShot("Menu2", "INFO", "Navigating to employerAccountMaintenanceMain fail");
+		stepDef.screenShot("Menu2", "Pass", "Navigating to employerAccountMaintenanceMain");
 		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
 		stepDef.waitForElementClicable(maintainAccounts);
 	}
 	
+	/* For Test case------- EM_453_01_001 -------------*/
+	public void navigateToMaintainJointAccount() throws Exception {
+		stepDef.screenShot("Menu", "Pass", "Navigating to menu ");
+		stepDef.clickElement(menuButton);
+		Thread.sleep(2000);
+		stepDef.clickElement(accountMaintenance);
+		Thread.sleep(2000);
+		empAccMaintenance.click();
+		stepDef.waitForElementClicable(EAMjointAccount);
+	}
 }

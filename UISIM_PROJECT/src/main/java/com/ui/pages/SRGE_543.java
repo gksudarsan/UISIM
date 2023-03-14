@@ -22,13 +22,13 @@ public class SRGE_543 extends TestBase{
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(how = How.XPATH, using = "//button[@id='SREG-543access.continue']")
+	@FindBy(how = How.XPATH, using = "//span[text()='Continue ']/..")
 	public WebElement continueButton;
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']")
 	public WebElement registrationText;
 
-	@FindBy(how = How.XPATH, using = "//input[@id='eanBeanId']")
+	@FindBy(how = How.XPATH, using = "//input")
 	public WebElement registerInputField;
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='SREG-543']")
@@ -40,15 +40,14 @@ public class SRGE_543 extends TestBase{
 	public Boolean checkRequiredText() throws Exception {
 		stepDef.clickElement(continueButton);
 		Thread.sleep(2000);
-		stepDef.screenShot("Menu", "INFO" , "Screenshot for required text");
+		stepDef.screenShot("Menu2", "pass" , "Screenshot for required text");
 		Boolean flag = requiredText.isDisplayed();
 		return flag;
 	}
 
 	public void enterEANNumber(String EAN) throws Exception {
-		stepDef.screenShot("Menu", "PASS" , "Screenshot for ERN field");
 		registerInputField.sendKeys(EAN);
-		stepDef.screenShot("Menu", "PASS" , "Entered the ERN sucess");
+		stepDef.screenShot("Menu4", "PASS" , "Entered the ERN sucess");
 		Thread.sleep(2000);
 		stepDef.clickElement(continueButton);
 	}

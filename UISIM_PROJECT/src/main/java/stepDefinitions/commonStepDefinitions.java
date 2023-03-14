@@ -1,11 +1,15 @@
 package stepDefinitions;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -67,7 +71,7 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(value);
 	}
-
+	
 	public void clickButton(String xpathParameter) {
 		driver.findElement(By.xpath("//button[.='" + xpathParameter + "'][1]")).click();
 	}
@@ -189,10 +193,40 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 
-	public void waitForElementClicable(WebElement ele) {
+	public void waitForElementClicable(WebElement ele) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.elementToBeClickable(ele));
+		wait.until(ExpectedConditions.visibilityOf(ele));
+		Thread.sleep(3000);
 		ele.click();
 	}
+	
+	public void doSendKeysWithWait(WebElement ele , String data) throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.visibilityOf(ele));
+		Thread.sleep(2000);
+		ele.sendKeys(data);
+	}
+	
+	public void safeJavaScriptClick(WebElement element) throws Exception {
+		try {
+			if (element.isEnabled() && element.isDisplayed()) {
+				System.out.println("Clicking on element with using java script click");
 
+				((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+			} else {
+				System.out.println("Unable to click on element");
+			}
+		} catch (StaleElementReferenceException e) {
+			System.out.println("Element is not attached to the page document "+ e.getStackTrace());
+		} catch (NoSuchElementException e) {
+			System.out.println("Element was not found in DOM "+ e.getStackTrace());
+		} catch (Exception e) {
+			System.out.println("Unable to click on element "+ e.getStackTrace());
+		}
+	}
+	
+	public void enterCurrentDate(WebElement ele) {
+		String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
+		ele.sendKeys(date);
+	}
 }
