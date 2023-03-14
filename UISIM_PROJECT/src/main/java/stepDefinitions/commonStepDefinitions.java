@@ -1,5 +1,10 @@
 package stepDefinitions;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import java.util.Random;
 
@@ -30,8 +35,7 @@ public class commonStepDefinitions extends TestBase {
 			  driver.navigate().to(driver.getCurrentUrl());
 			  Thread.sleep(5000);
 			 
-			  driver.get(driver.getCurrentUrl());Thread.sleep(5000);
-			  			
+			  driver.get(driver.getCurrentUrl());Thread.sleep(5000);		  
 			  enterTextbox("Username",userName);			  
 			  test.log(Status.PASS,"User entered Username");
 			  enterTextbox("Password",password);			  
@@ -244,5 +248,27 @@ public class commonStepDefinitions extends TestBase {
 	    return randomNumber;
 
 	  }
+	
+	public  void uploadDoc(String fileName) throws AWTException {
+		 Robot rb = new Robot();	 
+		    StringSelection str = new StringSelection("D:\\AutomationFiles\\"+fileName);
+		    Toolkit.getDefaultToolkit().getSystemClipboard().setContents(str, null);		    
+		     rb.keyPress(KeyEvent.VK_CONTROL);
+		     rb.keyPress(KeyEvent.VK_V);	    
+		    rb.keyRelease(KeyEvent.VK_CONTROL);
+		    rb.keyRelease(KeyEvent.VK_V);   
+		    rb.keyPress(KeyEvent.VK_ENTER);
+		    rb.keyRelease(KeyEvent.VK_ENTER);
+	}
+	
+	public void selectCheckbox(String xpathParameter) {		
+			driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//preceding::*[@class='mat-checkbox-inner-container'][1]")).click();
+	}
+	
+	public void selectLink(String xpathParameter, String value) {		
+		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::*[.='"+value+"'][1]")).click();
+}
+		
+		
 
 }
