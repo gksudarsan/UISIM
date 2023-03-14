@@ -82,6 +82,19 @@ public class commonStepDefinitions extends TestBase {
 		}
 	}
 	
+	public void selectRadioQuestions(String xpathQuestions,String xpathParameter) {
+		try {
+		driver.findElement(By.xpath("//*[.='"+xpathQuestions+"']//following::span[contains(.,'"+xpathParameter+"')][1]//preceding::*[@class='mat-radio-outer-circle'][1]")).click();
+		}
+		catch(Exception e){
+		driver.findElement(By.xpath("//*[.='"+xpathQuestions+"']//following::span[contains(.,'"+xpathParameter+"')][1]//preceding::*[@class='mat-radio-inner-circle'][1]")).click();
+		}
+		}
+	
+	public void populateListbox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::textarea[1]")).sendKeys(value);
+	}
+	
 	public void selectDropdown(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::mat-select[1]")).click();
 		driver.findElement(By.xpath("//*[contains(.,'"+value+"')][@class='mat-option-text']")).click();
@@ -144,6 +157,54 @@ public class commonStepDefinitions extends TestBase {
 	       
 	    }
 	}
+	
+	public void selectRadioInTable(String ssnValue,int columnValue, int tableId,String tableName) {
+		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[contains(@id ,'dataTable')]["+tableId+"]"));
+
+	    List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+	    int row_count = rows.size();
+	    System.out.println("Total Row: " + row_count);
+	    label1:
+	    for (int row = 0; row < row_count; row = row + 1) {
+	        List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+	        int columns_count = columns.size();
+	        System.out.println("Number of cells In Row " + row + " are " + columns_count);
+	        for (int column = 0; column < columns_count; column++) {
+	            String celtext = columns.get(column).getText();
+	            if (celtext.equals(ssnValue)) {
+	            	driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[contains(@id ,'dataTable')]["+tableId+"]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]//following::*[@class='mat-radio-container']")).click();
+	            	break label1;
+	            }
+	        }
+	       
+	    }
+	}
+	
+	public void selectDateInTable(String ssnValue,int columnValue, int tableId,String tableName,String value) {
+		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[contains(@id ,'dataTable')]["+tableId+"]"));
+
+	    List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+	    int row_count = rows.size();
+	    System.out.println("Total Row: " + row_count);
+	    label1:
+	    for (int row = 0; row < row_count; row = row + 1) {
+	        List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+	        int columns_count = columns.size();
+	        System.out.println("Number of cells In Row " + row + " are " + columns_count);
+	        for (int column = 0; column < columns_count; column++) {
+	            String celtext = columns.get(column).getText();
+	            if (celtext.equals(ssnValue)) {
+	            	driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[contains(@id ,'dataTable')]["+tableId+"]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]//input[1]")).sendKeys(value);
+	            	break label1;
+	            }
+	        }
+	       
+	    }
+	}
+
+	//*[.='Joint Employment/Management Agreement Arrangement ']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[5]//input[1]
 	public String retrieveValueFromTable(String ssnValue,int columnValue, int tableId,String tableName) {
 		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]"));
         String value = "";
