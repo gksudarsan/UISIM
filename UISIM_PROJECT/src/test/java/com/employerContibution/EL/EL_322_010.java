@@ -64,7 +64,7 @@ public class EL_322_010 extends TestBase
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	     
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
 	     long number = commonFuntions.createRandomInteger(10000,99999);
-		 String ernValue="12"+Long.toString(number);
+		 String ernValue="78"+Long.toString(number);
 		 String feinValue=Long.toString( commonFuntions.createRandomInteger(100000000,999999999));
 	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
 	     commonFuntions.selectDropdown("Type of Legal Entity", "Limited Liability Company (All Types)");
@@ -117,6 +117,73 @@ public class EL_322_010 extends TestBase
 	     commonFuntions.enterTextboxContains("Address Line 2","owneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.enterTextboxContains("City","NewYork");
 	     commonFuntions.enterTextboxContains("Zip Code","13430");
+	     commonFuntions.screenShot("OwnershipInformation","Pass","Ownership Information - privately or closely held company");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
+	     commonFuntions.clickButtonContains("Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.enterTextboxContains("Entity or Person","Automation_Pentity");
+	     commonFuntions.enterTextboxContains("Ownership Percentage","60");
+	     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("City","NewYork");
+	     commonFuntions.enterTextboxContains("Zip Code","13430");
+	     commonFuntions.screenShot("PriorOwnershipInformation","Pass","PriorOwnership Information - privately or closely held company");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     Thread.sleep(2000);
+	     PEOPage.uspsAddress.click();
+	     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
+	     PEOPage.UspsContinueButton.click();	    
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
+	     commonFuntions.clickButtonContains("Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("submissonInstructions","Pass","Submission Instructions and Responsibilities");
+	     commonFuntions.clickButtonContains("Continue");
+	     Thread.sleep(2000);	     
+	     commonFuntions.selectCheckbox("Proof of NYS Workers");
+	     commonFuntions.selectLink("Proof of NYS Workers", "Browse");
+	     Thread.sleep(2000);
+	     commonFuntions.uploadDoc("Sample.docx");
+	     Thread.sleep(4000);
+	     commonFuntions.selectCheckbox("Proof of NYS Disability Insurance Coverage");
+	     commonFuntions.selectLink("Proof of NYS Disability Insurance Coverage", "Browse");
+	     Thread.sleep(2000);
+	     commonFuntions.uploadDoc("Sample.docx");
+	     Thread.sleep(4000);
+	     commonFuntions.selectCheckbox("Proof of $75k net worth or bond or a letter of credit for $75k");
+	     commonFuntions.selectLink("Proof of $75k net worth or bond or a letter of credit for $75k", "Browse");
+	     Thread.sleep(2000);
+	     commonFuntions.uploadDoc("Sample.docx");
+	     Thread.sleep(4000);
+	     commonFuntions.clickButtonContains("Upload");
+	     Thread.sleep(2000);
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.clickButtonContains("Choose File");
+	     Thread.sleep(2000);
+	     commonFuntions.uploadDoc("PEO Client List template_TestData2.xls");
+	     Thread.sleep(2000);
+	     commonFuntions.clickButtonContains("Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("verifyClient","Pass","Verify Client List");
+	     commonFuntions.clickButtonContains("Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("peoDetails","Pass","Peo Details Review");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.enterTextboxContains("Enter name of Officer, Partner, Proprietor or Member","TestAutomation"+commonFuntions.createRandomInteger(10000,99999));
+	     commonFuntions.screenShot("Declaration","Pass","Declaration");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     Thread.sleep(2000);
+	     commonFuntions.screenShot("Acknowledgement","Pass","Statement Of Acknowledgement");
+	     commonFuntions.clickButtonContains("Accept & Submit");
+	     Thread.sleep(2000);
+	     
+	   
+	     
+	     
 	     
 	}
 
