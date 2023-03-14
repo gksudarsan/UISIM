@@ -23,6 +23,11 @@ public class SUC_002 {
 	//@FindBy(how = How.XPATH, using = "//mat-card[text()='Account flag(s) successfully added.']")
 	//public WebElement sucessMessageText;
 	
+	
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='The Account Information has been succesfully saved']")
+	public WebElement accountInfoSuccessText;
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[@id='SUC-002']")
 	public WebElement screenIdText;
 	
@@ -40,18 +45,26 @@ public class SUC_002 {
 	public WebElement homeButton;
 	
 	
-	public String validateSucessMessage() {
+	public String validateSucessMessage() throws Exception {
+		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");
 		String sucessMsg = accountFlagSuccessText.getText();
 		return sucessMsg;
 	}
 	
-	public String validateSaleOfBusinessText() {
+	public String validateSaleOfBusinessText() throws Exception {
+		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");
 		String sucessMsg = saleOfBusinessSuccessText.getText();
 		return sucessMsg;
 	}
 	
 
-	public void validateHomeButton() {
+	public void validateHomeButton() throws Exception {
+		stepDef.screenShot("Home", "Pass", "Home Screenshot");
 		Assert.assertTrue(homeButton.isDisplayed());
+	}
+	
+	public void validateEmployerAccountMSG() throws Exception {
+		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
+		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}
 }
