@@ -106,13 +106,15 @@ public class TestBase {
 		browser = prop.getProperty("browsername");
 		System.out.println("Running Browser is :" + browser);
 		// String browser=prop.getProperty("browser");
+		Runtime.getRuntime().exec("taskkill /F /IM edgedriver.exe /T");
+ 		Runtime.getRuntime().exec("taskkill /F /IM msedge.exe /T");
 		
 
 		if (browser.equalsIgnoreCase("chrome")) {
 			// Process process = new ProcessBuilder("C:\\Program
 			// Files\\Google\\Chrome\\Application\\chrome.exe","remote","debugging-port=9222","user-data-dir=D:\\chromeData").start();
-//			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
-//			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
+			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
+			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
 			Thread.sleep(2000);
 //			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\abhinav.abhinav\\Desktop"));
 			// Process p = Runtime.getRuntime().exec("cmd /c chrome.bat", null, new
@@ -153,7 +155,7 @@ public class TestBase {
 
 //			EdgeOptions opt = new EdgeOptions();
 			opt.addArguments("--remote-allow-origins=*");
-//			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
+			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
 			/// opt.setAcceptInsecureCerts(true);
 			/// opt.setExperimentalOption("excludeSwitches", new
 			/// String[]{"enable-automation"});
@@ -171,7 +173,8 @@ public class TestBase {
 			driver = new InternetExplorerDriver();
 		}
 		else if(browser.equals("edge")) {
-			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\abhinav.abhinav\\Desktop"));
+			Thread.sleep(2000);
+			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions opt = new EdgeOptions();
 			

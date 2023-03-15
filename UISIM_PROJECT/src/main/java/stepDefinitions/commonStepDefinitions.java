@@ -8,6 +8,11 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import java.util.Random;
 
@@ -23,6 +28,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
+import com.ibm.db2.jcc.am.Connection;
 import com.ui.utilities.screenShot;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
@@ -50,11 +56,15 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
-		//Thread.sleep(5000);
-		Thread.sleep(5000);
+		Thread.sleep(3000);
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		
+		Thread.sleep(10000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);
+		
+		
+		
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 		loginPage.okPopUpButton.click();
 		Thread.sleep(5000);
@@ -316,4 +326,25 @@ public class commonStepDefinitions extends TestBase {
 	public void selectLink(String xpathParameter, String value) {		
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::*[.='"+value+"'][1]")).click();
 }
+	public void database_UpdateQuery(String query) throws SQLException {
+	
+	
+	System.out.println(query);
+	
+	try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
+		Class.forName("com.ibm.db2.jcc.DB2Driver");} 
+	catch (ClassNotFoundException e) {e.printStackTrace();
 	}
+	String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+	String user = "";
+	String password = "Tata@1234";
+	Connection con=(Connection) DriverManager.getConnection( url, user, password);
+	System.out.println("Connected Successfully");
+	PreparedStatement p=null;
+	//Statement stmt=con.createStatement();
+	//stmt.executeQuery(query);
+	p=con.prepareStatement(query);
+	p.execute();
+	con.close();
+	}
+}
