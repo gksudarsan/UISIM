@@ -60,6 +60,12 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[@id='JointAccountEstablishJointAccount']")
 	public WebElement establishJointAccount;
 	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)']")
+	public WebElement professionalEmployerOrganization;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RegisterPEO']")
+	public WebElement registerPeo;
+	
 	public void navigateToAccountMaintenance() throws Exception {
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
 		stepDef.clickElement(menuButton);
@@ -125,5 +131,14 @@ public class HomePage {
 				stepDef.clickElement(voidTransfer);
 				
 	}		
+			/* For Test case------- EM_441_007 -------------*/
+			public void navigateToPeoRegister() throws InterruptedException {
+				stepDef.clickElement(menuButton);
+				Thread.sleep(2000);
+				stepDef.clickElement(professionalEmployerOrganization);
+				Thread.sleep(2000);
+				stepDef.clickElement(registerPeo);
+		
+			}
 		
 }

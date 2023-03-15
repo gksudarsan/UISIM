@@ -42,6 +42,12 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
 	public WebElement UspsContinueButton;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_attention']")
+	public WebElement attentionCareOf;
+	
+	@FindBy(how = How.XPATH, using = "//a[text()=' + ADD PEO MEMBER ']")
+	public WebElement addPeoMember;
+	
 	
 	
 }
