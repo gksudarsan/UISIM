@@ -42,6 +42,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
 	public WebElement UspsContinueButton;
 	
-	
+	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	public WebElement peoExemptRegisterRadio;
 	
 }
