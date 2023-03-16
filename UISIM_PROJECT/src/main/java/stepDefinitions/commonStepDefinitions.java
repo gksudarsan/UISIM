@@ -3,6 +3,7 @@ package stepDefinitions;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
@@ -14,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -326,7 +328,13 @@ public class commonStepDefinitions extends TestBase {
 	public void selectLink(String xpathParameter, String value) {		
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::*[.='"+value+"'][1]")).click();
 }
-	public void database_UpdateQuery(String query) throws SQLException {
+	public void clickOnLink(String xpathParameter) {
+		driver.findElement(By.xpath("//u[contains(.,'"+xpathParameter+"')][1]")).click();
+
+		
+	}
+	
+	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 	
 	
 	System.out.println(query);
@@ -336,15 +344,47 @@ public class commonStepDefinitions extends TestBase {
 	catch (ClassNotFoundException e) {e.printStackTrace();
 	}
 	String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
-	String user = "";
+	String user = "NDKSK4";
 	String password = "Tata@1234";
 	Connection con=(Connection) DriverManager.getConnection( url, user, password);
 	System.out.println("Connected Successfully");
 	PreparedStatement p=null;
 	//Statement stmt=con.createStatement();
 	//stmt.executeQuery(query);
+	Thread.sleep(200000);
 	p=con.prepareStatement(query);
+	Thread.sleep(2000);
 	p.execute();
+	Thread.sleep(2000);
 	con.close();
 	}
+	
+	public Map<String, String> database_SelectQuery(String query) throws SQLException {
+		
+		
+		System.out.println(query);
+		Map<String, String> results = new HashMap<String, String>();
+		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
+			Class.forName("com.ibm.db2.jcc.DB2Driver");} 
+		catch (ClassNotFoundException e) {e.printStackTrace();
+		}
+		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String user = "NDKSK4";
+		String password = "Tata@1234";
+		Connection con=(Connection) DriverManager.getConnection( url, user, password);
+		System.out.println("Connected Successfully");
+		
+		Statement stmt=con.createStatement();
+		ResultSet rs =stmt.executeQuery(query);
+		while(rs.next())
+		{
+			
+			results.put("Fein",rs.getString("FEIN"));
+			results.put("Ean",rs.getString("EAN"));
+			break;
+		}
+		
+		con.close();
+		return results;
+		}
 }
