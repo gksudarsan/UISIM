@@ -4,6 +4,18 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
+import com.ibm.db2.jcc.am.Connection;
+
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -33,10 +45,10 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='address0_zip']")
 	public WebElement addressZip;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mat-radio-inner-circle'][2]")
 	public WebElement uspsAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-inner-circle'][1]")
 	public WebElement currentAdditionalAddress;
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
@@ -48,16 +60,15 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//a[text()=' + ADD PEO MEMBER ']")
 	public WebElement addPeoMember;
 	
+	@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
+	public WebElement queue;
+	
 	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
 	public WebElement groupRegPeo;
 	
-<<<<<<< HEAD
+
 	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsSuggestedAddress;
-=======
-	
-	@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
-	public WebElement queue;
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException {
 		
@@ -108,5 +119,4 @@ public class PEOPage {
 		}
 
 	
->>>>>>> refs/heads/master_latest
 }
