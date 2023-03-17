@@ -113,25 +113,30 @@ public class employerManagement extends TestBase
 		Assert.assertEquals(msg, "Employer Address and Contact Person Details are saved successfully.");
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	}
 
+	public void Inquery(String EAN) throws Exception
+	{		
+
+		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		System.out.println("updating address............");
+
+		// em.menuButton().click();
+		// em.AccountMaintenance().click();
+		// em.MaintainAddress().click();
+		em.EAN().sendKeys(EAN);
+		cf.screenShot("Menu","Pass","");
+		em.continueButton().click();
+		cf.screenShot("Menu","Pass","");
+	em.businessActivity().click();sleep();
+	cf.screenShot("Menu","Pass","");
+	
+	
+	}
+	
+	
+	
 
 
 }
