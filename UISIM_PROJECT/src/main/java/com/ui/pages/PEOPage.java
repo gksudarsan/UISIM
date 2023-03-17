@@ -48,6 +48,9 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//a[text()=' + ADD PEO MEMBER ']")
 	public WebElement addPeoMember;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	public WebElement groupRegPeo;
 	
-	
+	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	public WebElement uspsSuggestedAddress;
 }

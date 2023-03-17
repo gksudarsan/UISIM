@@ -252,7 +252,7 @@ public class EL_441_007_PublicOwnership extends TestBase{
 	    stepDef.clickButtonContains("Home");
 	    
 	    //datebase querry
-	   
+	    stepDef.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndfjp3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='648901228')");
 	           
 	}
 
