@@ -130,6 +130,17 @@ public class employerManagement extends TestBase
 		em.continueButton().click();
 		cf.screenShot("Menu","Pass","");
 	em.businessActivity().click();
+		// em.menuButton().click();
+		// em.AccountMaintenance().click();
+		// em.MaintainAddress().click();
+		em.EAN().sendKeys(EAN);
+		cf.screenShot("Menu","Pass","");
+		em.continueButton().click();
+		cf.screenShot("Menu","Pass","");
+	em.businessActivity().click();sleep();
+	cf.screenShot("Menu","Pass","");
+	
+	
 	}
 	
 	

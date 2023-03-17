@@ -15,12 +15,11 @@ import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_001 {
+public class EM_05_01 {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
 	public class TC_CM_002_001 extends TestBase
 	{
-
 		String EAN = prop.getProperty("EAN");
 
 		@Test(priority=1, description = "Test sample",groups = {"Regression"})
@@ -35,13 +34,12 @@ public class EM_260_001 {
 			cf.login("NDFJP3","Admin@12345678");
 			cf.screenShot("ApplicationLogin","Pass","Login is successful");
 			cf.clickMenu("Menu");	
-			cf.clickMenu("Account Maintenance");sleep();
-			cf.clickMenu("Maintain Address");sleep();
+			cf.clickMenu("Inquery");sleep();
+			cf.clickMenu("Contribution Inquiry");sleep(); 
+			cf.clickMenu("Inquiry Employer Account");sleep();
 			cf.screenShot("Menu","Pass","AccountMaintenance");
 			//driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']")); Thread.sleep(2000);
-			em.updateAddress(EAN);
-
-
+			em.Inquery(EAN);
 
 		}
 	}
