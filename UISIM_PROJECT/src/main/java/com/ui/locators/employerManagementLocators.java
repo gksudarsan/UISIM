@@ -87,6 +87,12 @@ public class employerManagementLocators extends TestBase {
 		return driver.findElement(By.xpath("//mat-card[@id='successMatCardId']"));
 
 	}
+	
+	public WebElement businessActivity (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()=' Business Principal Activity Details ']")));
+		return driver.findElement(By.xpath("//a[text()=' Business Principal Activity Details ']"));
+
+	}
 
 }
 
