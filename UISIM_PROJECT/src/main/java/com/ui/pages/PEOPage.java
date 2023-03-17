@@ -5,8 +5,7 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-import com.ibm.db2.jcc.am.Connection;
-
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -69,6 +68,9 @@ public class PEOPage {
 
 	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsSuggestedAddress;
+	
+	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	public WebElement peoExemptRegisterRadio;
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException {
 		

@@ -173,13 +173,15 @@ public class TestBase {
 			driver = new InternetExplorerDriver();
 		}
 		else if(browser.equals("edge")) {
+
 			Thread.sleep(2000);
-			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
+
+			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("./Driver"));
+
 			WebDriverManager.edgedriver().setup();
-			EdgeOptions opt = new EdgeOptions();
-			
-			opt.setExperimentalOption("debuggerAddress", "localhost:9222 ");
-			driver = new EdgeDriver(opt);
+			EdgeOptions options = new EdgeOptions();
+			options.setExperimentalOption("debuggerAddress", "localhost:9222 ");
+			driver = new EdgeDriver(options);
 			driver.get(prop.getProperty("applicationUrl"));
 		}
 

@@ -1,27 +1,33 @@
 package stepDefinitions;
 
-import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.util.Calendar;
-import java.util.HashMap;
+
 import java.awt.AWTException;
 import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -30,7 +36,6 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
-import com.ibm.db2.jcc.am.Connection;
 import com.ui.utilities.screenShot;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
@@ -59,7 +64,7 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		
 		Thread.sleep(10000);
 		driver.navigate().refresh();
@@ -79,10 +84,10 @@ public class commonStepDefinitions extends TestBase {
 
 	      
 	}
-	
-	public void enterTextbox(String xpathParameter,String value) {
-		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::input[1]")).clear();
-		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::input[1]")).sendKeys(value);
+
+	public void enterTextbox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).clear();
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).sendKeys(value);
 	}
 	public void enterTextboxContains(String xpathParameter,String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::input[1]")).clear();
@@ -109,46 +114,46 @@ public class commonStepDefinitions extends TestBase {
 			driver.findElement(By.xpath("//*[contains(.,'"+xpathParameter+"')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
 		}
 	}
-	
-	public void selectRadioQuestions(String xpathQuestions,String xpathParameter) {
+
+	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
 		try {
-		driver.findElement(By.xpath("//*[.='"+xpathQuestions+"']//following::span[contains(.,'"+xpathParameter+"')][1]//preceding::*[@class='mat-radio-outer-circle'][1]")).click();
+			driver.findElement(By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
+					+ "')][1]//preceding::*[@class='mat-radio-outer-circle'][1]")).click();
+		} catch (Exception e) {
+			driver.findElement(By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
+					+ "')][1]//preceding::*[@class='mat-radio-inner-circle'][1]")).click();
 		}
-		catch(Exception e){
-		driver.findElement(By.xpath("//*[.='"+xpathQuestions+"']//following::span[contains(.,'"+xpathParameter+"')][1]//preceding::*[@class='mat-radio-inner-circle'][1]")).click();
-		}
-		}
-	
+	}
+
 	public void populateListbox(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//*[.='"+xpathParameter+"']//following::textarea[1]")).sendKeys(value);
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::textarea[1]")).sendKeys(value);
 	}
-	
+
 	public void selectDropdown(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::mat-select[1]")).click();
-		driver.findElement(By.xpath("//*[contains(.,'"+value+"')][@class='mat-option-text']")).click();
-		
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
+				.click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+
 	}
-	
+
 	public void errorLabel(String xpathParameter) {
-		driver.findElement(By.xpath("//mat-error[.='"+xpathParameter+"'][1]")).isDisplayed();
+		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
-	
-	public void errorContent(String xpathParameter){
-		driver.findElement(By.xpath("//*[.='"+xpathParameter+"'][@id='businessError0'][1]")).isDisplayed();
-		
+
+	public void errorContent(String xpathParameter) {
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError0'][1]")).isDisplayed();
+
 	}
 	public void ScrollMenu(String xpathParameter) throws InterruptedException {		
 		((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", driver.findElement(By.xpath("//*[text()='"+xpathParameter+"'][1]")));
 		 Thread.sleep(500); 
 	}
-	
+
 	public void clickElement(WebElement ele) throws InterruptedException {
 		ele.click();
 		Thread.sleep(2000);
 	}
-	
-	
-	
+
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
 		 String  screenShotPath = screenShot.takeSnapShot(driver, "target\\"+fileName+".jpg");
@@ -208,7 +213,6 @@ public class commonStepDefinitions extends TestBase {
 	       
 	    }
 	}
-	
 	public void selectDateInTable(String ssnValue,int columnValue, int tableId,String tableName,String value) {
 		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[contains(@id ,'dataTable')]["+tableId+"]"));
 
@@ -232,32 +236,37 @@ public class commonStepDefinitions extends TestBase {
 	    }
 	}
 
-	//*[.='Joint Employment/Management Agreement Arrangement ']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[5]//input[1]
-	public String retrieveValueFromTable(String ssnValue,int columnValue, int tableId,String tableName) {
-		WebElement table = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]"));
-        String value = "";
-	    List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+	// *[.='Joint Employment/Management Agreement Arrangement
+	// ']//following::*[contains(@id
+	// ,'dataTable')][1]/mat-row[1]/mat-cell[5]//input[1]
+	public String retrieveValueFromTable(String ssnValue, int columnValue, int tableId, String tableName) {
+		WebElement table = driver
+				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
+		String value = "";
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
-	    int row_count = rows.size();
-	    System.out.println("Total Row: " + row_count);
-	    label1:
-	    for (int row = 0; row < row_count; row = row + 1) {
-	        List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
-	        int columns_count = columns.size();
-	        System.out.println("Number of cells In Row " + row + " are " + columns_count);
-	        for (int column = 0; column < columns_count; column++) {
-	            String celtext = columns.get(column).getText();
-	            if (celtext.equals(ssnValue)) {
-	            	value = driver.findElement(By.xpath("//*[.='"+tableName+"']//following::*[@id='dataTableId']["+tableId+"]/mat-row["+(row+1)+"]/mat-cell["+(columnValue)+"]")).getText();
-	            	
-	            	break label1;
-	            }
-	        }
-	       
-	    }
-	    return value;
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.equals(ssnValue)) {
+					value = driver
+							.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]"))
+							.getText();
+
+					break label1;
+				}
+			}
+
+		}
+		return value;
 	}
-	
+
 	public void safeJavaScriptClick(WebElement element) throws Exception {
 		try {
 			if (element.isEnabled() && element.isDisplayed()) {
@@ -268,27 +277,27 @@ public class commonStepDefinitions extends TestBase {
 				System.out.println("Unable to click on element");
 			}
 		} catch (StaleElementReferenceException e) {
-			System.out.println("Element is not attached to the page document "+ e.getStackTrace());
+			System.out.println("Element is not attached to the page document " + e.getStackTrace());
 		} catch (NoSuchElementException e) {
-			System.out.println("Element was not found in DOM "+ e.getStackTrace());
+			System.out.println("Element was not found in DOM " + e.getStackTrace());
 		} catch (Exception e) {
-			System.out.println("Unable to click on element "+ e.getStackTrace());
+			System.out.println("Unable to click on element " + e.getStackTrace());
 		}
 	}
-	
+
 	public void enterCurrentDate(WebElement ele) {
 		String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
 		ele.sendKeys(date);
 	}
-	
+
 	public void waitForElementClicable(WebElement ele) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(3000);
 		ele.click();
 	}
-	
-	public void doSendKeysWithWait(WebElement ele , String data) throws InterruptedException {
+
+	public void doSendKeysWithWait(WebElement ele, String data) throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(2000);
