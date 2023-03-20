@@ -5,6 +5,9 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,6 +16,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -72,9 +76,12 @@ public class PEOPage {
 	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
 	public WebElement peoExemptRegisterRadio;
 	
-     public Map<String, String> database_SelectQuery(String query) throws SQLException {
+     public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
 		
-		
+    	 Properties prop = new Properties();
+    		FileInputStream ip = new FileInputStream(System.getProperty("user.dir") + "\\src\\main\\java"
+    				+ "\\com\\ui\\configuration\\config.properties");
+    		prop.load(ip);
 		System.out.println(query);
 		Map<String, String> results = new HashMap<String, String>();
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -83,7 +90,7 @@ public class PEOPage {
 		}
 		int i=0;
 		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
-		String user = "NDKSK4";
+		String user = prop.getProperty("databaseUserId");
 		String password = "Tata@1234";
 		Connection con=(Connection) DriverManager.getConnection( url, user, password);
 		System.out.println("Connected Successfully");
