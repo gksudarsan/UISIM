@@ -36,6 +36,5 @@ public class EM_453_01_001_Update_Joint_Account_Admin_Info extends TestBase {
 		test.log(Status.INFO, "Validating different error message for the input fields");
 		sreg493.validateMaintainJAAdminHyperlink();
 		test.log(Status.PASS, "All the error message are validated");
-		
 	}
 }

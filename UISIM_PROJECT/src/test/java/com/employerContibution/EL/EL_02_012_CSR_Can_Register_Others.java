@@ -72,8 +72,23 @@ public class EL_02_012_CSR_Can_Register_Others extends TestBase{
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
 	     commonFuntions.clickButtonContains("Continue");
+	     /* Upload files here*/
+	     Thread.sleep(3000);
+	     commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
+	     Thread.sleep(2000);
+	     commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
+	     Thread.sleep(2000);
+	     commonFuntions.uploadDoc("Sample.docx");
+	     Thread.sleep(4000);
+		 commonFuntions.clickButtonContains("Upload");
+		 Thread.sleep(4000);
+	     
+	     /* Upload files here*/
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
+	     commonFuntions.clickButton("Choose File");
+	     Thread.sleep(3000);
+	     commonFuntions.uploadDoc("PEO Client List template_TestData2");
 	     /*Upload client list page --- Upload Document---- */
 	     Thread.sleep(4000);
 	     commonFuntions.clickButtonContains("Continue");
