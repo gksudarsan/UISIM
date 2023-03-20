@@ -353,7 +353,7 @@ public class commonStepDefinitions extends TestBase {
 	catch (ClassNotFoundException e) {e.printStackTrace();
 	}
 	String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
-	String user = "NDKSK4";
+	String user = "NDPAA3";
 	String password = "Tata@1234";
 	Connection con=(Connection) DriverManager.getConnection( url, user, password);
 	System.out.println("Connected Successfully");
