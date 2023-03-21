@@ -396,4 +396,11 @@ public class commonStepDefinitions extends TestBase {
 		con.close();
 		return results;
 		}
+	
+	public void selectDropdownEquals(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
+				.click();
+		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
+
+	}
 }
