@@ -129,7 +129,7 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");
 		em.continueButton().click();
 		cf.screenShot("Menu","Pass","");
-	em.businessActivity().click();
+		em.businessActivity().click();
 		// em.menuButton().click();
 		// em.AccountMaintenance().click();
 		// em.MaintainAddress().click();
@@ -137,14 +137,25 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");
 		em.continueButton().click();
 		cf.screenShot("Menu","Pass","");
-	em.businessActivity().click();sleep();
-	cf.screenShot("Menu","Pass","");
-	
-	
+		em.businessActivity().click();sleep();
+		cf.screenShot("Menu","Pass","");
 	}
-	
-	
-	
+	public void addClientDatailsManually(String EAN) throws Exception
+	{		
+		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+		System.out.println("updating address............");
+		em.addClientDetails().click();
+		cf.screenShot("Menu","Pass","");
+		em.enterERN().sendKeys(EAN);
+		cf.screenShot("Menu","Pass","");
+		em.search().click();
+		cf.screenShot("Menu","Pass","");
+
+
+
+	}
+
+
 
 
 }

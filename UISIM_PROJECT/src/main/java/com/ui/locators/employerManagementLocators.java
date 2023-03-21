@@ -93,7 +93,23 @@ public class employerManagementLocators extends TestBase {
 		return driver.findElement(By.xpath("//a[text()=' Business Principal Activity Details ']"));
 
 	}
+	
+	public WebElement addClientDetails (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='ADD CLIENT DETAILS MANUALLY']")));
+		return driver.findElement(By.xpath("//span[text()='ADD CLIENT DETAILS MANUALLY']"));
 
+	}
+	
+	public WebElement enterERN (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@aria-label='Employee Registration Number']")));
+		return driver.findElement(By.xpath("//input[@aria-label='Employee Registration Number']"));
+	}
+	
+	public WebElement search (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-icon[text()='search']")));
+		return driver.findElement(By.xpath("//mat-icon[text()='search']"));
+	}
+	
 }
 
 
