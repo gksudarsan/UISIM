@@ -398,4 +398,37 @@ public class commonStepDefinitions extends TestBase {
 		con.close();
 		return results;
 		}
+	
+public Map<String, String> database_SelectQuerySingleColumn(String query , String ColumnName) throws SQLException {
+		
+		
+		System.out.println(query);
+		Map<String, String> results = new HashMap<String, String>();
+		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
+			Class.forName("com.ibm.db2.jcc.DB2Driver");} 
+		catch (ClassNotFoundException e) {e.printStackTrace();
+		}
+		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String user = prop.getProperty("databaseUserId");
+		String password = "Tata@1234";
+		Connection con=(Connection) DriverManager.getConnection( url, user, password);
+		System.out.println("Connected Successfully");
+		
+		Statement stmt=con.createStatement();
+		ResultSet rs =stmt.executeQuery(query);
+		while(rs.next())
+		{
+			
+			results.put("Fein",rs.getString(ColumnName));
+			break;
+		}
+		
+		con.close();
+		return results;
+		}
+	
+	public void selectRadioWithFeinValue(String feinValue) throws InterruptedException {
+		driver.findElement(By.xpath("//mat-label[text()='"+feinValue+"']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span")).click();
+		Thread.sleep(2000);
+	}
 }
