@@ -353,9 +353,7 @@ public class commonStepDefinitions extends TestBase {
 	catch (ClassNotFoundException e) {e.printStackTrace();
 	}
 	String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
-
 	String user = prop.getProperty("databaseUserId");
-
 	String password = "Tata@1234";
 	Connection con=(Connection) DriverManager.getConnection( url, user, password);
 	System.out.println("Connected Successfully");
@@ -427,8 +425,10 @@ public Map<String, String> database_SelectQuerySingleColumn(String query , Strin
 		return results;
 		}
 	
-	public void selectRadioWithFeinValue(String feinValue) throws InterruptedException {
-		driver.findElement(By.xpath("//mat-label[text()='"+feinValue+"']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span")).click();
-		Thread.sleep(2000);
+	public void selectDropdownEquals(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
+				.click();
+		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
+
 	}
 }

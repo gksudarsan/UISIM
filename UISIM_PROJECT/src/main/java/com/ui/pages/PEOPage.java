@@ -73,7 +73,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsSuggestedAddress;
 	
-	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-container'][1]")
 	public WebElement peoExemptRegisterRadio;
 	
 	@FindBy(how = How.XPATH, using ="//a[text()=' ADVANCED SEARCH']")
