@@ -109,6 +109,17 @@ public class employerManagementLocators extends TestBase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-icon[text()='search']")));
 		return driver.findElement(By.xpath("//mat-icon[text()='search']"));
 	}
+
+	public WebElement peoName (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@aria-label= 'PEO Name']")));
+		return driver.findElement(By.xpath("//input[@aria-label= 'PEO Name']"));
+	}
+	
+	public WebElement selectpeoName (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Pending New']//preceding::span[@class='mat-radio-outer-circle'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Pending New']//preceding::span[@class='mat-radio-outer-circle'][1]"));
+	}
+	
 	
 }
 
