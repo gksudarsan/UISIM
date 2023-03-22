@@ -76,6 +76,16 @@ public class PEOPage {
 	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
 	public WebElement peoExemptRegisterRadio;
 	
+	@FindBy(how = How.XPATH, using ="//a[text()=' ADVANCED SEARCH']")
+	public WebElement advancedSearch;
+	
+	@FindBy(how = How.XPATH, using ="//strong[text()='Client List']")
+	public WebElement clientListHeading;
+	
+	@FindBy(how = How.XPATH, using ="//span[text()='Federal Employer Identification Number']/../following-sibling::mat-label")
+	public WebElement feinValue;
+	
+	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
 		
     	 Properties prop = new Properties();
@@ -100,7 +110,7 @@ public class PEOPage {
 		while(rs.next())
 		{
 			i=i+1;
-			if(i>7) {
+			if(i>20) {
 			results.put("Fein",rs.getString("FEIN"));
 			results.put("Ean",rs.getString("EAN"));
 			break;
@@ -126,6 +136,6 @@ public class PEOPage {
 		con.close();
 		return results;
 		}
-
+     
 	
 }
