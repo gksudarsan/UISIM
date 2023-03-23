@@ -59,11 +59,11 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		
-		Thread.sleep(10000);
-		driver.navigate().refresh();
-		Thread.sleep(10000);
+		Thread.sleep(5000);
+		//driver.navigate().refresh();
+		Thread.sleep(5000);
 		
 		
 		
@@ -74,7 +74,7 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		}
 
 	      
@@ -369,7 +369,7 @@ public class commonStepDefinitions extends TestBase {
 		catch (ClassNotFoundException e) {e.printStackTrace();
 		}
 		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
-		String user = "NDKSK4";
+		String user = "NDJSK4";
 		String password = "Tata@1234";
 		Connection con=(Connection) DriverManager.getConnection( url, user, password);
 		System.out.println("Connected Successfully");
@@ -387,4 +387,39 @@ public class commonStepDefinitions extends TestBase {
 		con.close();
 		return results;
 		}
+	
+	
+	public void clearTextboxContains(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::input[1]")).clear();
+	}
+	
+    public Map<String, String> database_SelectQuerySingleColumn(String query , String ColumnName) throws SQLException {
+		
+		
+		System.out.println(query);
+		Map<String, String> results = new HashMap<String, String>();
+		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
+			Class.forName("com.ibm.db2.jcc.DB2Driver");} 
+		catch (ClassNotFoundException e) {e.printStackTrace();
+		}
+		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String user = prop.getProperty("databaseUserId");
+		String password = "Tata@1234";
+		Connection con=(Connection) DriverManager.getConnection( url, user, password);
+		System.out.println("Connected Successfully");
+		
+		Statement stmt=con.createStatement();
+		ResultSet rs =stmt.executeQuery(query);
+		while(rs.next())
+		{
+			
+			results.put(ColumnName,rs.getString(ColumnName));
+			break;
+		}
+		
+		con.close();
+		return results;
+		}
+	
+	
 }

@@ -21,6 +21,8 @@ public class EM_310_003 extends TestBase{
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			
 			HomePage home = new HomePage(driver);
+			
+			// this test case is not available in master craft
 		}
 	}	
 }
