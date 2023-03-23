@@ -38,9 +38,9 @@ public class EL_441_009 extends TestBase{
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
-	     commonFuntions.enterTextboxContains("Employer Registration Number", "0000235");
+	     commonFuntions.enterTextboxContains("Employer Registration Number", "9312521");
 	     commonFuntions.selectDropdown("Type of Legal Entity", "Partnership");
-	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", "648901233");
+	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", "125216049");
 	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Date", "02/01/2023");
 	     commonFuntions.screenShot("GI", "PASS", "General Information");
@@ -54,22 +54,22 @@ public class EL_441_009 extends TestBase{
 	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressCity.sendKeys("NewYork");
 	     PEOPage.addressZip.sendKeys("13476");
+	     
 	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 	     commonFuntions.screenShot("Address Information", "PASS", "Address Information");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     PEOPage.uspsAddress.click();
-	     Thread.sleep(2000);
 	     PEOPage.currentAdditionalAddress.click();
-	     Thread.sleep(2000);
 	     commonFuntions.screenShot("VerifyContactDetails","Pass","UspsAddress");
 	     PEOPage.UspsContinueButton.click();
+	     
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("Verify Current Additional Address", "PASS", "Verify Current Additional Address(es) in New York");
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(2000);
-	     PEOPage.addressLine1.sendKeys("mailingAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+	     //PEOPage.addressLine1.sendKeys("mailingAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.screenShot("Mailing Address", "PASS", "Mailing Address");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);

@@ -14,7 +14,7 @@ import com.ui.pages.SREG_492;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EL_441_007_PublicOwnership extends TestBase{
+public class EL_441_007 extends TestBase{
 	@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 	public void Testing123() throws Exception {
 		test = report.createTest("Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Public Ownership'");

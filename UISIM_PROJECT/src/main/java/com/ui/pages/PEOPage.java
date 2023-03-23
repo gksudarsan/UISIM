@@ -70,7 +70,7 @@ public class PEOPage {
 	public WebElement groupRegPeo;
 	
 
-	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//strong[text()='USPS Suggested Address']/../following-sibling::div/mat-radio-button/label/span/span/following-sibling::span[@class='mat-radio-inner-circle']")
 	public WebElement uspsSuggestedAddress;
 	
 	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-container'][1]")
@@ -84,6 +84,9 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using ="//span[text()='Federal Employer Identification Number']/../following-sibling::mat-label")
 	public WebElement feinValue;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-inner-circle'][1]")
+	public WebElement mailingAddress;
 	
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {

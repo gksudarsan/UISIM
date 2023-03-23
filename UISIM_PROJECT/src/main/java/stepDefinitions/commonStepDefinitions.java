@@ -446,4 +446,7 @@ public class commonStepDefinitions extends TestBase {
 				+ "']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span")).click();
 		Thread.sleep(2000);
 	}
+	public void clearTextboxContains(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::input[1]")).clear();
+	}
 }
