@@ -72,12 +72,12 @@ public class commonStepDefinitions extends TestBase {
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 		loginPage.okPopUpButton.click();
 		Thread.sleep(5000);
-		driver.navigate().refresh();
-		Thread.sleep(3000);
-		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-			loginPage.okPopUpButton.click();
-			Thread.sleep(5000);
-		}
+//		driver.navigate().refresh();
+//		Thread.sleep(3000);
+//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+//			loginPage.okPopUpButton.click();
+//			Thread.sleep(5000);
+//		}
 
 	}
 

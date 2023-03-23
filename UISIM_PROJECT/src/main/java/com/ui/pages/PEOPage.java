@@ -85,6 +85,12 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using ="//span[text()='Federal Employer Identification Number']/../following-sibling::mat-label")
 	public WebElement feinValue;
 	
+	@FindBy(how = How.XPATH, using ="//strong[text()='Browse']")
+	public WebElement browserLinkManagePEOPage;
+	
+	@FindBy(how = How.XPATH, using ="//mat-label[text()='Uploaded Documents']")
+	public WebElement uploadeDocManagePEOPage;
+	
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
 		
