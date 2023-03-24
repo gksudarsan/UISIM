@@ -14,7 +14,7 @@ import com.ui.pages.PEOPage;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_441_013 extends TestBase{
+public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corporation extends TestBase{
 
 
 	@Test(priority=1, description = "EL.441.013  - Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})

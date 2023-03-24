@@ -88,6 +88,10 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-inner-circle'][1]")
 	public WebElement mailingAddress;
 	
+	@FindBy(how = How.XPATH, using = "//a[contains(.,'ADD PEO MEMBER')][1]")
+	public WebElement peoAddMember;
+	
+	
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
 		
