@@ -65,18 +65,18 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-		Thread.sleep(10000);
-		driver.navigate().refresh();
-		Thread.sleep(10000);
+		Thread.sleep(3000);
+		//driver.navigate().refresh();
+		Thread.sleep(3000);
 
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 		loginPage.okPopUpButton.click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-			Thread.sleep(5000);
+			Thread.sleep(3000);
 		}
 
 	}
@@ -424,10 +424,12 @@ public class commonStepDefinitions extends TestBase {
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
+		int i=0;
 		while (rs.next()) {
-
-			results.put("Fein", rs.getString(ColumnName));
-			break;
+			i=i+1;
+			if(i>1) {
+			results.put(ColumnName, rs.getString(ColumnName));
+			break;}
 		}
 
 		con.close();
