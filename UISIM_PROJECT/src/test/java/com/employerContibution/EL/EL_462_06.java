@@ -12,10 +12,10 @@ import com.ui.pages.PEOPage;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EL_462_05 extends TestBase{
+public class EL_462_06 extends TestBase{
 
 	@Test()
-	public void EL_462_05_() throws Exception {
+	public void EL_462_06_() throws Exception {
 		
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
@@ -25,7 +25,7 @@ public class EL_462_05 extends TestBase{
 		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
 		
-		test = report.createTest("EL.462.05 - Verify CSR can update PEO Status 'Suspended'  for PEO Group Information");
+		test = report.createTest("EL.462.06 - Verify CSR can update PEO Status 'Withdrawn'  for PEO Group Information");
 		
 		commonFuntions.login("ndfjp3", "Admin@12345678");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -44,15 +44,15 @@ public class EL_462_05 extends TestBase{
 		commonFuntions.selectRadioWithFeinValue(feinValue);
 		commonFuntions.clickButton("Continue ");
 		Thread.sleep(4000);
-		commonFuntions.selectDropdown("PEO Status ", " Suspended ");
-		commonFuntions.screenShot("DropDownValue", "Pass", "Selecting the suspended  value");
+		commonFuntions.selectDropdown("PEO Status ", " With Drawn ");
+		commonFuntions.screenShot("DropDownValue", "Pass", "Selecting the WithDraw dropdown value");
 		commonFuntions.ScrollMenu("Client List");
 		commonFuntions.screenShot("ClientTable", "Pass", "Client table");
 		commonFuntions.clickButtonContains("UPDATE ");
 		Thread.sleep(3000);
 		commonFuntions.screenShot("PopUpBox", "Pass", "Pop up warning verified");
 		Thread.sleep(1000);
-		//commonFuntions.clickButtonContains(" Yes ");
+		commonFuntions.clickButtonContains(" Yes ");
 		Thread.sleep(3000);
 		commonFuntions.screenShot("peoInquiry", "Pass", "Clicked on Peo Inquiry");
 		commonFuntions.clickOnLink("PEO INQUIRY INFORMATION |");
@@ -63,6 +63,9 @@ public class EL_462_05 extends TestBase{
 		Assert.assertEquals(feinTrimmed , feinValue );
 		commonFuntions.clickButton("Close ");
 		test.log(Status.PASS, "Clicked on close button");
+		
+		
+		
 		
 	}
 }
