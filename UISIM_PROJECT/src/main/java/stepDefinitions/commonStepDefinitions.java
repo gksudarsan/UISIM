@@ -99,6 +99,11 @@ public class commonStepDefinitions extends TestBase {
 	public void clickButtonContains(String xpathParameter) {
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
+	
+	
+	public void clickButtonContains(String xpathParameter, int value) {
+		driver.findElement(By.xpath("(//button[contains(.,'" + xpathParameter + "')])[" + value + "]")).click();
+	}
 
 	public void clickMenu(String xpathParameter) {
 		driver.findElement(By.xpath("//*[text()='" + xpathParameter + "'][1]")).click();
@@ -185,6 +190,32 @@ public class commonStepDefinitions extends TestBase {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId
+							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
+					break label1;
+				}
+			}
+
+		}
+	}
+	
+	
+	
+	public void selectTableTypeList(String ssnValue, int columnValue, int tableId, String tableName) {
+		WebElement table = driver
+				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]"));
+
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.equals(ssnValue)) {
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId
 							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
 					break label1;
 				}
