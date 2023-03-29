@@ -14,13 +14,13 @@ import com.ui.pages.PEOPage;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
+public class EL_441_015_CSR_Verify_CSR_can_Renew_PEO extends TestBase{
 
 
-	@Test(priority=1, description = "EL.441.014 - Verify CSR can Add PEO member when a PEO member not registered or not found",groups = {"Regression"})
-	public void EL_441_014() throws Exception
+	@Test(priority=1, description = "EL.441.015 - Verify CSR can request for PEO Group registration renewal",groups = {"Regression"})
+	public void EL_441_015() throws Exception
 	{
-		 test = report.createTest("EL.441.014 - Verify CSR can Add PEO member when a PEO member not registered or not found");
+		 test = report.createTest("EL.441.015 - Verify CSR can request for PEO Group registration renewal");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
@@ -33,24 +33,20 @@ public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
-		 PEOPage.menuPeo.click();	
+		 PEOPage.menuPeo.click();			
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");
+		 commonFuntions.clickMenu("Renew PEO");		 
+		 commonFuntions.enterTextboxContains("PEO Name", "test_auto");
+		 commonFuntions.clickButtonContains("Search");
+		 sleep(2000);
+		 PEOPage.peoRenewRadioBtn.click();
+		 commonFuntions.screenShot("selectPeo", "Pass", "select Peo");
+		 commonFuntions.clickButtonContains("Continue");
+		 sleep(2000);
 		 commonFuntions.screenShot("peo registration", "Pass", "PEO Registration - Contact Details");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(2000);
-		 PEOPage.groupRegPeo.click();
-		 commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.screenShot("peor", "Pass", "Professional Employer Organization Registration");
-	     commonFuntions.clickButtonContains("Save & Continue");
-	     sleep(2000);
-	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
-	     commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", " Sole Proprietorship (Individual) ");
-	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
-	     commonFuntions.enterTextboxContains("Fiscal Year Start Date", "02/01/2023");
+		 
 	     commonFuntions.screenShot("GI", "PASS", "General Information");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -62,12 +58,7 @@ public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
 	     commonFuntions.screenShot("Unemployment Insurance", "PASS", "Unemployment Insurance Account Details");
 	     commonFuntions.clickButtonContains("Save & Continue"); 
 	     sleep(2000);
-	     PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
-	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
-	     PEOPage.addressCity.sendKeys("NewYork");
-	     PEOPage.addressZip.sendKeys("13476");
-	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
-	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
+	    
 	     commonFuntions.screenShot("Address Information", "PASS", "Address Information");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -156,71 +147,6 @@ public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
 		 commonFuntions.screenShot("Verify Client List", "PASS", "client list");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(2000);
-	     
-		 // blocked the test case at step26 as not able to search with fein number for peo member 
-	     
-		// Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' AND COMPANY_TYPE='PRI' ORDER BY UPDATED_TS DESC","FEIN");
-			
-		//	String feinNumber=databaseResults.get("FEIN");
-			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",feinValue);
-			System.out.println(feinValue);
-			sleep(2000);
-			//commonFuntions.clickButtonContains(" Search ");
-			commonFuntions.clickButton(" Search ");
-			//commonFuntions.selectRadio("Select");
-			PEOPage.addPeoMember.click();
-			commonFuntions.screenShot("PEO Member", "PASS", "Search For PEO Member");
-			//commonFuntions.clickButtonContains("Continue ");
-			sleep(2000);
-			commonFuntions.enterTextbox("PEO Member Name","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-			
-			//Random fein is not working - only existing fein is working from database
-			//commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-			
-			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-			commonFuntions.selectRadioQuestions("Does this PEO member already have an Unemployment Insurance Account?", "No");
-			commonFuntions.enterTextboxContains("Address Line 1","ownerAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
-			commonFuntions.enterTextboxContains("Address Line 2","ownerAddressLine2"+commonFuntions.createRandomInteger(1000,9999));
-			commonFuntions.enterTextboxContains("City","NewYork");
-			commonFuntions.selectDropdown("State", "New York");
-			commonFuntions.enterTextboxContains("Zip Code","13430");
-			commonFuntions.selectDropdown("Country", "United States");
-			commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
-			commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
-			sleep(2000);
-			//commonFuntions.selectRadioQuestions("List the current address of each additional address the PEO Member maintains in New York", "Same As Physical Address");
-			commonFuntions.selectRadio("Same As Physical Address");
-			commonFuntions.screenShot("PEO member information", "Pass", "PEO Member Information");
-			commonFuntions.clickButtonContains("Save & Continue");
-			sleep(2000);
-			try {
-				PEOPage.uspsSuggestedAddress.click();
-				PEOPage.mailingAddress.click();
-				commonFuntions.screenShot("UspsAddress","Pass","UspsAddress");
-				PEOPage.UspsContinueButton.click();
-				sleep(4000);
-			}
-			catch(Exception e) {
-				
-			}
-			sleep(5000);
-			commonFuntions.screenShot("current additional address", "Pass", "Verify Current Additional Address(es) in New York");
-			commonFuntions.clickButtonContains("Continue");
-			sleep(2000);
-			commonFuntions.screenShot("Prior Address(es) in New York", "Pass", "Prior Address(es) in New York");
-			commonFuntions.clickButtonContains("Save & Continue");
-			sleep(2000);
-			commonFuntions.screenShot("Verify Prior Address(es) in New York", "Pass", "Verify Prior Address(es) in New York");
-			commonFuntions.clickButtonContains("Continue");
-			sleep(2000);
-			commonFuntions.clickButtonContains("Choose File");
-			sleep(2000);
-			commonFuntions.uploadDoc("PEO Client List template_TestData2.xls");
-			sleep(4000);
-			commonFuntions.clickButtonContains("Continue");
-			sleep(2000);
-			commonFuntions.screenShot("verifyClient","Pass","Verify Client List");
-			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);
 			commonFuntions.screenShot("List of members", "Pass", "List of Members of PEO Group");
 			commonFuntions.clickButtonContains("Continue");

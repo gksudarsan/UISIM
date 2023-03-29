@@ -97,6 +97,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickButtonContains(String xpathParameter) {
+		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"))));
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
 
@@ -451,4 +452,43 @@ public class commonStepDefinitions extends TestBase {
 	public void clearTextboxContains(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::input[1]")).clear();
 	}
+	
+	public void loginPeoAdmin(String userName, String password) throws Exception {
+
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		Thread.sleep(2000);
+		screenShot("LoginPage", "Pass", "HomePage");
+		loginPage.loginLink.click();
+		Thread.sleep(2000);
+		Thread.sleep(5000);
+
+		enterTextbox("Username", userName);
+		test.log(Status.PASS, "User entered Username");
+		enterTextbox("Password", password);
+		test.log(Status.PASS, "User entered Password");
+		Thread.sleep(3000);
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+
+		sleep(3000);
+		//driver.navigate().refresh();
+		sleep(3000);
+
+		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
+		selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		clickButtonContains("Continue");
+		sleep(2000);
+		//loginPage.okPopUpButton.click();
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		Thread.sleep(3000);
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
+
+		
+	}
+	
+	
+	
 }
