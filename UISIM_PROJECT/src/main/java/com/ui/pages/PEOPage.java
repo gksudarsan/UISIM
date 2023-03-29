@@ -97,6 +97,11 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//a[contains(.,'PEO Registration')][1]")
 	public WebElement peoRegister;
 	
+	@FindBy(how = How.XPATH, using = "//*[@class='mat-radio-container'][1]")
+	public WebElement peoRadioButton;
+	
+	
+	
 	
 	
 	
@@ -124,7 +129,7 @@ public class PEOPage {
 		while(rs.next())
 		{
 			i=i+1;
-			if(i>20) {
+			if(i>2) {
 			results.put("Fein",rs.getString("FEIN"));
 			results.put("Ean",rs.getString("EAN"));
 			break;

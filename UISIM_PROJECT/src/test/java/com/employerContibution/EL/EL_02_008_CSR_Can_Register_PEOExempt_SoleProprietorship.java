@@ -57,6 +57,7 @@ public class EL_02_008_CSR_Can_Register_PEOExempt_SoleProprietorship extends Tes
 	     Thread.sleep(3000);
 	     commonFuntions.screenShot("UnemplymentInsurance", "Pass", "Unemployment Insurance Account Details");
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}
@@ -149,6 +150,11 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Information");
+	     try {
+	    	 PEOPage.peoRadioButton.click();
+		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
+		     }
+		     catch(Exception e) {}
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("PrimaryAddress2","Pass","Primary Physical Address");
