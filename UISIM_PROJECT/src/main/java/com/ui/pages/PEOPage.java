@@ -91,6 +91,13 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//a[contains(.,'ADD PEO MEMBER')][1]")
 	public WebElement peoAddMember;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_selectedPeoId_0_1_radio_button']//following::*[@class='mat-radio-container'][1]")
+	public WebElement peoRenewRadioBtn;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(.,'PEO Registration')][1]")
+	public WebElement peoRegister;
+	
+	
 	
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
