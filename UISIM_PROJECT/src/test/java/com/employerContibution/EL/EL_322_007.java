@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.text.ParseException;
 import java.util.Map;
 import java.util.Random;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,6 +17,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import org.testng.Assert;
+
 //import com.relevantcodes.extentreports.ExtentTest;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
@@ -32,11 +34,13 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_322_014 extends TestBase
+public class EL_322_007 extends TestBase
 {
 
-	@Test(priority=1, description = "EL.322.012: Verify CSR can register Individual PEO for Type of Legal Entity 'Other' and  type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
-	public void EL_322_014() throws Exception
+
+	
+	@Test(priority=1, description = "EL.322.007: Verify CSR can register Individual PEO for Type of Legal Entity 'Corporation' and type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
+	public void EL_322_007_() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -45,7 +49,7 @@ public class EL_322_014 extends TestBase
 		String feinValue =databaseResults.get("Fein");
 		String ernValue = databaseResults.get("Ean");
 		System.out.println("feinValue is"+feinValue);
-		 test = report.createTest("EL.322.014: Verify CSR can register Individual PEO for Type of Legal Entity 'Corporation' and type of Ownership 'Public Ownership'");
+		 test = report.createTest("EL.322.007: Verify CSR can register Individual PEO for Type of Legal Entity 'Corporation' and type of Ownership 'Privately or Closely Held'.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 
 		 
@@ -72,10 +76,10 @@ public class EL_322_014 extends TestBase
 		// String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		// String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", "Corporation");
+	     commonFuntions.selectDropdown("Type of Legal Entity", " Corporation ");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "TestAutomation");
-	     commonFuntions.selectRadioQuestions("Type of Ownership", "Public Ownership");
+	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");

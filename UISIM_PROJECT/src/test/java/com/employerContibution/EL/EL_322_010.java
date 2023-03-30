@@ -36,7 +36,6 @@ import stepDefinitions.commonStepDefinitions;
 public class EL_322_010 extends TestBase
 {
 
-
 	
 	@Test(priority=1, description = "EL.322.010: Verify CSR can register Individual PEO for Type of Legal Entity 'Limited Liability Company' and  type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
 	public void EL_322_010() throws Exception

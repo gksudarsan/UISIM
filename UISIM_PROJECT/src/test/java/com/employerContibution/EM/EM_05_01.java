@@ -28,7 +28,7 @@ public class EM_05_01 {
 			//claimsIntake cl = new claimsIntake();
 			employerManagement em =  new employerManagement();
 			System.out.println(EAN);
-			test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
+			test = report.createTest("Verify CSR can Inquire about employer Account information");
 			LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 			commonStepDefinitions cf= new commonStepDefinitions();
 			cf.login("NDFJP3","Admin@12345678");
