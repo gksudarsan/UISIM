@@ -20,11 +20,11 @@ public class EL_440_04_CSR_Can_WithDraw_PendingNew_Individual extends TestBase{
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOIR'", "FEIN");
-		String feinValue = databaseResults.get("Fein");
-		System.out.println("feinValue is" + feinValue);
-		
+//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+//				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOIR'", "FEIN");
+//		String feinValue = databaseResults.get("Fein");
+//		System.out.println("feinValue is" + feinValue);
+		String feinValue = "828282828" ;
 		test = report.createTest("EL.440.04- Verify CSR can update PEO Status 'Withdrawn' for PEO Individual Information");
 		
 		commonFuntions.login("ndfjp3", "Admin@12345678");
