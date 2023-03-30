@@ -12,20 +12,20 @@ import com.ui.pages.PEOPage;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EL_440_04_CSR_Can_WithDraw_PendingNew_Individual extends TestBase{
+public class EL_440_03_CSR_Can_Suspend_PendingNew_Individual extends TestBase {
 
-	@Test()
-	public void EL_440_04() throws Exception {
+	@Test
+	public void EL_440_03() throws Exception {
 		
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 
-//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-//				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOIR'", "FEIN");
-//		String feinValue = databaseResults.get("Fein");
-//		System.out.println("feinValue is" + feinValue);
-		String feinValue = "828282828" ;
-		test = report.createTest("EL.440.04- Verify CSR can update PEO Status 'Withdrawn' for PEO Individual Information");
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOIR' ORDER BY UPDATED_TS DESC", "FEIN");
+		String feinValue = databaseResults.get("Fein");
+		System.out.println("feinValue is" + feinValue);
+		
+		test = report.createTest("EL.440.03- Verify CSR can update PEO Status 'Suspend' for PEO Individual Information");
 		
 		commonFuntions.login("ndfjp3", "Admin@12345678");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -42,17 +42,30 @@ public class EL_440_04_CSR_Can_WithDraw_PendingNew_Individual extends TestBase{
 		commonFuntions.clickButtonContains("search");
 		Thread.sleep(2000);
 		commonFuntions.selectRadioWithFeinValue(feinValue);
+		Thread.sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		Thread.sleep(4000);
-		commonFuntions.selectDropdown("PEO Status ", " With Drawn ");
 		commonFuntions.screenShot("DropDownValue", "Pass", "Selecting the WithDraw dropdown value");
+		Thread.sleep(1000);
 		commonFuntions.ScrollMenu("Client List");
 		commonFuntions.screenShot("ClientTable", "Pass", "Client table");
-		commonFuntions.clickButtonContains("UPDATE ");
+		PEOPage.browserLinkManagePEOPage.click();
+		Thread.sleep(2000);
+		commonFuntions.uploadDoc("Sample.docx");
+		Thread.sleep(4000);
+		Assert.assertEquals(PEOPage.uploadeDocManagePEOPage.getText(), "Uploaded Documents");
+		commonFuntions.ScrollMenu("Uploaded Documents");
+		commonFuntions.screenShot("uploadedDocTable", "Pass", "Searching with FEIN ");
+		commonFuntions.clickOnLink("Remove");
 		Thread.sleep(3000);
-		commonFuntions.screenShot("PopUpBox", "Pass", "Pop up warning verified");
-		Thread.sleep(1000);
 		commonFuntions.clickButtonContains(" Yes ");
+		Thread.sleep(3000);
+		commonFuntions.ScrollMenu("Client List");
+		commonFuntions.screenShot("ClientTable", "Pass", "Client table");
+		commonFuntions.selectDropdown("PEO Status ", " Suspended ");	
+		Thread.sleep(1000);
+		commonFuntions.screenShot("DropDownValueSelected", "Pass", "Selected the Drop Down Valueas :: Suspended ");
+		commonFuntions.clickButtonContains("UPDATE ");
 		Thread.sleep(3000);
 		commonFuntions.screenShot("peoInquiry", "Pass", "Clicked on Peo Inquiry");
 		commonFuntions.clickOnLink("PEO INQUIRY INFORMATION |");
@@ -63,8 +76,6 @@ public class EL_440_04_CSR_Can_WithDraw_PendingNew_Individual extends TestBase{
 		Assert.assertEquals(feinTrimmed , feinValue );
 		commonFuntions.clickButton("Close ");
 		test.log(Status.PASS, "Clicked on close button");
-		
-		
 		
 		
 	}
