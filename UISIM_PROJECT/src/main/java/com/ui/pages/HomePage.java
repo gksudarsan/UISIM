@@ -66,6 +66,15 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RegisterPEO']")
 	public WebElement registerPeo;
 	
+	
+	@FindBy(how = How.XPATH, using = "//*[@class='dropdown-menu--button-toggle']")
+	public WebElement menuLogout;
+	
+	@FindBy(how = How.XPATH, using = "//a[.='Sign out'][@data-trigger-click='true']")
+	public WebElement signOut;
+	
+	
+	
 	public void navigateToAccountMaintenance() throws Exception {
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
 		stepDef.clickElement(menuButton);

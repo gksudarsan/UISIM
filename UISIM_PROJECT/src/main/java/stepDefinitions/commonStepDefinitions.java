@@ -37,6 +37,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.aventstack.extentreports.Status;
 import com.ui.utilities.screenShot;
 import com.ui.base.TestBase;
+import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 
 public class commonStepDefinitions extends TestBase {
@@ -46,16 +47,18 @@ public class commonStepDefinitions extends TestBase {
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
+		try {
 		loginPage.loginLink.click();
 		Thread.sleep(2000);
-		//		test.log(Status.PASS, "User Launched website");
-		//		driver.navigate().refresh();
-		//		Thread.sleep(2000);
-		//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
-		//		driver.navigate().to(driver.getCurrentUrl());
-		//		Thread.sleep(5000);
+		
+//		test.log(Status.PASS, "User Launched website");
+//		driver.navigate().refresh();
+//		Thread.sleep(2000);
+//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
+//		driver.navigate().to(driver.getCurrentUrl());
+//		Thread.sleep(5000);
 
-		//		driver.get(driver.getCurrentUrl());
+//		driver.get(driver.getCurrentUrl());
 		Thread.sleep(5000);
 
 		enterTextbox("Username", userName);
@@ -63,15 +66,16 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-		//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(3000);
+		}
+		catch(Exception e) {}
 		//driver.navigate().refresh();
 		Thread.sleep(3000);
 
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 		loginPage.okPopUpButton.click();
-
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
@@ -79,15 +83,6 @@ public class commonStepDefinitions extends TestBase {
 			loginPage.okPopUpButton.click();
 			Thread.sleep(3000);
 		}
-
-		Thread.sleep(5000);
-//		driver.navigate().refresh();
-//		Thread.sleep(3000);
-//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-//			loginPage.okPopUpButton.click();
-//			Thread.sleep(5000);
-//		}
-
 
 	}
 
@@ -99,7 +94,7 @@ public class commonStepDefinitions extends TestBase {
 	public void enterTextboxContains(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-		.sendKeys(value);
+				.sendKeys(value);
 	}
 
 	public void clickButton(String xpathParameter) {
@@ -147,7 +142,7 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectDropdown(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-		.click();
+				.click();
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
 	}
@@ -277,7 +272,7 @@ public class commonStepDefinitions extends TestBase {
 				if (celtext.equals(ssnValue)) {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
 							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//input[1]"))
-					.sendKeys(value);
+							.sendKeys(value);
 					break label1;
 				}
 			}
@@ -388,7 +383,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectLink(String xpathParameter, String value) {
 		driver.findElement(
 				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::*[.='" + value + "'][1]"))
-		.click();
+				.click();
 	}
 
 	public void clickOnLink(String xpathParameter) {
@@ -470,8 +465,8 @@ public class commonStepDefinitions extends TestBase {
 		while (rs.next()) {
 			i=i+1;
 			if(i>1) {
-				results.put(ColumnName, rs.getString(ColumnName));
-				break;}
+			results.put(ColumnName, rs.getString(ColumnName));
+			break;}
 		}
 
 		con.close();
@@ -480,7 +475,7 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectDropdownEquals(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-		.click();
+				.click();
 		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
 
 	}
@@ -522,13 +517,32 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
-		}
+		//if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+		//	loginPage.okPopUpButton.click();
+		//	Thread.sleep(3000);
+		//}
 
 		
 	}
+	
+	public void logoutAndLogin(String userName, String password) throws Exception {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		clickMenu("LOG OUT");
+	     clickMenu("Go to Homepage");
+	     sleep(2000);
+	     HomePage.menuLogout.click();
+	     HomePage.signOut.click();
+	     sleep(5000);
+	       enterTextbox("Username", userName);
+			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+			test.log(Status.PASS, "User entered Password");
+			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+			Thread.sleep(2000);
+	     driver.get(prop.getProperty("applicationUrl"));
+	     login(userName,password);
+	}
+	
 	
 	
 	
