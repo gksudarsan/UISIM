@@ -25,7 +25,7 @@ public class EM_310_001 extends TestBase {
 		commonStepDefinitions stepDef = new commonStepDefinitions();
 		EM_005 em005Page = new EM_005(driver);
 	    SREG_503 sreg503Page = new SREG_503(driver);
-		
+	    
 		HomePage home = new HomePage(driver);
 		test.log(Status.INFO, "Logging to the application");
 		stepDef.login("NDFJP3", "Admin@12345678");
