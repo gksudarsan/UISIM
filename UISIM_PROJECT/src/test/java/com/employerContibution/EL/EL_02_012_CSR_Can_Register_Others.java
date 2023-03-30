@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -34,7 +35,7 @@ public class EL_02_012_CSR_Can_Register_Others extends TestBase {
 				"EL.02.012 : Verify CSR can register  PEO Exempt for Type of Legal Entity ' Limited Liability Partnership'");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
@@ -125,7 +126,7 @@ public class EL_02_012_CSR_Can_Register_Others extends TestBase {
 		
 		/* After submitting the flow */
 		
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndfjp3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL "+COMMON_CONSTANT.CSR_USER_1+" WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     Thread.sleep(2000);
 	     
 	    PEOPage.queue.click();

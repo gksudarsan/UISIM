@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -20,12 +21,12 @@ public class EL_441_008 extends TestBase{
 
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		//commonFuntions.database_UpdateQuery("SELECT * FROM LROUIM.T_WFA_WORK_ITEM_DETAIL WHERE PROCESS_DETAIL_ID ='98742'");
-		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndfjp3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='648901228')");
+		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL "+COMMON_CONSTANT.CSR_USER_1+" WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='648901228')");
 		test = report.createTest("EL.441.008: Verify CSR can register PEO Group  for Type of Legal Entity 'Sole Proprietorship' and Type of Ownership 'Privately or Closely Held'.");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		commonFuntions.login("ndfjp3","Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		commonFuntions.clickMenu("Menu");	
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

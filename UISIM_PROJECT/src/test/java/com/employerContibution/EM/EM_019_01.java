@@ -2,31 +2,14 @@ package com.employerContibution.EM;
 
 
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-import java.sql.SQLException;
-import java.text.ParseException;
-import java.util.Random;
-
-import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import org.testng.Assert;
 
-//import com.relevantcodes.extentreports.ExtentTest;
-import com.aventstack.extentreports.ExtentReports;
-import com.aventstack.extentreports.ExtentTest;
-import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.ui.base.TestBase;
-import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
-import com.ui.utilities.screenShot;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -45,7 +28,7 @@ public class EM_019_01 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("ndfjp3","Admin@12345678");
+		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");			 
 		 commonFuntions.ScrollMenu("Account Maintenance");

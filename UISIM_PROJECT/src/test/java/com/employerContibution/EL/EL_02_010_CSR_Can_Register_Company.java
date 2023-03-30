@@ -1,15 +1,13 @@
 package com.employerContibution.EL;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
-import com.relevantcodes.extentreports.LogStatus;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -24,7 +22,7 @@ public class EL_02_010_CSR_Can_Register_Company extends TestBase {
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

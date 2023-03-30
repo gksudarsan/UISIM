@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -27,7 +28,7 @@ public class EL_462_05 extends TestBase{
 		
 		test = report.createTest("EL.462.05 - Verify CSR can update PEO Status 'Suspended'  for PEO Group Information");
 		
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

@@ -1,7 +1,6 @@
 package com.employerContibution.EL;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -9,6 +8,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -144,7 +144,7 @@ public class EL_02_005_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityPartnersh
 	     
 commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
-	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndfjp3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL "+COMMON_CONSTANT.CSR_USER_1+" WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     sleep(2000);
 	     
 	    PEOPage.queue.click();

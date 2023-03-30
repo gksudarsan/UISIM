@@ -5,10 +5,8 @@ import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
-import com.ui.pages.SREG_434;
-import com.ui.pages.SREG_435;
 import com.ui.pages.SREG_541;
-import com.ui.pages.SUC_002;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -27,7 +25,7 @@ public class EM_414_001 extends TestBase{
 			//SUC_002 suc002Page=new SUC_002(driver);
 			
 			HomePage home = new HomePage(driver);
-			stepDef.login("NDFJP3", "Admin@12345678");
+			stepDef.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 			home.navigateToVoidTransfer();
 			sreg541Page.validateRequiredText();
 			sreg541Page.registerEANNumber(EAN);

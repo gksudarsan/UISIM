@@ -10,7 +10,7 @@ import com.ui.pages.HomePage;
 import com.ui.pages.PEOPage;
 import com.ui.pages.PEO_001_ProfessionalEmployerOrganizationRegistration;
 import com.ui.pages.PEO_019_PEO_Registration_ContactDetails;
-import com.ui.pages.SREG_492;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -252,7 +252,7 @@ public class EL_441_007 extends TestBase{
 	    stepDef.clickButtonContains("Home");
 	    
 	    //datebase querry
-	    stepDef.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndfjp3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='648901228')");
+	    stepDef.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL "+COMMON_CONSTANT.CSR_USER_1+" WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='648901228')");
 	           
 	}
 

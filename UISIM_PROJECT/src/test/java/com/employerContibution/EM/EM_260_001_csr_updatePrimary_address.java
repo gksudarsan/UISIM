@@ -1,17 +1,13 @@
 package com.employerContibution.EM;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Sleeper;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
-import com.ui.locators.claimsIntake;
 import com.ui.pages.LoginPage;
 import com.ui.pages.employerManagement;
-import com.ui.utilities.screenShot;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -32,7 +28,7 @@ public class EM_260_001_csr_updatePrimary_address {
 			test = report.createTest("EM.321.02.001 - Verify Employer is able to Edit Corporate Officer/Owner Details.");
 			LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 			commonStepDefinitions cf= new commonStepDefinitions();
-			cf.login("NDFJP3","Admin@12345678");
+			cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 			cf.screenShot("ApplicationLogin","Pass","Login is successful");
 			cf.clickMenu("Menu");	
 			cf.clickMenu("Account Maintenance");sleep();

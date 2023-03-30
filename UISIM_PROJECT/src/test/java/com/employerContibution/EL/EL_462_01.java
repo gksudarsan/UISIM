@@ -3,13 +3,13 @@ package com.employerContibution.EL;
 import java.util.Map;
 
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.PEOPage;
 import com.ui.pages.employerManagement;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -28,7 +28,7 @@ public class EL_462_01 extends TestBase{
 
 		test = report.createTest("EL.462.01 - Verify CSR can search PEO and update PEO conversion 'PEO Group to PEO Individual' ");
 
-		cf.login("ndfjp3", "Admin@12345678");
+		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Professional Employer Organization (PEO)");

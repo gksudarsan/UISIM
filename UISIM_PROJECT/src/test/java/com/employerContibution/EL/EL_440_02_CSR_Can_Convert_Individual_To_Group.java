@@ -8,6 +8,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -29,7 +30,7 @@ public class EL_440_02_CSR_Can_Convert_Individual_To_Group extends TestBase {
 		test = report.createTest("EL.02.013 .Verify CSR  can renewal PEO Exempt registration.");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

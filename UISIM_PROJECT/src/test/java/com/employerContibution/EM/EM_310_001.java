@@ -8,9 +8,7 @@ import com.ui.base.TestBase;
 import com.ui.pages.EM_005;
 import com.ui.pages.HomePage;
 import com.ui.pages.SREG_503;
-import com.ui.pages.SRGE_543;
-import com.ui.pages.SRGE_544;
-import com.ui.pages.SUC_002;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -28,7 +26,7 @@ public class EM_310_001 extends TestBase {
 	    
 		HomePage home = new HomePage(driver);
 		test.log(Status.INFO, "Logging to the application");
-		stepDef.login("NDFJP3", "Admin@12345678");
+		stepDef.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		test.log(Status.PASS, "Sucessfully login to the application");
 		test.log(Status.INFO, "Navigating to the account maintenance info tab");
 		home.navigateToSaleOfBussiness();

@@ -1,7 +1,5 @@
 package com.employerContibution.EL;
 
-import java.util.Map;
-
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,6 +7,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -27,7 +26,7 @@ public class EL_440_04_CSR_Can_WithDraw_PendingNew_Individual extends TestBase{
 		String feinValue = "828282828" ;
 		test = report.createTest("EL.440.04- Verify CSR can update PEO Status 'Withdrawn' for PEO Individual Information");
 		
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

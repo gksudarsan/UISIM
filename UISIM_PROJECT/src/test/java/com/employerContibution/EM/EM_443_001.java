@@ -5,6 +5,7 @@ import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -20,7 +21,7 @@ public class EM_443_001 extends TestBase{
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			
 			HomePage home = new HomePage(driver);
-			stepDef.login("NDFJP3", "Admin@12345678");
+			stepDef.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		}
 	}
 	

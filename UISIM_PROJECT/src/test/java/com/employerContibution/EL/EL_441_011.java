@@ -1,7 +1,5 @@
 package com.employerContibution.EL;
 
-import java.util.Map;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
@@ -11,6 +9,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -33,7 +32,7 @@ public class EL_441_011 extends TestBase{
 		test = report.createTest("EL.322.012: Verify CSR can register Individual PEO for Type of Legal Entity 'Other' and  type of Ownership 'Privately or Closely Held'.");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
-		commonFuntions.login("ndfjp3","Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 
 		commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		commonFuntions.clickMenu("Menu");	

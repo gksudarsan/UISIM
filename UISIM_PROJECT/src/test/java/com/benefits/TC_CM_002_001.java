@@ -2,20 +2,15 @@ package com.benefits;
 
 
 
-import java.sql.SQLException;
-import java.text.ParseException;
-
 import org.openqa.selenium.By;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-//import com.relevantcodes.extentreports.ExtentTest;
-import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -36,7 +31,7 @@ String SSN = prop.getProperty("SSN");
 		System.out.println(SSN);
 		
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("NDFJP3","Admin@12345678");
+		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	      screenShot screen = new screenShot();
 	     String  screenShotPath = screenShot.takeSnapShot(driver, "target\\ApplicationLogin.jpg");
 	       test.log(Status.PASS,"Login is  successful");
