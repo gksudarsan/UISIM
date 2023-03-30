@@ -37,6 +37,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.aventstack.extentreports.Status;
 import com.ui.utilities.screenShot;
 import com.ui.base.TestBase;
+import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 
 public class commonStepDefinitions extends TestBase {
@@ -46,8 +47,10 @@ public class commonStepDefinitions extends TestBase {
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
+		try {
 		loginPage.loginLink.click();
 		Thread.sleep(2000);
+		
 //		test.log(Status.PASS, "User Launched website");
 //		driver.navigate().refresh();
 //		Thread.sleep(2000);
@@ -66,6 +69,8 @@ public class commonStepDefinitions extends TestBase {
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(3000);
+		}
+		catch(Exception e) {}
 		//driver.navigate().refresh();
 		Thread.sleep(3000);
 
@@ -512,13 +517,32 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
-		}
+		//if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+		//	loginPage.okPopUpButton.click();
+		//	Thread.sleep(3000);
+		//}
 
 		
 	}
+	
+	public void logoutAndLogin(String userName, String password) throws Exception {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		clickMenu("LOG OUT");
+	     clickMenu("Go to Homepage");
+	     sleep(2000);
+	     HomePage.menuLogout.click();
+	     HomePage.signOut.click();
+	     sleep(5000);
+	       enterTextbox("Username", userName);
+			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+			test.log(Status.PASS, "User entered Password");
+			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+			Thread.sleep(2000);
+	     driver.get(prop.getProperty("applicationUrl"));
+	     login(userName,password);
+	}
+	
 	
 	
 	
