@@ -26,7 +26,7 @@ public class EL_03_02 extends TestBase{
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' ORDER BY UPDATED_TS DESC", "PEO_NAME");
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND EMPLOYER_REGISTRATION_NUMBER IS NOT NULL", "PEO_NAME");
 		String PEOName =databaseResults.get("PEO_NAME");
 			
 		
@@ -131,13 +131,13 @@ public class EL_03_02 extends TestBase{
 	     commonFuntions.screenShot("submissonInstructions","Pass","Submission Instructions and Responsibilities");
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(2000);
-	     commonFuntions.selectLink("Proof of NYS Workers' Compensation Coverage", "Browse");
+	     commonFuntions.selectLink("Proof of NYS Workers", "Browse");
 		 commonFuntions.uploadDoc("TESTINGEL.docx");
 		 Thread.sleep(4000);
-		 commonFuntions.selectLink("Proof of NYS Disability Insurance Coverage", "Browse");
+		 commonFuntions.selectLink("Proof of NYS Disability", "Browse");
 		 commonFuntions.uploadDoc("TESTINGEL.docx");
 		 Thread.sleep(4000);
-		 commonFuntions.selectLink("Proof of $75k net worth or bond or a letter of credit for $75k", "Browse");
+		 commonFuntions.selectLink("Proof of $75k", "Browse");
 		 commonFuntions.uploadDoc("TESTINGEL.docx");
 		 Thread.sleep(4000);
 		 commonFuntions.selectCheckbox("Affirmation from an independent CPA that the PEO is up to date on remittance of federal and state payroll tax withholdings through the last completed financial quarter");
