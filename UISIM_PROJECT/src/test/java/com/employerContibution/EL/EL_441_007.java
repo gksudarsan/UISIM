@@ -15,9 +15,9 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 public class EL_441_007 extends TestBase{
-	@Test(priority = 1, description = "Test sample", groups = { "Regression" })
+	@Test(priority = 1, description = "EL.441.007  - Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Public Ownership'", groups = { "Regression" })
 	public void Testing123() throws Exception {
-		test = report.createTest("Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Public Ownership'");
+		test = report.createTest("EL.441.007  - Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Public Ownership'");
 		commonStepDefinitions stepDef = new commonStepDefinitions();
 		HomePage home = new HomePage(driver);
 		PEOPage peoPg = new PEOPage(driver);

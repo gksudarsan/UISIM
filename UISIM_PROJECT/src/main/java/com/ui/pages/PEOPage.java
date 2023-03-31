@@ -106,6 +106,15 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using ="//mat-label[text()='Uploaded Documents']")
 	public WebElement uploadeDocManagePEOPage;
 	
+	@FindBy(how = How.XPATH, using = "//a[text()=' Add Additional Address ']")
+	public WebElement clickOnAdditionalLink;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='PEO Status']/../following-sibling::mat-label")
+	public WebElement withdrawnMessage;
+	
+	@FindBy(how = How.XPATH, using = "//li[text()='PEO Status Updated Successfully']")
+	public WebElement updatePeoMessage;
+	
 	
 	
 	

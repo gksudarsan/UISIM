@@ -199,7 +199,7 @@ public class EL_03_01 extends TestBase{
 		commonFuntions.screenShot("Statement Of Acknowledgement", "PASS", "Statement Of Acknowledgement");
 		commonFuntions.clickButtonContains("Accept & Submit");
 		Thread.sleep(2000);
-		commonFuntions.selectRadioQuestions("Action", "Approved");
+		commonFuntions.selectRadio("Approved");
 		commonFuntions.screenShot("PEO Registration Approval", "PASS", "PEO Registration Approval");
 		commonFuntions.clickButton("Submit");
 		Thread.sleep(2000);
@@ -207,6 +207,8 @@ public class EL_03_01 extends TestBase{
 		Thread.sleep(2000);
 		commonFuntions.clickButtonContains("Home");
 		Thread.sleep(2000);
+		
+		// step 30 - 32 not implemented
 
 
 		//finding with peo name

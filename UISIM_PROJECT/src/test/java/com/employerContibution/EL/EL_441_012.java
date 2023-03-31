@@ -20,13 +20,13 @@ import stepDefinitions.commonStepDefinitions;
 public class EL_441_012 extends TestBase{
 
 	
-	@Test(priority=1, description = "EL.441.011 - Verify CSR can register Group PEO for Type of Legal Entity 'Limited Liability Partnership' and Type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
+	@Test(priority=1, description = "EL.441.012  - Verify CSR can register Group PEO for Type of Legal Entity 'Other' and Type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
 	public void EL_441_012() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		
-		test = report.createTest("EL.322.012: Verify CSR can register Individual PEO for Type of Legal Entity 'Other' and  type of Ownership 'Privately or Closely Held'.");
+		test = report.createTest("EL.441.012  - Verify CSR can register Group PEO for Type of Legal Entity 'Other' and Type of Ownership 'Privately or Closely Held'.");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
@@ -242,7 +242,7 @@ public class EL_441_012 extends TestBase{
 		commonFuntions.screenShot("PEO Details", "Pass", "PEO Details Review screen");
 		commonFuntions.clickButtonContains("Save & Continue");
 		Thread.sleep(2000);
-		commonFuntions.enterTextbox("Enter name of Officer","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
+		commonFuntions.enterTextboxContains("Enter name of Officer, Partner, Proprietor or Member","TestAutomation"+commonFuntions.createRandomInteger(10000,99999));
 		commonFuntions.screenShot("Declaration", "Pass", "Declaration");
 		commonFuntions.clickButtonContains("Save & Continue");
 		Thread.sleep(2000);
@@ -252,6 +252,8 @@ public class EL_441_012 extends TestBase{
 		commonFuntions.screenShot("Register/Renew Confirmation", "Pass", "Register/Renew Confirmation");
 		commonFuntions.clickButtonContains("Home");
 		Thread.sleep(200);
+		
+		
 		
 	
 	}
