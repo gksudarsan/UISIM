@@ -20,7 +20,7 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
 		test = report
-				.createTest("EL.440.04- Verify CSR can update PEO Status 'Withdrawn' for PEO Individual Information");
+				.createTest("EE.03.002 -Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'City' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -87,7 +87,7 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 
 		commonFuntions.selectRadioQuestions("Location of Books and Records", "Other");
 		commonFuntions.screenShot("EmpRegister9", "Pass", "Selected other for - Location of Books and Records");
-		sleep(4000);
+		sleep(2000);
 		empPage.addressLine1_Form2.sendKeys("40 Park View");
 		sleep();
 		empPage.city_Form2.sendKeys("Albany");
@@ -139,7 +139,7 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 		sleep(5000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to Home Page and click on My-Q");
 		PEOPage.queue.click();
-		sleep(20000);
+		sleep(25000);
 
 		/*----------------WF-001----------------*/
 		sleep();
@@ -147,21 +147,24 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 		commonFuntions.enterTextboxContains("FEIN", feinValue);
 		sleep();
 		commonFuntions.clickButtonContains(" Search ");
-		sleep();
+		sleep(4000);
 		commonFuntions.clickOnLink("Review Employer Type");
 		sleep(5000);
 		commonFuntions.clickButtonContains("Open Work Item ");
 
 		/*----------------EEWI-002----------------*/
 		sleep(3000);
-		commonFuntions.screenShot("EmpRegister118", "Pass",
+		commonFuntions.screenShot("EmpRegister18", "Pass",
 				"Navigated to EEWI page by opening the Work Item and add a comment and click submit");
-		commonFuntions.enterTextboxContains("Comment", "Employer Tupe Gov");
+		empPage.commentBox_MyQ.sendKeys("Employer Tupe Gov");
+		sleep(3000);
 		commonFuntions.clickButtonContains("Submit ");
 
 		/*----------------SUC-002----------------*/
 
 		sleep(3000);
+		commonFuntions.screenShot("EmpRegister19", "Pass",
+				"Sucessfully clicked on Submit button and navigated to SUC-002 Page");
 		commonFuntions.clickButtonContains("Home ");
 
 	}

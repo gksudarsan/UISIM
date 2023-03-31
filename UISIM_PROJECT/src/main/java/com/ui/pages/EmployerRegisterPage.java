@@ -67,6 +67,8 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//button[@id='access.continue']")
 	public WebElement continueButton_popUp;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Comment']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	public WebElement commentBox_MyQ;
 
 	@FindBy(how = How.XPATH, using = "//strong[text()='Browse']")
 	public WebElement browserLink;
