@@ -20,7 +20,6 @@ public class EE_03_001_csr_registration_emptype_business extends TestBase{
 	@Test()
 	public void EE_03_001_csr_registration() throws Exception {
 
-
 		String feinValue1 =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5);
 		String feinValue2 =  "9999"  ;
 		String feinValue = feinValue2 + feinValue1 ;  

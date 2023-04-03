@@ -120,7 +120,33 @@ public class employerManagementLocators extends TestBase {
 		return driver.findElement(By.xpath("//mat-label[text()='Pending New']//preceding::span[@class='mat-radio-outer-circle'][1]"));
 	}
 	
+	public WebElement selectradio_locationofbooks (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"lbraAddrIndId_BPPA\"]/label/span[1]/span[1]")));
+		return driver.findElement(By.xpath("//*[@id=\"lbraAddrIndId_BPPA\"]/label/span[1]/span[1]"));
+	}
 	
+	public WebElement selectBrowse(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//strong[text()='Browse']")));
+		return driver.findElement(By.xpath("//strong[text()='Browse']"));
+	}
+	
+	public WebElement searchWI(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@id='mat-input-161']")));
+		return driver.findElement(By.xpath("//input[@id='mat-input-161']"));
+	}
+	
+	public WebElement FEIN (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@arIa-label='FEIN']")));
+		return driver.findElement(By.xpath("//input[@arIa-label='FEIN']"));
+
+	} 
+	
+	public WebElement selectradio_noticeofpotentialcharges (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"npcclaimAddrIndId_BPPA\"]/label/span[1]/span[1]")));
+		return driver.findElement(By.xpath("//*[@id=\"npcclaimAddrIndId_BPPA\"]/label/span[1]/span[1]"));
+	}
 }
+
+
 
 
