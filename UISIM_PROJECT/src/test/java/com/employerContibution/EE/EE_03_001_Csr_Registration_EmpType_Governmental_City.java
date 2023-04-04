@@ -15,10 +15,10 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_03_001_csr_registration_emptype_business extends TestBase{
+public class EE_03_001_Csr_Registration_EmpType_Governmental_City extends TestBase{
 
 	@Test()
-	public void EE_03_001_csr_registration() throws Exception {
+	public void EE_03_001_Csr_Registration() throws Exception {
 
 		String feinValue1 =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5);
 		String feinValue2 =  "9999"  ;
