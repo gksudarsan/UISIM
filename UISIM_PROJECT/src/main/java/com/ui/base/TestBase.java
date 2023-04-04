@@ -5,8 +5,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -61,7 +63,8 @@ public class TestBase {
 	// public static String br;
 
 	public static ExtentReports report = new ExtentReports();
-	public static ExtentSparkReporter spark = new ExtentSparkReporter("target\\reports.html");
+	public static ExtentSparkReporter spark = new ExtentSparkReporter("D:\\AutomationFiles\\Report\\TestAutomationReport " +new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(
+			Calendar.getInstance().getTime()).toString() + ".html");
 	public static ExtentTest test;
 	public static WebDriver driver;
 	public static Properties prop;

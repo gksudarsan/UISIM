@@ -13,7 +13,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_03_003_Csr_Register_EmpType_Governmental_Village extends TestBase {
+public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends TestBase {
 
 	@Test
 	public void EE_03_003() throws Exception {
@@ -22,8 +22,7 @@ public class EE_03_003_Csr_Register_EmpType_Governmental_Village extends TestBas
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
 		test = report
-				.createTest("EE.03.003 -Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.\r\n"
-						+ "");
+				.createTest("EE.03.004 Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'School District' and work items will be created for CSR to review.");
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
 					"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
 				String FEIN = databaseResults.get("FEIN");
@@ -43,7 +42,7 @@ public class EE_03_003_Csr_Register_EmpType_Governmental_Village extends TestBas
 		sleep();
 		
 		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", FEIN);
-		cf.selectDropdown("Type of Legal Entity", " Village ");
+		cf.selectDropdown("Type of Legal Entity", " School District ");
 		cf.selectDropdown("Source", " NYS-100 (paper) ");
 		cf.selectDropdown("Source Type", " NYS-100G ");
 		sleep(3000);
@@ -59,11 +58,11 @@ public class EE_03_003_Csr_Register_EmpType_Governmental_Village extends TestBas
 		cf.safeJavaScriptClick(empPage.iSyourEntityQuestion_Yes);
 		sleep();
 		cf.screenShot("EmpRegister5", "Pass", "Enter the details on SREG-003 page and click continue");
-		cf.enterTextboxContains("If Yes, enter Legal Name of Entity", "Clothing");
-		cf.enterTextboxContains("Address Line 1 ", "7th Street 40");
-		cf.enterTextboxContains("City ", "New York");
-		cf.enterTextboxContains("Zip Code", "44673");
-		cf.selectDropdown("County", " New York ");
+		//cf.enterTextboxContains("If Yes, enter Legal Name of Entity", "abc");
+		//cf.enterTextboxContains("Address Line 1 ", "7th Street 40");
+		//cf.enterTextboxContains("City ", "New York");
+		//cf.enterTextboxContains("Zip Code", "44673");
+		//cf.selectDropdown("County", " New York ");
 		cf.clickButton("Continue ");
 
 		
