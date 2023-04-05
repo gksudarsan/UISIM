@@ -13,24 +13,28 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends TestBase {
+public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestBase {
 
 	@Test
 	public void EE_03_003() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-
+		String feinValue1 =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5);
+		String feinValue2 =  "9999"  ;
+		String feinValue = feinValue2 + feinValue1 ;  
+		System.out.println("FEIN NUMBER = " +feinValue);
+		
 		test = report
-				.createTest("EE.03.004 Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'School District' and work items will be created for CSR to review.");
-		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-					"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
-				String FEIN = databaseResults.get("FEIN");
-		System.out.println("FEIN NUMBER = " +FEIN);
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+				.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
+		//Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
+		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
+		//		String FEIN = databaseResults.get("FEIN");
+
+		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
-		
+
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		cf.clickMenu("Register Employer");
 		sleep(3000);
@@ -38,20 +42,19 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		cf.clickButton("Continue ");
 		sleep(3000);
 		cf.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
-		cf.selectDropdown("Employer Type", " Governmental ");
+		cf.selectDropdown("Employer Type", " Non-Profit ");
 		sleep();
+
+		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
+		cf.selectDropdown("Type of Legal Entity", " Joint Venture ");
 		
-		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", FEIN);
-		cf.selectDropdown("Type of Legal Entity", " School District ");
-		cf.selectDropdown("Source", " NYS-100 (paper) ");
-		cf.selectDropdown("Source Type", " NYS-100G ");
 		sleep(3000);
 		cf.clickButton("Continue ");
 		cf.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
 		/*----------------SREG-003----------------*/
 		cf.screenShot("EmpRegister4", "Pass", "Navigated on SREG-003 page");
-		empPage.legalNameTextBox.sendKeys("TCS CORPORATION");
+		empPage.legalNameTextBox.sendKeys("EAGLE EYE ANTIQUES, INC");
 		cf.enterTextboxContains("Other commonly known", "TESTING");
 		cf.enterTextboxContains(" Business Phone Number  ", "3564777565");
 		cf.enterTextboxContains(" Business Fax Number ", "9484735838");
@@ -65,7 +68,7 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		//cf.selectDropdown("County", " New York ");
 		cf.clickButton("Continue ");
 
-		
+
 		sleep(4000);
 		cf.screenShot("EmpRegister6", "Pass", "Navigated on SREG-008 page and entering the address");
 		cf.enterTextboxContains("Address Line 1 ", "23 Plaza");
@@ -73,12 +76,12 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		cf.enterTextboxContains("Zip Code", "34737");
 		cf.clickButton("Continue ");
 
-		
+
 		cf.screenShot("EmpRegister7", "Pass", "Navigated on SREG-007 and click continue");
 		sleep(4000);
 		cf.clickButton("Continue ");
 
-		
+
 		sleep(4000);
 		cf.screenShot("EmpRegister8", "Pass", "Navigated on SREG-008 and enter Both the address ");
 		cf.selectRadioQuestions("Business Mailing Address", "Other");
@@ -102,19 +105,19 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		empPage.countyValue_Form2.click();
 		cf.clickButton("Continue ");
 		sleep(4000);
-		
-			cf.safeJavaScriptClick(empPage.uspsAddressRadio);
-			sleep();
-			cf.screenShot("EmpRegister10", "Pass", "Pop Up displayed");
-			cf.safeJavaScriptClick(empPage.continueButton_popUp);
-		
 
-	
+		cf.safeJavaScriptClick(empPage.uspsAddressRadio);
+		sleep();
+		cf.screenShot("EmpRegister10", "Pass", "Pop Up displayed");
+		cf.safeJavaScriptClick(empPage.continueButton_popUp);
+
+
+
 		sleep(4000);
 		cf.screenShot("EmpRegister11", "Pass", "Navigated on SREG-521 page");
 		cf.clickButton("Continue ");
 
-		
+
 		sleep(4000);
 		cf.screenShot("EmpRegister12", "Pass", "Navigated on SREG-683 page and upload document");
 		empPage.browserLink.click();
@@ -123,7 +126,7 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		sleep(3000);
 		cf.clickButton("Continue ");
 
-	
+
 		sleep(10000);
 		cf.screenShot("EmpRegister13", "Pass", "Navigated on SREG-800 and Accept");
 		cf.clickButton("Continue ");
@@ -133,22 +136,22 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		cf.clickButtonContains("Submit ");
 		sleep(15000);
 
-		
+
 		cf.screenShot("EmpRegister15", "Pass", "Navigated to SREG-521 page and click on exit");
 		cf.clickButtonContains("Exit ");
 
-		
+
 		sleep(4000);
-		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
+		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		sleep(5000);
 		cf.screenShot("EmpRegister16", "Pass", "Navigated to Home Page and click on My-Q");
 		PEOPage.queue.click();
 		sleep(25000);
 
-		
+
 		sleep();
 		cf.screenShot("EmpRegister17", "Pass", "Navigated to WF-001 page and open the work Item");
-		cf.enterTextboxContains("FEIN", FEIN);
+		cf.enterTextboxContains("FEIN", feinValue);
 		sleep();
 		cf.clickButtonContains(" Search ");
 		sleep(4000);
@@ -156,7 +159,7 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		sleep(5000);
 		cf.clickButtonContains("Open Work Item ");
 
-		
+
 		sleep(3000);
 		cf.screenShot("EmpRegister18", "Pass",
 				"Navigated to EEWI page by opening the Work Item and add a comment and click submit");
@@ -164,7 +167,7 @@ public class EE_03_004_Csr_Register_EmpType_Governmental_SchoolDistrict extends 
 		sleep(3000);
 		cf.clickButtonContains("Submit ");
 
-		
+
 		sleep(3000);
 		cf.screenShot("EmpRegister19", "Pass",
 				"Sucessfully clicked on Submit button and navigated to SUC-002 Page");
