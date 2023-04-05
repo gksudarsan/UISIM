@@ -13,52 +13,63 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestBase {
+public class EE_07_005_Emp_Register_EmpType_Governmental_County extends TestBase {
 
 	@Test
-	public void EE_08_004() throws Exception {
+	public void EE_07_005() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
+		test = report.createTest(" EE.07.005- Verify employer can submit employer registration for employer type 'Governmental' and legal entity type 'County' and work items will be created for CSR to review.");
+		/*
+		 * Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
+		 * "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
+		 * , "FEIN"); String FEIN = databaseResults.get("FEIN");
+		 * System.out.println("FEIN NUMBER = " +FEIN);
+		 * 
+		 * Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
+		 * "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN NOT IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
+		 * , "EAN"); String EAN = databaseResults1.get("EAN");
+		 * System.out.println("EAN NUMBER = " +EAN);
+		 */
+		
 		String feinValue1 =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5);
 		String feinValue2 =  "9999"  ;
-		String feinValue = feinValue2 + feinValue1 ;  
-		System.out.println("FEIN NUMBER = " +feinValue);
-		
-		test = report
-				.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
-		//Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
-		//		String FEIN = databaseResults.get("FEIN");
+		String FEIN = feinValue2 + feinValue1 ;  
+		System.out.println("FEIN NUMBER = " +FEIN);
 
 		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.clickMenu("Menufd");
+		cf.clickMenu("Menu");
 
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		cf.clickMenu("Register Employer");
 		sleep(3000);
-		cf.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
+		cf.screenShot("EmpRegister1", "Pass", " Employer Register page");
 		cf.clickButton("Continue ");
 		sleep(3000);
-		cf.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
-		cf.selectDropdown("Employer Type", " Non-Profit ");
+		cf.screenShot("EmpRegister2", "Pass", "Emp Page");
+		cf.selectDropdown("Employer Type", " Governmental ");
 		sleep();
 
-		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-		cf.selectDropdown("Type of Legal Entity", " Joint Venture ");
-		
+		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", FEIN);
+		cf.selectDropdown("Type of Legal Entity", " County ");
+		//cf.enterTextbox("If Other, provide the type of Legal Entity.", "oshsh");
+		cf.enterTextboxContains("Employer Registration Number", "");
 		sleep(3000);
 		cf.clickButton("Continue ");
 		cf.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
 		/*----------------SREG-003----------------*/
 		cf.screenShot("EmpRegister4", "Pass", "Navigated on SREG-003 page");
-		empPage.legalNameTextBox.sendKeys("EAGLE EYE ANTIQUES, INC");
-		cf.enterTextboxContains("Other commonly known", "TESTING");
+		empPage.legalNameTextBox.sendKeys("NO Entity Found");
+		//cf.enterTextboxContains("Other commonly known", "HJGHHFH");
 		cf.enterTextboxContains(" Business Phone Number  ", "3564777565");
 		cf.enterTextboxContains(" Business Fax Number ", "9484735838");
-		cf.safeJavaScriptClick(empPage.iSyourEntityQuestion_Yes);
+		cf.enterTextboxContains("What is the date of the first payroll", "03032022");
+		cf.enterTextboxContains("Estimated or approximate number of individuals", "20");
+		cf.enterTextboxContains("Date covered employment began?", "03032022");
+		cf.safeJavaScriptClick(empPage.iSyourEntityQuestion_No);
 		sleep();
 		cf.screenShot("EmpRegister5", "Pass", "Enter the details on SREG-003 page and click continue");
 		//cf.enterTextboxContains("If Yes, enter Legal Name of Entity", "abc");
@@ -142,7 +153,7 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 
 
 		sleep(4000);
-		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
 		sleep(5000);
 		cf.screenShot("EmpRegister16", "Pass", "Navigated to Home Page and click on My-Q");
 		PEOPage.queue.click();
@@ -151,7 +162,7 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 
 		sleep();
 		cf.screenShot("EmpRegister17", "Pass", "Navigated to WF-001 page and open the work Item");
-		cf.enterTextboxContains("FEIN", feinValue);
+		cf.enterTextboxContains("FEIN", FEIN);
 		sleep();
 		cf.clickButtonContains(" Search ");
 		sleep(4000);

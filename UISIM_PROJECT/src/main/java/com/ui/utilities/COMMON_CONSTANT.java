@@ -27,6 +27,9 @@ public class COMMON_CONSTANT {
 	
 	public static final String CSR_USER_3 = "ndfaxs"; // CSR with PEO specialist role
 	public static final String CSR_USER_3_PASSWORD = "Anoop@123456789";
+	
+	public static final String EMP_USER_1 = "manju@2004"; // CSR with PEO specialist role
+	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
 
 	/* ********* creds end ********* */
 
