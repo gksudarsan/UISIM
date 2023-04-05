@@ -17,5 +17,8 @@ public class AddCorporatePage {
 
 	@FindBy(how = How.XPATH, using = "//*[@id='successLinkId']")
 	public WebElement successLink;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Business as Member/Managing Member ']//following::input[1]")
+	public WebElement businessEntityFilter;
 
 }

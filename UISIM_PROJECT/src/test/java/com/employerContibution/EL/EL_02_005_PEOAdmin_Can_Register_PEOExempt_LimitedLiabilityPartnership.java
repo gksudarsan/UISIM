@@ -165,6 +165,11 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Information");
+	     try {
+	    	 PEOPage.peoRadioButton.click();
+		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
+		     }
+		     catch(Exception e) {}
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("PrimaryAddress2","Pass","Primary Physical Address");

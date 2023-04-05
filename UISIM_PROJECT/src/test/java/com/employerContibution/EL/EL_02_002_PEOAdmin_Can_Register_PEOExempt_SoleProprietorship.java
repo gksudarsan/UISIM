@@ -1,12 +1,12 @@
 package com.employerContibution.EL;
 
 import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
+import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -14,18 +14,23 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_02_006_PEOAdmin_Can_Register_PEOExempt_Others extends TestBase{
+public class EL_02_002_PEOAdmin_Can_Register_PEOExempt_SoleProprietorship extends TestBase{
 
-	@Test(priority=1, description = "EL.02.006 : Verify PEO Admin can register  PEO Exempt for Type of Legal Entity ' Other' .",groups = {"Regression"})
-	public void EL_02_006() throws Exception{
-		 test = report.createTest("EL.02.006 : Verify PEO Admin can register  PEO Exempt for Type of Legal Entity ' Other' .");
+	@Test(priority=1, description = "EL.02.003 : Verify PEO Admin can register  PEO Exempt for Type of Legal Entity ' Partnership' .",groups = {"Regression"})
+	public void EL_02_003() throws Exception{
+		 test = report.createTest("EL.02.003 : Verify PEO Admin can register  PEO Exempt for Type of Legal Entity ' Partnership' .");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
+		 HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 PEOPage.peoRegister.click();
 		 sleep(3000);
+		 
+		 
+		 
+		 
 		 commonFuntions.enterTextboxContains("First Name", "AutoTestFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));		 
 		 commonFuntions.enterTextboxContains("Last Name", "AutoTestLastName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
@@ -48,11 +53,12 @@ public class EL_02_006_PEOAdmin_Can_Register_PEOExempt_Others extends TestBase{
 		 System.out.println("feinValue is"+feinValue);
 		 System.out.println("ernValue is"+ernValue);
 		 commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-		 commonFuntions.selectDropdown("Type of Legal Entity", " Other ");
+		 commonFuntions.selectDropdown("Type of Legal Entity", " Sole Proprietorship (Individual) ");
+	     
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     sleep(2000);
 	     commonFuntions.screenShot("PEOPage", "Pass", "Entering random FEIN and ERN values");	    
-	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
+	     
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " California ");
 	     commonFuntions.enterTextbox("State agency that issued it.", "New York");
@@ -60,10 +66,7 @@ public class EL_02_006_PEOAdmin_Can_Register_PEOExempt_Others extends TestBase{
 	     commonFuntions.enterTextbox("Registration Number ", "3458767985");
 	     commonFuntions.screenShot("RegistrationNumber", "Pass", "Registration number");
 	     commonFuntions.clickButtonContains("Save & Continue");
-	     if (driver.findElement(By.xpath("//mat-error[text()=' Required ']")).isDisplayed()) {
-				commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
-				commonFuntions.clickButtonContains("Save & Continue");
-			}
+	    
 			sleep(3000);
 	     
 	     
@@ -107,8 +110,8 @@ public class EL_02_006_PEOAdmin_Can_Register_PEOExempt_Others extends TestBase{
 	     sleep(2000);
 	     commonFuntions.uploadDoc("Sample.docx");
 	     sleep(2000);
-	     commonFuntions.clickButtonContains("Upload");
-	     sleep(15000);
+	     //commonFuntions.clickButtonContains("Upload");
+	     //sleep(15000);
 	     commonFuntions.screenShot("DocumentUpload", "Pass", "Upload document");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -156,7 +159,8 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
 	    sleep(2000);
-	    commonFuntions.screenShot("Review Peo","Pass","Review Peo");
+	    commonFuntions
+	    .screenShot("Review Peo","Pass","Review Peo");
 	    commonFuntions.clickOnLink("Review PEO");
 	    sleep(2000);
 	    commonFuntions.clickButtonContains("Open Work Item");
@@ -165,11 +169,6 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("GeneralInformation","Pass","General Information");
-	     try {
-	    	 PEOPage.peoRadioButton.click();
-		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
-		     }
-		     catch(Exception e) {}
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Information");

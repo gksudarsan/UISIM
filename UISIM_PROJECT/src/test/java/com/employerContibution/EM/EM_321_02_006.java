@@ -63,8 +63,10 @@ public class EM_321_02_006 extends TestBase
 	     addCorporatePage.successLink.click();
 		 Thread.sleep(2000);
 	     verifyFields(feinValue);	
+	     
+	     String feinValueInitial=feinValue;
 	     feinValue = StringUtils.left(feinValue, 2)+"-"+StringUtils.right(feinValue, 7);
-	     commonFuntions.selectTable(feinValue,9,1,"Business as Member/Managing Member ");
+	     commonFuntions.selectTable(feinValue,7,1,"Business as Member/Managing Member ");
 	     Thread.sleep(2000);
 	     commonFuntions.enterTextboxContains("Address Line 1", "Updated address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Updated address line 2");
@@ -73,8 +75,9 @@ public class EM_321_02_006 extends TestBase
 	     commonFuntions.screenShot("Success2","Pass","Successfully amended Member/Managing Member Details");
 	     addCorporatePage.successLink.click();
 	     Thread.sleep(2000);		
-	     
-	     String address = commonFuntions.retrieveValueFromTable(feinValue,6,1,"Business as Member/Managing Member ");	   
+	     addCorporatePage.businessEntityFilter.click();
+	     addCorporatePage.businessEntityFilter.sendKeys(feinValueInitial);
+	     String address = commonFuntions.retrieveValueFromTable(feinValue,4,1,"Business as Member/Managing Member ");	   
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true);
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true);
 	     
@@ -97,10 +100,14 @@ public class EM_321_02_006 extends TestBase
 	     commonFuntions.screenShot("Submit","Pass","Submit corporate officer/ownerdetais");	
 	}
 	public void verifyFields(String feinValue) throws InterruptedException {
-		feinValue = StringUtils.left(feinValue, 2)+"-"+StringUtils.right(feinValue, 7);
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
+		addCorporatePage.businessEntityFilter.click();
+	     addCorporatePage.businessEntityFilter.sendKeys(feinValue);
+		feinValue = StringUtils.left(feinValue, 2)+"-"+StringUtils.right(feinValue, 7);
+		
 		Thread.sleep(3000);
-		String  address = commonFuntions.retrieveValueFromTable(feinValue,6,1,"Business as Member/Managing Member ");
+		String  address = commonFuntions.retrieveValueFromTable(feinValue,4,1,"Business as Member/Managing Member ");
 		System.out.println(address);
 		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
 		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);
