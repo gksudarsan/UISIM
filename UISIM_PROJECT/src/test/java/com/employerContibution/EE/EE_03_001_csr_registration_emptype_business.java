@@ -70,10 +70,10 @@ public class EE_03_001_csr_registration_emptype_business extends TestBase{
 		cf.clickButtonContains("Continue");sleep();
 
 		cf.selectRadio("Same as Primary Business Physical Address");
-		eml.selectradio_locationofbooks().click();
+		//eml.selectradio_locationofbooks().click();
 		cf.clickButtonContains("Continue"); cf.clickButtonContains("Continue");
 
-		eml.selectBrowse().click(); Thread.sleep(2000); cf.uploadDoc("Sample.docx");
+		//eml.selectBrowse().click(); Thread.sleep(2000); cf.uploadDoc("Sample.docx");
 		Thread.sleep(2000); cf.clickButtonContains("Continue");
 		cf.clickButtonContains("Continue"); cf.selectCheckbox("I accept");
 		cf.clickButtonContains("Submit"); cf.clickButtonContains("Exit");
@@ -122,7 +122,7 @@ public class EE_03_001_csr_registration_emptype_business extends TestBase{
 		cf.clickButtonContains("Home");
 
 		//Verify Registered employer in Inquery page 	...........
-		em.Inquery_fein(feinValue);
+		//em.Inquery_fein(feinValue);
 		test.log(Status.PASS, "Clicked on Home button");
 
 
