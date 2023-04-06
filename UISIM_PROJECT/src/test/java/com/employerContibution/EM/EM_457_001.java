@@ -56,7 +56,7 @@ public class EM_457_001 extends TestBase{
 		Thread.sleep(2000);
 
 		//zip code must be canadian postal code 
-		commonFuntions.enterTextboxContains("PTIN", "P8679");
+		commonFuntions.enterTextboxContains("PTIN", "P86799809");
 		commonFuntions.selectDropdown("Country", "Canada");
 		commonFuntions.enterTextboxContains("City ", " Test ");
 		commonFuntions.selectDropdown("State", " Alberta ");
@@ -78,6 +78,7 @@ public class EM_457_001 extends TestBase{
 		commonFuntions.enterTextboxContains("Zip Code", "23334");
 		Thread.sleep(2000);
 		PEOPage.clickOnAdditionalLink.click();
+		Thread.sleep(2000);
 		commonFuntions.screenShot("Add Additional Address", "Pass", "Add Additional Adddress");
 		commonFuntions.clickButtonContains("Previous ");
 		Thread.sleep(2000);
@@ -117,17 +118,19 @@ public class EM_457_001 extends TestBase{
 		Thread.sleep(2000);
 		
 		//on continue 
-		js.executeScript("arguments[0].value='';", web);
+		WebElement webCity = driver.findElement(By.xpath("//div/input[@id='additionalAddressId_city']"));
+		js.executeScript("arguments[0].value='';", webCity);
 		commonFuntions.enterTextboxContains("City","NewYork");
 		commonFuntions.clickButtonContains("Continue ");
 		Thread.sleep(2000);
 		commonFuntions.ScrollMenu(" Contact Number ");
 		commonFuntions.selectRadio("Set up from Power of Attorney - IA900 form");
 		commonFuntions.screenShot("Add Power of Attorney/Third Party Representative", "Pass", "Add Power of Attorney/Third Party Representative");
+		Thread.sleep(2000);
 		commonFuntions.clickButtonContains("Submit ");
-		Thread.sleep(2000);
-		commonFuntions.screenShot("POA/Third Party Representative Conformation", "Pass", "POA/Third Party Representative Conformation");
-		Thread.sleep(2000);
+		Thread.sleep(3000);
+		commonFuntions.screenShot("POA/Third Party Representative Conformation", "Pass", "Representative Conformation");
+		Thread.sleep(1000);
 		
 
 
