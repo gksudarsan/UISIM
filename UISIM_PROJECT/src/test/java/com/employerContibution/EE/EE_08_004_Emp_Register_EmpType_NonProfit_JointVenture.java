@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
@@ -25,8 +26,7 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 		String feinValue = feinValue2 + feinValue1 ;  
 		System.out.println("FEIN NUMBER = " +feinValue);
 		
-		test = report
-				.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
+		test = report.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
 		//Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
 		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
 		//		String FEIN = databaseResults.get("FEIN");
@@ -34,7 +34,6 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menufd");
-
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		cf.clickMenu("Register Employer");
 		sleep(3000);
@@ -172,6 +171,7 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 		cf.screenShot("EmpRegister19", "Pass",
 				"Sucessfully clicked on Submit button and navigated to SUC-002 Page");
 		cf.clickButtonContains("Home ");
+		test.log(Status.PASS, "Clicked on Home button");
 
 	}
 }
