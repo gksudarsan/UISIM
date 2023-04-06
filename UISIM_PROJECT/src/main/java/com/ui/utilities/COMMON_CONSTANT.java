@@ -30,6 +30,9 @@ public class COMMON_CONSTANT {
 	
 	public static final String CSR_USER_4 = "Laxmi@12";
 	public static final String CSR_USER_4_PASSWORD = "Hachiku7533991779";
+	
+	public static final String EMP_USER_1 = "manju@2004";
+	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
 
 	/* ********* creds end ********* */
 

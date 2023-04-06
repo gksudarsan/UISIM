@@ -169,7 +169,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
-		String screenShotPath = screenShot.takeSnapShot(driver, "target\\" + fileName + ".jpg");
+		String screenShotPath = screenShot.takeSnapShot(driver, "D:\\AutomationFiles\\Screenshots\\" +new SimpleDateFormat("yyyy_MM_dd_HHmmss")
+				.format(Calendar.getInstance().getTime()).toString() + "_"+ fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		} else {

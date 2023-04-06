@@ -73,6 +73,9 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//strong[text()='Browse']")
 	public WebElement browserLink;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Is your entity a legally')]/../following-sibling::div/mat-radio-group/mat-radio-button/label/span[2][text()='No ']/../span/span")
+	public WebElement iSyourEntityQuestion_No;
+	
 	
 	
 }
