@@ -110,7 +110,17 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='covEmploymentBeginDtId']") 
 	public WebElement clearDateField1;	
-
 	
+	@FindBy(how = How.XPATH, using = "//input[@id='firstNameId']") 
+	public WebElement firstName_locationOfBooksAndrecords;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='lastNameId']") 
+	public WebElement lastName_locationOfBooksAndrecords;
+
+	@FindBy(how = How.XPATH, using = "//input[@id='npcafirstNameId']") 
+	public WebElement firstName_noticeOfPotentialCharges;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='lastNameId']") 
+	public WebElement lastName_noticeOfPotentialCharges;
 }
 
