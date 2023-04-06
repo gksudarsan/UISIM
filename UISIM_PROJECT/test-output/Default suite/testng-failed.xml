@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.benefits.TC_CM_002_001">
+      <class name="com.employerContibution.EE.EE_08_003_Employer_Can_Submit_Non_Profit">
         <methods>
+          <include name="EE_08_003"/>
           <include name="setup"/>
           <include name="tearDownCT_ST"/>
-          <include name="Testing123"/>
         </methods>
-      </class> <!-- com.benefits.TC_CM_002_001 -->
+      </class> <!-- com.employerContibution.EE.EE_08_003_Employer_Can_Submit_Non_Profit -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

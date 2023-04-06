@@ -48,4 +48,10 @@ public class COMMON_CONSTANT {
 	public static final String LOGIN_SUCCESS = "Login is successful";
 
 	/* ********* messages end ********* */
+	
+	/* *********Employer Register ********* */
+	
+	public static final String EMPLOYER_USER_MANJU = "manju@2004";
+	public static final String EMPLOYER_PASS_MANJU = "Manhar2004@1234";
+	
 }
