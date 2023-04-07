@@ -2,6 +2,8 @@ package com.employerContibution.EM;
 
 
 
+import java.util.Map;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
@@ -9,6 +11,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -27,6 +30,7 @@ public class EM_019_01 extends TestBase
 		 test = report.createTest("EM.019.01- Verify CSR is able to search Legal name of business and add Related Business Details of a Joint Employment.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
+		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
@@ -45,7 +49,12 @@ public class EM_019_01 extends TestBase
 		 Thread.sleep(2000);
 		 commonFuntions.errorContent("The Employer Registration Number(ERN) provided does not exist in the system.");
 		 commonFuntions.screenShot("Error_Required1","Pass","Error message shown as expected");
-		 commonFuntions.enterTextbox("Employer Registration Number","9300016" );
+		 
+		 Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND ORGANIZATION_TYPE = 'CITY' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC");
+			String feinValue =databaseResults.get("Fein");
+			String ernValue = databaseResults.get("Ean");
+		 
+		 commonFuntions.enterTextbox("Employer Registration Number",ernValue );
 		 commonFuntions.clickButtonContains("Continue");
 		 Thread.sleep(2000);
 		 commonFuntions.clickButtonContains("Continue");
@@ -60,7 +69,7 @@ public class EM_019_01 extends TestBase
 		 Thread.sleep(2000);
 		 commonFuntions.errorContent("Please select a record to proceed further.");
 		 commonFuntions.screenShot("Error_Required3","Pass","Error message shown as expected");
-		 commonFuntions.selectRadioInTable("65-0292225", 1, 1, "Joint Employment/Management Agreements");
+		 commonFuntions.selectRadioInTable("ENSEC INC", 1, 1, "Joint Employment/Management Agreements");
 		 commonFuntions.screenShot("Joint1","Pass","Screen as expected");
 		 commonFuntions.clickButtonContains("Continue");
 		 Thread.sleep(2000);
@@ -79,8 +88,8 @@ public class EM_019_01 extends TestBase
 		 Thread.sleep(2000);
 		 commonFuntions.errorContent("Required");
 		 commonFuntions.screenShot("Error_Required4","Pass","Error message shown as expected");
-		 commonFuntions.selectDateInTable("65-0292225", 5, 1, "Joint Employment/Management Agreement Arrangement ","03/10/2023");
-		 commonFuntions.selectDateInTable("65-0292225", 6, 1, "Joint Employment/Management Agreement Arrangement ","02/10/2023");
+		 commonFuntions.selectDateInTable("ENSEC INC", 5, 1, "Joint Employment/Management Agreement Arrangement ","03/10/2023");
+		 commonFuntions.selectDateInTable("ENSEC INC", 6, 1, "Joint Employment/Management Agreement Arrangement ","02/10/2023");
 		 commonFuntions.screenShot("Joint5","Pass","Screen as expected");		 
 		 commonFuntions.clickButtonContains("Submit");
 		 Thread.sleep(2000);

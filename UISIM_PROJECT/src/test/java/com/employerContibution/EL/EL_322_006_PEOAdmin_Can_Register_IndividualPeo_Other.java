@@ -23,8 +23,8 @@ public class EL_322_006_PEOAdmin_Can_Register_IndividualPeo_Other extends TestBa
 
 
 	
-	@Test(priority=1, description = "EL.322.004: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Company' and  type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
-	public void EL_322_004() throws Exception
+	@Test(priority=1, description = "EL.322.004: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Others' and  type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
+	public void EL_322_006() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -34,7 +34,7 @@ public class EL_322_006_PEOAdmin_Can_Register_IndividualPeo_Other extends TestBa
 		 String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		
 		System.out.println("feinValue is"+feinValue);
-		 test = report.createTest("EL.322.004: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Company' and  type of Ownership 'Privately or Closely Held'");
+		 test = report.createTest("EL.322.006: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Other' and  type of Ownership 'Privately or Closely Held'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 
 		 
@@ -66,9 +66,10 @@ public class EL_322_006_PEOAdmin_Can_Register_IndividualPeo_Other extends TestBa
 		// String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		// String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
+	     commonFuntions.selectDropdown("Type of Legal Entity", " Other ");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
+	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
