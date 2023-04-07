@@ -54,8 +54,8 @@ public class EM_321_02_004 extends TestBase
 		 commonFuntions.ScrollMenu("Add Partner Details");
 		 commonFuntions.screenShot("Add Partner Details","Pass","Add Partner Details");
 		 commonFuntions.clickMenu("Add Partner Details");		 
-		 long number = commonFuntions.createRandomInteger(100000000,999999999);
-		 String ssnValue=Long.toString(number);
+		 String number = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
+		 String ssnValue=number;
 	     populateFields(ssnValue);	     
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
@@ -75,7 +75,8 @@ public class EM_321_02_004 extends TestBase
 	     addCorporatePage.successLink.click();
 	     Thread.sleep(2000);		
 	     
-	     String address = commonFuntions.retrieveValueFromTable(ssnValue,4,1,"Individual as Partner ");	   
+	     String address = commonFuntions.retrieveValueFromTable(ssnValue,4,1,"Individual as Partner ");
+	     System.out.println("updated address is " +address);
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true);
 	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true);
 	     
@@ -87,15 +88,15 @@ public class EM_321_02_004 extends TestBase
 		commonFuntions.selectRadio("Individual");
 	     Random random = new Random();
 	     commonFuntions.enterTextbox("SSN ",ssnValue );
-	     commonFuntions.enterTextboxContains("First Name", "AutomationFirstName"+random.nextInt(10000));	    
-	     commonFuntions.enterTextboxContains("Last Name", "AutomationLastName"+random.nextInt(10000));
+	     commonFuntions.enterTextboxContains("First Name", "AutomationFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));	    
+	     commonFuntions.enterTextboxContains("Last Name", "AutomationLastName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));
 	     commonFuntions.selectDropdown("Title", "Partner");
 	     commonFuntions.screenShot("Populate","Pass","populate Partner Details");	     
 	     commonFuntions.enterTextboxContains("Address Line 1", "Added address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Added address line 2");
 	     commonFuntions.enterTextboxContains("City", "Added City");	    
-	     commonFuntions.enterTextboxContains("Zip", String.valueOf((long) (Math.random()*Math.pow(10,6))));
-	     commonFuntions.enterTextboxContains("Contact Number", String.valueOf((long) (Math.random()*Math.pow(10,11))));
+	     commonFuntions.enterTextboxContains("Zip", StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));
+	     commonFuntions.enterTextboxContains("Contact Number", StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,12))),10));
 	     commonFuntions.screenShot("Submit","Pass","Submit Partner Details");	
 	}
 	public void verifyFields(String ssnValue) throws InterruptedException {
