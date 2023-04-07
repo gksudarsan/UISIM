@@ -3,6 +3,8 @@ package com.ui.utilities;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -11,6 +13,7 @@ import java.util.Date;
 
 import javax.imageio.ImageIO;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
@@ -83,7 +86,7 @@ public class screenShot
 	}
 	
 	public static String takeSnapShot(WebDriver webdriver,String fileWithPath) throws Exception{
-
+/*
         //Convert web driver object to TakeScreenshot
 
         TakesScreenshot scrShot =((TakesScreenshot)webdriver);
@@ -100,6 +103,22 @@ public class screenShot
 
                 FileUtils.copyFile(SrcFile, DestFile);
                 return DestFile.getAbsolutePath();
+                */
+                File scrFile = ((TakesScreenshot) webdriver).getScreenshotAs(OutputType.FILE);
+        	    String encodedBase64 = null;
+        	    FileInputStream fileInputStreamReader = null;
+        	    try {
+        	        fileInputStreamReader = new FileInputStream(scrFile);
+        	        byte[] bytes = new byte[(int)scrFile.length()];
+        	        fileInputStreamReader.read(bytes);
+        	        encodedBase64 = new String(Base64.encodeBase64(bytes));
+        	    } catch (FileNotFoundException e) {
+        	        e.printStackTrace();
+        	    } catch (IOException e) {
+        	        e.printStackTrace();
+        	    }
+        	    return "data:image/png;base64,"+encodedBase64;
+        	
 
     }
 
