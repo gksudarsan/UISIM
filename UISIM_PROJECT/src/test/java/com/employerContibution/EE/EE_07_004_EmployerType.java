@@ -16,7 +16,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EE_07_004 extends TestBase {
+public class EE_07_004_EmployerType extends TestBase {
 
 	@Test
 	public void EE_07_004() throws Exception
@@ -34,7 +34,7 @@ public class EE_07_004 extends TestBase {
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
 		sleep(2000);
-		commonFuntions.screenShot("Employer Registration", "Pass", "Register Employer");
+		commonFuntions.screenShot("Registration_page", "Pass", "Navigatte employer register page");
 		commonFuntions.clickMenu("Register Employer");
 		sleep(2000);
 		commonFuntions.enterTextboxContains("First Name", "AutoTest");
@@ -42,19 +42,19 @@ public class EE_07_004 extends TestBase {
 		commonFuntions.enterTextboxContains("Job Title", "AutomationEngineer");
 		commonFuntions.enterTextboxContains("Contact Telephone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		commonFuntions.enterTextboxContains("Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
-		commonFuntions.screenShot("Employer Registration", "Pass", "Employer Registration:SREG-001");
+		commonFuntions.screenShot("Registration_page2", "Pass", "Employer Registration:SREG-001");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", "Governmental");
 		sleep();
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_BY DESC", 
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd)", 
 				"FEIN");
 		String feinValue = databaseResults.get("FEIN");
 		System.out.println("FeinValue is: " + feinValue);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", "School District");
 		
-		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT ERN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_BY DESC", 
+		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT ERN FROM T_EMPLOYER_DOL_DTF tedd)", 
 				"EAN");
 		String ernValue = databaseResults1.get("EAN");
 		System.out.println("ErnValue is: " + ernValue);
@@ -64,10 +64,12 @@ public class EE_07_004 extends TestBase {
 		sleep(2000);
 		
 		/*--------sreg-003------------------------*/
-		Map<String, String> databaseResults2 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)ORDER BY UPDATED_BY DESC", 
+		Map<String, String> databaseResults2 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)", 
 				"ENTITY_NAME");
 		String entityName = databaseResults2.get("ENTITY_NAME");
 		System.out.println("entityName is: " + entityName);
+		AddPage.legalNameTextBox.clear();
+		sleep();
 		AddPage.legalNameTextBox.sendKeys(entityName);
 		commonFuntions.enterTextboxContains("Business Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		commonFuntions.enterTextboxContains("What is the date of the first payroll", "6/1/2023");
@@ -75,12 +77,19 @@ public class EE_07_004 extends TestBase {
 		commonFuntions.enterTextboxContains("Date covered employment began?", "1/1/2018");
 		commonFuntions.screenShot("Employer Entity Information", "Pass", "Employer Entity Information  (SREG-003)");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
+		sleep(2000);
+		commonFuntions.screenShot("Business Physical Address Details", "Pass", "Business Physical Address Details:SREG-007");
+		commonFuntions.clickButtonContains("Continue");
+		sleep(2000);
+		try {
 		commonFuntions.enterTextboxContains("Address Line 1", "Cooper Square"+commonFuntions.createRandomInteger(10,99));
 		commonFuntions.enterTextboxContains("City","NewYork");
 		commonFuntions.enterTextboxContains("Zip Code","13429");
 		commonFuntions.selectDropdown("County", "Albany");
 		commonFuntions.clickButtonContains("Continue");
+		}catch(Exception e) {
+			System.out.println("SREG-008 Page is not displayed");
+		}
 		sleep();
 		commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Add Primary Business Physical Address:SREG-008");
 		try {
@@ -92,22 +101,23 @@ public class EE_07_004 extends TestBase {
 		catch(Exception e) {
 			System.out.println("usps pop up dispalyed");
 		}
-		commonFuntions.screenShot("Business Physical Address Details", "Pass", "Business Physical Address Details:SREG-007");
-		commonFuntions.clickButtonContains("Continue");
-		sleep();
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 		sleep();
 		commonFuntions.selectRadioQuestions("Location of Books and Records", "Same as Primary Business Physical Address");
 		sleep();
-		AddPage.firstName_locationOfBooksAndrecords.sendKeys("Test");
-		AddPage.lastName_locationOfBooksAndrecords.sendKeys("Auto");
+		AddPage.firstName_locationOfBooksAndrecords.clear();
+		AddPage.firstName_locationOfBooksAndrecords.sendKeys(commonFuntions.createRandomInteger(10, 99)+"Jhon");
+		AddPage.lastName_noticeOfPotentialCharges.clear();
+		AddPage.lastName_locationOfBooksAndrecords.sendKeys(commonFuntions.createRandomInteger(10, 99)+"AutoTets");
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Primary Business Physical Address");
 		sleep();
-		AddPage.firstName_noticeOfPotentialCharges.sendKeys("Test");
-		AddPage.lastName_noticeOfPotentialCharges.sendKeys("Auto");
+		AddPage.firstName_noticeOfPotentialCharges.clear();
+		AddPage.firstName_noticeOfPotentialCharges.sendKeys(commonFuntions.createRandomInteger(10, 99)+"Jhiny");
+		AddPage.lastName_noticeOfPotentialCharges.clear();
+		AddPage.lastName_noticeOfPotentialCharges.sendKeys(commonFuntions.createRandomInteger(10, 99)+"TestAuto");
 		sleep();
+		
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
 		try {
 			commonFuntions.safeJavaScriptClick(AddPage.adderessRadioButton1);
 			sleep();
@@ -127,12 +137,14 @@ public class EE_07_004 extends TestBase {
 		}catch(Exception e) {
 			System.out.println("npca address selected");
 		}
+		AddPage.continueButton_popUp.click();
+		sleep();
+		commonFuntions.clickButtonContains("Continue");
 		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "No");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
 		commonFuntions.screenShot("Employer Verify Contact Details", "Pass", "Employer Verify Contact Details:SREG-521");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
+		sleep(2000);
 		PEOPage.browserLinkManagePEOPage.click();
 		commonFuntions.uploadDoc("TESTINGEL.docx");
 		Thread.sleep(4000);

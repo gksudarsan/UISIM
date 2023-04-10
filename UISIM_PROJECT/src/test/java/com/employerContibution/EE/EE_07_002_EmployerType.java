@@ -14,7 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EE_07_002 extends TestBase{
+public class EE_07_002_EmployerType extends TestBase{
 
 	@Test
 	public void EE_07_002() throws Exception

@@ -115,12 +115,10 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//li[text()='PEO Status Updated Successfully']")
 	public WebElement updatePeoMessage;
 	
-	//div[@class='mat-form-field-infix ng-tns-c138-235']/input[@id='other']
-	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-form-field-infix ng-tns-c138-236']/input[@id='other']")
+	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()-1]")
 	public WebElement otherDetails;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-form-field-infix ng-tns-c138-235']/input[@id='other']")
+	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()]")
 	public WebElement otherDetails1;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='business Address']//following::*[@class='mat-radio-outer-circle'][1]")

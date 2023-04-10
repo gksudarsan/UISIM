@@ -39,7 +39,7 @@ public class AddressPage {
 	public WebElement countyDropDown_Form1; 
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']") 
-	public WebElement countyValue_Form1; 
+	public WebElement countyValue1; 
 
 	@FindBy(how = How.XPATH, using = "//input[@id='lbramailingAddressId_address1']") 
 	public WebElement addressLine1_Form2; 
@@ -86,6 +86,9 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][1]") 
 	public WebElement adderessRadioButton3;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-]") 
+	public WebElement countyDropdown1;
 
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-1]") 
 	public WebElement countyDropdown2;
@@ -122,5 +125,12 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='lastNameId']") 
 	public WebElement lastName_noticeOfPotentialCharges;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,\"Indicate your principal activity or farm production that produces the greatest gross sales.\")]//following::mat-select[1]") 
+	public WebElement selectDropdown;
+	
+	@FindBy(how = How.XPATH, using = "(//*[contains(.,\" Other \")][@class='mat-option-text'])[last()]") 
+	public WebElement selectOtherDropDown;
+	
 }
 

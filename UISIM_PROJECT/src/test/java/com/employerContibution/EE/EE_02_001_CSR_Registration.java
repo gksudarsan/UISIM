@@ -16,7 +16,7 @@ import com.ui.pages.PEOPage;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EE_02_001 extends TestBase{
+public class EE_02_001_CSR_Registration extends TestBase{
 
 	@Test(priority=1, description = "EE.02.001 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Corporation (All types)' and work items will be created for CSR to review",groups = {"Regression"})
 	public void EE_02_001() throws Exception
