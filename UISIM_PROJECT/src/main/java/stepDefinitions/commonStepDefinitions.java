@@ -19,26 +19,20 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
-import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.aventstack.extentreports.Status;
-import com.ui.utilities.screenShot;
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.screenShot;
 
 public class commonStepDefinitions extends TestBase {
 
@@ -66,14 +60,15 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-		Thread.sleep(3000);
+		Thread.sleep(10000);
 		}
 		catch(Exception e) {}
-		//driver.navigate().refresh();
-		Thread.sleep(3000);
-
+		driver.navigate().refresh();
+		Thread.sleep(10000);
+		driver.navigate().refresh();
+		Thread.sleep(5000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 		loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
@@ -102,7 +97,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickButtonContains(String xpathParameter) {
-		wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"))));
+		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"));
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
 	
@@ -121,9 +116,14 @@ public class commonStepDefinitions extends TestBase {
 					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
 
 		} catch (Exception e) {
-			driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
-					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();
-		}
+			try{driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
+					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();}
+			catch(Exception e1) {
+				driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
+						+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']")).click();
+				
+			}}
+		
 	}
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
@@ -169,7 +169,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
-		String screenShotPath = screenShot.takeSnapShot(driver, "target\\" + fileName + ".jpg");
+		String screenShotPath = screenShot.takeSnapShot(driver, "D:\\AutomationFiles\\Screenshots\\" +new SimpleDateFormat("yyyy_MM_dd_HHmmss")
+				.format(Calendar.getInstance().getTime()).toString() + "_"+ fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		} else {
@@ -335,14 +336,14 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void waitForElementClicable(WebElement ele) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(3000);
 		ele.click();
 	}
 
 	public void doSendKeysWithWait(WebElement ele, String data) throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(2000);
 		ele.sendKeys(data);

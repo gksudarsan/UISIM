@@ -54,7 +54,7 @@ public class EM_321_02_006 extends TestBase
 		 commonFuntions.ScrollMenu("Add Member/Managing Member Details");
 		 commonFuntions.screenShot("Add Member/Managing Member Details","Pass","Add Member/Managing Member Details");
 		 commonFuntions.clickMenu("Add Member/Managing Member Details");	
-		 String feinValue = String.valueOf((long) (Math.random()*Math.pow(10,9)));	 
+		 String feinValue = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),9);	 
 		 
 	     populateFields(feinValue);
 	     commonFuntions.clickButtonContains("Submit");
@@ -77,9 +77,11 @@ public class EM_321_02_006 extends TestBase
 	     Thread.sleep(2000);		
 	     addCorporatePage.businessEntityFilter.click();
 	     addCorporatePage.businessEntityFilter.sendKeys(feinValueInitial);
+	     Thread.sleep(2000);
 	     String address = commonFuntions.retrieveValueFromTable(feinValue,4,1,"Business as Member/Managing Member ");	   
-	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true);
-	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true);
+	     System.out.println("Expected:"+"ADDED ADDRESS LINE 1 but actual is "+address);
+	     Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 1"), true,"Expected:"+"UPDATED ADDRESS LINE 1 but actual is "+address);
+	    Assert.assertEquals(address.contains("UPDATED ADDRESS LINE 2"), true,"Expected:"+"UPDATED ADDRESS LINE 2 but actual is "+address);
 	     
 	   	   
 	}
@@ -88,15 +90,15 @@ public class EM_321_02_006 extends TestBase
 		Thread.sleep(2000);
 		commonFuntions.selectRadio("Business Entity");
 	     Random random = new Random();
-	     commonFuntions.enterTextboxContains("Entity Name", "AutomationFirstName"+random.nextInt(10000));	    
+	     commonFuntions.enterTextboxContains("Entity Name", "AutomationFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));	    
 	     commonFuntions.enterTextboxContains("Federal Identification Number (FEIN)", feinValue);
 	     commonFuntions.selectDropdown("Title", "Managing Member");
 	     commonFuntions.screenShot("Populate","Pass","populate corporate officer/ownerdetais");
 	     commonFuntions.enterTextboxContains("Address Line 1", "Added address line 1");
 	     commonFuntions.enterTextboxContains("Address Line 2", "Added address line 2");
 	     commonFuntions.enterTextboxContains("City", "Added City");	    
-	     commonFuntions.enterTextboxContains("Zip", String.valueOf((long) (Math.random()*Math.pow(10,6))));
-	     commonFuntions.enterTextboxContains("Contact Number", String.valueOf((long) (Math.random()*Math.pow(10,11))));
+	     commonFuntions.enterTextboxContains("Zip", StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));
+	     commonFuntions.enterTextboxContains("Contact Number", StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,12))),10));
 	     commonFuntions.screenShot("Submit","Pass","Submit corporate officer/ownerdetais");	
 	}
 	public void verifyFields(String feinValue) throws InterruptedException {
@@ -109,7 +111,8 @@ public class EM_321_02_006 extends TestBase
 		Thread.sleep(3000);
 		String  address = commonFuntions.retrieveValueFromTable(feinValue,4,1,"Business as Member/Managing Member ");
 		System.out.println(address);
-		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true);
-		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true);
+		System.out.println("Expected:"+"ADDED ADDRESS LINE 1 but actual is "+address);
+		 Assert.assertEquals(address.contains("ADDED ADDRESS LINE 1"), true,"Expected:"+"ADDED ADDRESS LINE 1 but actual is "+address);
+		    Assert.assertEquals(address.contains("ADDED ADDRESS LINE 2"), true,"Expected:"+"ADDED ADDRESS LINE 1 but actual is "+address);
 	}
 }

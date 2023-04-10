@@ -5,15 +5,17 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-import org.checkerframework.checker.guieffect.qual.AlwaysSafe;
+//import org.checkerframework.checker.guieffect.qual.AlwaysSafe;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.Proxy.ProxyType;
@@ -61,7 +63,8 @@ public class TestBase {
 	// public static String br;
 
 	public static ExtentReports report = new ExtentReports();
-	public static ExtentSparkReporter spark = new ExtentSparkReporter("target\\reports.html");
+	public static ExtentSparkReporter spark = new ExtentSparkReporter("D:\\AutomationFiles\\Report\\TestAutomationReport " +new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(
+			Calendar.getInstance().getTime()).toString() + ".html");
 	public static ExtentTest test;
 	public static WebDriver driver;
 	public static Properties prop;
@@ -71,7 +74,7 @@ public class TestBase {
 	// public static Explicit Wait wait1;
 
 	public TestBase(WebDriver driver) {
-		wait = new WebDriverWait(driver, Duration.ofSeconds(2000));
+		//wait = new WebDriverWait(driver, Duration.ofSeconds(2000));
 
 	}
 
@@ -116,14 +119,14 @@ public class TestBase {
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
 			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
 			Thread.sleep(2000);
-//			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\abhinav.abhinav\\Desktop"));
+			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
 			// Process p = Runtime.getRuntime().exec("cmd /c chrome.bat", null, new
 			// File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
 			Thread.sleep(3000);
-			/*
-			 * System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+
-			 * "\\Driver\\chromedriver.exe");
-			 * 
+			
+			  System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+
+			  "\\Driver\\chromedriver.exe");
+			/* 
 			 * 
 			 * Map<String, Object> prefs = new HashMap<String,Object>();
 			 * prefs.put("profile.default_content_setting.popups", 0);
@@ -142,7 +145,7 @@ public class TestBase {
 			// WebdriverManager
 			/// driver = WebDriverManager.chromedriver().create();
 
-			WebDriverManager.chromedriver().setup();
+			//WebDriverManager.chromedriver().setup();
 			/*
 			 * ChromeDriver driver = new ChromeDriver(); Capabilities cap =
 			 * driver.getCapabilities(); Map<String, Object> mycap = cap.asMap();
@@ -154,7 +157,7 @@ public class TestBase {
 			ChromeOptions opt = new ChromeOptions();
 
 //			EdgeOptions opt = new EdgeOptions();
-			opt.addArguments("--remote-allow-origins=*");
+			//opt.addArguments("--remote-allow-origins=*");
 			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
 			/// opt.setAcceptInsecureCerts(true);
 			/// opt.setExperimentalOption("excludeSwitches", new
@@ -176,12 +179,12 @@ public class TestBase {
 
 			Thread.sleep(2000);
 
-			//Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("./Driver"));
-			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\vikas.singh\\Desktop"));
+			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("./Driver"));
+			//Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\vikas.singh\\Desktop"));
 
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions options = new EdgeOptions();
-			options.setExperimentalOption("debuggerAddress", "localhost:9222 ");
+			//options.setExperimentalOption("debuggerAddress", "localhost:9222 ");
 			driver = new EdgeDriver(options);
 			driver.get(prop.getProperty("applicationUrl"));
 		}
@@ -207,7 +210,7 @@ public class TestBase {
 		// System.out.println("Name of th login Id is ==>"+name);
 		// Opening browser... Hitting URL...
 		initialization(browser);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(50));
+		//wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		
 
 		driver.get(prop.getProperty("applicationUrl"));

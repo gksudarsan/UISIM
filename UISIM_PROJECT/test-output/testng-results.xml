@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="2" failed="1" skipped="0">
+<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2023-02-17T03:19:45 EST" name="Default suite" finished-at="2023-02-17T03:20:51 EST" duration-ms="66567">
+  <suite started-at="2023-04-06T06:49:58 EDT" name="Default suite" finished-at="2023-04-06T06:53:38 EDT" duration-ms="219450">
     <groups>
-      <group name="Regression">
-        <method signature="TC_CM_002_001.Testing123()[pri:1, instance:com.benefits.TC_CM_002_001@38af9828]" name="Testing123" class="com.benefits.TC_CM_002_001"/>
-        <method signature="TC_CM_002_001.Testing_thirdTestcase()[pri:0, instance:com.benefits.TC_CM_002_001@38af9828]" name="Testing_thirdTestcase" class="com.benefits.TC_CM_002_001"/>
-      </group> <!-- Regression -->
     </groups>
-    <test started-at="2023-02-17T03:19:45 EST" name="Default test" finished-at="2023-02-17T03:20:51 EST" duration-ms="66567">
-      <class name="com.benefits.TC_CM_002_001">
-        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.benefits.TC_CM_002_001@38af9828]" started-at="2023-02-17T03:19:45 EST" name="setup" finished-at="2023-02-17T03:19:48 EST" duration-ms="3483" status="PASS">
+    <test started-at="2023-04-06T06:49:58 EDT" name="Default test" finished-at="2023-04-06T06:53:38 EDT" duration-ms="219450">
+      <class name="com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County">
+        <test-method is-config="true" signature="setup(java.lang.String)[pri:0, instance:com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County@4b2c5e02]" started-at="2023-04-06T06:49:58 EDT" name="setup" finished-at="2023-04-06T06:50:09 EDT" duration-ms="10273" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -22,37 +18,27 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="Testing()[pri:0, instance:com.benefits.TC_CM_002_001@38af9828]" started-at="2023-02-17T03:19:48 EST" name="Testing" finished-at="2023-02-17T03:19:54 EST" duration-ms="5130" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Testing -->
-        <test-method signature="Testing_thirdTestcase()[pri:0, instance:com.benefits.TC_CM_002_001@38af9828]" started-at="2023-02-17T03:19:54 EST" name="Testing_thirdTestcase" finished-at="2023-02-17T03:19:59 EST" duration-ms="5003" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- Testing_thirdTestcase -->
-        <test-method signature="Testing123()[pri:1, instance:com.benefits.TC_CM_002_001@38af9828]" started-at="2023-02-17T03:19:59 EST" name="Testing123" description="Test sample" finished-at="2023-02-17T03:20:51 EST" duration-ms="52120" status="FAIL">
-          <exception class="org.openqa.selenium.NoSuchElementException">
+        <test-method signature="EE_07_005()[pri:0, instance:com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County@4b2c5e02]" started-at="2023-04-06T06:50:09 EDT" name="EE_07_005" finished-at="2023-04-06T06:53:37 EDT" duration-ms="208653" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchWindowException">
             <message>
-              <![CDATA[no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']"}
-  (Session info: chrome=109.0.5414.120)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+              <![CDATA[no such window: target window already closed
+from unknown error: web view not found
+  (Session info: MicrosoftEdge=111.0.1661.62)
 Build info: version: '4.0.0-alpha-5', revision: 'b3a0d621cc'
-System info: host: 'DOLUIMJUMPBOX73', ip: '100.96.6.207', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 109.0.5414.120, chrome: {chromedriverVersion: 109.0.5414.74 (e7c5703604da..., userDataDir: C:\Program Files (x86)\scop...}, goog:chromeOptions: {debuggerAddress: localhost:60374}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 419e0e4a3b9800941a7f1aa1c2819d5a
-*** Element info: {Using=xpath, value=//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']}]]>
+System info: host: 'DOLUIMJUMPBOX16', ip: '100.96.6.22', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 111.0.1661.62, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:9222}, msedge: {msedgedriverVersion: 111.0.1661.62 (0a8f453929e6...}, pageLoadStrategy: normal, platform: ANY, platformName: ANY, proxy: Proxy(), setWindowRect: false, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 934b7eb7b078b42cfb0f9694c6f3c880]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":"//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']"}
-  (Session info: chrome=109.0.5414.120)
-For documentation on this error, please visit: https://selenium.dev/exceptions/#no_such_element
+              <![CDATA[org.openqa.selenium.NoSuchWindowException: no such window: target window already closed
+from unknown error: web view not found
+  (Session info: MicrosoftEdge=111.0.1661.62)
 Build info: version: '4.0.0-alpha-5', revision: 'b3a0d621cc'
-System info: host: 'DOLUIMJUMPBOX73', ip: '100.96.6.207', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.6'
-Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 109.0.5414.120, chrome: {chromedriverVersion: 109.0.5414.74 (e7c5703604da..., userDataDir: C:\Program Files (x86)\scop...}, goog:chromeOptions: {debuggerAddress: localhost:60374}, javascriptEnabled: true, networkConnectionEnabled: false, pageLoadStrategy: normal, platform: WINDOWS, platformName: WINDOWS, proxy: Proxy(), setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:virtualAuthenticators: true}
-Session ID: 419e0e4a3b9800941a7f1aa1c2819d5a
-*** Element info: {Using=xpath, value=//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']}
+System info: host: 'DOLUIMJUMPBOX16', ip: '100.96.6.22', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 111.0.1661.62, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:9222}, msedge: {msedgedriverVersion: 111.0.1661.62 (0a8f453929e6...}, pageLoadStrategy: normal, platform: ANY, platformName: ANY, proxy: Proxy(), setWindowRect: false, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 934b7eb7b078b42cfb0f9694c6f3c880
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
 at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
@@ -64,11 +50,12 @@ at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpRespo
 at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:161)
 at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
 at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:582)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:333)
-at org.openqa.selenium.remote.RemoteWebDriver.findElementByXPath(RemoteWebDriver.java:451)
-at org.openqa.selenium.By$ByXPath.findElement(By.java:394)
-at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:325)
-at com.benefits.TC_CM_002_001.Testing123(TC_CM_002_001.java:77)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:639)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:643)
+at org.openqa.selenium.remote.RemoteWebDriver.getScreenshotAs(RemoteWebDriver.java:303)
+at com.ui.utilities.screenShot.takeSnapShot(screenShot.java:93)
+at stepDefinitions.commonStepDefinitions.screenShot(commonStepDefinitions.java:172)
+at com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County.EE_07_005(EE_07_005_Emp_Register_EmpType_Governmental_County.java:127)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
 at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -99,15 +86,77 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.NoSuchElementException -->
+          </exception> <!-- org.openqa.selenium.NoSuchWindowException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- Testing123 -->
-        <test-method is-config="true" signature="tearDownCT_ST()[pri:0, instance:com.benefits.TC_CM_002_001@38af9828]" started-at="2023-02-17T03:20:51 EST" name="tearDownCT_ST" finished-at="2023-02-17T03:20:51 EST" duration-ms="710" status="PASS">
+        </test-method> <!-- EE_07_005 -->
+        <test-method is-config="true" signature="tearDownCT_ST()[pri:0, instance:com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County@4b2c5e02]" started-at="2023-04-06T06:53:37 EDT" name="tearDownCT_ST" finished-at="2023-04-06T06:53:38 EDT" duration-ms="437" status="FAIL">
+          <exception class="org.openqa.selenium.WebDriverException">
+            <message>
+              <![CDATA[disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: MicrosoftEdge=111.0.1661.62)
+Build info: version: '4.0.0-alpha-5', revision: 'b3a0d621cc'
+System info: host: 'DOLUIMJUMPBOX16', ip: '100.96.6.22', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 111.0.1661.62, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:9222}, msedge: {msedgedriverVersion: 111.0.1661.62 (0a8f453929e6...}, pageLoadStrategy: normal, platform: ANY, platformName: ANY, proxy: Proxy(), setWindowRect: false, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 934b7eb7b078b42cfb0f9694c6f3c880]]>
+            </message>
+            <full-stacktrace>
+              <![CDATA[org.openqa.selenium.WebDriverException: disconnected: not connected to DevTools
+  (failed to check if window was closed: disconnected: not connected to DevTools)
+  (Session info: MicrosoftEdge=111.0.1661.62)
+Build info: version: '4.0.0-alpha-5', revision: 'b3a0d621cc'
+System info: host: 'DOLUIMJUMPBOX16', ip: '100.96.6.22', os.name: 'Windows Server 2019', os.arch: 'amd64', os.version: '10.0', java.version: '17.0.5'
+Driver info: org.openqa.selenium.edge.EdgeDriver
+Capabilities {acceptInsecureCerts: false, browserName: msedge, browserVersion: 111.0.1661.62, javascriptEnabled: true, ms:edgeOptions: {debuggerAddress: localhost:9222}, msedge: {msedgedriverVersion: 111.0.1661.62 (0a8f453929e6...}, pageLoadStrategy: normal, platform: ANY, platformName: ANY, proxy: Proxy(), setWindowRect: false, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 934b7eb7b078b42cfb0f9694c6f3c880
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+at java.base/jdk.internal.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:480)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.createException(W3CHttpResponseCodec.java:196)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:129)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:53)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:161)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:83)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:582)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:639)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:643)
+at org.openqa.selenium.remote.RemoteWebDriver.close(RemoteWebDriver.java:468)
+at com.ui.base.TestBase.tearDownCT_ST(TestBase.java:241)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+at org.testng.internal.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:133)
+at org.testng.internal.MethodInvocationHelper.invokeMethodConsideringTimeout(MethodInvocationHelper.java:62)
+at org.testng.internal.ConfigInvoker.invokeConfigurationMethod(ConfigInvoker.java:385)
+at org.testng.internal.ConfigInvoker.invokeConfigurations(ConfigInvoker.java:321)
+at org.testng.TestRunner.invokeTestConfigurations(TestRunner.java:637)
+at org.testng.TestRunner.afterRun(TestRunner.java:877)
+at org.testng.TestRunner.run(TestRunner.java:599)
+at org.testng.SuiteRunner.runTest(SuiteRunner.java:377)
+at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:371)
+at org.testng.SuiteRunner.privateRun(SuiteRunner.java:332)
+at org.testng.SuiteRunner.run(SuiteRunner.java:276)
+at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:53)
+at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:96)
+at org.testng.TestNG.runSuitesSequentially(TestNG.java:1212)
+at org.testng.TestNG.runSuitesLocally(TestNG.java:1134)
+at org.testng.TestNG.runSuites(TestNG.java:1063)
+at org.testng.TestNG.run(TestNG.java:1031)
+at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:251)
+at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:77)
+]]>
+            </full-stacktrace>
+          </exception> <!-- org.openqa.selenium.WebDriverException -->
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDownCT_ST -->
-      </class> <!-- com.benefits.TC_CM_002_001 -->
+      </class> <!-- com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>

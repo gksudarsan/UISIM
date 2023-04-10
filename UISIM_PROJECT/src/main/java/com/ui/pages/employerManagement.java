@@ -154,7 +154,31 @@ public class employerManagement extends TestBase
 
 
 	}
+	public void Inquery_fein(String FEIN) throws Exception
+	{		
 
+		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+
+		System.out.println("updating address............");
+
+		// em.menuButton().click();
+		// em.AccountMaintenance().click();
+		// em.MaintainAddress().click();
+		em.FEIN().sendKeys(FEIN);
+		cf.screenShot("Menu","Pass","");
+		em.continueButton().click();
+		cf.screenShot("Menu","Pass","");
+		em.businessActivity().click();
+		// em.menuButton().click();
+		// em.AccountMaintenance().click();
+		// em.MaintainAddress().click();
+		em.FEIN().sendKeys(FEIN);
+		cf.screenShot("Menu","Pass","");
+		em.continueButton().click();
+		cf.screenShot("Menu","Pass","");
+		em.businessActivity().click();sleep();
+		cf.screenShot("Menu","Pass","");
+	}
 
 
 
