@@ -119,13 +119,13 @@ public class TestBase {
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
 			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
 			Thread.sleep(2000);
-			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
+			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\abhinav.abhinav\\Deskto"));
 			// Process p = Runtime.getRuntime().exec("cmd /c chrome.bat", null, new
 			// File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
 			Thread.sleep(3000);
 			
-			  System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+
-			  "\\Driver\\chromedriver.exe");
+//			  System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+
+//			  "\\Driver\\chromedriver.exe");
 			/* 
 			 * 
 			 * Map<String, Object> prefs = new HashMap<String,Object>();
@@ -145,7 +145,7 @@ public class TestBase {
 			// WebdriverManager
 			/// driver = WebDriverManager.chromedriver().create();
 
-			//WebDriverManager.chromedriver().setup();
+			WebDriverManager.chromedriver().setup();
 			/*
 			 * ChromeDriver driver = new ChromeDriver(); Capabilities cap =
 			 * driver.getCapabilities(); Map<String, Object> mycap = cap.asMap();
@@ -180,7 +180,11 @@ public class TestBase {
 			Thread.sleep(2000);
 
 			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("./Driver"));
+
 			//Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\vikas.singh\\Desktop"));
+
+//			Process p =  Runtime.getRuntime().exec("cmd /c edge.bat", null, new File("C:\\Users\\vikas.singh\\Desktop"));
+
 
 			WebDriverManager.edgedriver().setup();
 			EdgeOptions options = new EdgeOptions();
