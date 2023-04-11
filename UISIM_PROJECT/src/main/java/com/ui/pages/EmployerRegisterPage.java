@@ -34,6 +34,9 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input[@id='bmadmailingAddressId_address1']")
 	public WebElement addressLine1_Form1;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input[@id='lbramailingAddressId_address1']")
+	public WebElement addressLine1_Form1_SREG_004;
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input[@id='physicalAddressId_address1']")
 	public WebElement addressLine1SREG_008;
 	
@@ -94,6 +97,9 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
 	public WebElement yearValue;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2022 ']")
+	public WebElement yearValue_2022;
+	
 	@FindBy(how = How.XPATH, using = "//a[text()=' Add Another Business Location ']")
 	public WebElement addAnotherBusinessLink;
 	
@@ -102,6 +108,9 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' 4 ']")
 	public WebElement firstCalender_Quater_Value;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2 ']")
+	public WebElement firstCalender_Quater_Value_2;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'First calendar quarter and year')]//following::mat-select[2]")
 	public WebElement firstCalender_Year;

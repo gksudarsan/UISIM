@@ -83,7 +83,7 @@ public class EE_02_003_CSR_Register_EmpType_Agriculture_Other extends TestBase{
 //		commonFuntions.enterTextboxContains("Address Line 1 ", "60 Ave");
 //		empPage.addressLine1SREG_008.click();
 //		empPage.addressLine1SREG_008.sendKeys("60 Ave");
-		commonFuntions.jsSendKeys(empPage.addressLine1SREG_008, "60 Ave");
+//		commonFuntions.jsSendKeys(empPage.addressLine1SREG_008, "60 Ave");
 		commonFuntions.enterTextboxContains("City ", "Albany");
 		commonFuntions.enterTextboxContains("Zip Code", "44673");
 		commonFuntions.selectDropdown("County", " Albany ");
