@@ -70,7 +70,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.navigate().refresh();
 		Thread.sleep(5000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");
-		loginPage.okPopUpButton.click();
+		try {
+		loginPage.okPopUpButton.click();sleep(2000);}
+		catch (Exception e)
+		{System.out.println("popup not appeared again");}
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
@@ -543,8 +546,16 @@ public class commonStepDefinitions extends TestBase {
 	     driver.get(prop.getProperty("applicationUrl"));
 	     login(userName,password);
 	}
+	public void selectDropdownSecondBox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[2]"))
+				.click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+
+	}
+	public void enterTextboxContainsThirdBox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]"))
+				.sendKeys(value);
 	
-	
-	
-	
+	}
 }
