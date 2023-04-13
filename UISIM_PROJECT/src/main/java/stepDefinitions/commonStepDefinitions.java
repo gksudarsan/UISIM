@@ -22,6 +22,7 @@ import java.util.Random;
 import org.apache.commons.codec.binary.Base64;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
@@ -69,8 +70,7 @@ public class commonStepDefinitions extends TestBase {
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(3000);
-		}
-		catch(Exception e) {}
+		
 		//driver.navigate().refresh();
 		Thread.sleep(3000);
 
@@ -83,18 +83,23 @@ public class commonStepDefinitions extends TestBase {
 			loginPage.okPopUpButton.click();
 			Thread.sleep(3000);
 		}
+		
+		}
+		catch(Exception e) {}
 
 	}
 
 	public void enterTextbox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).clear();
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).sendKeys(Keys.SPACE, Keys.BACK_SPACE);
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).sendKeys(value);
 	}
 
 	public void enterTextboxContains(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-				.sendKeys(value);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys(Keys.SPACE, Keys.BACK_SPACE);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys(value);
+	
 	}
 
 	public void clickButton(String xpathParameter) {
@@ -141,8 +146,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectDropdown(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-				.click();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]")).click();
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
 	}
@@ -181,8 +185,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
-		WebElement table = driver
-				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
+		WebElement table = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
 
 		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -195,8 +198,7 @@ public class commonStepDefinitions extends TestBase {
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
-					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId
-							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
 					break label1;
 				}
 			}
@@ -207,8 +209,7 @@ public class commonStepDefinitions extends TestBase {
 	
 	
 	public void selectTableTypeList(String ssnValue, int columnValue, int tableId, String tableName) {
-		WebElement table = driver
-				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]"));
+		WebElement table = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]"));
 
 		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -220,9 +221,7 @@ public class commonStepDefinitions extends TestBase {
 			System.out.println("Number of cells In Row " + row + " are " + columns_count);
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
-				if (celtext.equals(ssnValue)) {
-					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId
-							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
+				if (celtext.equals(ssnValue)) { driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
 					break label1;
 				}
 			}
@@ -245,9 +244,7 @@ public class commonStepDefinitions extends TestBase {
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
-					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
-							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue)
-							+ "]//following::*[@class='mat-radio-container']")).click();
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')][" + tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//following::*[@class='mat-radio-container']")).click();
 					break label1;
 				}
 			}
@@ -270,9 +267,7 @@ public class commonStepDefinitions extends TestBase {
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
-					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
-							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//input[1]"))
-							.sendKeys(value);
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')][" + tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//input[1]")).sendKeys(value);
 					break label1;
 				}
 			}
@@ -284,8 +279,7 @@ public class commonStepDefinitions extends TestBase {
 	// ']//following::*[contains(@id
 	// ,'dataTable')][1]/mat-row[1]/mat-cell[5]//input[1]
 	public String retrieveValueFromTable(String ssnValue, int columnValue, int tableId, String tableName) {
-		WebElement table = driver
-				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
+		WebElement table = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
 		String value = "";
 		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -298,10 +292,7 @@ public class commonStepDefinitions extends TestBase {
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
-					value = driver
-							.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId']["
-									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]"))
-							.getText();
+					value = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]")).getText();
 
 					break label1;
 				}
@@ -390,6 +381,15 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//u[contains(.,'" + xpathParameter + "')][1]")).click();
 
 	}
+	
+	public void clickOnLinkBasisClass(String xpathParameter) {
+		driver.findElement(By.xpath("//u[contains(@class,'" + xpathParameter + "')][1]")).click();
+
+	}
+	
+	public void clickOnLinkAnchorTag(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+		}
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 
@@ -543,7 +543,10 @@ public class commonStepDefinitions extends TestBase {
 	     login(userName,password);
 	}
 	
-	
+	public void selectFromDropdown(String xpathParameter) {
+		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
+
+	}
 	
 	
 }

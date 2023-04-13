@@ -36,6 +36,14 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)'][1]")
 	public WebElement menuPeo;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'PEO Conversion')]//following::mat-select[1]")
+	public WebElement selectionPeoDropdown;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(@class,'mat-option mat-focus-indicator')][4]")
+	public WebElement conversionPeoDropdown;
+	
+	
+	
 	@FindBy(how = How.XPATH, using = "//*[@id='address0_address1']")
 	public WebElement addressLine1;
 	
@@ -170,6 +178,18 @@ public class PEOPage {
 		con.close();
 		return results;
 		}
+     
+	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_address1']")
+	public WebElement listCurrentAddressLine1;
+	 
+	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_address2']")
+	public WebElement listCurrentAddressLine2;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_city']")
+	public WebElement listCurrentAddressCity;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_zip']")
+	public WebElement listCurrentAddressZip;
      
 	
 }
