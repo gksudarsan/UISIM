@@ -14,6 +14,7 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,9 +43,9 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
 		try {
-		loginPage.loginLink.click();
-		Thread.sleep(2000);
-		
+			loginPage.loginLink.click();
+			Thread.sleep(2000);
+
 //		test.log(Status.PASS, "User Launched website");
 //		driver.navigate().refresh();
 //		Thread.sleep(2000);
@@ -53,31 +54,31 @@ public class commonStepDefinitions extends TestBase {
 //		Thread.sleep(5000);
 
 //		driver.get(driver.getCurrentUrl());
-		Thread.sleep(5000);
+			Thread.sleep(5000);
 
-		enterTextbox("Username", userName);
-		test.log(Status.PASS, "User entered Username");
-		enterTextbox("Password", password);
-		test.log(Status.PASS, "User entered Password");
-		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+			enterTextbox("Username", userName);
+			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+			test.log(Status.PASS, "User entered Password");
+			Thread.sleep(3000);
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-		Thread.sleep(10000);
+			Thread.sleep(10000);
+		} catch (Exception e) {
 		}
-		catch(Exception e) {}
 		driver.navigate().refresh();
-		Thread.sleep(10000);
-		driver.navigate().refresh();
+//		Thread.sleep(10000);
+//		driver.navigate().refresh();
 		Thread.sleep(5000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");
-		loginPage.okPopUpButton.click();
+//		loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
-		}
+//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+//			loginPage.okPopUpButton.click();
+//			Thread.sleep(3000);
+//		}
 
 	}
 
@@ -100,8 +101,7 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"));
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
-	
-	
+
 	public void clickButtonContains(String xpathParameter, int value) {
 		driver.findElement(By.xpath("(//button[contains(.,'" + xpathParameter + "')])[" + value + "]")).click();
 	}
@@ -116,14 +116,17 @@ public class commonStepDefinitions extends TestBase {
 					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
 
 		} catch (Exception e) {
-			try{driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
-					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")).click();}
-			catch(Exception e1) {
+			try {
+				driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
+						+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']"))
+						.click();
+			} catch (Exception e1) {
 				driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
 						+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']")).click();
-				
-			}}
-		
+
+			}
+		}
+
 	}
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
@@ -169,8 +172,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
-		String screenShotPath = screenShot.takeSnapShot(driver, "D:\\AutomationFiles\\Screenshots\\" +new SimpleDateFormat("yyyy_MM_dd_HHmmss")
-				.format(Calendar.getInstance().getTime()).toString() + "_"+ fileName + ".jpg");
+		String screenShotPath = screenShot.takeSnapShot(driver,
+				"D:\\AutomationFiles\\Screenshots\\"
+						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
+						+ "_" + fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		} else {
@@ -204,12 +209,10 @@ public class commonStepDefinitions extends TestBase {
 
 		}
 	}
-	
-	
-	
+
 	public void selectTableTypeList(String ssnValue, int columnValue, int tableId, String tableName) {
-		WebElement table = driver
-				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]"));
+		WebElement table = driver.findElement(
+				By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId + "]"));
 
 		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
 
@@ -222,8 +225,8 @@ public class commonStepDefinitions extends TestBase {
 			for (int column = 0; column < columns_count; column++) {
 				String celtext = columns.get(column).getText();
 				if (celtext.equals(ssnValue)) {
-					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId'][" + tableId
-							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableTypeListId']["
+							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
 					break label1;
 				}
 			}
@@ -336,14 +339,14 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void waitForElementClicable(WebElement ele) throws InterruptedException {
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(3000);
 		ele.click();
 	}
 
 	public void doSendKeysWithWait(WebElement ele, String data) throws InterruptedException {
-		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.visibilityOf(ele));
 		Thread.sleep(2000);
 		ele.sendKeys(data);
@@ -462,12 +465,13 @@ public class commonStepDefinitions extends TestBase {
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
-		int i=0;
+		int i = 0;
 		while (rs.next()) {
-			i=i+1;
-			if(i>1) {
-			results.put(ColumnName, rs.getString(ColumnName));
-			break;}
+			i = i + 1;
+			if (i > 1) {
+				results.put(ColumnName, rs.getString(ColumnName));
+				break;
+			}
 		}
 
 		con.close();
@@ -486,10 +490,11 @@ public class commonStepDefinitions extends TestBase {
 				+ "']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span")).click();
 		Thread.sleep(2000);
 	}
+
 	public void clearTextboxContains(String xpathParameter) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 	}
-	
+
 	public void loginPeoAdmin(String userName, String password) throws Exception {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
@@ -507,44 +512,68 @@ public class commonStepDefinitions extends TestBase {
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		sleep(3000);
-		//driver.navigate().refresh();
+		// driver.navigate().refresh();
 		sleep(3000);
 
 		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		selectRadio(
+				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
 		clickButtonContains("Continue");
 		sleep(2000);
-		//loginPage.okPopUpButton.click();
+		// loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		//if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-		//	loginPage.okPopUpButton.click();
-		//	Thread.sleep(3000);
-		//}
+		// if (driver.findElements(By.xpath("//*[.=' OK
+		// '][@class='mat-button-wrapper']")).size() > 0) {
+		// loginPage.okPopUpButton.click();
+		// Thread.sleep(3000);
+		// }
 
-		
 	}
-	
+
 	public void logoutAndLogin(String userName, String password) throws Exception {
 		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		clickMenu("LOG OUT");
-	     clickMenu("Go to Homepage");
-	     sleep(2000);
-	     HomePage.menuLogout.click();
-	     HomePage.signOut.click();
-	     sleep(5000);
-	       enterTextbox("Username", userName);
-			test.log(Status.PASS, "User entered Username");
-			enterTextbox("Password", password);
-			test.log(Status.PASS, "User entered Password");
-			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
-			Thread.sleep(2000);
-	     driver.get(prop.getProperty("applicationUrl"));
-	     login(userName,password);
+		clickMenu("Go to Homepage");
+		sleep(2000);
+		HomePage.menuLogout.click();
+		HomePage.signOut.click();
+		sleep(5000);
+		enterTextbox("Username", userName);
+		test.log(Status.PASS, "User entered Username");
+		enterTextbox("Password", password);
+		test.log(Status.PASS, "User entered Password");
+		// driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		Thread.sleep(2000);
+		driver.get(prop.getProperty("applicationUrl"));
+		login(userName, password);
+	}
+
+	public void enterFutureDate(String xpathParameter, int daysAdded) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, daysAdded);
+		String output = sdf.format(c.getTime());
+		System.out.println(output);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+				.sendKeys(output);
+		test.log(Status.INFO, "Future date entered as : "+output);
 	}
 	
-	
-	
-	
+	public void enterPastDate(String xpathParameter, int daysSub) {
+		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
+		Calendar c = Calendar.getInstance();
+		c.setTime(new Date());
+		c.add(Calendar.DATE, -daysSub);
+		String output = sdf.format(c.getTime());
+		System.out.println(output);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+				.sendKeys(output);
+		test.log(Status.INFO, "Past date entered as : "+output);
+	}
+
 }
