@@ -391,6 +391,15 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//u[contains(.,'" + xpathParameter + "')][1]")).click();
 
 	}
+	
+	public void clickOnLinkBasisClass(String xpathParameter) {
+		driver.findElement(By.xpath("//u[contains(@class,'" + xpathParameter + "')][1]")).click();
+
+	}
+	
+	public void clickOnLinkAnchorTag(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+		}
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 
@@ -544,6 +553,10 @@ public class commonStepDefinitions extends TestBase {
 	     login(userName,password);
 	}
 	
+	public void selectFromDropdown(String xpathParameter) {
+		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
+
+	}
 	
 	
 	

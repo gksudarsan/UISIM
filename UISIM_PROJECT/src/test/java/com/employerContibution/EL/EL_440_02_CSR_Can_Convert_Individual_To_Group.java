@@ -24,7 +24,7 @@ public class EL_440_02_CSR_Can_Convert_Individual_To_Group extends TestBase {
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOIR' AND FEIN <> 'FALSE'",
 				"FEIN");
-		String feinValue = databaseResults.get("Fein");
+		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
 
 		test = report.createTest("EL.02.013 .Verify CSR  can renewal PEO Exempt registration.");
