@@ -157,5 +157,33 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legalTextInput;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
+	public WebElement firstCalender_Year_Value_2023;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-35']")
+	public WebElement countyDropDown_Form1_SREG_004;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input[@id='npcaAddressId_address1']]")
+	public WebElement addresLine1_Form2_SREG_004;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input[@id='npcaAddressId_address1']")
+	public WebElement addresLine1_Form3_SREG_004;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'20 COOPER SQUARE')]/../../span/span[@class='mat-radio-outer-circle']")
+	public WebElement uspsAddressRadio_20_Cooper;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'20 COOPER SQ')]/../../span/span[@class='mat-radio-outer-circle']")
+	public WebElement uspsAddressRadio_20_square;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Indicate your principal')]/../../div/mat-form-field/div/div/div[3]/mat-select")
+	public WebElement individualPrinciple;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Other ']")
+	public WebElement individualPrinciple_value_other;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Yes ']")
+	public WebElement liability_error_Yes;
+	
 }
 
