@@ -16,10 +16,10 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_01_003 extends TestBase{
+public class EE_01_003_Csr_BusinessOther extends TestBase{
 
 	@Test()
-	public void EE_03_001_csr_registration() throws Exception {
+	public void EE_01_003_csr_registration() throws Exception {
 
 		/*
 		 * String feinValue1 =StringUtils.left( String.valueOf((long)
@@ -35,11 +35,21 @@ public class EE_01_003 extends TestBase{
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
-		String FEIN = databaseResults.get("FEIN");
-		test = report.createTest("EE_01_003 -  Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Corporation (All types)' and work items will be created for CSR to review.\r\n"
+				 "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
+				 , "FEIN"); String FEIN = databaseResults.get("FEIN");
+				  System.out.println("FEIN NUMBER = " +FEIN);
+				 
+				  Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
+				 "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
+				 , "EAN"); String EAN = databaseResults1.get("EAN");
+				  System.out.println("EAN NUMBER = " +EAN);
+				
+		
+		test = report.createTest("EE_01_003 -  Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'other' and work items will be created for CSR to review.\r\n"
 				+ "");
 
+		
+		
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		
@@ -54,7 +64,7 @@ public class EE_01_003 extends TestBase{
 		cf.selectDropdown("Employer Type", " Business ");
 		cf.enterTextboxContains("(FEIN)", "546237282"); 
 		cf.screenShot("file1","Pass", "Searching with FEIN "); 
-		cf.selectDropdown("*Type of Legal Entity"," Corporation "); 
+		cf.selectDropdown("*Type of Legal Entity"," Other "); 
 		cf.selectDropdown("Source", " NYS-100 (paper) ");sleep(2000);
 		cf.selectDropdown("Source Type", " NYS-100 ");sleep(2000);
 		cf.screenShot("Menu", "Pass", "Employer Registration");

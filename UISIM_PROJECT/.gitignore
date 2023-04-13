@@ -2,3 +2,4 @@
 /test-output/
 *.html
 *.xml
+/hs_err_pid360.log

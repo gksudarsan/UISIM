@@ -18,6 +18,7 @@ public class employerManagementLocators extends TestBase {
 		return driver.findElement(By.xpath("//span[text()='Account Maintenance']"));
 
 	}
+	
 	public WebElement MaintainAddress (){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Maintain Address']]")));
 		return driver.findElement(By.xpath("//span[text()='Maintain Address']]"));

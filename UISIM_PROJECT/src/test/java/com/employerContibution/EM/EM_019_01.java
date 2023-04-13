@@ -31,7 +31,9 @@ public class EM_019_01 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
+		 
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");			 
