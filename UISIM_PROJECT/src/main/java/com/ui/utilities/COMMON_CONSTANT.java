@@ -28,11 +28,15 @@ public class COMMON_CONSTANT {
 	public static final String CSR_USER_3 = "ndfaxs"; // CSR with PEO specialist role
 	public static final String CSR_USER_3_PASSWORD = "Anoop@123456789";
 	
-	public static final String CSR_USER_4 = "Laxmi@12";
-	public static final String CSR_USER_4_PASSWORD = "Hachiku7533991779";
-	
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
+	
+	public static final String EMP_USER_2 = "Laxmi@12";
+	public static final String EMP_USER_2_PASSWORD = "Hachiku7533991779";
+	
+	public static final String TPR_USER_1 = "tpruser@123";
+	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	
 
 	
 	// Customer Service Representative - CSR
