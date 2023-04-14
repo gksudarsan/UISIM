@@ -19,7 +19,7 @@ import stepDefinitions.commonStepDefinitions;
 public class EE_01_010_CSR_Registration extends TestBase{
 
 	@Test
-	public void EE_02_001() throws Exception
+	public void EE_01_010() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);

@@ -28,7 +28,7 @@ public class EE_07_003_EmployerType extends TestBase {
 		test = 
 				report.createTest("EE.07.003- Verify employer can submit employer registration for employer "
 						+ "type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_4.toUpperCase(), COMMON_CONSTANT.CSR_USER_4_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMP_USER_2.toUpperCase(), COMMON_CONSTANT.EMP_USER_2_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Employer Registration");

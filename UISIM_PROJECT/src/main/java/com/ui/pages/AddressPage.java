@@ -132,5 +132,24 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "(//*[contains(.,\" Other \")][@class='mat-option-text'])[last()]") 
 	public WebElement selectOtherDropDown;
 	
+	public void clickOnLink(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+	
+	}
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='tradeNameId']") 
+	public WebElement legalNameOfBussiness;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][2]")
+	public WebElement uspsAddress;
+	
+	@FindBy(how = How.XPATH, using = "(//u[contains(.,\"Edit\")][1])[last()]")
+	public WebElement editLink;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Yes ']")
+    public WebElement liability_error_Yes;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id=\"commentId\"]")
+    public WebElement commentField;
 }
 
