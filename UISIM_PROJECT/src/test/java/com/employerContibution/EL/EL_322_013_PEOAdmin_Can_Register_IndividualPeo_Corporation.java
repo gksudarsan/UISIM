@@ -18,13 +18,13 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPartnership extends TestBase
+public class EL_322_013_PEOAdmin_Can_Register_IndividualPeo_Corporation extends TestBase
 {
 
 
 	
-	@Test(priority=1, description = "EL.322.005: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Partnership' and  type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
-	public void EL_322_005() throws Exception
+	@Test(priority=1, description = "EL.322.0013:  Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Corporation' and  type of Ownership 'Public Ownership'.",groups = {"Regression"})
+	public void EL_322_013() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -32,9 +32,12 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		
 		 String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		 String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
-		
+		/*Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS desc");
+		String feinValue =databaseResults.get("Fein");
+		String ernValue = databaseResults.get("Ean");*/
 		System.out.println("feinValue is"+feinValue);
-		 test = report.createTest("EL.322.004: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Company' and  type of Ownership 'Privately or Closely Held'");
+		
+		 test = report.createTest("EL.322.0013:  Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Corporation' and  type of Ownership 'Public Ownership'.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 
 		 
@@ -66,9 +69,9 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		// String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		// String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Limited Partnership ");
+	     commonFuntions.selectDropdown("Type of Legal Entity", "Corporation");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
+	     commonFuntions.selectRadioQuestions("Type of Ownership", "Public");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
@@ -124,7 +127,7 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 	     commonFuntions.screenShot("OwnershipInformation","Pass","Ownership Information - privately or closely held company");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
-	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
+	    /* commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
 	     commonFuntions.enterTextboxContains("Entity or Person","Automation_Pentity");
@@ -135,7 +138,7 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 	     commonFuntions.enterTextboxContains("Zip Code","13430");
 	     commonFuntions.screenShot("PriorOwnershipInformation","Pass","PriorOwnership Information - privately or closely held company");
 	     commonFuntions.clickButtonContains("Save & Continue");
-	     sleep(2000);
+	     sleep(2000);*/
 	     PEOPage.uspsAddress.click();
 	     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
 	     PEOPage.UspsContinueButton.click();	    
@@ -245,7 +248,7 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		     sleep(2000);	
 		     
 		     
-		     commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
+		    /* commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
 		     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
@@ -256,7 +259,7 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		     PEOPage.uspsAddress.click();
 		     commonFuntions.screenShot("UspsAddress3","Pass","UspsAddress");
 		     PEOPage.UspsContinueButton.click();	
-		     sleep(2000);
+		     sleep(2000);*/
 		     commonFuntions.screenShot("VerifyPrioerOwner","Pass","Verify Prior Ownership Information");
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
@@ -280,8 +283,8 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
 		     
-		     commonFuntions.selectRadio("Approved");
-		     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
+		     commonFuntions.selectRadio("Rejected");
+		     commonFuntions.screenShot("Rejection","Pass","ApprovalPage");
 		     commonFuntions.clickButtonContains("Submit");
 		     sleep(5000);
 		     commonFuntions.screenShot("Success","Pass","SuccessPage");

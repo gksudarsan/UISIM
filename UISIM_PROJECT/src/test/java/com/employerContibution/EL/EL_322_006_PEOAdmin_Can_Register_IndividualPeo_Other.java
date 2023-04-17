@@ -218,6 +218,7 @@ public class EL_322_006_PEOAdmin_Can_Register_IndividualPeo_Other extends TestBa
 	     sleep(2000);	   
 	     
 	     commonFuntions.screenShot("GeneralInfo","Pass","General Information");
+	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     try {

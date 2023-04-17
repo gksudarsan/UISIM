@@ -28,7 +28,7 @@ public class EL_02_005_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityPartnersh
 		 commonFuntions.enterTextboxContains("First Name", "AutoTestFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));		 
 		 commonFuntions.enterTextboxContains("Last Name", "AutoTestLastName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
-		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
+		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,12))),10));
 		 commonFuntions.enterTextboxContains("Email Address","autoEmail"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),4)+"@gmail.com");
 		 
 		 
@@ -105,7 +105,7 @@ public class EL_02_005_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityPartnersh
 	     commonFuntions.uploadDoc("Sample.docx");
 	     sleep(2000);
 	     commonFuntions.clickButtonContains("Upload");
-	     sleep(15000);
+	     sleep(25000);
 	     commonFuntions.screenShot("DocumentUpload", "Pass", "Upload document");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
