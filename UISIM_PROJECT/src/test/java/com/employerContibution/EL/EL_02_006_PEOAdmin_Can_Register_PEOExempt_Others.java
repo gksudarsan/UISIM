@@ -108,7 +108,7 @@ public class EL_02_006_PEOAdmin_Can_Register_PEOExempt_Others extends TestBase{
 	     commonFuntions.uploadDoc("Sample.docx");
 	     sleep(2000);
 	     commonFuntions.clickButtonContains("Upload");
-	     sleep(15000);
+	     sleep(25000);
 	     commonFuntions.screenShot("DocumentUpload", "Pass", "Upload document");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -165,11 +165,7 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("GeneralInformation","Pass","General Information");
-	     try {
-	    	 PEOPage.peoRadioButton.click();
-		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
-		     }
-		     catch(Exception e) {}
+	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Information");

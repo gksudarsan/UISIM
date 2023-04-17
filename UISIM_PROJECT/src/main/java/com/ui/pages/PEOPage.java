@@ -30,7 +30,7 @@ public class PEOPage {
 		PageFactory.initElements(driver, this);
 	}
 
-	@FindBy(how = How.XPATH, using = "//*[.='PEO Individual Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='PEO Individual Registration']//preceding::span[@class='mat-radio-container'][1]")
 	public WebElement individualPeo;
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)'][1]")
@@ -56,10 +56,23 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='address0_zip']")
 	public WebElement addressZip;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mat-radio-inner-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_address1']//following::mat-error[contains(.,'Required')][1]")
+	public WebElement addressLine1ErrorLabel;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_address2']//following::mat-error[contains(.,'Required')][1]")
+	public WebElement addressLine2ErrorLabel;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_city']//following::mat-error[contains(.,'Required')][1]")
+	public WebElement addressCityErrorLabel;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_zip']//following::mat-error[contains(.,'Required')][1]")
+	public WebElement addressZipErrorLabel;
+	
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mat-radio-container'][2]")
 	public WebElement uspsAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-inner-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-container'][1]")
 	public WebElement currentAdditionalAddress;
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")

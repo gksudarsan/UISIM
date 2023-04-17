@@ -63,22 +63,26 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(3000);
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-			Thread.sleep(10000);
-		} catch (Exception e) {
-		}
+		Thread.sleep(10000);
+
+				
+				
+				
 		driver.navigate().refresh();
-//		Thread.sleep(10000);
-//		driver.navigate().refresh();
+		Thread.sleep(10000);
+		driver.navigate().refresh();
 		Thread.sleep(5000);
+		}
+		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
-//		loginPage.okPopUpButton.click();
+		loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-//			loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
-//		}
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
 
 	}
 
@@ -152,6 +156,14 @@ public class commonStepDefinitions extends TestBase {
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
+	
+	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
+		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
+
+	public void errorLabelContains(String xpathParameter, String fieldName) {
+		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
 	}
 
 	public void errorContent(String xpathParameter) {
@@ -518,15 +530,19 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		sleep(3000);
 		// driver.navigate().refresh();
 		sleep(3000);
+		sleep(10000);
+		driver.navigate().refresh();
+		sleep(10000);
+		driver.navigate().refresh();
+		sleep(5000);
 
 		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio(
-				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
 		clickButtonContains("Continue");
 		sleep(2000);
 		// loginPage.okPopUpButton.click();
@@ -553,8 +569,12 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-		// driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
-		Thread.sleep(2000);
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		Thread.sleep(10000);
+		driver.navigate().refresh();
+		Thread.sleep(10000);
+		driver.navigate().refresh();
+		Thread.sleep(5000);
 		driver.get(prop.getProperty("applicationUrl"));
 		login(userName, password);
 	}
