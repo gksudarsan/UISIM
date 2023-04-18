@@ -147,6 +147,11 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[.='business Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsAdd;
 	
+	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()-1]")
+	public WebElement otherDetails_New1;
+	
+	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()]")
+	public WebElement otherDetails1_New2;
 	
 	
      public Map<String, String> database_SelectQuery(String query) throws SQLException, IOException {
