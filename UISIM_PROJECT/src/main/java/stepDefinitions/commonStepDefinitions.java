@@ -61,14 +61,14 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 			Thread.sleep(10000);
 		} catch (Exception e) {
 		}
+		//driver.navigate().refresh();
+		//Thread.sleep(10000);
 		driver.navigate().refresh();
-//		Thread.sleep(10000);
-//		driver.navigate().refresh();
 		Thread.sleep(5000);
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 //		loginPage.okPopUpButton.click();
@@ -421,7 +421,7 @@ public class commonStepDefinitions extends TestBase {
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
 		// stmt.executeQuery(query);
-		Thread.sleep(200000);
+		Thread.sleep(30000);
 		p = con.prepareStatement(query);
 		Thread.sleep(2000);
 		p.execute();
@@ -477,7 +477,7 @@ public class commonStepDefinitions extends TestBase {
 		int i = 0;
 		while (rs.next()) {
 			i = i + 1;
-			if (i > 1) {
+			if (i > 0) {
 				results.put(ColumnName, rs.getString(ColumnName));
 				break;
 			}
@@ -555,8 +555,9 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Password");
 		// driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(2000);
-		driver.get(prop.getProperty("applicationUrl"));
+		//driver.get(prop.getProperty("applicationUrl"));
 		login(userName, password);
+
 	}
 
 	public void enterFutureDate(String xpathParameter, int daysAdded) {
@@ -592,6 +593,68 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
 		test.log(Status.INFO, "Past date entered as : "+output);
+	}
+	
+	public void LogoutAndLoginIfOktaPageDisplayed(String userName, String password) throws Exception {
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		clickMenu("LOG OUT");
+		clickMenu("Go to Homepage");
+		sleep(2000);
+		HomePage.menuLogout.click();
+		HomePage.signOut.click();
+		sleep(5000);
+		//driver.get(prop.getProperty("applicationUrl"));
+		Thread.sleep(2000);
+		enterTextbox("Username", userName);
+		test.log(Status.PASS, "User entered Username");
+		enterTextbox("Password", password);
+		test.log(Status.PASS, "User entered Password");
+		Thread.sleep(2000);
+		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//sleep(2000);
+		driver.navigate().refresh();
+		driver.get(prop.getProperty("applicationUrl"));
+		loginPage.loginLink.click();
+		Thread.sleep(2000);
+	}
+	
+	public void enterRandomString(String xpathParameter) {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 15; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+				.sendKeys(randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+        test.log(Status.INFO, fieldName+" : : "+randomString);
+		
+	}
+	
+	public void enterRandomStringLegalName(String xpathParameter) {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 15; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")).clear();
+		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea"))
+				.sendKeys(randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+        test.log(Status.INFO, fieldName+" : : "+randomString);
+		
 	}
 
 

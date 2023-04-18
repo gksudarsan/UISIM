@@ -26,16 +26,16 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Is your entity a legally')]/../following-sibling::div/mat-radio-group/mat-radio-button/label/span[2][text()='Yes ']/../span/span") 
 	public WebElement iSyourEntityQuestion_Yes; 
 
-	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3][@class='mat-form-field-infix ng-tns-c138-164']/input") 
+	@FindBy(how = How.XPATH, using = "//input[@id='bmadmailingAddressId_address1']") 
 	public WebElement addressLine1_Form1; 
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='City ']/span/../following-sibling::mat-form-field/div/div/div[3]/input") 
+	@FindBy(how = How.XPATH, using = "//input[@id='bmadmailingAddressId_city']") 
 	public WebElement city_Form1; 
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Zip Code']/span/../following-sibling::mat-form-field/div/div/div[3]/input") 
+	@FindBy(how = How.XPATH, using = "//input[@id='bmadmailingAddressId_zip']") 
 	public WebElement zipCode_Form1; 
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-25']") 
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-2]") 
 	public WebElement countyDropDown_Form1; 
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']") 
@@ -55,6 +55,21 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']") 
 	public WebElement countyValue2; 
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='npcaAddressId_address1']") 
+	public WebElement addressLine1_Form3; 
+
+	@FindBy(how = How.XPATH, using = "//input[@id='npcaAddressId_city']") 
+	public WebElement city_Form3; 
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='npcaAddressId_zip']") 
+	public WebElement zipCode_Form3; 
+
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()]") 
+	public WebElement countyDropDown_Form3; 
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']") 
+	public WebElement countyValue3; 
 
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'40 PARK AVE')]/../../span/span[@class='mat-radio-outer-circle']") 
 	public WebElement uspsAddressRadio; 
@@ -123,7 +138,7 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//input[@id='npcafirstNameId']") 
 	public WebElement firstName_noticeOfPotentialCharges;
 	
-	@FindBy(how = How.XPATH, using = "//input[@id='lastNameId']") 
+	@FindBy(how = How.XPATH, using = "//input[@id='npcalastNameId']") 
 	public WebElement lastName_noticeOfPotentialCharges;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,\"Indicate your principal activity or farm production that produces the greatest gross sales.\")]//following::mat-select[1]") 

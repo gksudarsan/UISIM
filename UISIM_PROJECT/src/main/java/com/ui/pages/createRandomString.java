@@ -1,24 +1,27 @@
 package com.ui.pages;
 
+import org.openqa.selenium.support.PageFactory;
+
+import com.jcraft.jsch.jce.Random;
 import com.ui.base.TestBase;
 
-public class createRandomString extends TestBase{
+public class createRandomString {
+	public static void main(String[] args) {
+		createRandomString.generateRandomString();
+	}
 
-	public static String randomString(int intValue) throws Exception {
-        char c[] = {'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z','a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z'};
-        int randomPosition;
-        String randomString = "";
-        for (int i = 0; i < intValue; i++) {
-            randomPosition = generateRandomIntIntRange(0, 51);
-            randomString = randomString + c[randomPosition]; 
-        }
-        System.out.println(randomString);
-        return randomString;        
-    }
+	public static void generateRandomString() {
 
-	private static int generateRandomIntIntRange(int i, int j) {
-		// TODO Auto-generated method stub
-		return 0;
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 15; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
 	}
 
 }

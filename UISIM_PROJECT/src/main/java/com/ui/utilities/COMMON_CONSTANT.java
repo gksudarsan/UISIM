@@ -34,8 +34,8 @@ public class COMMON_CONSTANT {
 	public static final String EMP_USER_2 = "Laxmi@12";
 	public static final String EMP_USER_2_PASSWORD = "Hachiku7533991779";
 	
-	public static final String TPR_USER_1 = "tpruser@123";
-	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	//public static final String TPR_USER_1 = "tpruser@123";
+	//public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
 	
 
 	
