@@ -20,16 +20,14 @@ public class EM_449_001_Establish_joint_account_for_two_or_more_account extends 
 
 	@Test(priority=1, description = "Test",groups = {"Regression"})
 	public void EM_321_02_001() throws Exception
-	{
-		 
+	{	 
 		 test = report.createTest("EM.449.001- Verify CSR is able to establish joint account for two or more account  with  'Principal Business Activity'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 HomePage homePage = new HomePage(driver);
 		 SREG_507 sreg507 = new SREG_507(driver);
-		 
-		 
+		 	 
 		 commonFuntions.login(prop.getProperty("CSR_UserID"),prop.getProperty("CSR_Pass"));
 		 test.log(Status.INFO, "Navigating to Joint Account Menu");
 		 homePage.navigateToEstablishJointAccount();

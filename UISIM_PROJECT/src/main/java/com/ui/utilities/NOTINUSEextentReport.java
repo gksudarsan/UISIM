@@ -25,7 +25,7 @@ import com.relevantcodes.extentreports.LogStatus;
 
 
 
-public class extentReport implements IReporter {
+public class NOTINUSEextentReport implements IReporter {
 	private ExtentReports extent;
 	
 	

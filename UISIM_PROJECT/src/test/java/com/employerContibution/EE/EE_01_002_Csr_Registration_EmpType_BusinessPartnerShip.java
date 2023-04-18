@@ -138,7 +138,7 @@ public class EE_01_002_Csr_Registration_EmpType_BusinessPartnerShip extends Test
 		cf.screenShot("Corporate Officer/Owner Details", "Pass", "Corporate Officer/Owner Details(SREG-005))");
 		cf.clickButtonContains("Continue");
 		sleep(2000);
-	    cf.selectLink("Proof of NYS Workers", "Browse");
+	    cf.selectLink("Supporting documents like", "Browse");
 	    sleep(3000);
 	    cf.screenShot("Upload Documents", "Pass", "Upload Documents(SREG-683)");
 		cf.clickButtonContains("Continue");
@@ -180,7 +180,7 @@ public class EE_01_002_Csr_Registration_EmpType_BusinessPartnerShip extends Test
 				cf.enterTextboxContains("FEIN",FEIN);
 				cf.screenShot("FeinSearch","Pass","feinSearch");
 				cf.clickButtonContains("Search"); Thread.sleep(2000);
-				cf.screenShot("Review emp type","Pass","emp type");
+				cf.screenShot("","Pass","emp type");
 				cf.clickOnLink("Verify Agent Rep Task");sleep();
 				
 				//failed got system failure.......................
