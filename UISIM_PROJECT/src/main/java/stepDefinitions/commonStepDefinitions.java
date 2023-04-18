@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -477,7 +479,7 @@ public class commonStepDefinitions extends TestBase {
 		int i = 0;
 		while (rs.next()) {
 			i = i + 1;
-			if (i > 1) {
+			if (i > 0) {
 				results.put(ColumnName, rs.getString(ColumnName));
 				break;
 			}
@@ -569,7 +571,8 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
-		test.log(Status.INFO, "Future date entered as : "+output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+		test.log(Status.INFO, fieldName+" : : "+output);
 	}
 	
 
@@ -591,8 +594,41 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
-		test.log(Status.INFO, "Past date entered as : "+output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+		test.log(Status.INFO, fieldName+" : : "+output);
 	}
-
-
+	
+	public void enterDateOfCurrentQuaterFirstMonth(String xpathParameter) {
+		String fieldName;
+		LocalDate myLocal = LocalDate.now();
+		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
+		
+		switch (quarter) {
+		case 1:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("01012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"01/01/2023");
+			break;
+		case 2:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("04012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"04/01/2023");
+			break;
+		case 3:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("07012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"07/01/2023");
+			break;
+		case 4:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("10012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"10/01/2023");
+			break;
+		default:
+			System.out.println("Error in code");
+			break;
+		}
+		
+	}
+	
 }

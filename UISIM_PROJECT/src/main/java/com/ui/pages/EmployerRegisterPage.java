@@ -48,22 +48,22 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Zip Code']/span/../following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement zipCode_Form1;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-25']")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div")
 	public WebElement countyDropDown_Form1;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
 	public WebElement countyValue_Form1;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input")
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[3]/div/div/mat-label[text()='Address Line 1 ']/following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement addressLine1_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input[@id='lbramailingAddressId_city']")
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement city_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input[@id='lbramailingAddressId_zip']")
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement zipCode_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']")
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
 	public WebElement countyDropDown_Form2;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
@@ -279,6 +279,46 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[text()=' Yes ']")
 	public WebElement liability_error_Yes;
 	
-
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Are you a subdivision, subsidiary')]/../../div/mat-radio-group/mat-radio-button[1]/label/span[2]/../span/span")
+	public WebElement are_You_Subsidiary_Yes;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2022 ']")
+	public WebElement firstCalender_Year_Value_2022;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'What is the first calendar quarter and year you employed 4 (four)')]//following::mat-select[1]")
+	public WebElement firstCalender_Quater_employed_4;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
+	public WebElement firstCalender_Quater_employed_4_value;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'What is the first calendar quarter and year you employed 4 (four)')]//following::mat-select[2]")
+	public WebElement firstCalender_Year_employed_4;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
+	public WebElement firstCalender_Year_employed_4_value_2023;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Choose the option you wish')]/../../div/mat-radio-group/mat-radio-button[1]/label/span[2]/../span/span[@class='mat-radio-outer-circle']")
+	public WebElement Choose_Option_Contri_Radio;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Notice of Potential Charges (LO400) Address']/../../app-address/div/div[3]/div/div/mat-label[text()='Address Line 1 ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement notice_potential_AddressLine_1;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Notice of Potential Charges (LO400) Address']/../../app-address/div/div[4]/div/div/mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement notice_potential_City;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Notice of Potential Charges (LO400) Address']/../../app-address/div/div[4]/div/div/mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement notice_potential_Zipcode;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Notice of Potential Charges (LO400) Address']/../../app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
+	public WebElement notice_potential_county;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Contact Person for Notice of Potential Charges (LO')]/../../../../following-sibling::app-textbox/div/div/mat-label//mat-label[text()='First Name']/../following-sibling::div/mat-form-field/div/div/div[3]/input")
+	public WebElement notice_potential_firstName;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Contact Person for Notice of Potential Charges (LO')]/../../../../following-sibling::app-textbox/div/div/mat-label//mat-label[text()='Last Name']/../following-sibling::div/mat-form-field/div/div/div[3]/input")
+	public WebElement notice_potential_LastName;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	public WebElement legal_Name_Business_Input;
 }
 
