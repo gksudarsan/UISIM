@@ -53,7 +53,7 @@ public class EM_019_01 extends TestBase
 		 Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND ORGANIZATION_TYPE = 'CITY' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC");
 			String feinValue =databaseResults.get("Fein");
 			String ernValue = databaseResults.get("Ean");
-		 
+		 System.out.println(ernValue);
 		 commonFuntions.enterTextbox("Employer Registration Number",ernValue );
 		 commonFuntions.clickButtonContains("Continue");
 		 Thread.sleep(2000);

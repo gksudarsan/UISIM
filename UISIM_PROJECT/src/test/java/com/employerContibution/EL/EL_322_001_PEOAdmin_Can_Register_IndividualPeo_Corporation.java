@@ -18,13 +18,13 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPartnership extends TestBase
+public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends TestBase
 {
 
 
 	
-	@Test(priority=1, description = "EL.322.005: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Partnership' and  type of Ownership 'Privately or Closely Held'",groups = {"Regression"})
-	public void EL_322_005() throws Exception
+	@Test(priority=1, description = "EL.322.001.Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Corporation' and  type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
+	public void EL_322_001() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -34,7 +34,7 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		 String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		
 		System.out.println("feinValue is"+feinValue);
-		 test = report.createTest("EL.322.004: Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Limited Liability Company' and  type of Ownership 'Privately or Closely Held'");
+		 test = report.createTest("EL.322.001.Verify PEO Admin can register Individual PEO for Type of Legal Entity 'Corporation' and  type of Ownership 'Privately or Closely Held'.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 
 		 
@@ -42,38 +42,90 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 PEOPage.peoRegister.click();
 		 sleep(3000);
+		
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     commonFuntions.errorLabelFollowingField(" Required ","First Name");
+	     commonFuntions.errorLabelFollowingField(" Required ","Last Name");
+	     commonFuntions.errorLabelFollowingField(" Required ","Job Title");
+	     commonFuntions.errorLabelFollowingField("* Required"," Contact Number ");
+	     commonFuntions.errorLabelFollowingField("* Required","Ext");
+	     
+	     commonFuntions.screenShot("PeoRegistrationError","Pass","PEO Registration - Contact Details Error");	
+	     
+	     commonFuntions.enterTextboxContains("First Name", "abc$");	
+	     commonFuntions.enterTextboxContains("Middle Initial", "$");	     
+		 commonFuntions.enterTextboxContains("Last Name", "abc");	
+		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
+		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
+		 commonFuntions.enterTextboxContains("Email Address","abc$");
+		 
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(3000);
+		 commonFuntions.screenShot("PeoRegistrationError2","Pass","PEO Registration - Contact Details Error incorrect value");	
+		 
+		 commonFuntions.errorLabelContains("Must start with a letter and may contain only letters, hyphens(-) and apostrophes","First Name");
+	     commonFuntions.errorLabelContains("Only Alphabets are allowed","Middle Initial");
+	     commonFuntions.errorLabelContains(" Invalid Email Address.","Email Address");
+	     commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),4));
+	     commonFuntions.errorLabelContains("Phone Number should be 10 digits minimum"," Contact Number ");
+		 
+		 sleep(3000);
 		 commonFuntions.enterTextboxContains("First Name", "AutoTestFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));		 
 		 commonFuntions.enterTextboxContains("Last Name", "AutoTestLastName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
 		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
 		 commonFuntions.enterTextboxContains("Email Address","autoEmail"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),4)+"@gmail.com");
-		 
+		 commonFuntions.enterTextboxContains("Middle Initial", "S");
 		 
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 sleep(3000);
 	     commonFuntions.clickButtonContains("Save & Continue");
-	    
+	     sleep(2000);
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	     commonFuntions.screenShot("IndividualPeoError","Pass","Professional Employer Organization Registration Error");
+	     commonFuntions.errorLabelContains("Required","Name of Professional Employer Organization");	     
+	     commonFuntions.errorLabelContains("Required","Additional Names, if any, under which the PEO’s Conduct Business currently");
 		 sleep(2000);
 	     PEOPage.individualPeo.click();	     
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
-	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	     
+	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	
+	     
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	     commonFuntions.screenShot("UnemploymentInsuranceError","Pass","Unemployment Insurance Account Details error");
+	     
+	     commonFuntions.errorLabelContains("Required","Do you currently have a New York State Unemployment Insurance Account?");	     
+	     commonFuntions.errorLabelContains("Required","Type of Legal Entity");
+	     commonFuntions.errorLabelContains("Required","Federal Employer Identification Number (FEIN)");
+	     commonFuntions.errorLabelContains("Required","Type of Ownership");
+	     commonFuntions.errorLabelContains("Required","Fiscal Year Start Date");
+	     
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
 	     
 	     
 		// String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		// String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
-	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Limited Partnership ");
+	     //commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
+	     commonFuntions.selectDropdown("Type of Legal Entity", " Corporation ");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.errorLabelContains("Required if you currently have a New York State Unemployment Insurance","Do you currently have a New York State Unemployment Insurance Account?");
+	     commonFuntions.screenShot("GeneralInformationError2","Pass","Unemployment Insurance Account Details");
+	     commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Account Details");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	     commonFuntions.screenShot("AddressInformationError","Pass","Address Information Mandatory Error fields");
 	 /*    try {
 	    	 sleep(2000);
 	     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
@@ -81,13 +133,25 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 	     catch(Exception e) {}
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);*/
-	     PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
+	     
+	     PEOPage.addressLine1ErrorLabel.isDisplayed();
+	     PEOPage.addressLine2ErrorLabel.isDisplayed();
+	     PEOPage.addressCityErrorLabel.isDisplayed();
+	     PEOPage.addressZipErrorLabel.isDisplayed();
+	     commonFuntions.errorLabelContains("Required","Business Email Address");
+	     
+	     //PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressCity.sendKeys("NewYork");
 	     PEOPage.addressZip.sendKeys("13420");
 	      
 	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	     PEOPage.addressLine1ErrorLabel.isDisplayed();
+	     PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
+	     
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     PEOPage.uspsAddress.click();
@@ -100,8 +164,17 @@ public class EL_322_005_PEOAdmin_Can_Register_IndividualPeo_LimitedLiabilityPart
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("Mailing Address","Pass","Mailing Address");
+	     
+	     commonFuntions.enterTextboxContains("Zip Code","12");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.errorLabel("Zip Code must have 5 numbers only.");
+	     
+	     commonFuntions.enterTextboxContains("Zip Code","13420");
+	     sleep(2000);
+	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	     commonFuntions.screenShot("verifyPriorAddressError","Pass","Verify Prior Address(es) in New York Mandatory Error");
 	     commonFuntions.enterTextboxContains("Address Line 1","PrioraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.enterTextboxContains("Address Line 2","PrioraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.enterTextboxContains("City","NewYork");

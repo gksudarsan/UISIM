@@ -63,13 +63,19 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(3000);
 		//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-			Thread.sleep(10000);
-		} catch (Exception e) {
-		}
+		Thread.sleep(10000);
+
+				
+				
+				
+		driver.navigate().refresh();
+		Thread.sleep(10000);
 		//driver.navigate().refresh();
 		//Thread.sleep(10000);
 		driver.navigate().refresh();
 		Thread.sleep(5000);
+		}
+		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 //		loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
