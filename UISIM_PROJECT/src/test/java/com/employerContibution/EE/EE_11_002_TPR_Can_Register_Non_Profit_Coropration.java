@@ -177,7 +177,7 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 		commonFuntions.screenShot("TPRRegister13", "Pass", "Entering the details");
 		empPage.legal_Name_Business_Input.sendKeys("Naruto 11");
 		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "PART");
-		//commonFuntions.enterDateOfCurrentQuaterFirstMonth("Acquisition Date");
+		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Acquisition Date");
 //		commonFuntions.enterTextboxContains("Acquisition Date", "Create the method");
 		
 		commonFuntions.enterTextboxContains("Address Line 1 ", "New Address 5");

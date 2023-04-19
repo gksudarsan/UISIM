@@ -13,6 +13,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.temporal.IsoFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -159,6 +161,13 @@ public class commonStepDefinitions extends TestBase {
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
+	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
+        driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
+	
+	public void errorLabelContains(String xpathParameter, String fieldName) {
+        driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
+    }
 
 	public void errorContent(String xpathParameter) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError0'][1]")).isDisplayed();
@@ -599,6 +608,39 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
 		test.log(Status.INFO, "Past date entered as : "+output);
+	}
+	
+	public void enterDateOfCurrentQuaterFirstMonth(String xpathParameter) {
+		String fieldName;
+		LocalDate myLocal = LocalDate.now();
+		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
+		
+		switch (quarter) {
+		case 1:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("01012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"01/01/2023");
+			break;
+		case 2:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("04012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"04/01/2023");
+			break;
+		case 3:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("07012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"07/01/2023");
+			break;
+		case 4:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("10012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"10/01/2023");
+			break;
+		default:
+			System.out.println("Error in code");
+			break;
+		}
+		
 	}
 	
 	public void LogoutAndLoginIfOktaPageDisplayed(String userName, String password) throws Exception {
