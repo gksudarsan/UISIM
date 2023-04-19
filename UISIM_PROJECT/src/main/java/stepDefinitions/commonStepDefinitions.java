@@ -77,7 +77,7 @@ public class commonStepDefinitions extends TestBase {
 		}
 		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
-		loginPage.okPopUpButton.click();
+//		loginPage.okPopUpButton.click();
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
