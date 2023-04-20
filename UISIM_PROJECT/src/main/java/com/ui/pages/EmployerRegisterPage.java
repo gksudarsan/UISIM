@@ -22,7 +22,6 @@ public class EmployerRegisterPage extends TestBase {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
@@ -160,7 +159,6 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legalTextInput;
 	
-
 	//-ankan
 	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsBusinessAddress;
@@ -248,6 +246,9 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'bmad Address_0')]//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsBmadAddressRadio;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'lbra Address_0')]//following::*[@class='mat-radio-container'][1]")
+	public WebElement uspsLbraAddressRadio;
 	
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'npca Address_0')]//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsNpcaAddressRadio;
