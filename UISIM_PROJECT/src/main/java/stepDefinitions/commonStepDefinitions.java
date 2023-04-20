@@ -625,27 +625,28 @@ public class commonStepDefinitions extends TestBase {
 		String fieldName;
 		LocalDate myLocal = LocalDate.now();
 		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
+		String date = new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
 		
 		switch (quarter) {
 		case 1:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("01012023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0101"+date+"");
 			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"01/01/2023");
+			test.log(Status.INFO, fieldName+" : : "+"01/01/"+date+"");
 			break;
 		case 2:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("04012023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0401"+date+"");
 			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"04/01/2023");
+			test.log(Status.INFO, fieldName+" : : "+"04/01/"+date+"");
 			break;
 		case 3:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("07012023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0701"+date+"");
 			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"07/01/2023");
+			test.log(Status.INFO, fieldName+" : : "+"07/01/"+date+"");
 			break;
 		case 4:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("10012023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("1001"+date+"");
 			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"10/01/2023");
+			test.log(Status.INFO, fieldName+" : : "+"10/01/"+date+"");
 			break;
 		default:
 			System.out.println("Error in code");
