@@ -22,7 +22,6 @@ public class EmployerRegisterPage extends TestBase {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
-
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
@@ -48,22 +47,22 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Zip Code']/span/../following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement zipCode_Form1;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-25']")
 	public WebElement countyDropDown_Form1;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
 	public WebElement countyValue_Form1;
 	
-	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[3]/div/div/mat-label[text()='Address Line 1 ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	@FindBy(how = How.XPATH, using = "//mat-label[normalize-space()='Address Line 1']/following-sibling::mat-form-field/div/div/div[3]/input")
 	public WebElement addressLine1_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input[@id='lbramailingAddressId_city']")
 	public WebElement city_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input[@id='lbramailingAddressId_zip']")
 	public WebElement zipCode_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']")
 	public WebElement countyDropDown_Form2;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
@@ -160,7 +159,6 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legalTextInput;
 	
-
 	//-ankan
 	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement uspsBusinessAddress;
@@ -249,9 +247,12 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'bmad Address_0')]//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsBmadAddressRadio;
 	
+	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'lbra Address_0')]//following::*[@class='mat-radio-container'][1]")
+	public WebElement uspsLbraAddressRadio;
+	
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'npca Address_0')]//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsNpcaAddressRadio;
-
+	
 	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
 	public WebElement firstCalender_Year_Value_2023;
 	
@@ -321,4 +322,3 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legal_Name_Business_Input;
 }
-
