@@ -41,7 +41,7 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
 		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
 		commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
-		String feinValue =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5);
+		String feinValue =StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		System.out.println(feinValue);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.clickButton("Continue ");
@@ -62,7 +62,7 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.enterTextboxContains(" Business Phone Number  ", "6732111111");
 		commonFuntions.enterTextboxContains("Total number of covered employees", "50");
 		empPage.firstCalender_Quater.click();
-		empPage.firstCalender_Quater_Value_2.click();
+		empPage.firstCalender_Quater_Value.click();
 		
 		sleep();
 		empPage.yearDropDown.click();
@@ -74,7 +74,12 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		
 		sleep(3000);
 		
-		empPage.addressLine1_Form1_SREG_004.sendKeys("2434 WS Road");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 Square cooper");
+		commonFuntions.enterTextboxContains("City ", "Albany");
+		commonFuntions.enterTextboxContains("Zip Code", "34562");
+		commonFuntions.selectRadioQuestions("County", " Albany ");
+		
+		empPage.addressLine1_Form1_SREG_004.sendKeys("20 cooper square");
 		empPage.city_Form1.sendKeys("Albany");
 		empPage.zipCode_Form1.sendKeys("43424");
 		commonFuntions.safeJavaScriptClick(empPage.countyDropDown_Form1);

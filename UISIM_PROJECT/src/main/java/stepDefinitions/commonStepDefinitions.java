@@ -24,9 +24,11 @@ import java.util.Random;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -81,10 +83,10 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
-		}
+//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+//			loginPage.okPopUpButton.click();
+//			Thread.sleep(3000);
+//		}
 
 	}
 
@@ -435,7 +437,8 @@ public class commonStepDefinitions extends TestBase {
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
 		// stmt.executeQuery(query);
-		Thread.sleep(200000);
+//		Thread.sleep(200000);
+//		Thread.sleep(20000);
 		p = con.prepareStatement(query);
 		Thread.sleep(2000);
 		p.execute();
@@ -649,6 +652,17 @@ public class commonStepDefinitions extends TestBase {
 			break;
 		}
 		
+	}
+	
+	public void waitForLoadingIconToDisappear() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 30000);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
+		sleep(3000);
+	}
+	
+	public void forceClearText(WebElement ele) {
+		Actions a = new Actions(driver);
+		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 	
 }

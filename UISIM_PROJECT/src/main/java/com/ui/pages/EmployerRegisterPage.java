@@ -320,5 +320,16 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legal_Name_Business_Input;
+	
+	@FindBy(how = How.XPATH, using = "//mat-error[text()=' Date Payroll Withheld is invalid']")
+	public WebElement date_Payroll_Error_Message;
+	
+	@FindBy(how = How.XPATH, using = "//u[text()='Review Employer Type']")
+	public WebElement review_employer_My_Q;
+	
+	@FindBy(how = How.XPATH, using = "//u[text()='Obtain Bond Task']")
+	public WebElement obtain_bond_task_My_Q;
+	
+	
 }
 
