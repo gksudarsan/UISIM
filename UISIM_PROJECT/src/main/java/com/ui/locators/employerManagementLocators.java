@@ -3,11 +3,14 @@ package com.ui.locators;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import com.ui.base.TestBase;
 
 public class employerManagementLocators extends TestBase {
-
+	WebDriverWait wait = new WebDriverWait(driver,30);
+	
 	public WebElement menuButton (){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Menu']")));
 		return driver.findElement(By.xpath("//span[text()='Menu']]"));
@@ -18,6 +21,7 @@ public class employerManagementLocators extends TestBase {
 		return driver.findElement(By.xpath("//span[text()='Account Maintenance']"));
 
 	}
+	
 	public WebElement MaintainAddress (){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Maintain Address']]")));
 		return driver.findElement(By.xpath("//span[text()='Maintain Address']]"));
