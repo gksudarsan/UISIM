@@ -666,4 +666,19 @@ public class commonStepDefinitions extends TestBase {
 		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 	
+	public void selectDropdownSecondBox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[2]"))
+				.click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+
+	}
+	public void enterTextboxContainsThirdBox(String xpathParameter, String value) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]"))
+				.sendKeys(value);
+	
+	}
+	
+	
+	
 }
