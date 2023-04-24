@@ -666,4 +666,37 @@ public class commonStepDefinitions extends TestBase {
 		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
 	
+	public void enterDateOfCurrentQuaterFirstMonthPlusOneDay(String xpathParameter) {
+		String fieldName;
+		LocalDate myLocal = LocalDate.now();
+		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
+		String date = new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
+		
+		switch (quarter) {
+		case 1:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0102"+date+"");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"01/02/"+date+"");
+			break;
+		case 2:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0402"+date+"");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"04/02/"+date+"");
+			break;
+		case 3:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0702"+date+"");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"07/02/"+date+"");
+			break;
+		case 4:
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("1002"+date+"");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+			test.log(Status.INFO, fieldName+" : : "+"10/02/"+date+"");
+			break;
+		default:
+			System.out.println("Error in code");
+			break;
+		}
+		
+	}
 }
