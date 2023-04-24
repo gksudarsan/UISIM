@@ -331,6 +331,33 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//u[text()='Obtain Bond Task']")
 	public WebElement obtain_bond_task_My_Q;
 	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[3]/div/div/mat-label[text()='Address Line 1 ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement location_Of_Book_AddresLine1;
+
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement location_Of_Book_City;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-address/div/div[4]/div/div/mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement location_Of_Book_ZipCode;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Location of Books and Records']/../../app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
+	public WebElement location_Of_Book_County;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
+	public WebElement albany_County_Value;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-address/div/div[3]/div/div/mat-label[text()='Address Line 1 ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement agent_CO_AddresLine1;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-address/div/div[4]/div/div/mat-label[text()='City ']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement agent_CO_City;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-address/div/div[4]/div/div/mat-label[text()='Zip Code']/following-sibling::mat-form-field/div/div/div[3]/input")
+	public WebElement agent_CO_ZipCode;
+	
+	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
+	public WebElement agent_CO_County;
+	
 	
 }
 

@@ -110,7 +110,7 @@ public class TestBase {
 		System.out.println("Running Browser is :" + browser);
 		// String browser=prop.getProperty("browser");
 		Runtime.getRuntime().exec("taskkill /F /IM edgedriver.exe /T");
- 		Runtime.getRuntime().exec("taskkill /F /IM msedge.exe /T");
+// 		Runtime.getRuntime().exec("taskkill /F /IM msedge.exe /T");
 		
 
 		if (browser.equalsIgnoreCase("chrome")) {
@@ -151,11 +151,11 @@ public class TestBase {
 			 * driver.getCapabilities(); Map<String, Object> mycap = cap.asMap();
 			 * System.out.println(mycap);
 			 */
-
+			
 			// Add the WebDriver proxy capability.
-
+			
 			ChromeOptions opt = new ChromeOptions();
-
+			
 //			EdgeOptions opt = new EdgeOptions();
 			//opt.addArguments("--remote-allow-origins=*");
 			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
@@ -165,13 +165,13 @@ public class TestBase {
 			/// opt.setCapability("chrome.switches",
 			/// Arrays.asList("--ignore-certificate-errors"));
 			driver = new ChromeDriver(opt);
-
+			
 		}
-
+		
 		else if (browser.equals("firefox")) {
 			System.setProperty("webdriver.gecko.driver", System.getProperty("user.dir") + "\\Driver\\geckodriver.exe");
 			driver = new FirefoxDriver();
-		} else if (browser.equals("ie")) {
+		} else if (browser.equals("ie")){
 			System.setProperty("webdriver.ie.driver", System.getProperty("user.dir") + "\\Driver\\IEDriverServer.exe");
 			driver = new InternetExplorerDriver();
 		}

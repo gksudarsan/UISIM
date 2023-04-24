@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County">
+      <class name="com.employerContibution.EE.EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnership">
         <methods>
+          <include name="EE_02_004"/>
           <include name="setup"/>
           <include name="tearDownCT_ST"/>
-          <include name="EE_07_005"/>
         </methods>
-      </class> <!-- com.employerContibution.EE.EE_07_005_Emp_Register_EmpType_Governmental_County -->
+      </class> <!-- com.employerContibution.EE.EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnership -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

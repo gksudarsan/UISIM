@@ -37,8 +37,6 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
 		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
 		sleep();
-		
-		sleep();
 		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		System.out.println(feinValue);
 		/*----------------Enter Query logic here----------------*/
