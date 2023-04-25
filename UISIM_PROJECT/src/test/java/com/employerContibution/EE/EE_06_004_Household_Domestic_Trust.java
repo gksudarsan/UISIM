@@ -19,21 +19,23 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_06_003_Household_Domestic_Estate extends TestBase{
+public class EE_06_004_Household_Domestic_Trust extends TestBase{
 
 	@Test()
 	public void EE_01_004_csr_registration() throws Exception {
 
 		commonStepDefinitions cf = new commonStepDefinitions();	
-		  String feinValue1 =StringUtils.left( String.valueOf((long)
-		  (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
-		  FEIN = feinValue2 + feinValue1 ; 
-		  System.out.println("FEIN NUMBER = " +FEIN);
+		/*
+		 * String feinValue1 =StringUtils.left( String.valueOf((long)
+		 * (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
+		 * feinValue = feinValue2 + feinValue1 ; System.out.println("FEIN NUMBER = "
+		 * +feinValue);
+		 */
 		 
-		//Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-		//		"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
-	//	String FEIN = databaseResults1.get("FEIN");
-		//System.out.println("FEIN NUMBER  = " +FEIN);
+		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
+			"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
+		String FEIN = databaseResults1.get("FEIN");
+		System.out.println("FEIN NUMBER  = " +FEIN);
 		String EntityName = prop.getProperty("Entity");
 		employerManagement em =  new employerManagement();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
@@ -115,9 +117,9 @@ public class EE_06_003_Household_Domestic_Estate extends TestBase{
 		cf.clickButtonContains("Continue");	
 		sleep(2000);
 		cf.screenShot("Change in Legal Entity", "Pass", "Change in Legal Entity(SREG-012");
-		cf.selectRadioQuestions("Have you changed legal entity?", " Yes ");
-		cf.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", "7242785235");
-		cf.enterTextboxContains("Date of Notification", "12/12/2022");
+		cf.selectRadioQuestions("Have you changed legal entity?", " No ");
+		//cf.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", "7242785235");
+		//cf.enterTextboxContains("Date of Notification", "12/12/2022");
 		cf.clickButtonContains("Continue");
 		sleep(2000);
 		cf.screenShot("Add executor", "Pass", "");
