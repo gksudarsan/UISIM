@@ -61,7 +61,7 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(10000);
 
@@ -489,7 +489,7 @@ public class commonStepDefinitions extends TestBase {
 		int i = 0;
 		while (rs.next()) {
 			i = i + 1;
-			if (i > 1) {
+			if (i > 0) {
 				results.put(ColumnName, rs.getString(ColumnName));
 				break;
 			}
@@ -613,6 +613,54 @@ public class commonStepDefinitions extends TestBase {
 				.sendKeys(output);
 		test.log(Status.INFO, "Past date entered as : "+output);
 	}
+	
+	public void selectTableWithoutId(String ssnValue, int columnValue, int tableId, String tableName ) {
+		WebElement table = driver
+				.findElement(By.xpath("//*[.='" + tableName + "']//following::mat-table[" + tableId + "]"));
 
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.contains(ssnValue)) {
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::mat-table[" + tableId
+							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//a[1]")).click();
+					break label1;
+				}
+			}
+
+		}
+	}
+
+	
+	public void selectTableParameterizedId(String ssnValue, int columnValue, int tableId, String tableName , String tableHtmlId ) {
+		WebElement table = driver
+				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='"+tableHtmlId+"'][" + tableId + "]"));
+
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.contains(ssnValue)) {
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='"+tableHtmlId+"'][" + tableId
+							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
+					break label1;
+				}
+			}
+
+		}
+	}
 
 }

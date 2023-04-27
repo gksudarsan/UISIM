@@ -50,7 +50,6 @@ public class EE_10_002 extends TestBase {
 		commonFunction.screenShot("EmpRegister3", "Pass", "Details entered on SREG-001 page");
 		commonFunction.clickButton("Continue ");
 
-
 	}
 
 }
