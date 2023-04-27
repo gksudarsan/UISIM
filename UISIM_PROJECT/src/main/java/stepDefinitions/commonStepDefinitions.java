@@ -65,7 +65,7 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(10000);
 
@@ -80,13 +80,17 @@ public class commonStepDefinitions extends TestBase {
 		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 //		loginPage.okPopUpButton.click();
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-//			loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
-//		}
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
 
 	}
 
@@ -437,8 +441,7 @@ public class commonStepDefinitions extends TestBase {
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
 		// stmt.executeQuery(query);
-//		Thread.sleep(200000);
-//		Thread.sleep(20000);
+		Thread.sleep(100000);	
 		p = con.prepareStatement(query);
 		Thread.sleep(2000);
 		p.execute();
@@ -547,18 +550,20 @@ public class commonStepDefinitions extends TestBase {
 		sleep(5000);
 
 		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
-		clickButtonContains("Continue");
+		//selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		//clickButtonContains("Continue");
 		sleep(2000);
-		// loginPage.okPopUpButton.click();
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
-		// if (driver.findElements(By.xpath("//*[.=' OK
-		// '][@class='mat-button-wrapper']")).size() > 0) {
-		// loginPage.okPopUpButton.click();
-		// Thread.sleep(3000);
-		// }
+		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+		 loginPage.okPopUpButton.click();
+		 Thread.sleep(3000);
+		 }
 
 	}
 
@@ -605,7 +610,11 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	
-	
+	public void waitForLoadingIconToDisappear() throws InterruptedException {
+		WebDriverWait wait = new WebDriverWait(driver, 30000);
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
+		sleep(3000);
+	}
 
 	public void enterPastDate(String xpathParameter, int daysSub) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
@@ -655,11 +664,7 @@ public class commonStepDefinitions extends TestBase {
 		
 	}
 	
-	public void waitForLoadingIconToDisappear() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30000);
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
-		sleep(3000);
-	}
+
 	
 	public void forceClearText(WebElement ele) {
 		Actions a = new Actions(driver);
@@ -714,5 +719,13 @@ public class commonStepDefinitions extends TestBase {
 		}
 		
 	}
-
+	public void logout(String userName, String password) throws Exception {
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		clickMenu("LOG OUT");
+		clickMenu("Go to Homepage");
+		sleep(2000);
+		HomePage.menuLogout.click();
+		HomePage.signOut.click();
+		sleep(5000);
+	}
 }

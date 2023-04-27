@@ -14,7 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
+public class SmokeTest extends TestBase{
 
 	@Test(priority=1, description = "EL.02.007 : Verify CSR can register  PEO Exempt for Type of Legal Entity 'Corporation'",groups = {"Regression"})
 	public void EL_02_007() throws Exception{
@@ -26,6 +26,8 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		 applicationLoginResults = "Success";
+				
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
 		 commonFuntions.clickMenu("Register PEO");			 
@@ -49,6 +51,7 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("PEOPage", "Pass", "Entering random FEIN and ERN values");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
+	     sleep(1000);
 	     commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " Alaska ");
 	     commonFuntions.enterTextbox("State agency that issued it.", "New York");
 	     commonFuntions.selectRadioQuestions("Provide Information", "Registration Number");
@@ -64,7 +67,7 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 		     catch(Exception e) {}
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
-	     /*------------- PEO_003 ------------------*/
+	     
 	     
 	     PEOPage.addressLine1.sendKeys("addressLine1"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     PEOPage.addressLine2.sendKeys("addressLine2"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
@@ -74,19 +77,19 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),6)+"@gmail.com");
 	     commonFuntions.screenShot("PrimaryAddress", "Pass", "Primary Physical address ");
 	     commonFuntions.clickButtonContains("Save & Continue");
-	     /*------------ PEO_004 ------------- */
+	     
 	     Thread.sleep(4000);
 	     commonFuntions.screenShot("Address6", "Pass", "Navigated to next page");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
-	     /* ------------------- PEO_004 --------------E*/
+	     
 	     commonFuntions.screenShot("ExemptionSubmission", "Pass", "Exemption Submission");
 	     commonFuntions.clickButtonContains("Continue");
-	     /* ----------------- SREG_006 --------------*/
+	    
 	     commonFuntions.screenShot("Address2", "Pass", "Entering address 1&2");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
-	     /*Upload client list page --- Upload Document---- */
+	    
 	     //commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS Secretary of State (Applicable only for initial registrations)");
 	     //commonFuntions.selectLink("Authorization to do business in NYS from the NYS Secretary of State (Applicable only for initial registrations)", "Browse");
 	     //Thread.sleep(2000);
@@ -107,35 +110,34 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 	     
 	     
 	     
-	     /*Upload client list page --- Upload Document---- */
+	     
 	     Thread.sleep(4000);
-	     /*-------------------- LEAS_012 ------------------*/
+	     
 	     commonFuntions.screenShot("verifyClient","Pass","Verify Client List");
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(4000);
-	     /*-------------------- PEOR_001 ------------------*/
+	     
 	     commonFuntions.screenShot("PeoReviewDetails","Pass","PEO Details Review");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
-	     /*-------------------- PEOE_005 ------------------*/
+	    
 	    
 	     commonFuntions.enterTextboxContains("Enter name of Officer,", "Test_Data");
 	     Thread.sleep(4000);
 	     commonFuntions.screenShot("PeoDeclaration","Pass","PEO Declaration ");
 	     commonFuntions.clickButtonContains("Save & Continue ");
 	     Thread.sleep(3000);
-	     /*-------------------- PEO_017 ------------------*/
+	     
 	     commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
 	     commonFuntions.clickButton("Accept & Submit ");	
 	     
 commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
-	     
+RegistrationResults = "Success";
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     Thread.sleep(2000);
 	     
 	    PEOPage.queue.click();
-	    commonFuntions.waitForLoadingIconToDisappear();
-	   // Thread.sleep(15000);
+	    Thread.sleep(15000);
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
@@ -143,6 +145,7 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	    commonFuntions.screenShot("Review Peo","Pass","Review Peo");
 	    commonFuntions.clickOnLink("Review PEO");
 	    Thread.sleep(2000);
+	    WorkItemCreatedResults="Success";
 	    commonFuntions.clickButtonContains("Open Work Item");
 	    Thread.sleep(2000);
 	    commonFuntions.screenShot("ReviewPeoRegstration","Pass","Review PEO Registration");
@@ -190,7 +193,8 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("Success","Pass","SuccessPage");
-     
+	     PeoIdGeneratedResults="Success";
+	     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	     
 	}
 }
