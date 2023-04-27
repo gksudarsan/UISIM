@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
+import com.ui.pages.HomePage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
 
@@ -52,6 +53,7 @@ public class EE_10_002 extends TestBase {
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
 		// ---Menu Click---
+		sleep(2000);
 		commonFunction.clickMenu("Menu");
 		// commonFuntions.clickMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
@@ -120,10 +122,12 @@ public class EE_10_002 extends TestBase {
 		commonFunction.screenShot("EmpRegister5", "Pass",
 				"Enter the details on Employer Entity Information page and click continue");
 		commonFunction.clickButton("Continue ");
+		sleep(2000);
 
 		// --- SREG-007 --- //
 		commonFunction.screenShot("Business Physical Address Details", "Pass", "Successfully launched to (SREG-007)");
 		commonFunction.clickButton("Continue ");
+		sleep(2000);
 
 		// --- SREG-004 --- //
 		commonFunction.screenShot("Employer Contact Details", "Pass", "Successfully launched to SREG-004");
@@ -163,19 +167,24 @@ public class EE_10_002 extends TestBase {
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
 
+		
+		empRegPage.uspsBmadAddressRadio.click();
+		empRegPage.uspsLbraAddressRadio.click();
+		//empRegPage.uspsNpcaAddressRadio.click();
+		commonFunction.screenShot("EmpRegister15", "Pass", "Click on appropriate USPS radio on SREG-004 page");
+		empRegPage.continueButton_popUp.click();
+		
 		try {
-			empRegPage.uspsBmadAddressRadio.click();
-			empRegPage.uspsLbraAddressRadio.click();
-			empRegPage.uspsNpcaAddressRadio.click();
-			commonFunction.screenShot("EmpRegister15", "Pass", "Click on appropriate USPS radio on SREG-004 page");
-			empRegPage.continueButton_popUp.click();
-		} catch (Exception exception) {
+			commonFunction.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "No ");
+			commonFunction.clickButton("Continue ");
+		} catch(Exception exception) {
 			sleep(2000);
 		}
 
 		// --- SREG-521 --- //
 		commonFunction.screenShot("Employer Verify Contact Details", "Pass", "Successfully launched to SREG-521");
 		commonFunction.clickButton("Continue ");
+		sleep(2000);
 
 		// --- SREG-683 --- //
 		commonFunction.screenShot("Upload Documents", "Pass", "Successfully launched to SREG-683");
@@ -189,7 +198,6 @@ public class EE_10_002 extends TestBase {
 
 		// --- SREG-043 --- //
 		commonFunction.screenShot("Statement of Acknowledgement", "Pass", "Successfully launched to SREG-043");
-		commonFunction.enterTextboxContains("Submitter Comments may be entered below.", "okay");
 		commonFunction.selectCheckbox("I accept");
 		sleep();
 		commonFunction.screenShot("Submit", "Pass", "Click on submit button");

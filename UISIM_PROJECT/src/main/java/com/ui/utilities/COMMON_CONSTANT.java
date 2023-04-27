@@ -42,6 +42,10 @@ public class COMMON_CONSTANT {
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
 	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	
+	//PEO
+	public static final String PEO_USER_1 = "peouser";
+	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
 
 	/* ********* creds end ********* */
 
