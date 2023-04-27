@@ -87,11 +87,11 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
 	public WebElement queue;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::span[@class='mat-radio-container'][1]")
 	public WebElement groupRegPeo;
 	
 
-	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsSuggestedAddress;
 	
 	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-container'][1]")
@@ -106,7 +106,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using ="//span[text()='Federal Employer Identification Number']/../following-sibling::mat-label")
 	public WebElement feinValue;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-inner-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-container'][1]")
 	public WebElement mailingAddress;
 	
 	@FindBy(how = How.XPATH, using = "//a[contains(.,'ADD PEO MEMBER')][1]")
@@ -211,6 +211,13 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_zip']")
 	public WebElement listCurrentAddressZip;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddress.uspsaddress-input'][@name='mat-radio-group-34']")
+	public WebElement CurrentUspsAddress;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddress.mailingaddress-input']")
+	public WebElement mailingUspsAddress;
      
+	
 	
 }

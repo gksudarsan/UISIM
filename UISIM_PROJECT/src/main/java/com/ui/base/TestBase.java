@@ -15,8 +15,10 @@ import java.util.NoSuchElementException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 //import org.checkerframework.checker.guieffect.qual.AlwaysSafe;
 import org.openqa.selenium.Capabilities;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.Proxy.ProxyType;
 import org.openqa.selenium.WebDriver;
@@ -37,6 +39,7 @@ import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
@@ -68,7 +71,10 @@ public class TestBase {
 	public static ExtentTest test;
 	public static WebDriver driver;
 	public static Properties prop;
-
+	public static String applicationLoginResults="Failed";
+    public static String RegistrationResults="Failed" ;
+    public static String WorkItemCreatedResults="Failed";
+    public static String PeoIdGeneratedResults="Failed";
 	public static WebDriverWait wait;
 
 	// public static Explicit Wait wait1;
@@ -119,7 +125,7 @@ public class TestBase {
 			Runtime.getRuntime().exec("taskkill /F /IM chromedriver.exe /T");
 			Runtime.getRuntime().exec("taskkill /F /IM chrome.exe /T");
 			Thread.sleep(2000);
-			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\abhinav.abhinav\\Desktop"));
+			Process p =  Runtime.getRuntime().exec("cmd /c chrome.bat", null, new File("C:\\Users\\sudarsana.kanthasamy\\Desktop"));
 			// Process p = Runtime.getRuntime().exec("cmd /c chrome.bat", null, new
 			// File(System.getProperty("user.dir")+"\\Driver\\chrome.bat"));
 			Thread.sleep(3000);
@@ -216,7 +222,9 @@ public class TestBase {
 		initialization(browser);
 		//wait = new WebDriverWait(driver, Duration.ofSeconds(50));
 		
-
+		driver.manage().deleteAllCookies();
+	    driver.get("chrome://settings/clearBrowserData");
+	    driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
 		driver.get(prop.getProperty("applicationUrl"));
 
 		// ExtentTest test;
@@ -227,6 +235,17 @@ public class TestBase {
 
 		report.attachReporter(spark);
 
+	}
+	@AfterSuite
+	public void afterSuite(){
+		/*try {
+		      Runtime.getRuntime().exec( "wscript C:\\Users\\sudarsana.kanthasamy\\Desktop\\Outlook1.vbs " + applicationLoginResults +" "+ RegistrationResults+" "+WorkItemCreatedResults+" "+PeoIdGeneratedResults );
+		   }
+		   catch( IOException e ) {
+		      System.out.println(e);
+		      System.exit(0);
+		   }*/
+	
 	}
 
 	@AfterTest
@@ -244,6 +263,13 @@ public class TestBase {
 		report.flush();
 		driver.close();
 		driver.quit();
+	/*	try {
+		      Runtime.getRuntime().exec( "wscript C:\\Users\\sudarsana.kanthasamy\\Desktop\\Outlook.vbs " + applicationLoginResults +" "+ RegistrationResults+" "+WorkItemCreatedResults+" "+PeoIdGeneratedResults );
+		   }
+		   catch( IOException e ) {
+		      System.out.println(e);
+		      System.exit(0);
+		   }*/
 	}
 
 	// sleep methods

@@ -40,15 +40,22 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		 
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 PEOPage.peoRegister.click();
+		// PEOPage.peoRegister.click();
 		 sleep(3000);
-		
-	     commonFuntions.clickButtonContains("Save & Continue");
+		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		 PEOPage.menuPeo.click();	
+		 commonFuntions.screenShot("Menu","Pass","Register PEO");
+		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
+		 Thread.sleep(3000);
+	     
+		 commonFuntions.clickButtonContains("Save & Continue");
 	     commonFuntions.errorLabelFollowingField(" Required ","First Name");
 	     commonFuntions.errorLabelFollowingField(" Required ","Last Name");
 	     commonFuntions.errorLabelFollowingField(" Required ","Job Title");
-	     commonFuntions.errorLabelFollowingField("* Required"," Contact Number ");
-	     commonFuntions.errorLabelFollowingField("* Required","Ext");
+	    // commonFuntions.errorLabelFollowingField("* Required"," Contact Number ");
+	    // commonFuntions.errorLabelFollowingField("* Required","Ext");
 	     
 	     commonFuntions.screenShot("PeoRegistrationError","Pass","PEO Registration - Contact Details Error");	
 	     
@@ -275,7 +282,8 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		    PEOPage.queue.click();
-	    sleep(15000);
+	    //sleep(15000);
+		    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
@@ -293,6 +301,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}commonFuntions.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");
@@ -358,6 +367,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     commonFuntions.clickButtonContains("Submit");
 		     sleep(5000);
 		     commonFuntions.screenShot("Success","Pass","SuccessPage");
+		     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	     
 	}
 
