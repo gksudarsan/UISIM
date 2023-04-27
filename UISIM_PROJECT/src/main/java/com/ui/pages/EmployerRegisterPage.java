@@ -358,6 +358,9 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
 	public WebElement agent_CO_County;
 	
-	
+	//Palak
+	@FindBy(how = How.XPATH, using = "//*[@id='bmadmailingAddressId_attention']")
+	public WebElement uspsBmadAddressAttention;
+		
 }
 
