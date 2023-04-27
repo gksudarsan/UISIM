@@ -65,28 +65,26 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+			driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-		Thread.sleep(10000);
+			Thread.sleep(10000);
 
-				
-				
-				
-		driver.navigate().refresh();
-		Thread.sleep(10000);
-		driver.navigate().refresh();
-		Thread.sleep(5000);
+			driver.navigate().refresh();
+			Thread.sleep(10000);
+			driver.navigate().refresh();
+			Thread.sleep(5000);
+
+			screenShot("okPopUpButton", "Pass", "okPopUp");
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+			driver.navigate().refresh();
+			Thread.sleep(3000);
+			if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+				loginPage.okPopUpButton.click();
+				Thread.sleep(3000);
+			}
+		} catch (Exception e) {
 		}
-		catch(Exception e) {}
-		screenShot("okPopUpButton", "Pass", "okPopUp");
-//		loginPage.okPopUpButton.click();
-		Thread.sleep(3000);
-		driver.navigate().refresh();
-		Thread.sleep(3000);
-//		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-//			loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
-//		}
 
 	}
 
@@ -99,6 +97,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(value);
+	}
+
+	public void clickHyperlink(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]"));
 	}
 
 	public void clickButton(String xpathParameter) {
@@ -161,13 +163,16 @@ public class commonStepDefinitions extends TestBase {
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
-	
+
 	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
-		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+		driver.findElement(By.xpath("//*[.='" + fieldName + "']//following::mat-error[.='" + xpathParameter + "'][1]"))
+				.isDisplayed();
 	}
 
 	public void errorLabelContains(String xpathParameter, String fieldName) {
-		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
+		driver.findElement(
+				By.xpath("//*[.='" + fieldName + "']//following::mat-error[contains(.,'" + xpathParameter + "')][1]"))
+				.isDisplayed();
 	}
 
 	public void errorContent(String xpathParameter) {
@@ -268,6 +273,55 @@ public class commonStepDefinitions extends TestBase {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
 							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue)
 							+ "]//following::*[@class='mat-radio-container']")).click();
+					break label1;
+				}
+			}
+
+		}
+	}
+
+	public void selectTableWithoutId(String ssnValue, int columnValue, int tableId, String tableName) {
+		WebElement table = driver
+				.findElement(By.xpath("//*[.='" + tableName + "']//following::mat-table[" + tableId + "]"));
+
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.contains(ssnValue)) {
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::mat-table[" + tableId
+							+ "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//a[1]")).click();
+					break label1;
+				}
+			}
+
+		}
+	}
+
+	public void selectTableParameterizedId(String ssnValue, int columnValue, int tableId, String tableName,
+			String tableHtmlId) {
+		WebElement table = driver.findElement(
+				By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "'][" + tableId + "]"));
+
+		List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+		int row_count = rows.size();
+		System.out.println("Total Row: " + row_count);
+		label1: for (int row = 0; row < row_count; row = row + 1) {
+			List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+			int columns_count = columns.size();
+			System.out.println("Number of cells In Row " + row + " are " + columns_count);
+			for (int column = 0; column < columns_count; column++) {
+				String celtext = columns.get(column).getText();
+				if (celtext.equals(ssnValue)) {
+					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]/a[1]")).click();
 					break label1;
 				}
 			}
@@ -410,15 +464,15 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//u[contains(.,'" + xpathParameter + "')][1]")).click();
 
 	}
-	
+
 	public void clickOnLinkBasisClass(String xpathParameter) {
 		driver.findElement(By.xpath("//u[contains(@class,'" + xpathParameter + "')][1]")).click();
 
 	}
-	
+
 	public void clickOnLinkAnchorTag(String xpathParameter) {
 		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
-		}
+	}
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 
@@ -547,7 +601,8 @@ public class commonStepDefinitions extends TestBase {
 		sleep(5000);
 
 		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio("I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		selectRadio(
+				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
 		clickButtonContains("Continue");
 		sleep(2000);
 		// loginPage.okPopUpButton.click();
@@ -594,18 +649,14 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + output);
 	}
-	
 
 	public void selectFromDropdown(String xpathParameter) {
 		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
 
 	}
-	
-	
-	
 
 	public void enterPastDate(String xpathParameter, int daysSub) {
 		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
@@ -617,52 +668,56 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(output);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + output);
 	}
-	
+
 	public void enterDateOfCurrentQuaterFirstMonth(String xpathParameter) {
 		String fieldName;
 		LocalDate myLocal = LocalDate.now();
 		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
-		
+
 		switch (quarter) {
 		case 1:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("01012023");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"01/01/2023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+					.sendKeys("01012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "01/01/2023");
 			break;
 		case 2:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("04012023");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"04/01/2023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+					.sendKeys("04012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "04/01/2023");
 			break;
 		case 3:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("07012023");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"07/01/2023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+					.sendKeys("07012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "07/01/2023");
 			break;
 		case 4:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("10012023");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"10/01/2023");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+					.sendKeys("10012023");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "10/01/2023");
 			break;
 		default:
 			System.out.println("Error in code");
 			break;
 		}
-		
+
 	}
-	
+
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
 		sleep(3000);
 	}
-	
+
 	public void forceClearText(WebElement ele) {
 		Actions a = new Actions(driver);
 		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
-	
+
 }
