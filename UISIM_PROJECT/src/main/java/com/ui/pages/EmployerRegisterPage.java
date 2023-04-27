@@ -320,5 +320,13 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legal_Name_Business_Input;
+	
+	//Palak
+	@FindBy(how = How.XPATH, using = "//*[@id='bmadmailingAddressId_attention']")
+	public WebElement uspsBmadAddressAttention;
+	
+	
+	
+	
 }
 

@@ -73,6 +73,12 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//a[.='Sign out'][@data-trigger-click='true']")
 	public WebElement signOut;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='reasonId']")
+	public WebElement reasonId_SREG060;
+	
+	//@FindBy(how = How.XPATH, using = "//a[.='Sign out'][@data-trigger-click='true']")
+	//public WebElement signOut
+	
 	
 	
 	public void navigateToAccountMaintenance() throws Exception {
@@ -149,5 +155,9 @@ public class HomePage {
 				stepDef.clickElement(registerPeo);
 		
 			}
+			
+
+			@FindBy(how = How.XPATH, using = "//*[@id='MaintainRateUpdateContributionRate']")
+			public WebElement MaintainRateUpdateContributionRate;
 		
 }
