@@ -361,6 +361,24 @@ public class EmployerRegisterPage extends TestBase {
 	//Palak
 	@FindBy(how = How.XPATH, using = "//*[@id='bmadmailingAddressId_attention']")
 	public WebElement uspsBmadAddressAttention;
-		
+	@FindBy(how = How.XPATH, using = "//*[@id='AccountMaintenance']")
+	public WebElement Account_Maintenance;
+
+@FindBy(how = How.XPATH, using = "//*[@id='MaintainRateUpdateContributionRate']")
+public WebElement Employer_Rate;
+
+@FindBy(how = How.XPATH, using = "//*[@id='AccountMaintenanceMaintainRate']")
+public WebElement Maintain_Rate;
+
+@FindBy(how = How.XPATH, using = "/*[@id=\"eanBeanId\"]")
+public WebElement Emp_RegiNo;
+
+@FindBy(how = How.XPATH, using = "//*[text()='Account Maintenance'][1]")
+public WebElement Account_Maintenance1;
+
+
+@FindBy(how = How.XPATH, using = "//*[@id='main-container']")
+public WebElement UpdateContributionRate;
+
 }
 
