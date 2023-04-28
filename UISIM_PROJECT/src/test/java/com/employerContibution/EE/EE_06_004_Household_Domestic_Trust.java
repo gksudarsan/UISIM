@@ -165,44 +165,23 @@ public class EE_06_004_Household_Domestic_Trust extends TestBase{
 
 		//Resolving 1 WI................
 		PEOPage.queue.click(); Thread.sleep(15000);
-		//cf.enterTextboxContains("FEIN",FEIN);
-		cf.screenShot("FeinSearch","Pass","feinSearch");
-		//cf.clickButtonContains("Search"); Thread.sleep(2000);
-		cf.screenShot("review employer type","Pass","emp type");
-		cf.clickOnLink("Review Employer Type");
-
-		Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
-		Thread.sleep(2000);
-		cf.screenShot("","Pass","review emp type  ");
-
-		cf.selectDropdown("*Account Status ", "Liable");
-		cf.enterTextboxContains("Comment", "registration in process");
-		cf.clickButtonContains("Submit"); Thread.sleep(2000);
-		cf.screenShot("GeneralInfo","Pass","General Information");
-		cf.clickButtonContains("Home");
-
-		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)"); Thread.sleep(2000);
-
-		//Resolving 2ND WI ................
-		PEOPage.queue.click(); Thread.sleep(15000);
 		cf.enterTextboxContains("FEIN",FEIN);
 		cf.screenShot("FeinSearch","Pass","feinSearch");
 		cf.clickButtonContains("Search"); Thread.sleep(2000);
-		cf.screenShot("DOL DTF Discrepancy","Pass","emp type");
-		cf.clickOnLink("DOL DTF Discrepancy");
+		cf.screenShot("Review potential Duplicates ","Pass","emp type");
+		cf.clickOnLink("Review potential Duplicates");
 
 		Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
 		Thread.sleep(2000);
-		cf.screenShot("","Pass","DOL DTF ");
-		cf.selectDropdown("Quarter", "1");sleep();
-		cf.selectDropdown("Year", "2023");sleep();
-		cf.selectRadioQuestions("If you are not liable under the Unemployment Insurance law for agricultural employment, do you wish to elect voluntary coverage?", "Yes");
-		cf.selectDropdown("*Account Status ", "Liable");
+		cf.screenShot("","Pass","Review potential Duplicates  ");
+
+		//cf.selectDropdown("*Account Status ", "Liable");
 		cf.enterTextboxContains("Comment", "registration in process");
 		cf.clickButtonContains("Submit"); Thread.sleep(2000);
 		cf.screenShot("GeneralInfo","Pass","General Information");
 		cf.clickButtonContains("Home");
 
+	
 		//Verify Registered employer in Inquery page 	...........
 		em.Inquery_fein(FEIN);
 		test.log(Status.PASS, "Clicked on Home button");
