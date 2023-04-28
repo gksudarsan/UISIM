@@ -88,7 +88,7 @@ public class commonStepDefinitions extends TestBase {
 //			Thread.sleep(3000);
 //		}
 
-	}
+		}
 
 	public void enterTextbox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).clear();
@@ -194,7 +194,11 @@ public class commonStepDefinitions extends TestBase {
 						+ "_" + fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
-		} else {
+		} else if (status.equalsIgnoreCase("Warning")) {
+			test.log(Status.WARNING, message);
+		} else if(status.equalsIgnoreCase("Skip")) {
+			test.log(Status.SKIP, message);
+		}else {
 			test.log(Status.FAIL, message);
 		}
 		// test.info(message);

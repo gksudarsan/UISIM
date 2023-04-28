@@ -331,6 +331,58 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//u[text()='Obtain Bond Task']")
 	public WebElement obtain_bond_task_My_Q;
 	
+	// --- ankan
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='principalProducts']")
+	public WebElement principalProducts_SREG008;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='principalRawMaterial']")
+	public WebElement principalRawMaterial_SREG008;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='agadAddressId_careOf']")
+	public WebElement uspsAgadCareOf;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='agadAddressId_address1']")
+	public WebElement uspsAgadAddressText;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='agadAddressId_city']")
+	public WebElement uspsAgadCityText;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='agadAddressId_zip']")
+	public WebElement uspsAgadZipText;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='agadcountyId']")
+	public WebElement uspsAgadCounty;
+
+	@FindBy(how = How.XPATH, using =  "//*[@id='agadfirstNameId']")
+	public WebElement uspsAgadFirstNameText;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='agadlastNameId']")
+	public WebElement uspsAgadLastNameText;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='tradeNameId']")
+	public WebElement tradeNameId_SREG011;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='preAddressId_address1']")
+	public WebElement address1_SREG011;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='preAddressId_city']")
+	public WebElement city_SREG011;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='preAddressId_zip']")
+	public WebElement zip_SREG011;
+	
+	@FindBy(how = How.XPATH, using =  "//*[@id='productSoldOrRendered']")
+	public WebElement productSoldOrRendered_SREG008;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='typeOfEstablishment']")
+	public WebElement typeOfEstablishment_SREG008;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
+	public WebElement firstCalender_Quater_Value_1;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+	public WebElement commentId_EEWI002;
 	
 }
 
