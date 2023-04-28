@@ -19,21 +19,23 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_06_003_Household_Domestic_Estate extends TestBase{
+public class EE_06_004_Household_Domestic_Trust extends TestBase{
 
 	@Test()
 	public void EE_01_004_csr_registration() throws Exception {
 
 		commonStepDefinitions cf = new commonStepDefinitions();	
-		  String feinValue1 =StringUtils.left( String.valueOf((long)
-		  (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
-		  FEIN = feinValue2 + feinValue1 ; 
-		  System.out.println("FEIN NUMBER = " +FEIN);
+		/*
+		 * String feinValue1 =StringUtils.left( String.valueOf((long)
+		 * (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
+		 * feinValue = feinValue2 + feinValue1 ; System.out.println("FEIN NUMBER = "
+		 * +feinValue);
+		 */
 		 
-		//Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-		//		"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
-	//	String FEIN = databaseResults1.get("FEIN");
-		//System.out.println("FEIN NUMBER  = " +FEIN);
+		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
+			"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
+		String FEIN = databaseResults1.get("FEIN");
+		System.out.println("FEIN NUMBER  = " +FEIN);
 		String EntityName = prop.getProperty("Entity");
 		employerManagement em =  new employerManagement();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
@@ -115,9 +117,9 @@ public class EE_06_003_Household_Domestic_Estate extends TestBase{
 		cf.clickButtonContains("Continue");	
 		sleep(2000);
 		cf.screenShot("Change in Legal Entity", "Pass", "Change in Legal Entity(SREG-012");
-		cf.selectRadioQuestions("Have you changed legal entity?", " Yes ");
-		cf.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", "7242785235");
-		cf.enterTextboxContains("Date of Notification", "12/12/2022");
+		cf.selectRadioQuestions("Have you changed legal entity?", " No ");
+		//cf.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", "7242785235");
+		//cf.enterTextboxContains("Date of Notification", "12/12/2022");
 		cf.clickButtonContains("Continue");
 		sleep(2000);
 		cf.screenShot("Add executor", "Pass", "");
@@ -163,44 +165,23 @@ public class EE_06_003_Household_Domestic_Estate extends TestBase{
 
 		//Resolving 1 WI................
 		PEOPage.queue.click(); Thread.sleep(15000);
-		//cf.enterTextboxContains("FEIN",FEIN);
-		cf.screenShot("FeinSearch","Pass","feinSearch");
-		//cf.clickButtonContains("Search"); Thread.sleep(2000);
-		cf.screenShot("review employer type","Pass","emp type");
-		cf.clickOnLink("Review Employer Type");
-
-		Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
-		Thread.sleep(2000);
-		cf.screenShot("","Pass","review emp type  ");
-
-		cf.selectDropdown("*Account Status ", "Liable");
-		cf.enterTextboxContains("Comment", "registration in process");
-		cf.clickButtonContains("Submit"); Thread.sleep(2000);
-		cf.screenShot("GeneralInfo","Pass","General Information");
-		cf.clickButtonContains("Home");
-
-		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)"); Thread.sleep(2000);
-
-		//Resolving 2ND WI ................
-		PEOPage.queue.click(); Thread.sleep(15000);
 		cf.enterTextboxContains("FEIN",FEIN);
 		cf.screenShot("FeinSearch","Pass","feinSearch");
 		cf.clickButtonContains("Search"); Thread.sleep(2000);
-		cf.screenShot("DOL DTF Discrepancy","Pass","emp type");
-		cf.clickOnLink("DOL DTF Discrepancy");
+		cf.screenShot("Review potential Duplicates ","Pass","emp type");
+		cf.clickOnLink("Review potential Duplicates");
 
 		Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
 		Thread.sleep(2000);
-		cf.screenShot("","Pass","DOL DTF ");
-		cf.selectDropdown("Quarter", "1");sleep();
-		cf.selectDropdown("Year", "2023");sleep();
-		cf.selectRadioQuestions("If you are not liable under the Unemployment Insurance law for agricultural employment, do you wish to elect voluntary coverage?", "Yes");
-		cf.selectDropdown("*Account Status ", "Liable");
+		cf.screenShot("","Pass","Review potential Duplicates  ");
+
+		//cf.selectDropdown("*Account Status ", "Liable");
 		cf.enterTextboxContains("Comment", "registration in process");
 		cf.clickButtonContains("Submit"); Thread.sleep(2000);
 		cf.screenShot("GeneralInfo","Pass","General Information");
 		cf.clickButtonContains("Home");
 
+	
 		//Verify Registered employer in Inquery page 	...........
 		em.Inquery_fein(FEIN);
 		test.log(Status.PASS, "Clicked on Home button");
