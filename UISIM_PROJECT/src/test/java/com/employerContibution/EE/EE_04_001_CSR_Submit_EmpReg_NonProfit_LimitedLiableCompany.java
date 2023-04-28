@@ -372,12 +372,13 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		empRegPage.firstCalender_Year.click();
 		empRegPage.firstCalender_Year_Value_2022.click();
 	    empRegPage.commentId_EEWI002.sendKeys("Tested Ok");
-	    sleep();
+	    sleep(2000);
+	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to EEWI-002 page");
 	    commonFunction.clickButtonContains("Submit ");
 	    
 	    // --- SUC-002 ---
 	    sleep(3000);
-	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-013 page");
+	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SUC-002 page");
 		commonFunction.clickButton("Home ");
 		
 		
@@ -393,7 +394,6 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    // scripted till step 47,DOL DTF WI not created
 	    commonFunction.screenShot("EE04001","Fail","DOL DTF Discripency WI Not created");
 	    
-		System.out.println("Fail");
 	}
 
 }

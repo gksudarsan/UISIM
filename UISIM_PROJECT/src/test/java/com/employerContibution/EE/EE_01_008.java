@@ -83,8 +83,73 @@ public class EE_01_008 extends TestBase {
 		commonFunction.selectDropdown("County", " Albany ");
 		commonFunction.clickButton("Continue ");
 		
+		// --- SREG-008 ---
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
+		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
+		commonFunction.enterTextboxContains("City ", "New York");
+		commonFunction.enterTextboxContains("Zip Code", "10011");
+		sleep();
+		commonFunction.selectDropdown("State", " New York ");
+		commonFunction.selectDropdown("County", " Albany ");
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Pass", "Enter the details on SREG-008 and click continue");
+		commonFunction.clickButton("Continue ");
 		
-		commonFunction.screenShot("EmpRegister6", "Fail", "System Failure");
+		sleep(2000);
+		try {
+			empRegPage.uspsBusinessAddress.click();
+		} catch (Exception exception) {
+			empRegPage.uspsBusinessAddressInnerCircle.click();
+		}
+		
+		commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection on SREG-008");
+		empRegPage.continueButton_popUp.click();
+		
+		// --- SREG-007 ---
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Warning", "Successful launch to Business Physical Address Details(SREG-007) page");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-004 ---
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
+		//commonFunction.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
+		commonFunction.selectRadioQuestions("Business Mailing Address", "Other");
+		empRegPage.uspsBmadAddressText.sendKeys("721 Broadway");
+		empRegPage.uspsBmadCityText.sendKeys("New York");
+		empRegPage.uspsBmadZipText.sendKeys("10003");
+		empRegPage.uspsBmadCounty.click();
+		commonFunction.selectFromDropdown(" Albany ");
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Pass", "Successfully entered details in SREG-004 page");
+		
+		sleep(2000);
+		commonFunction.clickButton("Continue ");
+		
+		sleep();
+		try {
+		empRegPage.uspsBmadAddressRadio.click();
+		} catch(Exception exception) {}
+		
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Pass", "Click on appropriate USPS radio on SREG-004 page");
+		try {
+		empRegPage.continueButton_popUp.click();
+		} catch(Exception exception) {}
+		
+		try {
+			commonFunction.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "No ");
+			commonFunction.clickButton("Continue ");
+		} catch(Exception exception) {}
+		
+		// SREG-011 expected, SREG-521 coming. 
+		sleep(2000);
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-521 page");
+		commonFunction.clickButton("Continue ");
+		
+		//Coming wrong page at step 12
+		commonFunction.screenShot("EE01008", "Fail", "Expected SREG - 011, Launching SREG - 683");
 	}
 
 }
