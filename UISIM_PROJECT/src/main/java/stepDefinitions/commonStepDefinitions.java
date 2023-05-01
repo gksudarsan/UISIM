@@ -202,10 +202,6 @@ public class commonStepDefinitions extends TestBase {
 						+ "_" + fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
-		} else if (status.equalsIgnoreCase("Warning")) {
-			test.log(Status.WARNING, message);
-		} else if(status.equalsIgnoreCase("Skip")) {
-			test.log(Status.SKIP, message);
 		}else {
 			test.log(Status.FAIL, message);
 		}
