@@ -35,17 +35,37 @@ public class COMMON_CONSTANT {
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
 
 	
-	// Customer Service Representative - CSR
-	public static final String EMPLOYER_USER_1 = "manju@2004";
+	// Employer
+	public static final String EMPLOYER_USER_1 = "manju@2004"; // Member/Managing Member
 	public static final String EMPLOYER_USER_1_PASSWORD = "Manhar2004@1234";
+	
+	public static final String EMPLOYER_USER_2 = "ndhav3"; // Trustee
+	public static final String EMPLOYER_USER_2_PASSWORD = "uisimtesting@123";
+	
+	public static final String EMPLOYER_USER_3 = "Soleprop123"; // Sole Prop
+	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123456";
+	
+	public static final String EMPLOYER_USER_4 = "tst_empr"; // Corporate Officer/Owner
+	public static final String EMPLOYER_USER_4_PASSWORD = "Nysdol@0210";
+
+	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
+	public static final String EMPLOYER_USER_5_PASSWORD = "Hachiku7533991779";
+	
+	public static final String EMPLOYER_USER_6 = "shivam0106"; // Executor
+	public static final String EMPLOYER_USER_6_PASSWORD = "$hivamS01061987";
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
 	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
 	
+	public static final String TPR_USER_2 = "thdprty";
+	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";
+	
 	//PEO
 	public static final String PEO_USER_1 = "peouser";
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
+	
+	
 
 	/* ********* creds end ********* */
 
