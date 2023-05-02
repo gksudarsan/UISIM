@@ -3,13 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.employerContibution.EE.EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnership">
+      <class name="com.employerContibution.EE.EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility">
         <methods>
-          <include name="EE_02_004"/>
           <include name="setup"/>
+          <include name="EE_09_003"/>
           <include name="tearDownCT_ST"/>
         </methods>
-      </class> <!-- com.employerContibution.EE.EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnership -->
+      </class> <!-- com.employerContibution.EE.EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

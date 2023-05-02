@@ -627,6 +627,7 @@ public class commonStepDefinitions extends TestBase {
 	public void logoutAndLogin(String userName, String password) throws Exception {
 		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		clickMenu("LOG OUT");
+		sleep(4000);
 		clickMenu("Go to Homepage");
 		sleep(2000);
 		HomePage.menuLogout.click();
@@ -721,7 +722,6 @@ public class commonStepDefinitions extends TestBase {
 		
 	}
 	
-
 	
 	public void forceClearText(WebElement ele) {
 		Actions a = new Actions(driver);
