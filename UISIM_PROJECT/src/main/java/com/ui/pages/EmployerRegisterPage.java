@@ -358,6 +358,45 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
 	public WebElement agent_CO_County;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration']/../following-sibling::div/div/button")
+	public WebElement employer_Register_Edit_Button;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Contact Details']/../following-sibling::div/div/button")
+	public WebElement Contact_Detail_Edit_Button;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='General Information']/../following-sibling::div/div/button")
+	public WebElement general_Info_Edit_Button;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Entity Information']/../following-sibling::div/div/button")
+	public WebElement employer_entity_Edit_Button;
+	
+	@FindBy(how = How.XPATH, using = "//u[text()='Short Form Registration Review']")
+	public WebElement shor_Form_Registration_Review_Link;
+
+	@FindBy(how = How.XPATH, using = "//a[text()='Short Form Registration']")
+	public WebElement shor_Form_Registration_Link_SREG_818;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
+	public WebElement firstCalender_Quater_Value_1;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='FEIN']/following-sibling::mat-label")
+	public WebElement FEIN_Value_Text_SREG_051;
+
+	@FindBy(how = How.XPATH, using = "//span[text()='Inquiry']")
+	public WebElement inquiry_dropDown_Menu;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='Contribution Inquiry']")
+	public WebElement Contribution_dropDown_Menu;
+	
+	@FindBy(how = How.XPATH, using = "//u[text()='Add Member/Managing Member Details']")
+	public WebElement add_Member_Managing_Member_Detail_Link;
+	
+	
+	
+	
+	
+	
+	
 	
 }
 

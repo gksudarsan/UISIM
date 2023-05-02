@@ -565,6 +565,7 @@ public class commonStepDefinitions extends TestBase {
 	public void logoutAndLogin(String userName, String password) throws Exception {
 		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		clickMenu("LOG OUT");
+		sleep(4000);
 		clickMenu("Go to Homepage");
 		sleep(2000);
 		HomePage.menuLogout.click();
@@ -656,7 +657,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30000);
+		WebDriverWait wait = new WebDriverWait(driver, 20000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
 		sleep(3000);
 	}
