@@ -215,5 +215,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='additionalAddressId0_zip']")
 	public WebElement listCurrentAddressZip;
      
+	@FindBy(how = How.XPATH, using = "//*[.=' Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	public WebElement enteredAddress;
 	
 }

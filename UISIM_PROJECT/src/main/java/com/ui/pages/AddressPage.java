@@ -166,5 +166,9 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@id=\"commentId\"]")
     public WebElement commentField;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,\"Notification date of Transfer\")]//following::input[1]")
+    public WebElement notificationDateTransfer;
+	
 }
 
