@@ -663,6 +663,43 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
+	public void enterRandomString(String xpathParameter) {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 10; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+		.sendKeys(randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+		test.log(Status.INFO, fieldName+" : : "+randomString);
+
+	}
+
+	public void enterRandomStringLegalName(String xpathParameter) {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 15; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")).clear();
+		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea"))
+		.sendKeys(randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
+		test.log(Status.INFO, fieldName+" : : "+randomString);
+
+	}
 	
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30000);
