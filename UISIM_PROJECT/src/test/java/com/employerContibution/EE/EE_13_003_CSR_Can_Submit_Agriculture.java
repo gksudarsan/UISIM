@@ -89,14 +89,5 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.safeJavaScriptClick(empPage.countyDropDown_Form1);
 		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
 		
-		WebElement ele = driver.findElement(By.xpath("<xpath>"));
-
-		//Creating object of an Actions class
-		Actions action = new Actions(driver);
-
-		//Performing the mouse hover action on the target element.
-		action.moveToElement(ele).sendKeys(Keys.SPACE);
-		
-		
 	}
 }
