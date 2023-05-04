@@ -288,8 +288,8 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		     sleep(2000);
 			    PEOPage.queue.click();
-			    sleep(2000);
-		    //sleep(15000);
+			    //sleep(2000);
+		    sleep(15000);
 			    commonFuntions.waitForLoadingIconToDisappear();
 		    commonFuntions.enterTextboxContains("FEIN",feinValue);
 		    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");

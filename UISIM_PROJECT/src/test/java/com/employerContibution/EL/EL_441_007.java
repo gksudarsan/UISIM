@@ -1,7 +1,9 @@
 package com.employerContibution.EL;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -20,6 +22,7 @@ public class EL_441_007 extends TestBase{
 		test = report.createTest("EL.441.007  - Verify CSR can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Public Ownership'");
 		commonStepDefinitions stepDef = new commonStepDefinitions();
 		HomePage home = new HomePage(driver);
+		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		PEOPage peoPg = new PEOPage(driver);
 		PEO_019_PEO_Registration_ContactDetails peoRegDetails = new PEO_019_PEO_Registration_ContactDetails(driver);
 		PEO_001_ProfessionalEmployerOrganizationRegistration pemo = new PEO_001_ProfessionalEmployerOrganizationRegistration(driver);
@@ -30,13 +33,20 @@ public class EL_441_007 extends TestBase{
 		test.log(Status.PASS, "PEO Register");
 		peoRegDetails.clickContinueButton();
 		test.log(Status.INFO, "Clicking on the button");
-		pemo.selectRegDetails();
+		 sleep(2000);
+		 PEOPage.groupRegPeo.click();
+		 stepDef.enterTextbox("Name of Professional Employer Organization","Test_auto"+stepDef.createRandomInteger(1000,9999));
+		 stepDef.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+stepDef.createRandomInteger(1000,9999));
+		 stepDef.screenShot("peor", "Pass", "Professional Employer Organization Registration");
+		 stepDef.clickButtonContains("Save & Continue");
+	     sleep(2000);
+	    
 		test.log(Status.INFO, "Entering the Details");
 		test.log(Status.PASS, "Entered the details");
 		stepDef.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
 		   long number = stepDef.createRandomInteger(10000,99999);
-		   String ernValue="12"+Long.toString(number);
-		   String feinValue=Long.toString( stepDef.createRandomInteger(100000000,999999999));
+		   String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
+			 String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		stepDef.enterTextboxContains("Employer Registration Number", ernValue);
 		stepDef.selectDropdown("Type of Legal Entity", " Corporation ");
 		stepDef.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
@@ -46,7 +56,13 @@ public class EL_441_007 extends TestBase{
 		stepDef.clickButtonContains("Save & Continue ");
 		Thread.sleep(2000);
 		stepDef.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Account Details");
-		driver.findElement(By.xpath("//span[@class='mat-radio-outer-circle']")).click();
+		try {
+			 PEOPage.peoRadioButton.click();
+			stepDef.selectRadioInTable(ernValue,1, 1,"Unemployment Insurance Account Details");
+		     }
+		     catch(Exception e) {}
+		stepDef.screenShot("Unemployment Insurance", "PASS", "Unemployment Insurance Account Details");
+	     
 		stepDef.clickButtonContains("Save & Continue ");
 		Thread.sleep(2000);
 		peoPg.attentionCareOf.sendKeys("Test");
@@ -92,6 +108,15 @@ public class EL_441_007 extends TestBase{
 	    stepDef.enterTextboxContains("Zip Code","13430");
 	    stepDef.screenShot("Ownership Information - privately or closely held company", "PASS", "Ownership Information - privately or closely held company");
 		stepDef.clickButtonContains("Save & Continue ");
+		Thread.sleep(2000);
+		try {
+		     PEOPage.uspsSuggestedAddress.click();
+		     stepDef.screenShot("VerifyContactDetails","Pass","UspsAddress");
+		     PEOPage.UspsContinueButton.click();
+		     sleep(2000);
+		     }
+		     catch(Exception e) {}
+		     
 		stepDef.screenShot("Verify Ownership Information", "PASS", "Verify Ownership Information");
 		stepDef.clickButtonContains("Continue ");
 		Thread.sleep(2000);
@@ -116,20 +141,22 @@ public class EL_441_007 extends TestBase{
 	    Thread.sleep(2000);
 	    
 	    //upload files
-	    WebElement browse = driver.findElement(By.xpath("//app-file-upload-multiple[@id='fileNameId1']//strong[contains(text(),'Browse')]"));
-	    browse.sendKeys("C:\\Users\\sanjay.kumar2\\Downloads\\TESTINGEL.docx");
-	    System.out.println("File is Uploaded Successfully");
-	    stepDef.screenShot("Upload Documents", "PASS", "Upload Documents");
-	    Thread.sleep(2000);
-	    stepDef.clickButtonContains("Save & Continue ");
-	
-	    WebElement chooseFiles = driver.findElement(By.xpath("//span[text()='Choose File']"));
-	    chooseFiles.sendKeys("C:\\Users\\sanjay.kumar2\\Downloads\\PEO Client List template_TestData2.xls");
-	    System.out.println("file uploaded..");
-	    stepDef.screenShot("Upload Client List", "PASS", "Upload Client List");
-	    Thread.sleep(2000);
-	    stepDef.clickButtonContains("Continue ");
-	    stepDef.screenShot("Verify Client List", "PASS", "Verify Client List");
+	    stepDef.selectCheckbox("Proof of NYS Workers");
+	    stepDef.selectLink("Proof of NYS Workers", "Browse");
+		 sleep(2000);
+		 stepDef.uploadDoc("Sample.docx");
+		 sleep(4000);
+		 stepDef.clickButtonContains("Upload");
+		 sleep(2000);
+		 stepDef.screenShot("Upload Documents", "PASS", "Upload Documents");
+		 stepDef.clickButtonContains("Save & Continue");
+		 sleep(2000);
+		 stepDef.clickButtonContains("Choose File");
+		 sleep(2000);
+		 stepDef.uploadDoc("PEO Client List template_TestData2.xls");
+		 sleep(2000);
+		 stepDef.screenShot("Upload Client List", "PASS", "Upload Client List");
+		 stepDef.clickButtonContains("Continue");    stepDef.screenShot("Verify Client List", "PASS", "Verify Client List");
 	    stepDef.clickButtonContains("Continue ");
 	    Thread.sleep(2000);
 	    //stepDef.enterTextboxContains("Federal Employer Identification Number (FEIN)", "123456789");
@@ -172,8 +199,14 @@ public class EL_441_007 extends TestBase{
 	    stepDef.screenShot("Verify Prior Address(es) in New York", "PASS", "Verify Prior Address(es) in New York");
 	    Thread.sleep(2000);
 	    stepDef.clickButtonContains("Continue ");
-	    chooseFiles.sendKeys("C:\\Users\\sanjay.kumar2\\Downloads\\PEO Client List template_TestData2.xls");
-	    System.out.println("file uploaded");
+	    Thread.sleep(2000);
+	    stepDef.clickButtonContains("Choose File");
+		sleep(2000);
+		stepDef.uploadDoc("PEO Client List template_TestData2.xls");
+		sleep(4000);
+		stepDef.clickButtonContains("Continue");
+		sleep(2000);
+		
 	    Thread.sleep(2000);
 	    stepDef.screenShot("Upload Client List", "PASS", "Upload Client List");
 	    stepDef.clickButtonContains("Continue ");
@@ -225,8 +258,14 @@ public class EL_441_007 extends TestBase{
 	    stepDef.screenShot("Verify Prior Address(es) in New York", "PASS", "Verify Prior Address(es) in New York");
 	    Thread.sleep(2000);
 	    stepDef.clickButtonContains("Continue ");
-	    chooseFiles.sendKeys("C:\\Users\\sanjay.kumar2\\Downloads\\PEO Client List template_TestData2.xls");
-	    System.out.println("file uploaded");
+	    sleep(2000);
+	    stepDef.clickButtonContains("Choose File");
+		sleep(2000);
+		stepDef.uploadDoc("PEO Client List template_TestData2.xls");
+		sleep(4000);
+		stepDef.clickButtonContains("Continue");
+		sleep(2000);
+		
 	    Thread.sleep(2000);
 	    stepDef.screenShot("Upload Client List", "PASS", "Upload Client List");
 	    stepDef.clickButtonContains("Continue ");

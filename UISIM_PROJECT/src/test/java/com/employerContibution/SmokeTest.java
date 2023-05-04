@@ -1,4 +1,4 @@
-package com.employerContibution.EL;
+package com.employerContibution;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
@@ -14,7 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
+public class SmokeTest extends TestBase{
 
 	@Test(priority=1, description = "EL.02.007 : Verify CSR can register  PEO Exempt for Type of Legal Entity 'Corporation'",groups = {"Regression"})
 	public void EL_02_007() throws Exception{
@@ -49,7 +49,7 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("PEOPage", "Pass", "Entering random FEIN and ERN values");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
-	     commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " Alaska ");
+	     commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " California ");
 	     commonFuntions.enterTextbox("State agency that issued it.", "New York");
 	     commonFuntions.selectRadioQuestions("Provide Information", "Registration Number");
 	     commonFuntions.enterTextbox("Registration Number ", "3458767985");
@@ -134,7 +134,6 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     Thread.sleep(2000);
 	     
 	    PEOPage.queue.click();
-	    commonFuntions.waitForLoadingIconToDisappear();
 	    Thread.sleep(15000);
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");

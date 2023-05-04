@@ -116,6 +116,17 @@ public class EL_440_02 extends TestBase {
 		commonFunctions.screenShot("ManagePeo8", "Pass", "Verify Contact Details pop-up");
 		commonFunctions.clickButton("Continue ");
 		
+		try {
+			peoPage.uspsAddress.click();
+			sleep();
+			peoPage.currentAdditionalAddress.click();
+			sleep();
+			peoPage.UspsContinueButton.click();
+		} catch(Exception e) { }
+		sleep();
+		commonFunctions.screenShot("verifyCurrentAddress", "Pass", "Verify current Address");
+		commonFunctions.clickButton("Continue ");
+		
 		/* -------------- PEO-004 -----------------*/
 		
 		sleep();
