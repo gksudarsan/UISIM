@@ -282,7 +282,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		    PEOPage.queue.click();
-	    //sleep(15000);
+	    sleep(15000);
 		    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");

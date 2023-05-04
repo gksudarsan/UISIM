@@ -16,13 +16,13 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleProprietorship extends TestBase{
+public class EL_441_006_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_OTHER extends TestBase{
 
 
-	@Test(priority=1, description = "EL.441.003  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Sole Proprietorship' and Type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
-	public void EL_441_002() throws Exception
+	@Test(priority=1, description = "EL.441.006  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Other' and Type of Ownership 'Public'.",groups = {"Regression"})
+	public void EL_441_006() throws Exception
 	{
-		 test = report.createTest("EL.441.003  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Sole Proprietorship' and Type of Ownership 'Privately or Closely Held'.");
+		 test = report.createTest("EL.441.006  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Other' and Type of Ownership 'Public'.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
@@ -67,9 +67,10 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 	     sleep(2000);
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
 	     commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
-	     commonFuntions.selectDropdown("Type of Legal Entity", " Sole Proprietorship (Individual)");
+	     commonFuntions.selectDropdown("Type of Legal Entity", " Other ");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-	     commonFuntions.selectRadioQuestions("Type of Ownership", "Privately or Closely Held");
+	     commonFuntions.selectRadioQuestions("Type of Ownership", "Public");
+	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Date", "02/01/2023");
 	     commonFuntions.screenShot("GI", "PASS", "General Information");
 	     commonFuntions.clickButtonContains("Save & Continue");
@@ -134,10 +135,15 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 	     commonFuntions.screenShot("OwnershipInformation","Pass","Ownership Information - privately or closely held company");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     PEOPage.uspsAddress.click();
+	     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
+	     PEOPage.UspsContinueButton.click();	    
+	     sleep(2000);
+	     
 	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
-	     commonFuntions.enterTextboxContains("Entity or Person","Automation_Pentity");
+	     /*commonFuntions.enterTextboxContains("Entity or Person","Automation_Pentity");
 	     commonFuntions.enterTextboxContains("Ownership Percentage","60");
 	     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
@@ -152,7 +158,7 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 	     sleep(2000);
 	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
-	     sleep(2000);
+	     sleep(2000);*/
 	     commonFuntions.screenShot("submissonInstructions","Pass","Submission Instructions and Responsibilities");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);	     
@@ -245,12 +251,46 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 			commonFuntions.screenShot("current additional address", "Pass", "Verify Current Additional Address(es) in New York");
 			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);
+			try {
+				PEOPage.uspsSuggestedAddress.click();
+				PEOPage.mailingAddress.click();
+				commonFuntions.screenShot("UspsAddress","Pass","UspsAddress");
+				PEOPage.UspsContinueButton.click();
+				sleep(4000);
+			}catch(Exception e) {}
 			commonFuntions.screenShot("Prior Address(es) in New York", "Pass", "Prior Address(es) in New York");
 			commonFuntions.clickButtonContains("Save & Continue");
 			sleep(2000);
 			commonFuntions.screenShot("Verify Prior Address(es) in New York", "Pass", "Verify Prior Address(es) in New York");
 			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);
+			commonFuntions.enterTextboxContains("Entity or Person","Automation_Pentity");
+		     commonFuntions.enterTextboxContains("Ownership Percentage","60");
+		     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+		     commonFuntions.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
+		     commonFuntions.enterTextboxContains("City","NewYork");
+		     commonFuntions.enterTextboxContains("Zip Code","13430");
+		     commonFuntions.screenShot("PriorOwnershipInformation","Pass","PriorOwnership Information - privately or closely held company");
+		     commonFuntions.clickButtonContains("Save & Continue");
+		     sleep(2000);
+		     PEOPage.uspsAddress.click();
+		     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
+		     PEOPage.UspsContinueButton.click();	    
+		     sleep(2000);
+		     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
+		     commonFuntions.clickButtonContains("Continue");
+		     sleep(2000);
+		     commonFuntions.screenShot("submissonInstructions","Pass","Submission Instructions and Responsibilities");
+		     commonFuntions.clickButtonContains("Continue");
+		     sleep(2000);	     
+		     commonFuntions.selectLink("Proof of NYS Workers", "Browse");
+		     sleep(2000);
+		     commonFuntions.uploadDoc("Sample.docx");
+		     sleep(2000);
+		     commonFuntions.screenShot("Upload Documents", "PASS", "Upload Documents");
+			 commonFuntions.clickButtonContains("Save & Continue");
+			 sleep(2000);
+		     
 			commonFuntions.clickButtonContains("Choose File");
 			sleep(2000);
 			commonFuntions.uploadDoc("PEO Client List template_TestData2.xls");
@@ -301,6 +341,7 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 		     sleep(2000);	   
 		     
 		     commonFuntions.screenShot("GeneralInfo","Pass","General Information");
+		     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "Other");
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     sleep(2000);
 		     try {
@@ -338,7 +379,7 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 			     sleep(2000);	
 			     
 			     
-			     commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
+			    /* commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
 			     commonFuntions.clickButtonContains("Continue");
 			     sleep(2000);
 			     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
@@ -352,7 +393,7 @@ public class EL_441_002_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_SoleP
 			     PEOPage.UspsContinueButton.click();	
 			     sleep(2000);
 			     }
-			     catch(Exception e) {}
+			     catch(Exception e) {}*/
 			     commonFuntions.screenShot("VerifyPrioerOwner","Pass","Verify Prior Ownership Information");
 			     commonFuntions.clickButtonContains("Continue");
 			     sleep(2000);

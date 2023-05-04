@@ -161,9 +161,23 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
 	}
+	
+	public void selectDropdownUsingSearch(String xpathParameter, String value) throws InterruptedException {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
+				.click();
+		driver.findElement(By.xpath("//*[@placeholder='search']")).sendKeys(value.trim());
+		sleep(2000);
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+
+	}
+	
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
+	
+	public void Label(String xpathParameter) {
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
 	
 	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
