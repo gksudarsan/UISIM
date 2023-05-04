@@ -834,4 +834,29 @@ public class commonStepDefinitions extends TestBase {
 		sleep(5000);
 	}
 	
+	public void LogoutAndLoginIfOktaPageDisplayed(String userName, String password) throws Exception {
+		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+			HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+			clickMenu("LOG OUT");
+			clickMenu("Go to Homepage");
+			sleep(2000);
+			HomePage.menuLogout.click();
+			HomePage.signOut.click();
+			sleep(5000);
+			 //driver.get(prop.getProperty("applicationUrl"));
+	        Thread.sleep(2000);
+			enterTextbox("Username", userName);
+			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+			test.log(Status.PASS, "User entered Password");
+			Thread.sleep(2000);		
+	        driver.navigate().refresh();
+			driver.get(prop.getProperty("applicationUrl"));
+			loginPage.loginLink.click();
+			sleep(2000);
+
+	}
+	
+	
+
 }
