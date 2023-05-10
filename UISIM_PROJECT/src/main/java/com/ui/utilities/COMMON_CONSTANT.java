@@ -29,15 +29,21 @@ public class COMMON_CONSTANT {
 	public static final String CSR_USER_3_PASSWORD = "Anoop@123456789";
 	
 	public static final String CSR_USER_4 = "Laxmi@12";
-	public static final String CSR_USER_4_PASSWORD = "Hachiku7533991779";
+	public static final String CSR_USER_4_PASSWORD = "Hachiku7533991779";    
 	
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
 
 	
-	// Customer Service Representative - CSR
+	// EMP
 	public static final String EMPLOYER_USER_1 = "manju@2004";
 	public static final String EMPLOYER_USER_1_PASSWORD = "Manhar2004@1234";
+	
+	public static final String EMPLOYER_USER_2 = "ndhav3";
+	public static final String EMPLOYER_USER_2_PASSWORD = "uisimtesting@123";
+	
+	public static final String EMPLOYER_USER_3 = "Soleprop123";
+	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123458";
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
@@ -46,6 +52,9 @@ public class COMMON_CONSTANT {
 	//PEO
 	public static final String PEO_USER_1 = "peouser";
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
+	
+	public static final String PEO_USER_ADMIN = "Peousersnehal";
+	public static final String PEO_USER_ADMIN_PASSWORD = "Snehal@12345678";
 
 	/* ********* creds end ********* */
 

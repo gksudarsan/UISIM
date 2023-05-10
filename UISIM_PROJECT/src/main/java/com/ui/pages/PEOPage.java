@@ -223,6 +223,21 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddress.mailingaddress-input']")
 	public WebElement mailingUspsAddress;
      
+	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
+	public WebElement popContinueButton;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddres.physicaladdress-input'][@name='mat-radio-group-28']")
+	public WebElement PrimaryPhysicalAddress;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='mailingAddressId_country']")
+	public WebElement mailingAddressId_country;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='country_United States']")
+	public WebElement country_US;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='mailingAddressId_state']")
+	public WebElement mailingAddressId_state;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='mailingAddressId_state_NY']")
+	public WebElement state_NY;
 }

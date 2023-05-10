@@ -362,5 +362,10 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//*[@id='bmadmailingAddressId_attention']")
 	public WebElement uspsBmadAddressAttention;
 		
+	@FindBy(how = How.XPATH, using = "//*[@id='legalEntityNameId']")
+	public WebElement legalEntityNameId;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+	public WebElement commentId;
 }
 
