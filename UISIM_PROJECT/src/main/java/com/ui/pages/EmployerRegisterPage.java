@@ -433,5 +433,11 @@ public WebElement firstCalender_Quater_Value_1;
 @FindBy(how = How.XPATH, using = "//*[@id='commentId']")
 public WebElement commentId_EEWI002;
 
+
+@FindBy(how = How.XPATH, using = "//*[@id='legalEntityNameId']")
+public WebElement legalEntityNameId;
+
+@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+public WebElement commentId;
 }
 

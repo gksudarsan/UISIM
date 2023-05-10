@@ -224,5 +224,11 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[.=' Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement enteredAddress;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
+	public WebElement popContinueButton;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddres.physicaladdress-input'][@name='mat-radio-group-28']")
+	public WebElement PrimaryPhysicalAddress;
+	
 	
 }
