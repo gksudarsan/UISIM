@@ -24,7 +24,7 @@ public class EM_321_02_005_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		SREG_074 sreg = new SREG_074(driver);
 		
 		//------Login
-		CommFun.login(COMMON_CONSTANT.CSR_USER_4, COMMON_CONSTANT.CSR_USER_4_PASSWORD);
+		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_5, COMMON_CONSTANT.EMPLOYER_USER_5_PASSWORD);
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 	/*
