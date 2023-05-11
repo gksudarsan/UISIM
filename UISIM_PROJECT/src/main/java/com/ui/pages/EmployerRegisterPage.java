@@ -439,5 +439,12 @@ public WebElement legalEntityNameId;
 
 @FindBy(how = How.XPATH, using = "//*[@id='commentId']")
 public WebElement commentId;
+
+// EM pages
+@FindBy(how = How.XPATH, using = "//*[@id='typeOfLegalEntityId']")
+public WebElement typeOfLegalEntityId;
+
+@FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
+public WebElement individualOwnership;
 }
 
