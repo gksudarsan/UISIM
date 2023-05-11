@@ -250,5 +250,13 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'npca Address_0')]//following::*[@class='mat-radio-container'][1]")
 	public WebElement uspsNpcaAddressRadio;
+	
+	
+	// EM pages
+	@FindBy(how = How.XPATH, using = "//*[@id='typeOfLegalEntityId']")
+	public WebElement typeOfLegalEntityId;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
+	public WebElement individualOwnership;
 }
 
