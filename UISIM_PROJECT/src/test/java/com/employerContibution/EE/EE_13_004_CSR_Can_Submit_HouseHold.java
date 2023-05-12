@@ -18,7 +18,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
+public class EE_13_004_CSR_Can_Submit_HouseHold extends TestBase {
 
 	@Test()
 	public void EE_13_003() throws Exception {
@@ -27,7 +27,7 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
 		test = report.createTest(
-				"EE.13.003 -Verify CSR can submit employer registration for employer type 'Agricultural'.");
+				"EE.13.004 - Verify CSR can submit employer registration for employer type 'Household/Domestic'Short Form flow");
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -43,24 +43,27 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		sleep(3000);
 		/*--------------------SREG-025------------------*/
 		
-		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-		commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
+		commonFuntions.selectDropdown("Employer Type", " Household/Domestic ");
+		commonFuntions.selectDropdown("Type of Legal Entity", " Sole Proprietorship (Individual) ");
 		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		System.out.println("FEIN : : "+feinValue);
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Navigated to SREG-025 page and filling the form");
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.selectDropdown("Source", " IA602 ");
-		commonFuntions.selectDropdown("Source Type", " Cash Wages ");
+		commonFuntions.selectDropdown("Source Type", " Fraud ");
 		commonFuntions.clickButton("Continue ");
 		sleep(4000);
 		/*--------------------SREG-025------------------*/
-		empPage.legalTextInput.sendKeys("d usygyufudsgf df llc");
+		empPage.legalTextInput.sendKeys("d usygyufudsgf df");
+		commonFuntions.enterTextboxContains(" Business Phone Number  ", "4536456787");
 		
 		empPage.firstCalender_Quater.click();
 		empPage.firstCalender_Quater_Value_1.click();
 		empPage.firstCalender_Year.click();
-		empPage.firstCalender_Year_Value_2022.click();
-
+		empPage.firstCalender_Year_employed_4_value_2023.click();
+		
+		commonFuntions.enterTextboxContains("Total number of persons employed in your home? ", "4");
+		
 		commonFuntions.clickButton("Continue ");
 		sleep(4000);
 		
@@ -72,15 +75,6 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.selectDropdown("County", " Albany ");
 		sleep();
 		commonFuntions.screenShot("EmpRegister14", "Pass", "Form Filled");
-		
-		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "Yes ");
-		empPage.agent_CO_AddresLine1.sendKeys("Fake Address 2");
-		empPage.agent_CO_City.sendKeys("Albany");
-		empPage.agent_CO_ZipCode.sendKeys("54637");
-		commonFuntions.safeJavaScriptClick(empPage.agent_CO_County);
-		sleep();
-		empPage.countyValue_Form1.click();
-		
 		commonFuntions.clickButton("Continue ");
 		sleep(3000);
 		
@@ -89,38 +83,8 @@ public class EE_13_003_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.clickButton("Continue ");
 		sleep(4000);
 		
-		/*--------------------SREG-011-------------------*/
-		commonFuntions.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
-		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		System.out.println("ERN : : "+ernValue);
-		commonFuntions.enterTextbox("Employer Registration Number", ernValue);
-		String feinValue2 = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		System.out.println("ERN : : "+feinValue2);
-		
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue2);
-		empPage.legal_Name_Business_Input.sendKeys("nah c s s s xsxsgxsgx LLC");
-		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "PART");
-		commonFuntions.enterPastDate("Acquisition Date", 180);
-		commonFuntions.enterPastDate("Notification date of Transfer", 179);
-		
-		commonFuntions.clickButton("Continue ");
-		sleep(4000);
-		commonFuntions.clickButton("Continue ");
-		sleep(4000);
 		/*-------------------SREG-012-------------------*/
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Navigated to SREG-012");
-		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes ");
-		sleep(3000);
-		String priorFein = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		System.out.println("Prior FEIN : : "+priorFein);
-		test.log(Status.INFO, "Prior Fein : : "+priorFein);
-		commonFuntions.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", priorFein);
-		String priorErn = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		System.out.println("Prior ERN : : "+priorErn);
-		test.log(Status.INFO, "Prior ERN : : "+priorErn);
-		commonFuntions.enterTextboxContains("Prior Employer Registration Number", priorErn);
-		commonFuntions.enterPastDate("Date of Legal Entity change", 270);
-		commonFuntions.enterPastDate("Date of Notification", 0);
 		commonFuntions.clickButton("Continue ");
 		sleep(4000);
 		/*-------------------SREG-683-------------------*/

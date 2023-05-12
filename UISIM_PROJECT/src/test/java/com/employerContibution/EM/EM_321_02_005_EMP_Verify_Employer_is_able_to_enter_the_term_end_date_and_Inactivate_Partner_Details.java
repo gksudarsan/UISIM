@@ -27,7 +27,7 @@ public class EM_321_02_005_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		CommFun.login(COMMON_CONSTANT.CSR_USER_4, COMMON_CONSTANT.CSR_USER_4_PASSWORD);
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
-	/*
+	/*	
 		Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' ORDER BY UPDATED_TS","EAN");
 		 
 		String ErnNum=databaseResults.get("EAN");
