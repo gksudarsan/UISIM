@@ -39,7 +39,7 @@ public class EE_01_001_Csr_Registration_EmpType_Business_Corporation extends Tes
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-
+		
 		cf.clickMenu("Menu"); sleep();
 		cf.ScrollMenu("Employer Registration");sleep();
 		cf.screenShot("Menu", "Pass", "Employer Registration");

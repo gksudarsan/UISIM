@@ -5,6 +5,8 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,11 +24,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -65,7 +70,7 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(10000);
 
@@ -213,7 +218,7 @@ public class commonStepDefinitions extends TestBase {
 		test.addScreenCaptureFromPath(screenShotPath);
 
 	}
-
+	
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
 		WebElement table = driver
 				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
@@ -785,5 +790,26 @@ public class commonStepDefinitions extends TestBase {
 		HomePage.signOut.click();
 		sleep(5000);
 	}
+//	public  String captureScreenShot() throws IOException {
+//	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+//	File destinationFile = new File("src/../images"+System.currentTimeMillis()+"png");
+//	String absolutePathScreen =  destinationFile.getAbsolutePath();
+//	FileUtils.copyFile(scrFile, destinationFile);
+//	return absolutePathScreen;
+//}
+	 public void selectInactiveLinkInTable(String fname, String lname) {
+			driver.findElement(By.xpath("//mat-label[text()='"+fname+" "+lname+"']/ancestor::mat-row//mat-cell/a/u[text()='inactive']")).click();
+		}
+		public void enterCurrentDate(String xpathParameter) {
+			String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+					.sendKeys(date);
+		}
+		
+		public void secondErrorContent(String xpathParameter) {
+			driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError1'][1]")).isDisplayed();
+
+		}
 	
 }
