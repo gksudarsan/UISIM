@@ -32,6 +32,7 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.PageFactory;
@@ -61,7 +62,6 @@ public class commonStepDefinitions extends TestBase {
 //		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
 //		driver.navigate().to(driver.getCurrentUrl());
 //		Thread.sleep(5000);
-
 //		driver.get(driver.getCurrentUrl());
 			Thread.sleep(5000);
 
@@ -78,36 +78,53 @@ public class commonStepDefinitions extends TestBase {
 				
 				
 		driver.navigate().refresh();
-		Thread.sleep(10000);
+//		Thread.sleep(10000);
+		waitForLoadingIconToDisappear();
 		driver.navigate().refresh();
-		Thread.sleep(5000);
+//		Thread.sleep(5000);
+		waitForLoadingIconToDisappear();
 		}
 		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
+//			Thread.sleep(3000);
+			waitForLoadingIconToDisappear();
 		}
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-			Thread.sleep(3000);
+//			Thread.sleep(3000);
+			waitForLoadingIconToDisappear();
 		}
 
 		}
 
 	public void enterTextbox(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).clear();
-		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).sendKeys(value);
+		By element = By.xpath("//*[.='" + xpathParameter + "']//following::input[1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+			highLightWebElement(driver, ele);
+			forceClearText(ele);
+			ele.sendKeys(value);
+		} catch (final Exception e) {
+		}
 	}
 
 	public void enterTextboxContains(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-				.sendKeys(value);
+		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			forceClearText(ele);
+			ele.sendKeys(value);
+		} catch (final Exception e) {
+		}
 	}
 
 	public void clickHyperlink(String xpathParameter) {
@@ -115,7 +132,15 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickButton(String xpathParameter) {
-		driver.findElement(By.xpath("//button[.='" + xpathParameter + "'][1]")).click();
+		By element = By.xpath("//button[.='" + xpathParameter + "'][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			ele.click();
+			sleep(2000);
+		} catch (final Exception e) {
+		}
 	}
 
 	public void clickButtonContains(String xpathParameter) {
@@ -128,35 +153,38 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickMenu(String xpathParameter) {
-		driver.findElement(By.xpath("//*[text()='" + xpathParameter + "'][1]")).click();
+		By element = By.xpath("//*[text()='" + xpathParameter + "'][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			ele.click();
+		} catch (final Exception e) {
+		}
 	}
 
 	public void selectRadio(String xpathParameter) {
-		try {
-			driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
-					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']")).click();
-
-		} catch (Exception e) {
+			By element = By.xpath("//*[contains(.,'" + xpathParameter
+					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']");
+			final WebDriverWait wait = new WebDriverWait(driver, 10);
 			try {
-				driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
-						+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']"))
-						.click();
-			} catch (Exception e1) {
-				driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter
-						+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']")).click();
-
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//				highLightWebElement(driver, ele);
+				safeJavaScriptClick(ele);
+			} catch (final Exception e) {
 			}
-		}
-
 	}
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
+		
+		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
+				+ "')][1]//preceding::*[@class='mat-radio-outer-circle'][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
-			driver.findElement(By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
-					+ "')][1]//preceding::*[@class='mat-radio-outer-circle'][1]")).click();
-		} catch (Exception e) {
-			driver.findElement(By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
-					+ "')][1]//preceding::*[@class='mat-radio-inner-circle'][1]")).click();
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			safeJavaScriptClick(ele);
+		} catch (final Exception e) {
 		}
 	}
 
@@ -165,9 +193,15 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectDropdown(String xpathParameter, String value) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-				.click();
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			safeJavaScriptClick(ele);
+			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		} catch (final Exception e) {
+		}
 
 	}
 	
@@ -472,8 +506,16 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectCheckbox(String xpathParameter) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter
-				+ "')]//preceding::*[@class='mat-checkbox-inner-container'][1]")).click();
+
+		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter
+				+ "')]//preceding::*[@class='mat-checkbox-inner-container'][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			safeJavaScriptClick(ele);
+		} catch (final Exception e) {
+		}
 	}
 
 	public void selectLink(String xpathParameter, String value) {
@@ -610,7 +652,7 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		sleep(3000);
 		// driver.navigate().refresh();
@@ -724,7 +766,7 @@ public class commonStepDefinitions extends TestBase {
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
-		sleep(3000);
+		sleep(2000);
 	}
 
 	public void enterPastDate(String xpathParameter, int daysSub) {
@@ -885,7 +927,30 @@ public class commonStepDefinitions extends TestBase {
 			driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError1'][1]")).isDisplayed();
 
 		}
+		
+		public void selectDeleteLinkInTable(String fname, String lname) {
+			driver.findElement(By.xpath("//mat-label[text()='"+fname+" "+lname+"']/ancestor::mat-row//mat-cell/a/u[text()='Delete']")).click();
+		}
 
-	
+		public void highLightWebElement(final WebDriver driver, final WebElement element) throws Exception {
 
+			final JavascriptExecutor js = (JavascriptExecutor) driver;
+
+			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element,
+					"color: red; border: 2px solid green;");
+			Thread.sleep(1000);
+			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
+		}
+		
+		public void waitForNextPageNumber(String pageNumber) {
+			By element = By.xpath("//mat-label[text()='"+pageNumber+"']");
+			final WebDriverWait wait = new WebDriverWait(driver, 10);
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//				highLightWebElement(driver, ele);
+				sleep(500);
+				System.out.println("Navigated to "+pageNumber+"");
+			} catch (final Exception e) {
+			}
+		}
 }
