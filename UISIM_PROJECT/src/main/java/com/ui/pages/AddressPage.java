@@ -170,5 +170,10 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,\"Notification date of Transfer\")]//following::input[1]")
     public WebElement notificationDateTransfer;
 	
+	@FindBy(how = How.XPATH, using = "//input[@id=\"comment\"]")
+    public WebElement commentBox;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Employer Registration Number')]//following::input[1])[last()]")
+	public WebElement EmployerRegNumber;
 }
 
