@@ -33,15 +33,15 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		commonFuntions.clickMenu("Register Employer");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
 		commonFuntions.clickButton("Continue ");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
 		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-		sleep();
+//		sleep();
 		
-		sleep();
+//		sleep();
 		/*----------------FEIN----------------*/
 		Map<String, String> output = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd GROUP BY FEIN HAVING COUNT(*)>1 )", "FEIN");
 		String feinValue = output.get("FEIN");
@@ -54,7 +54,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Partnership ");
 		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
 		commonFuntions.selectDropdown("Source Type", " NYS-100AG ");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Form filled and click on continue");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-003----------------*/
@@ -79,7 +79,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		
 		/*-----------------SREG-008----------------*/
 
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister7", "Pass", "Navigated on SREG-008 page and entering the address");
 		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address");
 		commonFuntions.enterTextboxContains("City ", "NY");
@@ -90,7 +90,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.enterTextbox("If Other, provide details", "Test");
 		
 		commonFuntions.clickButton("Continue ");
-		sleep(3000);
+//		sleep(3000);
 //		try {
 //			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
 //			sleep();
@@ -103,7 +103,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-004----------------*/
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 2");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "23433");
@@ -122,7 +122,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		empPage.agent_CO_ZipCode.sendKeys("76562");
 		commonFuntions.safeJavaScriptClick(empPage.agent_CO_County);
 		commonFuntions.safeJavaScriptClick(empPage.albany_County_Value);
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		
@@ -130,7 +130,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-011----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-011 page");
 		commonFuntions.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
 		/*-----------------Find Valid FEIN----------------*/
@@ -160,7 +160,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-012----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-012 page and click on continue");
 		commonFuntions.clickButton("Continue ");
 		
@@ -179,7 +179,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test.log(Status.INFO, "Prior ERN : : "+priorEan);
 		/*-----------------Prior FEIN----------------*/
 		
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Entering the form Details");
 		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes ");
 		commonFuntions.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", priorFein);
@@ -191,7 +191,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-006----------------*/
-		sleep(3000);
+//		sleep(3000);
 		
 		Map<String, String>	ssnOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT t10.T10_SSN, t20.T20_FEIN, T10.T10_DATE_1, t10.T10_WAGE_1, T10.T10_DATE_2, t10.T10_WAGE_2,\r\n"
 				+ "T10.T10_DATE_3, t10.T10_WAGE_3, T10.T10_DATE_4, t10.T10_WAGE_4, T10.T10_DATE_5,\r\n"
@@ -203,7 +203,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		System.out.println(ssn);
 		test.log(Status.INFO, "SSN : : "+ssn);
 		/*----------------------FEIN---------------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
 		commonFuntions.selectRadioQuestions("Type of Partner/Owner", "Individual");
 		
@@ -218,26 +218,27 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-005----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to SREG-005 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-683----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Navigated to SREG-683 page and uploading the document");
 		empPage.browserLink.click();
 		commonFuntions.uploadDoc("Sample");
+		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-800----------------*/
 		sleep(5000);
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-043----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
 		commonFuntions.selectCheckbox("I accept");
 		commonFuntions.clickButton("Submit ");
-		sleep(15000);
+//		sleep(15000);
 		/*-----------------SREG-013----------------*/
 		commonFuntions.screenShot("EmpRegister21", "Pass", "Navigated to SREG-013 success page and click on exit");
 		commonFuntions.clickButton("Exit ");
@@ -254,10 +255,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton(" Search ");
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
-//		commonFuntions.clickOnLink("Review Employer Type");
-//		commonFuntions.safeJavaScriptClick(empPage.review_employer_My_Q);
 		empPage.review_employer_My_Q.click();
-		sleep(3000);
+//		sleep(3000);
 		/*-----------------WF-091----------------*/
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");

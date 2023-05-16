@@ -11,15 +11,15 @@ import com.ui.pages.EmployerRegisterPage;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
+public class EM_321_015_CSR_Can_Delete extends TestBase{
 
 	@Test
 	public void EM_321_012() throws Exception {
 		commonStepDefinitions cf= new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		
-		test = report.createTest("EM.321.012 - Verify CSR is able to enter the term end date and Inactivate Trustee/Owner Details.");
-		cf.login("ndfjp3", "Admin@12345678");
+		test = report.createTest("EM.321.015 - Verify CSR is able to Delete Executor/Owner Details");
+		cf.login("ndfjp3", "Admin@123456789");
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
@@ -27,7 +27,7 @@ public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
 		cf.ScrollMenu("Maintain Business Ownership");
 		cf.clickMenu("Maintain Business Ownership");
 //		sleep(3000);
-		
+		cf.waitForNextPageNumber(" SREG-029");
 		
 		/*----------------SREG-029----------------*/
 		
@@ -42,10 +42,11 @@ public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
 
 		cf.enterTextboxContains("Employer Registration Number", ernValue);
 		cf.clickButtonContains("Continue ");
-		sleep(3000);
+//		sleep(3000);
+		cf.waitForNextPageNumber("SREG-710");
 		
 		/*----------------SREG-710----------------*/
-		cf.screenShot("ChangeOwner2", "Pass", "Navigated to SREG-710 page and click on Inactive link");
+		cf.screenShot("ChangeOwner2", "Pass", "Navigated to SREG-710 page and click on Delete link");
 		cf.clickOnLinkAnchorTag("Add Trustee/Owner Details");
 		sleep(3000);
 //		Map<String, String> ssnOutput = cf.database_SelectQuerySingleColumn("SELECT t10.T10_SSN, t20.T20_FEIN, T10.T10_DATE_1, t10.T10_WAGE_1, T10.T10_DATE_2, t10.T10_WAGE_2,\r\n"
@@ -76,21 +77,11 @@ public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
 		cf.selectDropdown("Source Type", " NYS-100 ");
 		cf.clickButton("Submit ");
 		sleep(3000);
-		cf.selectInactiveLinkInTable(fname, lname);
-		sleep(2000);
+		cf.selectDeleteLinkInTable(fname, lname);
 		cf.clickButton(" Yes ");
 		/*----------------SREG-709----------------*/
 		sleep(3000);
-		cf.screenShot("ChangeOwner3", "Pass", "Changing the end date");
-		cf.enterCurrentDate("Term End Date");
-		cf.clickButton("Submit ");
-		sleep();
-		cf.screenShot("ChangeOwner4", "Pass", "Updated the term end date");
-		
-		
-		
-		
-		
+		cf.screenShot("ChangeOwner3", "Pass", "Deleted the record with First Name : : "+fname+" and Last Name : : "+lname+"");
 	}
 	
 }
