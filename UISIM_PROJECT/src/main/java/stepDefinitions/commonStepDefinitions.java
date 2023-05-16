@@ -108,7 +108,7 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			highLightWebElement(driver, ele);
+//			highLightWebElement(driver, ele);
 			forceClearText(ele);
 			ele.sendKeys(value);
 		} catch (final Exception e) {
@@ -725,7 +725,7 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
-	public void enterRandomString(String xpathParameter) {
+	public String enterRandomString(String xpathParameter) {
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder();
 		Random random = new Random();
@@ -741,6 +741,7 @@ public class commonStepDefinitions extends TestBase {
 		.sendKeys(randomString);
 		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
 		test.log(Status.INFO, fieldName+" : : "+randomString);
+		return randomString;
 
 	}
 
@@ -887,17 +888,16 @@ public class commonStepDefinitions extends TestBase {
 			HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 			clickMenu("LOG OUT");
 			clickMenu("Go to Homepage");
-			sleep(2000);
+			sleep(3000);
 			HomePage.menuLogout.click();
 			HomePage.signOut.click();
 			sleep(5000);
-			 //driver.get(prop.getProperty("applicationUrl"));
-	        Thread.sleep(2000);
 			enterTextbox("Username", userName);
 			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
-			Thread.sleep(2000);		
+			Thread.sleep(2000);	
+			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 	        driver.navigate().refresh();
 			driver.get(prop.getProperty("applicationUrl"));
 			loginPage.loginLink.click();
@@ -953,4 +953,5 @@ public class commonStepDefinitions extends TestBase {
 			} catch (final Exception e) {
 			}
 		}
+		
 }
