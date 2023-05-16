@@ -35,8 +35,6 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_321_02_008 extends TestBase
 {
 
-
-	
 	@Test(priority=1, description = "EM.321.02.008 - Verify Employer is able to Edit Trustee/Owner Details .",groups = {"Regression"})
 	public void EM_321_02_008() throws Exception
 	{
@@ -54,8 +52,7 @@ public class EM_321_02_008 extends TestBase
 		 commonFuntions.ScrollMenu("Add Trustee/Owner Details");
 		 commonFuntions.screenShot("Add Trustee/Owner Details","Pass","Add Trustee/Owner Details");
 		 commonFuntions.clickMenu("Add Trustee/Owner Details");	
-		 
-		 
+		 	 
 		 long number = commonFuntions.createRandomInteger(100000000,999999999);
 		 String ssnValue=Long.toString(number);
 	     populateFields(ssnValue);

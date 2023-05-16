@@ -149,6 +149,74 @@ public class employerManagementLocators extends TestBase {
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"npcclaimAddrIndId_BPPA\"]/label/span[1]/span[1]")));
 		return driver.findElement(By.xpath("//*[@id=\"npcclaimAddrIndId_BPPA\"]/label/span[1]/span[1]"));
 	}
+	
+	public WebElement editButtonlocationofbooksAdd (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Location of Books and Records Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Location of Books and Records Address']//following::u[text()='Add'][1]"));
+
+	}
+	
+	public WebElement editButtonlocationofbooksEdit (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Location of Books and Records Address']//following::u[text()='Edit'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Location of Books and Records Address']//following::u[text()='Edit'][1]"));
+
+	}
+	
+	
+	public WebElement selectOthers (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Other']")));
+		return driver.findElement(By.xpath("//mat-label[text()='Other']"));
+
+	}
+	
+	
+	public WebElement editButtonNoticeOfpotentialChargeAdd (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Notice of Potential Charges (LO400) Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Notice of Potential Charges (LO400) Address']//following::u[text()='Add'][1]"));
+
+	}
+	
+	public WebElement editButtonNoticeOfPotentialChargeEdit (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Notice of Potential Charges (LO400) Address']//following::u[text()='Edit'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Notice of Potential Charges (LO400) Address']//following::u[text()='Edit'][1]"));
+
+	}
+	
+	public WebElement ButtonAgentAddressAdd(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Agent Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Agent Address']//following::u[text()='Add'][1]"));
+
+	}
+	
+	public WebElement ButtonAgentAddressEdit(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Agent Address']//following::u[text()='Edit'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Agent Address']//following::u[text()='Edit'][1]"));
+
+	}
+	public WebElement NoticeOfExpRatingAdd (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Notice of Experience Rating Charges (IA96) Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Notice of Experience Rating Charges (IA96) Address']//following::u[text()='Add'][1]"));
+
+	}
+	public WebElement NoticeOfExpRatingEdit(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Notice of Experience Rating Charges (IA96) Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Notice of Experience Rating Charges (IA96) Address']//following::u[text()='Add'][1]"));
+
+	}
+	//a[text()='Add Additional Business Physical Location(s)']
+	public WebElement AditionalBusinessPhyLocation(){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[text()='Add Additional Business Physical Location(s)']")));
+		return driver.findElement(By.xpath("//a[text()='Add Additional Business Physical Location(s)']"));
+
+	}
+	
+	public WebElement AppealMailAddress (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[text()='Appeal Mailing Address']//following::u[text()='Add'][1]")));
+		return driver.findElement(By.xpath("//mat-label[text()='Appeal Mailing Address']//following::u[text()='Add'][1]"));
+
+	}
+	
+	
 }
 
 
