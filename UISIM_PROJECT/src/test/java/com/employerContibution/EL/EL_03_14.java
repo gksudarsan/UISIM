@@ -1,5 +1,6 @@
 package com.employerContibution.EL;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
@@ -44,6 +45,8 @@ public class EL_03_14 extends TestBase {
 		commonFunctions.selectRadioInTable("Issued", 1, 1, "Search for PEO");
 		//driver.findElement(By.xpath("//input[@id='dataTableId_selectedPeoId_1_1_radio_button-input']")).click();
 		sleep(2000);
+		commonFunctions.clickButtonContains("Continue");
+	     sleep(2000);
 		commonFunctions.selectLink("Document", " UPLOAD CLIENT LIST | ADD NEW CLIENTS");
 	     sleep(2000);
 	     commonFunctions.screenShot("UploadClientListPage", "Pass", "Upload CLient List Page dislaying");
@@ -55,7 +58,7 @@ public class EL_03_14 extends TestBase {
 	     sleep(2000);
 	     commonFunctions.errorContent("Please enter Employer Registration Number or Legal Name or Federal Employer Identification number (FEIN)");
 	     commonFunctions.screenShot("verifyDefaultError","Pass","Verify Default Error");
-	     
+	     commonFunctions.clickOnLinkAnchorTag("ADVANCED SEARCH");
 	     commonFunctions.enterTextboxContains("Employee Registration Number","43");
 	     
 	     commonFunctions.clickButtonContains("Search");
@@ -74,11 +77,22 @@ public class EL_03_14 extends TestBase {
 		
 		commonFunctions.enterTextboxContains("Federal Employer Identification Number (FEIN)","");	     
 	     commonFunctions.enterTextboxContains("Legal Name","test000000000");
-	     sleep(2000);		commonFunctions.clickButtonContains("Client Not Found ");
+	     sleep(2000);
+	     commonFunctions.clickButtonContains("Search");
+	     sleep(2000);
+	     commonFunctions.clickButtonContains("Client Not Found ");
 		sleep(2000);
-		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Group PEO Details");
-		
-		
+		String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
+		commonFunctions.enterTextboxContains("Client Name","AutoTest"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
+		commonFunctions.enterTextboxContains("Enter Federal Employer Identification Number (FEIN)",feinValue);
+		commonFunctions.enterTextboxContains("Primary Business Activity","Auditor");
+		commonFunctions.enterTextboxContains("Address Line 1","PrioraddressLine1"+commonFunctions.createRandomInteger(1000,9999));
+		commonFunctions.enterTextboxContains("Address Line 2","PrioraddressLine2"+commonFunctions.createRandomInteger(1000,9999));
+		commonFunctions.enterTextboxContains("City","NewYork");
+		commonFunctions.enterTextboxContains("Zip Code","13429");
+		sleep(2000);
+		commonFunctions.selectRadio("Same As Physical Address"); 
+		sleep(2000);
 		
 		
 		//step 6 ends here

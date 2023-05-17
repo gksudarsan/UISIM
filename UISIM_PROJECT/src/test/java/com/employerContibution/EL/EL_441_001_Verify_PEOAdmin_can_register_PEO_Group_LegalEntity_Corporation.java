@@ -232,8 +232,12 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 			sleep(2000);
 			//commonFuntions.selectRadioQuestions("List the current address of each additional address the PEO Member maintains in New York", "Same As Physical Address");
-			commonFuntions.selectRadio("Same As Physical Address");
+			//commonFuntions.selectRadio("Same As Physical Address");
+			PEOPage.SameAsPhysicalAddress.click();
+			PEOPage.SameAsPhysicalAddress.click();
+			sleep(4000);
 			commonFuntions.screenShot("PEO member information", "Pass", "PEO Member Information");
+			sleep(2000);
 			commonFuntions.clickButtonContains("Save & Continue");
 			sleep(2000);
 			try {
