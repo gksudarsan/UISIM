@@ -470,6 +470,11 @@ public WebElement Contribution_dropDown_Menu;
 @FindBy(how = How.XPATH, using = "//u[text()='Add Member/Managing Member Details']")
 public WebElement add_Member_Managing_Member_Detail_Link;
 
+@FindBy(how = How.XPATH, using = "//*[@id='typeOfLegalEntityId']")
+public WebElement typeOfLegalEntityId;
+
+@FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
+public WebElement individualOwnership;
 
 }
 
