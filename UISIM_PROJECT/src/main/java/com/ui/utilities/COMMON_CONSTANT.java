@@ -47,10 +47,10 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_2_PASSWORD = "uisimtesting@123";
 	
 	public static final String EMPLOYER_USER_3 = "Soleprop123"; // Sole Prop
-	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123456";
+	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123458";
 	
 	public static final String EMPLOYER_USER_4 = "tst_empr"; // Corporate Officer/Owner
-	public static final String EMPLOYER_USER_4_PASSWORD = "Nysdol@0210";
+	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
 	public static final String EMPLOYER_USER_5_PASSWORD = "Hachiku7533991779";

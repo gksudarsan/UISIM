@@ -170,6 +170,7 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[@id='AccountMaintenanceMaintainBusinessOwnership']")
 	public WebElement MaintainBusinessOwnership;
 	
-	
+	@FindBy(how = How.XPATH, using = "//span[text()='Business Acquisition']")
+	public WebElement BusinessAcquisition;
 
 }
