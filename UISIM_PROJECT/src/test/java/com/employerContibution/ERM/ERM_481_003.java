@@ -57,7 +57,7 @@ public class ERM_481_003 extends TestBase {
 		commfun.screenShot("UpdateConrtibutionPage ", "Pass", "Successfully landed on SREG 060 page");
 		
 		//----------SREG 060
-		commfun.selectDropdown("Lapsed Balance Revision", " 2022 ");
+		commfun.selectDropdown("Lapsed Balance Revision", " 2021 ");
 		commfun.clearTextboxContains("Opening Balance ($)");
 		commfun.enterTextboxContains("Opening Balance ($)", "567893");
 		commfun.enterTextboxContains("Contributions ($)", "673889");
@@ -112,7 +112,7 @@ public class ERM_481_003 extends TestBase {
 		//----------SREG - 051
 		sleep(2000);
 		commfun.screenShot("inquiryEmploymentPage", "Pass", "Successfully landed on SREG 051 page");
-		commfun.selectTableParameterizedId(rateYearValue, 8 , 1 , "Rate History", "employerRateHistory");
+		commfun.selectTableParameterizedId("2022", 8 , 1 , "Rate History", "employerRateHistory");
 		
 		//----------SREG -052
 		sleep(2000);
@@ -138,7 +138,7 @@ public class ERM_481_003 extends TestBase {
 		//----------SREG -051
 	    sleep(2000);
 		commfun.screenShot("InquiryEmployerAccountInformationPage", "Pass", "Successfully landed on SREG 051 page");
-		commfun.selectTableParameterizedId(rateYearValue, 1, 1, "Rate History", "employerRateHistory");
+		commfun.selectTableParameterizedId("2022", 1, 1, "Rate History", "employerRateHistory");
 		
 		sleep(2000);
 		
@@ -146,10 +146,10 @@ public class ERM_481_003 extends TestBase {
 		commfun.screenShot("CurrentRatingAccountStatusHistoryPage", "Pass", "Successfully landed on SREG 013 page");
 		sleep(2000);
 		
-		//--------ERM -030
+		//--------ERM -013
 		sleep(2000);
 		commfun.screenShot("InquiryEmployerAccountInformationPage", "Pass", "Successfully landed on SREG 051 page");
-		commfun.selectTableParameterizedId(rateYearValue, 8 , 1 , "Rate History", "employerRateHistory");
+		commfun.selectTableParameterizedId("2022", 8 , 1 , "Rate History", "employerRateHistory");
 		sleep(2000);
 		commfun.screenShot("inquiryEmployerAccountPage", "Pass", "Successfully landed on SREG 052 page");
 		commfun.selectTableWithoutId("Ledger", 5, 2, "Employer Account Rate Transaction History ");

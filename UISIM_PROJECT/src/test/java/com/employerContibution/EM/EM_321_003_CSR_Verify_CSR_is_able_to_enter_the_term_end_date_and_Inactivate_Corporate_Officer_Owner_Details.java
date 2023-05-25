@@ -13,12 +13,12 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_321_009_CSR_Verify_CSR_is_able_to_Delete_Member_Managing_Member_Details extends TestBase{
+public class EM_321_003_CSR_Verify_CSR_is_able_to_enter_the_term_end_date_and_Inactivate_Corporate_Officer_Owner_Details extends TestBase{
 
 	
-	@Test(priority = 1, description = "Verify Employer is able to Delete Member_Managing_Member Details", groups = { "Regression" })
-	public void EM_321_009()throws Exception {
-		test=report.createTest("Verify Employer is able to Delete Member_Managing_Member Details");
+	@Test(priority = 1, description = "Verify Employer is able to enter the term end date and Inactivate Corporate Officer/Owner Details", groups = { "Regression" })
+	public void EM_321_003()throws Exception {
+		test=report.createTest("Verify Employer is able to enter the term end date and Inactivate Corporate Officer/Owner Details");
 		commonStepDefinitions CommFun = new commonStepDefinitions();
 		EmployerRegisterPage employerRegisterPage = new EmployerRegisterPage(driver);
 		HomePage home = new HomePage(driver);
@@ -29,7 +29,7 @@ public class EM_321_009_CSR_Verify_CSR_is_able_to_Delete_Member_Managing_Member_
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 	
-		Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE ORGANIZATION_TYPE = 'LLCA' AND EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_PARTNER tep GROUP BY EMPLOYER_ACCOUNT_ID HAVING COUNT(EMPLOYER_ACCOUNT_ID) > 2)","EAN");
+		Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE ORGANIZATION_TYPE = 'CORP' AND EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_PARTNER tep GROUP BY EMPLOYER_ACCOUNT_ID HAVING COUNT(EMPLOYER_ACCOUNT_ID) > 1)","EAN");
 		 
 		String ErnNum=databaseResults.get("EAN");
 		//CommFun.enterTextboxContains("Employer Registration Number",ErnNum);
@@ -60,23 +60,42 @@ public class EM_321_009_CSR_Verify_CSR_is_able_to_Delete_Member_Managing_Member_
 		sleep(2000);
 	
 		
-		//------SREG 708
-		CommFun.screenShot("Member/Managing Member Details", "Pass", "Successfully landed on SREG 708");
+		//------SREG 702
+		CommFun.screenShot("Corporate/Owner Details", "Pass", "Successfully landed on SREG 702");
 		sleep(2000);
-		sreg.actionDelete.click();
+		sreg.actionInactiveCorprate.click();
 		sleep(2000);
 		CommFun.screenShot("Pop up", "Pass", "Successfully landed on popup");
 		sleep(2000);
 		CommFun.clickButton(" Yes ");
 		sleep(2000);
-		CommFun.screenShot("Member/Managing Member Details", "Pass", "Deleted members from table on SREG 708");
+	
+		
+		//------SREG 701
+		CommFun.screenShot("Edit Corporate/Owner Details", "Pass", "Successfully landed on SREG 701");
 		sleep(2000);
-		//---completed by Palak
+		//Term End Date
+		CommFun.enterTextboxContains("Term End Date", "05/30/2023");
+		sleep(2000);
+		/*CommFun.clickButton("Submit ");
+		sleep(2000);
+		CommFun.enterTextboxContains("Address Line 1 ", "Near DB City");
+		CommFun.enterTextboxContains("City ", "Albey");
+		CommFun.enterTextboxContains("Zip Code", "25678");
+		CommFun.enterTextboxContains(" Contact Number ", "6263179965");
+		sleep(2000);
+			*/
+		CommFun.screenShot("Edit Corporate/Owner Details", "Pass", "entered information on SREG 701");
+		sleep(2000);
+		CommFun.clickButton("Submit ");
 		
+		//------SREG 702
+		sleep(2000);
+	    CommFun.screenShot(" Corporate/Owner Details", "Pass", "Successfully landed on SREG 702");
+	    sleep(2000);
+	    CommFun.screenShot("Completed Testcase", "Pass", "Successfully landed on home page test completed  ");
 		
-		
-		
-	    
+	    //-------Completed by Palak
 	    
 	    
 		 
