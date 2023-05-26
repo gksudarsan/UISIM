@@ -35,6 +35,8 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -102,7 +104,8 @@ public class commonStepDefinitions extends TestBase {
 		}
 
 		}
-
+	
+	// Methods
 	public void enterTextbox(String xpathParameter, String value) {
 		By element = By.xpath("//*[.='" + xpathParameter + "']//following::input[1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -126,9 +129,14 @@ public class commonStepDefinitions extends TestBase {
 		} catch (final Exception e) {
 		}
 	}
-
+	
+	public void enterCommentBoxContains(String value) {
+		driver.findElement(By.xpath("//*[@id='commentId']")).clear();
+		driver.findElement(By.xpath("//*[@id='commentId']")).sendKeys(value);
+	}
+	
 	public void clickHyperlink(String xpathParameter) {
-		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]"));
+		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]")).click();
 	}
 
 	public void clickButton(String xpathParameter) {
@@ -147,7 +155,11 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"));
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
-
+	
+	public void clickOnLink1(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+	}
+	
 	public void clickButtonContains(String xpathParameter, int value) {
 		driver.findElement(By.xpath("(//button[contains(.,'" + xpathParameter + "')])[" + value + "]")).click();
 	}
@@ -203,6 +215,11 @@ public class commonStepDefinitions extends TestBase {
 		} catch (final Exception e) {
 		}
 
+	}
+	
+	public void selectDropdownThirdParty(String value) {
+		driver.findElement(By.xpath("//mat-select[@id='designationTypeId']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 	}
 	
 	public void selectDropdownUsingSearch(String xpathParameter, String value) throws InterruptedException {
@@ -906,6 +923,10 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
+	public void validateTextIsDisplayed(String xpathParameter) {
+		driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+
+	}
 
 //	public  String captureScreenShot() throws IOException {
 //	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
