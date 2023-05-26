@@ -28,6 +28,9 @@ public class SUC_002 {
 	@FindBy(how = How.XPATH, using = "//*[text()='The Account Information has been succesfully saved']")
 	public WebElement accountInfoSuccessText;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='successMatCardId']")
+	public WebElement pOASucessText;
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[@id='SUC-002']")
 	public WebElement screenIdText;
 	
@@ -61,6 +64,10 @@ public class SUC_002 {
 	public void validateHomeButton() throws Exception {
 		stepDef.screenShot("Home", "Pass", "Home Screenshot");
 		Assert.assertTrue(homeButton.isDisplayed());
+	}
+	
+	public void validatePOASucessText() {
+		Assert.assertTrue(pOASucessText.getText().contains("The POA/Third Party Representative Association"));
 	}
 	
 	public void validateEmployerAccountMSG() throws Exception {

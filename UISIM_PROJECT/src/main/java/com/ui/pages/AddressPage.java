@@ -52,6 +52,9 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']") 
 	public WebElement countyDropDown_Form2; 
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Employer Registration Number']//following::mat-label[1]")
+	public WebElement getERN;
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']") 
 	public WebElement countyValue2; 
@@ -95,6 +98,10 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea") 
 	public WebElement rawMaterialName;
+	
+	public void verifyInquiryAddressEmployerHistory(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')][1]"));
+	}
 	
 	
 	        public void requiredError_genInfo(String xpathParameter) {

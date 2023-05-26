@@ -78,6 +78,12 @@ public class HomePage {
 
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RegisterPEO']")
 	public WebElement registerPeo;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)ManagePEO']")
+	public WebElement managePeo;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RenewPEO']")
+	public WebElement renewPeo;
 
 	@FindBy(how = How.XPATH, using = "//*[@class='dropdown-menu--button-toggle']")
 	public WebElement menuLogout;
@@ -161,5 +167,22 @@ public class HomePage {
 		stepDef.clickElement(registerPeo);
 
 	}
-
+	
+	/* For Test Case ----- EL_462_03 ----- */
+	public void navigateToManagePeo() throws InterruptedException {
+		stepDef.clickElement(menuButton);
+		Thread.sleep(2000);
+		stepDef.clickElement(professionalEmployerOrganization);
+		Thread.sleep(2000);
+		stepDef.clickElement(managePeo);
+	}
+	
+	/* For Test Case ----- EL_02_014 ----- */
+	public void navigateToRenewPeo() throws InterruptedException {
+		stepDef.clickElement(menuButton);
+		Thread.sleep(2000);
+		stepDef.clickElement(professionalEmployerOrganization);
+		Thread.sleep(2000);
+		stepDef.clickElement(renewPeo);
+	}
 }

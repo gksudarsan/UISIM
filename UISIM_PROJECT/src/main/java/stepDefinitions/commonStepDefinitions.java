@@ -29,6 +29,8 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -93,7 +95,30 @@ public class commonStepDefinitions extends TestBase {
 		}
 
 	}
+	
+	public void LogoutAndLoginIfOktaPageDisplayed(String userName, String password) throws Exception {
+		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+			HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+			clickMenu("LOG OUT");
+			clickMenu("Go to Homepage");
+			sleep(3000);
+			HomePage.menuLogout.click();
+			HomePage.signOut.click();
+			sleep(5000);
+			enterTextbox("Username", userName);
+			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+			test.log(Status.PASS, "User entered Password");
+			Thread.sleep(2000);	
+			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+	        driver.navigate().refresh();
+			driver.get(prop.getProperty("applicationUrl"));
+			loginPage.loginLink.click();
+			sleep(2000);
 
+	}
+	
+	// Methods
 	public void enterTextbox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).clear();
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::input[1]")).sendKeys(value);
@@ -104,9 +129,14 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 				.sendKeys(value);
 	}
-
+	
+	public void enterCommentBoxContains(String value) {
+		driver.findElement(By.xpath("//*[@id='commentId']")).clear();
+		driver.findElement(By.xpath("//*[@id='commentId']")).sendKeys(value);
+	}
+	
 	public void clickHyperlink(String xpathParameter) {
-		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]"));
+		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]")).click();
 	}
 
 	public void clickButton(String xpathParameter) {
@@ -117,7 +147,11 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"));
 		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
 	}
-
+	
+	public void clickOnLink1(String xpathParameter) {
+		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+	}
+	
 	public void clickButtonContains(String xpathParameter, int value) {
 		driver.findElement(By.xpath("(//button[contains(.,'" + xpathParameter + "')])[" + value + "]")).click();
 	}
@@ -164,6 +198,11 @@ public class commonStepDefinitions extends TestBase {
 				.click();
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
+	}
+	
+	public void selectDropdownThirdParty(String value) {
+		driver.findElement(By.xpath("//mat-select[@id='designationTypeId']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 	}
 
 	public void errorLabel(String xpathParameter) {
@@ -780,5 +819,10 @@ public class commonStepDefinitions extends TestBase {
 		HomePage.menuLogout.click();
 		HomePage.signOut.click();
 		sleep(5000);
+	}
+	
+	public void validateTextIsDisplayed(String xpathParameter) {
+		driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+
 	}
 }
