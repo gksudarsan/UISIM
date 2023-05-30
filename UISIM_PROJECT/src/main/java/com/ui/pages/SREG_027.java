@@ -37,10 +37,13 @@ public class SREG_027 extends TestBase{
 		Assert.assertEquals("Employer Account Maintenance – Enter ERN", pageTitle.getText());
 	}
 	
-	public void enterERNNumber() throws Exception {
+	public void enterERNNumber(String ern) throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("ERNField", "pass", "ERN field not displayed");
-		ernInput.sendKeys(prop.getProperty("ERN_310_002"));
-		stepDef.waitForElementClicable(continueButton);
+		stepDef.enterTextboxContains("Employer Registration Number", ern);
+		sleep();
+		continueButton.click();
 	}
 	
 	

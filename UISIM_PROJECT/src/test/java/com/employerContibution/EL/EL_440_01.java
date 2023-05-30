@@ -29,6 +29,8 @@ public class EL_440_01 extends TestBase{
 		test = report.createTest("EL.440.01 - Verify CSR can search PEO and update PEO conversion  PEO Individual' to 'PEO Exempt'");
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Professional Employer Organization (PEO)");

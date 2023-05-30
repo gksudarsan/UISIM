@@ -24,6 +24,7 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(4000);
 		commonFuntions.clickMenu("Menu");
 //		commonFuntions.clickMenu("Employer Registration");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
@@ -156,6 +157,8 @@ public class EE_03_002_CSR_Register_EmpType_Government extends TestBase {
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister18", "Pass",
 				"Navigated to EEWI page by opening the Work Item and add a comment and click submit");
+		commonFuntions.selectDropdown("Account Status", " Future ");
+		commonFuntions.enterCurrentDate("Date Covered Employment began? ");
 		empPage.commentBox_MyQ.sendKeys("Employer Tupe Gov");
 		sleep(3000);
 		commonFuntions.clickButtonContains("Submit ");

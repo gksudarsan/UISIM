@@ -1,5 +1,7 @@
 package com.employerContibution.EM;
 
+import java.util.Map;
+
 import org.openqa.selenium.By;
 import org.testng.Assert;
 import org.testng.annotations.Listeners;
@@ -35,14 +37,16 @@ public class EM_013_001_Add_Account_Flag_First_Return_Mail extends TestBase {
 			HomePage home = new HomePage(driver);
 			
 			test.log(Status.INFO, "Logging to the application");
-			stepDef.login(prop.getProperty("CSR_UserID"),prop.getProperty("CSR_Pass"));
+			stepDef.login(prop.getProperty("CSR_UserID"),"Admin@123456789");
 			test.log(Status.PASS, "Sucessfully login to the application");
 			test.log(Status.INFO, "Navigating to the maintenance account status tab");
 			home.navigateToAccountMaintenance();
 			test.log(Status.PASS, "Navigated to the maintenance account status tab");
 			srge543Page.checkRequiredText();
 			test.log(Status.PASS, "Required is displaying if user don't enter the data and click continue");
-			srge543Page.enterEANNumber(EAN);
+			Map<String, String> ernOutput = stepDef.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='INDO 'AND  ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS", "EAN");
+			String ernValue = ernOutput.get("EAN");
+			srge543Page.enterEANNumber(ernValue);
 			test.log(Status.PASS, "Entered the ERN number");
 			test.log(Status.INFO, "Submit the form without entering the details");
 			Boolean flag = srge544Page.submitWithoutDetails();

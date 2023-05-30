@@ -22,13 +22,15 @@ public class EL_462_05 extends TestBase{
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOGR'", "FEIN");
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOGR' AND EMPLOYER_REGISTRATION_NUMBER IS NOT NULL", "FEIN");
 		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
 		
 		test = report.createTest("EL.462.05 - Verify CSR can update PEO Status 'Suspended'  for PEO Group Information");
 		
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");

@@ -7,9 +7,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.ui.base.TestBase;
+
 import stepDefinitions.commonStepDefinitions;
 
-public class SRGE_544 {
+public class SRGE_544 extends TestBase{
 
 	public WebDriver driver;
 
@@ -88,12 +90,16 @@ public class SRGE_544 {
 	
 	
 	public Boolean submitWithoutDetails() throws InterruptedException {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.clickElement(submitButton);
 		Boolean flag = requiredText.isDisplayed();
 		return flag;
 	}
 	
 	public void enterDetails() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.clickElement(flagTypeDropDown);
 		Thread.sleep(2000);
 		stepDef.clickElement(firstReturnDropValue);
@@ -106,6 +112,8 @@ public class SRGE_544 {
 		stepDef.screenShot("Form", "PASS", "Add button clicked");
 	}
 	public void checkFilter() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Filter", "PASS", "Filter Screenshot");
 		String flagValueText = flagTypeValue.getText();
 		Assert.assertEquals(flagValueText, "First Returned Mail");
@@ -113,6 +121,8 @@ public class SRGE_544 {
 		Assert.assertEquals(commentValueText, "Sample Text");
 	}
 	public void clickSubmit() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		submitButton.click();
 		Thread.sleep(3000);
 		stepDef.screenShot("Submit", "PASS", "Clicked Submit");

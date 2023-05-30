@@ -1,5 +1,7 @@
 package com.employerContibution.EM;
 
+import java.util.Map;
+
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -35,11 +37,16 @@ public class EM_412_001_Update_Employer_Legal_Name extends TestBase{
 		home.navigateToMaintainAccounts();
 		test.log(Status.PASS, "Navigated to Maintain Accounts");
 		test.log(Status.INFO, "Entering ERN number");
-		sreg27.enterERNNumber();
-		test.log(Status.PASS, "Entered the ERN number successfully");
+		Map<String, String> ernOutput = stepDef.database_SelectQuerySingleColumn("SELECT ACCOUNT_STATUS,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSN'", "EAN");
+		String ernValue = ernOutput.get("EAN");
+//		String ernValue = "9923100";
+		System.out.println("ERN : : "+ernValue);
+		test.log(Status.INFO, "ERN : : "+ ernValue);
 		test.log(Status.INFO, "Validating page title");
 		sreg030.validatePageTitle();
 		test.log(Status.PASS, "Validated page title");
+		sreg27.enterERNNumber(ernValue);
+		test.log(Status.PASS, "Entered the ERN number successfully");
 		test.log(Status.INFO, "Entering form data and validating pre populated");
 		sreg030.fillFormAndValidate();
 		test.log(Status.PASS, "Entered form data and validated pre populated");

@@ -85,6 +85,8 @@ public class SREG_503 extends TestBase{
 	
 	
 	public void fillFormDetails() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Form", "Pass", "Form in blank state");
 		haveYouSoldYourRadio.click();
 		successorInput.sendKeys(prop.getProperty("successor"));
