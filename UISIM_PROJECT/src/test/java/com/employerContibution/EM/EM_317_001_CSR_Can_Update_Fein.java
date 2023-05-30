@@ -25,8 +25,12 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		
 		test = report.createTest("EM.317.001. Verify CSR is able to search and update FEIN and Source of FEIN update  'NYBE NYS100 form'");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		cf.login("ndfjp3", "Admin@12345678");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.login("ndfjp3", "Admin@123456789");
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 //		sleep();
 		cf.ScrollMenu("Account Maintenance");
@@ -34,6 +38,7 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		cf.clickMenu("Account Maintenance");
 //		sleep();
 		cf.ScrollMenu("Employer Account Maintenance");
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
 //		sleep();
 		cf.clickMenu("Employer Account Maintenance");
 //		sleep();
@@ -43,24 +48,26 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		/*----------------SREG-436------------------*/
 		cf.screenShot("ChangeFein", "Pass", "Navigated to SREG-436 page");
 		cf.clickButtonContains("Continue ");
-		sleep();
+		sleep(2000);
 		cf.errorLabel("Required");
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
 		cf.enterTextboxContains("Employer Registration Number", "0000000");
 		cf.clickButtonContains("Continue ");
 		sleep();
 		cf.errorContent("The Employer Registration Number(ERN) provided does not exist in the system.");
 		sleep();
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
 		cf.screenShot("ChangeFein2", "Pass", "Validated error message");
-		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE CORRESPONDENCE_MODE='USPS' ORDER BY UPDATED_TS", "EAN");
+		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='INDO 'AND  ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS", "EAN");
 //		String ernValue = ernOutput.get("EAN");
-		String ernValue = "3100212";
+		String ernValue = "2351600";
 		
-		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
+		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IS NOT NULL ORDER BY UPDATED_TS", "FEIN");
 		String feinValue = feinOutput.get("FEIN");
 		
 		test.log(Status.INFO, "ERN : : "+ernValue);
 		test.log(Status.INFO, "New FEIN : : "+feinValue);
-		
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
 		cf.enterTextboxContains("Employer Registration Number", ernValue);
 		cf.clickButtonContains("Continue ");
 		sleep(4000);
@@ -69,25 +76,33 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		cf.screenShot("ChangeFein3", "Pass", "Navigated SREG-437 page");
 		cf.clickButton("Submit ");
 		sleep(2000);
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
 		try {
 			cf.clickButton(" Yes ");
+			sleep(2000);
 		} catch(Exception e) {
 			System.out.println("Pop up not displayed");
 		}
 		sleep(3000);
 		cf.errorLabel(" Required ");
-		sleep();
+		test.addScreenCaptureFromPath(cf.takeScreenShot(driver));
+		sleep(2000);
 		cf.enterTextboxContains("New FEIN", "6767");
+		sleep(2000);
 		cf.enterTextboxContains("Please Re-enter FEIN", "6767");
+		sleep(2000);
 		cf.errorLabel(" Minimum 9 Characters ");
 		sleep();
 		cf.enterTextboxContains("New FEIN", "111111111");
+		sleep(2000);
 		cf.enterTextboxContains("Please Re-enter FEIN", "111111111");
 		sleep();
 		cf.selectDropdown("Source", " NYBE NYS-100 form ");
 		sleep();
 		cf.selectDropdown("Source Type", " NYS-100AG ");
+		sleep(2000);
 		empPage.commentBox_MyQ.sendKeys("Testing");
+		sleep(2000);
 		cf.clickButton("Submit ");
 		sleep(2000);
 		try {
@@ -97,8 +112,11 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		}
 		sleep(2000);
 		cf.errorContent("Federal Employer Identification Number is invalid.");
+		sleep(2000);
 		cf.enterTextboxContains("New FEIN", "111111111");
+		sleep(2000);
 		cf.enterTextboxContains("Please Re-enter FEIN", "111111112");
+		sleep(2000);
 		cf.clickButton("Submit ");
 		sleep(2000);
 		try {
@@ -154,6 +172,7 @@ public class EM_317_001_CSR_Can_Update_Fein extends TestBase {
 		/*----------------SREG-051------------------*/
 		cf.screenShot("ChangeFein8", "Pass", "Navigated to SREG-051 page");
 		String feinSREG051 = empPage.FEIN_Value_Text_SREG_051.getText().replace("-", "");
+		System.out.println("SREG_051 : : "+feinSREG051);
 		Assert.assertEquals(feinValue, feinSREG051);
 		cf.clickButton("Previous ");
 		

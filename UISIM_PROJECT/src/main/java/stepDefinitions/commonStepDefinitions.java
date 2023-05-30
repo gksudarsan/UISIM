@@ -69,14 +69,11 @@ public class commonStepDefinitions extends TestBase {
 			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
-			Thread.sleep(3000);
+			Thread.sleep(5000);
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		Thread.sleep(10000);
 
-				
-				
-				
 		driver.navigate().refresh();
 //		Thread.sleep(10000);
 		waitForLoadingIconToDisappear();
@@ -108,7 +105,7 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			highLightWebElement(driver, ele);
+//			highLightWebElement(driver, ele);
 			forceClearText(ele);
 			ele.sendKeys(value);
 		} catch (final Exception e) {
@@ -137,15 +134,21 @@ public class commonStepDefinitions extends TestBase {
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			ele.click();
+			safeJavaScriptClick(ele);
 			sleep(2000);
 		} catch (final Exception e) {
 		}
 	}
 
-	public void clickButtonContains(String xpathParameter) {
-		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]"));
-		driver.findElement(By.xpath("//button[contains(.,'" + xpathParameter + "')][1]")).click();
+	public void clickButtonContains(String xpathParameter) {	
+		By element = By.xpath("//button[contains(.,'" + xpathParameter + "')][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			ele.click();
+		} catch (final Exception e) {
+		}
 	}
 
 	public void clickButtonContains(String xpathParameter, int value) {
@@ -165,7 +168,7 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectRadio(String xpathParameter) {
 			By element = By.xpath("//*[contains(.,'" + xpathParameter
-					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']");
+					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']");
 			final WebDriverWait wait = new WebDriverWait(driver, 10);
 			try {
 				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -465,8 +468,8 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void waitForElementClicable(WebElement ele) throws InterruptedException {
-		// WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.visibilityOf(ele));
+//		 WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait.until(ExpectedConditions.elementToBeClickable(ele));
 		Thread.sleep(3000);
 		ele.click();
 	}
@@ -628,14 +631,14 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 
-	public void selectRadioWithFeinValue(String feinValue) throws InterruptedException {
-		driver.findElement(By.xpath("//mat-label[text()='" + feinValue
-				+ "']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span")).click();
-		Thread.sleep(2000);
+	public void selectRadioWithFeinValue(String feinValue) throws Exception {
+	WebElement radio = 	driver.findElement(By.xpath("//mat-label[text()='"+feinValue+"']/../../../preceding-sibling::mat-cell/mat-radio-group/mat-radio-button/label/span/span[@class='mat-radio-outer-circle']"));
+		safeJavaScriptClick(radio);
 	}
 
-	public void clearTextboxContains(String xpathParameter) {
-		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+	public void clearTextboxContains(String xpathParameter) throws Exception {
+	WebElement radio =	driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"));
+	safeJavaScriptClick(radio);
 	}
 
 	public void loginPeoAdmin(String userName, String password) throws Exception {
@@ -663,10 +666,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.navigate().refresh();
 		sleep(5000);
 
-		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio(
-				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
-		clickButtonContains("Continue");
+//		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
+//		selectRadio(
+//				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+//		clickButtonContains("Continue");
 		sleep(2000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
@@ -695,7 +698,7 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(10000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);
@@ -725,7 +728,7 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
-	public void enterRandomString(String xpathParameter) {
+	public String enterRandomString(String xpathParameter) {
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder();
 		Random random = new Random();
@@ -741,7 +744,7 @@ public class commonStepDefinitions extends TestBase {
 		.sendKeys(randomString);
 		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
 		test.log(Status.INFO, fieldName+" : : "+randomString);
-
+		return randomString;
 	}
 
 	public void enterRandomStringLegalName(String xpathParameter) {
@@ -887,7 +890,7 @@ public class commonStepDefinitions extends TestBase {
 			HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 			clickMenu("LOG OUT");
 			clickMenu("Go to Homepage");
-			sleep(2000);
+			sleep(4000);
 			HomePage.menuLogout.click();
 			HomePage.signOut.click();
 			sleep(5000);
@@ -952,5 +955,17 @@ public class commonStepDefinitions extends TestBase {
 				System.out.println("Navigated to "+pageNumber+"");
 			} catch (final Exception e) {
 			}
+		}
+		public String takeScreenShot(WebDriver driver) throws IOException {
+			Date date = new Date();
+			String ssName = date.toString().replace(" ", "-").replace(":", "-");
+			File destinationFilePath = new File(".//screenshot/"+ssName+".png");
+			TakesScreenshot scrShot =((TakesScreenshot)driver);
+			File SrcFile=scrShot.getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(SrcFile, destinationFilePath);
+			String absolutePath = destinationFilePath.getAbsolutePath();
+			
+			return absolutePath;
+			
 		}
 }

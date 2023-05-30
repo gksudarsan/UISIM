@@ -32,6 +32,7 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 				"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
 		String FEIN = databaseResults1.get("FEIN");
 		System.out.println("FEIN = " +FEIN);
+		test.log(Status.INFO, "FEIN : : "+FEIN);
 		//String EntityName = prop.getProperty("Entity");
 		employerManagement em =  new employerManagement();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
@@ -41,6 +42,8 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");		
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu"); sleep();
 		cf.ScrollMenu("Employer Registration");sleep();
 		cf.screenShot("Menu", "Pass", "Employer Registration");
@@ -50,7 +53,7 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 		cf.clickButtonContains("Continue"); sleep(2000);
 
 		cf.selectDropdown("Employer Type", " Household/Domestic ");
-		cf.enterTextboxContains("(FEIN)", "546237282"); 
+		cf.enterTextboxContains("(FEIN)", FEIN); 
 		cf.screenShot("file1","Pass", "Searching with FEIN "); 
 		cf.selectDropdown("*Type of Legal Entity"," Sole Proprietorship (Individual) "); 
 		cf.selectDropdown("Source", " NYS-100 (paper) ");sleep(2000);

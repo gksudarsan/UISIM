@@ -23,7 +23,9 @@ public class EM_317_003_CSR_Can_Update_Source extends TestBase {
 		
 		test = report.createTest("EM.317.003.Verify CSR is able to search and update FEIN and Source of FEIN update 'DOL Online (New NYSDOL Online Registration)'");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		cf.login("ndfjp3", "Admin@12345678");
+		cf.login("ndfjp3", "Admin@123456789");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
@@ -35,11 +37,11 @@ public class EM_317_003_CSR_Can_Update_Source extends TestBase {
 
 		/*----------------SREG-436------------------*/
 		cf.screenShot("ChangeFein", "Pass", "Navigated to SREG-436 page");
-		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE CORRESPONDENCE_MODE='USPS' ORDER BY UPDATED_TS", "EAN");
-		//String ernValue = ernOutput.get("EAN");
-		String ernValue = "3100212";
+		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='INDO 'AND  ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS", "EAN");
+		String ernValue = ernOutput.get("EAN");
+//		String ernValue = "2351600";
 
-		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
+		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IS NOT NULL ORDER BY UPDATED_TS", "FEIN");
 		String feinValue = feinOutput.get("FEIN");
 
 		test.log(Status.INFO, "ERN : : "+ernValue);

@@ -30,13 +30,13 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		commonFuntions.clickMenu("Register Employer");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
 		commonFuntions.clickButton("Continue ");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
 		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-		sleep();
+//		sleep();
 		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		System.out.println(feinValue);
 		/*----------------Enter Query logic here----------------*/
@@ -48,7 +48,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
 		commonFuntions.selectDropdown("Source Type", " NYS-100AG ");
 		commonFuntions.enterTextboxContains("Employer Registration Number", ERN);
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Form filled and click on continue");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-003----------------*/
@@ -74,7 +74,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		
 		/*-----------------SREG-008----------------*/
 
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister7", "Pass", "Navigated on SREG-008 page and entering the address");
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square");
 		commonFuntions.enterTextboxContains("City ", "NY");
@@ -104,7 +104,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.screenShot("EmpRegister8", "Pass", "Navigated to SREG-007 page");
 		empPage.addAnotherBusinessLink.click();
 		/*-----------------SREG-008----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister9", "Pass", "Navigated on SREG-008 page and entering the address");
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square");
 		commonFuntions.enterTextboxContains("City ", "NY");
@@ -129,7 +129,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		/*-----------------SREG-007----------------*/
 		
 		
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.screenShot("EmpRegister10", "Pass", "Navigated to SREG-007 page");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
@@ -155,12 +155,12 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		}
 		
 		/*-----------------SREG-521----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Navigated to SREG-521 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-011----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-011 page");
 		commonFuntions.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
 		/*-----------------Find Predecessor----------------*/
@@ -183,13 +183,13 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-012----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-012 page and click on continue");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-012----------------*/
 		
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Entering the form Details");
 		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes ");
 		commonFuntions.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", "");
@@ -199,7 +199,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-006----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
 		commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Individual");
 		
@@ -214,7 +214,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-005----------------*/
-		sleep(4000);
+//		sleep(4000);
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to SREG-005 page");
 		commonFuntions.clickButton("Continue ");
 		
@@ -225,15 +225,15 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase{
 		commonFuntions.uploadDoc("Sample");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-800----------------*/
-		sleep(5000);
+//		sleep(5000);
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-043----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
 		commonFuntions.selectCheckbox("I accept");
 		commonFuntions.clickButton("Submit ");
-		sleep(15000);
+//		sleep(15000);
 		/*-----------------SREG-013----------------*/
 		commonFuntions.screenShot("EmpRegister21", "Pass", "Navigated to SREG-013 success page and click on exit");
 		commonFuntions.clickButton("Exit ");

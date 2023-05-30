@@ -35,7 +35,8 @@ public class EL_322_014 extends TestBase
 		 
 		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		 
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
@@ -47,7 +48,8 @@ public class EL_322_014 extends TestBase
 	     Thread.sleep(2000);
 	     PEOPage.individualPeo.click();	     
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     sleep(2000);
+	     commonFuntions.enterTextbox("Additional name(s), if any, under which the PEO currently conducts business","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	     
@@ -60,7 +62,7 @@ public class EL_322_014 extends TestBase
 	     commonFuntions.selectDropdown("Type of Legal Entity", "Corporation");
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     commonFuntions.enterTextboxContains("Provide the type of Legal Entity", "TestAutomation");
-	     commonFuntions.selectRadioQuestions("Type of Ownership", "Public Ownership");
+	     commonFuntions.selectRadioQuestions("Type of Ownership", "Public");
 	     commonFuntions.enterTextboxContains("Fiscal Year Start Dat","02/01/2023");
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");

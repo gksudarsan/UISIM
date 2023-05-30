@@ -24,6 +24,8 @@ public class EL_02_010_CSR_Can_Register_Company extends TestBase {
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		PEOPage.menuPeo.click();
@@ -32,6 +34,8 @@ public class EL_02_010_CSR_Can_Register_Company extends TestBase {
 		commonFuntions.screenShot("PeoRegistration", "Pass", "PEO Registration - Contact Details");
 		Thread.sleep(3000);
 		commonFuntions.clickButtonContains("Continue");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.peoExemptRegisterRadio.click();
 		commonFuntions.screenShot("EXEMPT", "Pass", "Selecting Exempt and filling the form");
 		commonFuntions.enterTextbox("Name of Professional Employer Organization",

@@ -7,9 +7,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.ui.base.TestBase;
+
 import stepDefinitions.commonStepDefinitions;
 
-public class SUC_002 {
+public class SUC_002 extends TestBase{
 
 	public WebDriver driver;
 
@@ -46,6 +48,8 @@ public class SUC_002 {
 	
 	
 	public String validateSucessMessage() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");
 		String sucessMsg = accountFlagSuccessText.getText();
 		return sucessMsg;
@@ -59,11 +63,15 @@ public class SUC_002 {
 	
 
 	public void validateHomeButton() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Home", "Pass", "Home Screenshot");
 		Assert.assertTrue(homeButton.isDisplayed());
 	}
 	
 	public void validateEmployerAccountMSG() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
 		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}

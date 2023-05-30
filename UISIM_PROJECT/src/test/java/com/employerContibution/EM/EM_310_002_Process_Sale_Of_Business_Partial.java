@@ -26,17 +26,18 @@ public class EM_310_002_Process_Sale_Of_Business_Partial {
 
 		@Test(priority = 1, description = "Test sample", groups = { "Regression" })
 		public void Testing123() throws Exception {
-			
-			test = report.createTest("EM.310.002 - Verify CSR is able to process sale of business and indicate transfer 'Partial'.");
+
+			test = report.createTest(
+					"EM.310.002 - Verify CSR is able to process sale of business and indicate transfer 'Partial'.");
 			commonStepDefinitions stepDef = new commonStepDefinitions();
 			HomePage home = new HomePage(driver);
 			EM_005 em005 = new EM_005(driver);
 			SREG_503 sreg503 = new SREG_503(driver);
 			SREG_504 sreg504 = new SREG_504(driver);
 			SUC_002 suc002 = new SUC_002(driver);
-			
+
 			test.log(Status.INFO, "Logging to the application");
-			stepDef.login(prop.getProperty("CSR_UserID") , prop.getProperty("CSR_Pass"));
+			stepDef.login(prop.getProperty("CSR_UserID"), prop.getProperty("CSR_Pass"));
 			test.log(Status.PASS, "Login Success");
 			test.log(Status.INFO, "Navigating to Sales of Business tab");
 			home.navigateToSaleOfBussiness();

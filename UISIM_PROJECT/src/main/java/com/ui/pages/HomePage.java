@@ -8,9 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ui.base.TestBase;
+
 import stepDefinitions.commonStepDefinitions;
 
-public class HomePage {
+public class HomePage extends TestBase {
 	public WebDriver driver;
 	commonStepDefinitions stepDef = new commonStepDefinitions();
 
@@ -49,7 +51,7 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Void Transfer']")
 	public WebElement voidTransfer;
 	
-	@FindBy(how = How.XPATH, using = "//a[@class='nav-link ng-tns-c112-41 ng-star-inserted']//span[@id='AccountMaintenanceEmployerAccountMaintenance']")
+	@FindBy(how = How.XPATH, using = "//span[text()='Employer Account Maintenance']")
 	public WebElement employerAccountMaintenanceMain;
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Accounts']")
@@ -89,6 +91,8 @@ public class HomePage {
 	public WebElement reasonId_SREG060;
 	
 	public void navigateToAccountMaintenance() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
@@ -99,6 +103,8 @@ public class HomePage {
 	}
 
 	public void navigateToSaleOfBussiness() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
@@ -123,14 +129,19 @@ public class HomePage {
 	}
 
 	public void navigateToMaintainAccounts() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu fail");
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
 		stepDef.screenShot("Menu2", "Pass", "Navigating to employerAccountMaintenanceMain");
-		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
-		stepDef.waitForElementClicable(maintainAccounts);
+//		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
+		stepDef.safeJavaScriptClick(employerAccountMaintenanceMain);
+		sleep();
+		stepDef.safeJavaScriptClick(maintainAccounts);
+//		stepDef.waitForElementClicable(maintainAccounts);
 	}
 
 	/* For Test case------- EM_453_01_001 ------------- */

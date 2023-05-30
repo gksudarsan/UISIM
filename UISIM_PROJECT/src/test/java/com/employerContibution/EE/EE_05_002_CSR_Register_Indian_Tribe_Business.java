@@ -30,10 +30,12 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		commonFuntions.clickMenu("Register Employer");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
 		sleep();
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Entered the details and click on continue button");
@@ -53,11 +55,11 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
 		commonFuntions.selectDropdown("Source Type", " NYS-100IT ");
 		commonFuntions.clickButton("Continue ");
-		sleep(3000);
+//		sleep(3000);
 		
 		/*-----------------SREG-003----------------*/
 		
@@ -68,12 +70,13 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		/*---------------Legal Name--------------*/
 		
 		commonFuntions.clickButton("Continue ");
+		sleep(4000);
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Required text displayed if user do not enter Legal Name");
 		empPage.legalNameTextBox.sendKeys(legalName);
 		commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
 		sleep();
 		commonFuntions.clickButton("Continue ");
-		sleep(3000);
+//		sleep(3000);
 		
 		/*-----------------SREG-008----------------*/
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Navigated to SREG-008 page and entering the details");
@@ -92,7 +95,7 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		
 		/*-----------------SREG-007----------------*/
 		
-		sleep(4000);
+//		sleep(4000);
 		
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Navigated to SREG-007 page");
 		commonFuntions.clickButton("Continue ");
@@ -100,7 +103,7 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		
 		/*-----------------SREG-004----------------*/
 		
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("TPRRegister7", "Pass", "Navigated to SREG-004 page and entering the details");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 		sleep();
@@ -113,12 +116,12 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-521----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister10", "Pass", "Navigated to SREG-521 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-683----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Navigated to SREG-683 page and uploading the document");
 		commonFuntions.safeJavaScriptClick(empPage.browserLink);
 		commonFuntions.uploadDoc("Sample");
@@ -126,17 +129,19 @@ public class EE_05_002_CSR_Register_Indian_Tribe_Business extends TestBase {
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-800----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-043----------------*/
-		sleep(3000);
+//		sleep(3000);
 		commonFuntions.screenShot("EmpRegister13", "Pass", "Navigated to SREG-043 page and click on I accept and submit");
 		commonFuntions.selectCheckbox("I accept");
 		sleep();
 		commonFuntions.clickButton("Submit ");
-		sleep(15000);
+//		sleep(15000);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		
 		/*-----------------SREG-013----------------*/
 		sleep(3000);

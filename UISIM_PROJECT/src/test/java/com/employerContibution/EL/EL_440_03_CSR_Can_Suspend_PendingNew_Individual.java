@@ -23,13 +23,15 @@ public class EL_440_03_CSR_Can_Suspend_PendingNew_Individual extends TestBase {
 
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='PNDN' AND TYPE_OF_REQUEST='PEOIR' ORDER BY UPDATED_TS DESC", "FEIN");
-		String feinValue = databaseResults.get("Fein");
+		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
 		
 		test = report.createTest("EL.440.03- Verify CSR can update PEO Status 'Suspend' for PEO Individual Information");
 		
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		PEOPage.menuPeo.click();
@@ -39,9 +41,13 @@ public class EL_440_03_CSR_Can_Suspend_PendingNew_Individual extends TestBase {
 		PEOPage.advancedSearch.click();
 		Thread.sleep(2000);
 		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
+//		commonFuntions.enterTextboxContains("(FEIN)", "786458765");
+		
+		test.log(Status.INFO, "FEIN : : "+feinValue);
 		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");
 		commonFuntions.clickButtonContains("search");
 		Thread.sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.selectRadioWithFeinValue(feinValue);
 		Thread.sleep(2000);
 		commonFuntions.clickButton("Continue ");

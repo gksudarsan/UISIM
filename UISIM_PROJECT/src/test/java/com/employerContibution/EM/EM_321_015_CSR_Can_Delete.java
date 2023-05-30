@@ -21,8 +21,12 @@ public class EM_321_015_CSR_Can_Delete extends TestBase{
 		test = report.createTest("EM.321.015 - Verify CSR is able to Delete Executor/Owner Details");
 		cf.login("ndfjp3", "Admin@123456789");
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
+		sleep();
 		cf.ScrollMenu("Account Maintenance");
+		sleep();
 		cf.clickMenu("Account Maintenance");
 		cf.ScrollMenu("Maintain Business Ownership");
 		cf.clickMenu("Maintain Business Ownership");
@@ -32,10 +36,10 @@ public class EM_321_015_CSR_Can_Delete extends TestBase{
 		/*----------------SREG-029----------------*/
 		
 		cf.screenShot("ChangeOwner", "Pass", "Navigated to SREG-029 page");
-		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='TRUS 'AND  ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS", "EAN");
+		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='TRUS ' ORDER BY UPDATED_TS", "EAN");
 
-//		String ernValue = ernOutput.get("EAN");
-		String ernValue = "0000096";
+		String ernValue = ernOutput.get("EAN");
+//		String ernValue = "0000096";
 		System.out.println(ernValue);
 
 		test.log(Status.INFO, "ERN : : "+ernValue);

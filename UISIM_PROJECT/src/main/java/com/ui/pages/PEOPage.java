@@ -230,5 +230,6 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddres.physicaladdress-input'][@name='mat-radio-group-28']")
 	public WebElement PrimaryPhysicalAddress;
 	
-	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']/following-sibling::mat-label")
+	public WebElement getERN;
 }

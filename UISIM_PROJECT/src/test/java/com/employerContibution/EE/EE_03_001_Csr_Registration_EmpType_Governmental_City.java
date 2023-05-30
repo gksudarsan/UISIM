@@ -53,7 +53,7 @@ public class EE_03_001_Csr_Registration_EmpType_Governmental_City extends TestBa
 		cf.selectDropdown("Source Type", " NYS-100G ");
 		cf.screenShot("Menu", "Pass", "Employer Registration");
 		cf.clickButtonContains("Continue");
-
+		sleep(4000);
 		cf.screenShot("Menu", "Pass", "Employer Registration");
 		cf.populateListbox("Legal Name", "testing registration process");
 		cf.clickButtonContains("Continue");sleep();
