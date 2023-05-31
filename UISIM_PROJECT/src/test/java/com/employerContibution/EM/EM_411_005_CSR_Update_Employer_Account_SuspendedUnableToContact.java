@@ -1,0 +1,92 @@
+package com.employerContibution.EM;
+
+import java.util.Map;
+
+import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Test;
+
+import com.ui.base.TestBase;
+import com.ui.pages.PEOPage;
+import com.ui.pages.employerManagement;
+import com.ui.utilities.COMMON_CONSTANT;
+
+import stepDefinitions.commonStepDefinitions;
+
+public class EM_411_005_CSR_Update_Employer_Account_SuspendedUnableToContact extends TestBase {
+	
+	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR is able to update account status of employer account 'Suspended Unable to Contact'", groups = {COMMON_CONSTANT.REGRESSION})
+	public void TC_EM_411_005() throws Exception {
+		
+		test = report.createTest("Verify CSR is able to update account status of employer account 'Suspended Unable to Contact'");
+		
+		commonStepDefinitions commonFunction = new commonStepDefinitions();
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		employerManagement empManage = new employerManagement(driver);
+		
+		//GET method
+		// valid EAN for Org Type -> SPRI
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND EAN IS NOT NULL AND LENGTH(EAN)=7",
+				//"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
+				"EAN");
+		String eanValue = databaseEanResult.get("EAN");
+		System.out.println("EAN value is" + eanValue);
+		
+		//--- Login ---
+		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
+		
+		//---Menu Click---
+		sleep(2000);
+		commonFunction.clickMenu("Menu");
+		commonFunction.ScrollMenu("Account Maintenance");
+		commonFunction.clickMenu("Account Maintenance");
+		commonFunction.ScrollMenu("Employer Account Maintenance");
+		commonFunction.clickMenu("Employer Account Maintenance");
+		commonFunction.screenShot("MenuNavigation", "Pass", "Navigated to Menu -> Account Maintenance -> Employer Account Maintenance -> Maintain Account Status");
+		commonFunction.clickMenu("Maintain Account Status");
+		
+		// --- SREG-434 ---
+		sleep(2000);
+		commonFunction.screenShot("EM411005", "Pass", "Successfully launched to Maintain Account Status - Enter ERN(SREG-434) page");
+		commonFunction.enterTextbox("Employer Registration Number", eanValue); //7561963
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-435 ---
+		sleep(2000);
+		commonFunction.screenShot("EM411005", "Pass", "Successfully launched to Update Account Status(SREG-434) page");
+		commonFunction.selectDropdown("Status of Employer Account", " Suspended Unable to Contact ");
+		
+		
+		empManage.suspensionDateQtrDropdown_SREG435.click();
+		sleep();
+		commonFunction.selectFromDropdown(" 4 ");
+		empManage.suspensionDateYearDropdown_SREG435.click();
+		sleep();
+		commonFunction.selectFromDropdown(" 2023 ");
+		
+		
+		sleep();
+		empManage.sourceId_SREG435.click();
+		sleep();
+		empManage.IA602_SREG435.click();
+		empManage.sourceTypeId_SREG435.click();
+		sleep();
+		empManage.CoverageException_SREG435.click();
+		commonFunction.screenShot("EM411005", "Pass", "Edited Details in SREG-435 page");
+		commonFunction.clickButtonContains("Submit ");
+
+		// --- SUC - 002 ---
+		sleep(2000);
+		commonFunction.screenShot("EM411005", "Pass", "Successfully launched to SUC - 002 page");
+		
+		sleep(2000);
+		commonFunction.screenShot("SuccessPage", "Fail", "System Failure Issue");
+		//commonFunction.screenShot("SuccessPage", "Pass", "TC EM_411_005 passed succesfully");
+		
+		commonFunction.Label("Employer Registration Number "+eanValue+" has been cancelled successfully effective 4/2023");
+		System.out.println("xxx");
+		
+	}
+
+}

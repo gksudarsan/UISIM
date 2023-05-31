@@ -40,7 +40,10 @@ public class EL_03_11 extends TestBase {
 		commonFunctions.clickButtonContains("Search");
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Searched PEO List");
 		
-		commonFunctions.selectRadioInTable("787876868", 1, 1, "Search for PEO");
+//		sleep(2000);
+//		commonFunctions.screenShot("PeoSearchPage", "Fail", "Expected search result not coming");
+		
+		commonFunctions.selectRadioInTable("400166513", 1, 1, "Search for PEO");
 		//driver.findElement(By.xpath("//input[@id='dataTableId_selectedPeoId_1_1_radio_button-input']")).click();
 		sleep();
 		commonFunctions.clickButtonContains("Continue");
@@ -50,6 +53,14 @@ public class EL_03_11 extends TestBase {
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Click on Manage PEO");
 		sleep();
 		
+		// --- PEO - 003 ---
+		sleep(2000);
+		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Successful launch to PEO-003 page");
+		PEOPage.address0_address1_PEO003.sendKeys("181 Mercer Street");
+		PEOPage.address0_city_PEO003.sendKeys("New York");
+		PEOPage.address0_zip_PEO003.sendKeys("10012");
+		PEOPage.phone0_PEO003.sendKeys("2332442465");
+		PEOPage.email0_PEO003.sendKeys("test123@gamil.com");
 		commonFunctions.clickButtonContains("Save & Continue");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Click on Save & Continue");
 		sleep();

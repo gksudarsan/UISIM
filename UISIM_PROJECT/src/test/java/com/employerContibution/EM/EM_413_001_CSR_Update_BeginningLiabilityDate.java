@@ -23,10 +23,11 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
-		employerManagement empManage = new employerManagement();
+		employerManagement empManage = new employerManagement(driver);
 				
 		//DB SELECT query
-		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC","EAN");
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_employer_account WHERE EAN IS NOT NULL AND LENGTH(EAN)=7","EAN");
+		//SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println("EAN value is " + eanValue);
 		
@@ -48,7 +49,8 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		// --- SREG-027 ---
 		sleep(2000);
 		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-027 page");
-		commonFunction.enterTextbox("Employer Registration Number", eanValue); //9300002
+		empManage.eanBeanId_SREG027.sendKeys(eanValue);
+		//commonFunction.enterTextbox("Employer Registration Number", eanValue); //7400783
 		sleep();
 		commonFunction.screenShot("EM413001", "Pass", "Entered ERN and clickd on Continue");
 		commonFunction.clickButton("Continue ");
@@ -57,6 +59,7 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		sleep(2000);
 		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-030 page");
 		sleep();
+		commonFunction.selectRadio(" Send LDD098 SDC No Report Due letter");
 		commonFunction.selectDropdown("Source", " IA602 ");
 		commonFunction.selectDropdown("Source Type", " Coverage Exception ");
 		sleep(2000);

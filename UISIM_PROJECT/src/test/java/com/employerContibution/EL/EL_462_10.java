@@ -26,6 +26,7 @@ public class EL_462_10 extends TestBase {
 		commonFunctions.login(COMMON_CONSTANT.CSR_USER_2, COMMON_CONSTANT.CSR_USER_2_PASSWORD);
 		commonFunctions.screenShot("ApplicationLogin", "Pass", COMMON_CONSTANT.LOGIN_SUCCESS);
 
+		sleep();
 		commonFunctions.clickMenu("Menu");
 		commonFunctions.ScrollMenu("Professional Employer Organization (PEO)");
 		PEOPage.menuPeo.click();
@@ -33,6 +34,7 @@ public class EL_462_10 extends TestBase {
 		driver.findElement(By.xpath(".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")).click();
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Search for PEO Page");
 		
+		sleep(2000);
 		commonFunctions.enterTextboxContains("PEO Name", "Exempt");
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Searched for Exempted PEO");
 		sleep();
@@ -40,21 +42,25 @@ public class EL_462_10 extends TestBase {
 		commonFunctions.clickButtonContains("Search");
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Searched PEO List");
 		
-		commonFunctions.selectRadioInTable("787876868", 1, 1, "Search for PEO");
+		sleep();
+		commonFunctions.selectRadioInTable("400166513", 1, 1, "Search for PEO");
 		//driver.findElement(By.xpath("//input[@id='dataTableId_selectedPeoId_1_1_radio_button-input']")).click();
 		sleep();
 		
 		commonFunctions.clickButtonContains("Continue");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Group PEO Details");
 		
+		sleep(2000);
 		commonFunctions.selectTableTypeList("821025914", 10, 1, "Client List");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Manage PEO Client List page launch successful");
 		sleep();
 		
+		sleep(2000);
 		commonFunctions.clickButtonContains(" Yes ");
 		commonFunctions.screenShot("AllPeoListPage", "Pass", "Deletion Successful");
 		sleep();
 		
+		sleep(3000);
 		commonFunctions.screenShot(COMMON_CONSTANT.SUCCESS, "Pass", COMMON_CONSTANT.SUCCESS_PAGE);
 	}
 

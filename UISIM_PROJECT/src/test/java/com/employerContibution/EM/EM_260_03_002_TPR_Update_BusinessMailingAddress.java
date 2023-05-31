@@ -8,7 +8,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends TestBase{
+public class EM_260_03_002_TPR_Update_BusinessMailingAddress extends TestBase{
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR is able to update TPR(Own) address for address type 'Primary business physical address'", groups = {COMMON_CONSTANT.REGRESSION})
 	public void TC_EM_260_02_002() throws Exception{
