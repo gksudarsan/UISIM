@@ -235,4 +235,18 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']/following-sibling::mat-label")
 	public WebElement getERN;
 
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_address1']")
+	public WebElement address0_address1_PEO003;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_city']")
+	public WebElement address0_city_PEO003;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='address0_zip']")
+	public WebElement address0_zip_PEO003;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='phone0']")
+	public WebElement phone0_PEO003;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='email0']")
+	public WebElement email0_PEO003;
 }

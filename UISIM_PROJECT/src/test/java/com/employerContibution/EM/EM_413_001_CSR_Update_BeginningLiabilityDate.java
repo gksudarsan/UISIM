@@ -23,10 +23,11 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
-		employerManagement empManage = new employerManagement();
+		employerManagement empManage = new employerManagement(driver);
 				
 		//DB SELECT query
-		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC","EAN");
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_employer_account WHERE EAN IS NOT NULL AND LENGTH(EAN)=7","EAN");
+		//SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println("EAN value is " + eanValue);
 		
@@ -35,6 +36,7 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
 		//---Menu Click---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
@@ -46,17 +48,19 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		sleep();
 		
 		// --- SREG-027 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-027 page");
-		commonFunction.enterTextbox("Employer Registration Number", eanValue); //9300002
+		empManage.eanBeanId_SREG027.sendKeys(eanValue);
+		//commonFunction.enterTextbox("Employer Registration Number", eanValue); //7400783
 		sleep();
 		commonFunction.screenShot("EM413001", "Pass", "Entered ERN and clickd on Continue");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-030 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-030 page");
 		sleep();
+		commonFunction.selectRadio(" Send LDD098 SDC No Report Due letter");
 		commonFunction.selectDropdown("Source", " IA602 ");
 		commonFunction.selectDropdown("Source Type", " Coverage Exception ");
 		sleep(2000);
@@ -64,14 +68,16 @@ public class EM_413_001_CSR_Update_BeginningLiabilityDate extends TestBase {
 		commonFunction.clickButton("Submit ");
 		
 		// --- SUC-002 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SUC-002 page");
 		commonFunction.clickButton("Home ");
 		
-		sleep(2000);
+		sleep(3000);
 		commonFunction.screenShot("SuccessPage", "Pass", "Launched to Home page");
 		
-		System.out.println("pass");
+		commonFunction.screenShot("SuccessPage", "Pass", "TC EM_413_001 passed");
+		
+		System.out.println("pass :)");
 		
 	}
 
