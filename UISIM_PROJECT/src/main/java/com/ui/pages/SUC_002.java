@@ -44,6 +44,19 @@ public class SUC_002 {
 	@FindBy(how = How.XPATH, using = "//button[@id='SUC-002access.home']//span[@class='mat-button-wrapper'][normalize-space()='Home']")
 	public WebElement homeButton;
 	
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(@id,'successMatLinkId')]//a")
+	public WebElement addOrRemoveLink;
+	
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewEmployerType Task has been successfully completed.')]")
+	public WebElement reviewEmployeerTypeSuccessmsg;
+	
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewpotentialDuplicates Task has been successfully completed. ')]")
+	public WebElement ReviewpotentialDuplicatesSuccessmsg;
+
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'DOLDTFDiscrepancy Task has been successfully completed. ')]")
+	public WebElement DOLDTFDiscrepancySuccessmsg;
+	
+	
 	
 	public String validateSucessMessage() throws Exception {
 		stepDef.screenShot("Success_Message", "Pass", "Success message Screenshot");

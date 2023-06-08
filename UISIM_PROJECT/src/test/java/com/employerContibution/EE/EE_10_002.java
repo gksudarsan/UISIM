@@ -3,12 +3,16 @@ package com.employerContibution.EE;
 import java.util.Map;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.HomePage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_043;
+import com.ui.pages.SREG_084;
+import com.ui.pages.SUC_002;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -24,11 +28,20 @@ public class EE_10_002 extends TestBase {
 
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
-		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
+		SREG_084 sreg084 = new SREG_084(driver);
+		SUC_002 suc002 = new SUC_002(driver);
+		SREG_043 sreg043 = new SREG_043(driver);
+		
+		
+		//
+		String feinValuemanual = "133653406";
+
+		//
 
 		// DB Query //
 		// FEIN - In DOL but not in DTF
-		Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn(
+		/*Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT * FROM LROUIM.T_EMPLOYER_ACCOUNT tea JOIN LROUIM.T_EMPLOYER_DOL_DTF tedd ON tea.EAN = tedd.ERN WHERE tea.FEIN != tedd.FEIN",
 				"FEIN");
 		String feinValue = databaseFeinResult.get("FEIN");
@@ -47,7 +60,7 @@ public class EE_10_002 extends TestBase {
 				"ENTITY_NAME");
 		String legalName = databaseEntityNameResult.get("ENTITY_NAME");
 		System.out.println("The LegalName is " + legalName);
-
+*/
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
@@ -83,16 +96,18 @@ public class EE_10_002 extends TestBase {
 
 		// --- SREG-025 ---//
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValuemanual);
 		commonFunction.selectDropdown("Type of Legal Entity", " Town ");
-		commonFunction.enterTextboxContains("Employer Registration Number", eanValue);
+		commonFunction.enterTextboxContains("Employer Registration Number", "0506562");
 		sleep(3000);
 		commonFunction.clickButton("Continue ");
 		commonFunction.screenShot("EmpRegister4", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
 
 		// --- SREG-003 --- //
-		empRegPage.legalNameTextBox.sendKeys(legalName);
+		//empRegPage.legalNameTextBox.sendKeys(legalName);
+		empRegPage.legalNameTextBox.sendKeys("ColorEseence122");
+		
 		commonFunction.enterTextboxContains("Other commonly known", "ABCDERFGH");
 		commonFunction.enterTextboxContains(" Business Phone Number  ",
 				Long.toString(commonFunction.createRandomInteger(10000000, 99999999))
@@ -167,9 +182,11 @@ public class EE_10_002 extends TestBase {
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
 
+		commonFunction.selectRadioQuestions("bmad Address", "123");
+		commonFunction.selectRadioQuestions("lbra Address", "123");
 		
-		empRegPage.uspsBmadAddressRadio.click();
-		empRegPage.uspsLbraAddressRadio.click();
+		//empRegPage.uspsBmadAddressRadio.click();
+		//empRegPage.uspsLbraAddressRadio.click();
 		//empRegPage.uspsNpcaAddressRadio.click();
 		commonFunction.screenShot("EmpRegister15", "Pass", "Click on appropriate USPS radio on SREG-004 page");
 		empRegPage.continueButton_popUp.click();
@@ -182,6 +199,7 @@ public class EE_10_002 extends TestBase {
 		}
 
 		// --- SREG-521 --- //
+		sleep(3000);
 		commonFunction.screenShot("Employer Verify Contact Details", "Pass", "Successfully launched to SREG-521");
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
@@ -202,22 +220,106 @@ public class EE_10_002 extends TestBase {
 		sleep();
 		commonFunction.screenShot("Submit", "Pass", "Click on submit button");
 		commonFunction.clickButtonContains("Submit ");
-		sleep(15000);
+		sleep(10000);
 
 		// --- SREG-013 --- //
 		commonFunction.screenShot("Employer Registration Confirmation", "Pass", "Successfully launched to SREG-013");
-		commonFunction.clickButtonContains("Exit ");
-		commonFunction.screenShot("Home Page", "Pass", "Successfully exited to Home Page");
-
+		commonFunction.clickButton("Home ");
+		commonFunction.screenShot("Homepage", "Pass", "Homapage page displayed");
+		
+		////
+		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValuemanual+"' ORDER BY UPDATED_TS desc)");
+		////
+		
 		// Logout and Login as CSR
 		commonFunction.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		peoPage.queue.click();
-		sleep(15000);
+		commonFunction.screenShot("Business Acquisition", "Pass", "logged In");
+		test.info("CSR Navigate to Main Menu -> MyQ");
+		Thread.sleep(5000);
+		PEOPage.queue.click();
+		Thread.sleep(3000);
+		commonFunction.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
+		commonFunction.enterTextboxContains("FEIN", feinValuemanual);
+		commonFunction.clickButtonContains(" Search ");
+		Thread.sleep(2000);
 		
-		// Blocked after step 16, Work Item not getting created
-		commonFunction.screenShot("Home Page", "Fail", "Blocked after step 16, Work Item not getting created");
-
-	
+		sreg084.reviewemployertypelink.click();
+		commonFunction.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
+		Thread.sleep(2000);
+		
+		commonFunction.clickButtonContains("Open Work Item ");
+		Thread.sleep(4000);
+		commonFunction.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
+		
+		test.info("Step: 18 -- Enter/Select \"Review Employer Type Task (EEWI-002)\" screen with below details");  
+		commonFunction.enterTextboxContains("Date Covered Employment began? ", "05/07/2022");
+		sleep(2000);
+		sreg043.EEWI002CommentsField.sendKeys("testing");
+		commonFunction.clickButtonContains("Submit ");
+		commonFunction.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+		
+		test.info("Step: 19 -- Click on Exit button on \"Workitem Completed Confirmation - (SUC-002)\" screen.");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		Assert.assertTrue(suc002.reviewEmployeerTypeSuccessmsg.isDisplayed());
+		suc002.homeButton.click();
+		Thread.sleep(5000);
+		commonFunction.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		
+		test.info("Step: 20-- CSR Navigates to Main Menu -> MyQ");
+		Thread.sleep(2000);
+		PEOPage.queue.click();
+		Thread.sleep(7000);
+		commonFunction.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
+		
+		test.info("Step: 21-- CSR Enter/Select the information in \"Individual Work Queue - (WF-001)\" screen");
+		//commonFunction.enterTextboxContains("FEIN", feinValuemanual);
+		//commonFunction.clickButtonContains(" Search ");
+		//Thread.sleep(2000);
+		
+		test.info("Step: 22-- Select  DOL-DTF Discrepancy Task  from the search result by clicking on Work Item Description hyperlink");
+		//click manually
+		
+		test.info("Step: 23-- Enter/Select  \"DOL-DTF Discrepancy Task (EEWI-005)\" screen with below details");
+		commonFunction.clickButtonContains("Open Work Item ");
+		Thread.sleep(5000);
+		sreg043.EEWI002CommentsField.sendKeys("testing");
+		commonFunction.clickButtonContains("Submit ");
+		Thread.sleep(4000);
+		commonFunction.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+		
+		test.info("Step: 24 -- Click on Exit button on \"Workitem Completed Confirmation - (SUC-002)\" screen.");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		Assert.assertTrue(suc002.DOLDTFDiscrepancySuccessmsg.isDisplayed());
+		suc002.homeButton.click();
+		Thread.sleep(5000);
+		commonFunction.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		
+		test.info("Step: 25 -- Navigate to Main Menu > Inquiry > Contribution Inquiry > Inquiry Employer Account");
+		sleep(4000);
+		commonFunction.clickMenu("Menu");
+		commonFunction.clickMenu("Inquiry");
+		commonFunction.clickMenu("Contribution Inquiry");
+		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Main Menu > Inquiry > Contribution Inquiry > Inquiry Employer Account");
+		commonFunction.clickMenu("Inquiry Employer Account");
+		
+		sleep(2000);
+		commonFunction.screenShot("EmpRegister1", "Pass", "SREG-050 Inquiry Employer Account");
+		
+		test.info("Step: 26 -- Enter/Select details on Inquiry Employer Account – Enter ERN (SREG-050) screen ");
+		commonFunction.enterTextboxContains(" FEIN ", feinValuemanual);
+		commonFunction.clickButtonContains("Continue ");
+		
+		commonFunction.screenShot("Inquiry Employer Account Information", "Pass", "SREG-051 page is dislayed");
+		
+		test.info("Step: 27 -- Enter/Select details on Inquiry Employer Account – Enter ERN (SREG-050) screen ");
+		//28
+		commonFunction.clickButtonContains("Previous ");
+		Thread.sleep(2000);
+		commonFunction.screenShot("Inquiry Employer Account Information", "Pass", "(SREG-050) screen is dislayed");
+		commonFunction.clickButtonContains(" Home ");
+		Thread.sleep(2000);
+		commonFunction.screenShot("Home", "Pass", "Home Screen screen is dislayed");
+		
 	}
 
 }
