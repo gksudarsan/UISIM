@@ -484,7 +484,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void enterCurrentDate(WebElement ele) {
-		String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
+		String date = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
 		ele.sendKeys(date);
 	}
 
@@ -739,7 +739,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void enterFutureDate(String xpathParameter, int daysAdded) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.add(Calendar.DATE, daysAdded);
@@ -804,7 +804,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void enterPastDate(String xpathParameter, int daysSub) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.add(Calendar.DATE, -daysSub);
@@ -958,7 +958,7 @@ public class commonStepDefinitions extends TestBase {
 			driver.findElement(By.xpath("//mat-label[text()='"+fname+" "+lname+"']/ancestor::mat-row//mat-cell/a/u[text()='inactive']")).click();
 		}
 		public void enterCurrentDate(String xpathParameter) {
-			String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
+			String date = new SimpleDateFormat("MM/dd/yyyy").format(Calendar.getInstance().getTime());
 			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 					.sendKeys(date);

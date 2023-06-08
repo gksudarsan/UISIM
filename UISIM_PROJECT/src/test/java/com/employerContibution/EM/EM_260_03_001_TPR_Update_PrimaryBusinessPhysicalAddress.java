@@ -29,7 +29,7 @@ public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends Tes
 		System.out.println(eanValue);
 		
 		//--- Login ---
-		commonFunction.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		//---Menu Click---
