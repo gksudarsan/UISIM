@@ -96,6 +96,8 @@ public class EM_443_002_CSR_Verify_CSR_is_able_to_search_POA_TPR_detail_and_Add_
 		
 		//----SREG 040
 		commonFuntions.enterTextboxContains("*POA/TPR Legal Name", "Suma");
+		//Using with new data it working
+		commonFuntions.enterTextboxContains("*POA/TPR Legal Name", "Test");
 		commonFuntions.clickButton(" Search ");
 		sleep(2000);
 		commonFuntions.clickButtonContains("Continue");sleep();

@@ -28,7 +28,7 @@ public class EM_321_02_010_EMP_Verify_Employer_is_able_to_Edit_Executor_Owner_De
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 	
 		
-			    //----menu
+		 //----menu
 		sleep(2000);
 		CommFun.screenShot("Menu", "Pass", "Menu page");
 		CommFun.clickMenu("Menu");
@@ -40,7 +40,7 @@ public class EM_321_02_010_EMP_Verify_Employer_is_able_to_Edit_Executor_Owner_De
 		home.MaintainBusinessOwnership.click();
 		sleep(2000);
 		
-												//-----SREG-712
+		//-----SREG-712
 		CommFun.screenShot("Executor/Owner Details", "Pass", "Successfully landed on SREG-712");
 		sleep(2000);
 		CommFun.clickOnLink("Add Executor/Owner Details");
@@ -72,7 +72,6 @@ public class EM_321_02_010_EMP_Verify_Employer_is_able_to_Edit_Executor_Owner_De
 		//-------SREG-712
 		CommFun.screenShot("Executor/Owner Details", "Pass", "Successfully landed on SREG-712");
 		sleep(2000);
-		
 		sreg.actionEditExecutor.click();
 		sleep(2000);
 		
@@ -84,10 +83,9 @@ public class EM_321_02_010_EMP_Verify_Employer_is_able_to_Edit_Executor_Owner_De
 		CommFun.enterTextboxContains("SSN",Long.toString(CommFun.createRandomInteger(1000000,9999999))+Long.toString(CommFun.createRandomInteger(10,99)));
 		sleep(2000);
 		//CommFun.enterTextboxContains("First Name ", "Rupal");
-		
 		//CommFun.enterTextboxContains("Last Name ", "Gupta");
 		//CommFun.clickButtonContains(" Yes ");
-		sleep(2000);
+		//sleep(2000);
 		//Term End Date
 		CommFun.enterTextboxContains("Term End Date", "05/31/2023");
 		sleep(2000);
@@ -106,10 +104,10 @@ public class EM_321_02_010_EMP_Verify_Employer_is_able_to_Edit_Executor_Owner_De
 		CommFun.screenShot("Modify Employer Account Details", "Pass", "Successfully landed on SUC 002");
 		sleep(2000);
 		CommFun.clickButtonContains("Home ");
-		sleep(2000);
+		sleep(4000);
 		CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
 	
-		//---completed by Palak											 
+		//---Executed & completed by Palak											 
 					}
 			
 		}

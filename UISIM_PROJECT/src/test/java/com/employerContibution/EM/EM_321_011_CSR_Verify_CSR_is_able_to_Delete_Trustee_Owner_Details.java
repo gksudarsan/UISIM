@@ -16,9 +16,9 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_321_011_CSR_Verify_CSR_is_able_to_Delete_Trustee_Owner_Details extends TestBase{
 
 	
-	@Test(priority = 1, description = "Verify Employer is able to Delete Member_Managing_Member Details", groups = { "Regression" })
+	@Test(priority = 1, description = "Verify Employer is able to Delete Trustee_Owner", groups = { "Regression" })
 	public void EM_321_011()throws Exception {
-		test=report.createTest("Verify Employer is able to Delete Member_Managing_Member Details");
+		test=report.createTest("Verify Employer is able to Delete Trustee_Owner");
 		commonStepDefinitions CommFun = new commonStepDefinitions();
 		EmployerRegisterPage employerRegisterPage = new EmployerRegisterPage(driver);
 		HomePage home = new HomePage(driver);
@@ -58,8 +58,7 @@ public class EM_321_011_CSR_Verify_CSR_is_able_to_Delete_Trustee_Owner_Details e
 		sleep(2000);
 		CommFun.clickButton("Continue ");
 		sleep(2000);
-	
-		
+
 		//------SREG 708
 		CommFun.screenShot("Member/Managing Member Details", "Pass", "Successfully landed on SREG 708");
 		sleep(2000);
@@ -71,7 +70,7 @@ public class EM_321_011_CSR_Verify_CSR_is_able_to_Delete_Trustee_Owner_Details e
 		sleep(2000);
 		CommFun.screenShot("Member/Managing Member Details", "Pass", "Deleted members from table on SREG 708");
 		sleep(2000);
-		//---completed
+		//---completed by Palak
 		
 		
 		

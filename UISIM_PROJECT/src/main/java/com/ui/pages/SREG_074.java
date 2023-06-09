@@ -18,7 +18,7 @@ public class SREG_074 {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Individual as Partner ']//following::*[contains(@id ,'dataTable')][1]/mat-row[3]/mat-cell[10]//a[2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Individual as Partner ']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[10]//a[2]")
 	public WebElement actionInactive;
 
 

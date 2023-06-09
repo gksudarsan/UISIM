@@ -443,6 +443,9 @@ public WebElement commentId;
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration']/../following-sibling::div/div/button")
 public WebElement employer_Register_Edit_Button;
 
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Uploaded Documents']/../following-sibling::div/div/button")
+public WebElement upload_Document_Edit_Button;
+
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Contact Details']/../following-sibling::div/div/button")
 public WebElement Contact_Detail_Edit_Button;
 
@@ -476,5 +479,13 @@ public WebElement typeOfLegalEntityId;
 @FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
 public WebElement individualOwnership;
 
+@FindBy(how = How.XPATH, using =  "//*[@id='eanBeanId']")
+public WebElement eanBeanId;
+
+@FindBy(how = How.XPATH, using =  "//*[@id='employerFeinId']")
+public WebElement employerFeinId;
+
+@FindBy(how = How.XPATH, using =  "//*[@id='totalRevenue']")
+public WebElement totalRevenue;
 }
 

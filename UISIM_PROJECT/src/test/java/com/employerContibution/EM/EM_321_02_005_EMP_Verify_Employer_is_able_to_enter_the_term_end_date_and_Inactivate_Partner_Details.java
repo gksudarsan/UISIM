@@ -66,7 +66,7 @@ public class EM_321_02_005_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		CommFun.screenShot("Edit Partnership Details", "Pass", "Successfully landed on SREG 073");
 		sleep(2000);
 		//Term End Date
-		CommFun.enterTextboxContains("Term End Date", "05/13/2023");
+		CommFun.enterTextboxContains("Term End Date", "09/13/2023");
 		sleep(2000);
 		CommFun.screenShot("Edit Partnership Details", "Pass", "entered information on SREG 073");
 		sleep(2000);
@@ -77,9 +77,11 @@ public class EM_321_02_005_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 	    sleep(2000);
 	    CommFun.screenShot("Modify Employer Account Details", "Pass", "Successfully landed on SUC 002");
 	    sleep(2000);
+	    CommFun.Label("The Partner Details have been added/updated successfully");
+	    sleep(2000);
 	    CommFun.clickButtonContains("Home ");
 	    sleep(2000);
 	    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
-		 
+		 //Executed and completed by PAlak
 		}
 }

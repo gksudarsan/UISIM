@@ -76,5 +76,6 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 	    sleep(2000);
 	    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
 		 
+	  //---//--Facing issue in Mamber manging id Manju's one , User is inactive we are unable to click on menu
 		}
 }

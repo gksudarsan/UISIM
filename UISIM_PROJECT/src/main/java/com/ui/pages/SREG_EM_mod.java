@@ -18,13 +18,13 @@ public class SREG_EM_mod {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Individual as Member/Managing Member ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[3]")
+	@FindBy(how = How.XPATH, using = "//*[.='Individual as Member/Managing Member ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[2]/mat-cell[9]//a[3]")
 	public WebElement actionInactive;
 
-	@FindBy(how = How.XPATH, using = "//*[.='Sole Proprietor Details']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[8]//a[1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Sole Propertor Ship']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[8]//a[1]")
 	public WebElement actionEdit;
 
-	@FindBy(how = How.XPATH, using = "//*[.='Individual as Member/Managing Member ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Individual as Member/Managing Member ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[2]/mat-cell[9]//a[2]")
 	public WebElement actionDelete;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Executor/Owner Details']//following::*[contains(@id ,'dataTableId')][1]/mat-row[2]/mat-cell[10]//a[1]")
@@ -47,6 +47,11 @@ public class SREG_EM_mod {
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Individual as Partner ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[10]//a[2]")
 	public WebElement actionDeletePartner;
+	
+	@FindBy(how = How.XPATH, using = "//*[.=' Individual as Trustee ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[2]")
+	public WebElement actionInactiveTrustee;
+	
+	
 	
 	//310 series ---SREG 011
 	@FindBy (how = How.XPATH, using = "//textarea")
