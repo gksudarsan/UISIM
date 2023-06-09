@@ -25,7 +25,7 @@ public class EM_310_05_003_EMP_Verify_Employer_is_unable_to_process_Business_Acq
 		SREG_EM_mod sreg = new SREG_EM_mod(driver);
 		
 		//---------Login
-		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_3,COMMON_CONSTANT.EMPLOYER_USER_3_PASSWORD );
+		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_1,COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD );
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		

@@ -70,7 +70,7 @@
 		sleep(2000);
 		CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
 		
-		//---completed by Palak										 
+		//---Executed & completed by Palak										 
 					}
 			
 		}

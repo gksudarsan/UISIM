@@ -75,7 +75,7 @@ public class EM_321_010_Verify_CSR_is_able_to_enter_the_term_end_date_and_Inacti
 		CommFun.screenShot("Edit Member/Managing Member Details", "Pass", "Successfully landed on SREG 707");
 		sleep(2000);
 		//Term End Date
-		CommFun.enterTextboxContains("Term End Date", "05/13/2023");
+		CommFun.enterTextboxContains("Term End Date", "05/31/2023");
 		sleep(2000);
 		/*CommFun.clickButton("Submit ");
 		sleep(2000);
@@ -95,10 +95,10 @@ public class EM_321_010_Verify_CSR_is_able_to_enter_the_term_end_date_and_Inacti
 		sleep(2000);
 	    CommFun.screenShot("Member/Managing Member Details", "Pass", "Successfully landed on SREG 708");
 	    sleep(2000);
-	    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
+	    CommFun.screenShot("Member/Managing Member Details", "Pass", "Successfully landed on requred page test completed  ");
 		
 	    
-	    
+	  //---completed & executed by Palak
 	    
 		 
 		}
