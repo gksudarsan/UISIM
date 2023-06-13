@@ -14,7 +14,7 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_260_001_csr_updatePrimary_address {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
-	public class TC_CM_002_001 extends TestBase
+	public class EM_260_001 extends TestBase
 	{
 
 		String EAN = prop.getProperty("EAN");

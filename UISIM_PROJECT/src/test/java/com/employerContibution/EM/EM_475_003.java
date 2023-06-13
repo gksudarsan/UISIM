@@ -36,18 +36,18 @@ import stepDefinitions.commonStepDefinitions;
 
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EM_475_001 extends TestBase
+public class EM_475_003 extends TestBase
 {
 
 
 	
-	@Test(priority=1, description = "EM.475.001- Verify CSR is able to search POA/TPR detail and remove the association for POA/TPR with designation type in \"All Unemployment Insurance Matters\".",groups = {"Regression"})
-	public void EM_475_001() throws Exception
+	@Test(priority=1, description = "EM.475.003-  Verify CSR is able to search POA/TPR detail and remove the association for POA/TPR with designation type in \"Filing Agent Matters\".",groups = {"Regression"})
+	public void EM_475_003() throws Exception
 	{
 		 
-		 test = report.createTest("EM.475.001- Verify CSR is able to search POA/TPR detail and remove the association for POA/TPR with designation type in \"All Unemployment Insurance Matters\".");
+		 test = report.createTest("EM.475.003-  Verify CSR is able to search POA/TPR detail and remove the association for POA/TPR with designation type in \"Filing Agent Matters\".");
 		 commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE EAN IS NOT NULL AND EAN IN (SELECT EAN FROM T_EMPLOYER te WHERE employer_id IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION ttpcva WHERE DESIGNATION_TYPE = 'UIM' ))","EAN");
+		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE EAN IS NOT NULL AND EAN IN (SELECT EAN FROM T_EMPLOYER te WHERE employer_id IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION ttpcva WHERE designation_type='FAM'))","EAN");
 	     String eanValue = databaseEanResult.get("EAN");
 	     System.out.println(eanValue);
 	     EmployerRegisterPage Erpage = new EmployerRegisterPage(driver);
@@ -65,19 +65,12 @@ public class EM_475_001 extends TestBase
 		 commonFuntions.clickMenu("Add or Remove POA/TPR Association");	
 		 sleep();
 		 commonFuntions.screenShot("Add or Remove POA/TPR Association – Enter ERN","Pass","Add or Remove POA/TPR Association – Enter ERN is launched");
-		 commonFuntions.clickButtonContains("Continue ");
-		 sleep();
-		 commonFuntions.screenShot("Employer Registration Number","Pass","Blank ERN Employer Registration Number");
-		 commonFuntions.enterTextboxContains("Employer Registration Number", "0000000");
-		 commonFuntions.clickButtonContains("Continue ");
-		 sleep();
-		 commonFuntions.screenShot("Employer Registration Number","Pass","Message display 'The Employer Registration Number(ERN) provided does not exist in the system'.");
-		 commonFuntions.enterTextboxContains("Employer Registration Number", eanValue); 
+         commonFuntions.enterTextboxContains("Employer Registration Number", eanValue); 
 		 commonFuntions.screenShot("Entered Employer Registration Number","Pass","Entered Employer Registration Number");
 		 commonFuntions.clickButtonContains("Continue ");
 		 sleep();
 		 commonFuntions.screenShot("Add or Remove Third Party Association to Employer","Pass","Add or Remove Third Party Association to Employer Screen Launched");
-		 commonFuntions.selectDropdown("Designation Type", " All Unemployment Insurance Matters ");
+		 commonFuntions.selectDropdown("Designation Type", " Filing Agent Matters ");
 		 commonFuntions.selectRadio("Select");
 		 Erpage.Select_date_from_calender.sendKeys("17/03/2023");
 		 HP.commentBox.sendKeys("for testing");
@@ -86,27 +79,8 @@ public class EM_475_001 extends TestBase
 		 commonFuntions.clickButtonContains("Submit ");
 		 sleep();
 		 commonFuntions.screenShot("Add or Remove POA/Third Party Representative Association to Employer Confirmation","Pass","Add or Remove POA/Third Party Representative Association to Employer Confirmation Screen Launched");
-		 commonFuntions.clickButtonContains("Home ");
-		 sleep(2000);
-         commonFuntions.clickMenu("Menu");
-		 commonFuntions.clickMenu("Inquiry");
-		 commonFuntions.clickMenu("Contribution Inquiry");
-		 commonFuntions.clickMenu("Inquiry Employer Account");	
-		 sleep();
-		 commonFuntions.screenShot("Inquiry Employer Account - Enter ERN","Pass","Inquiry Employer Account - Enter ERN Screen Launched");
-		 commonFuntions.enterTextboxContains("Employer Registration Number", eanValue);
-		 commonFuntions.screenShot("Entered Inquiry Employer Account - Enter ERN","Pass","Entered Inquiry Employer Account - Enter ERN");
-		 commonFuntions.clickButtonContains("Continue ");
-		 sleep();
-		 commonFuntions.screenShot("Inquiry Employer Account Information","Pass","Inquiry Employer Account Information Screen Launched");
-		 commonFuntions.clickHyperlink(" Joint Account Details ");
-		 commonFuntions.selectDropdown("Source", " Correspondence/Email ");
-		 commonFuntions.selectDropdown("Source Type", " Correspondence/Email ");
-		 commonFuntions.enterTextboxContains("Joint Account Dissolution Date", "17/03/2023");
-		 HP.commentBox.sendKeys("for testing");
-		 commonFuntions.selectCheckbox("As a member and Administrator of this Joint Account, I acknowledge that prior notice was given to all members regarding this request.");
-		 commonFuntions.clickButtonContains("Submit ");
-		 sleep(2000);
-		 }
-	  
+		 sleep(2000); 
+
+	}
+	
 }

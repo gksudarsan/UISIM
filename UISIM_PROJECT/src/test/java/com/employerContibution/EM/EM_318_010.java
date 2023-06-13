@@ -27,6 +27,7 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -44,11 +45,12 @@ public class EM_318_010 extends TestBase
 		 
 		 test = report.createTest("EM.318.010 Verify CSR is able to update Legal entity type information for type of legal entity 'Sole Proprietorship (Individual)' and employer type 'Household/Domestic'");
 		 commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'PART' AND EAN LIKE '8%'","EAN");
-	     String eanValue = databaseEanResult.get("EAN");
+		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'PART' AND EAN IS NOT NULL","EAN");
+		 //Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'PART' AND EAN LIKE '8%'","EAN");
+		 String eanValue = databaseEanResult.get("EAN");
 	     System.out.println(eanValue);
 	     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		 commonFuntions.login("ndfjp3","Admin@12345678");
+	     commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 sleep();
 		 commonFuntions.clickMenu("Menu");
@@ -67,9 +69,9 @@ public class EM_318_010 extends TestBase
 	     commonFuntions.enterTextboxContains(" Business Phone Number ",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		 commonFuntions.enterTextboxContains(" Business Fax Number ",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		 commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@labor.ny.gov");
+		 commonFuntions.selectDropdown("Employer Type", " Household/Domestic ");
 		 commonFuntions.selectDropdownUsingSearch("Type of Legal Entity"," Sole Proprietorship (Individual) "); 
 		 commonFuntions.selectRadio(" Send LDD097 SDC No Report Due letter");
-		 commonFuntions.selectDropdown("Employer Type", " Household/Domestic Employer ");
 		 commonFuntions.selectDropdown("Source", " NYS-45 (Quarterly Report) ");
 		 commonFuntions.selectDropdown("Source Type", " NYS-45 Without Remittance ");
 		 commonFuntions.screenShot("Modify Employer Account Details Entered","Pass","Modify Employer Account Details Entered");
@@ -78,7 +80,7 @@ public class EM_318_010 extends TestBase
 		 commonFuntions.screenShot("Employer Account Maintenance Confirmation Launched","Pass","Employer Account Maintenance Confirmation Launched");
 		 commonFuntions.Label("The Account Information has been succesfully saved");
 		 sleep(2000);
-		 
+		//Done 
 	
 	}
 }
