@@ -27,6 +27,7 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -44,11 +45,12 @@ public class EM_310_06_001 extends TestBase
 		 
 		 test = report.createTest("EM_310_06_001 - Verify CSR is able to report a change in Legal entity.");
 		 commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'HOUD' AND EAN LIKE '8%'","EAN");
+		 //Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'HOUD' AND EAN LIKE '8%'","EAN");
+		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'HOUD' AND EAN IS NOT NULL","EAN");
 	     String eanValue = databaseEanResult.get("EAN");
 	     System.out.println(eanValue);
 	     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		 commonFuntions.login("NDFJP3","Admin@123456789");
+	     commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 sleep();
 		 commonFuntions.clickMenu("Menu");

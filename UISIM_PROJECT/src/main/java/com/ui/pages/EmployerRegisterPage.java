@@ -476,5 +476,15 @@ public WebElement typeOfLegalEntityId;
 @FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
 public WebElement individualOwnership;
 
+//shubhanshi
+
+@FindBy(how = How.XPATH, using = "//*[.='Association End Date']//following::*[@id='dataTableId'][1]//following::input[1]")
+public WebElement Select_date_from_calender;
+
+@FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
+public WebElement EAN;
+
+
+
 }
 

@@ -27,6 +27,7 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -44,11 +45,11 @@ public class EM_310_07_003 extends TestBase
 		 
 		 test = report.createTest("EM.310.07.003 - Verify Employer is able to change in Legal entity when predecessor provided information is erroneous and system create task for CSR reviews.");
 		 commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		 Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("","EAN");
-	     String eanValue = databaseEanResult.get("EAN");
-	     System.out.println(eanValue);
+		// Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("","EAN");
+	   //  String eanValue = databaseEanResult.get("EAN");
+	    // System.out.println(eanValue);
 	     LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		 commonFuntions.login("ndfjp3","Admin@12345678");
+	     commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_5,COMMON_CONSTANT.EMPLOYER_USER_5_PASSWORD );
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 sleep();
 		 commonFuntions.clickMenu("Menu");
@@ -56,10 +57,7 @@ public class EM_310_07_003 extends TestBase
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.ScrollMenu("Change in Legal Entity");
 		 commonFuntions.clickMenu("Change in Legal Entity");	
-		 commonFuntions.screenShot("Change in Legal Entity – Enter ERN","Pass","Change in Legal Entity – Enter ERN is launched");
-		 sleep();
-		 commonFuntions.enterTextboxContains("Employer Registration Number" ,eanValue);
-		 commonFuntions.clickButtonContains("Continue ");
+		 commonFuntions.screenShot("Change in Legal Entity","Pass","Change in Legal Entity Screen launched");
 		 sleep();
 		 commonFuntions.selectRadio("Yes ");
 		 commonFuntions.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) " ,"364567009");
@@ -70,6 +68,19 @@ public class EM_310_07_003 extends TestBase
 		 commonFuntions.selectDropdown("Source Type", " NYS-100 ");
 		 commonFuntions.clickButtonContains("Continue ");
 		 sleep(2000);
-		
+		 commonFuntions.screenShot("Change in Legal Entity Details","Pass","Change in Legal Entity Details Screen launched");
+		 commonFuntions.clickButtonContains("Submit ");
+		 sleep(2000);
+		 commonFuntions.screenShot("Change in Legal Entity Confirmation","Pass","Change in Legal Entity Confirmation Screen launched");
+		 commonFuntions.clickButtonContains("Home ");
+	     commonFuntions.screenShot("Home Page", "Pass", "Home Page Launched");
+	     sleep(2000);
+	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1,COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
+		 sleep();
+		 commonFuntions.clickButtonContains(" Go to My Q ");
+	//	 commonFuntions.enterTextboxContains("Claimant ID", 
+
+	
 	}
 }
