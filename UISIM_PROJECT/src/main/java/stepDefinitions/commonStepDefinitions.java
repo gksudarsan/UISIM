@@ -71,6 +71,9 @@ public class commonStepDefinitions extends TestBase {
 			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
+			
+			sleep(2000);
+			screenShot("LoginPage", "Pass", "Login Page");
 
 			Thread.sleep(3000);
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
@@ -720,6 +723,7 @@ public class commonStepDefinitions extends TestBase {
 		sleep(4000);
 		clickMenu("Go to Homepage");
 		sleep(2000);
+		waitForLoadingIconToDisappear();
 		HomePage.menuLogout.click();
 		sleep(2000);
 		HomePage.signOut.click();
@@ -728,7 +732,9 @@ public class commonStepDefinitions extends TestBase {
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		sleep();
+		screenShot("LoginPage", "Pass", "Entered login Credentials");
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(10000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);

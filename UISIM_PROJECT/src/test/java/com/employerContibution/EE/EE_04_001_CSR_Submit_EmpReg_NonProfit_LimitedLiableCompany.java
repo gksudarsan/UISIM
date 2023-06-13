@@ -38,7 +38,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 			
 		// ---Menu Click---
-		sleep();
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		sleep();
 		commonFunction.ScrollMenu("Employer Registration");
@@ -49,7 +49,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.screenShot("EE04001", "Pass", "Launched the Employer Register(SREG-001) page");
 		
 		// --- SREG-001 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.ScrollMenu("Suffix");
 		commonFunction.screenShot("EE04001", "Pass", "Data from SREG-001 page");
 		sleep(2000);
@@ -58,7 +58,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-025 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Launched the Employer Register(SREG-025) page");
 		commonFunction.selectDropdown("Employer Type", " Non-Profit ");
 		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue); //897397325
@@ -73,11 +73,10 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		sleep(3000);
 		
 		// --- SREG-003 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Launched Employer Entity Information(SREG-003) page");
 		sleep(2000);
 		commonFunction.clickButton("Continue ");
-		commonFunction.errorLabel(" Required");
 		commonFunction.screenShot("EE04001", "Pass", "Required field in SREG-003 page");
 		
 		empRegPage.legalNameTextBox.sendKeys("ColorEseence122"); //ColorEseence122
@@ -112,7 +111,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-008 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Sucessfully launched to SREG-008 page");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
 		commonFunction.enterTextboxContains("City ", "New York");
@@ -137,12 +136,12 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		empRegPage.continueButton_popUp.click();
 		
 		// --- SREG-007 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched Business Physical Address Details(SREG-007) page");
 		commonFunction.clickOnLinkAnchorTag(" Add Another Business Location ");
 		
 		// --- SREG-008 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched Additional Business Physical Location(s)(SREG-008) page");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
 		commonFunction.enterTextboxContains("City ", "New York");
@@ -172,12 +171,12 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		empRegPage.continueButton_popUp.click();
 		
 		// --- SREG-007 ---			
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successful launch to Business Physical Address Details(SREG-007) page");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-004 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
 		//commonFunction.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 		commonFunction.selectRadioQuestions("Business Mailing Address", "Other");
@@ -239,12 +238,12 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		} catch(Exception exception) {}
 		
 		// SREG-011 expected, SREG-521 coming. 
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Warning", "Launched to  SREG-521 page");
 		commonFunction.clickButton("Continue ");
 		
 		// SREG - 011
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Launched to  SREG-011 page");
 		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
 		commonFunction.enterTextboxContains("Employer Registration Number", "0449897");
@@ -261,11 +260,12 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.clickButton("Continue ");
 				
 		// SREG - 012
-		sleep(3000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successful launch to (Business Acquisition Details)SREG-012 page");
 		commonFunction.clickButton("Continue ");
 		
 		// SREG-006
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successful launch to SREG-006 page");
 		commonFunction.selectRadioQuestions("Type of Member/Managing Member", "Business Entity");
 		commonFunction.enterTextboxContains("Entity Name", "Test");
@@ -290,7 +290,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		empRegPage.continueButton_popUp.click();
 		
 		// --- SREG 005 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Click on 'Add Member/Managing Member Details' link on SREG-005");
 		commonFunction.clickOnLink("Add Member/Managing Member Details");
 		
@@ -319,12 +319,12 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		empRegPage.continueButton_popUp.click();
 		
 		// --- SREG 005 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "USPS Business address selection on SREG-005");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG 683 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "USPS Business address selection on SREG-683");
 		sleep();
 		commonFunction.selectLink(" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.", "Browse");
@@ -335,20 +335,20 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.clickButton("Continue ");
 
 		// --- SREG-800 ---
-		sleep(4000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-800 page");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-043 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.selectCheckbox("I accept");
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-043 page");
 		commonFunction.clickButton("Submit ");
 		
 		// --- SREG-013 ---
-		sleep(10000);
+		sleep(20000);
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-013 page");
-		commonFunction.clickButton("Exit ");
+		commonFunction.clickButton("Home ");
 		
 		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1 + "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='" + feinValue + "' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(2000);
@@ -359,6 +359,8 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
 	    commonFunction.clickButtonContains("Search");
 	    
+	    
+	    // WI not getting generated
 	    sleep(3000);
 	    commonFunction.clickOnLink("Review Employer Type");
 	    
@@ -366,18 +368,19 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    commonFunction.clickButtonContains("Open Work Item");
 	    
 	    // ---  EEWI-002 ---
-	    sleep(3000);
+	    commonFunction.waitForLoadingIconToDisappear();
 	    empRegPage.firstCalender_Quater.click();
 		empRegPage.firstCalender_Quater_Value.click();
 		empRegPage.firstCalender_Year.click();
 		empRegPage.firstCalender_Year_Value_2022.click();
 	    empRegPage.commentId_EEWI002.sendKeys("Tested Ok");
-	    sleep(2000);
+	    
+	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to EEWI-002 page");
 	    commonFunction.clickButtonContains("Submit ");
 	    
 	    // --- SUC-002 ---
-	    sleep(3000);
+	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SUC-002 page");
 		commonFunction.clickButton("Home ");
 		

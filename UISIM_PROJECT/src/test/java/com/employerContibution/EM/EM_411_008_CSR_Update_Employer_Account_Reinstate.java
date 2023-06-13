@@ -39,7 +39,7 @@ public class EM_411_008_CSR_Update_Employer_Account_Reinstate extends TestBase {
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		//---Menu Click---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
@@ -49,37 +49,37 @@ public class EM_411_008_CSR_Update_Employer_Account_Reinstate extends TestBase {
 		commonFunction.clickMenu("Maintain Account Status");
 		
 		// --- SREG-434 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EM411008", "Pass", "Successfully launched to Maintain Account Status - Enter ERN(SREG-434) page");
 		sleep();
 		commonFunction.enterTextbox("Employer Registration Number", eanValue); //5434567
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-435 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EM411008", "Pass", "Successfully launched to Update Account Status(SREG-434) page");
 		commonFunction.selectDropdown("Status of Employer Account", " Re-Instated ");
 		commonFunction.selectRadioQuestions("Send a Closure Letter (IA31.6)?", "Yes ");
-//		empManage.sourceId_SREG435.click();
-//		sleep();
-//		empManage.correspondence_SREG435.click();
-//		empManage.sourceTypeId_SREG435.click();
-//		sleep();
-//		empManage.correspondence_SREG435.click();
+		empManage.sourceId_SREG435.click();
+		sleep();
+		empManage.correspondence_SREG435.click();
+		empManage.sourceTypeId_SREG435.click();
+		sleep();
+		empManage.correspondence_SREG435.click();
 		commonFunction.screenShot("EM411008", "Pass", "Edited Details in SREG-435 page");
 		commonFunction.clickButtonContains("Submit ");
 		
-		commonFunction.screenShot("EM411008", "Fail", "Unable to submit");
+		//commonFunction.screenShot("EM411008", "Fail", "Unable to submit");
 
 		// --- SUC - 002 ---
-//		sleep(2000);
-//		commonFunction.screenShot("EM411008", "Pass", "Successfully launched to SUC - 002 page");
-//		
-//		sleep(2000);
-//		commonFunction.screenShot("SuccessPage", "Pass", "TC EM_411_008 passed succesfully");
-//		
-//		//commonFunction.Label("Employer Registration Number "+eanValue+" has been cancelled successfully effective 4/2023");
-//		System.out.println("pass");
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EM411008", "Pass", "Successfully launched to SUC - 002 page");
+		
+		sleep(2000);
+		commonFunction.screenShot("SuccessPage", "Pass", "TC EM_411_008 passed succesfully");
+		
+		//commonFunction.Label("Employer Registration Number "+eanValue+" has been cancelled successfully effective 4/2023");
+		System.out.println("pass");
 		
 	}
 
