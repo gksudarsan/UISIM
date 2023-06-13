@@ -45,6 +45,7 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
+import com.ui.pages.PEOPage;
 import com.ui.utilities.screenShot;
 
 public class commonStepDefinitions extends TestBase {
@@ -52,6 +53,7 @@ public class commonStepDefinitions extends TestBase {
 	public void login(String userName, String password) throws Exception {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
 		try {
@@ -91,6 +93,8 @@ public class commonStepDefinitions extends TestBase {
 		waitForLoadingIconToDisappear();
 		}
 		catch(Exception e) {}
+		Thread.sleep(2000);
+		waitForLoadingIconToDisappear();
 		screenShot("okPopUpButton", "Pass", "okPopUp");
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
@@ -100,8 +104,10 @@ public class commonStepDefinitions extends TestBase {
 		}
 		Thread.sleep(3000);
 		driver.navigate().refresh();
-		Thread.sleep(3000);
+		Thread.sleep(3000);		
+		waitForLoadingIconToDisappear();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			sleep(2000);
 			loginPage.okPopUpButton.click();
 //			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
@@ -668,6 +674,7 @@ public class commonStepDefinitions extends TestBase {
 	public void loginPeoAdmin(String userName, String password) throws Exception {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
 		loginPage.loginLink.click();
@@ -689,20 +696,14 @@ public class commonStepDefinitions extends TestBase {
 		sleep(10000);
 		driver.navigate().refresh();
 		sleep(5000);
+		waitForLoadingIconToDisappear();
 
-
-	/*	screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio(
-				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
+		peoPage.PeoUserSelect.click();
+		/*selectRadio(
+				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");*/
 		clickButtonContains("Continue");
-		sleep(2000);*/
-
-//		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-//		selectRadio(
-//				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
-//		clickButtonContains("Continue");
 		sleep(2000);
-
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
 			Thread.sleep(3000);
@@ -722,12 +723,15 @@ public class commonStepDefinitions extends TestBase {
 		clickMenu("LOG OUT");
 		sleep(4000);
 		clickMenu("Go to Homepage");
-		sleep(2000);
+		sleep(2000);		
 		waitForLoadingIconToDisappear();
+		try {
 		HomePage.menuLogout.click();
 		sleep(2000);
 		HomePage.signOut.click();
 		sleep(5000);
+		}
+		catch(Exception e) {}
 		enterTextbox("Username", userName);
 		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);

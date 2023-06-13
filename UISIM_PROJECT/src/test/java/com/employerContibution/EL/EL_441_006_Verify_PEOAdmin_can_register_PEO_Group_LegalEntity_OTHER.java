@@ -33,17 +33,19 @@ public class EL_441_006_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_OTHER
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 //PEOPage.peoRegister.click();
+		 PEOPage.peoRegister.click();
 		 sleep(3000);
 		 sleep(3000);
-		 commonFuntions.clickMenu("Menu");	
+		/* commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
 		 commonFuntions.clickMenu("Register PEO");			 
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
-		 Thread.sleep(3000);
+		*/ Thread.sleep(3000);
 	    
 		 
 		 
@@ -61,7 +63,7 @@ public class EL_441_006_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_OTHER
 	     sleep(2000);
 	     PEOPage.groupRegPeo.click();
 		 commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+		 commonFuntions.enterTextboxContains("Additional name(s), if any,","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.screenShot("peor", "Pass", "Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -87,6 +89,11 @@ public class EL_441_006_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_OTHER
 	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressCity.sendKeys("NewYork");
 	     PEOPage.addressZip.sendKeys("13476");
+	     sleep(2000);
+	     PEOPage.PeoCountry.click();
+	   
+	     commonFuntions.selectFromDropdown("United States");
+	     sleep(2000);
 	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 	     commonFuntions.screenShot("Address Information", "PASS", "Address Information");

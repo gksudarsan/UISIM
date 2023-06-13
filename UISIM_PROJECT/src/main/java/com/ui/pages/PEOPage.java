@@ -249,4 +249,14 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='email0']")
 	public WebElement email0_PEO003;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')][@class='mat-radio-label']//following::span[@class='mat-radio-container'][1]")
+	public WebElement PeoUserSelect;
+	
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Country')]//following::mat-select[1][@id='address0_country']")
+	public WebElement PeoCountry;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+	public WebElement menu;
 }

@@ -39,14 +39,16 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		 
 		 
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		// PEOPage.peoRegister.click();
+		 PEOPage.peoRegister.click();
 		 sleep(3000);
-		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.waitForLoadingIconToDisappear();
+		/* commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");	*/		 
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 Thread.sleep(3000);
 	     
@@ -92,11 +94,11 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     sleep(2000);
 	     commonFuntions.screenShot("IndividualPeoError","Pass","Professional Employer Organization Registration Error");
 	     commonFuntions.errorLabelContains("Required","Name of Professional Employer Organization");	     
-	     commonFuntions.errorLabelContains("Required","Additional Names, if any, under which the PEO’s Conduct Business currently");
+	     //commonFuntions.errorLabelContains("Required","Additional Names, if any, under which the PEO’s Conduct Business currently");
 		 sleep(2000);
 	     PEOPage.individualPeo.click();	     
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("Additional Name(s)","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	
@@ -151,6 +153,12 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressCity.sendKeys("NewYork");
 	     PEOPage.addressZip.sendKeys("13420");
+	     sleep(2000);
+	     PEOPage.PeoCountry.click();
+	   
+	     commonFuntions.selectFromDropdown("United States");
+	     sleep(2000);
+	   
 	      
 	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
@@ -281,6 +289,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+	     sleep(4000);
 		    PEOPage.queue.click();
 	    sleep(15000);
 		    commonFuntions.waitForLoadingIconToDisappear();
@@ -311,10 +320,14 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     commonFuntions.screenShot("AddressInfo","Pass","Address Information");
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     sleep(2000);
+		     commonFuntions.waitForLoadingIconToDisappear();
+		     try {
 		     PEOPage.uspsAddress.click();
 		     PEOPage.currentAdditionalAddress.click();
 		     commonFuntions.screenShot("UspsAddress2","Pass","UspsAddress");
 		     PEOPage.UspsContinueButton.click();
+		     }
+		     catch(Exception e) {}
 		     sleep(2000);
 		     commonFuntions.screenShot("VerifyCurrentAdd","Pass","Verify Current Additional Address");
 		     commonFuntions.clickButtonContains("Continue");

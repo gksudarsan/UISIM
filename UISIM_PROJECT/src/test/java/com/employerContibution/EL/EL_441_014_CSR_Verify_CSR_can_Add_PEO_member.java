@@ -35,12 +35,14 @@ public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
 		 commonFuntions.clickMenu("Register PEO");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("peo registration", "Pass", "PEO Registration - Contact Details");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(2000);
 		 PEOPage.groupRegPeo.click();
 		 commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("Additional name(s), if any,","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.screenShot("peor", "Pass", "Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -141,7 +143,8 @@ public class EL_441_014_CSR_Verify_CSR_can_Add_PEO_member extends TestBase{
 		 commonFuntions.uploadDoc("Sample.docx");
 		 sleep(4000);
 		 commonFuntions.clickButtonContains("Upload");
-		 sleep(2000);
+		 sleep(10000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Upload Documents", "PASS", "Upload Documents");
 		 commonFuntions.clickButtonContains("Save & Continue");
 		 sleep(2000);

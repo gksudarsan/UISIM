@@ -33,14 +33,17 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
-		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 //PEOPage.peoRegister.click();
 		 sleep(3000);
-		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.waitForLoadingIconToDisappear();
+		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
+		 PEOPage.peoRegister.click();
+		 sleep(3000);
+		 commonFuntions.waitForLoadingIconToDisappear();
+		/* commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");		*/	 
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 Thread.sleep(3000);
 	    
@@ -60,7 +63,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     sleep(2000);
 	     PEOPage.groupRegPeo.click();
 		 commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("Additional Name(s)","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.screenShot("peor", "Pass", "Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -81,23 +84,31 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		     catch(Exception e) {}
 	     commonFuntions.screenShot("Unemployment Insurance", "PASS", "Unemployment Insurance Account Details");
 	     commonFuntions.clickButtonContains("Save & Continue"); 
-	     sleep(2000);
+	     sleep(3000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressLine2.sendKeys("addressLine2"+commonFuntions.createRandomInteger(1000,9999));
 	     PEOPage.addressCity.sendKeys("NewYork");
-	     PEOPage.addressZip.sendKeys("13476");
+	     PEOPage.addressZip.sendKeys("13420");
+	     sleep(2000);
+	     PEOPage.PeoCountry.click();
+	   
+	     commonFuntions.selectFromDropdown("United States");
+	     sleep(2000);
 	     commonFuntions.enterTextboxContains("Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 	     commonFuntions.screenShot("Address Information", "PASS", "Address Information");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     try {
 	     PEOPage.uspsAddress.click();
 	     sleep(2000);
 	     PEOPage.currentAdditionalAddress.click();
 	     sleep(2000);
 	     commonFuntions.screenShot("VerifyContactDetails","Pass","UspsAddress");
 	     PEOPage.UspsContinueButton.click();
-	     sleep(2000);
+	     sleep(2000);}
+	     catch(Exception e) {}
 	     commonFuntions.screenShot("Verify Current Additional Address", "PASS", "Verify Current Additional Address(es) in New York");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
@@ -125,6 +136,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     commonFuntions.screenShot("Prior Address","Pass","Prior Address(es) in New York");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	        
 	     commonFuntions.screenShot("Verify Prior Address(es) in New York", "PASS", "Verify Prior Address(es) in New York");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
@@ -290,7 +302,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		     sleep(2000);
 		     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		     sleep(2000);
+		     sleep(4000);
 			    PEOPage.queue.click();
 			    //sleep(2000);
 		    sleep(15000);

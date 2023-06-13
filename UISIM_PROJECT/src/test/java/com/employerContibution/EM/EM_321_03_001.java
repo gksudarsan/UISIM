@@ -36,11 +36,13 @@ public class EM_321_03_001 extends TestBase
 		 commonFunctions.clickMenu("Menu");	
 		 commonFunctions.ScrollMenu("Account Maintenance");
 		 commonFunctions.clickMenu("Account Maintenance");
+		 sleep(2000);
 		 commonFunctions.clickMenu("Employer Account Maintenance");
+		 sleep(2000);
 		 commonFunctions.screenShot("Menu","Pass","Maintain Accounts");
 		 commonFunctions.clickMenu("Maintain Accounts");	
-		 Map<String, String> databaseResults = commonFunctions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' AND FEIN IS NOT NULL ORDER BY UPDATED_TS","EAN");
-			
+		 //Map<String, String> databaseResults = commonFunctions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' AND FEIN IS NOT NULL ORDER BY UPDATED_TS","EAN");
+		 Map<String, String> databaseResults = commonFunctions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IS NOT NULL","EAN");
 			String EAN=databaseResults.get("EAN");
 		//Testcase is Blocked as field and page name is coming as different
 			commonFunctions.enterTextbox("Employer Registration Number", EAN); 

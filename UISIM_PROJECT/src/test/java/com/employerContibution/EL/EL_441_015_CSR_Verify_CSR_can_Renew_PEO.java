@@ -132,7 +132,8 @@ public class EL_441_015_CSR_Verify_CSR_can_Renew_PEO extends TestBase{
 		 commonFuntions.uploadDoc("Sample.docx");
 		 sleep(4000);
 		 commonFuntions.clickButtonContains("Upload");
-		 sleep(2000);
+		 sleep(10000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Upload Documents", "PASS", "Upload Documents");
 		 commonFuntions.clickButtonContains("Save & Continue");
 		 sleep(2000);

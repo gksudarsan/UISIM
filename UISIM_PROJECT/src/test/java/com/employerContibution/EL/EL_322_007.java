@@ -28,7 +28,8 @@ public class EL_322_007 extends TestBase
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		
-		Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS desc");
+		//Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS desc");
+		Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL");
 		String feinValue =databaseResults.get("Fein");
 		String ernValue = databaseResults.get("Ean");
 		System.out.println("feinValue is"+feinValue);
@@ -37,13 +38,14 @@ public class EL_322_007 extends TestBase
 		 
 		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		 
+		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");	
+		 sleep(2000);
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");		
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(2000);
@@ -69,6 +71,7 @@ public class EL_322_007 extends TestBase
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("UnemploymentInsurance","Pass","Unemployment Insurance Account Details");
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 	    	 Thread.sleep(2000);
 	     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 	     }
@@ -156,7 +159,8 @@ public class EL_322_007 extends TestBase
 	     commonFuntions.uploadDoc("Sample.docx");
 	     Thread.sleep(4000);
 	     commonFuntions.clickButtonContains("Upload");
-	     Thread.sleep(2000);
+	     Thread.sleep(10000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.clickButtonContains("Choose File");
@@ -185,6 +189,7 @@ public class EL_322_007 extends TestBase
 	     
 	    PEOPage.queue.click();
 	    Thread.sleep(15000);
+	    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
@@ -202,6 +207,7 @@ public class EL_322_007 extends TestBase
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}commonFuntions.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");
@@ -225,7 +231,7 @@ public class EL_322_007 extends TestBase
 		     commonFuntions.screenShot("VerifyPriorAdd","Pass","Verify Prior Address");
 		     commonFuntions.clickButtonContains("Continue");
 		     Thread.sleep(2000);	
-		     commonFuntions.enterTextboxContains("Entity or Person","Automation_entity");
+		    /* commonFuntions.enterTextboxContains("Entity or Person","Automation_entity");
 		     commonFuntions.enterTextboxContains("Ownership Percentage","40");
 		     commonFuntions.enterTextboxContains("Address Line 1","owneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 		     commonFuntions.enterTextboxContains("Address Line 2","owneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
@@ -233,7 +239,7 @@ public class EL_322_007 extends TestBase
 		     commonFuntions.enterTextboxContains("Zip Code","13430");
 		     commonFuntions.screenShot("OwnershipInformation2","Pass","Ownership Information - privately or closely held company");
 		     
-		     commonFuntions.clickButtonContains("Save & Continue");
+		     commonFuntions.clickButtonContains("Save & Continue");*/
 		     Thread.sleep(2000);
 		     commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
 		     commonFuntions.clickButtonContains("Continue");
@@ -273,7 +279,7 @@ public class EL_322_007 extends TestBase
 		     commonFuntions.selectRadio("Approved");
 		     commonFuntions.screenShot("Approval","Pass","ApprovalPage");
 		     commonFuntions.clickButtonContains("Submit");
-		     Thread.sleep(2000);
+		     Thread.sleep(5000);
 		     commonFuntions.screenShot("Success","Pass","SuccessPage");
 	     
 	}

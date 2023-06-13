@@ -46,6 +46,8 @@ public class EM_321_02_006 extends TestBase
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.login("manju@2004","Manhar2004@1234");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.clickMenu("Account Maintenance");
