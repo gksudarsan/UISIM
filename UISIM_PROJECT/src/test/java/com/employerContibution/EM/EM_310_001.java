@@ -38,7 +38,7 @@ public class EM_310_001 extends TestBase {
 		commonFuntions.clickMenu("Sale of Business");
 		Thread.sleep(2000);
 		commonFuntions.screenShot("SOB", "Pass", "Sale of Bussiness - Enter REN");
-		commonFuntions.clickButtonContains("Continue ");sleep();
+		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.screenShot("Sale of Bussiness", "Pass", "Required_Sale of Bussiness_Enter ERN");
 		commonFuntions.errorLabel("Required");
 		Thread.sleep(2000);

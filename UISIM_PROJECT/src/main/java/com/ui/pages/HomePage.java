@@ -90,6 +90,7 @@ public class HomePage {
 	
 	public void navigateToAccountMaintenance() throws Exception {
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
+		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.screenShot("Click_AC_Maintain_menu", "PASS", "Click AC Maintain menu");
@@ -100,6 +101,7 @@ public class HomePage {
 
 	public void navigateToSaleOfBussiness() throws Exception {
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
+		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
@@ -110,6 +112,7 @@ public class HomePage {
 
 	public void navigateToEstablishJointAccount() throws Exception {
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
+		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
@@ -124,6 +127,7 @@ public class HomePage {
 
 	public void navigateToMaintainAccounts() throws Exception {
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu fail");
+		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
 		Thread.sleep(3000);
 		stepDef.clickElement(accountMaintenance);
@@ -136,6 +140,7 @@ public class HomePage {
 	/* For Test case------- EM_453_01_001 ------------- */
 	public void navigateToMaintainJointAccount() throws Exception {
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu ");
+		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
 		Thread.sleep(2000);
 		stepDef.clickElement(accountMaintenance);

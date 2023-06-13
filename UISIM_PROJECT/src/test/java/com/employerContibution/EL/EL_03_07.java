@@ -10,6 +10,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -17,23 +18,18 @@ import stepDefinitions.commonStepDefinitions;
 @Listeners(com.ui.utilities.ListenerTest.class)
 public class EL_03_07 extends TestBase{
 
-	@Test(priority=1, description = "EL.03.07 - Verify CSR can upload document for PEO Exempt Information by using Upload document hyperlink ",groups = {"Regression"})
+	@Test(priority=1, description = "EL.03.07:Verify CSR can upload document for PEO Exempt Information by using Upload document hyperlink ",groups = {"Regression"})
 	public void EL_03_07() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND EMPLOYER_REGISTRATION_NUMBER IS NOT NULL",
-				"FEIN");
-		String feinValue = databaseResults.get("Fein");
-		System.out.println("feinValue is: " + feinValue);
-
-		test = report.createTest("EL.03.07 - Verify CSR can upload document for PEO Exempt Information by using Upload document hyperlink ");
+		test = report.createTest("EL.03.07:Verify CSR can upload document for PEO Exempt Information by using Upload document hyperlink ");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-
-		commonFuntions.login("ndfjp3", "Admin@12345678");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		PEOPage.menuPeo.click();
@@ -44,7 +40,11 @@ public class EL_03_07 extends TestBase{
 //		 commonFuntions.clickOnLink(" ADVANCED SEARCH");
 		PEOPage.advancedSearch.click();
 		Thread.sleep(2000);
-		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT FEIN FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND EMPLOYER_REGISTRATION_NUMBER IS NOT NULL","FEIN");
+		String feinValue = databaseResults.get("FEIN");
+		System.out.println("feinValue is: " + feinValue);
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");
 		commonFuntions.clickButtonContains("search");
 		Thread.sleep(4000);

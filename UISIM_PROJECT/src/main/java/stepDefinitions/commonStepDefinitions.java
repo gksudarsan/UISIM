@@ -56,13 +56,13 @@ public class commonStepDefinitions extends TestBase {
 			loginPage.loginLink.click();
 			Thread.sleep(2000);
 
-//		test.log(Status.PASS, "User Launched website");
-//		driver.navigate().refresh();
-//		Thread.sleep(2000);
-//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
-//		driver.navigate().to(driver.getCurrentUrl());
-//		Thread.sleep(5000);
-//		driver.get(driver.getCurrentUrl());
+			//		test.log(Status.PASS, "User Launched website");
+			//		driver.navigate().refresh();
+			//		Thread.sleep(2000);
+			//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
+			//		driver.navigate().to(driver.getCurrentUrl());
+			//		Thread.sleep(5000);
+			//		driver.get(driver.getCurrentUrl());
 			Thread.sleep(5000);
 
 			enterTextbox("Username", userName);
@@ -70,26 +70,23 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Password", password);
 			test.log(Status.PASS, "User entered Password");
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+			//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-		Thread.sleep(10000);
+			Thread.sleep(10000);
 
-				
-				
-				
-		driver.navigate().refresh();
-//		Thread.sleep(10000);
-		waitForLoadingIconToDisappear();
-		driver.navigate().refresh();
-//		Thread.sleep(5000);
-		waitForLoadingIconToDisappear();
+			driver.navigate().refresh();
+			//		Thread.sleep(10000);
+			waitForLoadingIconToDisappear();
+			driver.navigate().refresh();
+			//		Thread.sleep(5000);
+			waitForLoadingIconToDisappear();
+		} catch (Exception e) {
 		}
-		catch(Exception e) {}
 		screenShot("okPopUpButton", "Pass", "okPopUp");
-//		loginPage.okPopUpButton.click();
+		//		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
+			//			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
 		}
 		Thread.sleep(3000);
@@ -97,18 +94,18 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
+			//			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
 		}
 
-		}
+	}
 
 	public void enterTextbox(String xpathParameter, String value) {
 		By element = By.xpath("//*[.='" + xpathParameter + "']//following::input[1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			forceClearText(ele);
 			ele.sendKeys(value);
 		} catch (final Exception e) {
@@ -120,7 +117,7 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			forceClearText(ele);
 			ele.sendKeys(value);
 		} catch (final Exception e) {
@@ -136,7 +133,7 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			ele.click();
 			sleep(2000);
 		} catch (final Exception e) {
@@ -157,32 +154,34 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			ele.click();
 		} catch (final Exception e) {
 		}
 	}
 
 	public void selectRadio(String xpathParameter) {
-			By element = By.xpath("//*[contains(.,'" + xpathParameter
-					+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-inner-circle']");
-			final WebDriverWait wait = new WebDriverWait(driver, 10);
-			try {
-				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//				highLightWebElement(driver, ele);
-				safeJavaScriptClick(ele);
-			} catch (final Exception e) {
-			}
+		By element = By.xpath("//*[contains(.,'" + xpathParameter
+				+ "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+			// highLightWebElement(driver, ele);
+			safeJavaScriptClick(ele);
+		} catch (final Exception e) {
+
+		}
+
 	}
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
-		
+
 		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
 				+ "')][1]//preceding::*[@class='mat-radio-outer-circle'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
 		} catch (final Exception e) {
 		}
@@ -197,38 +196,40 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
 			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 		} catch (final Exception e) {
 		}
 
 	}
-	
+
 	public void selectDropdownUsingSearch(String xpathParameter, String value) throws InterruptedException {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-				.click();
+		.click();
 		driver.findElement(By.xpath("//*[@placeholder='search']")).sendKeys(value.trim());
 		sleep(2000);
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
 	}
-	
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
-	
+
 	public void Label(String xpathParameter) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
-	
+
 	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
-		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+		driver.findElement(By.xpath("//*[.='" + fieldName + "']//following::mat-error[.='" + xpathParameter + "'][1]"))
+		.isDisplayed();
 	}
 
 	public void errorLabelContains(String xpathParameter, String fieldName) {
-		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
+		driver.findElement(
+				By.xpath("//*[.='" + fieldName + "']//following::mat-error[contains(.,'" + xpathParameter + "')][1]"))
+		.isDisplayed();
 	}
 
 	public void errorContent(String xpathParameter) {
@@ -255,14 +256,14 @@ public class commonStepDefinitions extends TestBase {
 						+ "_" + fileName + ".jpg");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
-		}else {
+		} else {
 			test.log(Status.FAIL, message);
 		}
 		// test.info(message);
 		test.addScreenCaptureFromPath(screenShotPath);
 
 	}
-	
+
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
 		WebElement table = driver
 				.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='dataTableId'][" + tableId + "]"));
@@ -402,7 +403,7 @@ public class commonStepDefinitions extends TestBase {
 				if (celtext.equals(ssnValue)) {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
 							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//input[1]"))
-							.sendKeys(value);
+					.sendKeys(value);
 					break label1;
 				}
 			}
@@ -512,7 +513,7 @@ public class commonStepDefinitions extends TestBase {
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//			highLightWebElement(driver, ele);
+			//			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
 		} catch (final Exception e) {
 		}
@@ -521,22 +522,22 @@ public class commonStepDefinitions extends TestBase {
 	public void selectLink(String xpathParameter, String value) {
 		driver.findElement(
 				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::*[.='" + value + "'][1]"))
-				.click();
+		.click();
 	}
 
 	public void clickOnLink(String xpathParameter) {
 		driver.findElement(By.xpath("//u[contains(.,'" + xpathParameter + "')][1]")).click();
 
 	}
-	
+
 	public void clickOnLinkBasisClass(String xpathParameter) {
 		driver.findElement(By.xpath("//u[contains(@class,'" + xpathParameter + "')][1]")).click();
 
 	}
-	
+
 	public void clickOnLinkAnchorTag(String xpathParameter) {
 		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
-		}
+	}
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 
@@ -555,7 +556,7 @@ public class commonStepDefinitions extends TestBase {
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
 		// stmt.executeQuery(query);
-		Thread.sleep(100000);	
+		Thread.sleep(100000);
 		p = con.prepareStatement(query);
 		Thread.sleep(2000);
 		p.execute();
@@ -623,7 +624,7 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectDropdownEquals(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
-				.click();
+		.click();
 		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
 
 	}
@@ -652,7 +653,7 @@ public class commonStepDefinitions extends TestBase {
 		enterTextbox("Password", password);
 		test.log(Status.PASS, "User entered Password");
 		Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 		sleep(3000);
 		// driver.navigate().refresh();
@@ -676,9 +677,9 @@ public class commonStepDefinitions extends TestBase {
 		driver.navigate().refresh();
 		Thread.sleep(3000);
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-		 loginPage.okPopUpButton.click();
-		 Thread.sleep(3000);
-		 }
+			loginPage.okPopUpButton.click();
+			Thread.sleep(3000);
+		}
 
 	}
 
@@ -714,17 +715,16 @@ public class commonStepDefinitions extends TestBase {
 		System.out.println(output);
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-				.sendKeys(output);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+output);
+		.sendKeys(output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + output);
 	}
-	
 
 	public void selectFromDropdown(String xpathParameter) {
 		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
 
 	}
-	
+
 	public String enterRandomString(String xpathParameter) {
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder();
@@ -739,31 +739,32 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
 		.sendKeys(randomString);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + randomString);
 		return randomString;
 
 	}
 
-	public void enterRandomStringLegalName(String xpathParameter) {
+	public String enterRandomStringLegalName(String xpathParameter) {
 		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		StringBuilder sb = new StringBuilder();
 		Random random = new Random();
-		for (int i = 0; i < 15; i++) {
+		for (int i = 0; i < 10; i++) {
 			int index = (int) (alphabet.length() * Math.random());
 			char randomChar = alphabet.charAt(index);
 			sb.append(randomChar);
 		}
 		String randomString = sb.toString();
 		System.out.println(randomString);
-		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")).clear();
-		driver.findElement(By.xpath("//mat-label[text()='"+ xpathParameter +"']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea"))
-		.sendKeys(randomString);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+randomString);
-
+		driver.findElement(By.xpath("//mat-label[text()='" + xpathParameter
+				+ "']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")).clear();
+		driver.findElement(By.xpath("//mat-label[text()='" + xpathParameter
+				+ "']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")).sendKeys(randomString);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + randomString);
+		return randomString;
 	}
-	
+
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
 		WebDriverWait wait = new WebDriverWait(driver, 30000);
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
@@ -779,99 +780,106 @@ public class commonStepDefinitions extends TestBase {
 		System.out.println(output);
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-				.sendKeys(output);
-		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-		test.log(Status.INFO, fieldName+" : : "+output);
+		.sendKeys(output);
+		String fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+		test.log(Status.INFO, fieldName + " : : " + output);
 	}
-	
+
 	public void enterDateOfCurrentQuaterFirstMonth(String xpathParameter) {
 		String fieldName;
 		LocalDate myLocal = LocalDate.now();
 		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
 		String date = new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
-		
+
 		switch (quarter) {
 		case 1:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0101"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"01/01/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0101" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "01/01/" + date + "");
 			break;
 		case 2:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0401"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"04/01/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0401" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "04/01/" + date + "");
 			break;
 		case 3:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0701"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"07/01/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0701" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "07/01/" + date + "");
 			break;
 		case 4:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("1001"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"10/01/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("1001" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "10/01/" + date + "");
 			break;
 		default:
 			System.out.println("Error in code");
 			break;
 		}
-		
+
 	}
-	
-	
+
 	public void forceClearText(WebElement ele) {
 		Actions a = new Actions(driver);
 		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
 	}
-	
 
 	public void selectDropdownSecondBox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[2]"))
-				.click();
+		.click();
 		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
 
 	}
+
 	public void enterTextboxContainsThirdBox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]")).clear();
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[3]"))
-				.sendKeys(value);
-	
+		.sendKeys(value);
+
 	}
-	
 
 	public void enterDateOfCurrentQuaterFirstMonthPlusOneDay(String xpathParameter) {
 		String fieldName;
 		LocalDate myLocal = LocalDate.now();
 		int quarter = myLocal.get(IsoFields.QUARTER_OF_YEAR);
 		String date = new SimpleDateFormat("yyyy").format(Calendar.getInstance().getTime());
-		
+
 		switch (quarter) {
 		case 1:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0102"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"01/02/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0102" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "01/02/" + date + "");
 			break;
 		case 2:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0402"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"04/02/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0402" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "04/02/" + date + "");
 			break;
 		case 3:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("0702"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"07/02/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("0702" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "07/02/" + date + "");
 			break;
 		case 4:
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).sendKeys("1002"+date+"");
-			fieldName = driver.findElement(By.xpath("//*[contains(text(),'"+xpathParameter+"')]")).getText();
-			test.log(Status.INFO, fieldName+" : : "+"10/02/"+date+"");
+			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+			.sendKeys("1002" + date + "");
+			fieldName = driver.findElement(By.xpath("//*[contains(text(),'" + xpathParameter + "')]")).getText();
+			test.log(Status.INFO, fieldName + " : : " + "10/02/" + date + "");
 			break;
 		default:
 			System.out.println("Error in code");
 			break;
 		}
-		
+
 	}
+
 	public void logout(String userName, String password) throws Exception {
 		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		clickMenu("LOG OUT");
@@ -882,76 +890,88 @@ public class commonStepDefinitions extends TestBase {
 		sleep(5000);
 	}
 
-	
 	public void LogoutAndLoginIfOktaPageDisplayed(String userName, String password) throws Exception {
-		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-			HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
-			clickMenu("LOG OUT");
-			clickMenu("Go to Homepage");
-			sleep(3000);
-			HomePage.menuLogout.click();
-			HomePage.signOut.click();
-			sleep(5000);
-			enterTextbox("Username", userName);
-			test.log(Status.PASS, "User entered Username");
-			enterTextbox("Password", password);
-			test.log(Status.PASS, "User entered Password");
-			Thread.sleep(2000);	
-			//driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
-	        driver.navigate().refresh();
-			driver.get(prop.getProperty("applicationUrl"));
-			loginPage.loginLink.click();
-			sleep(2000);
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
+		clickMenu("LOG OUT");
+		clickMenu("Go to Homepage");
+		sleep(3000);
+		HomePage.menuLogout.click();
+		HomePage.signOut.click();
+		sleep(5000);
+		enterTextbox("Username", userName);
+		test.log(Status.PASS, "User entered Username");
+		enterTextbox("Password", password);
+		test.log(Status.PASS, "User entered Password");
+		Thread.sleep(2000);
+		// driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.navigate().refresh();
+		driver.get(prop.getProperty("applicationUrl"));
+		loginPage.loginLink.click();
+		sleep(2000);
 
 	}
-	
 
-//	public  String captureScreenShot() throws IOException {
-//	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-//	File destinationFile = new File("src/../images"+System.currentTimeMillis()+"png");
-//	String absolutePathScreen =  destinationFile.getAbsolutePath();
-//	FileUtils.copyFile(scrFile, destinationFile);
-//	return absolutePathScreen;
-//}
-	 public void selectInactiveLinkInTable(String fname, String lname) {
-			driver.findElement(By.xpath("//mat-label[text()='"+fname+" "+lname+"']/ancestor::mat-row//mat-cell/a/u[text()='inactive']")).click();
-		}
-		public void enterCurrentDate(String xpathParameter) {
-			String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
-			driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
-					.sendKeys(date);
-		}
-		
-		public void secondErrorContent(String xpathParameter) {
-			driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError1'][1]")).isDisplayed();
+	//	public  String captureScreenShot() throws IOException {
+	//	File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+	//	File destinationFile = new File("src/../images"+System.currentTimeMillis()+"png");
+	//	String absolutePathScreen =  destinationFile.getAbsolutePath();
+	//	FileUtils.copyFile(scrFile, destinationFile);
+	//	return absolutePathScreen;
+	//}
+	public void selectInactiveLinkInTable(String fname, String lname) {
+		driver.findElement(By.xpath(
+				"//mat-label[text()='" + fname + " " + lname + "']/ancestor::mat-row//mat-cell/a/u[text()='inactive']"))
+		.click();
+	}
 
-		}
-		
-		public void selectDeleteLinkInTable(String fname, String lname) {
-			driver.findElement(By.xpath("//mat-label[text()='"+fname+" "+lname+"']/ancestor::mat-row//mat-cell/a/u[text()='Delete']")).click();
+	public void enterCurrentDate(String xpathParameter) {
+		String date = new SimpleDateFormat("MMddyyyy").format(Calendar.getInstance().getTime());
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]")).clear();
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"))
+		.sendKeys(date);
+	}
+
+	public void secondErrorContent(String xpathParameter) {
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][@id='businessError1'][1]")).isDisplayed();
+
+	}
+
+	public void selectDeleteLinkInTable(String fname, String lname) {
+		driver.findElement(By.xpath(
+				"//mat-label[text()='" + fname + " " + lname + "']/ancestor::mat-row//mat-cell/a/u[text()='Delete']"))
+		.click();
+	}
+
+	public void highLightWebElement(final WebDriver driver, final WebElement element) throws Exception {
+
+		final JavascriptExecutor js = (JavascriptExecutor) driver;
+
+		js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element,
+				"color: red; border: 2px solid green;");
+		Thread.sleep(1000);
+		js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
+	}
+
+	public void waitForNextPageNumber(String pageNumber) {
+		By element = By.xpath("//mat-label[text()='" + pageNumber + "']");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+			//				highLightWebElement(driver, ele);
+			sleep(500);
+			System.out.println("Navigated to " + pageNumber + "");
+		} catch (final Exception e) {
 		}
 
-		public void highLightWebElement(final WebDriver driver, final WebElement element) throws Exception {
+	}
+	public void getDataFromPage(String xpathParameter) {
+		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::mat-label[1]"));
+	}
+	public void searchForworkItem(WebElement ele) {
+		Actions a = new Actions(driver);
+		a.moveToElement(ele).doubleClick().sendKeys("DOL");
+	}
 
-			final JavascriptExecutor js = (JavascriptExecutor) driver;
 
-			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element,
-					"color: red; border: 2px solid green;");
-			Thread.sleep(1000);
-			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
-		}
-		
-		public void waitForNextPageNumber(String pageNumber) {
-			By element = By.xpath("//mat-label[text()='"+pageNumber+"']");
-			final WebDriverWait wait = new WebDriverWait(driver, 10);
-			try {
-				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//				highLightWebElement(driver, ele);
-				sleep(500);
-				System.out.println("Navigated to "+pageNumber+"");
-			} catch (final Exception e) {
-			}
-		}
-		
 }

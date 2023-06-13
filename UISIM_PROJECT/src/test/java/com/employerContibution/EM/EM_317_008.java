@@ -30,6 +30,8 @@ public class EM_317_008 extends TestBase{
 				report.createTest("EM.317.008. Verify CSR is able to search and update FEIN and Source of FEIN update 'IA217' ");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
@@ -45,7 +47,7 @@ public class EM_317_008 extends TestBase{
 		System.out.println("The EAN Value is:"+ eanValue);
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
 		sleep(2000);
-		test.log(Status.INFO, "EAN::"+"eanValue");
+		test.log(Status.INFO, "EAN::"+eanValue);
 		cf.screenShot("EnterERN", "Pass", "Maintain Federal Employer Identification Number (FEIN) - Enter ERN");
 		cf.clickButtonContains("Continue ");
 		sleep(2000);
@@ -54,7 +56,7 @@ public class EM_317_008 extends TestBase{
 		System.out.println("The FEIN Value is:"+ feinValue);
 		cf.enterTextboxContains("New FEIN", feinValue);
 		cf.enterTextboxContains("Please Re-enter FEIN", feinValue);
-		test.log(Status.INFO, "EAN::"+"feinValue");
+		test.log(Status.INFO, "EAN::"+feinValue);
 		cf.selectDropdown("Suffix", "US");
 		sleep();
 		cf.selectDropdown("Confirm Suffix", "US");
@@ -71,13 +73,14 @@ public class EM_317_008 extends TestBase{
 		Thread.sleep(4000);
 		cf.screenShot("UpdatedFein", "Pass", "Update Federal Employer Identification Number (FEIN)");
 		cf.clickButtonContains("Submit ");
+		sleep(2000);
 		try {
 			cf.clickButtonContains("Yes");
 		}
 		catch(Exception e) {
 			System.out.println("Confirm the fein entered");
 		}
-		cf.waitForLoadingIconToDisappear();
+		sleep(5000);
 		cf.screenShot("ConfirmationMessage", "Pass", "Maintain Federal Employer Identification Number (FEIN) Confirmation");
 		cf.clickButtonContains("Home ");
 		cf.waitForLoadingIconToDisappear();

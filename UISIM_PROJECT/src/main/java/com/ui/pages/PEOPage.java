@@ -36,6 +36,9 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)'][1]")
 	public WebElement menuPeo;
 	
+	@FindBy(how = How.XPATH, using = "//span[@id='InquiryProfessionalEmployerOrganization(PEO)'][1]")
+	public WebElement menuInquiryPeo;
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'PEO Conversion')]//following::mat-select[1]")
 	public WebElement selectionPeoDropdown;
 	
@@ -230,5 +233,58 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddres.physicaladdress-input'][@name='mat-radio-group-28']")
 	public WebElement PrimaryPhysicalAddress;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Federal Employer Identification Number (FEIN)')]//following::input[1]")
+	public WebElement clearFeinFieldSection;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Employer Registration Number')]//following::input[1]")
+	public WebElement clearErnFieldSection;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Issued']/ancestor::mat-cell/preceding-sibling::mat-cell/mat-radio-group/mat-radio-button//span/span[@class='mat-radio-outer-circle']")
+	public WebElement Issued_RadioButton;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='InquiryProfessionalEmployerOrganization(PEO)'][1]")
+	public WebElement PeoMenu;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='mailingAddressId_address1']")
+	public WebElement PeoAddress1;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='mailingAddressId_city']")
+	public WebElement PeoCity1;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='mailingAddressId_zip']")
+	public WebElement PeoZipCode;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"Country\")]//following::mat-select[1])[last()]") 
+	public WebElement peoCountry; 
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' Algeria ']") 
+	public WebElement peoCountryvalue; 
+	
+	@FindBy(how = How.XPATH, using = "(//input[@id='dataTableId'])[last()]") 
+	public WebElement dateFeild;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='physicalAddressId_address1']") 
+	public WebElement peoMemberAddresLine;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='physicalAddressId_city']") 
+	public WebElement peoMemberCity;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='physicalAddressId_zip']") 
+	public WebElement peoMemberZipCode;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'State')]//following::mat-select[1])[last()-1]")
+	public WebElement peoMemberState;
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' New York ']")
+	public WebElement peoMemberStateValue;		
+	
+	@FindBy(how = How.XPATH, using = "//*[.='']//following::span[contains(.,'Same As Physical Address')][1]//preceding::*[@class='mat-radio-outer-circle'][1]")
+	public WebElement peoMember_radioButton;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Quarter ')]//following::mat-select[1])[last()]")
+	public WebElement selectQuarter;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Year ')]//following::mat-select[1])[last()]")
+	public WebElement selectYear;
+			
 }

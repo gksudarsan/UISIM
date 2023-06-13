@@ -27,12 +27,12 @@ public class EM_321_014 extends TestBase{
 		commonStepDefinitions cf= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		//LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		//EmployerRegisterPage EmpRegPage = PageFactory.initElements(driver, EmployerRegisterPage.class);
 		test = 
 				report.createTest("EM.321.014 - Verify CSR is able to Edit Executor/Owner Details.");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
@@ -41,7 +41,7 @@ public class EM_321_014 extends TestBase{
 		cf.screenShot("NavigateToMaintainBusinessOwnership", "Pass", "Select Maintain Business Ownership");
 		cf.clickMenu("Maintain Business Ownership");
 		sleep();
-		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE='ESTA' AND REGISTRATION_STATUS='C'", "EAN");
+		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE='ESTA' AND EAN IS NOT NULL ORDER BY UPDATED_TS DESC", "EAN");
 		String eanValue = databaseResults.get("EAN"); 
 		System.out.println("The EAN Value is:"+ eanValue);
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
@@ -81,6 +81,7 @@ public class EM_321_014 extends TestBase{
 		}
 		sleep(2000);
 		AddPage.editLink.click();
+		sleep(2000);
 		cf.enterTextboxContains("Contact Number",Long.toString(cf.createRandomInteger(10000000,99999999))+Long.toString(cf.createRandomInteger(10,99)));
 		cf.selectDropdown("Source", " Correspondence/Email ");
 		sleep();
@@ -88,6 +89,17 @@ public class EM_321_014 extends TestBase{
 		sleep();
 		cf.screenShot("EditExecutorOwnerDetails", "Pass", "Edit Executor/Owner Details:SREG-711");
 		cf.clickButtonContains("Submit");
+		sleep(3000);
+		try {
+			cf.safeJavaScriptClick(PEOPage.enteredAddress);
+			sleep();
+			cf.screenShot("PopUpAddressPage", "Pass", "Address PopUp Displayed");
+			sleep();
+			cf.safeJavaScriptClick(AddPage.continueButton_popUp);
+		}
+		catch(Exception e) {
+			System.out.println("After edit popup addres displayed");
+		}
 		sleep(3000);
 		cf.screenShot("ExecutorDetailsPage", "Pass", "Executor/Owner Details");
 		
