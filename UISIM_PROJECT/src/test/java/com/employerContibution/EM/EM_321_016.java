@@ -33,6 +33,9 @@ public class EM_321_016 extends TestBase{
 				report.createTest("EM.321.016 - Verify CSR is able to enter the term end date and Inactivate Executor/Owner Details");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.clickMenu("Menu");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
@@ -41,7 +44,7 @@ public class EM_321_016 extends TestBase{
 		cf.screenShot("NavigateToMaintainBusinessOwnership", "Pass", "Select Maintain Business Ownership");
 		cf.clickMenu("Maintain Business Ownership");
 		sleep();
-		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE='ESTA' AND REGISTRATION_STATUS='C'", "EAN");
+		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE='ESTA' AND EAN IS NOT NULL ORDER BY UPDATED_TS DESC", "EAN");
 		String eanValue = databaseResults.get("EAN"); 
 		System.out.println("The EAN Value is:"+ eanValue);
 		cf.enterTextboxContains("Employer Registration Number", eanValue);

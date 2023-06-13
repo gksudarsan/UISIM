@@ -61,17 +61,17 @@ public class SREG_435 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//label[@for='closureLetterId_No-input']//span[@class='mat-radio-outer-circle']")
 	public WebElement radioButton;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow ng-tns-c155-141']")
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Source')]//following::mat-select[1])[last()-1]")
 	public WebElement sourceDropdown;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Correspondence/Email ']")
 	public WebElement sourceDropdownValue;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow ng-tns-c155-142']")
-	public WebElement selectSourceDropdown;
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Source')]//following::mat-select[1])[last()]")
+	public WebElement selectSourceTypeDropdown;
 	
 	@FindBy(how = How.XPATH, using = "//span[@class='mat-option-text'][normalize-space()='Correspondence/Email']")
-	public WebElement selectSourceDropdownValue;
+	public WebElement selectSourceTypeDropdownValue;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[@id=' SREG-435']")
 	public WebElement screenIdText;
@@ -111,9 +111,9 @@ public class SREG_435 extends TestBase{
 		Thread.sleep(2000);
 		stepDef.clickElement(sourceDropdownValue);
 		Thread.sleep(2000);
-		stepDef.clickElement(selectSourceDropdown);
+		stepDef.clickElement(selectSourceTypeDropdown);
 		stepDef.screenShot("RequiredField4", "Pass", "Required Field");
-		stepDef.clickElement(selectSourceDropdownValue);
+		stepDef.clickElement(selectSourceTypeDropdownValue);
 		Thread.sleep(2000);
 		stepDef.screenShot("RequiredField5", "Pass", "Required Field");
 	}

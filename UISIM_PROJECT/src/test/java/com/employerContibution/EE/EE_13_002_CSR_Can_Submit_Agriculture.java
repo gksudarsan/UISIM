@@ -32,6 +32,8 @@ public class EE_13_002_CSR_Can_Submit_Agriculture extends TestBase {
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep();
@@ -47,7 +49,7 @@ public class EE_13_002_CSR_Can_Submit_Agriculture extends TestBase {
 		commonFuntions.selectDropdown("Source", " IA602 ");
 		empPage.browserLink.click();
 		sleep();
-		commonFuntions.uploadDoc("Sample");
+		commonFuntions.uploadDoc("TESTINGEL");
 		sleep();
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Form filled");
 		commonFuntions.clickButton("Submit ");

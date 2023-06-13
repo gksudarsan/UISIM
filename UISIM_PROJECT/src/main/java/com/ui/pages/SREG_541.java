@@ -74,6 +74,9 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	@FindBy(how = How.XPATH, using = "//span[@class='mat-option-text'][normalize-space()='Correspondence/Email']")
 	public WebElement sourceTypeDropdownValue;
 	
+	@FindBy(how = How.XPATH, using = "//textarea[@id=\"explainReasonId\"]")
+    public WebElement commentBox_voidTransfer;
+	
 	public Boolean validateRequiredText() throws InterruptedException {
 		stepDef.clickElement(searchButton);
 		Thread.sleep(2000);
