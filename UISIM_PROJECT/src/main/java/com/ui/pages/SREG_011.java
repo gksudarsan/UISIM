@@ -28,6 +28,11 @@ public class SREG_011 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//textarea[@id='tradeNameId']")
 	public WebElement legalNameField;
 	
+	@FindBy (how = How.XPATH, using = "//textarea")
+	public WebElement LegalNameOfBusiness;
+
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Acquisition Date')]//following::input[1]")
+	public WebElement AcquisitionDate;
 
 }

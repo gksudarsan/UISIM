@@ -160,10 +160,10 @@ public class EmployerRegisterPage extends TestBase {
 	public WebElement legalTextInput;
 	
 	//-ankan
-	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][2]")
 	public WebElement uspsBusinessAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][2]")
 	public WebElement uspsBusinessAddressInnerCircle;
 	
 	//--- SREG-004 ---

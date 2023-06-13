@@ -40,7 +40,7 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 		
 		//--- Menu Click ---
 		commonFuntions.screenShot("Menu", "Pass", "Menu page");
-		commonFuntions.clickMenu("Menu");
+		commonFuntions.clickMenu("menu");
 				sleep();
 				commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 				sleep();
@@ -59,7 +59,7 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 				
 				commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
 				sleep(2000);
-				commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
+				commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(12, 12))), 11));
 				sleep(2000);
 				commonFuntions.selectDropdown("Employer Type", " Governmental ");
 				sleep(2000);
@@ -74,20 +74,17 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 				/*---------------SREG-003--------------*/
 				//---------------Legal Name--------------
 				//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
-				String legalName="Random String FEIN Value";
-				
+				String legalName="Random Legal Name " + StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+				sleep(2000);
 				empPage.legalNameTextBox.sendKeys(legalName);
+				sleep(2000);
 				commonFuntions.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(100,999)));
 				sleep(2000);
-				//commonFuntions.enterPastDate("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax from your Employee's pay?",);
 				commonFuntions.enterPastDate("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax", 180);
 				sleep(2000);
 				commonFuntions.enterTextboxContains("Estimated or approximate number of individuals working in covered employment", "56");
-				//commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly", "Yes ");
-				//sleep(2000);
-				//commonFuntions.selectRadioQuestions("Financing Method", "Contributory");
 				sleep(2000);
-				commonFuntions.enterPastDate("Date covered employment began? ", 180);
+				commonFuntions.enterPastDate("Date covered employment began?", 270);
 				sleep(2000);
 				commonFuntions.selectRadioQuestions("Is your entity a legally established component or subdivision of another entity", "No ");
 				sleep(2000);
@@ -96,7 +93,7 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 				commonFuntions.clickButton("Continue ");
 				
 				/*-----------------SREG-008----------------*/
-				commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Navigated to SREG-008 page and entering the details");
+				/*commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Navigated to SREG-008 page and entering the details");
 				sleep(2000);
 				commonFuntions.enterTextboxContains("Address Line 1 ", "123HEC Zone");
 				sleep(2000);
@@ -112,16 +109,64 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 				
 				/*-----------------SREG-007----------------*/
 				
-				sleep(4000);
-				
+				sleep(2000);
 				commonFuntions.screenShot("EmpRegister6", "Pass", "Navigated to SREG-007 page");
 				sleep(2000);
 				commonFuntions.clickButton("Continue ");
 				
-
+				/*-----------------SREG-004----------------*/
+				commonFuntions.screenShot("Employer Contact Details", "Pass", "Navigated to SREG-004 page");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
 				
 				
-		
+				/*-----------------SREG-683----------------*/
+				sleep(3000);
+				commonFuntions.screenShot("Upload Documents", "Pass", "Navigated to SREG-683 page and uploading the document");
+				sleep(4000);
+				commonFuntions.selectLink("Supporting documents like 501(c)(3) Exemptions, Lessor contracts, ", "Browse");
+				sleep(2000);
+				commonFuntions.uploadDoc("Sample.docx");
+				Thread.sleep(4000);
+				commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents:SREG-683");
+				sleep(2000);
+				commonFuntions.clickButtonContains("Continue");
+				
+				/*-----------------SREG-800----------------*/
+				sleep(3000);
+				commonFuntions.screenShot("Review Registration Details", "Pass", "Navigated to SREG-800 page");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				/*-----------------SREG-043----------------*/
+				sleep(3000);
+				commonFuntions.screenShot("Statement of Acknowledgement", "Pass", "Navigated to SREG-043 page");
+				sleep(3000);
+				commonFuntions.selectCheckbox("I accept");
+				sleep(2000);
+				commonFuntions.screenShot("Statement of Acknowledgement", "Pass", "Statement of Acknowledgement:SREG-043)");
+				sleep(2000);
+				commonFuntions.clickButtonContains("Submit");
+				sleep(8000);
+				/*-----------------SREG-013----------------*/
+				commonFuntions.screenShot("Employer Registration Confirmation", "Pass", "Employer Registration Confirmation:SREG-013)");
+				sleep(2000);
+				commonFuntions.clickButtonContains("Home ");
+				sleep(3000);
+				/*-----------------Logout & login ----------------*/
+				commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+				sleep(3000);
+				commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+				sleep(3000);
+				
+				
+	}
+				
+				
+				
+				
 				/*
 		
 	
@@ -267,4 +312,4 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 		
 		
 	}
-}
+
