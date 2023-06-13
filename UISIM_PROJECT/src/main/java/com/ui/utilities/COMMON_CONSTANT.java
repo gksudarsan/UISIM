@@ -56,7 +56,7 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
-	public static final String EMPLOYER_USER_5_PASSWORD = "Hachiku123456789"; //Hachiku7533991779
+	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@123456789"; //Hachiku7533991779
 	
 	public static final String EMPLOYER_USER_6 = "shivam0106"; // Executor
 	public static final String EMPLOYER_USER_6_PASSWORD = "$hivamS01061987";
@@ -68,6 +68,8 @@ public class COMMON_CONSTANT {
 	public static final String TPR_USER_2 = "thdprty";
 	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";
 	
+	public static final String TPR_USER_3 = "tpruser121";
+	public static final String TPR_USER_3_PASSWORD = "NewUser@12345678";
 	//PEO
 	public static final String PEO_USER_1 = "peouser";
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";

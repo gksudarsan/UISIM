@@ -68,12 +68,12 @@ public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends Tes
 		commonFunction.clickButton("Continue ");
 
 
-//		commonFunction.waitForLoadingIconToDisappear();
-//		commonFunction.screenShot("EM26003001", "Pass", "Successfully opened Details with ERN");
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EM26003001", "Pass", "Successfully opened Details with ERN");
 		
 		sleep(3000);
-		//commonFunction.screenShot("EM26003001", "Pass", "TC EM.260.03.001 passed");
-		commonFunction.screenShot("FailurePage", "Fail", "TC EM.260.03.001 failed -> ERN has no POA");
+		commonFunction.screenShot("EM26003001", "Pass", "TC EM.260.03.001 passed");
+		//commonFunction.screenShot("FailurePage", "Fail", "TC EM.260.03.001 failed -> ERN has no POA");
 		
 		System.out.println("Pass :)");
 	}

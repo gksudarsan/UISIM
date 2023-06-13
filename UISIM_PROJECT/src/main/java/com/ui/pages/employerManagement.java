@@ -613,7 +613,7 @@ public class employerManagement extends TestBase
 	@FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
 	public WebElement eanBeanId_SREG027;
 	
-	@FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
+	@FindBy(how = How.XPATH, using = "//span[text()='Account Maintenance']//following::span[@id='AccountMaintenanceEmployerAccountMaintenance'][2]")
 	public WebElement employerAccountMaintanceMenu;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][1]")
@@ -649,5 +649,21 @@ public class employerManagement extends TestBase
 	@FindBy(how = How.XPATH, using = "//*[.='Suspension Date']//following::*[@id='mat-select-value-7']")
 	public WebElement suspensionDateYearDropdown_SREG435;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='remarksId']")
+	public WebElement remarksId_SREG435;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()=' L&D SUTA ']")
+	public WebElement ldSuta_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Correspondence/Email ']")
+	public WebElement correspondence_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+	public WebElement commentId;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' NYS-100 ']")
+	public WebElement nys100;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+    public WebElement menu;
 }
