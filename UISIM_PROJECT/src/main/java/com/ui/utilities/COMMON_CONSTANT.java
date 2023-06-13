@@ -43,13 +43,13 @@ public class COMMON_CONSTANT {
 
 	
 	// Employer
-	public static final String EMPLOYER_USER_1 = "manju@2004"; // Member/Managing Member
+	public static final String EMPLOYER_USER_1 = "manju@2004"; // Sole Prop
 	public static final String EMPLOYER_USER_1_PASSWORD = "Manhar2004@1234";
 	
-	public static final String EMPLOYER_USER_2 = "ndhav3"; // Trustee
+	public static final String EMPLOYER_USER_2 = "ndhav3"; // 
 	public static final String EMPLOYER_USER_2_PASSWORD = "uisimtesting@123";
 	
-	public static final String EMPLOYER_USER_3 = "Soleprop123"; // Sole Prop
+	public static final String EMPLOYER_USER_3 = "Soleprop123"; // 
 	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123458";
 	
 	public static final String EMPLOYER_USER_4 = "tst_empr"; // Corporate Officer/Owner
@@ -60,6 +60,12 @@ public class COMMON_CONSTANT {
 	
 	public static final String EMPLOYER_USER_6 = "shivam0106"; // Executor
 	public static final String EMPLOYER_USER_6_PASSWORD = "$hivamS01061987";
+	
+	public static final String EMPLOYER_USER_7 = "manju@20"; // Trustee User //
+    public static final String EMPLOYER_USER_7_PASSWORD = "Manjupruthi@123";
+
+    public static final String EMPLOYER_USER_8 = "asahai1604"; // Corporate Officer/Owner _ new one//
+    public static final String EMPLOYER_USER_8_PASSWORD = "Anay@123456789";
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
