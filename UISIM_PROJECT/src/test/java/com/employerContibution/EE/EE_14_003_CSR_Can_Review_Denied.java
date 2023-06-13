@@ -2,6 +2,7 @@ package com.employerContibution.EE;
 
 import java.util.Map;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -31,7 +32,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 
 		//--- Menu Click ---
 		commonFuntions.screenShot("Menu", "Pass", "Menu page");
-		commonFuntions.clickMenu("Menu");
+		commonFuntions.clickMenu("menu");
 		sleep();
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep();
@@ -59,7 +60,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		
 		/*---------------FEIN--------------*/
 		//commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(12, 12))), 11));
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", " Indian Tribe ");
 		sleep(2000);
@@ -78,7 +79,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		/*---------------SREG-003--------------*/
 		//---------------Legal Name--------------
 		//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
-		String legalName="Random String FEIN Value";
+		String legalName="Random Legal Name " + StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		/*---------------Legal Name--------------*/
 		
 		empPage.legalNameTextBox.sendKeys(legalName);
@@ -145,6 +146,8 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		commonFuntions.selectLink("Supporting documents like 501(c)(3) Exemptions, Lessor contracts, ", "Browse");
 		//commonFuntions.safeJavaScriptClick(empPage.browserLink);
 		sleep(2000);
+		
+		
 		commonFuntions.uploadDoc("Sample.docx");
 	     
 		Thread.sleep(4000);
@@ -161,6 +164,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		commonFuntions.safeJavaScriptClick(empPage.employer_Register_Edit_Button);
 		
 		/*-----------------SREG-001----------------*/
+		
 		
 		commonFuntions.selectRadioQuestions("Suppress Correspondence?", "Yes ");
 		sleep(2000);
@@ -219,7 +223,7 @@ sleep(2000);
 		//Map<String, String> FeinOutput2 =  commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ORDER BY UPDATED_TS", "FEIN");
 		//String feinValueNew = FeinOutput2.get("FEIN");
 		//System.out.println("FEIN 1 : : " +feinValueNew);
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(12, 12))), 11));
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", " Business ");
 		sleep(2000);
@@ -236,7 +240,8 @@ sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		//-----SREG 003
 		sleep(2000);
-		String legalName1="Random String FEIN Value";
+		String legalName1="Random Legal Name " + StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		
 		empPage.legalNameTextBox.sendKeys(legalName1);
 		commonFuntions.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(100,999)));
 		sleep(2000);
@@ -262,11 +267,11 @@ sleep(2000);
 		//-------SREG 008
 		commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Navigated to SREG-008 page and entering the details");
 		sleep(2000);
-		commonFuntions.enterTextboxContains("Address Line 1 ", "6263HP Road ");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "8963PHP Road ");
 		sleep(2000);
 		commonFuntions.enterTextboxContains("City ", "Albany");
 		sleep(2000);
-		commonFuntions.enterTextboxContains("Zip Code", "64534");
+		commonFuntions.enterTextboxContains("Zip Code", "87534");
 		sleep(2000);
 		commonFuntions.selectDropdown("County", " Albany ");
 		sleep(2000);
@@ -276,11 +281,11 @@ sleep(2000);
 		sleep(2000);
 		commonFuntions.selectDropdown("Principal Business Activity at this location in New York State", " Accommodation and Food Services ");
 		sleep(2000);
-		empPage.typeOfEstablishment_SREG008.sendKeys("Test");
+		empPage.typeOfEstablishment_SREG008.sendKeys("Testing");
 		sleep(2000);
-		empPage.productSoldOrRendered_SREG008.sendKeys("Test");
+		empPage.productSoldOrRendered_SREG008.sendKeys("Testing");
 		sleep(2000);
-		empPage.totalRevenue.sendKeys("500");
+		empPage.totalRevenue.sendKeys("400");
 		sleep(2000);
 		commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", " entered the details");
 		sleep(2000);
@@ -306,6 +311,12 @@ sleep(2000);
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		
+		
+
+		//getting diff screen
+		
+	  // Expected SREG 011 -- Actual SREG 004
+		
 		//-------SREG 011
 		sleep(2000);
 		commonFuntions.screenShot("Business Accusion ", "Pass", "Navigated to SREG-011 page");
@@ -319,26 +330,108 @@ sleep(2000);
 				commonFuntions.clickButton("Continue ");
 				
 		//------SREG -006	
+				sleep(2000);
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page");
+				sleep(2000);
+				commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Business Entity");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Entity Name", "Bussiness");
+				sleep(2000);
+				commonFuntions.selectDropdown("Title", " President ");
+				sleep(2000);
+				
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page and entering the details");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Address Line 1 ", "567HPKL");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("City ", "NY");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Zip Code", "98602");
+				sleep(2000);
+				//commonFuntions.selectDropdown("County", " Albany ");
+				//sleep(2000);
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", " SREG-006 page and entered the details");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				try {
+		            try {
+		            	empPage.uspsBusinessAddress.click();
+		            } catch (Exception exception) {
+		            	empPage.uspsBusinessAddressInnerCircle.click();
+		            }
+		            commonFuntions.screenShot("EmpRegister", "Pass", "USPS Business address selection on SREG-006");
+		            empPage.continueButton_popUp.click();
+		    } catch (Exception exception) {
+		    	commonFuntions.screenShot("EmpRegister", "Pass", "USPS pop-up didnot come");
+		    }
+				
+			//------SREG 005
+				
+				commonFuntions.screenShot("Corporate Officer/Owner Details", "Pass", " SREG-005 page and entered the details");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
 				
 				
-				//to be continue ....
+				
+				//getting diff screen
+				
+				
+				
+				
+				
+				
+				//------SREG -006	
+				sleep(2000);
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page");
+				sleep(2000);
+				commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Business Entity");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Entity Name", "Bussiness");
+				sleep(2000);
+				commonFuntions.selectDropdown("Title", " President ");
+				sleep(2000);
+				
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page and entering the details");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Address Line 1 ", "567HPKL");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("City ", "NY");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Zip Code", "98602");
+				sleep(2000);
+				//commonFuntions.selectDropdown("County", " Albany ");
+				//sleep(2000);
+				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", " SREG-006 page and entered the details");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				try {
+		            try {
+		            	empPage.uspsBusinessAddress.click();
+		            } catch (Exception exception) {
+		            	empPage.uspsBusinessAddressInnerCircle.click();
+		            }
+		            commonFuntions.screenShot("EmpRegister", "Pass", "USPS Business address selection on SREG-006");
+		            empPage.continueButton_popUp.click();
+		    } catch (Exception exception) {
+		    	commonFuntions.screenShot("EmpRegister", "Pass", "USPS pop-up didnot come");
+		    }
+				
+			//------SREG 005
+				
+				commonFuntions.screenShot("Corporate Officer/Owner Details", "Pass", " SREG-005 page and entered the details");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+						
+				
+				
 				
 				
 		
-		//getting diff screen
-		//AddPage.browserLink.click();
 		
-		sleep(10000);
-		commonFuntions.screenShot("ReviewRegistrationDetails", "Pass", "Review Registration Details:SREG-800");
-		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
-		commonFuntions.selectCheckbox("I accept");
-		commonFuntions.screenShot("StatementOfAcknowledgement", "Pass", "Statement of Acknowledgement:SREG-043");
-		commonFuntions.clickButtonContains("Submit");
-		sleep(20000);
-		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation:SREG-013");
-		sleep(2000);
-		commonFuntions.clickButtonContains("Exit");
-		sleep(4000);
+	
+		
+		
 	}
 }

@@ -14,13 +14,13 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_310_05_001_EMP_Verify_Employer_is_able_to_process_Business_Acquisition_and_indicate_transfer_Total extends TestBase {
+public class EM_310_05_002_EMP_Verify_Employer_is_able_to_process_Business_Acquisition_and_indicate_transfer_Partial extends TestBase {
 
 	
-	@Test(priority = 1, description = "Verify Employer is able to process Business Acquisition and indicate transfer 'Total", groups = { "Regression" })
+	@Test(priority = 1, description = "Verify Employer is able to process Business Acquisition and indicate transfer Partial", groups = { "Regression" })
 	public void 
-	EM_310_05_001()throws Exception {
-		test=report.createTest("Verify Employer is able to process Business Acquisition and indicate transfer 'Total");
+	EM_310_05_002()throws Exception {
+		test=report.createTest("Verify Employer is able to process Business Acquisition and indicate transfer Partial");
 		commonStepDefinitions CommFun = new commonStepDefinitions();
 		HomePage home = new HomePage(driver);
 		SREG_011 sreg = new SREG_011(driver);
@@ -56,7 +56,7 @@ public class EM_310_05_001_EMP_Verify_Employer_is_able_to_process_Business_Acqui
 		CommFun.enterTextboxContains("City ", "Albney");
 		CommFun.selectDropdown("State", " New York ");
 		CommFun.enterTextboxContains("Zip Code", "34565");
-		CommFun.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
+		CommFun.selectRadioQuestions("Did you acquire all or part of the business?", "PART");
 		sreg.AcquisitionDate.sendKeys("10/10/2023");
 		//CommFun.enterTextboxContainsThirdBox("Acquisition Date", "10/10/2023");
 		CommFun.clickButtonContains("Continue ");
