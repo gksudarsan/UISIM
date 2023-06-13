@@ -22,19 +22,20 @@ public class EE_14_002 extends TestBase {
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		
 		//--- Login ---
-		commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_1.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_6.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_6_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		
 		//--- Menu Click ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		commonFunction.clickMenu("Employer Registration");
-		commonFunction.screenShot("Menu", "Pass", "Menu - Employer Registration - Register Employer");
+		commonFunction.screenShot("Menu", "Pass", "Menu -> Employer Registration -> Register Employer");
 		commonFunction.clickMenu("Register Employer");
-		commonFunction.screenShot("EmployerRegistraionPage", "Pass", "Launched at Employer Registration(SREG-001) page");
-		sleep();
 		
 		//--- SREG-001 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EmployerRegistraionPage", "Pass", "Launched at Employer Registration(SREG-001) page");
 		commonFunction.enterTextboxContains("First Name", "");
 		commonFunction.enterTextboxContains("Last Name", "");
 		commonFunction.enterTextboxContains("Job Title", "");
@@ -83,6 +84,39 @@ public class EE_14_002 extends TestBase {
 		commonFunction.selectDropdown("County", " Albany ");
 		commonFunction.screenShot("EmpRegister5", "Pass", "Enter the details on SREG-003 page and click continue");
 		commonFunction.clickButton("Continue ");
+
+		// --- SREG-008 ---
+		commonFunction.waitForLoadingIconToDisappear();;
+		commonFunction.screenShot("EE14002", "Pass", "Sucessfully launched  SREG-008 page");
+		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
+		commonFunction.enterTextboxContains("City ", "New York");
+		commonFunction.enterTextboxContains("Zip Code", "10011");
+		sleep();
+		commonFunction.selectDropdown("State", " New York ");
+		commonFunction.selectDropdown("County", " Albany ");
+		sleep(2000);
+		commonFunction.screenShot("EmpRegister9", "Pass", "Enter the details on SREG-008 and click continue");
+		commonFunction.clickButton("Continue ");
+		
+		sleep();
+		
+		try {
+				try {
+					empRegPage.uspsBusinessAddress.click();
+				} catch (Exception exception) {
+					empRegPage.uspsBusinessAddressInnerCircle.click();
+				}
+
+				commonFunction.screenShot("EmpRegister10", "Pass", "USPS Business address selection on SREG-008");
+				empRegPage.continueButton_popUp.click();
+		} catch (Exception exception) {
+				commonFunction.screenShot("EmpRegister10", "Pass", "USPS pop-up didnot come");
+		}
+		
+		// --- SREG-007 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EE14002", "Pass", "Sucessfully launched SREG-007 page");
+		
 		
 		
 		commonFunction.screenShot("FailurePage", "Fail", "Expected page not reached");

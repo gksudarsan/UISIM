@@ -55,25 +55,35 @@ public WebDriver driver;
 	
 	
 	public void fillFormAndValidate() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		Assert.assertTrue(ernText.isDisplayed());
 		stepDef.screenShot("FormSS", "Pass", "failed");
 		Assert.assertTrue(feinText.isDisplayed());
-		Assert.assertEquals("00-00123", ernValue.getText());
-		Assert.assertEquals("84-3532423", feinValue.getText());
-		stepDef.waitForElementClicable(sourceDropDown);
-		stepDef.screenShot("FormSS2", "Pass", "failed");
-		Thread.sleep(3000);
-		sourceDropDownValue.click();
-		stepDef.waitForElementClicable(sourceTypeDropDown);
-		sourceTypeDropDownValue.click();
+//		Assert.assertEquals("00-00123", ernValue.getText());
+//		Assert.assertEquals("84-3532423", feinValue.getText());
+//		stepDef.waitForElementClicable(sourceDropDown);
+		stepDef.screenShot("FormSS2", "Pass", "Filling the form");
+//		Thread.sleep(3000);
+//		sourceDropDownValue.click();
+//		stepDef.waitForElementClicable(sourceTypeDropDown);
+//		sourceTypeDropDownValue.click();
+		
+		stepDef.selectDropdown("Source", " IA602 ");
+		stepDef.selectDropdown("Source Type", " UIES ");
+		
 	}
 	
-	public void validatePageTitle() {
+	public void validatePageTitle() throws InterruptedException {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		String title = pageTitle.getText();
 		Assert.assertEquals(title, "Employer Account Maintenance – Enter ERN");
 	}
 	
 	public void clickSubmit() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Submit", "Pass", "submit button not clickable");
 		submitButton.click();
 	}

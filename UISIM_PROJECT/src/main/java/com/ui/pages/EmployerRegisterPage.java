@@ -443,6 +443,9 @@ public WebElement commentId;
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration']/../following-sibling::div/div/button")
 public WebElement employer_Register_Edit_Button;
 
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Uploaded Documents']/../following-sibling::div/div/button")
+public WebElement upload_Document_Edit_Button;
+
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Contact Details']/../following-sibling::div/div/button")
 public WebElement Contact_Detail_Edit_Button;
 
@@ -469,6 +472,29 @@ public WebElement Contribution_dropDown_Menu;
 
 @FindBy(how = How.XPATH, using = "//u[text()='Add Member/Managing Member Details']")
 public WebElement add_Member_Managing_Member_Detail_Link;
+
+@FindBy(how = How.XPATH, using = "//*[@id='typeOfLegalEntityId']")
+public WebElement typeOfLegalEntityId;
+
+@FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
+public WebElement individualOwnership;
+
+@FindBy(how = How.XPATH, using =  "//*[@id='eanBeanId']")
+public WebElement eanBeanId;
+
+@FindBy(how = How.XPATH, using =  "//*[@id='employerFeinId']")
+public WebElement employerFeinId;
+
+@FindBy(how = How.XPATH, using =  "//*[@id='totalRevenue']")
+public WebElement totalRevenue;
+//shubhanshi
+
+@FindBy(how = How.XPATH, using = "//*[.='Association End Date']//following::*[@id='dataTableId'][1]//following::input[1]")
+public WebElement Select_date_from_calender;
+
+@FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
+public WebElement EAN;
+
 
 
 }

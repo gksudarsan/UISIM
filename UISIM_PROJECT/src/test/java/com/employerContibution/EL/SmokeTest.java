@@ -23,8 +23,11 @@ public class SmokeTest extends TestBase{
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("Menu");	
+		 //commonFuntions.clickMenu("Menu");
+		 PEOPage.menu.click();	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 applicationLoginResults = "Success";
 				
@@ -34,10 +37,11 @@ public class SmokeTest extends TestBase{
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 Thread.sleep(3000);
 	     commonFuntions.clickButtonContains("Continue");
+	     sleep(2000);
 	     PEOPage.peoExemptRegisterRadio.click();
 	     commonFuntions.screenShot("EXEMPT", "Pass", "Selecting Exempt and filling the form");
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
-	     commonFuntions.enterTextboxContains("Additional Names, if any, under", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
+	     commonFuntions.enterTextboxContains("Additional Name(s)", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     commonFuntions.screenShot("address", "Pass", "Address update");
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
@@ -46,7 +50,9 @@ public class SmokeTest extends TestBase{
 		 System.out.println("feinValue is"+feinValue);
 		 System.out.println("ernValue is"+ernValue);
 		 commonFuntions.enterTextboxContains("Employer Registration Number",ernValue);
-	     commonFuntions.selectDropdownEquals("Type of Legal Entity", " Corporation ");
+		 sleep(2000);
+	     commonFuntions.selectDropdownUsingSearch("Type of Legal Entity", " Corporation ");
+	     sleep(2000);
 	     commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("PEOPage", "Pass", "Entering random FEIN and ERN values");
@@ -71,8 +77,10 @@ public class SmokeTest extends TestBase{
 	     
 	     PEOPage.addressLine1.sendKeys("addressLine1"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     PEOPage.addressLine2.sendKeys("addressLine2"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
+	     sleep(2000);
 	     PEOPage.addressCity.sendKeys("NewYork");
 	     PEOPage.addressZip.sendKeys("13420");
+	     sleep(2000);
 	     commonFuntions.enterTextboxContains("Phone Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),6)+"@gmail.com");
 	     commonFuntions.screenShot("PrimaryAddress", "Pass", "Primary Physical address ");
@@ -85,7 +93,7 @@ public class SmokeTest extends TestBase{
 	     
 	     commonFuntions.screenShot("ExemptionSubmission", "Pass", "Exemption Submission");
 	     commonFuntions.clickButtonContains("Continue");
-	    
+	    sleep(2000);
 	     commonFuntions.screenShot("Address2", "Pass", "Entering address 1&2");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(4000);
@@ -130,7 +138,7 @@ public class SmokeTest extends TestBase{
 	     
 	     commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
 	     commonFuntions.clickButton("Accept & Submit ");	
-	     
+	     sleep(2000);
 commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 RegistrationResults = "Success";
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");

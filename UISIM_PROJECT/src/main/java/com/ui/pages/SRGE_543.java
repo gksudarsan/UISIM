@@ -46,6 +46,8 @@ public class SRGE_543 extends TestBase{
 	}
 
 	public void enterEANNumber(String EAN) throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		registerInputField.sendKeys(EAN);
 		stepDef.screenShot("Menu4", "PASS" , "Entered the ERN sucess");
 		Thread.sleep(2000);

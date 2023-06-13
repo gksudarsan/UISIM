@@ -45,15 +45,20 @@ public class EM_321_02_004 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("Laxmi@12","Hachiku7533991779");
+		 commonFuntions.login("Laxmi@12","Laxmi@123456789");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.ScrollMenu("Account Maintenance");
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Partner Details");
+		/* commonFuntions.ScrollMenu("Add Partner Details");
 		 commonFuntions.screenShot("Add Partner Details","Pass","Add Partner Details");
-		 commonFuntions.clickMenu("Add Partner Details");		 
+		 commonFuntions.clickMenu("Add Partner Details");	*/
+		 commonFuntions.clickOnLink("Add Partner Details");
+		 sleep(2000);
 		 String number = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		 String ssnValue=number;
 	     populateFields(ssnValue);	     

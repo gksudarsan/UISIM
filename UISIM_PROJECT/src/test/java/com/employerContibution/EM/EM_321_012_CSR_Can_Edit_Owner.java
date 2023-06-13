@@ -19,8 +19,10 @@ public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		
 		test = report.createTest("EM.321.012 - Verify CSR is able to enter the term end date and Inactivate Trustee/Owner Details.");
-		cf.login("ndfjp3", "Admin@12345678");
+		cf.login("ndfjp3", "Admin@123456789");
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
@@ -32,10 +34,10 @@ public class EM_321_012_CSR_Can_Edit_Owner extends TestBase{
 		/*----------------SREG-029----------------*/
 		
 		cf.screenShot("ChangeOwner", "Pass", "Navigated to SREG-029 page");
-		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='TRUS 'AND  ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS", "EAN");
+		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  WHERE ORGANIZATION_TYPE='TRUS ' ORDER BY UPDATED_TS", "EAN");
 
-//		String ernValue = ernOutput.get("EAN");
-		String ernValue = "0000096";
+		String ernValue = ernOutput.get("EAN");
+//		String ernValue = "4879533";
 		System.out.println(ernValue);
 
 		test.log(Status.INFO, "ERN : : "+ernValue);

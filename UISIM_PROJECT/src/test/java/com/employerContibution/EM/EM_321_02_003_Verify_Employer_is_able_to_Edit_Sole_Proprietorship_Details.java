@@ -25,7 +25,7 @@ public class EM_321_02_003_Verify_Employer_is_able_to_Edit_Sole_Proprietorship_D
 		SREG_EM_mod sreg = new SREG_EM_mod(driver);
 		
 		//------Login
-		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_3, COMMON_CONSTANT.EMPLOYER_USER_3_PASSWORD);
+		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_1, COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 	/*
@@ -80,5 +80,7 @@ public class EM_321_02_003_Verify_Employer_is_able_to_Edit_Sole_Proprietorship_D
 	    sleep(2000);
 	    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
 		 
+	    
+	    //Executed & Completed by palak
 		}
 }

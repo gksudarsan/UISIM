@@ -39,7 +39,7 @@ public class EM_457_001 extends TestBase{
 		commonFuntions.ScrollMenu("Address Line 1 ");
 		commonFuntions.screenShot("Error Messages", "Pass", "Required Error Messages");
 		Thread.sleep(2000);
-		commonFuntions.enterTextboxContains("POA/TPR Name", "CSRTEStone");
+		commonFuntions.enterTextboxContains("POA/TPR Name", "Suma");
 		commonFuntions.enterTextboxContains("Address Line 1 ", "Test");
 		commonFuntions.enterTextboxContains("City ", "test&&&&&##$");
 		commonFuntions.selectDropdown("State", " New York ");

@@ -28,18 +28,23 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 		String feinValue = feinValue2 + feinValue1 ;  
 		System.out.println("FEIN NUMBER = " +feinValue);
 		System.out.println("Legal Name = " +legalname);
+		
+//		test.log(Status.INFO, "FEIN_2: : "+feinValue1);
 
 		test = report.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
 		//Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
 		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
 		//		String FEIN = databaseResults.get("FEIN");
-
+		
 		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");sleep(2000);
+		cf.sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		cf.clickMenu("Register Employer");
 		sleep(3000);
+		test.log(Status.INFO, "FEIN_1 : : "+feinValue1);
 		cf.enterTextboxContains("First Name", "sittest");
 		cf.enterTextboxContains("Last Name", "lasttest");
 		cf.enterTextboxContains("Job Title", "quality");

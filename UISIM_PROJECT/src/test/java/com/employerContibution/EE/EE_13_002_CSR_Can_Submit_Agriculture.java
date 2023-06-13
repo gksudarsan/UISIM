@@ -29,6 +29,8 @@ public class EE_13_002_CSR_Can_Submit_Agriculture extends TestBase {
 				"EE.13.002 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)'Short Form flow");
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();

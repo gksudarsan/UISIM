@@ -17,27 +17,114 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 
 	@Test
 	public void EE_07_006() throws Exception {
-		commonStepDefinitions cf = new commonStepDefinitions();
+		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		test = report.createTest(" EE.08.004 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
-		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
+		test = report.createTest(" EE_07_006 Verify employer can submit employer registration for employer type 'Governmental' and legal entity type 'Other' and work items will be created for CSR to review.");
+		
+
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_5.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_5_PASSWORD);
+		sleep(3000);
+		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(3000);
+		
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN NOT IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
 		String FEIN = databaseResults.get("FEIN");
 		System.out.println("FEIN NUMBER = " +FEIN);
 
-		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
+		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN NOT IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "EAN");
 		String EAN = databaseResults1.get("EAN");
 		System.out.println("EAN NUMBER = " +EAN);
+		
+		//--- Menu Click ---
+		commonFuntions.screenShot("Menu", "Pass", "Menu page");
+		commonFuntions.clickMenu("Menu");
+				sleep();
+				commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
+				sleep();
+				commonFuntions.screenShot("Menu", "Pass", "Menu - Employer Registration - Register Employer");
+				sleep();
+				commonFuntions.clickMenu("Register Employer");
+				sleep(2000);
+		
+		
+				//-----------SREG-001 ---
+				commonFuntions.screenShot("EmployerRegistraionPage", "Pass", "Launched at Employer Registration(SREG-001) page");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+		
+				//---------------SREG-025--------------*/
+				
+				commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
+				sleep(2000);
+				commonFuntions.selectDropdown("Employer Type", " Governmental ");
+				sleep(2000);
+				commonFuntions.selectDropdown("Type of Legal Entity", " Other ");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("If Other, provide the type of Legal Entity.", "Test");
+				sleep(2000);
+				commonFuntions.screenShot("General Information", "Pass", "entered the details SREG-025 page ");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				/*---------------SREG-003--------------*/
+				//---------------Legal Name--------------
+				//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
+				String legalName="Random String FEIN Value";
+				
+				empPage.legalNameTextBox.sendKeys(legalName);
+				commonFuntions.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFuntions.createRandomInteger(1000000,9999999))+Long.toString(commonFuntions.createRandomInteger(100,999)));
+				sleep(2000);
+				//commonFuntions.enterPastDate("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax from your Employee's pay?",);
+				commonFuntions.enterPastDate("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax", 180);
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Estimated or approximate number of individuals working in covered employment", "56");
+				//commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly", "Yes ");
+				//sleep(2000);
+				//commonFuntions.selectRadioQuestions("Financing Method", "Contributory");
+				sleep(2000);
+				commonFuntions.enterPastDate("Date covered employment began? ", 180);
+				sleep(2000);
+				commonFuntions.selectRadioQuestions("Is your entity a legally established component or subdivision of another entity", "No ");
+				sleep(2000);
+				commonFuntions.selectRadioQuestions("Choose the option you wish to use to discharge your Unemployment Insurance ", "Contributory");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				/*-----------------SREG-008----------------*/
+				commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Navigated to SREG-008 page and entering the details");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Address Line 1 ", "123HEC Zone");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("City ", "NY");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Zip Code", "10002");
+				sleep(2000);
+				commonFuntions.selectDropdown("County", " Albany ");
+				sleep(2000);
+				commonFuntions.screenShot("Add Primary Business Physical Address", "Pass", "Navigated to SREG-008 page and entered the details");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
+				/*-----------------SREG-007----------------*/
+				
+				sleep(4000);
+				
+				commonFuntions.screenShot("EmpRegister6", "Pass", "Navigated to SREG-007 page");
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+				
 
-		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
-		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.clickMenu("Menu");
-
-		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
-		cf.clickMenu("Register Employer");
-		sleep(3000);
+				
+				
+		
+				/*
+		
+	
 		cf.screenShot("EmpRegister1", "Pass", " Employer Register page");
 		cf.clickButton("Continue ");
 		sleep(3000);
@@ -53,7 +140,7 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 		cf.clickButton("Continue ");
 		cf.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
-		/*----------------SREG-003----------------*/
+		//----------------SREG-003----------------
 		cf.screenShot("EmpRegister4", "Pass", "Navigated on SREG-003 page");
 		empPage.legalNameTextBox.sendKeys("NO Entity Found");
 		//cf.enterTextboxContains("Other commonly known", "HJGHHFH");
@@ -176,6 +263,8 @@ public class EE_07_006_Emp_Register_EmpType_Governmental_Other extends TestBase 
 		cf.screenShot("EmpRegister19", "Pass",
 				"Sucessfully clicked on Submit button and navigated to SUC-002 Page");
 		cf.clickButtonContains("Home ");
-
+*/
+		
+		
 	}
 }

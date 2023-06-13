@@ -5,7 +5,11 @@ import java.text.ParseException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.ErrorHandler.UnknownServerException;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
 import com.ui.base.TestBase;
@@ -18,6 +22,16 @@ import stepDefinitions.commonStepDefinitions;
 public class employerManagement extends TestBase
 {
 
+	public employerManagement()
+	{
+		
+	}
+	
+	public employerManagement(WebDriver driver) {
+		this.driver = driver;
+		PageFactory.initElements(driver, this);
+	}
+	
 	commonStepDefinitions commonFunctions = new commonStepDefinitions();
 	employerManagementLocators em = new employerManagementLocators();
 	commonStepDefinitions cf= new commonStepDefinitions();
@@ -594,7 +608,62 @@ public class employerManagement extends TestBase
 
 	}	
 	
+
+	//-ankan
+	@FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
+	public WebElement eanBeanId_SREG027;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()='Account Maintenance']//following::span[@id='AccountMaintenanceEmployerAccountMaintenance'][2]")
+	public WebElement employerAccountMaintanceMenu;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][1]")
+	public WebElement uspsBusinessAddress;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][1]")
+	public WebElement uspsBusinessAddressInnerCircle;
+	
+	@FindBy(how = How.XPATH, using = "//button[@id='access.continue']")
+	public WebElement continueButton_popUp;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='sourceId']")
+	public WebElement sourceId_SREG705;
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' NYS-100 (paper) ']")
+	public WebElement nys100Paper_SREG705;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Source']//following::*[@id='sourceId']")
+	public WebElement sourceId_SREG435;
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' IA602 ']")
+	public WebElement IA602_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Source Type']//following::*[@id='sourceTypeId']")
+	public WebElement sourceTypeId_SREG435;
+
+	@FindBy(how = How.XPATH, using = "//span[text()=' Coverage Exception ']")
+	public WebElement CoverageException_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Suspension Date']//following::*[@id='mat-select-4']")
+	public WebElement suspensionDateQtrDropdown_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Suspension Date']//following::*[@id='mat-select-value-7']")
+	public WebElement suspensionDateYearDropdown_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='remarksId']")
+	public WebElement remarksId_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' L&D SUTA ']")
+	public WebElement ldSuta_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Correspondence/Email ']")
+	public WebElement correspondence_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+	public WebElement commentId;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' NYS-100 ']")
+	public WebElement nys100;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+    public WebElement menu;
 }

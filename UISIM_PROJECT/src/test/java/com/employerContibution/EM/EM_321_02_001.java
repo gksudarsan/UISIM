@@ -45,18 +45,24 @@ public class EM_321_02_001 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("tst_empr","Nysdol@0210");
+		 commonFuntions.login("manju@2004","Manhar2004@1234");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");
+		 commonFuntions.ScrollMenu("Account Maintenance");
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Corporate Officer/Owner Details");
+		/* commonFuntions.ScrollMenu("Add Corporate Officer/Owner Details");
 		 commonFuntions.screenShot("Add Corporate Officer/Owner Details","Pass","Add Corporate Officer/Owner Details");
-		 commonFuntions.clickMenu("Add Corporate Officer/Owner Details");	
+		 commonFuntions.clickMenu("Add Corporate Officer/Owner Details");*/	
+		 commonFuntions.clickOnLink("Add Corporate/Owner Details");
+	     sleep(2000);
 		 String ssnValue = String.valueOf((long) (Math.random()*Math.pow(10,10)));	 
-		 ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
+		 
 	     populateFields(ssnValue);
+	     ssnValue = StringUtils.left(ssnValue, 3)+"-"+StringUtils.right(StringUtils.left(ssnValue, 5),2)+"-"+StringUtils.right(ssnValue, 4);
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("Success","Pass","Successfully added corporate officer/ownerdetaisl");

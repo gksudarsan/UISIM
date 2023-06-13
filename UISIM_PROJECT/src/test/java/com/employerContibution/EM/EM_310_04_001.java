@@ -19,7 +19,7 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_310_04_001 extends TestBase{
 
 	@Test()
-	public void EE_01_004_csr_registration() throws Exception {
+	public void EM_310_04_001() throws Exception {
 
 		commonStepDefinitions cf = new commonStepDefinitions();	/*
 		 * String feinValue1 =StringUtils.left( String.valueOf((long)
@@ -45,22 +45,22 @@ public class EM_310_04_001 extends TestBase{
 			cf.clickMenu("Business Acquisition");sleep();
 			cf.screenShot("Menu","Pass","Business Acquisition");
 			//driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']")); Thread.sleep(2000);
-			cf.enterTextbox("Employer Registration Number", EAN);sleep();
-			cf.screenShot("", "Pass", "Launched to  acquired the business page");
-			cf.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
-			cf.enterTextboxContains("Employer Registration Number", "5372266");
-			cf.clickButton(" Search ");sleep();
-			//cf.enterTextboxContains("Legal Name of Business", "hags gsg");
+			cf.enterTextbox("Employer Registration Number", EAN);
+			cf.clickButton("Continue ");
+			cf.screenShot("acquired the business", "Pass", "Launched to  acquired the business page");
+			cf.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");sleep();
+			empRegPage.EAN.sendKeys("5372266");
+			cf.clickButton(" Search ");
+			cf.enterTextboxContains("Legal Name of Business", "hags gsg");
 			//empRegPage.tradeNameId_SREG011.sendKeys("Cooking Inc");
-			empRegPage.address1_SREG011.sendKeys("Clark Residence Hall Poly");
-			empRegPage.city_SREG011.sendKeys("Brooklyn");
-			empRegPage.zip_SREG011.sendKeys("11201");
+			//empRegPage.address1_SREG011.sendKeys("Clark Residence Hall Poly");
+			//empRegPage.city_SREG011.sendKeys("Brooklyn");
+			//empRegPage.zip_SREG011.sendKeys("11201");
 			cf.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
 			cf.enterPastDate("Acquisition Date", 12);
 			cf.enterPastDate("Notification date of Transfer", 0);
-			cf.selectDropdown("Source", "Correspondence/Email");
-			Thread.sleep(2000);
-			cf.selectDropdown("Source Type", "Correspondence/Email");
+			cf.selectDropdown("Source", " Correspondence/Email ");
+			cf.selectDropdown("Source Type", " Correspondence/Email ");
 			sleep(3000);
 			cf.screenShot("EE04002", "Pass", "Details entered in SREG-011 page");
 			cf.clickButton("Continue ");
@@ -74,8 +74,7 @@ public class EM_310_04_001 extends TestBase{
 			// SREG - 012
 			sleep(3000);
 			cf.clickButton("Submit");
-			cf.screenShot("", "Pass", "The request Business Acquisition transaction has been succesfully processed.\r\n"
-					+ "");
+			cf.screenShot("", "Pass", "The request Business Acquisition transaction has been succesfully processed.");
 			
 			
 		

@@ -8,9 +8,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+import com.ui.base.TestBase;
+
 import stepDefinitions.commonStepDefinitions;
 
-public class HomePage {
+public class HomePage extends TestBase {
 	public WebDriver driver;
 	commonStepDefinitions stepDef = new commonStepDefinitions();
 
@@ -49,7 +51,7 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Void Transfer']")
 	public WebElement voidTransfer;
 	
-	@FindBy(how = How.XPATH, using = "//a[@class='nav-link ng-tns-c112-41 ng-star-inserted']//span[@id='AccountMaintenanceEmployerAccountMaintenance']")
+	@FindBy(how = How.XPATH, using = "//span[text()='Employer Account Maintenance']")
 	public WebElement employerAccountMaintenanceMain;
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Maintain Accounts']")
@@ -78,6 +80,12 @@ public class HomePage {
 
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RegisterPEO']")
 	public WebElement registerPeo;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)ManagePEO']")
+	public WebElement managePeo;
+	
+	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)RenewPEO']")
+	public WebElement renewPeo;
 
 	@FindBy(how = How.XPATH, using = "//*[@class='dropdown-menu--button-toggle']")
 	public WebElement menuLogout;
@@ -89,6 +97,8 @@ public class HomePage {
 	public WebElement reasonId_SREG060;
 	
 	public void navigateToAccountMaintenance() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Click_menu", "Pass", "Click menu");
 		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
@@ -100,6 +110,8 @@ public class HomePage {
 	}
 
 	public void navigateToSaleOfBussiness() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu");
 		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
@@ -126,6 +138,8 @@ public class HomePage {
 	}
 
 	public void navigateToMaintainAccounts() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Menu", "Pass", "Navigating to menu fail");
 		Thread.sleep(2000);
 		stepDef.clickElement(menuButton);
@@ -133,8 +147,11 @@ public class HomePage {
 		stepDef.clickElement(accountMaintenance);
 		Thread.sleep(3000);
 		stepDef.screenShot("Menu2", "Pass", "Navigating to employerAccountMaintenanceMain");
-		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
-		stepDef.waitForElementClicable(maintainAccounts);
+//		stepDef.waitForElementClicable(employerAccountMaintenanceMain);
+		stepDef.safeJavaScriptClick(employerAccountMaintenanceMain);
+		sleep();
+		stepDef.safeJavaScriptClick(maintainAccounts);
+//		stepDef.waitForElementClicable(maintainAccounts);
 	}
 
 	/* For Test case------- EM_453_01_001 ------------- */
@@ -175,6 +192,24 @@ public class HomePage {
 	@FindBy(how = How.XPATH, using = "//span[@id='AccountMaintenanceMaintainBusinessOwnership']")
 	public WebElement MaintainBusinessOwnership;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()='Business Acquisition']")
+	public WebElement BusinessAcquisition;
 	
-
+	/* For Test Case ----- EL_462_03 ----- */
+	public void navigateToManagePeo() throws InterruptedException {
+		stepDef.clickElement(menuButton);
+		Thread.sleep(2000);
+		stepDef.clickElement(professionalEmployerOrganization);
+		Thread.sleep(2000);
+		stepDef.clickElement(managePeo);
+	}
+	
+	/* For Test Case ----- EL_02_014 ----- */
+	public void navigateToRenewPeo() throws InterruptedException {
+		stepDef.clickElement(menuButton);
+		Thread.sleep(2000);
+		stepDef.clickElement(professionalEmployerOrganization);
+		Thread.sleep(2000);
+		stepDef.clickElement(renewPeo);
+	}
 }

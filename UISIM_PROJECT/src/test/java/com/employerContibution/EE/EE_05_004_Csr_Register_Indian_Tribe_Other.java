@@ -13,6 +13,7 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_084;
 import com.ui.pages.employerManagement;
 import com.ui.utilities.COMMON_CONSTANT;
 
@@ -27,6 +28,14 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		employerManagement em =  new employerManagement();
 		commonStepDefinitions cf = new commonStepDefinitions();	
+		SREG_084 sreg084 = new SREG_084(driver);
+		
+		//
+		String feinValuemanual = "115340788";
+
+		//
+		
+		
 		test = report.createTest(
 				"EE.05.002 - Verify CSR can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Business' and work items will be created for CSR to review.");
 
@@ -45,14 +54,15 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
 		commonFuntions.selectDropdown("Employer Type", " Indian Tribe ");
-		commonFuntions.selectDropdown("Type of Legal Entity", " Housing Authority ");
+		commonFuntions.selectDropdown("Type of Legal Entity", " Other ");
+		commonFuntions.enterTextboxContains("If Other, provide the type of Legal Entity.", "NGO");
 		/*--------------------FEIN----------------------*/
 		Map<String, String> feinValueOutput =  commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
 		String feinValue = feinValueOutput.get("FEIN");
 		System.out.println("FEIN : : "+feinValue);
 		test.log(Status.INFO, "FEIN : : "+ feinValue);
 		/*--------------------FEIN----------------------*/
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValuemanual);
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
@@ -66,9 +76,10 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Required text displayed if user do not enter Legal Name");
-		empPage.legalNameTextBox.sendKeys("hygyuwegfygwg");
-		commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
-		sleep();
+		empPage.legalNameTextBox.sendKeys("dev Enterprise");
+		//commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
+		commonFuntions.enterTextboxContains("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax from your Employee's pay?", "3/31/2023");
+		commonFuntions.enterTextboxContains("Date covered employment began? ", "9/1/2022");
 		commonFuntions.clickButton("Continue ");
 		sleep(3000);
 		
@@ -118,7 +129,7 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Navigated to SREG-683 page and uploading the document");
 		commonFuntions.safeJavaScriptClick(empPage.browserLink);
-		commonFuntions.uploadDoc("Sample");
+		commonFuntions.uploadDoc("Sample.docx");
 		sleep(4000);
 		commonFuntions.clickButton("Continue ");
 		
@@ -138,22 +149,23 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		/*-----------------SREG-013----------------*/
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-013 page and click on exit");
-		commonFuntions.clickButton("Exit ");
+		commonFuntions.clickButton("Home ");
 		/*-----------------Home Page----------------*/
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(20000);
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValuemanual+"' ORDER BY UPDATED_TS desc)");
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
 		
-		commonFuntions.enterTextbox("FEIN", feinValue);
+		commonFuntions.enterTextbox("FEIN", feinValuemanual);
 		commonFuntions.clickButton(" Search ");
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 //		commonFuntions.clickOnLink("Review Employer Type");
 //		commonFuntions.safeJavaScriptClick(empPage.review_employer_My_Q);
-		empPage.review_employer_My_Q.click();
+		//empPage.review_employer_My_Q.click();
+		sreg084.reviewemployertypelink.click();
 		sleep(3000);
 		/*-----------------WF-091----------------*/
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
@@ -173,18 +185,18 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		/*-----------------Home Page----------------*/
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(20000);
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValuemanual+"' ORDER BY UPDATED_TS desc)");
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.enterTextbox("FEIN", feinValue);
+		commonFuntions.enterTextbox("FEIN", feinValuemanual);
 		commonFuntions.clickButton(" Search ");
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 //		commonFuntions.clickOnLink("Review Employer Type");
 		sleep();
 //		commonFuntions.safeJavaScriptClick(empPage.obtain_bond_task_My_Q);
 		PEOPage.queue.click(); Thread.sleep(15000);
-		cf.enterTextboxContains("FEIN",feinValue);
+		cf.enterTextboxContains("FEIN",feinValuemanual);
 		cf.screenShot("FeinSearch","Pass","feinSearch");
 		cf.clickButtonContains("Search"); Thread.sleep(2000);
 		cf.screenShot("DOL DTF Discrepancy","Pass","emp type");
@@ -203,7 +215,7 @@ public class EE_05_004_Csr_Register_Indian_Tribe_Other extends TestBase {
 		cf.clickButtonContains("Home");
 
 		//Verify Registered employer in Inquery page 	...........
-		em.Inquery_fein(feinValue);
+		em.Inquery_fein(feinValuemanual);
 		test.log(Status.PASS, "Clicked on Home button");		
 		/*-----------------SUC-002----------------*/
 		

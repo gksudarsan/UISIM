@@ -62,8 +62,8 @@ public class EL_440_02 extends TestBase {
 		
 		//---MPEO-003---
 		
-		((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",
-							 driver.findElement(By.xpath("//mat-label[contains(.,'PEO Conversion')]")));		 		
+		//((JavascriptExecutor)driver).executeScript("arguments[0].scrollIntoView(true);",
+							// driver.findElement(By.xpath("//mat-label[contains(.,'PEO Conversion')]")));		 		
 		peoPage.selectionPeoDropdown.click();
 		peoPage.conversionPeoDropdown.click();
 		commonFunctions.screenShot("ManageIndividualPeoPage", "Pass", "Select drop down");

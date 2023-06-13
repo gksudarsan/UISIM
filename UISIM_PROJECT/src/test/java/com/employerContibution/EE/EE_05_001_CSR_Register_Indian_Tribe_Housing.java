@@ -31,6 +31,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 				"EE.05.001 - Verify CSR can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Housing' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(4000);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
@@ -53,6 +54,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		test.log(Status.INFO, "FEIN : : "+ feinValue);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 //		sleep(3000);
+//		commonFuntions.enterTextbox("Employer Registration Number", "0710282");
 		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
 		commonFuntions.selectDropdown("Source Type", " NYS-100IT ");
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
@@ -178,7 +180,11 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		commonFuntions.clickButton("Open Work Item ");
 //		sleep(4000);
 		commonFuntions.waitForLoadingIconToDisappear();
+		/*-----------------EEWI-002----------------*/
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
+		commonFuntions.selectDropdown("Account Status", " Erroneous ");
+		commonFuntions.selectDropdown("Reason for Erroneous", " Stop Processing ");
+		commonFuntions.enterCurrentDate("Date Covered Employment began? ");
 		empPage.commentBox_MyQ.sendKeys("Random Queue");
 		commonFuntions.clickButton("Submit ");
 		

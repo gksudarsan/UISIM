@@ -25,8 +25,8 @@ public class EM_412_004_CSR_Verif_CSR_is_able_to_update_employer_legal_name_of_b
 			sleep(2000);
 			CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
-			Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' ORDER BY UPDATED_TS","EAN");
-			 
+			//Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' ORDER BY UPDATED_TS","EAN");
+			Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL","EAN");
 			String ErnNum=databaseResults.get("EAN");
 			//CommFun.enterTextboxContains("Employer Registration Number",ErnNum);
 			System.out.println(ErnNum);
@@ -77,6 +77,18 @@ public class EM_412_004_CSR_Verif_CSR_is_able_to_update_employer_legal_name_of_b
 		    sleep(2000);
 		    CommFun.screenShot("Modify Employer Account Details", "Pass", "ENtered details on SREG 030");
 		    CommFun.clickButton("Submit ");
+		    
+		    sleep(2000);
+		    CommFun.selectDropdownEquals("Type of Legal Entity", " Other ");
+		    sleep(2000);
+		    CommFun.screenShot("Modify Employer Account Details", "Pass", "ENtered details on SREG 030");
+		    CommFun.clickButton("Submit ");
+		     sleep(2000);
+		     /*
+		    CommFun.selectDropdownEquals("Type of Legal Entity", "Housing Authority");
+		    sleep(2000);
+		    CommFun.screenShot("Modify Employer Account Details", "Pass", "ENtered details on SREG 030");
+		    CommFun.clickButton("Submit ");*/
 		    //----SUC 002
 		    sleep(2000);
 		    CommFun.screenShot("Modify Employer Account Details", "Pass", "Successfully landed on SUC 002");
@@ -84,5 +96,5 @@ public class EM_412_004_CSR_Verif_CSR_is_able_to_update_employer_legal_name_of_b
 		    CommFun.clickButtonContains("Home ");
 		    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
 		    
-			
+		  //---completed by Palak
 }}

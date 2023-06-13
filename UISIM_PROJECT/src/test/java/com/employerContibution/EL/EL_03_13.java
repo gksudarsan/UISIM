@@ -41,33 +41,41 @@ public class EL_03_13 extends TestBase {
 		commonFunctions.clickButtonContains("Search");
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Searched PEO List");
 		
-		commonFunctions.selectRadioInTable("787876868", 1, 1, "Search for PEO");
+		sleep();
+		commonFunctions.selectRadioInTable("400166513", 1, 1, "Search for PEO");
 		//driver.findElement(By.xpath("//input[@id='dataTableId_selectedPeoId_1_1_radio_button-input']")).click();
 		sleep();
 		
+		sleep(2000);
 		commonFunctions.clickButtonContains("Continue");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Group PEO Details");
 		
+		sleep(2000);
 		commonFunctions.clickOnLink("REVIEW AND UPDATE OTHER PEO DETAILS | ");
 		commonFunctions.screenShot("PeoDetailsReviewPage", "Pass", "PEO Details Review screen");
 		sleep();
 		
-		
+		sleep(2000);
 		//commonFunctions.clickButtonContains("Edit",3);
 		//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]
 		driver.findElement(By.xpath("//mat-label[contains(.,'Mailing Address')]//following::button[contains(.,' Edit ')][1]")).click();
 		sleep();
 		commonFunctions.screenShot("MailingAddressPage", "Pass", "Mailing Address verification details");
 		
+		sleep(2000);
 		commonFunctions.clickButtonContains("Previous");
 		commonFunctions.screenShot("MailingAddressPage", "Pass", "Navigation to previous page");
 		sleep();
 		
+		sleep(2000);
 		commonFunctions.clickButtonContains(" Yes ");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Manage PEO pag launch successful");
 		sleep();
 		
+		sleep(2000);
 		commonFunctions.screenShot(COMMON_CONSTANT.SUCCESS, "Pass", COMMON_CONSTANT.SUCCESS_PAGE);
+		
+		commonFunctions.Label("");
 	}
 
 }

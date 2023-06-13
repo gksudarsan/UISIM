@@ -32,22 +32,25 @@ public class EE_10_003 extends TestBase{
 				"FEIN");
 		String feinValue = databaseFeinResult.get("FEIN");
 		System.out.println("The FIEN is " + feinValue);
+		
 		// EAN in DOL & DTF
 		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
 				"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println("The EAN is " + eanValue);
+		
 		//Legal name not in DOL, multiple in DTF
 		Map<String, String> databaseEntityNameResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd GROUP BY LEGAL_NAME HAVING COUNT(*)>1 ) ORDER BY UPDATED_TS DESC","ENTITY_NAME");
 		String legalName = databaseEntityNameResult.get("ENTITY_NAME");
 		System.out.println("The LegalName is " + legalName);
 		
 		// --- Login ---
-		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		// ---Menu Click---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		// commonFuntions.clickMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
@@ -58,6 +61,7 @@ public class EE_10_003 extends TestBase{
 		commonFunction.screenShot("EmpRegister1", "Pass", "Launched the Employer Register(SREG-001) page");
 		
 		// --- SREG-001 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.enterTextboxContains("First Name", "Antonio");
 		commonFunction.enterTextboxContains("Middle Initial", "S");
 		commonFunction.enterTextboxContains("Last Name", "Rodriguez");
@@ -73,7 +77,7 @@ public class EE_10_003 extends TestBase{
 		commonFunction.clickButton("Continue ");
 
 		// --- SREG-025 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-025 page");
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
 		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue); //897397325
@@ -84,7 +88,7 @@ public class EE_10_003 extends TestBase{
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-003 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Launched Employer Entity Information(SREG-003) page");
 		empRegPage.legalNameTextBox.sendKeys(legalName); //ColorEseence122
 		//empRegPage.legalNameTextBox.sendKeys("B Legal Corp");
@@ -105,7 +109,7 @@ public class EE_10_003 extends TestBase{
 		commonFunction.clickButton(" Yes ");
 		
 		// --- SREG-008 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister8", "Pass", "Sucessfully launched to SREG-008 page");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
 		commonFunction.enterTextboxContains("City ", "New York");
@@ -127,13 +131,13 @@ public class EE_10_003 extends TestBase{
 		empRegPage.continueButton_popUp.click();
 		
 		// --- SREG-007 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister11", "Pass", "Successfully launched Business Physical Address Details(SREG-007) page");
 		commonFunction.clickButton("Continue ");
 
 		//execution doc unavailable in MC. Page anomaly for SREG-004, on selection of Primary address radio selection, no data is populating.
 		// --- SREG-004 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister12", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
 		commonFunction.selectRadioQuestions("Location of Books and Records", "Other");
 		empRegPage.uspsBmadAddressText.sendKeys("721 Broadway");
@@ -180,6 +184,7 @@ public class EE_10_003 extends TestBase{
 			sleep(2000);
 		}
 		
+		System.out.println("Pass :)");
 		// --- SREG-521 ---
 		// SREG 683 expected. Failed after step 10.
 		

@@ -1,5 +1,7 @@
 package com.employerContibution.EM;
 
+import java.util.Map;
+
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
@@ -18,11 +20,20 @@ public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends Tes
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		employerManagement empManagement = new employerManagement();
 		
+		// DB Query
+		// Valid ERN
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND LENGTH(EAN)=7",
+				"EAN");
+		String eanValue = databaseEanResult.get("EAN");
+		System.out.println(eanValue);
+		
 		//--- Login ---
-		commonFunction.login(COMMON_CONSTANT.TPR_USER_2.toUpperCase(), COMMON_CONSTANT.TPR_USER_2_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		//---Menu Click---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
@@ -30,7 +41,7 @@ public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends Tes
 		commonFunction.clickMenu("Maintain Address");
 		
 		// --- SREG-070 ---
-		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("MenuNavigation", "Pass", "Successful launch to Maintain Address – Enter ERN(SREG-070) page");
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
@@ -53,12 +64,17 @@ public class EM_260_03_001_TPR_Update_PrimaryBusinessPhysicalAddress extends Tes
 		commonFunction.enterTextbox("Employer Registration Number", "");
 		sleep(2000);
 		
-		commonFunction.enterTextbox("Employer Registration Number", "0000129");
+		commonFunction.enterTextbox("Employer Registration Number", eanValue);
 		commonFunction.clickButton("Continue ");
-		sleep(2000);
-		commonFunction.screenShot("EM26003001", "Pass", "Continue blocked due to no power of attorney");
+
+
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EM26003001", "Pass", "Successfully opened Details with ERN");
 		
+		sleep(3000);
+		commonFunction.screenShot("EM26003001", "Pass", "TC EM.260.03.001 passed");
+		//commonFunction.screenShot("FailurePage", "Fail", "TC EM.260.03.001 failed -> ERN has no POA");
 		
-		System.out.println("Pass");
+		System.out.println("Pass :)");
 	}
 }

@@ -31,12 +31,15 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		 sleep(2000);
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
 		 commonFuntions.clickMenu("Register PEO");
+		 sleep(3000);
 		 commonFuntions.screenShot("peo registration", "Pass", "PEO Registration - Contact Details");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(2000);
@@ -57,6 +60,7 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 	     sleep(2000);
 	     //commonFuntions.selectRadio("Select");
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(ernValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}
@@ -143,7 +147,8 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 		 commonFuntions.uploadDoc("Sample.docx");
 		 sleep(4000);
 		 commonFuntions.clickButtonContains("Upload");
-		 sleep(2000);
+		 sleep(15000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Upload Documents", "PASS", "Upload Documents");
 		 commonFuntions.clickButtonContains("Save & Continue");
 		 sleep(2000);
@@ -239,7 +244,7 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 			sleep(2000);
 			commonFuntions.screenShot("Register/Renew Confirmation", "Pass", "Register/Renew Confirmation");
 			commonFuntions.clickButtonContains("Home");
-			sleep(200);
+			sleep(2000);
 		
 
 

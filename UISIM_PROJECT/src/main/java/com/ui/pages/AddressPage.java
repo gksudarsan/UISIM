@@ -40,17 +40,21 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
 	public WebElement countyValue1;
 
+
 	@FindBy(how = How.XPATH, using = "//input[@id='lbramailingAddressId_address1']")
 	public WebElement addressLine1_Form2;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']") 
+	public WebElement countyDropDown_Form2; 
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Employer Registration Number']//following::mat-label[1]")
+	public WebElement getERN;
 
 	@FindBy(how = How.XPATH, using = "//input[@id='lbramailingAddressId_city']")
 	public WebElement city_Form2;
 
 	@FindBy(how = How.XPATH, using = "//input[@id='lbramailingAddressId_zip']")
 	public WebElement zipCode_Form2;
-
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']")
-	public WebElement countyDropDown_Form2;
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Albany ']")
 	public WebElement countyValue2;
@@ -125,8 +129,20 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//input[@id='covEmploymentBeginDtId']")
 	public WebElement clearDateField1;
-
-	@FindBy(how = How.XPATH, using = "//input[@id='firstNameId']")
+	
+	public void verifyInquiryAddressEmployerHistory(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')][1]"));
+	}
+	
+	        public void requiredError_genInfo(String xpathParameter) {
+		        driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
+         	}
+	
+			public void requiredError_empReg(String xpathParameter) {
+				driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
+			}			
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='firstNameId']") 
 	public WebElement firstName_locationOfBooksAndrecords;
 
 	@FindBy(how = How.XPATH, using = "//input[@id='lastNameId']")
@@ -175,9 +191,6 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Employer Registration Number')]//following::input[1])[last()]")
 	public WebElement EmployerRegNumber;
-
-	@FindBy(how = How.XPATH, using = "//*[.='Employer Registration Number']//following::mat-label[1]")
-	public WebElement getERN;
 
 	@FindBy(how = How.XPATH, using = "//*[.='PEO ID']//following::mat-label[1]")
 	public WebElement getPEOId;

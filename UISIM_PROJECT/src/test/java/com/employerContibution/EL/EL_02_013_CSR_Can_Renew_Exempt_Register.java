@@ -8,6 +8,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
@@ -32,7 +33,7 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 
 		test = report.createTest("EL.02.013 .Verify CSR  can renewal PEO Exempt registration.");
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-
+		test.log(Status.INFO, "FEIN : : "+feinValue);
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");

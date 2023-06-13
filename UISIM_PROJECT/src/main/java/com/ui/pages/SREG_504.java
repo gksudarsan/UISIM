@@ -9,9 +9,11 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 
+import com.ui.base.TestBase;
+
 import stepDefinitions.commonStepDefinitions;
 
-public class SREG_504 {
+public class SREG_504 extends TestBase {
 
 	public WebDriver driver;
 
@@ -48,12 +50,16 @@ public class SREG_504 {
 	@FindBy(how = How.XPATH, using = "//span[normalize-space()='Submit']")
 	public WebElement submitButton;
 	
-	public void verifyPageName(String actualPageName) {
+	public void verifyPageName(String actualPageName) throws InterruptedException {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		String name = pageNameText.getText();
 		Assert.assertEquals(name, actualPageName);
 	}
 	
 	public void verifyFilterValues() throws Exception {
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		stepDef.screenShot("Filters", "Pass", "Filter validation");
 		Assert.assertTrue(successorERNText.isDisplayed());
 		Assert.assertTrue(successorERNValue.isDisplayed());
@@ -65,6 +71,8 @@ public class SREG_504 {
 	}
 	
 	public void clickSubmitButton() throws Exception{
+		sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		submitButton.click();
 		Thread.sleep(2000);
 		stepDef.screenShot("Submit", "PASS", "Submit validation");

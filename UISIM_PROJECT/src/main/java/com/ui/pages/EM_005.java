@@ -35,6 +35,7 @@ public class EM_005 extends TestBase {
 	
 	public void enterDetailInERNField(String ERN) throws Exception {
 		Thread.sleep(2000);
+		stepDef.waitForLoadingIconToDisappear();
 		System.out.println("Inside the ERN page");
 		stepDef.screenShot("ERN", "Pass", "ERN field input field");
 		String pageNametext = pageNameText.getText();

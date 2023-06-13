@@ -71,7 +71,7 @@ public class EM_321_009_CSR_Verify_CSR_is_able_to_Delete_Member_Managing_Member_
 		sleep(2000);
 		CommFun.screenShot("Member/Managing Member Details", "Pass", "Deleted members from table on SREG 708");
 		sleep(2000);
-		//---completed
+		//---completed  & rexcuted by Palak
 		
 		
 		

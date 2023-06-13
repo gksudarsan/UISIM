@@ -26,8 +26,8 @@ public class EM_412_006_CSR_Verif_CSR_is_able_to_update_employer_legal_name_of_b
 			sleep(2000);
 			CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
-			Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' ORDER BY UPDATED_TS","EAN");
-			 
+			//Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '8%' ORDER BY UPDATED_TS","EAN");
+			Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL","EAN");
 			String ErnNum=databaseResults.get("EAN");
 			//CommFun.enterTextboxContains("Employer Registration Number",ErnNum);
 			System.out.println(ErnNum);
@@ -73,17 +73,30 @@ public class EM_412_006_CSR_Verif_CSR_is_able_to_update_employer_legal_name_of_b
 		    sleep(2000);
 			CommFun.screenShot("Modify Employer Account Details", "Pass", "Entered details on SREG 030");
 			
-		    CommFun.selectDropdown("Employer Type", " Non-Profit Employer ");
+		    CommFun.selectDropdown("Employer Type", " Non-Profit ");
+		    sleep(2000);
+		    CommFun.selectDropdownEquals("Type of Legal Entity", " Limited Liability Company (All Types) ");
+		    sleep(2000);
 			CommFun.selectDropdownEquals("Source", " Miscellaneous ");
+			sleep(2000);
 		    CommFun.selectDropdown("Source Type", " Other Local Agency ");
 		    sleep(2000);
 		    CommFun.screenShot("Modify Employer Account Details", "Pass", "Entered details on SREG 030");
+		    sleep(2000);
 		    CommFun.clickButton("Submit ");
+		    sleep(2000);
+		   
+		   // CommFun.screenShot("Modify Employer Account Details", "Pass", "ENtered details on SREG 030");
+		   // CommFun.clickButton("Submit ");
 		    //----SUC 002
 		    sleep(2000);
 		    CommFun.screenShot("Modify Employer Account Details", "Pass", "Successfully landed on SUC 002");
 		    sleep(2000);
+		    CommFun.Label("The Account Information has been succesfully saved");
 		    CommFun.clickButtonContains("Home ");
 		    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
+		
+		  //---re-executed completed by Palak
+		
 		}
 }
