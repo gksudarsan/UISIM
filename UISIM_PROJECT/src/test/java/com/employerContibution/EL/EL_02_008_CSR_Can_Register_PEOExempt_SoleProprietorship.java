@@ -23,6 +23,7 @@ public class EL_02_008_CSR_Can_Register_PEOExempt_SoleProprietorship extends Tes
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
@@ -32,6 +33,7 @@ public class EL_02_008_CSR_Can_Register_PEOExempt_SoleProprietorship extends Tes
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 Thread.sleep(3000);
 	     commonFuntions.clickButtonContains("Continue");
+	     sleep(2000);
 	     PEOPage.peoExemptRegisterRadio.click();
 	     commonFuntions.screenShot("EXEMPT", "Pass", "Selecting Exempt and filling the form");
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
@@ -82,6 +84,7 @@ public class EL_02_008_CSR_Can_Register_PEOExempt_SoleProprietorship extends Tes
 	     /* ------------------- PEO_004 --------------E*/
 	     commonFuntions.screenShot("ExemptionSubmission", "Pass", "Exemption Submission");
 	     commonFuntions.clickButtonContains("Continue");
+	     sleep(2000);
 	     /* ----------------- SREG_006 --------------*/
 	     commonFuntions.screenShot("Address2", "Pass", "Entering address 1&2");
 	     commonFuntions.clickButtonContains("Save & Continue");
@@ -127,7 +130,7 @@ public class EL_02_008_CSR_Can_Register_PEOExempt_SoleProprietorship extends Tes
 	     /*-------------------- PEO_017 ------------------*/
 	     commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
 	     commonFuntions.clickButton("Accept & Submit ");	
-	     
+	     sleep(2000);
 commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
@@ -135,6 +138,7 @@ commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
 	    PEOPage.queue.click();
 	    Thread.sleep(15000);
+	    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");

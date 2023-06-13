@@ -37,7 +37,7 @@ public class SREG_434 extends TestBase{
 	public WebElement requiredText;
 	
 	public Boolean checkRequiredText() throws Exception {
-		stepDef.clickElement(continueButton);
+		stepDef.clickButtonContains("Continue");
 		Thread.sleep(2000);
 		stepDef.screenShot("Required_Text", "Pass", "Required text");
 		Boolean flag = requiredText.isDisplayed();
@@ -45,10 +45,11 @@ public class SREG_434 extends TestBase{
 		
 	}
 		public void enterEANNumber(String EAN) throws Exception {
-			registerERN.sendKeys(EAN);
+			stepDef.enterTextbox("Employer Registration Number",EAN);
+			//registerERN.sendKeys(EAN);
 			Thread.sleep(2000);
 			stepDef.screenShot("EnterErn", "Pass", "ERN text");
-			stepDef.clickElement(continueButton);	
+			stepDef.clickButtonContains("Continue");	
 	
 	}
 

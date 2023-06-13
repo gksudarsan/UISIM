@@ -32,12 +32,14 @@ public class EL_322_011 extends TestBase
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");	
+		 sleep(2000);
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");		
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(2000);
@@ -144,7 +146,8 @@ public class EL_322_011 extends TestBase
 	     commonFuntions.uploadDoc("Sample.docx");
 	     Thread.sleep(4000);
 	     commonFuntions.clickButtonContains("Upload");
-	     Thread.sleep(2000);
+	     Thread.sleep(10000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     commonFuntions.clickButtonContains("Choose File");
@@ -172,6 +175,7 @@ public class EL_322_011 extends TestBase
 	     
 	    PEOPage.queue.click();
 	    Thread.sleep(15000);
+	    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
@@ -189,6 +193,7 @@ public class EL_322_011 extends TestBase
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(2000);
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}commonFuntions.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");

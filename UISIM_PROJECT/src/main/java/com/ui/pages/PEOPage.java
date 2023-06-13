@@ -233,5 +233,17 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='addressTypeId_DIFF-input']//preceding::*[@class='mat-radio-container'][1]")
 	public WebElement SameAsPhysicalAddress;
 	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')][@class='mat-radio-label']//following::span[@class='mat-radio-container'][1]")
+	public WebElement PeoUserSelect;
+	
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Country')]//following::mat-select[1][@id='address0_country']")
+	public WebElement PeoCountry;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+	public WebElement menu;
+	
+	
+	
 	
 }

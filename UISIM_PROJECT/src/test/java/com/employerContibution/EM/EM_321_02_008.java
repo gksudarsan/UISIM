@@ -43,15 +43,23 @@ public class EM_321_02_008 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("peouseranup","Admin@12345678");
+		 //commonFuntions.login("peouseranup","Admin@12345678");
+		 commonFuntions.login("manju@20","Manjupruthi@123");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.ScrollMenu("Account Maintenance");
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
-		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Trustee/Owner Details");
+		 commonFuntions.clickMenu("Maintain Business Ownership");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
+		/* commonFuntions.ScrollMenu("Add Trustee/Owner Details");
 		 commonFuntions.screenShot("Add Trustee/Owner Details","Pass","Add Trustee/Owner Details");
-		 commonFuntions.clickMenu("Add Trustee/Owner Details");	
+		 commonFuntions.clickMenu("Add Trustee/Owner Details");	*/
+		 commonFuntions.clickOnLink("Add Trustee/Owner Details");
+		 sleep(2000);
 		 	 
 		 long number = commonFuntions.createRandomInteger(100000000,999999999);
 		 String ssnValue=Long.toString(number);

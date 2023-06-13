@@ -24,6 +24,8 @@ public class EE_09_004_CSR_Can_Submit_Indian_Tribe_Other extends TestBase{
 				.createTest("EE.09.002 Verify employer can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Business' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_MANJU.toUpperCase(), COMMON_CONSTANT.EMPLOYER_PASS_MANJU);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);

@@ -169,8 +169,11 @@ public class EL_322_003_PEOAdmin_Can_Register_IndividualPeo_Partnership extends 
 	     commonFuntions.selectLink("Sample of a written notice to worksite", "Browse");
 	     sleep(2000);
 	     commonFuntions.uploadDoc("Sample.docx");
-	     //commonFuntions.clickButtonContains("Upload");
 	     sleep(2000);
+	     commonFuntions.clickButtonContains("Upload");
+	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
+	     
 	     commonFuntions.selectLink("Authorization to do business in NYS from the NYS Secretary of", "Browse");
 	     sleep(2000);
 	     commonFuntions.uploadDoc("Sample.docx");
@@ -201,8 +204,10 @@ public class EL_322_003_PEOAdmin_Can_Register_IndividualPeo_Partnership extends 
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		    PEOPage.queue.click();
+		 sleep(3000)   ;
+	     PEOPage.queue.click();
 	    sleep(15000);
+	    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
@@ -220,6 +225,7 @@ public class EL_322_003_PEOAdmin_Can_Register_IndividualPeo_Partnership extends 
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}commonFuntions.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");

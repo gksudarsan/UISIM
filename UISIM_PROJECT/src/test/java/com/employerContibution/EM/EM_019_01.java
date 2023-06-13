@@ -38,22 +38,26 @@ public class EM_019_01 extends TestBase
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 commonFuntions.clickMenu("Menu");			 
 		 commonFuntions.ScrollMenu("Account Maintenance");
-		 commonFuntions.clickMenu("Account Maintenance");		 
+		 commonFuntions.clickMenu("Account Maintenance");	
+		 sleep(2000);
 		 commonFuntions.clickMenu("Employer Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Joint Employment/Management Agreement Creation");
+		 sleep(2000);
 		 commonFuntions.clickMenu("Joint Employment/Management Agreement Creation");
+		 sleep();
 		 commonFuntions.clickButtonContains("Continue");
 		 Thread.sleep(2000);		 
 		 commonFuntions.errorLabel("Required");
 		 commonFuntions.enterTextbox("Employer Registration Number","6543210" );
 		 commonFuntions.screenShot("Error_Required","Pass","Error message shown as expected");
 		 commonFuntions.clickButtonContains("Continue");
-		 Thread.sleep(2000);
+		 Thread.sleep(3000);
 		 commonFuntions.errorContent("The Employer Registration Number(ERN) provided does not exist in the system.");
 		 commonFuntions.screenShot("Error_Required1","Pass","Error message shown as expected");
 		 
-		 Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND ORGANIZATION_TYPE = 'CITY' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC");
-			String feinValue =databaseResults.get("Fein");
+		 //Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS = 'LIAB' AND ORGANIZATION_TYPE = 'CITY' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC");
+		 Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT ACCOUNT_STATUS,* FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C' AND  EAN IS NOT NULL");	
+		 String feinValue =databaseResults.get("Fein");
 			String ernValue = databaseResults.get("Ean");
 		 System.out.println(ernValue);
 		 commonFuntions.enterTextbox("Employer Registration Number",ernValue );
@@ -66,6 +70,7 @@ public class EM_019_01 extends TestBase
 		 commonFuntions.enterTextbox("Legal Name of Business","ENSEC INC" );
 		 commonFuntions.clickButtonContains("Search");
 		 Thread.sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Joint","Pass","Screen as expected");
 		 commonFuntions.clickButtonContains("Continue");
 		 Thread.sleep(2000);

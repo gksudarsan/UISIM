@@ -24,6 +24,7 @@ public class EL_02_004_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityCompany e
 		 HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 PEOPage.peoRegister.click();
 		 sleep(3000);
@@ -41,11 +42,13 @@ public class EL_02_004_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityCompany e
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
 		 sleep(3000);
 	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
 	     PEOPage.peoExemptRegisterRadio.click();
 	     commonFuntions.screenShot("EXEMPT", "Pass", "Selecting Exempt and filling the form");
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     commonFuntions.enterTextboxContains("Additional Names, if any, under", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     commonFuntions.clickButtonContains("Save & Continue");
+	     sleep(2000);
 	     commonFuntions.screenShot("address", "Pass", "Address update");
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");
 	     String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
@@ -88,6 +91,7 @@ public class EL_02_004_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityCompany e
 	     /* ------------------- PEO_004 --------------E*/
 	     commonFuntions.screenShot("ExemptionSubmission", "Pass", "Exemption Submission");
 	     commonFuntions.clickButtonContains("Continue");
+	     sleep(2000);
 	     /* ----------------- SREG_006 --------------*/
 	     commonFuntions.screenShot("Address2", "Pass", "Entering address 1&2");
 	     commonFuntions.clickButtonContains("Save & Continue");
@@ -110,8 +114,9 @@ public class EL_02_004_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityCompany e
 	     sleep(2000);
 	     commonFuntions.uploadDoc("Sample.docx");
 	     sleep(2000);
-	     //commonFuntions.clickButtonContains("Upload");
-	     //sleep(15000);
+	     commonFuntions.clickButtonContains("Upload");
+	     sleep(15000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("DocumentUpload", "Pass", "Upload document");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -147,14 +152,16 @@ public class EL_02_004_PEOAdmin_Can_Register_PEOExempt_LimitedLiabilityCompany e
 	     /*-------------------- PEO_017 ------------------*/
 	     commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
 	     commonFuntions.clickButton("Accept & Submit ");	
-	     
+	     sleep(2000);
 commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-	    PEOPage.queue.click();
+	   sleep(2000);
+	     PEOPage.queue.click();
 	    sleep(15000);
+	    commonFuntions.waitForLoadingIconToDisappear();
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");

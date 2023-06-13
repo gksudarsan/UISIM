@@ -39,6 +39,8 @@ public class EL_322_002_PEOAdmin_Can_Register_IndividualPeo_SoleProprietorship e
 		 
 		 
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 sleep(2000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 PEOPage.peoRegister.click();
 		 sleep(3000);
@@ -56,7 +58,8 @@ public class EL_322_002_PEOAdmin_Can_Register_IndividualPeo_SoleProprietorship e
 		 sleep(2000);
 	     PEOPage.individualPeo.click();	     
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextboxContains("Additional name(s), if any,","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.screenShot("IndividualPeo","Pass","Professional Employer Organization Registration");	     
@@ -175,6 +178,9 @@ public class EL_322_002_PEOAdmin_Can_Register_IndividualPeo_SoleProprietorship e
 	     sleep(2000);
 	     commonFuntions.uploadDoc("Sample.docx");
 	     sleep(2000);
+	     commonFuntions.clickButtonContains("Upload");
+	     sleep(10000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     commonFuntions.clickButtonContains("Choose File");
@@ -201,6 +207,7 @@ public class EL_322_002_PEOAdmin_Can_Register_IndividualPeo_SoleProprietorship e
 	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 	     sleep(2000);
 	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+	     sleep(3000);
 		    PEOPage.queue.click();
 	    sleep(15000);
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
@@ -220,6 +227,7 @@ public class EL_322_002_PEOAdmin_Can_Register_IndividualPeo_SoleProprietorship e
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
 	     try {
+	    	 PEOPage.peoRadioButton.click();
 		     commonFuntions.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
 		     }
 		     catch(Exception e) {}commonFuntions.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");
