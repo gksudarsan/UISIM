@@ -22,15 +22,13 @@ public class EL_322_014 extends TestBase {
 	public void EL_322_014() throws Exception {
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		
 		//Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS desc");
 		//String feinValue =databaseResults.get("Fein");
 		//String ernValue = databaseResults.get("Ean");
 		//System.out.println("feinValue is"+feinValue);
 		 test = report.createTest("EL.322.014: Verify CSR can register Individual PEO for Type of Legal Entity 'Corporation' and type of Ownership 'Public Ownership'");
-		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		 
 		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 sleep(2000);
@@ -286,12 +284,12 @@ public class EL_322_014 extends TestBase {
 
 		Map<String, String> databaseResults = PEOPage.database_SelectQuery(
 				"SELECT FEIN,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS desc");
-		String feinValue = databaseResults.get("Fein");
+//		String feinValue = databaseResults.get("Fein");
 //		String ernValue = databaseResults.get("Ean");
 		System.out.println("feinValue is" + feinValue);
 		test = report.createTest(
 				"EL.322.014: Verify CSR can register Individual PEO for Type of Legal Entity 'Corporation' and type of Ownership 'Public Ownership'");
-		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		sleep(2000);
@@ -321,7 +319,7 @@ public class EL_322_014 extends TestBase {
 		// (Math.random()*Math.pow(10,10))),7);
 		// String feinValue=StringUtils.left( String.valueOf((long)
 		// (Math.random()*Math.pow(10,10))),9);
-		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
+//		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", "Corporation");
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
@@ -574,7 +572,6 @@ public class EL_322_014 extends TestBase {
 		Thread.sleep(4000);
 		commonFuntions.screenShot("Success", "Pass", "SuccessPage");
 
->>>>>>> refs/heads/master_29May
 	}
 
 }

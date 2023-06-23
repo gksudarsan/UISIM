@@ -480,7 +480,7 @@ public WebElement typeOfLegalEntityId;
 @FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
 public WebElement individualOwnership;
 
-<<<<<<< HEAD
+
 @FindBy(how = How.XPATH, using =  "//*[@id='eanBeanId']")
 public WebElement eanBeanId;
 
@@ -490,15 +490,12 @@ public WebElement employerFeinId;
 @FindBy(how = How.XPATH, using =  "//*[@id='totalRevenue']")
 public WebElement totalRevenue;
 //shubhanshi
-
 @FindBy(how = How.XPATH, using = "//*[.='Association End Date']//following::*[@id='dataTableId'][1]//following::input[1]")
 public WebElement Select_date_from_calender;
 
 @FindBy(how = How.XPATH, using = "//*[@id='eanBeanId']")
 public WebElement EAN;
 
-
-=======
 @FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
 public WebElement uspsCommonButton;
 
@@ -525,7 +522,7 @@ public WebElement menuButtonHomepage;
 
 @FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio[3]//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
 public WebElement uspsCommonButton3;
->>>>>>> refs/heads/master_29May
+
 
 }
 

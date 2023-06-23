@@ -237,7 +237,6 @@ public class PEOPage {
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']/following-sibling::mat-label")
 	public WebElement getERN;
-<<<<<<< HEAD
 
 	@FindBy(how = How.XPATH, using = "//*[@id='address0_address1']")
 	public WebElement address0_address1_PEO003;
@@ -316,9 +315,8 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
 	public WebElement menu;
-=======
 	
 	@FindBy(how = How.XPATH, using = "//span[text()='PEO ID']/../following-sibling::mat-label")
 	public WebElement peoIDText;
->>>>>>> refs/heads/master_29May
+
 }
