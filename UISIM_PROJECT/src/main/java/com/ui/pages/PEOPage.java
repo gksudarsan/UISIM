@@ -234,5 +234,7 @@ public class PEOPage {
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']/following-sibling::mat-label")
 	public WebElement getERN;
-
+	
+	@FindBy(how = How.XPATH, using = "//span[text()='PEO ID']/../following-sibling::mat-label")
+	public WebElement peoIDText;
 }

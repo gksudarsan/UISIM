@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
@@ -20,19 +21,26 @@ public class EE_13_005 extends TestBase{
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can submit employer registration for employer type 'Governmental'.", groups = {COMMON_CONSTANT.REGRESSION} )
 	public void Test_EE_13_005() throws Exception {
 		
-		test = report.createTest("Verify CSR can submit employer registration for employer type 'Governmental'");
+		test = report.createTest("EE.13.005 - Verify CSR can submit employer registration for employer type 'Non-Profit'Short Form flow");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		
 		//DB SELECT query
-		Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) AND FEIN IS NOT NULL AND LENGTH(FEIN)=9 ORDER BY UPDATED_TS DESC","FEIN");
-		String feinValue = databaseFeinResult.get("FEIN");
+//		Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) AND FEIN IS NOT NULL AND LENGTH(FEIN)=9 ORDER BY UPDATED_TS DESC","FEIN");
+//		String feinValue = databaseFeinResult.get("FEIN");
+		Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE EAN IS NOT NULL ORDER BY UPDATED_TS DESC ","EAN");
+		String ernValue = databaseFeinResult.get("EAN");
+		
+		String feinValue = "061683609";
+		test.log(Status.INFO, "FEIN : : "+feinValue);
 
 				
 		//--- Login ---
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(4000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		//---Menu Click---
@@ -82,7 +90,7 @@ public class EE_13_005 extends TestBase{
 		
 		// to script from step 8 MC
 		
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister4", "Pass", "Warning Message on clicking Continue");
 		empRegPage.firstCalender_Quater.click();
 		empRegPage.firstCalender_Quater_Value_2.click();
@@ -99,24 +107,24 @@ public class EE_13_005 extends TestBase{
 		commonFunction.screenShot("EmpRegister4", "Pass", "Details entered in SREG 003");
 		commonFunction.clickButton("Continue ");
 		
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister4", "Pass", "Clicked on Yes on pop-up window");
 		try{
 		commonFunction.clickButton(" Yes ");
 		} catch(Exception exception) {}
 		
 		// --- SREG-004 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister5", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
 		empRegPage.uspsBmadAddressText.sendKeys("721 Broadway");
 		empRegPage.uspsBmadCityText.sendKeys("New York");
 		empRegPage.uspsBmadZipText.sendKeys("10003");
 		empRegPage.uspsBmadCounty.click();
 		commonFunction.selectFromDropdown(" Albany ");
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister5", "Pass", "Successfully entered details in SREG-004 page");
 		
-		sleep(2000);
+		sleep(4000);
 		commonFunction.clickButton("Continue ");
 		
 		sleep();
@@ -124,7 +132,7 @@ public class EE_13_005 extends TestBase{
 		empRegPage.uspsBmadAddressRadio.click();
 		} catch(Exception exception) {}
 		
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister5", "Pass", "Click on appropriate USPS radio on SREG-004 page");
 		try {
 		empRegPage.continueButton_popUp.click();
@@ -136,16 +144,17 @@ public class EE_13_005 extends TestBase{
 		} catch(Exception exception) {}
 		
 		// --- SREG-521 --- 
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister6", "Pass", "Launched to  SREG-521 page");
-		commonFunction.clickButton("Continue ");
+//		commonFunction.clickButton("Continue ");
 		
 		// SREG - 011
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister7", "Pass", "Launched to  SREG-011 page");
 		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
-		commonFunction.enterTextboxContains("Employer Registration Number", "0450428");
+		commonFunction.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "161220353");
+		sleep(4000);
 		empRegPage.tradeNameId_SREG011.sendKeys("FIRST UNITED MOTHODIST CHURCH");
 		empRegPage.address1_SREG011.sendKeys("Affinia Manhattan Hotel");
 		empRegPage.city_SREG011.sendKeys("Albany");
@@ -163,33 +172,36 @@ public class EE_13_005 extends TestBase{
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG 683 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister9", "Pass", "USPS Business address selection on SREG-683");
 		sleep();
 		commonFunction.selectLink(" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.", "Browse");
- 		sleep(2000);
+ 		sleep(4000);
  		commonFunction.uploadDoc("Sample.docx");
- 		sleep(2000);
+ 		sleep(4000);
  		commonFunction.screenShot("EmpRegister9", "Pass", "Sample document uploaded");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-800 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister10", "Pass", "Successfully launched to SREG-800 page");
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG-043 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister11", "Pass", "Successfully launched to SREG-043 page");
 		commonFunction.clickButton("Submit ");
 		
 		// --- SREG-013 ---
-		sleep(10000);
+		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister12", "Pass", "Successfully launched to SREG-013 page");
 		commonFunction.clickButton("Exit ");
 		
 		
 		////////
+		sleep(2000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.clickMenu("Menu");
 		//commonFuntions.clickMenu("Employer Registration");
 		commonFunction.ScrollMenu("Inquiry");
@@ -199,18 +211,18 @@ public class EE_13_005 extends TestBase{
 		commonFunction.clickMenu("Inquiry Employer Account");
 		
 		// --- SREG-050 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister14", "Pass", "Successfully launched to SREG-050 page");
-		commonFunction.enterTextboxContains("Employer Registration Number", "8606720");
+		commonFunction.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFunction.clickButton("Continue ");
 		
 		// --- SREG 051 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister15", "Pass", "Successfully launched to SREG-051 page");
 		commonFunction.clickButton("Previous ");
 		
 		// --- SREG-050 ---
-		sleep(2000);
+		sleep(4000);
 		commonFunction.screenShot("EmpRegister16", "Pass", "Successfully launched to SREG-050 page on clicking Previous at SREG-051 page");
 		commonFunction.clickButton(" Home ");
 		

@@ -33,10 +33,11 @@ public class EM_260_007_Verify_CSR_add_Additional_Business_Physical_Location ext
 				"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println(eanValue);
-
 		// Login
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.clickMenu("Account Maintenance");
@@ -49,13 +50,14 @@ public class EM_260_007_Verify_CSR_add_Additional_Business_Physical_Location ext
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
 		sleep();
 		cf.clickButton("Continue ");
-
+		sleep(4000);
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		// cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes
 		// ");
+		
 		cf.clickOnLinkAnchorTag("Add Additional Business Physical Location(s)");
-
+		sleep(3000);
 		// SREG-008
 		cf.screenShot("Additional Business Physical Location(s)", "Pass", "Launched to SREG-008");
 		cf.selectDropdown("Source", "Correspondence/Email");

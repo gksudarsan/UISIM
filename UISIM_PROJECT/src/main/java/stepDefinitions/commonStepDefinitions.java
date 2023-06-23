@@ -40,6 +40,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
@@ -70,10 +71,10 @@ public class commonStepDefinitions extends TestBase {
 			enterTextbox("Username", userName);
 			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
-			test.log(Status.PASS, "User entered Password");
+ 			test.log(Status.PASS, "User entered Password");
 
 			Thread.sleep(3000);
-		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 			Thread.sleep(5000);
 
@@ -103,7 +104,6 @@ public class commonStepDefinitions extends TestBase {
 //			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
 		}
-
 		}
 	
 	// Methods
@@ -272,19 +272,20 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
-		screenShot screen = new screenShot();
-		String screenShotPath = screenShot.takeSnapShot(driver,
-				"D:\\AutomationFiles\\Screenshots\\"
-						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
-						+ "_" + fileName + ".jpg");
+		Date currentDate = new Date();
+		String screenShotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
+		File screenshotFile = ((TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
+		File destinationFile = new File(".//screenshot"+screenShotFileName+".png");
+		String absolutePath = destinationFile.getAbsolutePath();
+		FileUtils.copyFile(screenshotFile, destinationFile);
+		
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		}else {
 			test.log(Status.FAIL, message);
 		}
-		// test.info(message);
-		test.addScreenCaptureFromPath(screenShotPath);
-
+		test.addScreenCaptureFromPath(absolutePath);
+		
 	}
 	
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
@@ -559,11 +560,18 @@ public class commonStepDefinitions extends TestBase {
 	}
 	
 	public void clickOnLinkAnchorTag(String xpathParameter) {
-		driver.findElement(By.xpath("//a[contains(.,'" + xpathParameter + "')][1]")).click();
+		By element = By.xpath("//a[contains(.,'" + xpathParameter + "')][1]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//			highLightWebElement(driver, ele);
+			safeJavaScriptClick(ele);
+		} catch (final Exception e) {
 		}
+	}
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
-
+	
 		System.out.println(query);
 
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -719,7 +727,7 @@ public class commonStepDefinitions extends TestBase {
 		clickMenu("LOG OUT");
 		sleep(4000);
 		clickMenu("Go to Homepage");
-		sleep(2000);
+		sleep(5000);
 		HomePage.menuLogout.click();
 		sleep(2000);
 		HomePage.signOut.click();
@@ -804,7 +812,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void enterPastDate(String xpathParameter, int daysSub) {
-		SimpleDateFormat sdf = new SimpleDateFormat("MMddyyyy");
+		SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
 		Calendar c = Calendar.getInstance();
 		c.setTime(new Date());
 		c.add(Calendar.DATE, -daysSub);
@@ -983,14 +991,16 @@ public class commonStepDefinitions extends TestBase {
 			js.executeScript("arguments[0].setAttribute('style', arguments[1]);", element, "");
 		}
 		
-		public void waitForNextPageNumber(String pageNumber) {
-			By element = By.xpath("//mat-label[text()='"+pageNumber+"']");
-			final WebDriverWait wait = new WebDriverWait(driver, 10);
+		
+		public void validateNextPageNumber(String pageNo) {
+			WebElement element = 	driver.findElement(By.xpath("//*[contains(text(),'"+pageNo+"')]"));
 			try {
-				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-//				highLightWebElement(driver, ele);
-				sleep(500);
-				System.out.println("Navigated to "+pageNumber+"");
+				WebElement ele = wait.until(ExpectedConditions.visibilityOf(element));
+				String pageNum = ele.getText();
+				highLightWebElement(driver, ele);
+				Assert.assertEquals(pageNum.trim(), pageNo.trim());
+				test.log(Status.INFO, "Page number validated : : "+pageNo.trim());
+				System.out.println("Navigated to "+pageNo+"");
 			} catch (final Exception e) {
 			}
 		}

@@ -37,12 +37,12 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		commonFuntions.clickMenu("Register Employer");
 //		sleep(3000);
-//		commonFuntions.waitForNextPageNumber("SREG-001");
+//		commonFuntions.validateNextPageNumber("SREG-001");
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
 		sleep();
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Entered the details and click on continue button");
 		commonFuntions.clickButton("Continue ");
-//		commonFuntions.waitForNextPageNumber("SREG-025");
+//		commonFuntions.validateNextPageNumber("SREG-025");
 		
 		/**************** SREG-025 ************************/
 		
@@ -60,7 +60,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		commonFuntions.clickButton("Continue ");
 //		sleep(3000);
-//		commonFuntions.waitForNextPageNumber("SREG-003");
+//		commonFuntions.validateNextPageNumber("SREG-003");
 		
 		/*-----------------SREG-003----------------*/
 		
@@ -83,7 +83,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		commonFuntions.enterPastDate("Date covered employment began? ", 365);
 		commonFuntions.clickButton("Continue ");
 //		sleep(3000);
-//		commonFuntions.waitForNextPageNumber("SREG-008");
+//		commonFuntions.validateNextPageNumber("SREG-008");
 		
 		/*-----------------SREG-008----------------*/
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Navigated to SREG-008 page and entering the details");
@@ -103,7 +103,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		/*-----------------SREG-007----------------*/
 		
 //		sleep(4000);
-		commonFuntions.waitForNextPageNumber("SREG-007");
+		commonFuntions.validateNextPageNumber("SREG-007");
 		
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Navigated to SREG-007 page");
 		commonFuntions.clickButton("Continue ");
@@ -112,7 +112,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		/*-----------------SREG-004----------------*/
 		
 //		sleep(3000);
-//		commonFuntions.waitForNextPageNumber(" SREG-004");
+//		commonFuntions.validateNextPageNumber(" SREG-004");
 		commonFuntions.screenShot("TPRRegister7", "Pass", "Navigated to SREG-004 page and entering the details");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 //		sleep();
@@ -126,13 +126,13 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		
 		/*-----------------SREG-521----------------*/
 //		sleep(3000);
-		commonFuntions.waitForNextPageNumber("SREG-521");
+		commonFuntions.validateNextPageNumber("SREG-521");
 		commonFuntions.screenShot("EmpRegister10", "Pass", "Navigated to SREG-521 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-683----------------*/
 //		sleep(3000);
-		commonFuntions.waitForNextPageNumber("SREG-683");
+		commonFuntions.validateNextPageNumber("SREG-683");
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Navigated to SREG-683 page and uploading the document");
 		commonFuntions.safeJavaScriptClick(empPage.browserLink);
 		commonFuntions.uploadDoc("Sample");
@@ -142,13 +142,13 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		/*-----------------SREG-800----------------*/
 //		sleep(3000);
 		commonFuntions.waitForLoadingIconToDisappear();
-//		commonFuntions.waitForNextPageNumber("SREG-800");
+//		commonFuntions.validateNextPageNumber("SREG-800");
 		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButton("Continue ");
 		
 		/*-----------------SREG-043----------------*/
 //		sleep(3000);
-		commonFuntions.waitForNextPageNumber(" SREG-043");
+		commonFuntions.validateNextPageNumber(" SREG-043");
 		commonFuntions.screenShot("EmpRegister13", "Pass", "Navigated to SREG-043 page and click on I accept and submit");
 		commonFuntions.selectCheckbox("I accept");
 //		sleep();
@@ -175,7 +175,7 @@ public class EE_05_001_CSR_Register_Indian_Tribe_Housing extends TestBase {
 		commonFuntions.safeJavaScriptClick(empPage.review_employer_My_Q);
 //		sleep(4000);
 		/*-----------------WF-091----------------*/
-		commonFuntions.waitForNextPageNumber("WF-091");
+		commonFuntions.validateNextPageNumber("WF-091");
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 //		sleep(4000);

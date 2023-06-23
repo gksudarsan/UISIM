@@ -20,7 +20,7 @@ public class COMMON_CONSTANT {
 
 	// Customer Service Representative - CSR
 	public static final String CSR_USER_1 = "ndfjp3";
-	public static final String CSR_USER_1_PASSWORD = "Admin@123456789";
+	public static final String CSR_USER_1_PASSWORD = "Admin@1234567891";
 
 	public static final String CSR_USER_2 = "NDDSCP"; // Snehal Patel, used in EL_03_13, EL_03_14, EL_462_09, EL_462_10
 	public static final String CSR_USER_2_PASSWORD = "uisimtesting@123";
@@ -56,7 +56,7 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
-	public static final String EMPLOYER_USER_5_PASSWORD = "Hachiku7533991779";
+	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@1234567891";
 	
 	public static final String EMPLOYER_USER_6 = "shivam0106"; // Executor
 	public static final String EMPLOYER_USER_6_PASSWORD = "$hivamS01061987";

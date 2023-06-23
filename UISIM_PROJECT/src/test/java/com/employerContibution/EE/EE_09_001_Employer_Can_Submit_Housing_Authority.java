@@ -27,8 +27,11 @@ public class EE_09_001_Employer_Can_Submit_Housing_Authority extends TestBase{
 				.createTest("EE.09.001 Verify employer can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Housing Authority' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_MANJU.toUpperCase(), COMMON_CONSTANT.EMPLOYER_PASS_MANJU);
+		sleep();
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFuntions.clickMenu("Menu");
+//		commonFuntions.clickMenu("Menu");
+		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep();
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep();

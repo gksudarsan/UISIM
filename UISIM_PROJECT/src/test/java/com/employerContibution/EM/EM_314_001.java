@@ -34,16 +34,23 @@ public class EM_314_001 extends TestBase {
 		commonfunction.login("peouseranup", "Admin@12345678");
 		commonfunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		// Steps for reaching the the option
+		sleep(2000);
+		commonfunction.waitForLoadingIconToDisappear();
 		commonfunction.clickMenu("Menu");
+		sleep();
 		commonfunction.clickMenu("Account Maintenance");
+		sleep();
 		commonfunction.screenShot("Menu", "Pass", "Account Maintenance");
+		sleep();
 		commonfunction.clickMenu("Employer Account Maintenance");
+		sleep();
 		commonfunction.clickMenu("Change in Method of Financing");
+		sleep();
 		commonfunction.screenShot("ETR-228", "Pass",
 				"landing successfully on Change in Method of Financing - Enter ERN ");
 
 		commonfunction.clickButton("Continue ");
-
+		sleep(4000);
 		// Verifying the Validation message
 		WebElement mandatoryMessage = driver.findElement(By.xpath("//*[@id=\"mat-error-2\"]"));
 		String name = mandatoryMessage.getText();
@@ -75,11 +82,11 @@ public class EM_314_001 extends TestBase {
 		driver.findElement(By.xpath("//textarea[@placeholder='Please provide Comments']")).sendKeys("Test Cooments");
 		Thread.sleep(1000);
 		commonfunction.clickButton("Continue");
-
+		sleep(4000);
 		commonfunction.uploadDoc("Upload");
-
+		sleep(2000);
 		commonfunction.clickButton("Submit");
-
+		sleep(4000);
 		commonfunction.screenShot("change method of financing", "Pass", "Change Successfully");
 		commonfunction.clickButton("Home");
 

@@ -29,6 +29,8 @@ public class EE_02_011_CSR_Registration extends TestBase{
 				report.createTest("EE.02.011 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Sole Proprietorship (Individual)' and work items will be created for CSR to review.");
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");

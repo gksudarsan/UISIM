@@ -30,6 +30,8 @@ public class EE_13_004_CSR_Can_Submit_HouseHold extends TestBase {
 				"EE.13.004 - Verify CSR can submit employer registration for employer type 'Household/Domestic'Short Form flow");
 
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
