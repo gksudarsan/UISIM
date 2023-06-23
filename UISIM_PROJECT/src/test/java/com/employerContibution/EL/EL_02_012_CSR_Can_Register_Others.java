@@ -131,10 +131,10 @@ public class EL_02_012_CSR_Can_Register_Others extends TestBase {
 		}catch(Exception e) {
 			System.out.println("Pop up not displayed");
 		}
-//		Thread.sleep(4000);
+		Thread.sleep(4000);
 		commonFuntions.screenShot("Address6", "Pass", "Navigated to next page");
 		commonFuntions.clickButtonContains("Save & Continue");
-		Thread.sleep(4000);
+		Thread.sleep(6000);
 		/*----------------PEOE-004--------------*/
 		commonFuntions.clickButtonContains("Continue");
 		sleep(4000);
@@ -235,6 +235,16 @@ public class EL_02_012_CSR_Can_Register_Others extends TestBase {
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     Thread.sleep(2000);	
 		     commonFuntions.screenShot("MailingAddress","Pass","Mailing Address");
+		     commonFuntions.enterTextboxContains("Address Line 1","owneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+		     try {
+					WebElement radio = driver.findElement(By.xpath("//strong[text()='USPS Suggested Address']/../following-sibling::div/mat-radio-button/label/span/span[@class='mat-radio-outer-circle']"));
+					commonFuntions.safeJavaScriptClick(radio);
+					sleep();
+					WebElement continuE = driver.findElement(By.xpath("//span[text()='Continue ']"));
+					commonFuntions.safeJavaScriptClick(continuE);
+				}catch(Exception e) {
+					System.out.println("Pop up not displayed");
+				}
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     Thread.sleep(2000);
 		     commonFuntions.screenShot("VerifyPriorAdd","Pass","Verify Prior Address");

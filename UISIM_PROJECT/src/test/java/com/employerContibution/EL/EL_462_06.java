@@ -30,13 +30,21 @@ public class EL_462_06 extends TestBase{
 		
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep();
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickMenu("Menu");
+		sleep();
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		sleep();
 		PEOPage.menuPeo.click();
+		sleep();
 		commonFuntions.screenShot("Menu", "Pass", "Manage PEO");
+		sleep();
 		commonFuntions.clickMenu("Manage PEO");
+		sleep();
 		Thread.sleep(3000);
 		PEOPage.advancedSearch.click();
+		sleep();
 		Thread.sleep(2000);
 		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
 		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");

@@ -40,6 +40,8 @@ public class EM_260_008_Verify_CSR_able_to_Edit_Warrant_Address extends TestBase
 		// Login
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.clickMenu("Account Maintenance");
@@ -53,7 +55,7 @@ public class EM_260_008_Verify_CSR_able_to_Edit_Warrant_Address extends TestBase
 		// cf.enterTextboxContains("Employer Registration Number", "9300004");
 
 		cf.clickButton("Continue ");
-
+		sleep(4000);
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		// cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes
@@ -62,11 +64,15 @@ public class EM_260_008_Verify_CSR_able_to_Edit_Warrant_Address extends TestBase
 		// SREG-700
 		cf.screenShot("Maintain Address/Contact Details", "Pass", "Launched to SREG-486");
 		//cf.selectRadioQuestions("Notice of Experience Rating Charges (IA96) Address", "Other");
-		sleep();
+		sleep(4000);
 		cf.enterTextboxContains("Address Line 1", "PrioraddressLine1" + cf.createRandomInteger(1000, 9999));
+		sleep();
 		cf.enterTextboxContains("Address Line 2", "PrioraddressLine2" + cf.createRandomInteger(1000, 9999));
+		sleep();
 		cf.selectDropdown("State", "New York");
+		sleep();
 		cf.enterTextboxContains("City", "NewYork");
+		sleep();
 		cf.enterTextboxContains("Zip Code", "13429");
 //		cf.enterTextboxContains("First Name", "AutoTestFirstName");
 //		cf.enterTextboxContains("Last Name", "AutoTestLastName");
@@ -83,12 +89,17 @@ public class EM_260_008_Verify_CSR_able_to_Edit_Warrant_Address extends TestBase
 
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		sleep();
-		cf.logoutAndLogin("ndfjp3", "Admin@12345678");
-		cf.clickMenu("Menu");
-		cf.clickMenu("Inquiry");
-		cf.clickMenu("Contribution Inquiry");
-		cf.clickMenu("Inquiry Employer Address History");
+		cf.logoutAndLogin("ndfjp3", "Admin@123456789");
 		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.clickMenu("Menu");
+		sleep();
+		cf.clickMenu("Inquiry");
+		sleep();
+		cf.clickMenu("Contribution Inquiry");
+		sleep();
+		cf.clickMenu("Inquiry Employer Address History");
+		sleep(4000);
 		cf.screenShot("Inquiry Employer Address History - Enter ERN", "Pass", "Launched to EM-051");
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
 		cf.clickButtonContains("Continue ");

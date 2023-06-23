@@ -9,6 +9,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 import com.ui.base.TestBase;
+import com.ui.utilities.ConstantData;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -479,6 +480,7 @@ public WebElement typeOfLegalEntityId;
 @FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
 public WebElement individualOwnership;
 
+<<<<<<< HEAD
 @FindBy(how = How.XPATH, using =  "//*[@id='eanBeanId']")
 public WebElement eanBeanId;
 
@@ -496,6 +498,34 @@ public WebElement Select_date_from_calender;
 public WebElement EAN;
 
 
+=======
+@FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
+public WebElement uspsCommonButton;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio[2]//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
+public WebElement uspsCommonButton2;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Business Physical Address Details']/../following-sibling::div/div/button")
+public WebElement business_physical_Edit_Button;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='DOL Failed Reasons']/following-sibling::mat-label[text()='"+ConstantData.EE_02_004_DOL_FAILED_REASON+"']")
+public WebElement dolFailedReasonText;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='DOL Failed Reasons']/following-sibling::mat-label[text()='"+ConstantData.EE_02_004_DTF_FAILED_REASON+"']")
+public WebElement dtfFailedReasonText;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Contact Person for Agent (C/O) Address')]/../../../../following-sibling::app-textbox/div/div/mat-label//mat-label[text()='First Name']/../following-sibling::div/mat-form-field/div/div/div[3]/input")
+public WebElement agent_Co_First_Name;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Contact Person for Agent (C/O) Address')]/../../../../following-sibling::app-textbox/div/div/mat-label//mat-label[text()='Last Name']/../following-sibling::div/mat-form-field/div/div/div[3]/input")
+public WebElement agent_Co_Last_Name;
+
+@FindBy(how = How.XPATH, using = "//button/span/span[text()='Menu']")
+public WebElement menuButtonHomepage;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio[3]//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
+public WebElement uspsCommonButton3;
+>>>>>>> refs/heads/master_29May
 
 }
 

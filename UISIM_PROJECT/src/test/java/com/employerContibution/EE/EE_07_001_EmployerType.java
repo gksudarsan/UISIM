@@ -29,8 +29,15 @@ public class EE_07_001_EmployerType extends TestBase{
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		test = 
+
 				report.createTest("EE.07.001:Verify employer can submit employer registration for employer type 'Governmental' and legal entity type 'City' and work items will be created for CSR to review.");
 		commonFuntions.login(COMMON_CONSTANT.EMP_USER_2.toUpperCase(), COMMON_CONSTANT.EMP_USER_2_PASSWORD);
+
+				report.createTest("EE.07.001- Verify employer can submit employer registration for employer type 'Governmental' and legal entity type 'City' and work items will be created for CSR to review.");
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_5.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_5_PASSWORD);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
+
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		commonFuntions.waitForLoadingIconToDisappear();

@@ -27,13 +27,18 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 				.createTest("EE.11.001 -Verify TPR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Limited Liability Company (All Types)' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
-		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFuntions.clickMenu("Menu");
 		sleep(2000);
-		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(4000);
+		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+//		commonFuntions.clickMenu("Menu");
+		commonFuntions.safeJavaScriptClick(empPage.menuButtonHomepage);
+		sleep(4000);
+//		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
+		commonFuntions.clickMenu("Employer Registration");
 		sleep();
 		commonFuntions.clickMenu("Register Employer");
-		sleep(3000);
+		sleep(4000);
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
 		commonFuntions.enterTextboxContains("First Name", "Tom");
 		commonFuntions.enterTextboxContains("Last Name", "Willam");
@@ -49,9 +54,10 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		commonFuntions.selectDropdown("Employer Type", " Non-Profit ");
 		commonFuntions.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
 		/*---------------FEIN--------------*/
-		Map<String, String> feinOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN");
+		Map<String, String> feinOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC", "FEIN");
 		String feinValue = feinOutput.get("FEIN");
 		System.out.println(feinValue);
+		test.log(Status.INFO, "FEIN : : "+feinValue);
 		
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.clickButton("Continue ");
@@ -62,7 +68,7 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		commonFuntions.screenShot("TPRRegister3", "Pass", "Navigated to SREG-003 page");
 		test.log(Status.INFO, "Selecting drop down and filling the form");
 		/*---------------Legal Name--------------*/
-		Map<String, String> legalNameValue = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "ENTITY_NAME");
+		Map<String, String> legalNameValue = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea  ORDER BY UPDATED_TS DESC", "ENTITY_NAME");
 //		
 		String legalName= legalNameValue.get("ENTITY_NAME");
 		/*---------------Legal Name--------------*/
@@ -86,7 +92,7 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Year_Value_2024);
 		commonFuntions.safeJavaScriptClick(empPage.If_Not_Lible_Yes_Radio);
 		commonFuntions.safeJavaScriptClick(empPage.DOes_Org_Have_Yes_Radio);
-		commonFuntions.selectRadioQuestions("Choose the option you wish to use to discharge your Unemployment Insurance liability.", "Reimbursable");
+		commonFuntions.selectRadioQuestions("Choose the option you wish to use to discharge your Unemployment Insurance liability.", "Contributory");
 		commonFuntions.selectRadioQuestions("If Reimbursable, has a copy of the 501c3 exemption documentation been provided?", "No ");
 
 		commonFuntions.clickButton("Continue ");
@@ -94,25 +100,32 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		/*---------------SREG-008--------------*/
 		sleep(4000);
 		commonFuntions.screenShot("TPRRegister6", "Pass", "Navigated to SREG-008 page and entering the details");
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address");
-		commonFuntions.enterTextboxContains("City ", "NY");
-		commonFuntions.enterTextboxContains("Zip Code", "10002");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 Madisen Avenue");
+		commonFuntions.enterTextboxContains("City ", "Albany");
+		commonFuntions.enterTextboxContains("Zip Code", "12210");
 		commonFuntions.selectDropdown("County", " Albany ");
-		commonFuntions.enterTextboxContains("Number of employees at this location", "37");
-		commonFuntions.enterTextboxContains("Name of Government Agency from which you receive funds", "Tester ACC");
+		commonFuntions.enterTextboxContains("Number of employees at this location", "98");
+		commonFuntions.enterTextboxContains("Name of Government Agency from which you receive funds", "Tester LLC");
 		commonFuntions.clickButton("Continue ");
 		sleep(3000);
-		
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsCommonButton);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		}catch(Exception e) {
+			System.out.println("Pop- up Not displayed");
+		}
+		sleep(5000);
 		/*---------------SREG-007--------------*/
 		commonFuntions.screenShot("Register111", "PASS", "Navigated to SREG-007 page after adding the address");
 		commonFuntions.clickButton("Continue ");
 		/*---------------SREG-004--------------*/
 		
-		sleep(3000);
+		sleep(6000);
 		commonFuntions.screenShot("TPRRegister7", "Pass", "Navigated to SREG-004 page and entering the details");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
-		commonFuntions.enterTextboxContains("Address Line 1 ", "New Address 1");
-		commonFuntions.enterTextboxContains("City ", "New York");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "Rooling Street");
+		commonFuntions.enterTextboxContains("City ", "Albany");
 		commonFuntions.enterTextboxContains("Zip Code", "34276");
 		commonFuntions.safeJavaScriptClick(empPage.countyDropDown_Form1);
 		sleep();
@@ -125,10 +138,10 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		sleep();
 		commonFuntions.screenShot("TPRRegister9", "Pass", "Entered the address for Location of Books and Records");
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Other");
-		
-		empPage.notice_potential_AddressLine_1.sendKeys("New Address 3");
-		empPage.notice_potential_City.sendKeys("New York");
-		empPage.notice_potential_Zipcode.sendKeys("34784");
+		sleep(3000);
+		empPage.notice_potential_AddressLine_1.sendKeys("76 Mind Road");
+		empPage.notice_potential_City.sendKeys("Albany");
+		empPage.notice_potential_Zipcode.sendKeys("45456");
 		commonFuntions.safeJavaScriptClick(empPage.notice_potential_county);
 		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
 		
@@ -137,6 +150,16 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		sleep();
 		commonFuntions.screenShot("TPRRegister10", "Pass", "Entered the address for Notice of Potential Charges (LO400) Address");
 		commonFuntions.clickButton("Continue ");
+		sleep(3000);
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsCommonButton);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.uspsCommonButton2);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		}catch(Exception e) {
+			System.out.println("Pop up not displayed");
+		}
 		
 		/*---------------SREG-521--------------*/
 		sleep();
@@ -167,11 +190,19 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		commonFuntions.enterTextboxContains("Last Name", "Jan");
 		commonFuntions.selectDropdown("Title", " Member ");
 		
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 6");
-		commonFuntions.enterTextboxContains("City ", "NY");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "32 Edwin Road");
+		commonFuntions.enterTextboxContains("City ", "Albany");
 		commonFuntions.enterTextboxContains("Zip Code", "24954");
 		commonFuntions.enterTextboxContains(" Residential Telephone Number ", "2428374672");
 		commonFuntions.clickButton("Continue ");
+		sleep(3000);
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsCommonButton);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		}catch(Exception e) {
+			System.out.println("Pop up not displayed");
+		}
 		sleep(4000);
 		
 		/*--------------------SREG-005----------------*/
@@ -196,15 +227,23 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		test.log(Status.INFO, "SSN : : "+ssn2);
 		
 		commonFuntions.enterTextboxContains("SSN", ssn2);
-		commonFuntions.enterTextboxContains("First Name", "Abhi");
-		commonFuntions.enterTextboxContains("Last Name", "Jan");
+		commonFuntions.enterTextboxContains("First Name", "Abhi2");
+		commonFuntions.enterTextboxContains("Last Name", "Jan2");
 		commonFuntions.selectDropdown("Title", " Member ");
 		
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 67");
-		commonFuntions.enterTextboxContains("City ", "NY");
-		commonFuntions.enterTextboxContains("Zip Code", "24854");
-		commonFuntions.enterTextboxContains(" Residential Telephone Number ", "2428354672");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "80 Morrison Road");
+		commonFuntions.enterTextboxContains("City ", "Albany");
+		commonFuntions.enterTextboxContains("Zip Code", "24784");
+		commonFuntions.enterTextboxContains(" Residential Telephone Number ", "2428359872");
 		commonFuntions.clickButton("Continue ");
+		sleep(3000);
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsCommonButton);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		}catch(Exception e) {
+			System.out.println("Pop up not displayed");
+		}
 		sleep(4000);
 		
 		/*--------------------SREG-005----------------*/
@@ -216,11 +255,13 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Navigated to SREG-683 page and uploading the document");
 		empPage.browserLink.click();
+		sleep(3000);
 		commonFuntions.uploadDoc("Sample");
-		sleep();
+		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-800----------------*/
-		sleep(5000);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButton("Continue ");
 		/*-----------------SREG-043----------------*/
@@ -256,7 +297,48 @@ public class EE_11_001_TPR_Can_Register_Non_Profit_Limited_liablility extends Te
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(3000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		/*-----------------EEWl-002----------------*/
+		commonFuntions.selectDropdown("Account Status", " Erroneous ");
+		sleep();
+		commonFuntions.selectDropdown("Send Status to NYBE", " NYS100IT filed/Required to file NYS100-N ");
+		sleep();
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Quater);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Quater_Value_2);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Year);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Year_Value_2024);
+		commonFuntions.safeJavaScriptClick(empPage.DO_Person_Work_Yes_radio);
+		sleep();
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Quater_employed_4);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Quater_Value_2);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Year_employed_4);
+		commonFuntions.safeJavaScriptClick(empPage.firstCalender_Year_Value_2022);
+		empPage.commentBox_MyQ.sendKeys("Test");
+		commonFuntions.clickButton("Submit ");
+		sleep();
+		commonFuntions.waitForLoadingIconToDisappear();
+		/*-----------------SUC-002----------------*/
+	
+		commonFuntions.validateNextPageNumber("SUC-002");
+		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to Success page");
+		commonFuntions.clickButtonContains("Home ");
+//		sleep(2000);
+//		commonFuntions.waitForLoadingIconToDisappear();
+//		
+//		commonFuntions.clickMenu("Inquiry");
+//		sleep();
+//		commonFuntions.clickMenu("Contribution Inquiry");
+//		sleep();
+//		commonFuntions.clickMenu("Inquiry Employer Account");
+//		/*---------------------SREG-050-----------------*/
+//		sleep();
+//		commonFuntions.waitForLoadingIconToDisappear();
+//		
+//		commonFuntions.enterTextboxContains(" FEIN ", feinValue);
+//		commonFuntions.clickButton("Continue ");
+//		
+		
+		
 	}
 }

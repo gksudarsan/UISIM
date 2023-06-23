@@ -47,9 +47,11 @@ public class EE_05_003_CSR_Register_Indian_Tribe_School extends TestBase {
 		commonFuntions.selectDropdown("Employer Type", " Indian Tribe ");
 		commonFuntions.selectDropdown("Type of Legal Entity", " School ");
 		/*--------------------FEIN----------------------*/
-		Map<String, String> feinValueOutput =  commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd GROUP BY FEIN HAVING COUNT(*)>1 )\r\n"
-				+ "AND EMPLOYER_TYPE != 'INDT'", "FEIN");
-		String feinValue = feinValueOutput.get("FEIN");
+//		Map<String, String> feinValueOutput =  commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd GROUP BY FEIN HAVING COUNT(*)>1 )\r\n"
+//				+ "AND EMPLOYER_TYPE != 'INDT'", "FEIN");
+//		String feinValue = feinValueOutput.get("FEIN");
+		
+		String feinValue = "133894919";
 		System.out.println("FEIN : : "+feinValue);
 		test.log(Status.INFO, "FEIN : : "+ feinValue);
 		/*--------------------FEIN----------------------*/
@@ -165,9 +167,11 @@ public class EE_05_003_CSR_Register_Indian_Tribe_School extends TestBase {
 		/*-----------------WF-091----------------*/
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
-		sleep(2000);
+		sleep(4000);
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
+		commonFuntions.enterCurrentDate("Date Covered Employment began? ");
 		empPage.commentBox_MyQ.sendKeys("Random Queue");
+		
 		sleep();
 		commonFuntions.clickButton("Submit ");
 		

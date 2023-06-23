@@ -25,80 +25,93 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 
+//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+//				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND COMPANY_TYPE = 'PRI' AND FEIN IS NOT FALSE ORDER BY ORGANIZATION_TYPE DESC",
+//				"FEIN");
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND COMPANY_TYPE = 'PRI' AND FEIN IS NOT FALSE ORDER BY ORGANIZATION_TYPE DESC",
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL  ORDER BY ORGANIZATION_TYPE DESC",
 				"FEIN");
-		String feinValue = databaseResults.get("Fein");
+		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
+		
 
 		test = report.createTest("EL.02.013 .Verify CSR  can renewal PEO Exempt registration.");
+		test.log(Status.INFO, "FEIN : : "+feinValue);
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test.log(Status.INFO, "FEIN : : "+feinValue);
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
+		sleep();
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		sleep();
 		PEOPage.menuPeo.click();
+		sleep();
 		commonFuntions.screenShot("Menu", "Pass", "Register PEO");
 		commonFuntions.clickMenu("Renew PEO");
-		Thread.sleep(2000);
+		sleep();
+		Thread.sleep(4000);
 //		 commonFuntions.enterTextbox("PEO Name", peoName);
 //		 commonFuntions.clickOnLink(" ADVANCED SEARCH");
 		PEOPage.advancedSearch.click();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
 		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");
 		commonFuntions.clickButtonContains("search");
 		Thread.sleep(4000);
 		commonFuntions.selectRadioWithFeinValue(feinValue);
+		sleep();
 		commonFuntions.clickButton("Continue ");
 		Thread.sleep(4000);
 		commonFuntions.screenShot("file2", "Pass", "Navigating to next page");
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		/* EAS-001 */
 		commonFuntions.screenShot("file3", "Pass", "Navigated to EAS-001 page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 		try {
 			commonFuntions.clickButtonContains(" Yes ");
 		} catch (Exception e) {
 			System.out.println("Pop up not displayed");
 		}
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		/* PEO - 003 */
 		commonFuntions.screenShot("file4", "Pass", "Navigating to PEO-003  page");
 		PEOPage.addressLine1.clear();
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		PEOPage.addressLine1.sendKeys("Test Address Data");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.screenShot("file5", "Pass", "Entered the address lane 1");
 		commonFuntions.clickButton("Save & Continue ");
 		Thread.sleep(4000);
 		commonFuntions.screenShot("file6", "Pass", "Pop up if displayed");
 		try {
 			PEOPage.uspsAddress.click();
+			sleep();
 			commonFuntions.clickButton("Continue ");
 		} catch (Exception e) {
 			System.out.println("Pop up not displayed");
 		}
 
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 //		 PEOPage.addressLine1.sendKeys("Test Address Data");
-//		 Thread.sleep(2000);
+//		 Thread.sleep(4000);
 //		 commonFuntions.clickButton("Continue ");
 		commonFuntions.clickButton("Save & Continue ");
 		Thread.sleep(3000);
 		commonFuntions.clickButton("Continue ");
 		Thread.sleep(3000);
 		commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.uploadDoc("Sample.docx");
 		Thread.sleep(4000);
 		try {
@@ -134,15 +147,15 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		commonFuntions.enterTextboxContains("FEIN", feinValue);
 		commonFuntions.screenShot("FeinSearch", "Pass", "feinSearch");
 		commonFuntions.clickButtonContains("Search");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.screenShot("Review Peo", "Pass", "Review Peo");
 		commonFuntions.clickOnLink("Review PEO");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.clickButtonContains("Open Work Item");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.screenShot("Review", "Pass", "Review Peo Registration");
 		commonFuntions.clickButtonContains("Continue");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " California ");
 		commonFuntions.enterTextbox("State agency that issued it.", "New York");
 		commonFuntions.selectRadioQuestions("Provide Information", "Registration Number");
@@ -174,9 +187,9 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		commonFuntions.clickButton("Continue ");
 		Thread.sleep(3000);
 		commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.uploadDoc("Sample.docx");
 		Thread.sleep(4000);
 		try {
@@ -197,12 +210,12 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		commonFuntions.clickButton("Save & Continue ");
 		Thread.sleep(3000);
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 
 		commonFuntions.selectRadio("Approved");
 		commonFuntions.screenShot("Approval", "Pass", "ApprovalPage");
 		commonFuntions.clickButtonContains("Submit");
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		commonFuntions.screenShot("Success", "Pass", "SuccessPage");
 	}
 }

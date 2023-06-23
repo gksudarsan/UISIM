@@ -38,36 +38,45 @@ public class EM_260_006_Verify_CSR_update_employer_address_Notice_of_Experience_
 
 		// Login
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.clickMenu("Account Maintenance");
 		sleep();
 		cf.clickMenu("Maintain Address");
-		sleep();
+		sleep(4000);
 
 		// SREG-070
 		cf.screenShot("Maintain Address – Enter ERN", "Pass", "Launched to SREG-070");
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
 		cf.clickButton("Continue ");
-
+		sleep(4000);
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		// cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes
 		// ");
 		cf.selectTableWithoutId("Notice of Experience Rating Charges (IA96) Address", 6, 1, "Maintain Address Details");
-
+		sleep(4000);
 		// SREG-700
 		cf.screenShot("Maintain Address/Contact Details", "Pass", "Launched to SREG-486");
 		//cf.selectRadioQuestions("Notice of Experience Rating Charges (IA96) Address", "Other");
-		sleep();
+		sleep(4000);
 		cf.enterTextboxContains("Address Line 1", "PrioraddressLine1" + cf.createRandomInteger(1000, 9999));
+		sleep();
 		cf.enterTextboxContains("Address Line 2", "PrioraddressLine2" + cf.createRandomInteger(1000, 9999));
+		sleep();
 		cf.selectDropdown("State", "New York");
+		sleep();
 		cf.enterTextboxContains("City", "NewYork");
+		sleep();
 		cf.enterTextboxContains("Zip Code", "13429");
+		sleep();
 		cf.enterTextboxContains("First Name", "AutoTestFirstName");
+		sleep();
 		cf.enterTextboxContains("Last Name", "AutoTestLastName");
+		sleep();
 //		cf.enterTextboxContains(" Contact Telephone Number ", Long.toString(cf.createRandomInteger(10000000, 99999999))
 //				+ Long.toString(cf.createRandomInteger(10, 99)));
 		cf.enterTextboxContains("Effective End Date", "10/6/2022");
@@ -83,6 +92,7 @@ public class EM_260_006_Verify_CSR_update_employer_address_Notice_of_Experience_
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		// cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes
 		// ");
+		sleep(4000);
 		cf.selectTableWithoutId("Main Notice of Experience Rating Charges (IA96) Address", 6, 1,
 				"Maintain Address Details");
 		sleep();
@@ -91,13 +101,18 @@ public class EM_260_006_Verify_CSR_update_employer_address_Notice_of_Experience_
 		//cf.selectRadioQuestions("Notice of Experience Rating Charges (IA96) Address", "Other");
 		sleep();
 		cf.clearTextboxContains("Address Line 1");
+		sleep();
 		cf.enterTextboxContains("Address Line 1", "EditedAddress");
+		sleep();
 		cf.clearTextboxContains("Address Line 2");
+		sleep();
 		cf.enterTextboxContains("Address Line 2", "AddressLine2" + cf.createRandomInteger(1000, 9999));
 		// cf.enterTextboxContains("City", "NewYork");
 		// cf.enterTextboxContains("Zip Code", "13429");
 		cf.enterTextboxContains("First Name", "AutoTestFirstName");
+		sleep();
 		cf.enterTextboxContains("Last Name", "AutoTestLastName");
+		sleep();
 		//cf.enterTextboxContains(" Contact Telephone Number ", Long.toString(cf.createRandomInteger(10000000, 99999999))
 		//		+ Long.toString(cf.createRandomInteger(10, 99)));
 		cf.enterTextboxContains("Effective End Date", "10/6/2022");
@@ -107,22 +122,29 @@ public class EM_260_006_Verify_CSR_update_employer_address_Notice_of_Experience_
 		cf.selectDropdown("Source Type", "Correspondence/Email");
 		sleep();
 		cf.clickButtonContains("Submit ");
-		sleep(2000);
+		sleep(4000);
 
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		sleep();
 		cf.logoutAndLogin("ndfjp3", "Admin@123456789");
 		// cf.clickButtonContains("home");
-		cf.clickMenu("Menu");
-		cf.clickMenu("Inquiry");
-		cf.clickMenu("Contribution Inquiry");
-		cf.clickMenu("Inquiry Employer Address History");
 		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		sleep();
+		cf.clickMenu("Menu");
+		sleep();
+		cf.clickMenu("Inquiry");
+		sleep();
+		cf.clickMenu("Contribution Inquiry");
+		sleep();
+		cf.clickMenu("Inquiry Employer Address History");
+		sleep(4000);
 		cf.screenShot("Inquiry Employer Address History - Enter ERN", "Pass", "Launched to EM-051");
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
-		cf.clickButtonContains("Continue ");
 		sleep();
+		cf.clickButtonContains("Continue ");
+		sleep(4000);
 
 		// SREG-057
 		addPage.verifyInquiryAddressEmployerHistory("Notice of Experience Rating Charges (IA96) Address");

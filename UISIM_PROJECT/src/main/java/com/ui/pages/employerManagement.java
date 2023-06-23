@@ -136,9 +136,9 @@ public class employerManagement extends TestBase
 
 		System.out.println("updating address............");
 
-		// em.menuButton().click();
-		// em.AccountMaintenance().click();
-		// em.MaintainAddress().click();
+//		 em.menuButton().click();
+//		 em.AccountMaintenance().click();
+//		 em.MaintainAddress().click();
 		em.EAN().sendKeys(EAN);
 		cf.screenShot("Menu","Pass","");
 		em.continueButton().click();
@@ -566,14 +566,18 @@ public class employerManagement extends TestBase
 		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		System.out.println("updating address............");
-
+		sleep(4000);
 		// em.menuButton().click();
 		// em.AccountMaintenance().click();
 		// em.MaintainAddress().click();
 		em.EAN().sendKeys(EAN);
+		sleep();
 		cf.screenShot("Menu","Pass","");
+		sleep();
 		em.continueButton().click();
+		sleep();
 		cf.screenShot("Menu","Pass","");
+		sleep();
 		try {
 		em.AppealMailAddress().click();
 		}

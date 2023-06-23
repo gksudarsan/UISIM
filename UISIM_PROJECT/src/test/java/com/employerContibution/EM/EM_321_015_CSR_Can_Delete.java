@@ -31,7 +31,7 @@ public class EM_321_015_CSR_Can_Delete extends TestBase{
 		cf.ScrollMenu("Maintain Business Ownership");
 		cf.clickMenu("Maintain Business Ownership");
 //		sleep(3000);
-		cf.waitForNextPageNumber(" SREG-029");
+		cf.validateNextPageNumber(" SREG-029");
 		
 		/*----------------SREG-029----------------*/
 		
@@ -47,7 +47,7 @@ public class EM_321_015_CSR_Can_Delete extends TestBase{
 		cf.enterTextboxContains("Employer Registration Number", ernValue);
 		cf.clickButtonContains("Continue ");
 //		sleep(3000);
-		cf.waitForNextPageNumber("SREG-710");
+		cf.validateNextPageNumber("SREG-710");
 		
 		/*----------------SREG-710----------------*/
 		cf.screenShot("ChangeOwner2", "Pass", "Navigated to SREG-710 page and click on Delete link");
