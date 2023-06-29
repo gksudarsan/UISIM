@@ -24,6 +24,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test = 
 				report.createTest("EE.12.001:Verify TPR can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Housing Authority' and work items will be created for CSR to review.");
 		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
@@ -55,7 +56,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		String ernValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),7);
 		System.out.println("The ERN Value is:"+ ernValue);
 		test.log(Status.INFO, "Ern::" + ernValue);
-		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		//commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFuntions.screenShot("GeneralInformationPage", "Pass", "General Information:SREG-025");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -63,8 +64,10 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.screenShot("RequiredMessageValidation", "Pass", "RequiredError:SREG-003");
 		AddPage.requiredError_genInfo();
 		sleep();
-		AddPage.legalNameTextBox.sendKeys("MANALYTICS");
-		commonFuntions.enterTextboxContains("Other commonly known name of entity", "MANALYTICS");
+		String entityName = commonFuntions.enterRandomStringLegalName("Legal Name");
+		System.out.println(entityName);
+		test.log(Status.INFO, "legalName::" + entityName);
+		commonFuntions.enterTextboxContains("Other commonly known name of entity", entityName);
 		commonFuntions.enterTextboxContains("Business Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 		commonFuntions.enterPastDate("What is the date of the first payroll", 720);
@@ -167,24 +170,23 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation(SREG-013)");
 		commonFuntions.clickButtonContains("Home");
+		sleep(5000);
 
 		//Assigning user to WI Review emp type..................
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
-		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		loginPage.okPopUpButton.click();
 		sleep(2000);
+		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 
 		//Resolving WI Review emp type................
 		PEOPage.queue.click(); 
-		sleep();
+		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
 		commonFuntions.screenShot("FeinSearch","Pass","FeinSearch");
 		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
 		commonFuntions.screenShot("IndividualWorkQueueReviewWorkItemQueue","Pass","Individual Work Queue Review");
-		driver.navigate().refresh();
-		sleep();
-		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickOnLinkAnchorTag("Review Employer Type");
 		sleep(2000); 
 		commonFuntions.screenShot("WorkItemDetails","Pass","Work Item Details");
@@ -215,8 +217,10 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.screenShot("WorkItemDetailsObtainBond","Pass","Work Item Details Obtain Bond");
 		commonFuntions.clickButtonContains("Open Work Item");
 		sleep(2000);
-		commonFuntions.enterFutureDate("Liability Date", 30);
-		commonFuntions.enterFutureDate("Date Covered Employment began? ", 10);
+		commonFuntions.enterFutureDate("Liability Date", 10);
+		sleep(2000);
+		commonFuntions.enterFutureDate("Date covered employment began? ", 10);
+		sleep(2000);
 		AddPage.commentField.sendKeys("obtain bond task closing");
 		commonFuntions.screenShot("ObtainBondTask","Pass","Obtain Bond Task");
 		commonFuntions.clickButtonContains("Submit"); 
@@ -224,5 +228,34 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ReviewWorkItemObtainBondTask","Pass","Review Workitem Obtain Bond Task");
 		commonFuntions.clickButtonContains("Home");
+
+		//Assigning user to WI unable to determine liability Work item..................
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		sleep();
+		//Resolving DOL-DTF Work item................non expected WI
+		PEOPage.queue.click(); 
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.selectDropdown("WorkItemDescription", "Unable to determine liability task");
+		commonFuntions.enterTextboxContains("Work Item Description Free Text", "liability");sleep();
+		commonFuntions.clickButtonContains("Search");
+		sleep(2000);
+		commonFuntions.screenShot("UnabletoDetermineLiabilityTask","Pass","Unable to Determine Liability Task search");
+		commonFuntions.clickOnLink("DOL DTF Discrepancy");
+		sleep(2000);
+		commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
+		sleep(); 
+		commonFuntions.clickButtonContains("Open Work Item");
+		sleep(2000);
+		commonFuntions.screenShot("DOL/DTFDiscrepancytaskPage","Pass","DOL/DTF Discrepancy task Page");
+		sleep();
+		commonFuntions.selectDropdown("Account Status", " Liable ");
+		sleep();
+		AddPage.comment.sendKeys("doldtf");
+		commonFuntions.clickButtonContains("Submit");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
+		commonFuntions.clickButtonContains("Home");
+
 	}
 }

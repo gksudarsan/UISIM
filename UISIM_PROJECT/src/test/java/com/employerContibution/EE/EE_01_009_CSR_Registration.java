@@ -22,17 +22,16 @@ public class EE_01_009_CSR_Registration extends TestBase {
 	@Test
 	public void EE_01_009() throws Exception {
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		test = report.createTest("EE.01.009:Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Estate' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-
+		test = report.createTest("EE.01.009:Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Estate' and work items will be created for CSR to review.");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("Menu");
+		AddPage.menu.click();sleep();
+		//commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
 		commonFuntions.screenShot("EmployerRegistration", "Pass", "Navigating to Register Employer");
@@ -280,22 +279,22 @@ public class EE_01_009_CSR_Registration extends TestBase {
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass",
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
-		sleep(2000);
+		sleep(5000);
 
 		//Assigning user to WI DOL-DTF Work item..................
+		loginPage.okPopUpButton.click();sleep(2000);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
 		sleep();
-		//Resolving DOL-DTF Work item................
+		//Resolving DOL-DTF Work item........
 		PEOPage.queue.click(); 
 		commonFuntions.waitForLoadingIconToDisappear();
-		//cf.selectDropdown("Work Item Description", " DOL-DTF Discrepancy task ");
-		//cf.enterTextboxContains("FEIN",FEIN);
-		commonFuntions.searchForworkItem(AddPage.searchByFilter);
+		commonFuntions.selectDropdown("WorkItemDescription", " DOL-DTF Discrepancy task ");
+		commonFuntions.enterTextboxContains("Work Item Description Free Text", "dol dtf");sleep();
+		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
 		commonFuntions.screenShot("DOLDTFDiscrepancytasksearch","Pass","DOL-DTF Discrepancy task search");
-		//commonFuntions.clickOnLink("DOL DTF Discrepancy");
-		//cf.clickButtonContains("Search");
-		//sleep(2000);
+		commonFuntions.clickOnLink("DOL DTF Discrepancy");
+		sleep(2000);
 		commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
 		sleep(); 
 		commonFuntions.clickButtonContains("Open Work Item");
@@ -304,14 +303,13 @@ public class EE_01_009_CSR_Registration extends TestBase {
 		sleep();
 		commonFuntions.selectDropdown("Account Status", " Liable ");
 		sleep();
-		AddPage.comment.sendKeys("registration  in progress");
-		sleep();
+		AddPage.comment.sendKeys("doldtf");
 		commonFuntions.clickButtonContains("Submit");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.screenShot("workitemCompleted","Pass","DolDtf work item completed");
-		sleep();
+		commonFuntions.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
 		commonFuntions.clickButtonContains("Home");
+
 
 		//Assigning user to WI Potential Duplicate..................
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)"); 

@@ -25,6 +25,7 @@ public class EE_07_003_EmployerType extends TestBase {
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test = 
 				report.createTest("EE.07.003:Verify employer can submit employer registration for employer "
 						+ "type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.");
@@ -131,8 +132,10 @@ public class EE_07_003_EmployerType extends TestBase {
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass",
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
-
+		sleep(5000);
 		//Assigning user to WI Review emp type..................
+		loginPage.okPopUpButton.click();
+		sleep(2000);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		sleep(2000);

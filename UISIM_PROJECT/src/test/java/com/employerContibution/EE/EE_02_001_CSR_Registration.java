@@ -26,14 +26,16 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 
 		test = 
-				report.createTest("EE.02.001 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Corporation (All types)' and work items will be created for CSR to review");		
+				report.createTest("EE.02.001:Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Corporation (All types)' and work items will be created for CSR to review");		
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("Menu");
+		AddPage.menu.click();
+		//commonFuntions.clickMenu("Menu");
 		sleep();
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
@@ -44,21 +46,18 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
 
-		/*---general information sreg-025-----*/
-		//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-		//				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd)",
-		//				"FEIN");
-		//		String feinValue = databaseResults.get("FEIN");
-		//		System.out.println("FeinValue is: " + feinValue);
-		//		String ernValue = databaseResults2.get("EAN");
-		//		System.out.println("EanValue is: "+ ernValue );
+		/*---General Information SREG-025-----*/
+		
+//	    Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+//				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd)","FEIN");			
+//	    String feinValue = databaseResults.get("FEIN");
+//		System.out.println("FeinValue is: " + feinValue);
+		
 		String Fein = prop.getProperty("FeinPresentInDolDtf");
 		test.log(Status.INFO, "FEIN VALUE::" + Fein);
-		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-		sleep();
+		commonFuntions.selectDropdown("Employer Type", " Agricultural ");sleep();
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", Fein);
-		commonFuntions.selectDropdown("Type of Legal Entity", " Corporation (All Types, includes Sub-Chapter S) ");
-		sleep();
+		commonFuntions.selectDropdown("Type of Legal Entity", " Corporation (All Types, includes Sub-Chapter S) ");sleep();
 		String Ern = prop.getProperty("ErnPresentInDolDtf");
 		test.log(Status.INFO, "ERN VALUE::" + Ern);
 		commonFuntions.enterTextboxContains("Employer Registration Number", Ern);
@@ -68,9 +67,10 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		commonFuntions.screenShot("GeneralInformation", "Pass", "General Information (SREG-025)");
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
-		/*---employer entity information:sreg-003---*/
-		Map<String, String> databaseResults3 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea","ENTITY_NAME");
-		String legalName = databaseResults3.get("ENTITY_NAME");
+		
+		/*---Employer Entity Information:SREG-003---*/
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea","ENTITY_NAME");
+		String legalName = databaseResults.get("ENTITY_NAME");
 		System.out.println("LegalName is: "+ legalName );
 		test.log(Status.INFO, "LEGAL NAME::" + legalName);
 		AddPage.legalNameTextBox.sendKeys(legalName);
@@ -84,8 +84,7 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		commonFuntions.selectDropdown("Year", "2023");
 		sleep();
 		commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?", "No");
-		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information (SREG-003)");
-		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information");
+		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information (SREG-003)");sleep();
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 
@@ -104,7 +103,7 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		}catch (Exception e) {
 			System.out.println("USPS ADDRESS");
 		}
-		sleep(2000);
+		sleep();
 
 		/*-----Business Physical Address Details------*/
 		commonFuntions.screenShot("BusinessPhysicalAddressDetails", "Pass", "Business Physical Address Details");
@@ -135,7 +134,7 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		}catch (Exception e) {
 			System.out.println("USPS ADDRESS-Employer Contact Details");
 		}
-		sleep(2000);
+		sleep();
 		commonFuntions.screenShot("EmployerVerifyContactDetails", "Pass", "Employer Verify Contact Details");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -168,7 +167,7 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		catch(Exception e) {
 			System.out.println("usps address");
 		}
-		sleep(2000);
+		sleep();
 		commonFuntions.screenShot("Corporate Officer/Owner Details", "Pass", "Corporate Officer/Owner Details(SREG-005))");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -193,11 +192,12 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass",
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
-		sleep(2000);
+		sleep(5000);
 
 		//Assigning user to WI Review emp type..................
+		loginPage.okPopUpButton.click();
+		sleep(2000);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+Fein+"' ORDER BY UPDATED_TS desc)"); 
-
 		//Resolving WI Review emp type................
 		PEOPage.queue.click(); 
 		sleep(2000);
@@ -208,22 +208,19 @@ public class EE_02_001_CSR_Registration extends TestBase{
 		sleep(2000);
 		commonFuntions.screenShot("Review emp type","Pass","emp type");
 		commonFuntions.clickOnLink("Review Employer Type");
-		sleep(); 
+		sleep(2000); 
 		commonFuntions.clickButtonContains("Open Work Item");
 		sleep(2000);
-		commonFuntions.screenShot("Review","Pass","Review Employer Type Task Details");
-		commonFuntions.enterFutureDate("Date Covered Employment began? ", 10);
-		sleep();
-		AddPage.commentField.sendKeys("registration  in progress");
-		sleep();
+		commonFuntions.screenShot("ReviewEmployerTypeTaskDetails","Pass","Review Employer Type Task Details");
+		commonFuntions.selectDropdown("Account Status", " Erroneous ");sleep();
+		commonFuntions.selectDropdown("Send Status to NYBE", " NYS100AG filed/Required to file NYS100 Business ");sleep();
+		commonFuntions.selectDropdown("Quarter ", " 1 ");sleep();
+		commonFuntions.selectDropdown("Year ", " 2023 ");sleep();
+		AddPage.commentField.sendKeys("closing");
 		commonFuntions.clickButtonContains("Submit"); 
-		sleep(2000);
-		commonFuntions.screenShot("GeneralInfo","Pass","General Information");
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("WorkItemCompletedForReviewEmployeTask.","Pass","Review Employer Type Task ");
 		commonFuntions.clickButtonContains("Home");
-
-
-
-
 
 	}
 }

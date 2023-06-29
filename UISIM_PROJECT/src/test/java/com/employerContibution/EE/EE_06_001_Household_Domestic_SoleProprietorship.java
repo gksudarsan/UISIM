@@ -23,7 +23,6 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 	@Test()
 	public void EE_06_001_csr_registration() throws Exception {
 
-
 		commonStepDefinitions cf = new commonStepDefinitions();	
 
 		/*
@@ -31,6 +30,7 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 		 * (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
 		 * feinValue = feinValue2 + feinValue1 ; System.out.println("FEIN NUMBER = "
 		 * +feinValue);
+<<<<<<< HEAD
 		 */
 		
 		test = report.createTest("EE.06.001 Verify CSR can submit employer registration for employer type 'Household/Domestic' and legal entity type 'Sole Proprietorship (Individual)' and work items will be created for CSR to review.");
@@ -53,12 +53,17 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 //				"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
 //		String FEIN = databaseResults1.get("FEIN");
 //		System.out.println("FEIN = " +FEIN);
+//		test.log(Status.INFO, "FEIN : : "+FEIN);
 		
 //		String FEIN = prop.getProperty("SingleFoundonDOLandMultipleFoundInDT_FFEIN");
 		test = report.createTest("EE.06.001:Verify CSR can submit employer registration for employer type 'Household/Domestic' and legal entity type 'Sole Proprietorship (Individual)' and work items will be created for CSR to review.");
 
 
+
 	
+		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+
+
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -68,6 +73,8 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 		sleep();
 		cf.ScrollMenu("Employer Registration");
 
+
+		cf.ScrollMenu("Employer Registration");
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");		
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
@@ -76,6 +83,8 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 		sleep(2000);
 		cf.ScrollMenu("Employer Registration");sleep();
 
+		cf.clickMenu("Menu"); sleep();
+		cf.ScrollMenu("Employer Registration");sleep();
 		cf.screenShot("Menu", "Pass", "Employer Registration");
 		cf.clickMenu("Employer Registration");
 		sleep();
