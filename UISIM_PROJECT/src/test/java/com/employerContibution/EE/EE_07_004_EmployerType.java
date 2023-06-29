@@ -68,7 +68,7 @@ public class EE_07_004_EmployerType extends TestBase {
 		//String ernValue = prop.getProperty("ErnPresentInDolDtf");
 		System.out.println("ErnValue is: " + ernValue);
 		test.log(Status.INFO, "Ern::" + ernValue);
-		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		//commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFuntions.screenShot("GeneralInformation", "Pass", "General Information:SREG-025");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);

@@ -44,7 +44,7 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//input[@id='lbramailingAddressId_address1']")
 	public WebElement addressLine1_Form2;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id='mat-select-value-31']") 
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-1]") 
 	public WebElement countyDropDown_Form2; 
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Employer Registration Number']//following::mat-label[1]")
@@ -103,6 +103,18 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][1]")
 	public WebElement adderessRadioButton3;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	public WebElement uspsAddress1;
+
+	@FindBy(how = How.XPATH, using = "//*[.='lbra Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	public WebElement uspsAddress2;
+
+	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	public WebElement uspsAddress3;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Agad Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	public WebElement uspsAddress4;
 
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-2]")
 	public WebElement countyDropdown1;
@@ -179,6 +191,9 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//textarea[@id=\"commentId\"]")
 	public WebElement commentField;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id=\"commentid\"]")
+	public WebElement comments;
 
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,\"Notification date of Transfer\")]//following::input[1]")
 	public WebElement notificationDateTransfer;
@@ -209,4 +224,13 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
     public WebElement menu;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='feinId']")
+    public WebElement newFein;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='FEIN']//following::mat-label[1]")
+	public WebElement getFEIN;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Legal Name of Business']//following::mat-label[1]")
+	public WebElement getLegalName;
 }

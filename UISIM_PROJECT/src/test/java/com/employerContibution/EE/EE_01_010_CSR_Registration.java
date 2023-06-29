@@ -31,8 +31,8 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("Menu");
-		sleep();
+		//commonFuntions.clickMenu("Menu");
+		AddPage.menu.click();sleep();
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
 		commonFuntions.screenShot("Employer Registration", "Pass", "Register Employer");
@@ -42,26 +42,24 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", " Business ");
+		
 		//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
 		//				"SELECT * FROM T_EMPLOYER_DOL_DTF tedd ORDER BY UPDATED_TS DESC", "FEIN");
 		//		String feinValue = databaseResults.get("FEIN");
-
 		//		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		//		System.out.println("FeinValue is: " + feinValue);
 		//		test.log(Status.INFO, "FeinValue::" + feinValue);
+		
 		String Fein = prop.getProperty("FEINfoundbutprovidedERNisincorrect_Fein");
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",Fein);
 		test.log(Status.INFO, "FEIN VALUE::" + Fein);
 		commonFuntions.selectDropdown("Type of Legal Entity", " Trust ");
-		//		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
-		//		System.out.println(ernValue);
-		//		test.log(Status.INFO, "ErnValue::" + ernValue);
-
-		commonFuntions.enterTextboxContains("Employer Registration Number", prop.getProperty("FEINfoundbutprovidedERNisincorrect_Ern"));
-		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
-		sleep();
-		commonFuntions.selectDropdown("Source Type", " NYS-100 ");
-		sleep();
+		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
+		System.out.println(ernValue);
+		test.log(Status.INFO, "ErnValue::" + ernValue);
+		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");sleep();
+		commonFuntions.selectDropdown("Source Type", " NYS-100 ");sleep();
 		commonFuntions.screenShot("GeneralInformation", "Pass", "General Information (SREG-025)");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -78,11 +76,9 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.enterTextboxContains("Enter date of first operations in New York State", "5/1/2023");
 		commonFuntions.enterTextboxContains("What is the date of the first payroll", "5/1/2023");
 		commonFuntions.selectRadioQuestions("Are you registering for Unemployment Insurance?", "Yes");
-		commonFuntions.selectDropdown("Quarter", "2");
-		sleep();
+		commonFuntions.selectDropdown("Quarter", "2");sleep();
 		commonFuntions.selectDropdown("Year", "2023");
-		commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?",
-				"Yes");
+		commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?", "Yes");
 		commonFuntions.enterTextboxContains("Explain services that are performed", "OthersTest");
 		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information:SREG-003");
 		commonFuntions.clickButtonContains("Continue");
@@ -171,7 +167,7 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		sleep();
 
 		/*--------"Business Acquisition (SREG-011)---------*/
-		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC");
+		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea");
 		String FEIN = databaseResults1.get("Fein");
 		System.out.println("The Fein Value is:" + FEIN);
 		test.log(Status.INFO, "Fein::" + FEIN);
@@ -198,13 +194,12 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 
-		/*----------------"Change in Legal Entity(SREG-713"------------*/ 
+		/*----------------"Change in Legal Entity(SREG-713)"------------*/ 
 		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes");
-		commonFuntions.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", FEIN);
+		commonFuntions.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", prop.getProperty("SingleFoundonDOLandMultipleFoundInDT_FFEIN"));
 		commonFuntions.enterTextboxContains("Prior Employer Registration Number", eanValue);
 		commonFuntions.enterCurrentDate("Date of Notification");
 		commonFuntions.screenShot("ChangeInLegalEntity", "Pass", "Change in legal entity(SREG-713)");
-		sleep(2000);
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 
@@ -245,22 +240,22 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass",
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
-		sleep(2000);
+		sleep(5000);
 
-		//Assigning user to WI DOL-DTF Work item..................
+		//Assigning user to WI DOL-DTF Work item.............
+		loginPage.okPopUpButton.click();sleep(2000);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+Fein+"' ORDER BY UPDATED_TS desc)");
 		sleep();
-		//Resolving DOL-DTF Work item................
+		//Resolving DOL-DTF Work item........
 		PEOPage.queue.click(); 
 		commonFuntions.waitForLoadingIconToDisappear();
-		//cf.selectDropdown("Work Item Description", " DOL-DTF Discrepancy task ");
-		//cf.enterTextboxContains("FEIN",FEIN);
-		commonFuntions.searchForworkItem(AddPage.searchByFilter);
+		commonFuntions.selectDropdown("WorkItemDescription", " DOL-DTF Discrepancy task ");
+		commonFuntions.enterTextboxContains("Work Item Description Free Text", "dol dtf");sleep();
+		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
 		commonFuntions.screenShot("DOLDTFDiscrepancytasksearch","Pass","DOL-DTF Discrepancy task search");
-		//commonFuntions.clickOnLink("DOL DTF Discrepancy");
-		//cf.clickButtonContains("Search");
-		//sleep(2000);
+		commonFuntions.clickOnLink("DOL DTF Discrepancy");
+		sleep(2000);
 		commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
 		sleep(); 
 		commonFuntions.clickButtonContains("Open Work Item");
@@ -269,13 +264,13 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		sleep();
 		commonFuntions.selectDropdown("Account Status", " Liable ");
 		sleep();
-		commonFuntions.selectRadioQuestions("Suppress Correspondence?", "No");
-		AddPage.comment.sendKeys("registration  in progress");
+		AddPage.comment.sendKeys("doldtf");
 		commonFuntions.clickButtonContains("Submit");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
 		commonFuntions.clickButtonContains("Home");
+
 
 		//Assigning user to WI Potential Duplicate..................
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+Fein+"' ORDER BY UPDATED_TS desc)"); 

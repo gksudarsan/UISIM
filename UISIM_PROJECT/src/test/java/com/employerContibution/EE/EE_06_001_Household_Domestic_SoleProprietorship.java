@@ -23,22 +23,13 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 	@Test()
 	public void EE_06_001_csr_registration() throws Exception {
 
-<<<<<<< HEAD
 		commonStepDefinitions cf = new commonStepDefinitions();	
-=======
-		commonStepDefinitions cf = new commonStepDefinitions();	/*
+	/*
 		 * String feinValue1 =StringUtils.left( String.valueOf((long)
 		 * (Math.random()*Math.pow(10,10))),5); String feinValue2 = "9999" ; String
 		 * feinValue = feinValue2 + feinValue1 ; System.out.println("FEIN NUMBER = "
 		 * +feinValue);
 		 */
-		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-				"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
-		String FEIN = databaseResults1.get("FEIN");
-		System.out.println("FEIN = " +FEIN);
-		test.log(Status.INFO, "FEIN : : "+FEIN);
-		//String EntityName = prop.getProperty("Entity");
->>>>>>> refs/heads/master_13062023
 		employerManagement em =  new employerManagement();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -47,24 +38,22 @@ public class EE_06_001_Household_Domestic_SoleProprietorship extends TestBase{
 //				"SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea  WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ) GROUP BY FEIN HAVING COUNT(*)>1 " , "FEIN"); 
 //		String FEIN = databaseResults1.get("FEIN");
 //		System.out.println("FEIN = " +FEIN);
+//		test.log(Status.INFO, "FEIN : : "+FEIN);
 		
 		String FEIN = prop.getProperty("SingleFoundonDOLandMultipleFoundInDT_FFEIN");
 		test = report.createTest("EE.06.001:Verify CSR can submit employer registration for employer type 'Household/Domestic' and legal entity type 'Sole Proprietorship (Individual)' and work items will be created for CSR to review.");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-<<<<<<< HEAD
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu"); 
 		sleep();
 		cf.ScrollMenu("Employer Registration");
-=======
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");		
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.clickMenu("Menu"); sleep();
 		cf.ScrollMenu("Employer Registration");sleep();
->>>>>>> refs/heads/master_13062023
 		cf.screenShot("Menu", "Pass", "Employer Registration");
 		cf.clickMenu("Employer Registration");
 		sleep();

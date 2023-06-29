@@ -35,13 +35,14 @@ public class EE_03_001_csr_registration_emptype_business extends TestBase{
 		//Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
 		//		"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOGR'", "FEIN");
 		//String FEIN = databaseResults.get("FEIN");
-		test = report.createTest("EE_03_001 -  Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'City' and work items will be created for CSR to review. ");
+		test = report.createTest("EE_03_001:Verify CSR can submit employer registration for employer type 'Governmental' and legal entity type 'City' and work items will be created for CSR to review. ");
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
         sleep(2000);
         cf.waitForLoadingIconToDisappear();
-		cf.clickMenu("Menu"); sleep();
+        AddPage.menu.click();sleep();
+		//cf.clickMenu("Menu"); sleep();
 		cf.ScrollMenu("Employer Registration");sleep();
 		cf.screenShot("Menu", "Pass", "Employer Registration");
 		cf.clickMenu("Employer Registration");
@@ -173,10 +174,10 @@ public class EE_03_001_csr_registration_emptype_business extends TestBase{
 		PEOPage.queue.click();
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
-		cf.enterTextboxContains("FEIN",feinValue1);
-		cf.screenShot("FeinSearch","Pass","feinSearch");
-		cf.clickButtonContains("Search");
-		cf.screenShot("Search","Pass","Searchbyname");
+//		cf.enterTextboxContains("FEIN",feinValue1);
+//		cf.screenShot("FeinSearch","Pass","feinSearch");
+//		cf.clickButtonContains("Search");
+//		cf.screenShot("Search","Pass","Searchbyname");
 	    sleep(2000);
 		cf.screenShot("Determine Liability Task","Fail","Determine Liability Task");
 		cf.clickOnLink("Unable to Determine Liability Task");
