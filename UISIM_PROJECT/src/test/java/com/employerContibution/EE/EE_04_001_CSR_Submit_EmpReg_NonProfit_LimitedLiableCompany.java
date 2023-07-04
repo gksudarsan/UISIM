@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.employerManagement;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -23,6 +24,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		employerManagement empManage = new employerManagement(driver);
 		
 		//--- GET Query
 		
@@ -39,8 +41,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 			
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.clickMenu("Menu");
-		sleep();
+		empManage.menu.click();
 		commonFunction.ScrollMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");
@@ -61,7 +62,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE04001", "Pass", "Launched the Employer Register(SREG-025) page");
 		commonFunction.selectDropdown("Employer Type", " Non-Profit ");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue); //897397325
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "260437933"); //897397325,260437933
 		commonFunction.selectDropdownEquals("Type of Legal Entity", " Limited Liability Company (All Types) ");
 		//commonFunction.enterTextboxContains("Employer Registration Number", "2897453"); //4543352
 		commonFunction.selectDropdown("Source", " NYS-100 (paper) ");
@@ -350,21 +351,22 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-013 page");
 		commonFunction.clickButton("Home ");
 		
-		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1 + "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='" + feinValue + "' ORDER BY UPDATED_TS desc)");
+		//commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1 + "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='" + feinValue + "' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(2000);
 	     
 	    peoPage.queue.click();
 	    Thread.sleep(15000);
-	    commonFunction.enterTextboxContains("FEIN",feinValue);
-	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
+//	    commonFunction.enterTextboxContains("FEIN",feinValue);
+//	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
 	    commonFunction.clickButtonContains("Search");
 	    
 	    
 	    // WI not getting generated
-	    sleep(3000);
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.ScrollMenu("Review Employer Type");
 	    commonFunction.clickOnLink("Review Employer Type");
 	    
-	    sleep(3000);
+	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.clickButtonContains("Open Work Item");
 	    
 	    // ---  EEWI-002 ---
@@ -384,11 +386,13 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SUC-002 page");
 		commonFunction.clickButton("Home ");
 		
+		commonFunction.waitForLoadingIconToDisappear();
 		
 		Thread.sleep(2000);
 	     
 		peoPage.queue.click();
 	    Thread.sleep(15000);
+	    
 	    commonFunction.enterTextboxContains("FEIN",feinValue);
 	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
 	    commonFunction.clickButtonContains("Search");

@@ -36,7 +36,7 @@ public class EM_443_03_003_TPR_Add_POAAssociation_FilingAgentMatters_CSR_Approve
 		commonFuntions.clickMenu("Account Maintenance");
 		sleep();
 		commonFuntions.clickMenu("Employer Account Maintenance");
-		commonFuntions.screenShot("NavigationMenu", "Pass", "Navigated to Menu -> Account Maintenance -> Employer Account Maintenance -> ");
+		commonFuntions.screenShot("NavigationMenu", "Pass", "Navigated to Menu -> Account Maintenance -> Employer Account Maintenance -> Add or Remove POA/TPR Association");
 		commonFuntions.clickMenu("Add or Remove POA/TPR Association");
 		
 		// ---SREG-430---

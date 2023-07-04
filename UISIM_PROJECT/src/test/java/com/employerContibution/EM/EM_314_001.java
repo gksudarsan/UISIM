@@ -23,7 +23,7 @@ public class EM_314_001 extends TestBase {
 
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit. ", groups = {COMMON_CONSTANT.REGRESSION} )
-	public void Test_EM_413_02_002() throws Exception {
+	public void Test_EM_314_001() throws Exception {
 		
 		test = report.createTest("EM.314.001: Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit. ");
 		
@@ -44,7 +44,7 @@ public class EM_314_001 extends TestBase {
 		
 		//---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.clickMenu("Menu");
+		empManage.menu.click();
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
 		commonFunction.ScrollMenu("Employer Account Maintenance");
@@ -136,85 +136,6 @@ public class EM_314_001 extends TestBase {
 		commonFunction.screenShot("EM314001", "Pass", "TC EM.314.001 passed successfully");
 		
 		System.out.println("Pass");
-	}
-		
-		
-
-	@Test(priority = 0, description = "EM.314.001.Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit.")
-	public void Test_EM_314_001() throws Exception {
-
-		// Object creation for the locator
-		employerManagement em = new employerManagement();
-		employerManagementLocators emlocator = new employerManagementLocators();
-
-		// For reading the data from .property file
-		String EAN = prop.getProperty("EAN");
-
-		test = report.createTest(
-				"EM.314.001.Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit.");
-		// LoginPage loginpage=new LoginPage(driver);
-		commonStepDefinitions commonfunction = new commonStepDefinitions();
-
-		commonfunction.login("peouseranup", "Admin@12345678");
-		commonfunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		// Steps for reaching the the option
-		sleep(2000);
-		commonfunction.waitForLoadingIconToDisappear();
-		commonfunction.clickMenu("Menu");
-		sleep();
-		commonfunction.clickMenu("Account Maintenance");
-		sleep();
-		commonfunction.screenShot("Menu", "Pass", "Account Maintenance");
-		sleep();
-		commonfunction.clickMenu("Employer Account Maintenance");
-		sleep();
-		commonfunction.clickMenu("Change in Method of Financing");
-		sleep();
-		commonfunction.screenShot("ETR-228", "Pass",
-				"landing successfully on Change in Method of Financing - Enter ERN ");
-
-		commonfunction.clickButton("Continue ");
-		sleep(4000);
-		// Verifying the Validation message
-		WebElement mandatoryMessage = driver.findElement(By.xpath("//*[@id=\"mat-error-2\"]"));
-		String name = mandatoryMessage.getText();
-		System.out.println("Required message" + name);
-		Assert.assertEquals(name, "Required");
-
-		/*
-		 * Remvoing the script as the functionality get updatedd //Entering the ERN
-		 * Number em.updateAddress(EAN); commonfunction.clickButton("Continue ");
-		 * 
-		 * // Navigating to the pervious screen by clicking on the pervoius button
-		 * Step-8 commonfunctionname.clickButton("Previous ");
-		 * 
-		 * //Step 9 //Entering the ERN Number em.updateAddress(EAN);
-		 * commonfunction.clickButton("Continue");
-		 * 
-		 * //Step 10 commonfunction.clickButton("Continue "); WebElement requiredMessage
-		 * = driver.findElement(By.xpath("//*[text()='Required']"));
-		 * Assert.assertEquals(requiredMessage, "Required");
-		 */
-		// Step 12
-		commonfunction.selectRadio("Yes ");
-		Thread.sleep(2000);
-
-		commonfunction.enterTextboxContains("Requested Effective Date", "3/17/2023");
-		Thread.sleep(2000);
-		// emlocator.entercommentbox("Test Message");
-
-		driver.findElement(By.xpath("//textarea[@placeholder='Please provide Comments']")).sendKeys("Test Cooments");
-		Thread.sleep(1000);
-		commonfunction.clickButton("Continue");
-		sleep(4000);
-		commonfunction.uploadDoc("Upload");
-		sleep(2000);
-		commonfunction.clickButton("Submit");
-		sleep(4000);
-		commonfunction.screenShot("change method of financing", "Pass", "Change Successfully");
-		commonfunction.clickButton("Home");
-
-
 	}
 
 }

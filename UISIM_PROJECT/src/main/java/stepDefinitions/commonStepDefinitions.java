@@ -54,10 +54,10 @@ public class commonStepDefinitions extends TestBase {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		Thread.sleep(2000);
-		screenShot("LoginPage", "Pass", "HomePage");
+		screenShot("LoginPage", "Pass", "Home Page");
 		try {
 			loginPage.loginLink.click();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 //		test.log(Status.PASS, "User Launched website");
 //		driver.navigate().refresh();
@@ -69,12 +69,17 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(5000);
 
 			enterTextbox("Username", userName);
-			test.log(Status.PASS, "User entered Username");
+//			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
- 			test.log(Status.PASS, "User entered Password");
+//			test.log(Status.PASS, "User entered Password");
 
+
+			sleep(2000);
+			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
+			//Add this to your TC after login function : test.log(Status.PASS, "Login with userRole is successful");
+			
 			Thread.sleep(3000);
-//		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 			Thread.sleep(5000);
 
@@ -87,9 +92,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.navigate().refresh();
 		Thread.sleep(5000);
 		waitForLoadingIconToDisappear();
-		}
-		catch(Exception e) {}
-		screenShot("okPopUpButton", "Pass", "okPopUp");
+		
+		Thread.sleep(2000);
+		waitForLoadingIconToDisappear();
+		screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
@@ -99,11 +105,15 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(3000);
 		driver.navigate().refresh();
 		Thread.sleep(3000);
+		waitForLoadingIconToDisappear();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+			sleep(2000);
 			loginPage.okPopUpButton.click();
 //			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
 		}
+		}
+		catch(Exception e) {}
 		}
 	
 	// Methods
@@ -727,16 +737,21 @@ public class commonStepDefinitions extends TestBase {
 		clickMenu("LOG OUT");
 		sleep(4000);
 		clickMenu("Go to Homepage");
-		sleep(5000);
+		sleep(2000);		
+		waitForLoadingIconToDisappear();
+		try {
 		HomePage.menuLogout.click();
 		sleep(2000);
 		HomePage.signOut.click();
 		sleep(5000);
 		enterTextbox("Username", userName);
-		test.log(Status.PASS, "User entered Username");
+//		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
-		test.log(Status.PASS, "User entered Password");
+//		test.log(Status.PASS, "User entered Password");
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+		sleep();
+		screenShot("LoginPage", "Pass", "Logged in with "+ userName.toUpperCase());
+		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(10000);
 		driver.navigate().refresh();
 		Thread.sleep(10000);
@@ -744,6 +759,8 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(5000);
 		driver.get(prop.getProperty("applicationUrl"));
 		login(userName, password);
+	}
+		catch(Exception e) {}
 	}
 
 	public void enterFutureDate(String xpathParameter, int daysAdded) {
@@ -1009,5 +1026,18 @@ public class commonStepDefinitions extends TestBase {
             Actions a = new Actions(driver);
             a.moveToElement(ele).doubleClick().sendKeys("DOL");
         }
+		
+		//by Devanshu
+		public String retrieveValue(String xpathParameter) {
+	        By element = By.xpath("//mat-label[text()='" + xpathParameter + "']//following::mat-label[1]");
+	        final WebDriverWait wait = new WebDriverWait(driver, 10);
+	        String actualValue="";
+	        try {
+	            WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));                
+	            actualValue=ele.getAttribute("aria-label");                
+	        } catch (final Exception e) {
+	        }
+	        return actualValue;
+	    }
 
 }
