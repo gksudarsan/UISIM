@@ -72,7 +72,9 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     sleep(3000);
 		 commonFuntions.screenShot("PeoRegistrationError2","Pass","PEO Registration - Contact Details Error incorrect value");	
 		 
-		 commonFuntions.errorLabelContains("Must start with a letter and may contain only letters, hyphens(-) and apostrophes","First Name");
+		// commonFuntions.errorLabelContains("Must start with a letter and may contain only letters, hyphens(-) and apostrophes","First Name");
+		 commonFuntions.errorLabelContains("Invalid first name. Only alpha and hyphen are allowed.","First Name");
+		 
 	     commonFuntions.errorLabelContains("Only Alphabets are allowed","Middle Initial");
 	     commonFuntions.errorLabelContains(" Invalid Email Address.","Email Address");
 	     commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),4));
@@ -375,7 +377,8 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
 		     
-		     commonFuntions.selectRadio("Approved");
+		     //commonFuntions.selectRadio("Approved");
+		     PEOPage.ApprovePeo.click();
 		     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
 		     commonFuntions.clickButtonContains("Submit");
 		     sleep(5000);

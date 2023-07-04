@@ -36,7 +36,7 @@ public class EM_019_01 extends TestBase
 		 
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("Menu");			 
+		 commonFuntions.clickMenu("menu");			 
 		 commonFuntions.ScrollMenu("Account Maintenance");
 		 commonFuntions.clickMenu("Account Maintenance");	
 		 sleep(2000);
@@ -93,7 +93,7 @@ public class EM_019_01 extends TestBase
 		 Thread.sleep(2000);
 		 commonFuntions.clickButtonContains("Submit");
 		 Thread.sleep(2000);
-		 commonFuntions.errorContent("Required");
+		 commonFuntions.errorContent("Joint Employement Start Date is required.");
 		 commonFuntions.screenShot("Error_Required4","Pass","Error message shown as expected");
 		 commonFuntions.selectDateInTable("ENSEC INC", 5, 1, "Joint Employment/Management Agreement Arrangement ","03/10/2023");
 		 commonFuntions.selectDateInTable("ENSEC INC", 6, 1, "Joint Employment/Management Agreement Arrangement ","02/10/2023");

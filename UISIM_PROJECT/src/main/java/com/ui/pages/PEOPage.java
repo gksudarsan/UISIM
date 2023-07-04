@@ -318,5 +318,8 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//span[text()='PEO ID']/../following-sibling::mat-label")
 	public WebElement peoIDText;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/span[1][@class='mat-radio-container']")
+	public WebElement ApprovePeo;
 
 }

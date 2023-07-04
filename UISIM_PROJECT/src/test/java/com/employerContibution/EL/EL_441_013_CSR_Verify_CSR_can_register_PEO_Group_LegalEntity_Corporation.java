@@ -33,7 +33,7 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 sleep(2000);
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.clickMenu("menu");	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 sleep(2000);
 		 PEOPage.menuPeo.click();	
@@ -45,7 +45,7 @@ public class EL_441_013_CSR_Verify_CSR_can_register_PEO_Group_LegalEntity_Corpor
 		 sleep(2000);
 		 PEOPage.groupRegPeo.click();
 		 commonFuntions.enterTextbox("Name of Professional Employer Organization","Test_auto"+commonFuntions.createRandomInteger(1000,9999));
-	     commonFuntions.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently","auto_test"+commonFuntions.createRandomInteger(1000,9999));
+	     commonFuntions.enterTextbox("Additional Name(s)","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 	     commonFuntions.screenShot("peor", "Pass", "Professional Employer Organization Registration");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);

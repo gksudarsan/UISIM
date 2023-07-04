@@ -6,7 +6,6 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 import java.util.Calendar;
@@ -35,8 +33,6 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -46,6 +42,7 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
+import com.ui.pages.PEOPage;
 import com.ui.utilities.screenShot;
 
 public class commonStepDefinitions extends TestBase {
@@ -150,26 +147,28 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]")).click();
 	}
 
-	public void clickButton(String xpathParameter) {
+	public void clickButton(String xpathParameter) throws Exception {
 		By element = By.xpath("//button[.='" + xpathParameter + "'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
-		try {
+		//try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
 			sleep(2000);
-		} catch (final Exception e) {
+		//} catch (final Exception e) 
+			{
 		}
 	}
 
-	public void clickButtonContains(String xpathParameter) {	
+	public void clickButtonContains(String xpathParameter) throws InterruptedException {	
 		By element = By.xpath("//button[contains(.,'" + xpathParameter + "')][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
-		try {
+		//try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
 			ele.click();
-		} catch (final Exception e) {
+		//} catch (final Exception e) 
+			{
 		}
 	}
 	
@@ -193,7 +192,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectRadio(String xpathParameter) {
-			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']");
+			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']");
 
 			final WebDriverWait wait = new WebDriverWait(driver, 10);
 			try {
@@ -257,6 +256,9 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
 	
+	public void matLabel(String xpathParameter) {
+		driver.findElement(By.xpath("//mat-label[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
 	public void errorLabelFollowingField(String xpathParameter, String fieldName) {
 		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
 	}
@@ -281,6 +283,22 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(2000);
 	}
 
+//	public void screenShot(String fileName, String status, String message) throws Exception {
+//		screenShot screen = new screenShot();
+//		String screenShotPath = screenShot.takeSnapShot(driver,
+//				"D:\\AutomationFiles\\Screenshots\\"
+//						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
+//						+ "_" + fileName + ".jpg");
+//		if (status.equalsIgnoreCase("Pass")) {
+//			test.log(Status.PASS, message);
+//		}else {
+//			test.log(Status.FAIL, message);
+//		}
+//		// test.info(message);
+//		test.addScreenCaptureFromPath(screenShotPath);
+//
+//	}
+//	
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		Date currentDate = new Date();
 		String screenShotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
@@ -683,6 +701,7 @@ public class commonStepDefinitions extends TestBase {
 	public void loginPeoAdmin(String userName, String password) throws Exception {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
 		loginPage.loginLink.click();
@@ -704,20 +723,14 @@ public class commonStepDefinitions extends TestBase {
 		sleep(10000);
 		driver.navigate().refresh();
 		sleep(5000);
+		waitForLoadingIconToDisappear();
 
-
-	/*	screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-		selectRadio(
-				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
+		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
+		peoPage.PeoUserSelect.click();
+		/*selectRadio(
+				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");*/
 		clickButtonContains("Continue");
-		sleep(2000);*/
-
-//		screenShot("PeoAdminPopup", "Pass", "peoAdminPopUp");
-//		selectRadio(
-//				"I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.");
-//		clickButtonContains("Continue");
 		sleep(2000);
-
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
 			Thread.sleep(3000);
@@ -931,10 +944,12 @@ public class commonStepDefinitions extends TestBase {
 		
 	}
 	public void logout(String userName, String password) throws Exception {
+		
 		HomePage HomePage = PageFactory.initElements(driver, HomePage.class);
 		clickMenu("LOG OUT");
+		sleep(4000);
 		clickMenu("Go to Homepage");
-		sleep(2000);
+		sleep(4000);
 		HomePage.menuLogout.click();
 		HomePage.signOut.click();
 		sleep(5000);
@@ -1039,5 +1054,83 @@ public class commonStepDefinitions extends TestBase {
 	        }
 	        return actualValue;
 	    }
+
+		public String retrieveTextboxContains(String xpathParameter) {
+			By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]");
+			final WebDriverWait wait = new WebDriverWait(driver, 10);
+			String actualValue="";
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));				
+				actualValue=ele.getAttribute("value");				
+			} catch (final Exception e) {
+			}
+			return actualValue;
+		}
+		
+		public void selectActionTableParameterizedId(String ssnValue, int columnValue, int tableId, String tableName,
+				String tableHtmlId,String action,String value) {
+			WebElement table = driver.findElement(
+					By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "'][" + tableId + "]"));
+
+			List<WebElement> rows = table.findElements(By.tagName("mat-row"));
+
+			int row_count = rows.size();
+			System.out.println("Total Row: " + row_count);
+			label1: for (int row = 0; row < row_count; row = row + 1) {
+				List<WebElement> columns = rows.get(row).findElements(By.tagName("mat-cell"));
+				int columns_count = columns.size();
+				System.out.println("Number of cells In Row " + row + " are " + columns_count);
+				for (int column = 0; column < columns_count; column++) {
+					String celtext = columns.get(column).getText();
+					String attributeValue;
+					if (celtext.equals(ssnValue)) {
+						if(action.equalsIgnoreCase("checkBox")) {
+							 attributeValue =  driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//mat-checkbox[1]//input[@type='checkbox']")).getAttribute("tabindex"); 
+						if(attributeValue.equalsIgnoreCase("0")) {
+							driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+								+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//mat-checkbox[1]")).click();
+						break label1;}
+						}
+						else if(action.equalsIgnoreCase("textBox")) {
+							attributeValue = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//following::input[1][@type='text'][1]")).getAttribute("disabled");
+							if(attributeValue==null) {
+							driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//following::input[1][@type='text'][1]")).sendKeys(value);
+							break label1;}
+							}
+						else if(action.equalsIgnoreCase("link")) {
+							if(!driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//a["+value+"]")).getAttribute("class").equalsIgnoreCase("disabled")) {
+							driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//a["+value+"]")).click();
+							break label1;}
+							}
+						else if(action.equalsIgnoreCase("listBox")) {
+							attributeValue = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).getAttribute("disabled");
+							if(attributeValue==null) {
+							driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).sendKeys(value);
+							break label1;}
+							}
+					}
+				}
+
+			}
+		}
+
+		public String retrieveLabelContains(String xpathParameter) {
+			By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-label[1]");
+			final WebDriverWait wait = new WebDriverWait(driver, 10);
+			String actualValue="";
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));				
+				actualValue=ele.getText();				
+			} catch (final Exception e) {
+			}
+			return actualValue;
+		}
 
 }
