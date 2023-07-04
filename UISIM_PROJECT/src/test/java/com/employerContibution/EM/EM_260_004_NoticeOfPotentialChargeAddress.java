@@ -40,7 +40,8 @@ public class EM_260_004_NoticeOfPotentialChargeAddress extends TestBase{
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");	
-			cf.clickMenu("Menu");	
+			cf.clickMenu("Menu");
+			cf.ScrollMenu("Account Maintenance");
 			cf.clickMenu("Account Maintenance");sleep();
 			cf.clickMenu("Maintain Address");sleep();
 			cf.screenShot("Menu","Pass","AccountMaintenance");

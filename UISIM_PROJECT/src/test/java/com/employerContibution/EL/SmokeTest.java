@@ -35,6 +35,7 @@ public class SmokeTest extends TestBase{
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
 		 commonFuntions.clickMenu("Register PEO");			 
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
+		 driver.navigate().refresh();
 		 Thread.sleep(3000);
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
@@ -65,6 +66,7 @@ public class SmokeTest extends TestBase{
 	     commonFuntions.screenShot("RegistrationNumber", "Pass", "Registration number");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     Thread.sleep(3000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("UnemplymentInsurance", "Pass", "Unemployment Insurance Account Details");
 	     try {
 	    	 PEOPage.peoRadioButton.click();
@@ -196,7 +198,8 @@ RegistrationResults = "Success";
 	     commonFuntions.screenShot("StatementAckn","Pass","Statment of Acknowledgment");
 	     commonFuntions.clickButtonContains("Continue");
 	     Thread.sleep(2000);	     
-	     commonFuntions.selectRadio("Approved");
+	     //commonFuntions.selectRadio("Approved");
+	     PEOPage.ApprovePeo.click();
 	     commonFuntions.screenShot("Approval","Pass","ApprovalPage");
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);

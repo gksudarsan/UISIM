@@ -259,4 +259,8 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
 	public WebElement menu;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/span[1][@class='mat-radio-container']")
+	public WebElement ApprovePeo;
+	
 }

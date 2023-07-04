@@ -31,7 +31,15 @@ public class EM_411_001 extends TestBase{
 			stepDef.login(prop.getProperty("CSR_UserID"), prop.getProperty("CSR_Pass"));
 			test.log(Status.PASS, "User logged in successfully");
 			test.log(Status.INFO, "Navigating to Maintenance account Status");
-			home.navigateToAccountMaintenance();
+			//home.navigateToAccountMaintenance();
+			stepDef.screenShot("Menu", "Pass", "Menu page");
+			stepDef.clickMenu("Menu");
+			sleep(2000);
+			stepDef.ScrollMenu("Account Maintenance");
+			home.accountMaintenance.click();
+			sleep(2000);
+			home.maintainAccountflagInfo.click();
+			sleep(2000);
 			test.log(Status.PASS, "Navigated to Maintenance account Status");
 			sreg434Page.checkRequiredText();
 			test.log(Status.PASS, "Required text verified");

@@ -24,7 +24,7 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		test = report
 				.createTest("EE.09.003 Verify employer can submit employer registration for employer type 'Indian Tribe' and legal entity type 'School' and work items will be created for CSR to review.");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_MANJU.toUpperCase(), COMMON_CONSTANT.EMPLOYER_PASS_MANJU);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
@@ -38,6 +38,8 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.enterTextboxContains("First Name", "Tom");
 		commonFuntions.enterTextboxContains("Last Name", "Willam");
 		commonFuntions.enterTextboxContains("Job Title", "Tester");
+		commonFuntions.enterTextboxContains("Contact Telephone Number", "3028054576");
+		
 		commonFuntions.enterTextboxContains("Email Address", "test@Test.com");
 		sleep();
 		commonFuntions.screenShot("EmpRegister01", "Pass", "Landed on the Employer Register page");
@@ -64,8 +66,8 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		
 		/*---------------Legal Name--------------*/
 		//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
-		//String legalName="METROPOLITAN WINDOW WASHING LLC";
-		String legalName="DONALD R RUBIN PRODUCTIONS INC"; 
+		String legalName="BEECHWOOD CONTINUING CARE INC";
+		//String legalName="HVES ELECTRICAL INC"; 
 		/*---------------Legal Name--------------*/
 		
 		
@@ -78,8 +80,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.safeJavaScriptClick(empPage.are_You_Subsidiary_Yes);
 
 		commonFuntions.enterTextboxContains("Enter the name of the federally recogni", "Test Tribe");
-		commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
-		commonFuntions.enterTextboxContains("Estimated or approximate number of individuals working", "20");
+		//commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
+		commonFuntions.selectRadioQuestions("Financing Method","Reimbursable");
+		commonFuntions.enterTextboxContains("Estimated or approximate number of individuals working", "450");
 		commonFuntions.enterPastDate("Date covered employment began", 455);
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Employer Entity Information");
 		commonFuntions.clickButton("Continue ");
@@ -90,19 +93,19 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		/*---------------SREG-004--------------*/
 		sleep(4000);
 		//commonFuntions.enterTextboxContains(legalName, feinValue);
-		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "23 Cooper Square");
 		commonFuntions.enterTextboxContains("City ", "NY");
-		commonFuntions.enterTextboxContains("Zip Code", "10002");
-		commonFuntions.selectDropdown("County", " Albany ");
+		commonFuntions.enterTextboxContains("Zip Code", "45435");
+		commonFuntions.selectDropdownUsingSearch("County", " Albany ");
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Navigated to SREG-025 page and enter the details");
 		commonFuntions.clickButton("Continue ");
 		sleep(2000);
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Business Physical Address Details");
 		commonFuntions.clickButton("Continue ");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
-		commonFuntions.enterTextboxContains("Address Line 1 ", "New Address 1");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "22 Cooper Square");
 		commonFuntions.enterTextboxContains("City ", "New York");
-		commonFuntions.enterTextboxContains("Zip Code", "34276");
+		commonFuntions.enterTextboxContains("Zip Code", "45435");
 		commonFuntions.safeJavaScriptClick(empPage.countyDropDown_Form1);
 		sleep();
 		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
@@ -112,9 +115,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		try {
-		empPage.location_Of_Book_AddresLine1.sendKeys("Fake Addres 2");
+		empPage.location_Of_Book_AddresLine1.sendKeys("24 Cooper Square");
 		empPage.location_Of_Book_City.sendKeys("Albany");
-		empPage.location_Of_Book_ZipCode.sendKeys("34531");
+		empPage.location_Of_Book_ZipCode.sendKeys("45435");
 		commonFuntions.safeJavaScriptClick(empPage.location_Of_Book_County);
 		sleep();
 		empPage.countyValue_Form1.click();
@@ -124,9 +127,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.screenShot("TPRRegister9", "Pass", "Entered the address for Location of Books and Records");
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Other");
 		
-		empPage.notice_potential_AddressLine_1.sendKeys("New Address 3");
+		empPage.notice_potential_AddressLine_1.sendKeys("25 Cooper Square");
 		empPage.notice_potential_City.sendKeys("New York");
-		empPage.notice_potential_Zipcode.sendKeys("34784");
+		empPage.notice_potential_Zipcode.sendKeys("45435");
 		commonFuntions.safeJavaScriptClick(empPage.notice_potential_county);
 		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
 		
@@ -156,6 +159,7 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		sleep(3000);
 		commonFuntions.screenShot("Acknowledgement", "Pass", "Statement Of Acknowledgement");
 		commonFuntions.selectCheckbox("I accept");
+		commonFuntions.populateListbox("Submitter Comments may be entered below.", "Auto Test");		
 		sleep();
 		commonFuntions.clickButton("Submit ");
 		sleep(2500);
@@ -173,7 +177,13 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
-		
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+	    commonFuntions.clickButtonContains("Search");
+	    sleep(2000);
+	    commonFuntions.screenShot("Review Employer TYpe","Pass","Review Employer Type");
+	    //commonFuntions.clickOnLink("Review Employer Type");
+	    sleep(2000);
 		
 		/*-----------------WF-091----------------*/
 		
@@ -184,26 +194,33 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		/*-----------------EEWl-002----------------*/
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
 		commonFuntions.enterTextboxContains("Date Covered Employment began?", "06/01/2023");
-		
+		commonFuntions.selectRadioQuestions("Financing Method","Reimbursable");
 		empPage.commentBox_MyQ.sendKeys("test QA ops");
 		commonFuntions.clickButton("Submit ");
-		
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		/*-----------------SUC-002----------------*/
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Employer review work item submitted");
 		commonFuntions.clickButton("Home ");
 		
 		/*-----------------Home Page----------------*/
 		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(25000);
-		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
-		commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		//commonFuntions.enterTextbox("FEIN", FEIN);
-		commonFuntions.clickButton(" Search ");
+		
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
-		sleep(2000);
-		empPage.obtain_bond_task_My_Q.click();
+		sleep();
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+	    commonFuntions.clickButtonContains("Search");
+	    sleep(2000);
+	    commonFuntions.screenShot("ObtainBondTask","Pass","Obtain Bond Task");
+	    //commonFuntions.clickOnLink("Review Employer Type");
+	    sleep(2000);
+		
+		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
+		//commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
+		//empPage.obtain_bond_task_My_Q.click();
 		sleep(3000);
 		
 		/*-----------------WF-091----------------*/
@@ -214,17 +231,78 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		
 		/*----------------SREG-803----------------*/
 		commonFuntions.screenShot("EmpRegister123", "Pass", "Navigated to SREG-803 page and entering the details");
-		commonFuntions.enterPastDate("Liability Date", 60);
-		empPage.commentBox_MyQ.sendKeys("test QA ops");
+		commonFuntions.populateListbox("Comment", "Auto Test");
+		commonFuntions.enterTextboxContains("Date Covered Employment began?", "06/01/2023");
 		commonFuntions.clickButton("Submit ");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		
 		/*-----------------SUC-002----------------*/
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Obtain Bond work item submitted");
 		commonFuntions.clickButton("Home ");
 		
-
+		commonFuntions.waitForLoadingIconToDisappear();
+		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
+		
+		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
+		sleep();
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+	    commonFuntions.clickButtonContains("Search");
+	    sleep(2000);
+	    commonFuntions.screenShot("DOLDTF","Pass","DOL DTF TASK");
+	    //commonFuntions.clickOnLink("Review Employer Type");
+	    sleep(2000);
+	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
+		commonFuntions.clickButton("Open Work Item ");
+		sleep(2000);
+	    commonFuntions.clickButton("Submit ");
+	    sleep(2000);
+	    commonFuntions.waitForLoadingIconToDisappear();
+	    commonFuntions.screenShot("EmpRegister19", "Pass", "DOL DTF work item submitted");
+		commonFuntions.clickButton("Home ");
+		
+		commonFuntions.waitForLoadingIconToDisappear();
+		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
+		
+		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
+		sleep();
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+	    commonFuntions.clickButtonContains("Search");
+	    sleep(2000);
+	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
+		commonFuntions.clickButton("Open Work Item ");
+		sleep(2000);
+		commonFuntions.screenShot("ReviewComments", "Pass", "Review Comments");
+		commonFuntions.clickButton("Submit ");
+	    sleep(2000);
+	    commonFuntions.waitForLoadingIconToDisappear();
+	    commonFuntions.screenShot("EmpRegister19", "Pass", "Review Comments work item submitted");
+		commonFuntions.clickButton("Home ");
+	    
 		
 		
+		commonFuntions.waitForLoadingIconToDisappear();
+		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
+		
+		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
+		sleep();
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+	    commonFuntions.clickButtonContains("Search");
+	    sleep(2000);
+	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
+		commonFuntions.clickButton("Open Work Item ");
+		sleep(2000);
+		commonFuntions.screenShot("NormalizeAddressTask", "Pass", "Normalize Address Task");
+		commonFuntions.clickButton("Submit ");
+	    sleep(2000);
+	    commonFuntions.screenShot("EmpRegister19", "Pass", "Normalize Address work item submitted");
+		commonFuntions.clickButton("Home ");
 		
 		
 	}

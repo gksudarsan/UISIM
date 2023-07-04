@@ -53,7 +53,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		 commonFuntions.enterTextboxContains("First Name", "AutoTestFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));		 
 		 commonFuntions.enterTextboxContains("Last Name", "AutoTestLastName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
-		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
+		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,12))),10));
 		 commonFuntions.enterTextboxContains("Email Address","autoEmail"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),4)+"@gmail.com");
 		 
 		 
@@ -213,8 +213,8 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     
 		 // blocked the test case at step26 as not able to search with fein number for peo member (getting PEO review instead of PEO member screen)
 	     
-		 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' AND COMPANY_TYPE='PRI' ORDER BY UPDATED_TS DESC","FEIN");
-			
+		 //Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' AND COMPANY_TYPE='PRI' ORDER BY UPDATED_TS DESC","FEIN");
+		 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' ORDER BY UPDATED_TS DESC","FEIN");
 			String feinNumber=databaseResults.get("FEIN");
 			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",feinNumber);
 			System.out.println(feinNumber);
@@ -297,7 +297,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.clickButtonContains("Accept & Submit");
 			sleep(2000);
 			commonFuntions.screenShot("Register/Renew Confirmation", "Pass", "Register/Renew Confirmation");
-			commonFuntions.clickButtonContains("Home");
+			//commonFuntions.clickButtonContains("Home");
 			sleep(2000);
 			commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		     sleep(2000);
@@ -317,10 +317,11 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		    commonFuntions.clickButtonContains("Open Work Item");
 		    sleep(2000);
 		    commonFuntions.screenShot("Review","Pass","Review Peo Registration");
+		    commonFuntions.enterTextboxContains("Additional name","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 		    commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);	   
 		     
-		     commonFuntions.screenShot("GeneralInfo","Pass","General Information");
+		     commonFuntions.screenShot("GeneralInfo","Pass","General Information");		     
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     sleep(2000);
 		     try {
@@ -402,7 +403,8 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     //commonFuntions.clickButtonContains("Continue");
 			     //sleep(2000);
 			     
-			     commonFuntions.selectRadio("Approved");
+			     //commonFuntions.selectRadio("Approved");
+					PEOPage.ApprovePeo.click();
 			     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
 			     commonFuntions.clickButtonContains("Submit");
 			     sleep(5000);

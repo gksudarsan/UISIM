@@ -22,7 +22,7 @@ public class EL_462_01 extends TestBase{
 		commonStepDefinitions cf = new commonStepDefinitions();
 		employerManagement em =  new employerManagement();
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOGR'", "FEIN");
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOGR' AND FEIN ='241105729'", "FEIN");
 		String FEIN = databaseResults.get("FEIN");
 		System.out.println("feinNumber is" + FEIN);
 
@@ -30,7 +30,7 @@ public class EL_462_01 extends TestBase{
 
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.clickMenu("Menu");
+		cf.clickMenu("menu");
 		cf.ScrollMenu("Professional Employer Organization (PEO)");
 		PEOPage.menuPeo.click();
 		cf.screenShot("Menu", "Pass", "Manage PEO");
@@ -42,9 +42,11 @@ public class EL_462_01 extends TestBase{
 		cf.screenShot("file1", "Pass", "Searching with FEIN ");
 		cf.clickButtonContains("search");
 		Thread.sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.selectRadioWithFeinValue(FEIN);
 		cf.clickButton("Continue ");
 		Thread.sleep(4000);
+		cf.waitForLoadingIconToDisappear();
 		cf.selectDropdown("PEO Conversion", " PEO Group to PEO Individual ");
 		cf.screenShot("DropDownValue", "Pass", "Selecting the dropdown value PEO Individual to PEO Exempt ");
 		cf.clickButtonContains(" CONVERT ");
@@ -72,6 +74,20 @@ public class EL_462_01 extends TestBase{
 		cf.clickButtonContains("Save & Continue");
 		sleep();
 		cf.screenShot("AddressInformation", "Pass", "Address Information");
+		PEOPage.addressLine1.sendKeys("addressLine1"+cf.createRandomInteger(1000,9999));
+	     PEOPage.addressLine2.sendKeys("addressLine2"+cf.createRandomInteger(1000,9999));
+	     PEOPage.addressCity.sendKeys("NewYork");
+	     PEOPage.addressZip.sendKeys("13420");
+	     sleep(2000);
+	     PEOPage.PeoCountry.click();
+	   
+	     cf.selectFromDropdown("United States");
+	     sleep(2000);
+	   
+	      
+	     cf.enterTextboxContains("Phone Number",Long.toString(cf.createRandomInteger(10000000,99999999))+Long.toString(cf.createRandomInteger(10,99)));
+	     cf.enterTextboxContains("Business Email Address","autoTest"+Long.toString(cf.createRandomInteger(10000,99999))+"@gmail.com");
+	   
 		cf.clickButtonContains("Save & Continue");
 		sleep(2000);
 		try {
