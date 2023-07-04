@@ -666,4 +666,28 @@ public class employerManagement extends TestBase
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
     public WebElement menu;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='UpdateNAICS/CountyCodeUpdateNAICS/CountyCode']")
+	public WebElement updateNAICS;
+	
+	@FindBy(how = How.XPATH, using = "//img[@alt='helpicon']/@src")
+	public WebElement helpIcon;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='accountCountyCodeId']")
+	public WebElement accountCountyCodeId;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='ownerShipId']")
+	public WebElement ownerShipIdDropDown;
+	
+	@FindBy(how = How.XPATH, using = "//span[contains(text(), ' State Gov')]")
+	public WebElement stateGovtOwnCode;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Additional Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	public WebElement additionalAddressOuterRdio;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Additional Address']//following::*[@class='mat-radio-inner-circle'][1]")
+	public WebElement additionalAddressInnerRdio;
+	
+	@FindBy(how = How.XPATH, using = "//button[@id='CIN-999access.continue']")
+	public WebElement cin999continueButton;
 }

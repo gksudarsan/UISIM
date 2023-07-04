@@ -9,6 +9,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.employerManagement;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -19,10 +20,11 @@ public class EE_10_006 extends TestBase{
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Other' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION})
 	public void TC_EE_10_006() throws Exception {
 		
-		test = report.createTest("Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Other' and work items will be created for CSR to review.");
+		test = report.createTest("EE.10.006 : Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Other' and work items will be created for CSR to review.");
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		employerManagement empManage = new employerManagement(driver);
 		
 		//GET query
 		//FEIN both in DOL & DTF
@@ -33,12 +35,13 @@ public class EE_10_006 extends TestBase{
 		String ernValue = databaseErnResult.get("ERN");
 		
 		//--- Login ---
-		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		//---Menu Click---
-		commonFunction.clickMenu("menu");
-		//commonFuntions.clickMenu("Employer Registration");
+		commonFunction.waitForLoadingIconToDisappear();
+		empManage.menu.click();
+		commonFunction.ScrollMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");
 		commonFunction.clickMenu("Register Employer");
@@ -46,6 +49,7 @@ public class EE_10_006 extends TestBase{
 		commonFunction.screenShot("EmpRegister1", "Pass", "Launched the Employer Register(SREG-001) page");
 		
 		//--- SREG-001 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.enterTextboxContains("First Name", "Antonio");
 		commonFunction.enterTextboxContains("Middle Initial", "S");
 		commonFunction.enterTextboxContains("Last Name", "Rodriguez");
@@ -58,6 +62,7 @@ public class EE_10_006 extends TestBase{
 		commonFunction.clickButton("Continue ");
 		
 		//--- SREG-025 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-025 page");
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
 		System.out.println("The FIEN is " + feinValue);
@@ -72,6 +77,7 @@ public class EE_10_006 extends TestBase{
 		sleep();
 		
 		//--- SREG-003 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister4", "Pass", "Launched Employer Entity Information(SREG-003) page");
 		empRegPage.legalNameTextBox.sendKeys("XYZ Corp");
 		commonFunction.enterTextboxContains("Other commonly known", "New Corp");
@@ -86,6 +92,7 @@ public class EE_10_006 extends TestBase{
 		commonFunction.clickButton("Continue ");
 		
 		//--- SREG-008 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Enter the details on Employer Entity Information page and click continue");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street ");
 		commonFunction.enterTextboxContains("City ", "New York");
@@ -98,10 +105,12 @@ public class EE_10_006 extends TestBase{
 		empRegPage.continueButton_popUp.click();
 		
 		//--- SREG-007 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Successfully launched Business Physical Address Details(SREG-007) page");
 		commonFunction.clickButton("Continue ");
 		
 		//--- SREG-004 ---
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
 		commonFunction.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 		commonFunction.selectRadioQuestions("Location of Books and Records", "Same as Primary Business Physical Address");

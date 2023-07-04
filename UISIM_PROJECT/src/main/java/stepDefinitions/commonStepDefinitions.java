@@ -55,10 +55,10 @@ public class commonStepDefinitions extends TestBase {
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		Thread.sleep(2000);
-		screenShot("LoginPage", "Pass", "HomePage");
+		screenShot("LoginPage", "Pass", "Home Page");
 		try {
 			loginPage.loginLink.click();
-			Thread.sleep(2000);
+			Thread.sleep(5000);
 
 //		test.log(Status.PASS, "User Launched website");
 //		driver.navigate().refresh();
@@ -70,13 +70,14 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(5000);
 
 			enterTextbox("Username", userName);
-			test.log(Status.PASS, "User entered Username");
+//			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
-			test.log(Status.PASS, "User entered Password");
+//			test.log(Status.PASS, "User entered Password");
 			
 			sleep(2000);
-			screenShot("LoginPage", "Pass", "Login Page");
-
+			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
+			//Add this to your TC after login function : test.log(Status.PASS, "Login with userRole is successful");
+			
 			Thread.sleep(3000);
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
@@ -91,11 +92,10 @@ public class commonStepDefinitions extends TestBase {
 		driver.navigate().refresh();
 		Thread.sleep(5000);
 		waitForLoadingIconToDisappear();
-		}
-		catch(Exception e) {}
+		
 		Thread.sleep(2000);
 		waitForLoadingIconToDisappear();
-		screenShot("okPopUpButton", "Pass", "okPopUp");
+		screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
@@ -112,6 +112,8 @@ public class commonStepDefinitions extends TestBase {
 //			Thread.sleep(3000);
 			waitForLoadingIconToDisappear();
 		}
+		}
+		catch(Exception e) {}
 
 		}
 	
@@ -730,14 +732,13 @@ public class commonStepDefinitions extends TestBase {
 		sleep(2000);
 		HomePage.signOut.click();
 		sleep(5000);
-		}
-		catch(Exception e) {}
+		
 		enterTextbox("Username", userName);
-		test.log(Status.PASS, "User entered Username");
+//		test.log(Status.PASS, "User entered Username");
 		enterTextbox("Password", password);
-		test.log(Status.PASS, "User entered Password");
+//		test.log(Status.PASS, "User entered Password");
 		sleep();
-		screenShot("LoginPage", "Pass", "Entered login Credentials");
+		screenShot("LoginPage", "Pass", "Logged in with "+ userName.toUpperCase());
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(10000);
 		driver.navigate().refresh();
@@ -746,6 +747,8 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(5000);
 		driver.get(prop.getProperty("applicationUrl"));
 		login(userName, password);
+		}
+		catch(Exception e) {}
 	}
 
 	public void enterFutureDate(String xpathParameter, int daysAdded) {
@@ -1004,5 +1007,5 @@ public class commonStepDefinitions extends TestBase {
 			} catch (final Exception e) {
 			}
 		}
-
+		
 }

@@ -2,6 +2,7 @@
 /*                    PLEASE DO NOT REFORMAT THIS PAGE UNNECESSARILY                    */
 package com.ui.utilities;
 
+
 public class COMMON_CONSTANT {
 
 	/* ********* Test Case Prioritization (TCP) ********* */
@@ -19,8 +20,8 @@ public class COMMON_CONSTANT {
 	/* ********* Credentials ********* */
 
 	// Customer Service Representative - CSR
-	public static final String CSR_USER_1 = "ndfjp3";
-	public static final String CSR_USER_1_PASSWORD = "Admin@1234567891";
+	public static final String CSR_USER_1 = "ndsbb3"; //invalid -- ndfjp3
+	public static final String CSR_USER_1_PASSWORD = "Brijen@1234567"; //Brijen@1234567
 
 	public static final String CSR_USER_2 = "NDDSCP"; // Snehal Patel, used in EL_03_13, EL_03_14, EL_462_09, EL_462_10
 	public static final String CSR_USER_2_PASSWORD = "uisimtesting@123";
@@ -30,6 +31,13 @@ public class COMMON_CONSTANT {
 	
 	public static final String CSR_USER_4 = "Laxmi@12";
 	public static final String CSR_USER_4_PASSWORD = "Hachiku7533991779";
+	
+	public static final String CSR_USER_5 = "NDBAS4"; //R&S Department with Research & Statistics Specialist Role
+	public static final String CSR_USER_5_PASSWORD = "Anay@123456789";
+	
+	public static final String CSR_USER_6 = "ndsbb3";
+	public static final String CSR_USER_6_PASSWORD = "Brijen@1234567";
+	
 	
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
@@ -64,7 +72,7 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_7 = "manju@20"; // Trustee User //
     public static final String EMPLOYER_USER_7_PASSWORD = "Manjupruthi@123";
 
-    public static final String EMPLOYER_USER_8 = "asahai1604"; // Corporate Officer/Owner _ new one//
+    public static final String EMPLOYER_USER_8 = "asahai1604"; // Corporate Officer/Owner _ new one//MA Specialist role
     public static final String EMPLOYER_USER_8_PASSWORD = "Anay@123456789";
 	
 	//TPR

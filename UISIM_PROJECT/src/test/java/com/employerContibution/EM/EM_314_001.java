@@ -22,7 +22,7 @@ import stepDefinitions.commonStepDefinitions;
 public class EM_314_001 extends TestBase {
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit. ", groups = {COMMON_CONSTANT.REGRESSION} )
-	public void Test_EM_413_02_002() throws Exception {
+	public void Test_EM_314_001() throws Exception {
 		
 		test = report.createTest("EM.314.001: Verify CSR is able to enter request for change method of financing to reimbursable and new ERN for employer type non profit. ");
 		
@@ -43,7 +43,7 @@ public class EM_314_001 extends TestBase {
 		
 		//---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.clickMenu("Menu");
+		empManage.menu.click();
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
 		commonFunction.ScrollMenu("Employer Account Maintenance");

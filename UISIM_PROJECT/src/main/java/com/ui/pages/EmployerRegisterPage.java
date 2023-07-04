@@ -487,5 +487,26 @@ public WebElement employerFeinId;
 
 @FindBy(how = How.XPATH, using =  "//*[@id='totalRevenue']")
 public WebElement totalRevenue;
+
+@FindBy(how = How.XPATH, using = "//*[@id='commentid']")
+public WebElement commentid;
+
+@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+public WebElement menu;
+
+@FindBy(how = How.XPATH, using = "//*[@id='comment']")
+public WebElement comment;
+
+@FindBy(how = How.XPATH, using = "//*[contains(@id, 'business Address_1')]//following::*[@class='mat-radio-inner-circle'][1]")
+public WebElement uspsBusiAddress1InnerRadio;
+
+@FindBy(how = How.XPATH, using = "//*[contains(@id, 'business')]//following::*[@class='mat-radio-outer-circle'][1]")
+public WebElement uspsBusiAddress1OuterRadio;
+
+@FindBy(how = How.XPATH, using = "//*[contains(@id, 'Address_1')]//following::*[@class='mat-radio-inner-circle'][1]")
+public WebElement uspsAddress1InnerRadio;
+
+
+
 }
 
