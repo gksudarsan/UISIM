@@ -82,7 +82,9 @@ public class commonStepDefinitions extends TestBase {
 
 
 		Thread.sleep(10000);
-
+		}catch(Exception e) {}
+		
+		try {
 		driver.navigate().refresh();
 		Thread.sleep(10000);
 		waitForLoadingIconToDisappear();
@@ -283,27 +285,29 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(2000);
 	}
 
-//	public void screenShot(String fileName, String status, String message) throws Exception {
-//		screenShot screen = new screenShot();
-//		String screenShotPath = screenShot.takeSnapShot(driver,
-//				"D:\\AutomationFiles\\Screenshots\\"
-//						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
-//						+ "_" + fileName + ".jpg");
-//		if (status.equalsIgnoreCase("Pass")) {
-//			test.log(Status.PASS, message);
-//		}else {
-//			test.log(Status.FAIL, message);
-//		}
-//		// test.info(message);
-//		test.addScreenCaptureFromPath(screenShotPath);
-//
-//	}
-//	
+/*	public void screenShot(String fileName, String status, String message) throws Exception {
+		screenShot screen = new screenShot();
+		String screenShotPath = screenShot.takeSnapShot(driver,
+				"D:\\AutomationFiles\\Screenshots\\"
+						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
+						+ "_" + fileName + ".jpg");
+		if (status.equalsIgnoreCase("Pass")) {
+			test.log(Status.PASS, message);
+		}else {
+			test.log(Status.FAIL, message);
+		}
+		// test.info(message);
+		test.addScreenCaptureFromPath(screenShotPath);
+
+	}*/
+	
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		Date currentDate = new Date();
 		String screenShotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
 		File screenshotFile = ((TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
-		File destinationFile = new File(".//screenshot"+screenShotFileName+".png");
+		//File destinationFile = new File(".//screenshot"+screenShotFileName+".png");
+		File destinationFile = new File("D:\\AutomationFiles\\Screenshots\\TestAutomationReport"+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()+ "_" + fileName + ".png");
+		
 		String absolutePath = destinationFile.getAbsolutePath();
 		FileUtils.copyFile(screenshotFile, destinationFile);
 		

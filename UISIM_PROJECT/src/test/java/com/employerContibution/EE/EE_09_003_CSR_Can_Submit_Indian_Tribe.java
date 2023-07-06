@@ -44,11 +44,12 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		sleep();
 		commonFuntions.screenShot("EmpRegister01", "Pass", "Landed on the Employer Register page");
 		commonFuntions.clickButton("Continue ");
-		
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		/*---------------SREG-025--------------*/
 		
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
-		commonFuntions.selectDropdown("Employer Type", " Indian Tribe ");
+		commonFuntions.selectDropdownUsingSearch("Employer Type", " Indian Tribe ");
 		commonFuntions.selectDropdown("Type of Legal Entity", " School ");
 		commonFuntions.screenShot("LegalEntity", "Pass", "LegalEntitySelected");
 		/*---------------FEIN--------------*/
@@ -66,8 +67,10 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		
 		/*---------------Legal Name--------------*/
 		//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
-		String legalName="BEECHWOOD CONTINUING CARE INC";
-		//String legalName="HVES ELECTRICAL INC"; 
+		//String legalName="BEECHWOOD CONTINUING CARE INC";
+		//String legalName="HVES ELECTRICAL INC";
+		//String legalName="HVESSEX LLC";
+		String legalName="BEECH AVE OWNERS CORP";
 		/*---------------Legal Name--------------*/
 		
 		
@@ -99,11 +102,16 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.selectDropdownUsingSearch("County", " Albany ");
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Navigated to SREG-025 page and enter the details");
 		commonFuntions.clickButton("Continue ");
+		sleep(4000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.safeJavaScriptClick(empPage.verifyAddressUspsAddress);
+		commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
 		sleep(2000);
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Business Physical Address Details");
 		commonFuntions.clickButton("Continue ");
+		sleep(2000);
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
-		commonFuntions.enterTextboxContains("Address Line 1 ", "22 Cooper Square");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "22 asdas asd");
 		commonFuntions.enterTextboxContains("City ", "New York");
 		commonFuntions.enterTextboxContains("Zip Code", "45435");
 		commonFuntions.safeJavaScriptClick(empPage.countyDropDown_Form1);
@@ -111,23 +119,23 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
 		sleep(2000);
 		commonFuntions.screenShot("TPRRegister8", "Pass", "Entered the address for Business Mailing Address");
-		commonFuntions.selectRadioQuestions("Location of Books and Records", "Other");
+		commonFuntions.selectRadioQuestions("Location of Books and Records", "Same as Primary Business Physical Address");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		try {
-		empPage.location_Of_Book_AddresLine1.sendKeys("24 Cooper Square");
-		empPage.location_Of_Book_City.sendKeys("Albany");
-		empPage.location_Of_Book_ZipCode.sendKeys("45435");
-		commonFuntions.safeJavaScriptClick(empPage.location_Of_Book_County);
-		sleep();
-		empPage.countyValue_Form1.click();
+		//empPage.location_Of_Book_AddresLine1.sendKeys("24 Cooper Square");
+		//empPage.location_Of_Book_City.sendKeys("Albany");
+		//empPage.location_Of_Book_ZipCode.sendKeys("45435");
+		//commonFuntions.safeJavaScriptClick(empPage.location_Of_Book_County);
+		//sleep();
+		//empPage.countyValue_Form1.click();
 		commonFuntions.enterTextbox("First Name", "Abhi");
 		commonFuntions.enterTextbox("Last Name", "Jan");
 		sleep();
 		commonFuntions.screenShot("TPRRegister9", "Pass", "Entered the address for Location of Books and Records");
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Other");
 		
-		empPage.notice_potential_AddressLine_1.sendKeys("25 Cooper Square");
+		empPage.notice_potential_AddressLine_1.sendKeys("25 sres sts");
 		empPage.notice_potential_City.sendKeys("New York");
 		empPage.notice_potential_Zipcode.sendKeys("45435");
 		commonFuntions.safeJavaScriptClick(empPage.notice_potential_county);
@@ -141,6 +149,12 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.screenShot("TPRRegister10", "Pass", "Entered the address for Notice of Potential Charges (LO400) Address");
 		commonFuntions.clickButton("Continue ");
 		sleep();
+		try {
+		sleep(4000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.safeJavaScriptClick(empPage.verifyAddressUspsAddress);
+		commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		}catch(Exception e) {}
 		commonFuntions.screenShot("TPRRegister11", "Pass", "Navigated to SREG-521 page");
 		commonFuntions.clickButton("Continue ");
 		sleep(4000);
@@ -175,6 +189,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
 		
+		sleep(5000);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	    
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
@@ -182,7 +199,7 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 	    commonFuntions.clickButtonContains("Search");
 	    sleep(2000);
 	    commonFuntions.screenShot("Review Employer TYpe","Pass","Review Employer Type");
-	    //commonFuntions.clickOnLink("Review Employer Type");
+	    commonFuntions.clickOnLink("Review Employer Type");
 	    sleep(2000);
 		
 		/*-----------------WF-091----------------*/
@@ -207,7 +224,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+		sleep(5000);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	    
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
@@ -215,7 +234,7 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 	    commonFuntions.clickButtonContains("Search");
 	    sleep(2000);
 	    commonFuntions.screenShot("ObtainBondTask","Pass","Obtain Bond Task");
-	    //commonFuntions.clickOnLink("Review Employer Type");
+	    commonFuntions.clickOnLink("Obtain Bond Task");
 	    sleep(2000);
 		
 		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
@@ -232,7 +251,9 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		/*----------------SREG-803----------------*/
 		commonFuntions.screenShot("EmpRegister123", "Pass", "Navigated to SREG-803 page and entering the details");
 		commonFuntions.populateListbox("Comment", "Auto Test");
-		commonFuntions.enterTextboxContains("Date Covered Employment began?", "06/01/2023");
+		commonFuntions.enterTextboxContains("Date covered employment began?", "06/01/2023");
+		commonFuntions.enterTextboxContains("Liability Date", "01/06/2023");
+		
 		commonFuntions.clickButton("Submit ");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -266,13 +287,18 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+		sleep(5000);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	    
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
 	    sleep(2000);
+	    commonFuntions.clickOnLink("Review Comments");
+	    sleep(2000);
+		
 	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(2000);
@@ -288,13 +314,15 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+		sleep(5000);
+		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	    
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
-	    sleep(2000);
+	    sleep(2000);	    
 	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(2000);
