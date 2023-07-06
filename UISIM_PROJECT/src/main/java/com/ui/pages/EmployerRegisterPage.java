@@ -534,15 +534,8 @@ public WebElement menuButtonHomepage;
 @FindBy(how = How.XPATH, using = "//mat-label[text()='usps address']/ancestor::app-row-labels/following-sibling::app-radio[3]//mat-radio-button[2]//span/span[@class='mat-radio-outer-circle']")
 public WebElement uspsCommonButton3;
 
-
-@FindBy(how = How.XPATH, using = "//*[@id='commentid']")
-public WebElement commentid;
-
 @FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
 public WebElement menu;
-
-@FindBy(how = How.XPATH, using = "//*[@id='comment']")
-public WebElement comment;
 
 @FindBy(how = How.XPATH, using = "//*[contains(@id, 'business Address_1')]//following::*[@class='mat-radio-inner-circle'][1]")
 public WebElement uspsBusiAddress1InnerRadio;
