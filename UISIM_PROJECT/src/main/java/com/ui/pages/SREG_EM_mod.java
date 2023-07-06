@@ -56,5 +56,17 @@ public class SREG_EM_mod {
 	//310 series ---SREG 011
 	@FindBy (how = How.XPATH, using = "//textarea")
 	public WebElement LegalNameOfBusiness;
+	
+	//SREG 524
+
+@FindBy(how = How.XPATH, using = ".//*[@data-label='Joint Employment Start Date']//input[@id='dataTableId'][1]")
+public WebElement JointEmploymentStartDate;
+
+@FindBy(how = How.XPATH, using = "//*[.='Joint Employment/Management Agreement Arrangement ']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[5]//input[1]")
+public WebElement JointEmploymentStartDate1;
+
+@FindBy(how = How.XPATH, using = "//*[.='Joint Employment/Management Agreement Arrangement ']//following::*[contains(@id ,'dataTable')][1]/mat-row[2]/mat-cell[5]//input[1]")
+public WebElement JointEmploymentStartDate2;
+
 }
 

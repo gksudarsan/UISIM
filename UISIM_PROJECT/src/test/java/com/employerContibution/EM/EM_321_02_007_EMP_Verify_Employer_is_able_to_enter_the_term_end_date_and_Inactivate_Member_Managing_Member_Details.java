@@ -25,7 +25,7 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		
 		//------Login
 		//CommFun.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_1,COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD );
+		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_8,COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD );
 		//CommFun.login("manju@2004", "Manhar2004@1234");
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
@@ -35,7 +35,7 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		
 		sleep(2000);
 		CommFun.screenShot("Menu", "Pass", "Menu page");
-		CommFun.clickMenu("Menu");
+		CommFun.clickMenu("menu");
 		sleep(2000);
 		CommFun.ScrollMenu("Account Maintenance");
 		home.accountMaintenance.click();
@@ -44,8 +44,8 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		home.MaintainBusinessOwnership.click();
 		sleep(2000);
 		
-		//-----SREG 074
-		CommFun.screenShot("Partners Details", "Pass", "Successfully landed on SREG 074");
+		//-----SREG 706
+		CommFun.screenShot("Member managing Details", "Pass", "Successfully landed on SREG 706");
 		sleep(2000);
 		//CommFun.selectDateInTable("action", 10, 1, "Individual as Partner ", "inactive");
 		//CommFun.selectTableParameterizedId("inactive", 10, 1, "Individual as Partner ", "dataTableId");
@@ -57,13 +57,13 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		sleep(2000);
 		
 		
-		//------SREG 073
-		CommFun.screenShot("Edit Partnership Details", "Pass", "Successfully landed on SREG 073");
+		//------SREG 707
+		CommFun.screenShot("Edit mamber managing Details", "Pass", "Successfully landed on SREG 707");
 		sleep(2000);
 		//Term End Date
 		CommFun.enterTextboxContains("Term End Date", "05/13/2023");
 		sleep(2000);
-		CommFun.screenShot("Edit Partnership Details", "Pass", "entered information on SREG 073");
+		CommFun.screenShot("Edit mamber managing Details", "Pass", "Successfully landed on SREG 707");
 		sleep(2000);
 		CommFun.clickButton("Submit ");
 		
