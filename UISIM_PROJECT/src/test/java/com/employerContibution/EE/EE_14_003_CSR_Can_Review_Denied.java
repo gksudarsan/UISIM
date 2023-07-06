@@ -47,8 +47,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		
 		
 		
-	/*---------------SREG-025--------------*/
-		
+	    /*---------------SREG-025--------------*/
 		commonFuntions.screenShot("General Information", "Pass", "Navigated to SREG-025 page and enter the details");
 		sleep(2000);
 		
@@ -115,7 +114,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		
 		sleep(4000);
 		
-		commonFuntions.screenShot("EmpRegister6", "Pass", "Navigated to SREG-007 page");
+		commonFuntions.screenShot("Business physical Address details", "Pass", "Navigated to SREG-007 page");
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		
@@ -123,13 +122,13 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		/*-----------------SREG-004----------------*/
 		
 		sleep(3000);
-		commonFuntions.screenShot("TPRRegister7", "Pass", "Navigated to SREG-004 page and entering the details");
+		commonFuntions.screenShot("Emp contact details", "Pass", "Navigated to SREG-004 page and entering the details");
 		sleep(2000);
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
 		sleep();
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Primary Business Physical Address");
 		sleep();
-		commonFuntions.screenShot("TPRRegister9", "Pass", "Selected Same as Same as Primary Business Physical Address for Notice of Potential Charges (LO400) Address");
+		commonFuntions.screenShot("Emp contact details", "Pass", "Selected Same as Same as Primary Business Physical Address for Notice of Potential Charges (LO400) Address");
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		
@@ -146,10 +145,7 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		commonFuntions.selectLink("Supporting documents like 501(c)(3) Exemptions, Lessor contracts, ", "Browse");
 		//commonFuntions.safeJavaScriptClick(empPage.browserLink);
 		sleep(2000);
-		
-		
 		commonFuntions.uploadDoc("Sample.docx");
-	     
 		Thread.sleep(4000);
 		commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents:SREG-683");
 		sleep(2000);
@@ -168,22 +164,12 @@ public class EE_14_003_CSR_Can_Review_Denied extends TestBase{
 		
 		commonFuntions.selectRadioQuestions("Suppress Correspondence?", "Yes ");
 		sleep(2000);
-		
-		
+	
 		commonFuntions.clickButton("Continue ");
 		sleep(2000);
 		commonFuntions.clickButtonContains(" Yes ");
-		
-		/*for (String windowHandle : driver.getWindowHandles()) {
-			if(!originalWindow.contentEquals(windowHandle)) {
-			driver.switchTo().window(windowHandle);
-			break;
-			}
-			}*/
-		
-	
-		
-		/*-----------------SREG-800----------------*/
+
+		//-----------------SREG-800----------------*/
 		
 commonFuntions.screenShot("Review Registration Details", "Pass", "Navigated to SREG-004 page and update the address");
 sleep(2000);
@@ -196,10 +182,10 @@ sleep(2000);
 commonFuntions.selectRadioQuestions("Location of Books and Records", "Same as Primary Business Physical Address");
 sleep(2000);
 commonFuntions.clickButton("Continue ");
-//------SREG 800
+//----------SREG 800
 sleep(2000);
 commonFuntions.safeJavaScriptClick(empPage.upload_Document_Edit_Button);
-//---SREG 638
+//----------SREG 638
 sleep(3000);
 commonFuntions.screenShot("EmpRegister11", "Pass", "Navigated to SREG-683 page and uploading the document");
 sleep(2000);
@@ -220,9 +206,7 @@ sleep(10000);
 sleep(2000);
 		commonFuntions.safeJavaScriptClick(empPage.general_Info_Edit_Button);
 //------SREG 025
-		//Map<String, String> FeinOutput2 =  commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd ORDER BY UPDATED_TS", "FEIN");
-		//String feinValueNew = FeinOutput2.get("FEIN");
-		//System.out.println("FEIN 1 : : " +feinValueNew);
+		
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(12, 12))), 11));
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", " Business ");
@@ -291,9 +275,8 @@ sleep(2000);
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		
-/*-----------------SREG-007----------------*/
-		//commonFuntions.selectRadioQuestions("usps address", "6263HP ROAD");
-		
+ //-------SREG-007----------------*/
+
 	
 		try {
             try {
@@ -310,12 +293,6 @@ sleep(2000);
 		commonFuntions.screenShot("Business Physical Address Details", "Pass", "Navigated to SREG-007 page");
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
-		
-		
-
-		//getting diff screen
-		
-	  // Expected SREG 011 -- Actual SREG 004
 		
 		//-------SREG 011
 		sleep(2000);
@@ -372,36 +349,33 @@ sleep(2000);
 				sleep(2000);
 				commonFuntions.clickButton("Continue ");
 				
-				
-				
-				//getting diff screen
-				
-				
-				
-				
-				
+				sleep(2000);
+				commonFuntions.clickButton("Continue ");
+		
 				
 				//------SREG -006	
 				sleep(2000);
 				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page");
 				sleep(2000);
-				commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Business Entity");
+				commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Individual");
 				sleep(2000);
-				commonFuntions.enterTextboxContains("Entity Name", "Bussiness");
+				commonFuntions.enterTextboxContains("Entity Name", "Private");
 				sleep(2000);
 				commonFuntions.selectDropdown("Title", " President ");
 				sleep(2000);
 				
 				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", "Navigated to SREG-006 page and entering the details");
 				sleep(2000);
+				commonFuntions.enterTextboxContains("First Name", "Sona");
+				sleep(2000);
+				commonFuntions.enterTextboxContains("Last Name", "Nema");
+				sleep(2000);
 				commonFuntions.enterTextboxContains("Address Line 1 ", "567HPKL");
 				sleep(2000);
-				commonFuntions.enterTextboxContains("City ", "NY");
+				commonFuntions.enterTextboxContains("City ", "Newyork");
 				sleep(2000);
-				commonFuntions.enterTextboxContains("Zip Code", "98602");
+				commonFuntions.enterTextboxContains("Zip Code", "88602");
 				sleep(2000);
-				//commonFuntions.selectDropdown("County", " Albany ");
-				//sleep(2000);
 				commonFuntions.screenShot("Add Corporate Officer/Owner", "Pass", " SREG-006 page and entered the details");
 				sleep(2000);
 				commonFuntions.clickButton("Continue ");
@@ -426,7 +400,7 @@ sleep(2000);
 						
 				
 				
-				
+				//------Completed by Palak
 				
 		
 		

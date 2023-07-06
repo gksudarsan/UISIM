@@ -16,11 +16,11 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class ERM_408_03_002_Verify_CSR_can_update_Beginning_Liability_Date_an_verify_the_rate_which_will_recalculated_into_a_previous_quarter_rate_increase extends TestBase {
+public class ERM_408_11_001_Verify_system_calculated_rate_when_CSR_process_void_transfer_with_reason_of_voiding_transfer_is_Effective_Date_Change extends TestBase {
 	@Test
-	public void ERM_408_03_002() throws Exception
+	public void ERM_408_10_001() throws Exception
 	{
-test = report.createTest("Verify CSR is able to update employer 'Beginning Liability Date' of an existing employer account.");
+test = report.createTest("ERM_408_11_00_Verify system calculated rate when CSR process void transfer with reason of voiding transfer is \"Effective Date Change\"");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
@@ -33,43 +33,52 @@ test = report.createTest("Verify CSR is able to update employer 'Beginning Liabi
 		System.out.println("EAN value is " + eanValue);
 		
 		//--- Login ---
-		commonFunction.login(COMMON_CONSTANT.CSR_USER_2.toUpperCase(), COMMON_CONSTANT.CSR_USER_2_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
+		//--------TC: ERM.414.001
 		//---Menu Click---
 		commonFunction.clickMenu("menu");
 		commonFunction.ScrollMenu("Account Maintenance");
 		commonFunction.clickMenu("Account Maintenance");
 		commonFunction.ScrollMenu("Employer Account Maintenance");
 		commonFunction.clickMenu("Employer Account Maintenance");
-		sleep();
+		sleep(2000);
 		commonFunction.screenShot("NavigationMenu", "Pass", "Navigated to Menu -> Account Maintenance -> Employer Account Maintenance -> Maintain Accounts");
-		commonFunction.clickMenu("Maintain Accounts");
-		sleep();
+		commonFunction.ScrollMenu("Void Transfer");
+		commonFunction.clickMenu("Void Transfer");
+		sleep(2000);
 		
-		// --- SREG-027 ---
+        //SREG 541
+		commonFunction.screenShot("Void Transfer", "Pass", "Successfully landed on SREG 541");
+		commonFunction.enterTextboxContains("Employer Registration Number","2601754");
+		commonFunction.clickButtonContains(" Search ");
 		sleep(2000);
-		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-027 page");
-		commonFunction.enterTextbox("Employer Registration Number", eanValue); //5544592
-		sleep();
-		commonFunction.screenShot("EM413001", "Pass", "Entered ERN and clickd on Continue");
-		commonFunction.clickButton("Continue ");
+		commonFunction.screenShot("Void Transfer", "Pass", "entered ERN on SREG 541");
 		
-		// --- SREG-030 ---
-		sleep(2000);
-		commonFunction.screenShot("EM413001", "Pass", "Successful launch to SREG-030 page");
-		sleep();
-		commonFunction.selectDropdown("Quarter ", " 2 ");
-		sleep(2000);
-		commonFunction.selectDropdown("Year ", " 2022 ");
-		sleep(2000);
-		commonFunction.selectDropdown("Source", " IA602 ");
-		sleep(2000);
-		commonFunction.selectDropdown("Source Type", " Coverage Exception ");
-		sleep(2000);
-		commonFunction.screenShot("EM413001", "Pass", "Updated data and Submitted");
-		sleep(2000);
-		commonFunction.clickButton("Submit ");
+		//--inprog
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		// --- SUC-002 ---
 		sleep(2000);
@@ -192,7 +201,6 @@ test = report.createTest("Verify CSR is able to update employer 'Beginning Liabi
 		
 		//--------SREG 063
 		commonFunction.screenShot("EstimatedWgaesPage", "Pass", "Successfully landed on ERM 063 Page");
-		
 		commonFunction.clickOnLink("0");
 		//commonFunction.selectTableWithoutId("Current Year Wages", 2, 3, "Ledger after Transaction");
 		sleep(6000);

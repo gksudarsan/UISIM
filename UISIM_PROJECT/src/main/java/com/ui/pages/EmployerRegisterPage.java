@@ -359,6 +359,17 @@ public class EmployerRegisterPage extends TestBase {
 	public WebElement agent_CO_County;
 	
 	//Palak
+	
+
+@FindBy(how = How.XPATH, using = "//*[@id='commentid']")
+public WebElement commentid;
+
+@FindBy(how = How.XPATH, using = "//*[@id='comment']")
+public WebElement comment;
+
+@FindBy(how = How.XPATH, using = "//*[@id='Comment']")
+public WebElement Comment;
+	
 	@FindBy(how = How.XPATH, using = "//*[@id='bmadmailingAddressId_attention']")
 	public WebElement uspsBmadAddressAttention;
 	@FindBy(how = How.XPATH, using = "//*[@id='AccountMaintenance']")

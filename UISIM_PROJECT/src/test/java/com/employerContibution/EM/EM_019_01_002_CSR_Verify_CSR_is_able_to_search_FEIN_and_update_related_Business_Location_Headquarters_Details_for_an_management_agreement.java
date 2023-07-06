@@ -11,18 +11,20 @@ import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_EM_mod;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 @Listeners(com.ui.utilities.ListenerTest.class)
 public class EM_019_01_002_CSR_Verify_CSR_is_able_to_search_FEIN_and_update_related_Business_Location_Headquarters_Details_for_an_management_agreement extends TestBase {
 		
-		@Test(priority=1, description = "EM_019_01_001Verify CSR is able to FEIN  and update related Business Location/ Headquarters Details’ for an management agreement.",groups = {"Regression"})
+		@Test(priority=1, description = "EM_019_01_002_Verify CSR is able to FEIN  and update related Business Location/ Headquarters Details’ for an management agreement.",groups = {"Regression"})
 		public void EM_019_01_002() throws Exception
 		{
 			commonStepDefinitions CommFun= new commonStepDefinitions();
 			PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 			HomePage home = new HomePage(driver);
+			SREG_EM_mod sreg = new SREG_EM_mod(driver);
 			EmployerRegisterPage emp = new EmployerRegisterPage(driver);
 			test = report.createTest("EM_019_01_002_Verify CSR is able to search FEIN and update related Business Location/ Headquarters Details’ for an management agreement.");
 		//-------Login
@@ -31,14 +33,14 @@ public class EM_019_01_002_CSR_Verify_CSR_is_able_to_search_FEIN_and_update_rela
 		CommFun.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		sleep(2000);
 		
-		Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE FEIN IS NOT NULL AND EAN LIKE '9%' AND ORGANIZATION_TYPE = 'CORP' AND EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_PARTNER tep GROUP BY EMPLOYER_ACCOUNT_ID HAVING COUNT(EMPLOYER_ACCOUNT_ID) > 1)","EAN");
+		Map<String, String> databaseResults = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IS NOT NULL AND ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL","EAN");
 		 
 		String ErnNum=databaseResults.get("EAN");
 		//CommFun.enterTextboxContains("Employer Registration Number",ErnNum);
 		System.out.println(ErnNum);
 		sleep(2000);
 		
-		Map<String, String> databaseResults1 = CommFun.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE FEIN IS NOT NULL AND EAN LIKE '9%' AND ORGANIZATION_TYPE = 'CORP' AND EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_PARTNER tep GROUP BY EMPLOYER_ACCOUNT_ID HAVING COUNT(EMPLOYER_ACCOUNT_ID) > 1)","FEIN");
+		Map<String, String> databaseResults1 = CommFun.database_SelectQuerySingleColumn("SELECT  * FROM T_EMPLOYER_ACCOUNT tea WHERE  REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC","FEIN");
 		 
 		String FeinNum=databaseResults1.get("FEIN");
 		//CommFun.enterTextboxContains("Employer Registration Number",ErnNum);
@@ -48,7 +50,7 @@ public class EM_019_01_002_CSR_Verify_CSR_is_able_to_search_FEIN_and_update_rela
 		
 		//------Menu
 		CommFun.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		CommFun.clickMenu("Menu");
+		CommFun.clickMenu("menu");
 		CommFun.ScrollMenu("Account Maintenance");
 		CommFun.screenShot("Menu", "Pass", "Account Maintenance");
 		CommFun.clickMenu("Account Maintenance");
@@ -77,23 +79,20 @@ public class EM_019_01_002_CSR_Verify_CSR_is_able_to_search_FEIN_and_update_rela
 				//------SREG 110
 				CommFun.screenShot("Joint Employment/Management Agreements", "Pass", "Successfully landed on SREG 110");
 				sleep(2000);
-				//CommFun.enterTextboxContains("Legal Name of Business","Testing");
-				//sleep(2000);
-				//CommFun.enterTextboxContains("FEIN",FeinNum);
 				emp.employerFeinId.sendKeys(FeinNum);
+				
 				sleep(2000);
-				//CommFun.enterTextboxContains("Employer Registration Number (ERN)",ErnNum);
 				CommFun.screenShot("Joint Employment/Management Agreements ", "Pass", "Entered details on SREG 110");
 				sleep(2000);
 				CommFun.clickButton(" Search ");
-				sleep(4000);
-				CommFun.selectRadioInTable(FeinNum , 1, 1, "Joint Employment/Management Agreements");
-				//CommFun.selectRadio("Select");
+				CommFun.waitForLoadingIconToDisappear();
+				CommFun.selectRadioInTable("Select", 1, 1, "Joint Employment/Management Agreements");
+				CommFun.selectRadio("Select");
 				sleep(2000);
 				CommFun.screenShot("Joint Employment/Management Agreements ", "Pass", "selected details on SREG 110");
 				sleep(2000);
 				CommFun.clickButton("Continue ");
-				sleep(2000);
+				CommFun.waitForLoadingIconToDisappear();
 				
 				//------SREG -007
 				CommFun.selectRadioQuestions("Select one", "Management Agreement");
@@ -105,9 +104,64 @@ public class EM_019_01_002_CSR_Verify_CSR_is_able_to_search_FEIN_and_update_rela
 				home.commentBox.sendKeys("Testing");
 				sleep(2000);
 				CommFun.clickButton("Continue ");
+				CommFun.waitForLoadingIconToDisappear();
+				//---Another  one
+				//-----_SREG 114 -------
+				CommFun.screenShot("Verify Joint Employment or Management Agreement", "Pass", "Entered details on SREG -014");
 				sleep(2000);
-				CommFun.enterTextboxContains("Claimant ID", "4511529");
-				CommFun.screenShot("Home", "Pass", "Home element getting ");
+				CommFun.clickOnLinkAnchorTag(" Add Another Related Business ");
+				sleep(2000);
+				//-----_SREG 110 -------
+				CommFun.screenShot("Joint Employment/Management Agreements", "Pass", "Successfully landed on SREG 110");
+				sleep(2000);
+				emp.employerFeinId.sendKeys(FeinNum);
+				sleep(2000);
+				CommFun.screenShot("Joint Employment/Management Agreements ", "Pass", "Entered details on SREG 110");
+				sleep(2000);
+				CommFun.clickButton(" Search ");
+				sleep(4000);
+				CommFun.selectRadioInTable("Select", 1, 1, "Joint Employment/Management Agreements");
+				CommFun.selectRadio("Select");
+				sleep(2000);
+				CommFun.screenShot("Joint Employment/Management Agreements ", "Pass", "selected details on SREG 110");
+				sleep(2000);
+				CommFun.clickButton("Continue ");
+				sleep(2000);
 				
-				//geting sys failure after step 7 
+				//------SREG -007
+				CommFun.selectRadioQuestions("Select one", "Management Agreement");
+				sleep(2000);
+				CommFun.selectRadioQuestions("Are businesses financially related, with the same principal(s) owning 50% or more of each business?", "Yes ");
+				sleep(2000);
+				CommFun.selectRadioQuestions("Is there a management agreement in place allowing one entity to hire, fire, supervise, direct and control the employees of another entity?", "Yes ");
+				sleep(2000);
+				home.commentBox.sendKeys("Testing");
+				sleep(2000);
+				CommFun.clickButton("Continue ");
+				
+				
+				//-----_SREG 114 -------
+				CommFun.screenShot("Verify Joint Employment or Management Agreement", "Pass", "Entered details on SREG -014");
+				sleep(2000);
+				CommFun.clickButton("Continue ");
+				sleep(3000);
+				
+				//-----_SREG 524 -------
+				CommFun.screenShot("Joint Employment/Management Agreement Arrangement", "Pass", "Entered details on SREG -524");
+				sleep(2000);
+				sreg.JointEmploymentStartDate1.sendKeys("09/12/2022");
+				sleep(2000);
+				sreg.JointEmploymentStartDate1.sendKeys("09/09/2022");
+				sleep(2000);
+				CommFun.clickButton("Submit ");
+				CommFun.waitForLoadingIconToDisappear();
+				CommFun.screenShot("Home", "Pass", "Successfully landed on home page ");
+				
+				
+				sleep(2000);
+				CommFun.screenShot("Home", "Pass", "TC:EM_019_01_002 Passed successfully");
+				
+				//-----TC completed 
+				
+				
 			}}
