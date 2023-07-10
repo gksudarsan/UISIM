@@ -6,6 +6,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
+import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -13,24 +14,31 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EL_462_09 extends TestBase{
+public class EL_462_09_CSR_DeletePeoMember_PeoGroupMoreThanOnePeoMember extends TestBase{
 	
-	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "EL.462.09 - Verify CSR can Delete PEO members if PEO Group exist more than one PEO member.", groups = { COMMON_CONSTANT.REGRESSION })
-	public void Test_EL_462_09() throws Exception {
+	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can Delete PEO members if PEO Group exist more than one PEO member.", groups = { COMMON_CONSTANT.REGRESSION })
+	public void TC_EL_462_09() throws Exception {
+		
+		test = report.createTest("EL.462.09 - Verify CSR can Delete PEO members if PEO Group exist more than one PEO member.");
 		
 		commonStepDefinitions commonFunctions = new commonStepDefinitions();
-		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-
-		test = report.createTest("EL.462.09 - Verify CSR can Delete PEO members if PEO Group exist more than one PEO member.");
-		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFunctions.login(COMMON_CONSTANT.CSR_USER_2, COMMON_CONSTANT.CSR_USER_2_PASSWORD);
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		EmployerRegisterPage employeeLeasing = new EmployerRegisterPage(driver);
+		
+		// --- Login ---
+		commonFunctions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunctions.screenShot("ApplicationLogin", "Pass", COMMON_CONSTANT.LOGIN_SUCCESS);
 
-		commonFunctions.clickMenu("Menu");
+		// --- Navigation ---
+		commonFunctions.waitForLoadingIconToDisappear();
+		employeeLeasing.menu.click();
 		commonFunctions.ScrollMenu("Professional Employer Organization (PEO)");
-		PEOPage.menuPeo.click();
-		commonFunctions.screenShot("Menu", "Pass", "Manage PEO");
-		driver.findElement(By.xpath(".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")).click();
+		peoPage.menuPeo.click();
+		sleep(1500);
+		commonFunctions.screenShot("Menu", "Pass", "Navigated to Menu -> Professional Employer Organization -> Manage PEO");
+		peoPage.managePeoInMenu.click();
+		
+		
 		commonFunctions.screenShot("PeoSearchPage", "Pass", "Search for PEO Page");
 		
 		commonFunctions.enterTextboxContains("PEO Name", "Exempt");
@@ -46,12 +54,9 @@ public class EL_462_09 extends TestBase{
 		
 		commonFunctions.clickButtonContains("Continue");
 		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "Group PEO Details");
+
 		
-		//manual step 5 ends here
-		
-		/* manual step 6 failed */
-		
-		commonFunctions.screenShot("ManageGroupPeoPage", "Fail", COMMON_CONSTANT.MANUAL_FAILURE_AT_THIS_STEP);
+		commonFunctions.screenShot("ManageGroupPeoPage", "Pass", "TC EL.462.09 passed successfully.");
 	}
 
 }

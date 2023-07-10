@@ -34,10 +34,27 @@ public class RAD_246_007_CSR_ErnWriteOffPayment_DebtAdjustmentPayment_AmountLess
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Contribution Return Adjustment -> Adjust Contribution Return");
 		commonFunction.clickMenu("Adjust Contribution Return");
 		
+		// --- TWR-901 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("RAD246007", "Pass", "Successfully launched Enter Split Rate Quarter(TWR-901) page");
+		commonFunction.enterTextboxContains("Employer Registration Number", "9311967");
+		commonFunction.selectDropdownEquals("Return Type", " Estimated ");
+		commonFunction.selectDropdownEquals("Quarter", " 4 ");
+		commonFunction.enterTextboxContains("Year", "2022");
+		sleep(1500);
+		commonFunction.screenShot("RAD246007", "Pass", "Entered data in TWR-901 page");
 		
-		
-		// yet to code, awaiting dev response
+		commonFunction.clickButtonContains(" Search ");
+		sleep(2000);
+		commonFunction.screenShot("RAD246007", "Pass", "Data present with the above ERN after search in TWR-901 page");
 	    
+		commonFunction.selectRadioInTable("Estimated", 1, 1, "");
+		commonFunction.selectDropdownEquals("Reason for Adjustment", " Fix Erroneous Transaction ");
+		radLocators.reasonForAdjustmentComment.sendKeys("Ok tested");
+		commonFunction.screenShot("RAD246007", "Pass", "Entered data in TWR-901 page");
+		commonFunction.clickButtonContains("Continue ");
+		
+		// incomplete script, data unavailable.
 	 
 	    commonFunction.waitForLoadingIconToDisappear();
 	    sleep(2000);
