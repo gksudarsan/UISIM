@@ -74,4 +74,7 @@ public class ReturnAdjustmentDeterminationLocators extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Comments']//following::*[contains(@id,'mat-input')]")
 	public WebElement comment;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Comments']//following::*[contains(@id,'reasonForAdjustmentOtherId')]")
+	public WebElement reasonForAdjustmentComment;
 }

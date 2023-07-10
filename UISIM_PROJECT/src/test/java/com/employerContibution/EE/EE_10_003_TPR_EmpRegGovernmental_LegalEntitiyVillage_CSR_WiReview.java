@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
@@ -14,7 +15,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class EE_10_003 extends TestBase{
+public class EE_10_003_TPR_EmpRegGovernmental_LegalEntitiyVillage_CSR_WiReview extends TestBase{
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION} )
 	public void TC_EE_10_003() throws Exception {
@@ -45,23 +46,23 @@ public class EE_10_003 extends TestBase{
 		String legalName = databaseEntityNameResult.get("ENTITY_NAME");
 		System.out.println("The LegalName is " + legalName);
 		
+		
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
-		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
+		test.log(Status.PASS, "Login with TPR is successful");
 		
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.clickMenu("Menu");
-		// commonFuntions.clickMenu("Employer Registration");
+		empRegPage.menu.click();
+		commonFunction.ScrollMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
+		sleep();
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");
-		commonFunction.clickMenu("Register Employer");
-		// commonFunction.safeJavaScriptClick(empPage.employerRegisterMenu);
-		sleep(2000);
-		commonFunction.screenShot("EmpRegister1", "Pass", "Launched the Employer Register(SREG-001) page");
+		commonFunction.clickMenu("Register Employer");		
 		
 		// --- SREG-001 ---
 		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EmpRegister1", "Pass", "Launched the Employer Register(SREG-001) page");
 		commonFunction.enterTextboxContains("First Name", "Antonio");
 		commonFunction.enterTextboxContains("Middle Initial", "S");
 		commonFunction.enterTextboxContains("Last Name", "Rodriguez");
@@ -80,9 +81,9 @@ public class EE_10_003 extends TestBase{
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-025 page");
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue); //897397325
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "459749876"); //45-9749876
 		commonFunction.selectDropdown("Type of Legal Entity", " Village ");
-		commonFunction.enterTextboxContains("Employer Registration Number", eanValue); //4543352
+		commonFunction.enterTextboxContains("Employer Registration Number", "4891116"); //48-91116
 		sleep(2000);
 		commonFunction.screenShot("EmpRegister4", "Pass", "Details entered and click on CONTINUE button");
 		commonFunction.clickButton("Continue ");
@@ -90,9 +91,9 @@ public class EE_10_003 extends TestBase{
 		// --- SREG-003 ---
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Launched Employer Entity Information(SREG-003) page");
-		empRegPage.legalNameTextBox.sendKeys(legalName); //ColorEseence122
+		empRegPage.legalNameTextBox.sendKeys("TID WTH"); //TID WTH
 		//empRegPage.legalNameTextBox.sendKeys("B Legal Corp");
-		//commonFunction.enterTextboxContains("Other commonly known", "S Corp");
+		commonFunction.enterTextboxContains("Other commonly known name of entity", "Test Corp");
 		commonFunction.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFunction.createRandomInteger(10000000, 99999999)) + Long.toString(commonFunction.createRandomInteger(10, 99)));
 		sleep(2000);
 		commonFunction.screenShot("EmpRegister6", "Pass", "Details entered in SREG-003 page");
@@ -105,8 +106,12 @@ public class EE_10_003 extends TestBase{
 		commonFunction.clickButton("Continue ");
 		
 		sleep();
+		try {
 		commonFunction.screenShot("EmpRegister7", "Pass", "Warning message on Continue");
 		commonFunction.clickButton(" Yes ");
+		} catch(Exception exception) {
+			
+		}
 		
 		// --- SREG-008 ---
 		commonFunction.waitForLoadingIconToDisappear();
@@ -127,15 +132,16 @@ public class EE_10_003 extends TestBase{
 			empRegPage.uspsBusinessAddressInnerCircle.click();
 		}
 		
+		try {
 		commonFunction.screenShot("EmpRegister10", "Pass", "USPS Business address selection on SREG-008");
 		empRegPage.continueButton_popUp.click();
+		} catch(Exception exception) {}
 		
 		// --- SREG-007 ---
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister11", "Pass", "Successfully launched Business Physical Address Details(SREG-007) page");
 		commonFunction.clickButton("Continue ");
 
-		//execution doc unavailable in MC. Page anomaly for SREG-004, on selection of Primary address radio selection, no data is populating.
 		// --- SREG-004 ---
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister12", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
@@ -184,11 +190,89 @@ public class EE_10_003 extends TestBase{
 			sleep(2000);
 		}
 		
-		System.out.println("Pass :)");
 		// --- SREG-521 ---
-		// SREG 683 expected. Failed after step 10.
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EmpRegister16", "Pass", "Successfully launched Employer Verify Contact Details(SREG-521) page");
+		commonFunction.clickButton("Continue ");
 		
-		commonFunction.screenShot("EmpRegister15", "Fail", "System launched SREG-521 page, Expected as MC SREG-683 page");
-
+		// --- SREG 683 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EmpRegister17", "Pass", "Successfully launched Upload Documents(SREG-683) page");
+		commonFunction.selectLink(" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.", "Browse");
+ 		sleep(2000);
+ 		commonFunction.uploadDoc("Sample.docx");
+ 		sleep(2000);
+ 		commonFunction.screenShot("EmpRegister17", "Pass", "Sample document uploaded");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG 800 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		sleep(2000);
+		commonFunction.screenShot("EmpRegister18", "Pass", "Successfully launched Review Registration Details(SREG-800) page");
+		commonFunction.clickButton("Continue ");
+	
+		// --- SREG-043 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.selectCheckbox("I accept");
+		commonFunction.screenShot("EmpRegister19", "Pass", "Successfully launched to SREG-043 page");
+		commonFunction.clickButton("Submit ");
+		
+		// --- SREG-013 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EmpRegister20", "Pass", "Successfully launched to SREG-013 page");
+		commonFunction.clickButton("Home ");
+				
+		commonFunction.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		test.log(Status.PASS, "Login with CSR is successful");
+		
+		commonFunction.waitForLoadingIconToDisappear();
+		Thread.sleep(5000);
+				
+		peoPage.queue.click();
+	    Thread.sleep(15000);
+	    commonFunction.screenShot("wiSearch","Pass","Update Query to bind Review Employer Type WI: UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndsbb3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN = '459749876' ORDER BY UPDATED_TS desc)");
+		
+	    commonFunction.enterTextboxContains("FEIN","459749876");
+	    commonFunction.screenShot("wiSearch","Pass","Searched with FEIN");
+	    commonFunction.clickButtonContains("Search");
+	    
+	    // WI 1 - Review Employer Type
+	    sleep(3000);
+	    commonFunction.ScrollMenu("Review Employer Type");
+	    sleep();
+	    commonFunction.screenShot("WIClick","Pass","Clicked on Work Item - 'Review Employer Type'");
+	    sleep();
+	    commonFunction.clickOnLink("Review Employer Type");
+	    
+	    // --- WF-091 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE10003", "Pass", "Successful launch to Work Item Details(WF-091) page");
+	    commonFunction.clickButtonContains("Open Work Item ");
+	    
+	    // --- EEWI-002 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE10003", "Pass", "Successful launch to Review Employer Type Task Details(EEWI-002) page");
+	    commonFunction.enterCurrentDate("Date Covered Employment began? ");
+	    empRegPage.commentId_EEWI002.sendKeys("Ok tested");
+	    sleep(1500);
+	    commonFunction.screenShot("EE10003", "Pass", "Entered details in EEWI-002 page");
+	    commonFunction.clickButtonContains("Submit ");
+	    
+	    // --- SUC-002 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE01006", "Pass", "Successful launch to Work Item Completed(SUC-002) page");
+	    commonFunction.clickButtonContains("Home ");
+	    
+	    
+	    commonFunction.waitForLoadingIconToDisappear();
+		Thread.sleep(5000);
+				
+		peoPage.queue.click();
+	    Thread.sleep(15000);
+	    
+	    // WI 1 - Review Employer Type
+	    
+		System.out.println("Pass :)");
+		
 	}
 }

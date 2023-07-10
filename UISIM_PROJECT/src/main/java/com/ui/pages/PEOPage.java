@@ -321,5 +321,8 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/span[1][@class='mat-radio-container']")
 	public WebElement ApprovePeo;
+	
+	@FindBy(how = How.XPATH, using = ".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")
+	public WebElement managePeoInMenu;
 
 }

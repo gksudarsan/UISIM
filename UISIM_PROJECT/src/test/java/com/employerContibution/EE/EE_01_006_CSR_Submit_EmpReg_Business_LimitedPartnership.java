@@ -7,6 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
@@ -44,7 +45,7 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_6.toUpperCase(), COMMON_CONSTANT.CSR_USER_6_PASSWORD);
-		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
+		test.log(Status.PASS, "Login with TPR is successful");
 		
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
@@ -261,7 +262,9 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		sleep(40000);
 		commonFunction.screenShot("EE01006", "Pass", "Successfully launched to SREG-013 page");
 		commonFunction.clickButton("Home ");
-
+		
+		
+		
 		commonFunction.waitForLoadingIconToDisappear();
 		// run query to update user ID to work item
 		// 1. SELECT * FROM T_WFA_PROCESS_DETAIL twpd WHERE PROCESS_NAME LIKE 'DOL%' ORDER BY UPDATED_TS desc

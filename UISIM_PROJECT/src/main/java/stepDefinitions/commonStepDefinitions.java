@@ -80,6 +80,7 @@ public class commonStepDefinitions extends TestBase {
 
 			Thread.sleep(5000);
 
+			screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 
 		Thread.sleep(10000);
 		}catch(Exception e) {}
@@ -94,7 +95,7 @@ public class commonStepDefinitions extends TestBase {
 		
 		Thread.sleep(2000);
 		waitForLoadingIconToDisappear();
-		screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
+		
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
 			loginPage.okPopUpButton.click();
@@ -767,7 +768,7 @@ public class commonStepDefinitions extends TestBase {
 //		test.log(Status.PASS, "User entered Password");
 //		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		sleep();
-		screenShot("LoginPage", "Pass", "Logged in with "+ userName.toUpperCase());
+		screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 		Thread.sleep(10000);
 		driver.navigate().refresh();
