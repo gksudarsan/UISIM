@@ -29,7 +29,100 @@ public class PEOPage {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='employerRateDetails']/mat-row[1]/mat-cell[2]/a/u")
+	public WebElement currentYearwages;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='employerRateHistory']/mat-row[1]/mat-cell[1]/a/u")
+	public WebElement rateYeartxn;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='main-container']/mat-card/div/app-employeraccountrates/form/div/mat-card/div/mat-table/mat-row[1]/mat-cell[2]/app-row-link/div/div/a")
+	public WebElement traxnTYPE;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='main-container']/mat-card/div/app-employeraccountinformation/form/div/mat-card/a[2]/u")
+	public WebElement pastYear;
 
+	@FindBy(how = How.XPATH, using = "//*[@id='employerRateHistory']/mat-row[1]/mat-cell[1]/a/u")
+	public WebElement rateYear;
+
+	@FindBy(how = How.XPATH, using = "//*[@id='id_767']")
+	public WebElement accountHistory;
+		
+	@FindBy(how = How.XPATH, using = "//*[@id='id_768']")
+	public WebElement bankAccountsInquiry;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_784']")
+	public WebElement viewCorrespondence;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_770']")
+	public WebElement addressDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_771']")
+	public WebElement ownershipDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_772']")
+	public WebElement jointAccountDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_775']")
+	public WebElement accountMaintenance;	
+
+	@FindBy(how = How.XPATH, using = "//*[@id='id_774']")
+	public WebElement currentBalance;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_773']")
+	public WebElement inquiryPEOInformation;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_776']")
+	public WebElement penaltyDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_777']")
+	public WebElement flagDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_778']")
+	public WebElement commentsHistory;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_779']")
+	public WebElement pOATPRDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_780']")
+	public WebElement annualRateCalculation;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_781']")
+	public WebElement businessPrincipalActivityDetails;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_782']")
+	public WebElement crossReferences;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id_783']")
+	public WebElement assignmentHistory;
+	
+	
+	
+	
+	
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"dataTableId_thirdpartyAgentId_0_1_radio_button\"]/label/span[1]/span[1]")
+	public WebElement desiradio;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id=\"mat-datepicker-11\"]/div/mat-month-view/table/tbody/tr[4]/td[4]/button/div[1]")
+	public WebElement dateselect;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='commentId']")
+	public WebElement comment;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-1']/label/span[1]")
+	public WebElement checked;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId']/mat-row/mat-cell[6]/mat-form-field/div/div[1]")
+	public WebElement enddate;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Association End Date']//following::*[@id='dataTableId'][1]//following::input[1]")
+	public WebElement calender;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,' Filter ')]")
+	public WebElement filter;
+	
+	
 	@FindBy(how = How.XPATH, using = "//*[.='PEO Individual Registration']//preceding::span[@class='mat-radio-container'][1]")
 	public WebElement individualPeo;
 

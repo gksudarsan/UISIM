@@ -10,10 +10,10 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_05_01 {
+public class EM_05_01_Verify_CSR_can_Inquire_about_employer_Account_informatio {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
-	public class TC_CM_002_001 extends TestBase
+	public class TC_CM_002_001_Verify_CSR_can_Inquire_about_employer_Account_information extends TestBase
 	{
 		String EAN = prop.getProperty("EAN");
 
