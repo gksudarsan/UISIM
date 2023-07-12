@@ -49,7 +49,7 @@ package com.employerContibution.EM;
 				//stepDef.login(prop.getProperty("EMPLOYER_USER_4"), prop.getProperty("CSR_Pass"));
 				//stepDef.login(COMMON_CONSTANT.EMPLOYER_USER_4, COMMON_CONSTANT.EMPLOYER_USER_4_PASSWORD);
 
-				commonFunction.login(COMMON_CONSTANT.EMP_USER_7.toUpperCase(), COMMON_CONSTANT.EMP_USER_7_PASSWORD);
+				commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_7.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_7_PASSWORD);
 				commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 				
 				//---Menu Click---

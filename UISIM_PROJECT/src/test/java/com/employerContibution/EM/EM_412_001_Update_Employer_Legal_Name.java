@@ -36,38 +36,14 @@ public class EM_412_001_Update_Employer_Legal_Name extends TestBase{
 		
 		
 		test.log(Status.INFO, "Logging to the application");
-<<<<<<< HEAD
-		stepDef.login(prop.getProperty("CSR_UserID"), prop.getProperty("CSR_Pass"));
-		test.log(Status.PASS, "Logged in to the application");
-		test.log(Status.INFO, "Navigating to Maintain Accounts");
-		home.navigateToMaintainAccounts();
-		test.log(Status.PASS, "Navigated to Maintain Accounts");
-		test.log(Status.INFO, "Entering ERN number");
-		Map<String, String> ernOutput = stepDef.database_SelectQuerySingleColumn("SELECT ACCOUNT_STATUS,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSN'", "EAN");
-		String ernValue = ernOutput.get("EAN");
-//		String ernValue = "9923100";
-		System.out.println("ERN : : "+ernValue);
-		test.log(Status.INFO, "ERN : : "+ ernValue);
-		test.log(Status.INFO, "Validating page title");
-		sreg030.validatePageTitle();
-		test.log(Status.PASS, "Validated page title");
-		sreg27.enterERNNumber(ernValue);
-		test.log(Status.PASS, "Entered the ERN number successfully");
-		test.log(Status.INFO, "Entering form data and validating pre populated");
-		sreg030.fillFormAndValidate();
-		test.log(Status.PASS, "Entered form data and validated pre populated");
-		sreg030.clickSubmit();
-		test.log(Status.PASS, "Submit button clicked");
-		suc002.validateEmployerAccountMSG();
-		test.log(Status.PASS, "Success message validated");
-		test.log(Status.PASS, "Test case completed successfully");
-=======
+
+
 		//stepDef.login(prop.getProperty("EMPLOYER_USER_4"), prop.getProperty("CSR_Pass"));
 		//stepDef.login(COMMON_CONSTANT.EMPLOYER_USER_4, COMMON_CONSTANT.EMPLOYER_USER_4_PASSWORD);
 
 		commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_4.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_4_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
->>>>>>> refs/heads/master_27April
+
 		
 		//---Menu Click---
 		commonFunction.clickMenu("Menu");

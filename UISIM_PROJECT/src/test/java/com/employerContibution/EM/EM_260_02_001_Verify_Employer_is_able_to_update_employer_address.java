@@ -15,7 +15,7 @@ import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_02_001 {
+public class EM_260_02_001_Verify_Employer_is_able_to_update_employer_address {
 
 	@Listeners(com.ui.utilities.ListenerTest.class)
 	public class TC_CM_002_001 extends TestBase
