@@ -851,6 +851,11 @@ public class commonStepDefinitions extends TestBase {
 		
 	}
 	
+	public void forceClearTextWithElement(String xpathParameter) {
+		WebElement ele = driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]"));
+		Actions a = new Actions(driver);
+		a.moveToElement(ele).doubleClick().click().sendKeys(Keys.BACK_SPACE).perform();
+	}
 	
 	public void forceClearText(WebElement ele) {
 		Actions a = new Actions(driver);

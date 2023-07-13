@@ -30,5 +30,24 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	@FindBy(how = How.XPATH, using = "(//button[.='Continue '][1])[2]")
 	public WebElement popUpContinueButton;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Address Line 1 ')]//following::input[1]")
+	public List<WebElement> addresslinelist;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Care Of')]//following::input[1]")
+	public List<WebElement> careOfFieldlist;
+	
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'City ')]//following::input[1]")
+	public List<WebElement> citylist;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Zip Code')]//following::input[1]")
+	public List<WebElement> zipCodelist;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='agadAddressId_careOf']")
+	public WebElement agadCareOfBtn;
+	
+	@FindBy(how = How.XPATH, using = "//a//*[text()='Add Member/Managing Member Details']")
+	public WebElement addMemberLinkSreg005;
+	
 	
 }

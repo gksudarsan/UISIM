@@ -71,6 +71,10 @@ public class PEOPage {
 
 	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-container'][1]")
 	public WebElement currentAdditionalAddress;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-container'][1]")
+	public WebElement mailingAdditionalAddress;
+	
 
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
 	public WebElement UspsContinueButton;
@@ -174,6 +178,7 @@ public class PEOPage {
 			if (i > 2) {
 				results.put("Fein", rs.getString("FEIN"));
 				results.put("Ean", rs.getString("EAN"));
+				results.put("legalName", rs.getString("ENTITY_NAME"));
 				break;
 			}
 		}

@@ -123,12 +123,13 @@ public class AddressPage {
 	
 	
 	        public void requiredError_genInfo(String xpathParameter) {
-		        driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
+		        driver.findElement(By.xpath("(//mat-error[.='" + xpathParameter + "'][1])[last()]")).isDisplayed();
          	}
 	
 			public void requiredError_empReg(String xpathParameter) {
-				driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
-			}		
+				driver.findElement(By.xpath("(//mat-error[.='" + xpathParameter + "'][1])[last()]")).isDisplayed();
+			}
+			
 			
 	@FindBy(how = How.XPATH, using = "//input[@id='firstPayrollDtId']") 
 	public WebElement clearDateField;	

@@ -29,6 +29,14 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement legalNameTextBox;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	public WebElement legalNameOfBusinessTextBox;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name of business']")
+	public WebElement legalNameOfBusinessTextBoxEEWI_005;
+	
+	
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Is your entity a legally')]/../following-sibling::div/mat-radio-group/mat-radio-button/label/span[2][text()='Yes ']/../span/span")
 	public WebElement iSyourEntityQuestion_Yes;
 	
@@ -104,6 +112,9 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//a[text()=' Add Another Business Location ']")
 	public WebElement addAnotherBusinessLink;
+	
+	@FindBy(how = How.XPATH, using = "//a[contains(text(),'Add Another Acquisition')]")
+	public WebElement addAnotherAcquisitionLink;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'First calendar quarter and year')]//following::mat-select[1]")
 	public WebElement firstCalender_Quater;
@@ -271,6 +282,10 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'20 COOPER SQ')]/../../span/span[@class='mat-radio-outer-circle']")
 	public WebElement uspsAddressRadio_20_square;
 	
+	@FindBy(how = How.XPATH, using = "(//mat-label[contains(text(),'123')]/../../span/span[@class='mat-radio-outer-circle'])[1]")
+	public WebElement uspsAddressRadio_123_state;
+	
+	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Indicate your principal')]/../../div/mat-form-field/div/div/div[3]/mat-select")
 	public WebElement individualPrinciple;
 	
@@ -429,6 +444,12 @@ public WebElement typeOfEstablishment_SREG008;
 
 @FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
 public WebElement firstCalender_Quater_Value_1;
+
+@FindBy(how = How.XPATH, using = "//input[@id='qtrYearTotalCashWgsIdyear']")
+public WebElement firstCalender_YearField;
+
+@FindBy(how = How.XPATH, using = "//input[@id='qtrYearEmployedIdyear']")
+public WebElement whatFirstCalender_YearField;
 
 @FindBy(how = How.XPATH, using = "//*[@id='commentId']")
 public WebElement commentId_EEWI002;

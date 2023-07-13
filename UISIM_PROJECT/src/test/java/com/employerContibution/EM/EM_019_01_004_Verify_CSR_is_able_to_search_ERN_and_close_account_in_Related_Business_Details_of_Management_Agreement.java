@@ -35,8 +35,16 @@ public class EM_019_01_004_Verify_CSR_is_able_to_search_ERN_and_close_account_in
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
+		/*
+		 Map<String, String> databaseResults = PEOPage.database_SelectQuery(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'BUSI' AND EAN IS NOT NULL");
+		String feinValue = databaseResults.get("Fein");
+		String eanValue = databaseResults.get("Ean");
+		String legalNameValue = databaseResults.get("legalName");
+		 */
 		test.info(
 				"Step: 3 -- Navigate the Path Home page > Account Maintenance > Employer Account Maintenance > Joint Employment/Management Agreement Creation – Enter ERN");
+		// homePage.menu.click();
 		commonFuntions.clickMenu("Menu");
 		commonFuntions.ScrollMenu("Account Maintenance");
 		commonFuntions.clickMenu("Account Maintenance");
@@ -52,9 +60,9 @@ public class EM_019_01_004_Verify_CSR_is_able_to_search_ERN_and_close_account_in
 		String feinValue =databaseResults.get("Fein");
 		String ernValue = databaseResults.get("Ean");
 		String legalName = databaseResults.get("legalName");
-		//System.out.println("feinValue "+ feinValue);
-		//System.out.println("ernValue "+ ernValue);
-		//System.out.println("legalName "+ legalName);
+		System.out.println("feinValue "+ feinValue);
+		System.out.println("ernValue "+ ernValue);
+		System.out.println("legalName "+ legalName);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		Assert.assertTrue(sreg084.continueButton.isDisplayed());
 		
@@ -100,8 +108,31 @@ public class EM_019_01_004_Verify_CSR_is_able_to_search_ERN_and_close_account_in
 		sreg084.selectradioBtn1.click();
 		sreg084.continueButton.click();
 		
-		//getting system failure issue after step number 7
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Verify Joint Employment or Management Agreement", "Pass",
+				"SREG-114 screen is displayed");
+
+		test.info("Step: 8 ");
+		sreg084.continueButton.click();
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Joint Employment/Management Agreement Arrangement", "Pass",
+				"SREG-524 screen is displayed");
 		
+		test.info("Step: 9 ");
+		commonFuntions.selectDateInTable(legalName, 5, 1, "Joint Employment/Management Agreement Arrangement ",
+				"03/10/2023");
+		commonFuntions.clickButton("Submit ");
+		Thread.sleep(3000);
+		commonFuntions.screenShot("Joint Employment/Management Agreement Arrangement Confirmation", "Pass",
+				"SUC-002 page is displayed");
+
+		test.info("Step: 10 -- ");
+		commonFuntions.clickButton("Home ");
+		Thread.sleep(3000);
+		driver.navigate().refresh();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Joint Employment/Management Agreement Arrangement Confirmation", "Pass",
+				"Homepage is displayed");
 		
 		
 	}

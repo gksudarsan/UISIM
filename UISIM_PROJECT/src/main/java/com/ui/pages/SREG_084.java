@@ -31,7 +31,7 @@ public WebDriver driver;
 	
 	@FindBy(how = How.XPATH, using = "//li[contains(text(),'A1B')]")
 	public WebElement PostalCodeErrorMsg;
-	
+
 	@FindBy(how = How.XPATH, using = "//mat-label[@class='upload-doc']")
 	public WebElement uploadDocSec;
 	
@@ -46,7 +46,10 @@ public WebDriver driver;
 	
 	@FindBy(how = How.XPATH, using = "//button[contains(@id,'continue')]")
 	public WebElement continueButton;
-	
+
+	@FindBy(how = How.XPATH, using = "//a[text()=' Add Another Related Business ']")
+	public WebElement addAnoterlink;
+
 	@FindBy(how = How.XPATH, using = "//button[contains(@id,'cancel')]")
 	public WebElement cancelButton;
 	
@@ -56,13 +59,16 @@ public WebDriver driver;
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'mat-table-main')]")
 	public WebElement tableHeadingList;
-	
-	@FindBy(how = How.XPATH, using = "//mat-cell//u[text()='Edit']")
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//u[text()='Edit'])[1]")
 	public WebElement editActionBtn;
 	
 	@FindBy(how = How.XPATH, using = "//mat-cell//u[text()='Delete']")
 	public WebElement deleteActionBtn;
-	
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//u[text()='Add'])[1]")
+	public WebElement addActionBtn;
+
 	@FindBy(how = How.XPATH, using = "(//*[@class='mat-radio-container'])[1]/following::span//mat-label[text()='Set up from Power of Attorney - IA900 form']")
 	public WebElement setUpPOARadioBtn;
 	
@@ -84,27 +90,27 @@ public WebDriver driver;
 	//WF-001 page
 	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Review Employer Type')])[1]")
 	public WebElement reviewemployertypelink;
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Verify Agent Rep Task')])[1]")
+	public WebElement verifyAgentRepTasklink;
+	
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'DOL DTF Discrepancy')])[1]")
+	public WebElement dolDtfTasklink;
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Review Comments')])[1]")
+	public WebElement reviewCommentslink;
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Verify Transfer Failed Rules')])[1]")
+	public WebElement verifyTransferlink;
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'DOL DTF Discrepancy')])[1]")
+	public WebElement dolDTFlink;
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[text()='Delete'])[1]")
+	public WebElement deleteLinkFirst;
+
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Verify Transfer Failed Rules')])[1]")
+	public WebElement verifyTransferpelink;
 
 }

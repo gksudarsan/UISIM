@@ -55,6 +55,10 @@ public class SUC_002 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewEmployerType Task has been successfully completed.')]")
 	public WebElement reviewEmployeerTypeSuccessmsg;
 	
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewComments Task has been successfully completed. ')]")
+	public WebElement reviewCommentsTypeSuccessmsg;
+	
+	
 	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewpotentialDuplicates Task has been successfully completed. ')]")
 	public WebElement ReviewpotentialDuplicatesSuccessmsg;
 

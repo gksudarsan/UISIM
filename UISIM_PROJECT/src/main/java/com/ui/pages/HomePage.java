@@ -20,6 +20,9 @@ public class HomePage extends TestBase {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+    public WebElement menu;
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Menu']")
 	public WebElement menuButton;

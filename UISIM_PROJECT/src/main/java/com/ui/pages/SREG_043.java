@@ -1,5 +1,7 @@
 package com.ui.pages;
 
+import java.util.List;
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,13 +23,24 @@ public WebDriver driver;
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Submitter Comments may be entered below.')]//following::mat-form-field")
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Submitter Comments may be entered below.']")
 	public WebElement submitterCommentsField;
 	
 	@FindBy(how = How.XPATH, using = "//div[contains(@class,'mat-form-field')]//textarea[contains(@id,'comment')]")
 	public WebElement EEWI002CommentsField;
 	
+	@FindBy(how = How.XPATH, using = "//input[@aria-label='Comment']")
+	public WebElement EEWI014CommentFeild;
 	
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Comment']")
+	public WebElement EEWI012CommentFeild;
+	
+	@FindBy(how = How.XPATH, using = "//a//u[text()='Edit']")
+	public List<WebElement> EEWI011EditButtonList;
+	
+	@FindBy(how = How.XPATH, using = "//button[@id='EEWI-011access.normalize']")
+	public WebElement EEWI011NormalizeBtn;
 	
 	
 	
