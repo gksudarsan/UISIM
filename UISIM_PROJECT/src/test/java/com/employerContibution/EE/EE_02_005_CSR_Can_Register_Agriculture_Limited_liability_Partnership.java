@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -11,6 +12,9 @@ import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_043;
+import com.ui.pages.SREG_084;
+import com.ui.pages.SUC_002;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -23,6 +27,9 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage address = new AddressPage(driver);
+		SREG_043 sreg043 = new SREG_043(driver);
+		SUC_002 suc002 = new SUC_002(driver);
+		SREG_084 sreg084 = new SREG_084(driver);
 
 		
 		test = report
@@ -43,8 +50,9 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		
 //		sleep();
 		/*----------------FEIN----------------*/
-		Map<String, String> output = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd GROUP BY FEIN HAVING COUNT(*)>1 )", "FEIN");
-		String feinValue = output.get("FEIN");
+		//Map<String, String> output = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd GROUP BY FEIN HAVING COUNT(*)>1 )", "FEIN");
+		//String feinValue = output.get("FEIN");
+		String feinValue = "363735912";
 		System.out.println(feinValue);
 		test.log(Status.INFO, "FEIN : : "+ feinValue );
 		/*----------------FEIN----------------*/
@@ -75,13 +83,13 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Filling the form");
 		commonFuntions.enterTextboxContains("Total number of covered employees", "10");
 		
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		
 		/*-----------------SREG-008----------------*/
 
 //		sleep(4000);
 		commonFuntions.screenShot("EmpRegister7", "Pass", "Navigated on SREG-008 page and entering the address");
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "23432");
 		commonFuntions.selectDropdown("County", " Albany ");
@@ -89,67 +97,76 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		empPage.individualPrinciple_value_other.click();
 		commonFuntions.enterTextbox("If Other, provide details", "Test");
 		
-		commonFuntions.clickButton("Continue ");
-//		sleep(3000);
-//		try {
-//			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
-//			sleep();
-//			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
-//		}catch(Exception e ) {
-//			System.out.println("Pop up not displayed");
-//		}
-		
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(3000);
+		try {
+		commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
+		sleep();
+		commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+	} catch (Exception e) {
+		System.out.println("Pop up not displayed");
+	}
 		/*-----------------SREG-007----------------*/
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		/*-----------------SREG-004----------------*/
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
 //		sleep(3000);
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 2");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 2");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "23433");
 		commonFuntions.selectDropdown("County", " Albany ");
 		
 		commonFuntions.selectRadioQuestions("Location of Books and Records", "Other");
-		empPage.location_Of_Book_AddresLine1.sendKeys("Fake Address 3");
+		empPage.location_Of_Book_AddresLine1.sendKeys("20 cooper square 3");
 		empPage.location_Of_Book_City.sendKeys("Albany");
 		empPage.location_Of_Book_ZipCode.sendKeys("45638");
 		commonFuntions.safeJavaScriptClick(empPage.location_Of_Book_County);
 		commonFuntions.safeJavaScriptClick(empPage.albany_County_Value);
 		
 		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "Yes ");
-		empPage.agent_CO_AddresLine1.sendKeys("Fake Address 3");
+		empPage.agent_CO_AddresLine1.sendKeys("20 cooper square 3");
 		empPage.agent_CO_City.sendKeys("Albany");
 		empPage.agent_CO_ZipCode.sendKeys("76562");
 		commonFuntions.safeJavaScriptClick(empPage.agent_CO_County);
 		commonFuntions.safeJavaScriptClick(empPage.albany_County_Value);
 //		sleep(4000);
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(4000);
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		} catch (Exception e) {
+			System.out.println("Pop up not displayed");
+		}
+
 		commonFuntions.waitForLoadingIconToDisappear();
 		
 		/*-----------------SREG-521----------------*/
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		
 		/*-----------------SREG-011----------------*/
 //		sleep(4000);
 		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-011 page");
 		commonFuntions.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
 		/*-----------------Find Valid FEIN----------------*/
-		Map<String, String>	FEINOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
-		String FEIN2 = FEINOutput.get("FEIN");
-		System.out.println(FEIN2);
-		test.log(Status.INFO, "FEIN used on SREG-011 page : : "+FEIN2);
+		//Map<String, String>	FEINOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
+		//String FEIN2 = FEINOutput.get("FEIN");
+		String feinValue2 = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		System.out.println(feinValue2);
+		test.log(Status.INFO, "FEIN used on SREG-011 page : : "+feinValue2);
 		/*-----------------Find Valid FEIN----------------*/
 		/*-----------------Find Valid ERN----------------*/
-		Map<String, String>	ERNOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT EAN FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "EAN");
+		Map<String, String>	ERNOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSC' ORDER BY UPDATED_TS DESC;", "EAN");
 		String ERN = ERNOutput.get("EAN");
 		System.out.println(ERN);
 		test.log(Status.INFO, "ERN used on SREG-011 page : : "+ERN);
 		/*-----------------Find Valid ERN----------------*/
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", FEIN2);
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue2);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ERN);
 		commonFuntions.enterTextboxContains("Legal Name of Business", "Other Enterprise");
 		
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 4");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 4");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "24986");
 		commonFuntions.screenShot("EmpRegister13", "Pass", "Entering the form Details");
@@ -157,24 +174,32 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 //		commonFuntions.enterTextboxContains("Acquisition Date", "04012023");
 		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Acquisition Date");
 		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Notification date of Transfer");
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
+		
+		//Step-17
+		/*empPage.addAnotherAcquisitionLink.click();
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Business Acquisition", "Pass", "Navigated to SREG-011");
+		
+		*/
 		
 		/*-----------------SREG-012----------------*/
+		
 //		sleep(4000);
-		commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-012 page and click on continue");
-		commonFuntions.clickButton("Continue ");
+		//commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-012 page and click on continue");
+		//commonFuntions.clickButtonContains("Continue ");
 		
 		/*-----------------SREG-012----------------*/
 		/*-----------------Prior FEIN----------------*/
-		Map<String, String>	priorFEINOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
+		Map<String, String>	priorFEINOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC;", "FEIN");
 		String priorFein = priorFEINOutput.get("FEIN");
 		System.out.println(priorFein);
 		test.log(Status.INFO, "Prior FEIN : : "+priorFein);
 		/*-----------------Prior FEIN----------------*/
-		
+		//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS ='C' ORDER BY UPDATED_TS DESC;
 		/*-----------------Prior FEIN----------------*/
-		Map<String, String>	priorERNOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
-		String priorEan = priorERNOutput.get("FEIN");
+		Map<String, String>	priorERNOutput = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC;", "EAN");
+		String priorEan = priorERNOutput.get("EAN");
 		System.out.println(priorEan);
 		test.log(Status.INFO, "Prior ERN : : "+priorEan);
 		/*-----------------Prior FEIN----------------*/
@@ -188,7 +213,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 //		commonFuntions.enterTextboxContains("Date of Legal Entity change", "04032023");
 		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Date of Notification");
 //		commonFuntions.enterTextboxContains("Date of Notification", "04042023");
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		
 		/*-----------------SREG-006----------------*/
 //		sleep(3000);
@@ -207,20 +232,29 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
 		commonFuntions.selectRadioQuestions("Type of Partner/Owner", "Individual");
 		
-		commonFuntions.enterTextboxContains("SSN", ssn);
+		//commonFuntions.enterTextboxContains("SSN", ssn);
+		commonFuntions.enterTextboxContains("SSN", "453758964");
 		commonFuntions.enterTextboxContains("First Name", "Abhi");
 		commonFuntions.enterTextboxContains("Last Name", "Jan");
-		commonFuntions.selectDropdown("Title", " Partner ");
+		//commonFuntions.selectDropdown("Title", " Partner ");
 		
-		commonFuntions.enterTextboxContains("Address Line 1 ", "Fake Address 6");
+		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 6");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "24954");
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
+		
+		try {
+			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_Cooper);
+			sleep();
+			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+		} catch (Exception e) {
+			System.out.println("Pop up not displayed");
+		}
 		
 		/*-----------------SREG-005----------------*/
 //		sleep(4000);
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to SREG-005 page");
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		
 		/*-----------------SREG-683----------------*/
 //		sleep(3000);
@@ -228,28 +262,34 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		empPage.browserLink.click();
 		commonFuntions.uploadDoc("Sample");
 		sleep(2000);
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		/*-----------------SREG-800----------------*/
 		sleep(5000);
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to SREG-800 page");
-		commonFuntions.clickButton("Continue ");
+		commonFuntions.clickButtonContains("Continue ");
 		/*-----------------SREG-043----------------*/
 //		sleep(3000);
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
 		commonFuntions.selectCheckbox("I accept");
-		commonFuntions.clickButton("Submit ");
+		commonFuntions.clickButtonContains("Submit ");
 //		sleep(15000);
 		/*-----------------SREG-013----------------*/
-		commonFuntions.screenShot("EmpRegister21", "Pass", "Navigated to SREG-013 success page and click on exit");
-		commonFuntions.clickButton("Exit ");
+		commonFuntions.clickButtonContains("Home ");
+		Thread.sleep(2000);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
+				+ COMMON_CONSTANT.CSR_USER_1
+				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
+				+ feinValue + "' ORDER BY UPDATED_TS desc)");
+		commonFuntions.screenShot("Homepage", "Pass", "Homapage page displayed");
 		
-		/*-----------------Home Page----------------*/
-		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(20000);
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
-		commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
+		/*-----------------SREG-013----------------*/
+		// Step-33
+		commonFuntions.screenShot("Business Acquisition", "Pass", "logged In");
+		test.info("CSR Navigate to Main Menu -> MyQ");
+		Thread.sleep(5000);
 		PEOPage.queue.click();
-		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(3000);
+		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 		
 		commonFuntions.enterTextbox("FEIN", feinValue);
 		commonFuntions.clickButton(" Search ");
@@ -262,15 +302,109 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(2000);
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
-		empPage.commentBox_MyQ.sendKeys("Random Queue");
-		sleep();
-		commonFuntions.clickButton("Submit ");
+		sreg043.EEWI002CommentsField.sendKeys("Review em comment");
+		commonFuntions.clickButtonContains("Submit ");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+
+		test.info("Step: 34 -- ");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		Assert.assertTrue(suc002.reviewEmployeerTypeSuccessmsg.isDisplayed());
+		suc002.homeButton.click();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
+
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
+				+ COMMON_CONSTANT.CSR_USER_1
+				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
+				+ feinValue + "' ORDER BY UPDATED_TS desc)");
+		Thread.sleep(2000);
 		
-		/*-----------------SUC-002----------------*/
+		test.info("Step: 35 -- ");
+		Thread.sleep(2000);
+		PEOPage.queue.click();
+		Thread.sleep(3000);
+		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
+
+		test.info("Step: 36 -- DOL-DTF");
+		Thread.sleep(2000);
+		// sreg084.dolDTFlink.click();
+		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
+		Thread.sleep(2000);
+		commonFuntions.clickButtonContains("Open Work Item ");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
+		Thread.sleep(2000);
+
+		test.info("Step: 38 -- DOL-DTF");
+		commonFuntions.selectRadioQuestions(
+				"If you are not liable under the Unemployment Insurance law for agricultural employment, do you wish to elect voluntary coverage?",
+				"No ");
+		Thread.sleep(1000);
+		commonFuntions.selectDropdown("Account Status", " Liable ");
+		sleep(2000);
+		commonFuntions.selectRadioQuestions("Suppress Correspondence?", "No ");
+		sleep(2000);
+		sreg043.EEWI002CommentsField.sendKeys("Dol DTF Cm");
+		commonFuntions.clickButtonContains("Submit ");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+		//
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		suc002.homeButton.click();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		Thread.sleep(2000);
 		
-		sleep(4000);
-		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to SUC-002 page and click on Home");
-		commonFuntions.clickButton("Home ");
+		test.info("Step: 40 -- ");
+		Thread.sleep(2000);
+		PEOPage.queue.click();
+		Thread.sleep(3000);
+		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
+		
+		test.info("Step: 41 -- ");
+		commonFuntions.enterTextboxContains("FEIN", feinValue);
+		commonFuntions.clickButtonContains(" Search ");
+		Thread.sleep(2000);
+		
+		test.info("Step: 42 -- ");
+		sreg084.verifyTransferlink.click();
+		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
+		Thread.sleep(2000);
+		
+		commonFuntions.clickButtonContains("Open Work Item ");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
+		Thread.sleep(2000);
+		
+		test.info("Step: 43 -- ");
+		commonFuntions.selectDropdown("Decision", " Continue with Transfer ");
+		Thread.sleep(2000);
+		commonFuntions.selectCheckbox("Transfer Business Rules");
+		commonFuntions.enterTextboxContains("Comment", "Ok");
+		commonFuntions.clickButtonContains("Submit ");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+		
+		test.info("Step: 44 -- ");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		suc002.homeButton.click();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		Thread.sleep(2000);
+		
+		test.info("Step: 45 -- ");
+		Thread.sleep(2000);
+		PEOPage.queue.click();
+		Thread.sleep(3000);
+		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
+		
+		test.info("Step: 46 -- ");
+		commonFuntions.enterTextboxContains("FEIN", feinValue);
+		commonFuntions.clickButtonContains(" Search ");
+		Thread.sleep(2000);
 		
 		
 	}

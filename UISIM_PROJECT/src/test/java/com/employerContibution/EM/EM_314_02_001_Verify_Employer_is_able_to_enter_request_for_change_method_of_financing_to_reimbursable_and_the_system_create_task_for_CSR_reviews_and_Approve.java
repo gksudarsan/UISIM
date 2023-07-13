@@ -1,5 +1,7 @@
 package com.employerContibution.EM;
 
+import java.util.Map;
+
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Test;
 
@@ -47,8 +49,15 @@ public class EM_314_02_001_Verify_Employer_is_able_to_enter_request_for_change_m
 		
 		test.info(
 				"Step: 4 -- ");
+		Map<String, String> databaseResults = commonFuntions.database_SelectQuery(
+				"SELECT EMPLOYER_TYPE,EAN FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'GOVT';");
+		String feinValue = databaseResults.get("Fein");
+		String eanValue = databaseResults.get("Ean");
+		//String legalName = databaseResults.get("legalName");
+		System.out.println("feinValue " + feinValue);
+		System.out.println("ernValue " + eanValue);
+		//System.out.println("legalName " + legalName);
 		
-		//Blocked due to employer account
 
 	}
 }

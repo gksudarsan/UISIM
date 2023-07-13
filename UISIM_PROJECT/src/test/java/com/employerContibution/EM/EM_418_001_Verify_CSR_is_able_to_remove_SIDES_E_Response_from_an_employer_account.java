@@ -45,8 +45,6 @@ public class EM_418_001_Verify_CSR_is_able_to_remove_SIDES_E_Response_from_an_em
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Maintain Address", "Pass", "SREG-070 screen is visible");
 		
-		
-		
 		test.info(
 				"Step: 4 -- Enter the Valid Employer Registration Number in \"\"Maintain Address - Enter ERN (SREG-070)\"\" screen");
 		Map<String, String> databaseResults = PEOPage.database_SelectQuery("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE CREATED_BY !='LEGACY' AND EAN IS NOT NULL");

@@ -127,7 +127,7 @@ public class AddressPage {
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 	public WebElement rawMaterialName;
-
+	
 	public void requiredError_genInfo() {
 		driver.findElement(By.xpath("(//mat-error[.=\" Required\"][1])[last()]")).isDisplayed();
 	}
@@ -142,17 +142,22 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//input[@id='covEmploymentBeginDtId']")
 	public WebElement clearDateField1;
 	
+	
+	
 	public void verifyInquiryAddressEmployerHistory(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')][1]"));
 	}
 	
 	        public void requiredError_genInfo(String xpathParameter) {
-		        driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
+		        driver.findElement(By.xpath("(//mat-error[.='" + xpathParameter + "'][1])[last()]")).isDisplayed();
          	}
 	
-			public void requiredError_empReg(String xpathParameter) {
-				driver.findElement(By.xpath("(//mat-error[.=\" Required \"][1])[last()]")).isDisplayed();
-			}			
+			public void requiredError_empReg(String xpathParameter) {		
+				driver.findElement(By.xpath("(//mat-error[.='" + xpathParameter + "'][1])[last()]")).isDisplayed();
+			}
+			
+			
+	
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='firstNameId']") 
 	public WebElement firstName_locationOfBooksAndrecords;
