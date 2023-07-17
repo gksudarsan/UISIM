@@ -59,7 +59,7 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_3 = "Soleprop123"; // 
 	public static final String EMPLOYER_USER_3_PASSWORD = "NewUser@123458";
 	
-	public static final String EMPLOYER_USER_4 = "tst_empr"; // Corporate Officer/Owner
+	public static final String EMPLOYER_USER_4 = "tst_empr"; // member managing 
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner

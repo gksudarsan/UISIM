@@ -11,6 +11,8 @@ import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.HomePage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_541;
+import com.ui.pages.SREG_EM_mod;
 import com.ui.pages.employerManagement;
 import com.ui.utilities.COMMON_CONSTANT;
 
@@ -18,7 +20,7 @@ import stepDefinitions.commonStepDefinitions;
 
 public class ERM_408_11_001_Verify_system_calculated_rate_when_CSR_process_void_transfer_with_reason_of_voiding_transfer_is_Effective_Date_Change extends TestBase {
 	@Test
-	public void ERM_408_10_001() throws Exception
+	public void ERM_408_11_001() throws Exception
 	{
 test = report.createTest("ERM_408_11_00_Verify system calculated rate when CSR process void transfer with reason of voiding transfer is \"Effective Date Change\"");
 		
@@ -26,11 +28,21 @@ test = report.createTest("ERM_408_11_00_Verify system calculated rate when CSR p
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		employerManagement empManage = new employerManagement();
-				
-		//DB SELECT query
-		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_RATE ter WHERE EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_ACCOUNT tea) AND RATE_YEAR = '2023')ORDER BY UPDATED_TS DESC","EAN");
-		String eanValue = databaseEanResult.get("EAN"); //5088396
-		System.out.println("EAN value is " + eanValue);
+		SREG_541 sreg = new SREG_541(driver);		
+		// DB Query
+				// Valid ERN
+				Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+						"SELECT EAN FROM T_EMPLOYER te join T_EMPLOYER_TRANSFER tet ON TET.FROM_EMPLOYER_ID = te.EMPLOYER_ID AND te.ean ='8026207' ORDER BY te.UPDATED_TS DESC",
+						"EAN");
+				String eanValue = databaseEanResult.get("EAN");
+				System.out.println(eanValue);
+
+				// Valid Rate Year
+				Map<String, String> databaseRateYearResult = commonFunction.database_SelectQuerySingleColumn(
+						"SELECT * FROM T_EMPLOYER_RATE ter WHERE EMPLOYER_ACCOUNT_ID IN (SELECT EMPLOYER_ACCOUNT_ID FROM T_EMPLOYER_ACCOUNT tea WHERE EAN = '" + eanValue + "')AND RATE_YEAR = '2023'",
+						"RATE_YEAR");
+				String rateYearValue = databaseRateYearResult.get("RATE_YEAR");
+				System.out.println(rateYearValue);
 		
 		//--- Login ---
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
@@ -51,34 +63,30 @@ test = report.createTest("ERM_408_11_00_Verify system calculated rate when CSR p
 		
         //SREG 541
 		commonFunction.screenShot("Void Transfer", "Pass", "Successfully landed on SREG 541");
-		commonFunction.enterTextboxContains("Employer Registration Number","2601754");
+		commonFunction.enterTextboxContains("Employer Registration Number",eanValue);
+		//sreg.employerRegistrationNoText.sendKeys(eanValue);
 		commonFunction.clickButtonContains(" Search ");
+		
 		sleep(2000);
 		commonFunction.screenShot("Void Transfer", "Pass", "entered ERN on SREG 541");
 		
-		//--inprog
+		commonFunction.selectRadioInTable("Select", 1, 1, "Void Transfer");
+		sreg.selectRadioButton.click();
+		//commonFunction.selectRadio("Select");
+		sleep(2000);
+		commonFunction.selectDropdown("Reason For Voiding Transfer", " Effective Date Change ");
+		sleep(2000);
+		sreg.enterValidComment.sendKeys("Testing");
+		/*sreg.sourceDropdown.isSelected();
+		sreg.sourceDropdownValue.click();
+		sleep(2000);
+		sreg.sourceTypeDropdown.isSelected();
+		sreg.sourceTypeDropdownValue.click();*/
+		commonFunction.selectDropdown("Source", " Correspondence/Email ");
+		sleep(2000);
+		commonFunction.selectDropdown("Source Type", " Correspondence/Email ");
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		commonFunction.clickButtonContains("Void Transfer ");
 		
 		// --- SUC-002 ---
 		sleep(2000);
@@ -109,6 +117,11 @@ test = report.createTest("ERM_408_11_00_Verify system calculated rate when CSR p
 		commonFunction.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully entered deatils and  click on continue");
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
+		
+		
+	//data issue rate data not showing after submitting void tranasfer EM tc 
+		//blocked
+		
 		
 		//----------SREG 051
 		commonFunction.screenShot("Inquiry Employer Account Information", "Pass", "Successfully landed on SREG 051 page");

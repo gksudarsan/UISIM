@@ -8,6 +8,7 @@ import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.HomePage;
 import com.ui.pages.SREG_074;
+import com.ui.pages.SREG_EM_mod;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -21,11 +22,11 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		commonStepDefinitions CommFun = new commonStepDefinitions();
 		EmployerRegisterPage employerRegisterPage = new EmployerRegisterPage(driver);
 		HomePage home = new HomePage(driver);
-		SREG_074 sreg = new SREG_074(driver);
+		SREG_EM_mod sreg = new SREG_EM_mod(driver);
 		
 		//------Login
 		//CommFun.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_8,COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD );
+		CommFun.login(COMMON_CONSTANT.EMPLOYER_USER_4,COMMON_CONSTANT.EMPLOYER_USER_4_PASSWORD );
 		//CommFun.login("manju@2004", "Manhar2004@1234");
 		sleep(2000);
 		CommFun.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
@@ -44,12 +45,12 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 		home.MaintainBusinessOwnership.click();
 		sleep(2000);
 		
-		//-----SREG 706
-		CommFun.screenShot("Member managing Details", "Pass", "Successfully landed on SREG 706");
+		//-----SREG 708
+		CommFun.screenShot("Member managing Details", "Pass", "Successfully landed on SREG 708");
 		sleep(2000);
 		//CommFun.selectDateInTable("action", 10, 1, "Individual as Partner ", "inactive");
 		//CommFun.selectTableParameterizedId("inactive", 10, 1, "Individual as Partner ", "dataTableId");
-		sreg.actionInactive.click();
+		sreg.actionInactiveMember.click();
 		sleep(2000);
 		CommFun.screenShot("Pop up", "Pass", "Successfully landed on popup");
 		sleep(2000);
@@ -75,7 +76,7 @@ public class EM_321_02_007_EMP_Verify_Employer_is_able_to_enter_the_term_end_dat
 	    CommFun.clickButtonContains("Home ");
 	    sleep(2000);
 	    CommFun.screenShot("Home Page", "Pass", "Successfully landed on home page test completed  ");
-		 
-	  //---//--Facing issue in Mamber manging id Manju's one , User is inactive we are unable to click on menu
+	    CommFun.screenShot("TC_EM_321_02_007", "Pass", "Successfully completed Test case  ");
+	  // Done by Palak
 		}
 }

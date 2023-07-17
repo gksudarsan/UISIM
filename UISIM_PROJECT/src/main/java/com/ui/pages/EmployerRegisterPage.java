@@ -549,6 +549,13 @@ public WebElement uspsAddress1InnerRadio;
 @FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-container'][2]")
 public WebElement verifyAddressUspsAddress;
 
+//--Workitem
+
+@FindBy(how = How.XPATH, using =  "//*[@id='predecessorErn']")
+public WebElement predecessorErn;
+
+@FindBy(how = How.XPATH, using = "//*[@id='predecessorFein']")
+public WebElement predecessorFein;
 
 
 }
