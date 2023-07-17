@@ -43,16 +43,16 @@ public class SREG_435 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//span[text()=' Liable ']")
 	public WebElement statusOfEmployerAccountDropdownValue;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow ng-tns-c156-110']']")
+	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow ng-tns-c128-225']")
 	public WebElement quarterDropdown;
 	
-	@FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
+	@FindBy(how = How.XPATH, using = "//span[text()='3']")
 	public WebElement quarterDropdownValue;
 	
-	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow-wrapper ng-tns-c156-112']")
+	@FindBy(how = How.XPATH, using = "//div[@class='mat-select-arrow ng-tns-c128-227']")
 	public WebElement yearDropdown;
 	
-	@FindBy(how = How.XPATH, using = "//span[text()=' 2021 ']")
+	@FindBy(how = How.XPATH, using = "//span[text()='2023']")
 	public WebElement yearDropdownValue;
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@id='remarksId']")

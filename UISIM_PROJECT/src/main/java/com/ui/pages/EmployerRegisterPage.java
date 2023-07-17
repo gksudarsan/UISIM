@@ -574,6 +574,13 @@ public WebElement verifyAddressUspsAddress;
 @FindBy(how = How.XPATH, using = "//*[@id='AccountMaintenanceEmployerAccountMaintenance']")
 public WebElement employerAccountMaintanceMenu;
 
+//--Workitem
+
+@FindBy(how = How.XPATH, using =  "//*[@id='predecessorErn']")
+public WebElement predecessorErn;
+
+@FindBy(how = How.XPATH, using = "//*[@id='predecessorFein']")
+public WebElement predecessorFein;
 
 
 

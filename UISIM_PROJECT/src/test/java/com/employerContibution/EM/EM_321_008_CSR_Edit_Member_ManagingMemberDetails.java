@@ -106,7 +106,7 @@ public class EM_321_008_CSR_Edit_Member_ManagingMemberDetails extends TestBase{
 		  
 		  // --- SREG-708 --- 
 		  commonFunction.screenShot("EM321008", "Pass", "Successful launch to Member/Managing Member Details(SREG-708) Page");
-		  commonFunction.clickOnLinkAnchorTag("Edit");
+		  commonFunction.clickOnLinkAnchorTag("inactive");
 		  
 		  // --- SREG-703 --- 
 		  commonFunction.screenShot("EM321005", "Pass", "Successful launch to SREG-703 page");
