@@ -26,6 +26,7 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
+		
 		test = 
 				report.createTest("EE.11.002:Verify TPR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Corporation (All Types, includes Sub-Chapter S)' and work items will be created for CSR to review.");
 		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
@@ -50,16 +51,16 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 		/*---------------SREG-025--------------*/
         commonFuntions.screenShot("TPRRegister", "Pass", "Navigated to SREG-025 page");
 		test.log(Status.INFO, "Selecting drop down and filling the form");
-		commonFuntions.selectDropdown("Employer Type", " Non-Profit ");
+		commonFuntions.selectDropdown("Employer Type", " Non-Profit ");sleep();
 		commonFuntions.selectDropdown("Type of Legal Entity", " Corporation (All Types, includes Sub-Chapter S) ");
 		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		System.out.println(feinValue);
 		test.log(Status.INFO, "Fein::" +feinValue);
 		Map<String, String> ernValue = 	commonFuntions.database_SelectQuerySingleColumn("SELECT EAN FROM T_EMPLOYER_ACCOUNT tea EXCEPT SELECT ERN FROM T_EMPLOYER_DOL_DTF tedd", "EAN");
 		String ERN = ernValue.get("EAN");
-		System.out.println("ERN ::" +ERN);
-		test.log(Status.INFO, "ERN :: "+ERN);	
-		commonFuntions.enterTextboxContains("Employer Registration Number", ERN);
+		System.out.println(ERN);
+		test.log(Status.INFO, "ERN :" +ERN);	
+		commonFuntions.enterTextboxContains("Employer Registration Number", ERN);sleep();
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.screenShot("GeneralInformation", "Pass", "General Information (SREG-025)");
 		commonFuntions.clickButton("Continue ");
@@ -107,7 +108,6 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 			System.out.println("USPS ADDRESS");
 		}
 		sleep(2000);
-
 		/*---------------SREG-007--------------*/
 		commonFuntions.screenShot("BusinessPhysicalAddressDetails", "Pass", "Bussiness Physical Address Details:SREG-007");
 		commonFuntions.clickButtonContains("Continue");
@@ -276,7 +276,7 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
 
-		//Assigning user to DOL_DTF WI..................
+		//Assigning user to Review Employer Type WI.....
 		try {
 			loginPage.okPopUpButton.click();
 			sleep(2000);
@@ -284,9 +284,28 @@ public class EE_11_002_TPR_Can_Register_Non_Profit_Coropration extends TestBase{
 		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_5.toUpperCase(), COMMON_CONSTANT.CSR_USER_5_PASSWORD);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 
-		//Resolving DOL_DTF WI................
+		//Resolving Review Employer Type WI.....
 		PEOPage.queue.click(); sleep();
 		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+		commonFuntions.screenShot("FeinSearch","Pass","Search with fein number");
+		commonFuntions.clickButtonContains("Search");
+		sleep(2000);
+		commonFuntions.screenShot("ReviewEmployerTask","Pass","Review Employer Task After Search");
+		commonFuntions.clickOnLink("Review Employer Type");
+		sleep(2000); 
+		commonFuntions.screenShot("WorkItemDetails", "Pass", "Work Item Details");
+		commonFuntions.clickButtonContains("Open Work Item");
+		sleep(2000);
+		commonFuntions.screenShot("ReviewEmployerTypeTaskDetails","Pass","Review Employer Type Task Details");sleep();
+		//commonFuntions.selectDropdown("Account Status", " Future ");
+		commonFuntions.enterFutureDate("Date Covered Employment began? ", 10);
+		AddPage.commentField.sendKeys("review employer closing");
+		commonFuntions.screenShot("ReviewEmployerTypeTaskDetails1","Pass","Review Employer Type Task Details1");
+		commonFuntions.clickButtonContains("Submit"); sleep();
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("WorkItemCompleted","Pass","Workitem Completed");
+		commonFuntions.clickButtonContains("Home");
 
 	}
 }

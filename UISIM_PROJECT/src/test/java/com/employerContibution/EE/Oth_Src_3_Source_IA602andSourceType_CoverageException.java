@@ -12,6 +12,7 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.utilities.COMMON_CONSTANT;
+import com.ui.utilities.FullPageScreenshot;
 
 import stepDefinitions.commonStepDefinitions;
 
@@ -22,6 +23,7 @@ public class Oth_Src_3_Source_IA602andSourceType_CoverageException extends TestB
 	public void Oth_Src_3() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		FullPageScreenshot ss = new FullPageScreenshot();
 		test = report.createTest("Oth_Src_3:Verify that account can be created from source 'IA602' and Source Type 'Coverage Exception'");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");sleep();
@@ -31,6 +33,7 @@ public class Oth_Src_3_Source_IA602andSourceType_CoverageException extends TestB
 		cf.clickMenu("Employer Registration");
 		cf.screenShot("NavigatigToEmployerRegistration", "Pass", "Register Employer");
 		cf.clickMenu("Register Employer");sleep();
+		//ss.screenShot("EmployerRegistrationScreen", "Pass", "Employer Registration:SREG-001");
 		cf.screenShot("EmployerRegistrationScreen", "Pass", "Employer Registration:SREG-001");
 
 		/*---Employer Registration----*/
@@ -40,16 +43,17 @@ public class Oth_Src_3_Source_IA602andSourceType_CoverageException extends TestB
 		sleep(2000);
 
 		/*---General Information---*/
-		cf.selectDropdown("Employer Type", " Business ");
+		cf.selectDropdown("Employer Type", " Business ");sleep();
 //		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea", "FEIN");
 //		String feinValue = databaseResults.get("FEIN");
 		String feinValue = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
 		System.out.println("Fein No is:: " + feinValue);
 		test.log(Status.INFO, "FEIN::" + feinValue);
 		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-		cf.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
+		cf.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");sleep();
 		cf.selectDropdown("Source", " IA602 ");sleep();
 		cf.selectDropdown("Source Type", " Coverage Exception ");sleep();
+		//ss.screenShot("GeneralInformation", "Pass", "General Information (SREG-025)");
 		cf.screenShot("GeneralInformation", "Pass", "General Information (SREG-025)");
 		cf.clickButtonContains("Continue");
 		sleep(2000);
@@ -70,6 +74,7 @@ public class Oth_Src_3_Source_IA602andSourceType_CoverageException extends TestB
 		cf.enterTextboxContains("City", "New York");
 		cf.enterTextboxContains("Zip Code", cf.createRandomInteger(100, 999)+"67");
 		cf.selectDropdown("County", "Albany");
+		//ss.screenShot("EmployerContactDetails", "Pass", "Employer Contact Details");
 		cf.screenShot("EmployerContactDetails", "Pass", "Employer Contact Details");
 		cf.clickButtonContains("Continue");
 		sleep(2000);

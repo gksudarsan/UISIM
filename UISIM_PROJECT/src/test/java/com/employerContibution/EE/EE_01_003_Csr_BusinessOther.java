@@ -43,12 +43,12 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		cf.clickButtonContains("Continue"); 
 		sleep(3000);
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN NOT IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "FEIN"); 
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSM' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC", "FEIN"); 
 		String FEIN = databaseResults.get("FEIN");
 		System.out.println("FEIN NUMBER = " +FEIN);
 		test.log(Status.INFO, "Fein::" + FEIN);
 		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC", "EAN"); 
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSM' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC", "EAN"); 
 		String EAN = databaseResults1.get("EAN");
 		System.out.println("EAN NUMBER = " +EAN);
 		test.log(Status.INFO, "Fein::" + EAN);
@@ -69,7 +69,7 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		/*------'Employer Entity Information (SREG-003)----*/
 		cf.screenShot("EmployerEntityInfo", "Pass", "Entering Details Employer Entity Info");
 		Map<String, String> databaseResults3 = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)","ENTITY_NAME");
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSM' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS DESC","ENTITY_NAME");
 		String legalName = databaseResults3.get("ENTITY_NAME");
 		System.out.println("LegalName is: "+ legalName );
 		AddPage.legalNameTextBox.sendKeys(legalName);
@@ -112,6 +112,9 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		sleep(3000);
 
 		/*----Add Primary Business Physical Address(SREG-008)-----*/
+		try {
+			cf.clickOnLinkAnchorTag("Edit");
+		}catch(Exception e) {}
 		cf.screenShot("AddPrimaryBussinessPhysicalAddress", "Pass", "Entering Deatail on Business Page");
 		cf.enterTextboxContains("Address Line 1", cf.createRandomInteger(10, 99)+ "Cooper Square");
 		cf.enterTextboxContains("City","NY");
@@ -169,10 +172,15 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		sleep(3000);
 
 		/*---"Business Acquisition (SREG-011)-----*/
+		try {
+			cf.clickOnLinkAnchorTag("Edit");
+		}catch(Exception e) {}
 		cf.screenShot("BussinessAquisition", "Pass", "Bussiness Aquisition(SREG-011)");
 		cf.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
-		String BA_FEIN = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
-		System.out.println(BA_FEIN);
+		//String BA_FEIN = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
+		Map<String, String> databaseResults_FEIN_BA = cf.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS = 'C'","FEIN");
+		String BA_FEIN = databaseResults_FEIN_BA.get("FEIN");
 		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", BA_FEIN);
 		cf.enterTextboxContains("Address Line 1", cf.createRandomInteger(10, 99)+ "Cooper Square");
 		cf.enterTextboxContains("City","NY");
@@ -193,7 +201,10 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		System.out.println(ERN);
 		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", BA_FEIN);
 		cf.enterTextboxContains("Employer Registration Number", ERN);
-		AddPage.legalNameOfBussiness.sendKeys("TestAuto");
+		Map<String, String> databaseResults_FEIN_LegalName = cf.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS = 'C'","ENTITY_NAME");
+		String LegalName = databaseResults_FEIN_LegalName.get("ENTITY_NAME");
+		AddPage.legalNameOfBussiness.sendKeys(LegalName);
 		cf.enterTextboxContains("Address Line 1", cf.createRandomInteger(10, 99)+ "Cooper Square");
 		cf.enterTextboxContains("City","NY");
 		cf.enterTextboxContains("Zip Code","23263");
@@ -212,6 +223,7 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 		cf.selectRadioQuestions("Have you changed legal entity?", "Yes ");
 		cf.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", "241622287");
 		cf.enterCurrentDate("Date of Notification");
+		cf.enterPastDate("Date of Legal Entity change", 30);
 		cf.screenShot("ChangeinLegalEntityDetails", "Pass", "Change in Legal Entity(SREG-012");
 		cf.clickButtonContains("Continue");
 		sleep(3000);
@@ -260,15 +272,91 @@ public class EE_01_003_Csr_BusinessOther extends TestBase{
 
 		//Assigning user to DOL_DTF WI..................
 		try {
-		loginPage.okPopUpButton.click();
-		sleep(2000);
+			loginPage.okPopUpButton.click();
+			sleep(2000);
 		}catch(Exception e) {}
 		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
 
 		//Resolving DOL_DTF WI................
 		PEOPage.queue.click(); sleep();
 		cf.waitForLoadingIconToDisappear();
+		cf.waitForLoadingIconToDisappear();
+		cf.selectDropdown("WorkItemDescription", " DOL-DTF Discrepancy task ");
+		cf.enterTextboxContains("Work Item Description Free Text", "dol dtf");sleep();
+		cf.clickButtonContains("Search");
+		sleep(2000);
+		cf.screenShot("DOLDTFDiscrepancytasksearch","Pass","DOL-DTF Discrepancy task search");
+		//cf.clickOnLink("DOL DTF Discrepancy");
+		sleep(2000);
+		cf.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
+		sleep(); 
+		cf.clickButtonContains("Open Work Item");
+		sleep(2000);
+		cf.screenShot("DOL/DTFDiscrepancytaskPage","Pass","DOL/DTF Discrepancy task Page");
+		sleep();
+		cf.selectDropdown("Account Status", " Liable ");
+		sleep();
+		AddPage.comment.sendKeys("doldtf");
+		cf.selectRadioQuestions("Suppress Correspondence?", "No ");
+		cf.clickButtonContains("Submit");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
+		cf.clickButtonContains("Home");
 
+		//Assigning user to Potential Duplicate WI.......
+		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
+
+		//Resolving Potential Duplicate WI....
+		PEOPage.queue.click(); sleep();
+		cf.waitForLoadingIconToDisappear();
+		cf.waitForLoadingIconToDisappear();
+		cf.selectDropdown("WorkItemDescription1", " Review potential Duplicates");
+		cf.enterTextboxContains("FEIN", FEIN);sleep();
+		cf.clickButtonContains("Search");
+		sleep(2000);
+		cf.screenShot("ReviewpotentialDuplicates1","Pass","Review potential Duplicates search");
+		cf.clickOnLink("Review potential Duplicates");
+		sleep(2000);
+		cf.screenShot("ReviewpotentialDuplicatesTask","Pass","Review potential Duplicates Task");
+		sleep(); 
+		cf.clickButtonContains("Open Work Item");
+		sleep(2000);
+		cf.screenShot("PotentialDuplicateEmployerTask","Pass","Potential Duplicate Employer Task");
+		sleep();
+		AddPage.comment.sendKeys("ok test");
+		cf.clickButtonContains("Submit");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("workitemCompletedPotentialDuplicate","Pass","work item Completed Potential Duplicate");
+		cf.clickButtonContains("Home");
+
+		//Assigning user to Verify Agent WI.......
+		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)");
+
+		//Resolving Verify Agent WI....
+		PEOPage.queue.click(); sleep();
+		cf.waitForLoadingIconToDisappear();
+		cf.waitForLoadingIconToDisappear();
+		cf.selectDropdown("WorkItemDescription2", " Verify Agent ");
+		cf.enterTextboxContains("FEIN", FEIN);sleep();
+		cf.clickButtonContains("Search");
+		sleep(2000);
+		cf.screenShot("VerifyAgentRepTask2","Pass","Verify Agent Rep Task Search");
+		cf.clickOnLink("Verify Agent Rep Task");
+		sleep(2000);
+		cf.screenShot("VerifyAgentRepTask","Pass","Verify Agent Rep Task Work Item");
+		sleep(); 
+		cf.clickButtonContains("Open Work Item");
+		sleep(2000);
+		cf.screenShot("VerifyAgentRepTaskDetails","Pass","Potential Duplicate Employer Task Details");
+		sleep();
+		AddPage.comment.sendKeys("ok test");
+		cf.clickButtonContains("Submit");
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("workitemCompletedVerifyAgent","Pass","work item Completed Verify Agent");
+		cf.clickButtonContains("Home");
 
 	}
 }

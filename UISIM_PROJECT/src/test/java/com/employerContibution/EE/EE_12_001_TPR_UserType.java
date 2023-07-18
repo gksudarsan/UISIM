@@ -27,12 +27,11 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test = 
 				report.createTest("EE.12.001:Verify TPR can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Housing Authority' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER_2.toUpperCase(), COMMON_CONSTANT.TPR_USER_2_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		AddPage.menu.click();
-		//commonFuntions.clickMenu("Menu");
 		sleep();
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
@@ -88,7 +87,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.enterRandomStringLegalName("Legal Name");
 		commonFuntions.enterTextboxContains("Other commonly known name of entity", "TESTTPRUSER");
 		commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly owned by a federally recognized Indian Tribe?", "Yes");
-		commonFuntions.enterPastDate("What is the date of the first payroll", 365);
+		commonFuntions.enterPastDate("What is the date of the first payroll", 728);
 		commonFuntions.enterPastDate("Date covered employment began?", 180);
 		commonFuntions.selectRadioQuestions("Financing Method", "Reimbursable");
 		sleep();
@@ -132,6 +131,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		AddPage.firstName_locationOfBooksAndrecords.sendKeys("Tom");
 		AddPage.lastName_locationOfBooksAndrecords.sendKeys("Tert");
 		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Location of Books and Records");
+		commonFuntions.screenShot("EmployerContaDetails", "Pass", "Employer Contact Details");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		try {
@@ -173,10 +173,12 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		sleep(5000);
 
 		//Assigning user to WI Review emp type..................
+		try {
 		loginPage.okPopUpButton.click();
 		sleep(2000);
-		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		}catch(Exception e) {}
+		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_5.toUpperCase(), COMMON_CONSTANT.CSR_USER_5_PASSWORD);
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 
 		//Resolving WI Review emp type................
 		PEOPage.queue.click(); 
@@ -195,6 +197,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.screenShot("ReviewEmployerTypeTaskDetails","Pass","Review Employer Type Task Details");
 		commonFuntions.enterFutureDate("Date Covered Employment began? ", 10);
 		AddPage.commentField.sendKeys("registration  in progress");
+		commonFuntions.screenShot("ReviewEmployerTypeTaskDetails1","Pass","Review Employer Type Task Details1");
 		commonFuntions.clickButtonContains("Submit"); 
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -202,7 +205,7 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.clickButtonContains("Home");
 
 		//Assigning user to WI Obtain Bond Task..................
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		//Resolving WI Obtain Bond Task................
 		PEOPage.queue.click(); 
 		sleep();
@@ -217,9 +220,9 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.screenShot("WorkItemDetailsObtainBond","Pass","Work Item Details Obtain Bond");
 		commonFuntions.clickButtonContains("Open Work Item");
 		sleep(2000);
-		commonFuntions.enterFutureDate("Liability Date", 10);
+		commonFuntions.enterPastDate("Liability Date", 730);
 		sleep(2000);
-		commonFuntions.enterFutureDate("Date covered employment began? ", 10);
+		commonFuntions.enterPastDate("Date covered employment began? ", 365);
 		sleep(2000);
 		AddPage.commentField.sendKeys("obtain bond task closing");
 		commonFuntions.screenShot("ObtainBondTask","Pass","Obtain Bond Task");
@@ -229,10 +232,10 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.screenShot("ReviewWorkItemObtainBondTask","Pass","Review Workitem Obtain Bond Task");
 		commonFuntions.clickButtonContains("Home");
 
-		//Assigning user to WI unable to determine liability Work item..................
+		//Assigning user to WI unable to determine liability Work item....
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		sleep();
-		//Resolving DOL-DTF Work item................non expected WI
+		//Resolving  determine liability Work item...
 		PEOPage.queue.click(); 
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.selectDropdown("WorkItemDescription", "Unable to determine liability task");
@@ -240,21 +243,22 @@ public class EE_12_001_TPR_UserType extends TestBase{
 		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
 		commonFuntions.screenShot("UnabletoDetermineLiabilityTask","Pass","Unable to Determine Liability Task search");
-		commonFuntions.clickOnLink("DOL DTF Discrepancy");
+		commonFuntions.clickOnLink("Unable to Determine Liability Task");
 		sleep(2000);
-		commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
-		sleep(); 
+		commonFuntions.screenShot("LiabilityTask","Pass","Liability Task");
+		sleep(2000); 
 		commonFuntions.clickButtonContains("Open Work Item");
 		sleep(2000);
-		commonFuntions.screenShot("DOL/DTFDiscrepancytaskPage","Pass","DOL/DTF Discrepancy task Page");
-		sleep();
-		commonFuntions.selectDropdown("Account Status", " Liable ");
-		sleep();
-		AddPage.comment.sendKeys("doldtf");
-		commonFuntions.clickButtonContains("Submit");
-		sleep(2000);
+		commonFuntions.screenShot("UnabletoDetermineLiabilityTaskDetails","Pass","Unable to Determine Liability Task");sleep();
+		commonFuntions.enterTextboxContains("Employer Registration Number", "0400053");
+		commonFuntions.selectDropdown("Account Status", " Liable ");sleep();
+		commonFuntions.selectRadioQuestions("Financing Method", "Reimbursable");sleep();
+		commonFuntions.enterFutureDate("Date covered employment began? ", 10);
+		AddPage.comment.sendKeys("liability task");
+		commonFuntions.screenShot("UnabletoDetermineLiabilityTaskDetails1","Pass","Unable to Determine Liability Task");sleep();
+		commonFuntions.clickButtonContains("Submit");sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
+		commonFuntions.screenShot("WorkItemCompletedLiabiltyTask","Pass","Work Item Completed Liabilty Task");
 		commonFuntions.clickButtonContains("Home");
 
 	}
