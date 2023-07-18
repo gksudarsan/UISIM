@@ -34,16 +34,14 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		test = 
 				report.createTest("EE.13.001:Verify CSR can submit employer registration for employer type 'Business'\r\n" + 
 						"Short Form flow");
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_5.toUpperCase(), COMMON_CONSTANT.CSR_USER_5_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		AddPage.menu.click();
 		sleep();
-//		commonFuntions.clickMenu("Menu");sleep();
 		commonFuntions.ScrollMenu("Employer Registration");
-		commonFuntions.clickMenu("Employer Registration");
-		sleep();
+		commonFuntions.clickMenu("Employer Registration");sleep();
 		commonFuntions.screenShot("EmployerRegistration", "Pass", "Create Short Form Resgistration Review Task:EESR-001");
 		commonFuntions.clickMenu("Create Short Form Resgistration Review Task");
 		sleep(3000);
@@ -66,9 +64,11 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		commonFuntions.screenShot("CreateShortFormRegistrationReviewTaskConfirmation", "Pass", "Create Short Form Registration Review Task Confirmation:SUC-002");
 		commonFuntions.clickButtonContains("Home");
 		sleep(4000);
-		loginPage.okPopUpButton.click();
-		sleep();
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		try {
+			loginPage.okPopUpButton.click();
+			sleep();
+		}catch(Exception e) {}
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Navigated to Home page and click on My-Q");
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Click on My-Q");
 		PEOPage.queue.click();
@@ -144,12 +144,12 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		}catch(Exception e) {
 			System.out.println("verify date");
 		}
-        sleep(2000);
-        commonFuntions.clickButtonContains("Previous ");
-        sleep(2000);
+		sleep(2000);
+		commonFuntions.clickButtonContains("Previous ");
+		sleep(2000);
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
-		
+
 		/*------Employer Contact Details-----*/
 		commonFuntions.enterTextboxContains("Address Line 1","243 Test Road");
 		commonFuntions.enterTextboxContains("City","NY");
@@ -163,57 +163,50 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		}catch(Exception e) {
 			System.out.println("Business Physical Address Details");
 		}
-		sleep();
-		
+		sleep(2000);
 
 		/*------Employer Verify Contact Details-SREG-521----*/
 		commonFuntions.screenShot("EmployerVerifyContactDetails", "Pass", "Employer Verify Contact Details:SREG-521");
 		commonFuntions.clickButton("Continue ");
-		sleep(2000);
+		sleep(3000);
 
 		/*--------Business Acquisition:SREG-011--------*/
 		commonFuntions.screenShot("BusinessAcquisition", "Pass", "Business Acquisition:SREG-011");
 		commonFuntions.clickButton("Continue ");
-		sleep(2000);
+		sleep(3000);
 		/*--------Change in Legal Entity:SREG-012--------*/
 		commonFuntions.screenShot("ChangeInLegalEntity", "Pass", "Change in Legal Entity:SREG-012");
 		commonFuntions.clickButton("Continue ");
-		sleep(2000);
+		sleep(3000);
 		/*-----------Upload Document:sSREG-683------*/
 		commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents:SREG-683");
 		commonFuntions.clickButton("Continue ");
-		sleep(2000);
+		sleep(3000);
 		/*---------Review Registration Details:SREG-800------*/
 		commonFuntions.screenShot("ReviewRegistrationDetails", "Pass", "Review Registration Details:SREG-800");
 		commonFuntions.clickButton("Continue ");
-		sleep(2000);
+		sleep(3000);
 		/*--------Statement of Acknowledgement:SREG-013-----*/
 		commonFuntions.screenShot("StatementofAcknowledgement", "Pass", "Statement of Acknowledgement:SREG-043");
 		commonFuntions.clickButton("Submit ");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+
 		/*--------Statement of Acknowledgement:SREG-013-----*/
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButton("Home");
 		sleep(3000);
-		commonFuntions.screenShot("HOmePage", "Pass", "Home Page");
+		commonFuntions.screenShot("HomePage", "Pass", "Home Page");
 
 		/*-------------------Home Page-------------------*/
+		//Navigating to Inquiry Employer Account
 		commonFuntions.screenShot("EmpRegister23", "Pass", "Navigated to Home Page page click on Inquiry Employer Account");
-		AddPage.menu.click();
-		//commonFuntions.clickMenu("Menu");
-		sleep();
-		commonFuntions.clickMenu("Inquiry");
-		sleep();
-		commonFuntions.safeJavaScriptClick(empPage.inquiry_dropDown_Menu);
-		sleep();
-		commonFuntions.clickMenu("Contribution Inquiry");
-		commonFuntions.safeJavaScriptClick(empPage.Contribution_dropDown_Menu);
-		sleep();
+		AddPage.menu.click();sleep();
+		commonFuntions.clickMenu("Inquiry");sleep();
+		commonFuntions.clickMenu("Contribution Inquiry");sleep();
 		commonFuntions.screenShot("EmpRegister23", "Pass", "Clicking on Inquiry Employer Account");
 		commonFuntions.clickMenu("Inquiry Employer Account");
-		sleep(4000);
+		sleep(3000);
 
 		/*--------Inquiry Employer Account - Enter ERN:SREG-050------*/
 		commonFuntions.screenShot("EmpRegister24", "Pass", "Navigated to SREG-050 page and validating the FEIN");
@@ -221,6 +214,7 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		sleep(2000);
 		commonFuntions.clickButton("Continue ");
 		sleep(3000);
+		commonFuntions.screenShot("InquiryEmployerAccountInformation", "Pass", "Inquiry Employer Account Information");
 		String fein = empPage.FEIN_Value_Text_SREG_051.getText();
 		System.out.println("FEIN from SREG-051 : : "+fein);
 		Assert.assertEquals(feinValue2, fein.replace("-", ""));
@@ -229,8 +223,5 @@ public class EE_13_001_CSR_UserType_Business extends TestBase{
 		sleep(2000);
 		commonFuntions.screenShot("EmpRegister26", "Pass", "Click on Home button");
 		commonFuntions.clickButton(" Home ");
-
-
-
 	}
 }
