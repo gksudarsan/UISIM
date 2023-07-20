@@ -78,7 +78,7 @@ public class EE_01_011_CSR_Registration extends TestBase{
 		commonFuntions.selectRadioQuestions("Are you registering to remit withholding tax only?", "No");
 		commonFuntions.screenShot("EmployerEntityInformationPage", "Pass", "Employer Entity Information:SREG-003");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep(2000);
 
 		/*------------------SREG-008 page primary business physical address -------*/
 		try {
@@ -86,7 +86,7 @@ public class EE_01_011_CSR_Registration extends TestBase{
 		} catch(Exception e) {
 			System.out.println("Pop up not displayed");
 		}
-		sleep();
+		sleep(2000);
 		commonFuntions.enterTextboxContains("Address Line 1", commonFuntions.createRandomInteger(10, 99)+ "Cooper Square");
 		commonFuntions.enterTextboxContains("City","NY");
 		commonFuntions.enterTextboxContains("Zip Code","23263");

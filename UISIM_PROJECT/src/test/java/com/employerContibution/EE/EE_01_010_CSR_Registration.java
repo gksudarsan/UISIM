@@ -46,13 +46,14 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		//		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
 		//				"SELECT * FROM T_EMPLOYER_DOL_DTF tedd ORDER BY UPDATED_TS DESC", "FEIN");
 		//		String feinValue = databaseResults.get("FEIN");
-		//		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		//		System.out.println("FeinValue is: " + feinValue);
-		//		test.log(Status.INFO, "FeinValue::" + feinValue);
 		
-		String Fein = prop.getProperty("FeinNotPresentInDolButInDtf");
-		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",Fein);
-		test.log(Status.INFO, "FEIN VALUE::" + Fein);
+		//String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		//System.out.println("FeinValue is: " + feinValue);
+		//test.log(Status.INFO, "FeinValue::" + feinValue);	
+		
+		String feinValue = prop.getProperty("FeinNotPresentInDolButInDtf");
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",feinValue);
+		test.log(Status.INFO, "FEIN VALUE::" + feinValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", " Trust ");
 		String ernValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
 		System.out.println(ernValue);
@@ -75,11 +76,11 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		String legalName = databaseResults.get("ENTITY_NAME");
 		AddPage.legalNameTextBox.sendKeys(legalName);
 		//AddPage.legalNameTextBox.sendKeys(prop.getProperty("MoreThanOneMatchLegalName"));
-		commonFuntions.enterTextboxContains("Trade Name", "TestAutoCompany");
-		commonFuntions.enterTextboxContains("Enter date of first operations in New York State", "5/1/2023");
-		commonFuntions.enterTextboxContains("What is the date of the first payroll", "5/1/2023");
+		commonFuntions.enterTextboxContains("Trade Name", "TESTING TRADING COMPANY");
+		commonFuntions.enterTextboxContains("Enter date of first operations in New York State", "7/1/2023");
+		commonFuntions.enterTextboxContains("What is the date of the first payroll", "5/10/2023");
 		commonFuntions.selectRadioQuestions("Are you registering for Unemployment Insurance?", "Yes");
-		commonFuntions.selectDropdown("Quarter", "2");sleep();
+		commonFuntions.selectDropdown("Quarter", "3");sleep();
 		commonFuntions.selectDropdown("Year", "2023");
 		commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?", "Yes");
 		commonFuntions.enterTextboxContains("Explain services that are performed", "OthersTest");
@@ -253,7 +254,7 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		}catch(Exception e) {
 			
 		}
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+Fein+"' ORDER BY UPDATED_TS desc)");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		sleep();
 		//Resolving DOL-DTF Work item........
 		PEOPage.queue.click(); 
@@ -314,7 +315,7 @@ public class EE_01_010_CSR_Registration extends TestBase {
 		commonFuntions.clickButtonContains("Home");
 
 		//Assigning user to WI Create Letter Task..................
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+Fein+"' ORDER BY UPDATED_TS desc)"); 
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)"); 
 		sleep(2000);
 
 		//Resolving WI Create Letter Task................
