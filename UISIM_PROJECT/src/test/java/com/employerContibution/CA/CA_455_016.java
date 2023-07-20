@@ -17,12 +17,12 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class CA_455_07 extends TestBase {
+public class CA_455_016 extends TestBase {
 	@Test
-	public void CA_455_07() throws Exception
+	public void CA_455_016() throws Exception
 	{
 		
-		 test = report.createTest("CA.455.007 - Verify CSR can Calculate interest with enter ERN and Receivable Type 'Audit'");
+		 test = report.createTest("CA.455.016 - CA.455.016- Verify CSR can Calculate interest with enter ERN and Receivable Type 'Benefit Reimbursement'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 CaPage CaPage = PageFactory.initElements(driver, CaPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
@@ -49,15 +49,16 @@ public class CA_455_07 extends TestBase {
 			sleep(2000);
 			commonFuntions.waitForLoadingIconToDisappear();
 			 commonFuntions.screenShot("AfterSearch","Pass","After Search");
-			CaPage.dueDateFromTable.click();
-			 commonFuntions.screenShot("ValueRetrieved","Pass","Values Retrieved");
-			 commonFuntions.selectActionTableParameterizedId("PAPER IA",1,1,"Deposit Details for Processing Vendor","id02","checkBox","");
+			 commonFuntions.selectActionTableParameterizedId("Benefit Reimburement",4,1,"Calculate Interest","dataTableId","textBox","12");
+			//CaPage.dueDateFromTable.click();
+			 commonFuntions.screenShot("ValueUpdated","Pass","Values updated");
 			 commonFuntions.clickButtonContains(" Calculate ");
 				sleep(2000);
 				commonFuntions.waitForLoadingIconToDisappear();
 				String interestAmountValue=commonFuntions.retrieveTextboxContains("Interest Amount");
 				commonFuntions.screenShot("interestAmount","Pass","Interest Amount");
 				Assert.assertEquals("0.00", interestAmountValue);
+				commonFuntions.selectActionTableParameterizedId("Benefit Reimburement",8,1,"Calculate Interest","dataTableId","getText","notNull");
 				
 			
 	}

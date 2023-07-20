@@ -51,7 +51,7 @@ public class EE_09_004_CSR_Can_Submit_Indian_Tribe_Other extends TestBase{
 		commonFuntions.selectDropdownUsingSearch("Employer Type", " Indian Tribe ");
 		commonFuntions.selectDropdownUsingSearch("Type of Legal Entity", " Other ");
 		/*---------------FEIN--------------*/
-		String feinValue = "423708440"; // Fein from 09.003 testcase StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		String feinValue = "936495581"; // Fein from 09.003 testcase StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
 		System.out.println(feinValue);
 		
 		/*---------------FEIN--------------*/
@@ -227,6 +227,8 @@ public class EE_09_004_CSR_Can_Submit_Indian_Tribe_Other extends TestBase{
 	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(2000);
+		commonFuntions.populateListbox("Comment", "Auto Test");
+		sleep(2000);
 	    commonFuntions.clickButton("Submit ");
 	    sleep(2000);
 	    commonFuntions.waitForLoadingIconToDisappear();
@@ -251,7 +253,9 @@ public class EE_09_004_CSR_Can_Submit_Indian_Tribe_Other extends TestBase{
 	    commonFuntions.screenShot("EmpRegister122", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
 		sleep(2000);
-		commonFuntions.screenShot("ReviewComments", "Pass", "Review Potential Duplicates");
+		commonFuntions.screenShot("PotentialDuplicates", "Pass", "Review Potential Duplicates");
+		commonFuntions.populateListbox("Comment", "Auto Test");
+		
 		commonFuntions.clickButton("Submit ");
 	    sleep(2000);
 	    commonFuntions.waitForLoadingIconToDisappear();
