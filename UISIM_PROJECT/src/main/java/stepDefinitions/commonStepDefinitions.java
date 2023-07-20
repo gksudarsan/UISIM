@@ -6,6 +6,9 @@ import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -22,6 +25,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -38,12 +44,18 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.screenShot;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class commonStepDefinitions extends TestBase {
 
@@ -285,23 +297,50 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(2000);
 	}
 
-/*	public void screenShot(String fileName, String status, String message) throws Exception {
+	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
-		String screenShotPath = screenShot.takeSnapShot(driver,
+		/*String screenShotPath = screenShot.takeSnapShot(driver,
 				"D:\\AutomationFiles\\Screenshots\\"
 						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
-						+ "_" + fileName + ".jpg");
-		if (status.equalsIgnoreCase("Pass")) {
+						+ "_" + fileName + ".png");
+		*/
+		
+		//Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(ShootingStrategies.viewportRetina(100,0,0,2), 1000)).takeScreenshot(driver);
+		String screenShotTime=new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()+ "_" + fileName ;
+		String screenShotPath ="D:\\AutomationFiles\\Screenshots\\"+screenShotTime;
+		//ImageIO.write(screenshot.getImage(), "jpg", new File(screenShotPath));
+		Shutterbug.shootPage(driver, ScrollStrategy.WHOLE_PAGE_CHROME, 1000, true).withName(screenShotTime).save("D:\\AutomationFiles\\Screenshots");
+					if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		}else {
 			test.log(Status.FAIL, message);
 		}
+					
+			
+		File scrFile = new File(screenShotPath+".png");
+	    String encodedBase64 = null;
+	    FileInputStream fileInputStreamReader = null;
+	    try {
+	        fileInputStreamReader = new FileInputStream(scrFile);
+	        byte[] bytes = new byte[(int)scrFile.length()];
+	        fileInputStreamReader.read(bytes);
+	        encodedBase64 = new String(Base64.encodeBase64(bytes));
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    screenShotPath= "data:image/png;base64,"+encodedBase64;
+				     
+				     
 		// test.info(message);
+		//test.addScreenCaptureFromPath(screenShotPath+".png");
 		test.addScreenCaptureFromPath(screenShotPath);
+					
 
-	}*/
+	}
 	
-	public void screenShot(String fileName, String status, String message) throws Exception {
+	/*public void screenShot(String fileName, String status, String message) throws Exception {
 		Date currentDate = new Date();
 		String screenShotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
 		File screenshotFile = ((TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
@@ -318,7 +357,7 @@ public class commonStepDefinitions extends TestBase {
 		}
 		test.addScreenCaptureFromPath(absolutePath);
 		
-	}
+	}*/
 	
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
 		WebElement table = driver
@@ -1118,6 +1157,20 @@ public class commonStepDefinitions extends TestBase {
 							driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
 									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).sendKeys(value);
 							break label1;}
+							}
+						else if(action.equalsIgnoreCase("getText")) {
+							//attributeValue = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+							//		+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).getAttribute("disabled");
+							//if(attributeValue==null) {
+							boolean actualResult;
+							if(value.equalsIgnoreCase("notNull")) {
+							String actualValue=driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//mat-label[1]")).getText();
+							if(actualValue == null || actualValue.length() == 0) {actualResult = false;}
+							else {actualResult=true;}
+							Assert.assertTrue(actualResult, "Interest rate is populated");
+							}
+							//break label1;}
 							}
 					}
 				}

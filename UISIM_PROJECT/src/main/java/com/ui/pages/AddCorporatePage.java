@@ -21,4 +21,6 @@ public class AddCorporatePage {
 	@FindBy(how = How.XPATH, using = "//*[.='Business as Member/Managing Member ']//following::input[1]")
 	public WebElement businessEntityFilter;
 
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Business Entity')][@class='mat-radio-label-content']//preceding::span[@class='mat-radio-container'][1]")
+	public WebElement businessEntityRadio;
 }

@@ -33,9 +33,10 @@ public class SmokeTest extends TestBase{
 				
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");	
+		 sleep(2000);
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
-		 driver.navigate().refresh();
+		 
 		 Thread.sleep(3000);
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);

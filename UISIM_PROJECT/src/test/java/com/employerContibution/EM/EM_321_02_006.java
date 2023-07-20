@@ -26,6 +26,7 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -45,19 +46,23 @@ public class EM_321_02_006 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("manju@2004","Manhar2004@1234");
+		 commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_4.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_4_PASSWORD);
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("Menu");	
+		 commonFuntions.clickMenu("menu");	
+		 sleep(2000);
+		 commonFuntions.ScrollMenu("Account Maintenance");
 		 commonFuntions.clickMenu("Account Maintenance");
 		 commonFuntions.screenShot("Menu","Pass","Maintain Business Ownership");
 		 commonFuntions.clickMenu("Maintain Business Ownership");			 
-		 commonFuntions.ScrollMenu("Add Member/Managing Member Details");
-		 commonFuntions.screenShot("Add Member/Managing Member Details","Pass","Add Member/Managing Member Details");
-		 commonFuntions.clickMenu("Add Member/Managing Member Details");	
+		// commonFuntions.ScrollMenu("Add Member/Managing Member Details");
+		 //commonFuntions.screenShot("Add Member/Managing Member Details","Pass","Add Member/Managing Member Details");
+		 //commonFuntions.clickMenu("Add Member/Managing Member Details");	
+		 sleep(2000);
 		 String feinValue = StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),9);	 
-		 
+		 commonFuntions.clickOnLink("Add Member/Managing Member Details");
+		 sleep(2000);
 	     populateFields(feinValue);
 	     commonFuntions.clickButtonContains("Submit");
 	     Thread.sleep(2000);
@@ -89,8 +94,10 @@ public class EM_321_02_006 extends TestBase
 	}
 	public void populateFields(String feinValue) throws Exception {
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		Thread.sleep(2000);
 		commonFuntions.selectRadio("Business Entity");
+		addCorporatePage.businessEntityRadio.click();
 	     Random random = new Random();
 	     commonFuntions.enterTextboxContains("Entity Name", "AutomationFirstName"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),5));	    
 	     commonFuntions.enterTextboxContains("Federal Identification Number (FEIN)", feinValue);

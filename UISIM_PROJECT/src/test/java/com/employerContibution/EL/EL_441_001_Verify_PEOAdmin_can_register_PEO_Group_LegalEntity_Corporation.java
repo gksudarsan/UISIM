@@ -337,6 +337,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		    commonFuntions.clickButtonContains("Open Work Item");
 		    sleep(5000);
 		    commonFuntions.screenShot("Review","Pass","Review Peo Registration");
+		    commonFuntions.enterTextboxContains("Additional names","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 		    commonFuntions.clickButtonContains("Continue");
 		     sleep(5000);	   
 		     
