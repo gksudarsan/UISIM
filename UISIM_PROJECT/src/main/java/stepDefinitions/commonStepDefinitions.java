@@ -300,24 +300,24 @@ public class commonStepDefinitions extends TestBase {
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		screenShot screen = new screenShot();
-		/*String screenShotPath = screenShot.takeSnapShot(driver,
+		String screenShotPath = screenShot.takeSnapShot(driver,
 				"D:\\AutomationFiles\\Screenshots\\"
 						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
 						+ "_" + fileName + ".png");
-		*/
+		
 		
 		//Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(ShootingStrategies.viewportRetina(100,0,0,2), 1000)).takeScreenshot(driver);
-		String screenShotTime=new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()+ "_" + fileName ;
+		/*String screenShotTime=new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()+ "_" + fileName ;
 		String screenShotPath ="D:\\AutomationFiles\\Screenshots\\"+screenShotTime;
 		//ImageIO.write(screenshot.getImage(), "jpg", new File(screenShotPath));
 		Shutterbug.shootPage(driver, ScrollStrategy.WHOLE_PAGE_CHROME, 1000, true).withName(screenShotTime).save("D:\\AutomationFiles\\Screenshots");
-					if (status.equalsIgnoreCase("Pass")) {
+					*/if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		}else {
 			test.log(Status.FAIL, message);
 		}
 					
-			
+			/*
 		File scrFile = new File(screenShotPath+".png");
 	    String encodedBase64 = null;
 	    FileInputStream fileInputStreamReader = null;
@@ -332,7 +332,7 @@ public class commonStepDefinitions extends TestBase {
 	        e.printStackTrace();
 	    }
 	    screenShotPath= "data:image/png;base64,"+encodedBase64;
-				     
+			*/	     
 				     
 		// test.info(message);
 		//test.addScreenCaptureFromPath(screenShotPath+".png");

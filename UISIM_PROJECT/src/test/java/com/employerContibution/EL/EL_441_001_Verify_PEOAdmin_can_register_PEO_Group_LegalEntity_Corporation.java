@@ -312,7 +312,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.screenShot("Statement Of Acknowledgement", "Pass", "Incorrect screen ID - PEO-017");
 			commonFuntions.clickButtonContains("Accept & Submit");
 			sleep(5000);
-			commonFuntions.screenShot("Register/Renew Confirmation", "Pass", "Register/Renew Confirmation");
+			commonFuntions.screenShot("RegisterRenewConfirmation", "Pass", "Register/Renew Confirmation");
 			//commonFuntions.clickButtonContains("Home");
 			sleep(5000);
 			commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");

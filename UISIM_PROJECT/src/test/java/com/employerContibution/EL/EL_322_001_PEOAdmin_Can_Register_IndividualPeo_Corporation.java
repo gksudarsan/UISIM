@@ -299,7 +299,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
 	    sleep(2000);
-	    commonFuntions.screenShot("Review Peo","Pass","Review Peo");
+	    commonFuntions.screenShot("ReviewPeo","Pass","Review Peo");
 	    commonFuntions.clickOnLink("Review PEO");
 	    sleep(2000);
 	    commonFuntions.clickButtonContains("Open Work Item");

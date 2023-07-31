@@ -153,7 +153,7 @@ RegistrationResults = "Success";
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
 	    Thread.sleep(2000);
-	    commonFuntions.screenShot("Review Peo","Pass","Review Peo");
+	    commonFuntions.screenShot("ReviewPeo","Pass","Review Peo");
 	    commonFuntions.clickOnLink("Review PEO");
 	    Thread.sleep(2000);
 	    WorkItemCreatedResults="Success";
