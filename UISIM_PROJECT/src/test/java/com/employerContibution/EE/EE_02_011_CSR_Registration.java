@@ -27,9 +27,9 @@ public class EE_02_011_CSR_Registration extends TestBase{
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test = 
 				report.createTest("EE.02.011 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Sole Proprietorship (Individual)' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login("ndsbb3","Brijen@1234567");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFuntions.clickMenu("Menu");
+		commonFuntions.clickMenu("menu");
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
 		commonFuntions.screenShot("EmployerRegistration", "Pass", "Register Employer");

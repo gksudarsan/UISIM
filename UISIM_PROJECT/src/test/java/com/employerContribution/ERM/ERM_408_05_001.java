@@ -17,23 +17,22 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class ERM_408_03_001 extends TestBase {
+public class ERM_408_05_001 extends TestBase {
 
-	@Test(priority=1, description = "ERM.408.03.001 - Verify CSR can review and verify system calculated rate when a Beginning Liability Date change future date.(rate increase or decrease)",groups = {"Regression"})
-	public void ERM_408_03_001() throws Exception
+	@Test(priority=1, description = "ERM.408.05.001 -  Verify system calculated rate when CSR process sale of business and indicate transfer 'Total' and own experience before the transfer.",groups = {"Regression"})
+	public void ERM_408_05_001() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
-		test = report.createTest("ERM.408.03.001 - Verify CSR can review and verify system calculated rate when a Beginning Liability Date change future date.(rate increase or decrease)");
-		Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE EAN ='5088396'","EAN");
+        Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE EAN ='5088396'","EAN");
         String eanValue = databaseEanResult.get("EAN");
         System.out.println(eanValue);
         
-		
+		test = report.createTest("ERM.408.05.001 -  Verify system calculated rate when CSR process sale of business and indicate transfer 'Total' and own experience before the transfer.");
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login("ndsbb3","Brijen@1234567");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
         sleep();
         commonFuntions.clickMenu("menu");
@@ -62,26 +61,36 @@ public class ERM_408_03_001 extends TestBase {
 		commonFuntions.screenShot("Employer Account Rate Transaction History", "Pass", "Employer Account Rate Transaction History (SREG-052)screen Launched");	
 		commonFuntions.clickOnLinkAnchorTag("Subject Date Changes");
 		sleep(2000);
-		
+				
 		//---ERM-014---
 		commonFuntions.screenShot("Transaction Ingredients", "Pass", "Transaction Ingredients (ERM-014)screen Launched");
 		commonFuntions.clickButtonContains("Previous ");
+		sleep(2000);
+				
+		//---SREG-052---
+		commonFuntions.screenShot("Employer Account Rate Transaction History", "Pass", "Employer Account Rate Transaction History (SREG-052)screen Launched");
+		commonFuntions.clickButtonContains("Previous ");
+		sleep(2000);
+		
+		//---SREG-051---
+		commonFuntions.screenShot("Inquiry Employer Account Information", "Pass", "Inquiry Employer Account Information (SREG-051)screen Launched");
+		commonFuntions.clickOnLink("Rate History");
 		sleep(2000);
 		
 		//---SREG-052---
 		commonFuntions.screenShot("Employer Account Rate Transaction History", "Pass", "Employer Account Rate Transaction History (SREG-052)screen Launched");	
 		commonFuntions.clickOnLinkAnchorTag("Ledger");
 		sleep(2000);
-		
+				
 		//---SREG-063---
 		commonFuntions.screenShot("Ledger after Transaction", "Pass", "Ledger after Transaction (SREG-063)screen Launched");
 		commonFuntions.clickButtonContains("Previous ");
 		sleep(2000);
-		
+				
 		//---SREG-052---
 		commonFuntions.screenShot("Employer Account Rate Transaction History", "Pass", "Employer Account Rate Transaction History (SREG-052)screen Launched");
 		commonFuntions.clickButtonContains("Previous ");
-		sleep(2000);
+		sleep(2000);	
 		
 		//---SREG-051---
 		commonFuntions.screenShot("Inquiry Employer Account Information", "Pass", "Inquiry Employer Account Information (SREG-051)screen Launched");
@@ -97,11 +106,11 @@ public class ERM_408_03_001 extends TestBase {
 		commonFuntions.screenShot("Inquiry Employer Account Information", "Pass", "Inquiry Employer Account Information (SREG-051)screen Launched");
 		commonFuntions.clickOnLinkAnchorTag(" Bank Accounts Inquiry ");
 		sleep();
-		
+				
 		//---TWR-269---
 		commonFuntions.screenShot("Inquiry Employer Account Information", "Pass", "Bank Accounts Inquiry (SREG-051)screen Launched");
 		commonFuntions.clickButtonContains("Previous ");	
-		
+				
 		//---SREG-051---
 		commonFuntions.screenShot("Inquiry Employer Account Information", "Pass", "Inquiry Employer Account Information (SREG-051)screen Launched");
 		commonFuntions.clickOnLink("2023");
@@ -122,10 +131,10 @@ public class ERM_408_03_001 extends TestBase {
 		commonFuntions.screenShot("Employer Account Rate Transaction History", "Pass", "Employer Account Rate Transaction History (SREG-052)screen Launched");	
 		commonFuntions.clickOnLinkAnchorTag("Ledger");
 		sleep(2000);
-		
+				
 		//---SREG-063---
 		commonFuntions.screenShot("Ledger after Transaction", "Pass", "Ledger after Transaction (SREG-063)screen Launched");
-		commonFuntions.clickOnLink("0");
+        commonFuntions.clickOnLink("0");
 		
 		//---ERM-030---
 		commonFuntions.screenShot("Estimated Wages", "Pass", "Estimated Wages (SREG-063)screen Launched");
@@ -149,6 +158,11 @@ public class ERM_408_03_001 extends TestBase {
 		commonFuntions.enterTextboxContains("Employer Registration Number" ,eanValue);
 
 		//scripting is done correspondence validation we can not automate
-	
+		
+		
 	}
+	
+	
+	
+	
 }

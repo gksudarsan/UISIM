@@ -17,41 +17,21 @@ import stepDefinitions.commonStepDefinitions;
 public class EE_10_003 extends TestBase{
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION} )
-	public void TC_EE_10_003() throws Exception {
+	public void EE_10_004() throws Exception {
 		
 		test = report.createTest("Verify TPR can submit employer registration for employer type 'Governmental' and legal entity type 'Village' and work items will be created for CSR to review.");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
-		
-		// GET query
-		// FEIN in DOL & not in DTF
-		Map<String, String> databaseFeinResult = commonFunction.database_SelectQuerySingleColumn(
-				"SELECT * FROM LROUIM.T_EMPLOYER_ACCOUNT tea JOIN LROUIM.T_EMPLOYER_DOL_DTF tedd ON tea.EAN = tedd.ERN WHERE tea.FEIN != tedd.FEIN",
-				"FEIN");
-		String feinValue = databaseFeinResult.get("FEIN");
-		System.out.println("The FIEN is " + feinValue);
-		
-		// EAN in DOL & DTF
-		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
-				"EAN");
-		String eanValue = databaseEanResult.get("EAN");
-		System.out.println("The EAN is " + eanValue);
-		
-		//Legal name not in DOL, multiple in DTF
-		Map<String, String> databaseEntityNameResult = commonFunction.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd GROUP BY LEGAL_NAME HAVING COUNT(*)>1 ) ORDER BY UPDATED_TS DESC","ENTITY_NAME");
-		String legalName = databaseEntityNameResult.get("ENTITY_NAME");
-		System.out.println("The LegalName is " + legalName);
-		
+				
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.clickMenu("Menu");
+		commonFunction.clickMenu("menu");
 		// commonFuntions.clickMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");
@@ -80,9 +60,9 @@ public class EE_10_003 extends TestBase{
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-025 page");
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue); //897397325
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "240785592"); //897397325
 		commonFunction.selectDropdown("Type of Legal Entity", " Village ");
-		commonFunction.enterTextboxContains("Employer Registration Number", eanValue); //4543352
+		commonFunction.enterTextboxContains("Employer Registration Number", "2501424"); //4543352
 		sleep(2000);
 		commonFunction.screenShot("EmpRegister4", "Pass", "Details entered and click on CONTINUE button");
 		commonFunction.clickButton("Continue ");
@@ -90,23 +70,20 @@ public class EE_10_003 extends TestBase{
 		// --- SREG-003 ---
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EmpRegister5", "Pass", "Launched Employer Entity Information(SREG-003) page");
-		empRegPage.legalNameTextBox.sendKeys(legalName); //ColorEseence122
+		empRegPage.legalNameTextBox.sendKeys("THE H-ADJUSTED TAX"); //ColorEseence122
 		//empRegPage.legalNameTextBox.sendKeys("B Legal Corp");
 		//commonFunction.enterTextboxContains("Other commonly known", "S Corp");
 		commonFunction.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFunction.createRandomInteger(10000000, 99999999)) + Long.toString(commonFunction.createRandomInteger(10, 99)));
 		sleep(2000);
 		commonFunction.screenShot("EmpRegister6", "Pass", "Details entered in SREG-003 page");
-		commonFunction.enterTextboxContains("date of the first payroll", "09/01/2022");
-		commonFunction.enterTextboxContains("Estimated or approximate number of individuals", "90");
-		commonFunction.enterTextboxContains("Date covered employment", "05/07/2022");
+		commonFunction.enterTextboxContains("date of the first payroll", "09/01/2020");
+		commonFunction.enterTextboxContains("Estimated or approximate number of individuals", "453");
+		commonFunction.enterTextboxContains("Date covered employment", "05/07/2021");
 		commonFunction.selectRadioQuestions("Choose the option you wish to use to discharge your Unemployment Insurance liability.", "Reimbursable");
 		sleep(2000);
 		commonFunction.screenShot("EmpRegister7", "Pass", "Details entered in SREG-003 page and click Continue");
 		commonFunction.clickButton("Continue ");
-		
 		sleep();
-		commonFunction.screenShot("EmpRegister7", "Pass", "Warning message on Continue");
-		commonFunction.clickButton(" Yes ");
 		
 		// --- SREG-008 ---
 		commonFunction.waitForLoadingIconToDisappear();

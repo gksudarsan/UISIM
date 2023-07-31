@@ -17,15 +17,15 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class ERM_408_03_001 extends TestBase {
+public class ERM_408_03_004 extends TestBase {
 
-	@Test(priority=1, description = "ERM.408.03.001 - Verify CSR can review and verify system calculated rate when a Beginning Liability Date change future date.(rate increase or decrease)",groups = {"Regression"})
-	public void ERM_408_03_001() throws Exception
+	@Test(priority=1, description = "ERM.408.03.004 - Verify Employer can update employer 'Beginning Liability Date and the system creates a task for CSR reviews and Approve and verify the system calculated rate",groups = {"Regression"})
+	public void ERM_408_03_004() throws Exception
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 
-		test = report.createTest("ERM.408.03.001 - Verify CSR can review and verify system calculated rate when a Beginning Liability Date change future date.(rate increase or decrease)");
+		test = report.createTest("ERM.408.03.004 - Verify Employer can update employer 'Beginning Liability Date and the system creates a task for CSR reviews and Approve and verify the system calculated rate");
 		Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT WHERE EAN ='5088396'","EAN");
         String eanValue = databaseEanResult.get("EAN");
         System.out.println(eanValue);
@@ -149,6 +149,6 @@ public class ERM_408_03_001 extends TestBase {
 		commonFuntions.enterTextboxContains("Employer Registration Number" ,eanValue);
 
 		//scripting is done correspondence validation we can not automate
-	
+		
 	}
 }
