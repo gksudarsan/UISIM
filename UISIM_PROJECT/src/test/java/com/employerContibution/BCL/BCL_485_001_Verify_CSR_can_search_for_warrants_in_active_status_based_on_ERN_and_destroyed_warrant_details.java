@@ -18,34 +18,63 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class BCL_855_03_001 extends TestBase {
+public class BCL_485_001_Verify_CSR_can_search_for_warrants_in_active_status_based_on_ERN_and_destroyed_warrant_details extends TestBase {
 	@Test
-	public void BCL_855_03_001() throws Exception
+	public void BCL_485_001() throws Exception
 	{
 		
-		 test = report.createTest("BCL.855.03.001 - Verify CSR can search for the list of mailed NPR letters for an ERN");
+		 test = report.createTest("485_001 - Verify CSR can search for warrants in active status based on ERN and destroyed warrant details");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 BclPage BclPage = PageFactory.initElements(driver, BclPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		 //-----Login
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 sleep(2000);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
+		 //-----Menu
 		 commonFuntions.clickMenu("menu");
 		 sleep(2000);
-		 commonFuntions.ScrollMenu("Employer Collection");
-		 commonFuntions.clickMenu("Employer Collection");
+		 commonFuntions.screenShot("Menu", "Pass", "Menu page");
+		 commonFuntions.ScrollMenu("Contribution Collection");
+		 commonFuntions.clickMenu("Contribution Collection");
 		 sleep(1000);
-		 commonFuntions.clickMenu("Confidential Source");
+		 commonFuntions.clickMenu("Warrant");
 		 sleep(1000);
-		 commonFuntions.clickMenu("Notice of Pending Referral List – Enter ERN/SSN/FEIN");
+		 commonFuntions.screenShot("Menu", "Pass", "Menu selected");
+		 commonFuntions.clickMenu("Destroy Warrant");
 		 sleep(1000);
-		 commonFuntions.clickButtonContains("Search");
+		//----SREG -503
+			commonFuntions.waitForLoadingIconToDisappear();
+			commonFuntions.screenShot("Destroy Warrant", "Pass", "Successfully launched to COL-497 page");
 			sleep(2000);
+			commonFuntions.clickButtonContains("Continue ");
+			sleep(2000);
+			commonFuntions.screenShot("Destroy Warrant", "Pass", "Entered nothing on ERN:  COL-497 page");
+			sleep(2000);
+			commonFuntions.enterTextboxContains("Employer Registration Number (ERN)", "0400027"); 
+		    commonFuntions.clickButtonContains("Continue ");
+		    sleep(2000);
+		    commonFuntions.screenShot("Destroy Warrant", "Pass", "Entered  ERN with no record on  COL-497 page");
+			commonFuntions.enterTextboxContains("Employer Registration Number (ERN)", "1111111"); 
+			sleep(2000);
+		    commonFuntions.clickButtonContains("Continue ");
+		    commonFuntions.screenShot("Destroy Warrant", "Pass", "Entered invalid ERN on  COL-497 page");
+		    sleep(2000);
+		    commonFuntions.screenShot("Destroy Warrant", "Pass", "Entered  ERN with no record on  COL-497 page");
+			commonFuntions.enterTextboxContains("Employer Registration Number (ERN)", ""); 
+			sleep(2000);
+		    commonFuntions.clickButtonContains("Continue ");
+		    commonFuntions.screenShot("Destroy Warrant", "Pass", "Entered valid ERN on  COL-497 page");
+		    
+		    ///
+		    
+		    
+		    
 			commonFuntions.screenShot("ErrorLabel1","Pass","A value must be provided for either SSN or ERN or FEIN.");
 			commonFuntions.errorContent("A value must be provided for either SSN or ERN or FEIN.");
 			sleep(2000);
-			commonFuntions.enterTextboxContains("Employer Registration Number", "0000000");
+			commonFuntions.enterTextboxContains("Employer Registration Number", "1111111");
 			commonFuntions.clickButtonContains("Search");
 			sleep(2000);
 			commonFuntions.screenShot("ErrorLabel2","Pass","The response to Employer Registration Number is an invalid Employer Registration Number");

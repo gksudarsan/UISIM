@@ -647,6 +647,9 @@ public class employerManagement extends TestBase
 	@FindBy(how = How.XPATH, using = "//span[text()=' Coverage Exception ']")
 	public WebElement CoverageException_SREG435;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Cash Wages ']")
+	public WebElement CashWages_SREG435;
+	
 	@FindBy(how = How.XPATH, using = "//*[.='Suspension Date']//following::*[@id='mat-select-4']")
 	public WebElement suspensionDateQtrDropdown_SREG435;
 	

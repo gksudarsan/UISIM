@@ -58,7 +58,7 @@ public class SREG_435 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//textarea[@id='remarksId']")
 	public WebElement enterComments;
 	
-	@FindBy(how = How.XPATH, using = "//label[@for='closureLetterId_No-input']//span[@class='mat-radio-outer-circle']")
+	@FindBy(how = How.XPATH, using = "//label[@for='closureLetterId_No-input']//span[@class='mat-radio-container']")
 	public WebElement radioButton;
 	
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,'Source')]//following::mat-select[1])[last()-1]")
