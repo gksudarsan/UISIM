@@ -18,16 +18,17 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class ERM_408_11_001_Verify_system_calculated_rate_when_CSR_process_void_transfer_with_reason_of_voiding_transfer_is_Effective_Date_Change extends TestBase {
+public class ERM_408_12_001_Verify_system_calculated_rate_when_CSR_process_void_transfer_with_reason_of_voiding_transfer_is_Transfer_Type_Change extends TestBase {
 	@Test
-	public void ERM_408_11_001() throws Exception
+	public void ERM_408_12_001() throws Exception
 	{
-test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR process void transfer with reason of voiding transfer is \"Effective Date Change\"");
+test = report.createTest("ERM_408_12_001_Verify system calculated rate when CSR process void transfer with reason of voiding transfer is \"Effective Date Change\"");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		employerManagement empManage = new employerManagement();
+		HomePage home = new HomePage(driver);
 		SREG_541 sreg = new SREG_541(driver);		
 		// DB Query
 				// Valid ERN
@@ -35,7 +36,7 @@ test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR 
 						"SELECT EAN FROM T_EMPLOYER te join T_EMPLOYER_TRANSFER tet ON TET.FROM_EMPLOYER_ID = te.EMPLOYER_ID AND te.ean ='8026207' ORDER BY te.UPDATED_TS DESC",
 						"EAN");*/
 		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
-						"SELECT * FROM T_EMPLOYER_ACCOUNT WHERE ACCOUNT_STATUS='LIAB' AND CREATED_BY !='LEGACY' AND REGISTRATION_STATUS='C' ORDER BY UPDATED_TS DESC",
+						"SELECT TEA.EAN,* FROM T_EMPLOYER_TRANSFER tet JOIN T_EMPLOYER_ACCOUNT tea ON TET.FROM_EMPLOYER_ID = TEA.EMPLOYER_ACCOUNT_ID WHERE REVERSED = '0' AND STATUS = 'C' ORDER BY TEt.UPDATED_TS DESC",
 						"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 	    System.out.println(eanValue);
@@ -51,7 +52,8 @@ test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR 
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
-		//--------TC: EM.414.001--------------
+		//--------TC: EM.414.006--------------
+		
 		//---Menu Click---
 		commonFunction.clickMenu("menu");
 		commonFunction.ScrollMenu("Account Maintenance");
@@ -76,7 +78,7 @@ test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR 
 		sreg.selectRadioButton.click();
 		//commonFunction.selectRadio("Select");
 		sleep(2000);
-		commonFunction.selectDropdown("Reason For Voiding Transfer", " Effective Date Change ");
+		commonFunction.selectDropdown("Reason For Voiding Transfer", " Transfer Type Change ");
 		sleep(2000);
 		sreg.enterValidComment.sendKeys("Testing");
 		sleep(2000);
@@ -95,9 +97,43 @@ test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR 
 		sleep(2000);
 		commonFunction.screenShot("SuccessPage", "Pass", "Launched to Home page");
 		
+		//---Menu Click---
+				commonFunction.clickMenu("menu");
+				commonFunction.ScrollMenu("Account Maintenance");
+				commonFunction.clickMenu("Account Maintenance");
+				commonFunction.ScrollMenu("Employer Account Maintenance");
+				commonFunction.clickMenu("Employer Account Maintenance");
+				sleep(2000);
+				commonFunction.screenShot("NavigationMenu", "Pass", "Navigated to Menu -> Account Maintenance -> Employer Account Maintenance -> Maintain Accounts");
+				commonFunction.ScrollMenu("Maintain Account Status");
+				home.maintainAccStatus.click();
+				sleep(2000);
 		
+				//------SREG -434---------
+				sleep(2000);
+				commonFunction.screenShot("Maintain Account Status - Enter ERN", "Pass", "Successfully landed on SREG 434 page");
+				commonFunction.enterTextboxContains("Employer Registration Number", eanValue);
+				sleep(2000);
+				commonFunction.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully entered deatils and  click on continue");
+				commonFunction.clickButton("Continue ");
+				sleep(2000);
+				
+				//-----------SREG -435---------
+				sleep(2000);
+				commonFunction.screenShot("Update Account Status", "Pass", "Successfully landed on SREG 434 page");
+		        commonFunction.ScrollMenu("Comments");
+		        sleep(2000);
+		        commonFunction.screenShot("Update Account Status", "Pass", "Successfully landed on SREG 435 page");
+		        commonFunction.ScrollMenu("Source Type");
+		        sleep(2000);
+		        commonFunction.screenShot("Update Account Status", "Pass", "Successfully landed on SREG 435 page");
+		        sleep(2000);
+		        //commonFunction.ScrollMenu("Submit  ");
+		        sleep(2000);
+		        commonFunction.clickButton("Previous ");
+		        
 		//--------Menu----
-		
+		        sleep(2000);
 		commonFunction.clickMenu("menu");
 		commonFunction.ScrollMenu("Inquiry");
 		commonFunction.clickMenu("Inquiry");
@@ -222,7 +258,7 @@ test = report.createTest("ERM_408_11_001_Verify system calculated rate when CSR 
 		commonFunction.clickButton(" Home ");
 		sleep(2000);
 		commonFunction.screenShot("Home page", "Pass", "Successfully landed on Home Page");
-		commonFunction.screenShot("TC_ERM_408_11_001", "Pass", "Successfully completed Testcase till correspondance  ");
+		commonFunction.screenShot("TC_ERM_408_12_001", "Pass", "Successfully completed Testcase till correspondance");
 		//Done till correspondence
 		
         System.out.println("pass");

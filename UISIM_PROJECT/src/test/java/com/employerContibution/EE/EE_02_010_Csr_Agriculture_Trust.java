@@ -36,7 +36,7 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 		 * +feinValue);
 		 */	
 		test = 
-				report.createTest("EE_01_004:Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Guardianship' and work items will be created for CSR to review.");
+				report.createTest("EE_02_010:Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Guardianship' and work items will be created for CSR to review.");
 		cf.login(COMMON_CONSTANT.CSR_USER_5.toUpperCase(), COMMON_CONSTANT.CSR_USER_5_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");		
 		cf.waitForLoadingIconToDisappear();
@@ -100,7 +100,7 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 
 		/*-----Business Physical Address Details------*/
 		cf.screenShot("PhysicalBussinessAddressPageDetails", "Pass", "Business Physical Address Details:SREG-007");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 
 		/*-----Employer Contact Details------*/
@@ -111,7 +111,7 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 		AddPage.lastName_locationOfBooksAndrecords.sendKeys("Terry");
 		cf.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Primary Business Physical Address");sleep();
 		cf.screenShot("EmployerContactDetailsPage1", "Pass", "Employer Contact Details:SREG-004");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 		try {
 			cf.safeJavaScriptClick(AddPage.uspsAddress1);
@@ -126,17 +126,17 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 
 		/*----------Employer Verify Contact Details----------*/
 		cf.screenShot("EmployerVerifyContactDetails", "Pass", "Employer Verify Contact Details:SREG-521");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 
 		/*----------Business Acquisition----------*/
 		cf.screenShot("BussinessAquisition", "Pass", "Bussiness Aquisition:SREG-011");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 
 		/*-----Change in Legal Entity-----*/
 		cf.screenShot("ChangeinLegalEntity", "Pass", "Change in Legal Entity(SREG-012");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 
 		/*-------Add Trustee/Owner Details------*/
@@ -149,7 +149,7 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 		cf.enterTextboxContains("Zip Code","23263");
 		cf.enterTextboxContains("Residential Telephone Number",Long.toString(cf.createRandomInteger(10000000,99999999))+Long.toString(cf.createRandomInteger(10,99)));
 		cf.screenShot("AddTrustee/OwnerDetails1", "Pass", "Add Trustee/Owner Details:SREG-006");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 		try {
 			cf.safeJavaScriptClick(AddPage.uspsAddress);
@@ -159,13 +159,13 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 		}
 		sleep(2000);
 		cf.screenShot("Trustee/OwnerDetails", "Pass", "Trustee/Owner Details:SREG-005");
-		cf.clickButtonContains("Continue");
+		cf.clickButton("Continue ");
 		sleep(3000);
 
 		/*--------Upload Documents----*/
 		AddPage.browserLink.click();
 		sleep(3000);
-		cf.uploadDoc("TESTINGEL");
+		cf.uploadDoc("Sample.docx");
 		sleep(3000);
 		cf.screenShot("UploadDocuments", "Pass", "Upload Documents(SREG-683)");
 		cf.clickButtonContains("Continue");
@@ -238,11 +238,36 @@ public class EE_02_010_Csr_Agriculture_Trust extends TestBase{
 		cf.screenShot("WorkItemConfirmationScreen","Pass","WorkItemConfirmationScreen");
 		cf.clickButtonContains("Home");
 		sleep(5000);
-
+		//--------Menu----
+				cf.clickMenu("menu");
+				cf.ScrollMenu("Inquiry");
+				cf.clickMenu("Inquiry");
+				cf.ScrollMenu("Inquiry");
+				cf.clickMenu("Contribution Inquiry");
+				sleep(2000);
+				cf.screenShot("Selecting Menu", "Pass", "Successfully selected menu & navigate to next page");
+				cf.ScrollMenu("Inquiry");
+				cf.clickMenu("Inquiry Employer Account");
+				//----------SREG 050
+				sleep(2000);
+				cf.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully landed on SREG 050 page");
+				cf.enterTextboxContains(" FEIN ", FEIN);  //
+				//cf.enterTextboxContains("Employer Registration Number", EAN);
+				sleep(2000);
+				cf.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully entered deatils and  click on continue");
+				cf.clickButton("Continue ");
+				sleep(2000);
+				//----------SREG 051
+				cf.screenShot("Inquiry Employer Account Information", "Pass", "Successfully landed on SREG 051 page");
+				sleep(2000);
+				cf.screenShot("TC:EE_02_010", "Pass", "Successfully completed EE_02_010  ");
+		
+		
+		
+		
 		//Verify Registered employer in Inquiry page
-		em.Inquery_fein(FEIN);
-		test.log(Status.PASS, "Clicked on Home button");
-
+		//em.Inquery_fein(FEIN);
+		
 
 
 
