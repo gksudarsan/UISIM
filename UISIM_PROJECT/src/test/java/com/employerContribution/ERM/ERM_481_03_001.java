@@ -32,7 +32,7 @@ public class ERM_481_03_001 extends TestBase {
         System.out.println(eanValue);
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+//		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
         sleep();
         commonFuntions.clickMenu("Menu");

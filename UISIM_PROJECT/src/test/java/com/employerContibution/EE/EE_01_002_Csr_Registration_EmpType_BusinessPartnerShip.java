@@ -20,189 +20,349 @@ public class EE_01_002_Csr_Registration_EmpType_BusinessPartnerShip extends Test
 
 	@Test()
 	public void EE_01_002_csr_registration() throws Exception {
-		commonStepDefinitions cf = new commonStepDefinitions();
-		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
+		commonStepDefinitions commonFunction = new commonStepDefinitions();
+		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		employerManagementLocators eml = new employerManagementLocators();
-		
 		employerManagement em =  new employerManagement();
-		test = report.createTest("EE_01_002 -  Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Corporation (All types)' and work items will be created for CSR to review.\r\n"
-				+ "");
-		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				 "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IN (SELECT FEIN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
-				 , "FEIN"); String FEIN = databaseResults.get("FEIN");
-				  System.out.println("FEIN NUMBER = " +FEIN);
-				 
-				  Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-				 "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IN (SELECT EAN FROM T_EMPLOYER_DOL_DTF tedd) ORDER BY UPDATED_TS DESC"
-				 , "EAN"); String EAN = databaseResults1.get("EAN");
-				  System.out.println("EAN NUMBER = " +EAN);
+		test = report.createTest("EE.01.002 -  Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Partnership' and work items will be created for CSR to review.");
 		
+		commonFunction.login("NDBAS4", "Anay@123456789");
+		commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		commonFunction.clickMenu("menu");
+		commonFunction.ScrollMenu("Employer Registration");
+	    commonFunction.clickMenu("Employer Registration");
+		commonFunction.ScrollMenu("Register Employer");
+		commonFunction.clickMenu("Register Employer");	
+   	    sleep();
 		
-		System.out.println("FEIN NUMBER = " +FEIN);
-		
-		
+   	// --- SREG-001 ---
+   			commonFunction.enterTextboxContains("First Name", "Antonio");
+   			commonFunction.enterTextboxContains("Middle Initial", "S");
+   			commonFunction.enterTextboxContains("Last Name", "Rodriguez");
+   			commonFunction.selectDropdown("Suffix", " Sr. ");
+   			commonFunction.enterTextboxContains("Job Title", "Tester");
+   			commonFunction.enterTextboxContains(" Contact Telephone Number ",
+   					Long.toString(commonFunction.createRandomInteger(10000000, 99999999))
+   							+ Long.toString(commonFunction.createRandomInteger(10, 99)));
+   			commonFunction.enterTextboxContains("Ext", Long.toString(commonFunction.createRandomInteger(100, 999)));
+   			commonFunction.enterTextboxContains("Email Address",
+   					"randomMail" + Long.toString(commonFunction.createRandomInteger(1000, 9999)) + "@gmail.com");
+   			commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-001 page");
+   			commonFunction.clickButton("Continue ");
 
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
-		cf.clickMenu("Menu"); sleep();
-		cf.ScrollMenu("Employer Registration");sleep();
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.clickMenu("Employer Registration");sleep(2000);
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.clickMenu("Register Employer"); sleep(3000);
-		cf.clickButtonContains("Continue"); sleep(2000);
-
-		cf.selectDropdown("Employer Type", " Business ");
-		cf.enterTextboxContains("(FEIN)", "546237282"); 
-		cf.screenShot("file1","Pass", "Searching with FEIN "); 
-		cf.selectDropdown("*Type of Legal Entity"," Partnership "); 
-		cf.selectDropdown("Source", " NYS-100 (paper) ");sleep(2000);
-		cf.selectDropdown("Source Type", " NYS-100 ");sleep(2000);
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.clickButtonContains("Continue");sleep(2000);
-
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.populateListbox("Legal Name", "testing registration process");sleep(2000);
-		cf.clickButtonContains("Continue");sleep();
-
-		cf.enterTextboxContains("Address Line 1","7th Street 40 E 7th St");sleep(2000);
-		cf.enterTextboxContains("Address Line 2","");
-		cf.enterTextboxContains("City","New York");sleep(2000);
-		cf.enterTextboxContains("Zip Code","10003");sleep(2000);
-		
-		//cf.safeJavaScriptClick(empPage.uspsAddressRadio);
-		sleep();
-		cf.screenShot("", "Pass", "Employer Registration");
-		cf.clickButtonContains("Finish Later");sleep(2000);
-		cf.clickButtonContains("Yes");sleep(2000);
-		cf.clickButtonContains("Home");sleep(2000);
-
-		//-- entering data in incomplete registration.............
-
-		cf.clickMenu("Menu"); sleep();
-		cf.ScrollMenu("Employer Registration");sleep();
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.clickMenu("Employer Registration");sleep(2000);
-		cf.screenShot("Menu", "Pass", "Employer Registration");
-		cf.clickMenu("Incomplete Registration"); sleep(3000);
-
-		cf.enterTextbox("FEIN", FEIN);sleep();
-		cf.clickButtonContains("Search");sleep(2000);
-		cf.clickOnLink("");sleep(2000);
-		cf.clickButtonContains("Continue");sleep(2000);
-
-		cf.clickButtonContains("Continue");sleep(2000);
-
-		cf.clickButtonContains("Continue");sleep(2000);
-
-		//cf.clickButtonContains("Continue");
-		cf.screenShot("", "Pass", "Employer Registration");
-		cf.clickButtonContains("Continue");sleep();sleep(2000);
-
-		cf.selectRadio("Same as Primary Business Physical Address");
-		eml.selectradio_locationofbooks().click();sleep(2000);
-		eml.selectradio_noticeofpotentialcharges().click();sleep(2000);
-		cf.clickButtonContains("Continue"); sleep(2000);
-		cf.clickButtonContains("Continue");sleep(2000);
-		
-		
-		cf.screenShot("Bussiness Aquisition", "Pass", "Bussiness Aquisition(SREG-011)");
-		cf.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "No ");
-		cf.clickButtonContains("Continue");
-		sleep(2000);
-		cf.screenShot("Change in Legal Entity", "Pass", "Change in Legal Entity(SREG-012");
-		cf.selectRadioQuestions("Have you changed legal entity?", "No ");
-		cf.clickButtonContains("Continue");
-		sleep(2000);
-		cf.selectRadioQuestions("Type of Corporate Officer/Owner", "Individual");
-		cf.enterTextboxContains("First Name", "Test");
-		cf.enterTextboxContains("Last Name", "AutoTest");
-		cf.enterTextboxContains("Address Line 1", "Ave"+ cf.createRandomInteger(10,99));
-		cf.enterTextboxContains("City","NY");
-		cf.enterTextboxContains("Zip Code","13429");
-		cf.screenShot("Add Corporate Officer/Owner", "Pass", "Add Corporate Officer/Owner(SREG-006)");
-		cf.clickButtonContains("Continue");
-		sleep(2000);
-		try {
-			PEOPage.uspsAdd.click();
-			cf.screenShot("UspsAddress","Pass","UspsAddress");
-			PEOPage.UspsContinueButton.click();
-			Thread.sleep(2000);
-		}
-		catch(Exception e) {
-			System.out.println("usps pop up dispalyed");
-		}
-		sleep(2000);
-		cf.screenShot("Corporate Officer/Owner Details", "Pass", "Corporate Officer/Owner Details(SREG-005))");
-		cf.clickButtonContains("Continue");
-		sleep(2000);
-	    cf.selectLink("Supporting documents like", "Browse");
-	    sleep(3000);
-	    cf.screenShot("Upload Documents", "Pass", "Upload Documents(SREG-683)");
-		cf.clickButtonContains("Continue");
-		sleep(5000);
-		cf.screenShot("Review Registration Details", "Pass", "Review Registration Details(SREG-800)");
-		cf.clickButtonContains("Continue");
+		// --- SREG-025 ---//
+		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-025 page");
+		commonFunction.selectDropdown("Employer Type", " Business ");
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)","120042355");
+		commonFunction.selectDropdown("Type of Legal Entity", " Partnership ");
+		commonFunction.enterTextboxContains("Employer Registration Number", "1289179");
+		commonFunction.selectDropdown("Source", " NYS-100 (paper) ");
+		commonFunction.selectDropdown("Source Type", " NYS-100 ");
+		commonFunction.selectRadioQuestions("Is this a Re-issue of Prior Employer Registration Number?", "No ");
+		commonFunction.screenShot("EmpRegister3", "Pass", "Message enter Required field  on SREG-025 page");
+		commonFunction.clickButton("Continue ");
 		sleep(3000);
-		cf.selectCheckbox("I accept");
-		cf.screenShot("Statement of Acknowledgement", "Pass", "Statement of Acknowledgement(SREG-043)");
-		sleep(2000);
-		cf.clickButtonContains("Submit");
-		sleep(2000);
-		cf.screenShot("Employer Registration Confirmation", "Pass", "Employer Registration Confirmation(SREG-013)");
-		cf.clickButtonContains("Exit");
-
-		//Assigning user to WI Review emp type..................
-				cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)"); Thread.sleep(2000);
-			
-				//Resolving WI Review emp type................
-				PEOPage.queue.click(); Thread.sleep(15000);
-				cf.enterTextboxContains("FEIN",FEIN);
-				cf.screenShot("FeinSearch","Pass","feinSearch");
-				cf.clickButtonContains("Search"); Thread.sleep(2000);
-				cf.screenShot("Review emp type","Pass","emp type");
-				cf.clickOnLink("Review potential Duplicates");
-
-				Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
-				Thread.sleep(2000);
-				cf.screenShot("Review","Pass","Review Employer Type Task Details");
-				cf.enterTextboxContains("Comment", "registration in process");
-				cf.clickButtonContains("Submit"); Thread.sleep(2000);
-				cf.screenShot("GeneralInfo","Pass","General Information");
-				cf.clickButtonContains("Home");
-				
-				cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+FEIN+"' ORDER BY UPDATED_TS desc)"); Thread.sleep(2000);
-				
-				//Resolving WI Review emp type................
-				PEOPage.queue.click(); Thread.sleep(15000);
-				cf.enterTextboxContains("FEIN",FEIN);
-				cf.screenShot("FeinSearch","Pass","feinSearch");
-				cf.clickButtonContains("Search"); Thread.sleep(2000);
-				cf.screenShot("","Pass","emp type");
-				cf.clickOnLink("Verify Agent Rep Task");sleep();
-				
-				//failed got system failure.......................
-
-				/*
-				 * Thread.sleep(2000); cf.clickButtonContains("Open Work Item");
-				 * Thread.sleep(2000);
-				 * cf.screenShot("Review","Pass","Review Employer Type Task Details");
-				 * cf.enterTextboxContains("Comment", "registration in process");
-				 * cf.clickButtonContains("Submit"); Thread.sleep(2000);
-				 * cf.screenShot("GeneralInfo","Pass","General Information");
-				 * cf.clickButtonContains("Home");
-				 */
-				
-				em.Inquery_fein(FEIN);
-				
-				
-				
-		test.log(Status.PASS, "Clicked on Home button");
 		
+		//--- SREG-003 ---
+		commonFunction.screenShot("EmpRegister4", "Pass", "Launched Employer Entity Information(SREG-003) page");
+		empRegPage.legalNameTextBox.sendKeys("ONE CASE TWO");
+		commonFunction.enterTextboxContains("Trade Name or Doing Business As (DBA)", "Tester");
+		commonFunction.enterTextboxContains("Enter date of first operations in New York State", "4/15/2023");
+		commonFunction.enterTextboxContains("What is the date of the first payroll which you withheld (or will withhold) NYS Income Tax from", "3/20/2023");		
+		commonFunction.selectRadioQuestions("Are you registering for Unemployment Insurance?", "Yes ");
+		commonFunction.selectDropdown("Quarter ", " 2 ");
+		commonFunction.selectDropdown("Year ", " 2023 ");
+		commonFunction.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?", "No ");
+		commonFunction.enterTextboxContains("Total number of covered employees", "10");
+		commonFunction.selectRadioQuestions("Are you registering to remit withholding tax only?", "No ");
+		commonFunction.screenShot("EmpRegister3", "Pass", "Details entered and clicked on CONTINUE button");
+		commonFunction.clickButton("Continue ");
+		sleep();
+		
+		//---SREG-008---
+				commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
+				commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
+				commonFunction.enterTextboxContains("City ", "New York");
+				commonFunction.enterTextboxContains("Zip Code", "10011");
+				sleep();
+				commonFunction.selectDropdown("State", " New York ");
+				commonFunction.selectDropdown("County", " Albany ");
+				sleep(2000);
+				commonFunction.enterTextboxContains("Number of employees at this location","0");
+				commonFunction.selectDropdown("Principal Business Activity at this location in New York State"," Manufacturing ");
+				empRegPage.Principal_Products_Produced.sendKeys("Test engaged in manufacturing");
+				commonFunction.enterTextboxContains("Percent of Total Sales Value","47");
+				empRegPage.Principal_Raw_Materials_Used.sendKeys("Test row material used");
+				commonFunction.screenShot("EE01008", "Pass", "Enter the details on SREG-008 and click continue");
+				commonFunction.clickButton("Continue ");
+				sleep(2000);
+				try {
+					empRegPage.uspsBusinessAddress.click();
+				} catch (Exception exception) {
+					
+					empRegPage.uspsBusinessAddressInnerCircle.click();
+				}
+				
+				commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection on SREG-008");
+				empRegPage.continueButton_popUp.click();
+				sleep(2000);
+				
+				// --- SREG-007 ---
+				commonFunction.screenShot("EE01008", "Warning", "Successful launch to Business Physical Address Details(SREG-007) page");
+				commonFunction.clickButton(" Finish Later ");
+				commonFunction.clickButton(" Yes ");
+				sleep();
+				
+				//---Home---
+				commonFunction.clickMenu("menu");
+				commonFunction.ScrollMenu("Employer Registration");
+			    commonFunction.clickMenu("Employer Registration");
+				commonFunction.ScrollMenu("Incomplete Registration");
+				commonFunction.clickMenu("Incomplete Registration");
+				//---SREG-101---
+				commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-101 page");
+				commonFunction.enterTextboxContains("Legal Name of Business", "ONE CASE TWO");
+				commonFunction.clickButton(" Search ");
+				commonFunction.clickOnLink("ONE CASE TWO");
+				
+				//---SREG-001---
+				commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-001 page");
+				commonFunction.clickButton("Continue ");
+				
+				//---SREG-025---
+				commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-025 page");
+				commonFunction.clickButton("Continue ");
+				
+				//---SREG-003---
+				commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-003 page");
+				commonFunction.clickButton("Continue ");
+								
+				// --- SREG-007 ---
+				commonFunction.screenShot("EE01008", "Warning", "Successful launch to Business Physical Address Details(SREG-007) page");
+				commonFunction.clickButton("Continue ");
+				
+				// --- SREG-004 ---
+				commonFunction.screenShot("EE01008", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
+				commonFunction.selectRadioQuestions("Business Mailing Address", "Other");
+				empRegPage.uspsBmadAddressText.sendKeys("721 Broadway");
+				empRegPage.uspsBmadCityText.sendKeys("New York");
+				empRegPage.uspsBmadZipText.sendKeys("10003");
+				empRegPage.uspsBmadCounty.click();
+				commonFunction.selectFromDropdown(" Albany ");
+				sleep(2000);
+				commonFunction.selectRadioQuestions("Location of Books and Records", "Other");
+				commonFunction.enterTextbox("Care Of","LEGACY");
+				empRegPage.uspsBmadAddressText.sendKeys("721 Broadway");
+				empRegPage.uspsBmadCityText.sendKeys("New York");
+				empRegPage.uspsBmadZipText.sendKeys("10003");
+				empRegPage.uspsBmadCounty.click();
+				commonFunction.selectFromDropdown(" Albany ");
+				sleep(2000);
+				commonFunction.enterTextbox("First Name", "abc");
+				commonFunction.enterTextbox("Last Name", "abc");
+				commonFunction.enterTextbox(" Telephone Number ", "8269375089");
+				sleep(2000);
+				commonFunction.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Location of Books and Records");
+				commonFunction.enterTextbox("First Name", "abc");
+				commonFunction.enterTextbox("Last Name", "abc");
+				commonFunction.enterTextbox(" Telephone Number ", "8269375089");
+				commonFunction.screenShot("EE01008", "Pass", "Successfully entered details in SREG-004 page");
+				sleep(2000);
+				commonFunction.clickButton("Continue ");
+		        sleep(2000);
+			
+		//		try {
+		//			empRegPage.bmad_Address.click();
+		//		} catch (Exception exception) {
+		//			empRegPage.bmad_AddressInnerCircle.click();
+		//		}
+		//		try {
+		//			empRegPage.lbra_Address.click();
+		//		} catch (Exception exception) {
+		//			empRegPage.lbra_AddressInnerCircle.click();
+		//		}
+		//		try {
+		//			empRegPage.npca_Address.click();
+		//		} catch (Exception exception) {
+		//			empRegPage.npca_AddressInnerCircle.click();
+		//		}
+		//		commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection on SREG-004");
+//				empRegPage.continueButton_popUp.click();
 
 
-
+				sleep(2000);
+				
+		
+		
+		// --- SREG-521 --- 
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-521 page");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-011 ---
+	    commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-011 page");
+	    commonFunction.selectRadio("Yes ");
+	    commonFunction.enterTextboxContains("Employer Registration Number", "4678999");
+	    commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "134021237");
+	    empRegPage.Legal_Name_of_Business.sendKeys("SUNSHINE MEDICAL PC   ");
+	    commonFunction.enterTextboxContains("Address Line 1 ", "Test");
+		commonFunction.enterTextboxContains("City ", "New York");
+		commonFunction.enterTextboxContains("Zip Code", "12012");
+		commonFunction.selectDropdown("County", " Albany ");
+		//commonFunction.selectRadio("ALL");
+		commonFunction.enterTextboxContains("Acquisition Date", "4/1/2023");
+		commonFunction.enterTextboxContains("Notification date of Transfer", "64/21/2013");
+		commonFunction.clickButton("Continue ");
+		sleep(2000);
+		
+		// --- SREG-012 ---
+	    commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-012 page");
+	    commonFunction.clickButton("Continue ");
+	    
+	    // --- SREG-713 ---
+	    commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-713 page");
+	    commonFunction.selectRadio("Yes ");
+	    commonFunction.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", "111746409");
+	    commonFunction.enterTextboxContains("Prior Employer Registration Number", "6481299");
+	    commonFunction.enterTextboxContains("Date of Legal Entity change", "1/5/2022");
+		commonFunction.enterTextboxContains("Date of Notification", "6/21/2023");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-006 ---
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-006 page");		
+		commonFunction.selectRadio("Individual");
+		commonFunction.enterTextboxContains("SSN","099820363");
+		commonFunction.enterTextboxContains("First Name","JESSE");
+		commonFunction.enterTextboxContains("Last Name","GOLDSTEIN");
+		commonFunction.enterTextboxContains("Address Line 1 ", "1st");
+		commonFunction.enterTextboxContains("City ", "New York");
+		commonFunction.enterTextboxContains("Zip Code", "12012");
+		commonFunction.selectDropdown("County", " Albany ");
+		commonFunction.clickButton("Continue ");
+				
+		// --- SREG-005 ---
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-005 page");
+		commonFunction.clickOnLink("Add Partner Details");
+		
+		// --- SREG-006 ---
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-006 page");		
+		commonFunction.selectRadio("Individual");
+		commonFunction.enterTextboxContains("SSN","190560722");
+		commonFunction.enterTextboxContains("Entity Name","DAVID");
+		commonFunction.enterTextboxContains("Last Name","GOLDSTEIN");
+		commonFunction.enterTextboxContains("Address Line 1 ", "1st");
+		commonFunction.enterTextboxContains("City ", "New York");
+		commonFunction.enterTextboxContains("Zip Code", "12012");
+		commonFunction.selectDropdown("County", " Albany ");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-005 ---
+		commonFunction.screenShot("EE01008", "Warning", "Launched to  SREG-005 page");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-683 ---
+		commonFunction.screenShot("EE01007", "Pass", "USPS Business address selection on SREG-683");
+		sleep();
+		commonFunction.selectLink(" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.", "Browse");
+		sleep(2000);
+		commonFunction.uploadDoc("Sample.docx");
+		sleep(2000);
+		commonFunction.screenShot("EE01007", "Pass", "Sample document uploaded");
+		commonFunction.clickButton("Continue ");
+		sleep(10000);
+		
+		// --- SREG-800 ---
+		commonFunction.screenShot("EE01007", "Pass", "USPS Business address selection on SREG-800");
+		commonFunction.clickButton("Continue ");
+		
+		// --- SREG-043 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-043 page");
+		commonFunction.selectCheckbox("I accept");
+		commonFunction.clickButton("Submit ");
+		
+		// --- SREG-013 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-013 page");
+		commonFunction.clickButton("Home ");
+						
+		// --- Home ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to Home page");
+		commonFunction.clickButton(" Go to My Q ");
+				
+		// --- WF-001 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.enterTextboxContains("Work Item Description Free Text", "Dol");
+		commonFunction.clickButton(" Search ");
+		commonFunction.clickHyperlink("DOL DTF Discrepancy");
+		       
+		// --- WF-091 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-091 page");
+		commonFunction.clickButton("Open Work Item ");
+			  
+		// --- EEWI-005 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to EEWI-005 page");
+		commonFunction.selectDropdown("Account Status", " Liable ");
+		commonFunction.selectRadioQuestions("Suppress Correspondence?", "No ");
+		empRegPage.commentBox_MyQ.sendKeys("for testing");
+		commonFunction.clickButton("Submit ");
+		
+		// --- Home ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to Home page");
+		commonFunction.clickButton(" Go to My Q ");
+		
+		// --- WF-001 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.enterTextboxContains("FEIN", "363735912");
+		commonFunction.clickButton(" Search ");
+		commonFunction.clickOnLink("Review potential Duplicates");
+		
+		// --- WF-001 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.clickButtonContains("Open Work Item ");
+		
+		//---EEWI-012---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.clickButton("Submit ");
+		commonFunction.screenShot("EE01007", "Pass", "Message 'Required field'on WF-001 page");
+		commonFunction.clearTextboxContains("Legal Name Of Business");
+		commonFunction.enterTextboxContains("Legal Name Of Business","AUTO TESTING LEGAL NAME 843303756");
+		commonFunction.enterTextboxContains("First date of operation", "7/5/1940");
+		commonFunction.selectDropdown("Quarter ", " 4 "); 
+		commonFunction.selectDropdown("Year ", " 1940 "); 
+		commonFunction.selectDropdown("Account Status", " Liable ");
+		empRegPage.commentBox_MyQ.sendKeys("for testing");
+		commonFunction.clickButton("Submit ");
+		commonFunction.screenShot("EE01007", "Pass", "Popup 'Verify Date'on WF-001 page");
+		commonFunction.clickButton(" Yes ");
+		
+		
+		
+		//---SUC-002---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SUC-002 page");
+		commonFunction.clickButton("Home ");
+				
+		// --- Home ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to Home page");
+		commonFunction.clickButton(" Go to My Q ");
+				
+		// --- WF-001 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.enterTextboxContains("FEIN", "363735912");
+		commonFunction.clickButton(" Search ");
+		commonFunction.clickOnLink("Review Employer Type");
+		
+		// --- WF-001 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.clickButtonContains("Open Work Item ");
+		
+		//---EEWI-012---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.clickButton("Submit ");
+		commonFunction.screenShot("EE01007", "Pass", "Message 'Required field'on WF-001 page");
+  
+		//Blocked at Step 70
+	
 	}
+
 }
+

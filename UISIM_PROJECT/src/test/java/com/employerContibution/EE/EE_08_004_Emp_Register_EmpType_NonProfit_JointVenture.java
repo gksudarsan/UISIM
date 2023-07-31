@@ -40,30 +40,34 @@ public class EE_08_004_Emp_Register_EmpType_NonProfit_JointVenture extends TestB
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");sleep(2000);
 		cf.sleep(2000);
 		cf.waitForLoadingIconToDisappear();
-		cf.clickMenu("Menu");
+		cf.clickMenu("menu");
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		cf.clickMenu("Register Employer");
 		sleep(3000);
-		test.log(Status.INFO, "FEIN_1 : : "+feinValue1);
+		
+		// --- SREG-001 ---
+       	cf.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-001 page");
 		cf.enterTextboxContains("First Name", "sittest");
 		cf.enterTextboxContains("Last Name", "lasttest");
+		cf.selectDropdown("Suffix", " Sr. ");
 		cf.enterTextboxContains("Job Title", "quality");
 		cf.enterTextboxContains("Contact Telephone Number",Long.toString(cf.createRandomInteger(10000000,99999999))+Long.toString(cf.createRandomInteger(10,99)));
 		cf.enterTextboxContains("Email Address","autoTest"+Long.toString(cf.createRandomInteger(10000,99999))+"@labor.ny.gov");
-
-		cf.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
+        sleep();
+		cf.screenShot("EmpRegister3", "Pass", "Details entered on SREG-001 page");
 		cf.clickButton("Continue ");
 		sleep(3000);
-		cf.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
-		cf.selectDropdown("Employer Type", " Non-Profit ");
-		sleep();
 
-		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
-		cf.selectDropdown("Type of Legal Entity", " Joint Venture ");
-
-		sleep(3000);
+		// --- SREG-025 ---//
+		cf.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-025 page");
+		cf.selectDropdown("Employer Type", " Governmental ");
+		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)","132783409");
+		cf.selectDropdown("Type of Legal Entity", " School District ");
+		cf.enterTextboxContains("Employer Registration Number", "8006265");
+		cf.selectDropdown("Source", " NYS-100 (paper) ");
+		cf.selectDropdown("Source Type", " NYS-100G ");
+		cf.screenShot("EmpRegister3", "Pass", "Details entered on SREG-025 page");
 		cf.clickButton("Continue ");
-		cf.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
 		/*----------------SREG-003----------------*/
 		cf.screenShot("EmpRegister4", "Pass", "Navigated on SREG-003 page");

@@ -582,6 +582,79 @@ public WebElement predecessorErn;
 @FindBy(how = How.XPATH, using = "//*[@id='predecessorFein']")
 public WebElement predecessorFein;
 
+@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mat-radio-outer-circle'][1]")
+public WebElement bmad_Address;
+
+@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mat-radio-inner-circle'][1]")
+public WebElement bmad_AddressInnerCircle;
+
+@FindBy(how = How.XPATH, using = "//*[.='lbra Address']//following::*[@class='mat-radio-outer-circle'][1]")
+public WebElement lbra_Address;
+
+@FindBy(how = How.XPATH, using = "//*[.='lbra Address']//following::*[@class='mat-radio-inner-circle'][1]")
+public WebElement lbra_AddressInnerCircle;
+
+@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][1]")
+public WebElement npca_Address;
+
+@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-inner-circle'][1]")
+public WebElement npca_AddressInnerCircle;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Type of Establishment']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Type_of_Establishment;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Product Sold or Service Rendered']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Principal_Product_Sold_or_Service_Rendered;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Percent of Total Revenue']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Percent_of_Total_Revenue;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Principal_Products_Produced;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Principal_Raw_Materials_Used;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Legal_Name_of_Business;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Reason for Update CSR Remarks']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Reason_for_Update_CSR_Remarks;
+
+@FindBy(how = How.XPATH, using = "//*[@id='Contribution/WageMaintenanceModifyPaymentDate']")
+public WebElement Menu_Contribution_WageMaintenanceModifyPaymentDate;
+
+
+@FindBy(how = How.XPATH, using = "//*[@id='modifyPaymentDateId']")
+public WebElement modifyPaymentDateId;
+
+
+@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-1']")
+public WebElement Interest;
+
+@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-2']")
+public WebElement Rating_Timeliness;
+
+@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-3']")
+public WebElement Slop_Over;
+
+@FindBy(how = How.XPATH, using = "//*[@id='mat-input-4']")
+public WebElement Comments_Box;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Submitter Comments may be entered below.']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Submitter_Comments_may_be_entered_below;
+
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+public WebElement Legal_Name_of_business;
+
+@FindBy(how = How.XPATH, using = "//*[@id='comments']//following::span[@class='mat-form-field-label-wrapper ng-tns-c126-198']")
+public WebElement Comments;
+
+@FindBy(how = How.XPATH, using = "//div[@class='mat-form-field-infix ng-tns-c126-251']//preceding::*[contains(@id, 'comments')]")
+public WebElement transferDetailsTable_checkbox;
+
+@FindBy(how = How.XPATH, using = "//u[contains(.,'')][1]")
+public WebElement transferDetailsTable_Dateoftransfer_hyperlink;
 
 
 }
