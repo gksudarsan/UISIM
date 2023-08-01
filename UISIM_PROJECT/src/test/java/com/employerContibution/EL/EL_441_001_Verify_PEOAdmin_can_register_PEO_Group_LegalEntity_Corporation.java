@@ -247,7 +247,8 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			//commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 			
 			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinNumber);
-			commonFuntions.selectRadioQuestions("Does this PEO member already have an Unemployment Insurance Account?", "No");
+			//commonFuntions.selectRadioQuestions("Does this PEO member already have an Unemployment Insurance Account?", "No");
+			commonFuntions.selectRadioQuestions("Does this PEO member already have  a New York State Unemployment Insurance Account? and New York State Employer Registration Number", "No");
 			commonFuntions.enterTextboxContains("Address Line 1","ownerAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 			commonFuntions.enterTextboxContains("Address Line 2","ownerAddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 			commonFuntions.enterTextboxContains("City","NewYork");

@@ -1,4 +1,4 @@
-
+//------------------------Palak---------------------------------------
 
 package com.employerContibution.BCL;
 
@@ -18,12 +18,12 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class BCL_855_03_001 extends TestBase {
+public class BCL_855_04_001 extends TestBase {
 	@Test
-	public void BCL_855_03_001() throws Exception
+	public void BCL_855_04_001() throws Exception
 	{
 		
-		 test = report.createTest("BCL.855.03.001 - Verify CSR can search for the list of mailed NPR letters for an ERN");
+		 test = report.createTest("BCL.855.03.001 - Verify CSR can search ERN and put single NPRs for an SSN on hold with status is 'Hold' and reason is 'Hold Action and/or Another Flag on Account'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 BclPage BclPage = PageFactory.initElements(driver, BclPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
@@ -38,7 +38,8 @@ public class BCL_855_03_001 extends TestBase {
 		 sleep(1000);
 		 commonFuntions.clickMenu("Confidential Source");
 		 sleep(1000);
-		 commonFuntions.clickMenu("Notice of Pending Referral List – Enter ERN/SSN/FEIN");
+		 commonFuntions.screenShot("menu","Pass","Update NPR Referral to Treasury – Enter ERN/SSN/FEIN");
+		 commonFuntions.clickMenu("Update NPR Referral to Treasury – Enter ERN/SSN/FEIN");
 		 sleep(1000);
 		 commonFuntions.clickButtonContains("Search");
 			sleep(2000);
@@ -65,7 +66,7 @@ public class BCL_855_03_001 extends TestBase {
 			sleep(2000);
 			commonFuntions.waitForLoadingIconToDisappear();
 			commonFuntions.screenShot("ErrorLabel4","Pass","No Records Found");
-			commonFuntions.errorContent("No Records Found");
+			commonFuntions.errorContent("No Records found");
 			sleep(2000);
 			 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C'  and EAN = '0464364'","EAN");
 				
@@ -74,20 +75,28 @@ public class BCL_855_03_001 extends TestBase {
 			commonFuntions.clickButtonContains("Search");
 			sleep(2000);
 			commonFuntions.waitForLoadingIconToDisappear();
-			commonFuntions.screenShot("NoticeOfPendingReferralList","Pass","Notice of pending referralList");					
+			commonFuntions.screenShot("updateNPRReferral","Pass","Update NPR referral To treasury");					
 			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);
-			commonFuntions.screenShot("NoticeOfPendingReferralList1","Pass","Notice of pending referralList error");
+			commonFuntions.screenShot("updateNPRReferral1","Pass","Update NPR referral To treasury");
 			commonFuntions.errorContent("Please select a record to proceed.");
-			BclPage.selectRadioButton.click();	
-			commonFuntions.screenShot("NoticeOfPendingReferralList2","Pass","Notice of pending referralList");					
+			commonFuntions.selectActionTableParameterizedId(eanNumber, 1, 1, "Update NPR Referral to Treasury – Enter ERN/SSN/FEIN","dataTableId","checkBox","");	
+			commonFuntions.screenShot("updateNPRReferral12","Pass","Update NPR referral To treasury");					
 			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);
 			commonFuntions.waitForLoadingIconToDisappear();
-			BclPage.nprNoticeDate.click();
+			commonFuntions.clickButtonContains("Update");
 			sleep(2000);
-			commonFuntions.screenShot("NoticeOfPendingReferralList4","Pass","Notice of pending referralList");					
-			commonFuntions.clickButtonContains("Previous");
+			commonFuntions.waitForLoadingIconToDisappear();
+			commonFuntions.screenShot("updateNPRReferral3","Pass","Update NPR referral To treasury");
+			commonFuntions.errorContent("Please select a record to proceed.");			
+			BclPage.updateAllCheckBox.click();
+			sleep(2000);
+			commonFuntions.screenShot("updateNPRReferral4","Pass","Update NPR referral To treasury");					
+			
+			sleep(2000);
+			commonFuntions.errorContent("Status and Reason should be selected for selected row(s).");
+			BclPage.updateAllCheckBox.click();
 			sleep(2000);
 			BclPage.viewGenerateLetter.click();
 			sleep(2000);

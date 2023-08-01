@@ -24,6 +24,11 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='flagsOnAccount'][1]/mat-row[1]/mat-cell[3]//u[1]")
 	public WebElement viewGenerateLetter;
 	
+	@FindBy(how = How.XPATH, using = "//*[.=' Update All ']//following::*[@type='checkbox'][1]")
+	public WebElement updateAllCheckBox;
+	
+	
+	
 	
 	
 }
