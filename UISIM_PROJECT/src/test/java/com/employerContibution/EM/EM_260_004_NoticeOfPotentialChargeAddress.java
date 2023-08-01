@@ -28,7 +28,7 @@ public class EM_260_004_NoticeOfPotentialChargeAddress extends TestBase{
 		 * +feinValue);
 		 */
 		Map<String, String> databaseResults1 = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE  ACCOUNT_STATUS = 'SUSB'" , "EAN"); 
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EMPLOYER_TYPE = 'AGRI' AND EAN IS NOT NULL AND LENGTH(EAN)=7" , "EAN"); 
 		String EAN = databaseResults1.get("EAN");
 		System.out.println("EAN_NAME  = " +EAN);
 		

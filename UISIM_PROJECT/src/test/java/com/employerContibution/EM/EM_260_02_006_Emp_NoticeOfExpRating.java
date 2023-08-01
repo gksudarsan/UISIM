@@ -16,7 +16,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_002_005_Emp_AgentAddressAddEdit extends TestBase{
+public class EM_260_02_006_Emp_NoticeOfExpRating extends TestBase{
 
 	@Test()
 	public void EE_01_004_csr_registration() throws Exception {
@@ -45,7 +45,7 @@ public class EM_260_002_005_Emp_AgentAddressAddEdit extends TestBase{
 			cf.clickMenu("Maintain Address");sleep();
 			cf.screenShot("Menu","Pass","AccountMaintenance");
 			//driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']")); Thread.sleep(2000);
-			em.empupdateAddressAgent(EAN);
+			em.updateAddressNoticeOfExpRating(EAN);
 
 		
 	}

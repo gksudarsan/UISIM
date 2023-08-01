@@ -16,7 +16,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_002_004_Emp_NoticeOfPotentialCharge extends TestBase{
+public class EM_260_02_003_Emp_locationOfBooksAddEdit extends TestBase{
 
 	@Test()
 	public void EE_01_004_csr_registration() throws Exception {
@@ -38,14 +38,14 @@ public class EM_260_002_004_Emp_NoticeOfPotentialCharge extends TestBase{
 
 		test = report.createTest("EE_01_004- Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Guardianship' and work items will be created for CSR to review.");
 
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_1.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMP_USER_2.toUpperCase(), COMMON_CONSTANT.EMP_USER_2_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");	
 			cf.clickMenu("Menu");	
 			cf.clickMenu("Account Maintenance");sleep();
 			cf.clickMenu("Maintain Address");sleep();
 			cf.screenShot("Menu","Pass","AccountMaintenance");
 			//driver.findElement(By.xpath("//button[@class='mat-focus-indicator mat-raised-button mat-button-base mat-primary']")); Thread.sleep(2000);
-			em.updateAddressLocationOfBooks(EAN);
+			em.empupdateAddressLocationOfBooks(EAN);
 
 		
 	}

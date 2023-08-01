@@ -74,4 +74,7 @@ public class SUC_002 {
 		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
 		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}
+	
+	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'ReviewEmployerType Task has been successfully completed.')]")
+    public WebElement reviewEmployeerTypeSuccessmsg;
 }

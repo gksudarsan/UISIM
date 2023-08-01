@@ -166,6 +166,14 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][1]")
 	public WebElement uspsBusinessAddressInnerCircle;
 	
+	// SREG-043
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'mat-form-field')]//textarea[contains(@id,'comment')]")
+    public WebElement EEWI002CommentsField;
+	
+	// SREG -084
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Verify Transfer Failed Rules')])[1]")
+    public WebElement verifyTransferlink;
+	
 	//--- SREG-004 ---
 	//---Contact Person for (Location of Books and Records) & (Notice of Potential Charges (LO400)) Address ---
 	
@@ -475,6 +483,17 @@ public WebElement typeOfLegalEntityId;
 
 @FindBy(how = How.XPATH, using = "//span[text()=' Individual Ownership ']")
 public WebElement individualOwnership;
+
+@FindBy(how = How.XPATH, using = "//*[.='Beginning Liability Date']//following::mat-label[text()='Quarter ']/../mat-form-field/div/div/div[3]/mat-select[1]")
+public WebElement beginningLiableDateQuarter;
+
+@FindBy(how = How.XPATH, using = "(//*[.='Suspension Date']//following::mat-label[text()='Quarter ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
+public WebElement suspensionDateQuarter;
+
+@FindBy(how = How.XPATH, using = "(//mat-label[text()='Year ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
+public WebElement yearDropDown2;
+
+
 
 }
 

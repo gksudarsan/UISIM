@@ -61,7 +61,7 @@ public class EM_443_007_Verify_CSR_enter_ERN_and_Add_POA_TPR extends TestBase {
 
 		// SREG-040
 		cf.screenShot("Search POA/Third Party Representative", "Pass", "Launched to SREG-040");
-		cf.enterTextboxContains("POA/TPR Legal Name", "ABCD");
+		cf.enterTextboxContains("POA/TPR Legal Name", "Test");
 		sleep();
 		cf.clickButtonContains(" Search ");
 		sleep();

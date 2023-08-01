@@ -5,8 +5,10 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -20,11 +22,17 @@ import java.time.temporal.IsoFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.net.URL;
+import java.net.MalformedURLException;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -40,6 +48,7 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
@@ -976,4 +985,62 @@ public class commonStepDefinitions extends TestBase {
 			}
 		}
 		
+		
+		public void addComment(String value) {
+			driver.findElement(By.xpath("//*[@id='remarksId']")).clear();
+			driver.findElement(By.xpath("//*[@id='remarksId']")).sendKeys(value);
+		}
+		
+		public void switchTab() {
+			Set<String> allHandles = driver.getWindowHandles();
+			Iterator<String> l1 = allHandles.iterator();
+			String parent = l1.next();
+			System.out.println(parent);
+			String Child = l1.next();
+			System.out.println(Child);
+			driver.switchTo().window(Child);
+		}
+
+		public static int getPageCount(PDDocument doc) {
+			// get the total number of pages in the pdf document
+			int pageCount = doc.getNumberOfPages();
+			return pageCount;
+
+		}
+
+		public static String readPdfContent(String url) throws IOException {
+
+			URL pdfUrl = new URL(url);
+			InputStream in = pdfUrl.openStream();
+			BufferedInputStream bf = new BufferedInputStream(in);
+			PDDocument doc = PDDocument.load(bf);
+			int numberOfPages = getPageCount(doc);
+			System.out.println("The total number of pages " + numberOfPages);
+			String content = new PDFTextStripper().getText(doc);
+			doc.close();
+
+			return content;
+		}
+
+		public void verifyContentInPDf( String xpathParameter) throws Exception {
+			// specify the url of the pdf file
+			switchTab();
+			screenShot("PDF Screenshot", "Pass", "PDF Document");
+			String pdfUrl = driver.getCurrentUrl();
+			System.out.println(driver.getCurrentUrl());
+			driver.get(pdfUrl);
+			try {
+				String pdfContent = readPdfContent(pdfUrl);
+				Assert.assertTrue(pdfContent.contains(xpathParameter));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		
+			
+			
+		}
+
 }

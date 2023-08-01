@@ -26,7 +26,7 @@ public class employerManagement extends TestBase
 
 		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		System.out.println("updating address............");
+		System.out.println("updating address");
 
 		// em.menuButton().click();
 		// em.AccountMaintenance().click();
@@ -77,6 +77,8 @@ public class employerManagement extends TestBase
 
 
 	}
+	
+	
 	public void updateAddress() throws Exception
 	{		
 
@@ -340,7 +342,7 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");		
 		String msg =   em.successMsgSuc002().getText();
 		System.out.println(msg);
-		Assert.assertEquals(msg, "Employer Address and Contact Person Details are saved successfully.");
+		Assert.assertEquals(msg, "Employer Address and Contact Person Details are save successfully");
 
 
 
@@ -447,7 +449,7 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");		
 		String msg =   em.successMsgSuc002().getText();
 		System.out.println(msg);
-		Assert.assertEquals(msg, "Employer Address and Contact Person Details are saved successfully.");
+		Assert.assertEquals(msg, "Employer Address and Contact Person Details are save successfully");
 
 	}
 

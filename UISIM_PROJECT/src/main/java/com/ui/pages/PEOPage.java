@@ -179,6 +179,7 @@ public class PEOPage {
 			if(i>2) {
 			results.put("Fein",rs.getString("FEIN"));
 			results.put("Ean",rs.getString("EAN"));
+			//results.put("EntityName", rs.getString("ENTITY_NAME"));
 			break;
 			}
 		}

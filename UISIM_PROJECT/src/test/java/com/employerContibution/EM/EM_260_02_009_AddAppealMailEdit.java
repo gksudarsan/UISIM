@@ -38,7 +38,7 @@ public class EM_260_02_009_AddAppealMailEdit extends TestBase{
 
 		test = report.createTest("EE_01_004- Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Guardianship' and work items will be created for CSR to review.");
 
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_1.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMPLOYER_USER_5.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_5_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");	
 			cf.clickMenu("Menu");	
 			cf.clickMenu("Account Maintenance");sleep();
