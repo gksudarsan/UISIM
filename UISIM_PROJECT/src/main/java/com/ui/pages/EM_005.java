@@ -32,6 +32,8 @@ public class EM_005 extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[@id=' EM-005']")
 	public WebElement pageNameText;
 	
+	@FindBy(how = How.XPATH, using = "(//mat-radio-button//input[@class='mat-radio-input'])[2]")
+	public WebElement selectToggle;	
 	
 	public void enterDetailInERNField(String ERN) throws Exception {
 		Thread.sleep(2000);

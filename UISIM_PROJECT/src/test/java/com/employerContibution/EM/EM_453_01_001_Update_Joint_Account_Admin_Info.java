@@ -21,13 +21,13 @@ public class EM_453_01_001_Update_Joint_Account_Admin_Info extends TestBase {
 	public void Testing123() throws Exception {
 		
 		test = report.createTest("EM.453.01.001 - Verify CSR is able to search ERN and update joint account administrator information.");
-		commonStepDefinitions stepDef = new commonStepDefinitions();
+		commonStepDefinitions cf = new commonStepDefinitions();
 		HomePage home = new HomePage(driver);
 		SREG_492 sreg492 = new SREG_492(driver);
 		SREG_493 sreg493 = new SREG_493(driver);
 		
 		test.log(Status.INFO, "Logging to the application");
-		stepDef.login(prop.getProperty("CSR_UserID") , prop.getProperty("CSR_Pass"));
+		cf.login(prop.getProperty("CSR_UserID") , prop.getProperty("CSR_Pass"));
 		test.log(Status.PASS, "Login Success");
 		home.navigateToMaintainJointAccount();
 		test.log(Status.PASS, "Navigated to Maintain join Account Page");

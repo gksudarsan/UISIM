@@ -16,7 +16,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EM_260_002_005_Emp_AgentAddressAddEdit extends TestBase{
+public class EM_260_02_005_Emp_AgentAddressAddEdit extends TestBase{
 
 	@Test()
 	public void EE_01_004_csr_registration() throws Exception {

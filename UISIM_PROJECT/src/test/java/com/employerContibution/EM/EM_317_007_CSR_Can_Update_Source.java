@@ -11,20 +11,21 @@ import com.ui.base.TestBase;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
+import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
 public class EM_317_007_CSR_Can_Update_Source extends TestBase {
 	
 	@Test
-	public void EM_319_001() throws Exception {
+	public void EM_317_007() throws Exception {
 		commonStepDefinitions cf= new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		
 		test = report.createTest("EM.317.007. Verify CSR is able to search and update FEIN and Source of FEIN update correspondence/Email'");
-		cf.login("ndfjp3", "Admin@12345678");
+		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.clickMenu("Menu");
+		cf.clickMenu("menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
 		cf.ScrollMenu("Employer Account Maintenance");
@@ -34,15 +35,17 @@ public class EM_317_007_CSR_Can_Update_Source extends TestBase {
 
 		/*----------------SREG-436------------------*/
 		cf.screenShot("ChangeFein", "Pass", "Navigated to SREG-436 page");
-		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE CORRESPONDENCE_MODE='USPS' ORDER BY UPDATED_TS", "EAN");
-		//String ernValue = ernOutput.get("EAN");
-		String ernValue = "3100212";
+		Map<String, String> ernOutput = cf.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN LIKE '9%' AND REGISTRATION_STATUS = 'C' ORDER BY UPDATED_TS", "EAN");
+		String ernValue = ernOutput.get("EAN");
 
-		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN  FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS", "FEIN");
+		Map<String, String> feinOutput = cf.database_SelectQuerySingleColumn("SELECT FEIN FROM T_EMPLOYER_ACCOUNT tea WHERE FEIN IS NOT NULL ORDER BY UPDATED_TS", "FEIN");
 		String feinValue = feinOutput.get("FEIN");
 
-		test.log(Status.INFO, "ERN : : "+ernValue);
-		test.log(Status.INFO, "New FEIN : : "+feinValue);
+		test.log(Status.INFO, "ERN : " +ernValue);
+		test.log(Status.INFO, "New FEIN : " +feinValue);
+		
+		System.out.println("EAN is :" + ernValue);
+		System.out.println("FEIN is :" + feinValue);
 
 		cf.enterTextboxContains("Employer Registration Number", ernValue);
 		cf.clickButtonContains("Continue ");
@@ -50,21 +53,21 @@ public class EM_317_007_CSR_Can_Update_Source extends TestBase {
 
 		/*----------------SREG-437------------------*/
 		cf.screenShot("ChangeFein3", "Pass", "Navigated SREG-437 page");
+		cf.enterTextboxContains("New FEIN", feinValue);
+		cf.enterTextboxContains("Please Re-enter FEIN", feinValue);
+		cf.selectDropdown("Suffix", " UR ");
+		sleep();
+		cf.selectDropdown("Confirm Suffix", " UR ");
+		sleep();
 		cf.selectDropdown("Source", " Correspondence/Email ");
 		sleep();
 		cf.selectDropdown("Source Type", " Correspondence/Email ");
-		empPage.commentBox_MyQ.sendKeys("Testing");
-		cf.enterTextboxContains("New FEIN", feinValue);
-		cf.enterTextboxContains("Please Re-enter FEIN", feinValue);
-		cf.selectDropdown("Suffix", " UP ");
+		empPage.commentBox_MyQ.sendKeys("Update FEIN");
+		empPage.browserLink.click();
+		cf.uploadDoc("Sample.docx");
 		sleep();
-		cf.selectDropdown("Confirm Suffix", " UP ");
-		sleep();
-		cf.safeJavaScriptClick(empPage.browserLink);
-		sleep(2000);
-		cf.uploadDoc("txt");
-		sleep(2000);
 		cf.screenShot("ChangeFein4", "Pass", "Document uploaded");
+		
 		cf.clickButton("Submit ");
 		sleep(3000);
 		try {
@@ -72,7 +75,6 @@ public class EM_317_007_CSR_Can_Update_Source extends TestBase {
 		} catch(Exception e) {
 			System.out.println("Pop up not displayed");
 		}
-		sleep();
 		cf.waitForLoadingIconToDisappear();
 		/*----------------SUC-002------------------*/
 		cf.screenShot("ChangeFein5", "Pass", "Navigated to SUC-002 and click on Home button");

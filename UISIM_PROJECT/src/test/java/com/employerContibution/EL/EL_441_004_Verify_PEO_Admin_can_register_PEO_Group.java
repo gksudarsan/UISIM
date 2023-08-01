@@ -45,9 +45,10 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 		sleep(2000);
 
 		// Login
-		commonFunction.login(COMMON_CONSTANT.PEO_USER_1.toUpperCase(), COMMON_CONSTANT.PEO_USER_1_PASSWORD);
-		commonFunction.screenShot("Home", "Pass", "Login is successful");
-		Home.navigateToPeoRegister();
+		commonFunction.loginPeoAdmin("peouser", "Admin@12345678");
+		commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		PEOPage.peoRegister.click();
+		//Home.navigateToPeoRegister();
 
 		// PEO-019
 		commonFunction.enterTextboxContains("First Name",
@@ -69,8 +70,7 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 		PEOPage.groupRegPeo.click();
 		commonFunction.enterTextbox("Name of Professional Employer Organization",
 				"Test_auto" + commonFunction.createRandomInteger(1000, 9999));
-		commonFunction.enterTextbox("Additional Names, if any, under which the PEO’s Conduct Business currently",
-				"auto_test" + commonFunction.createRandomInteger(1000, 9999));
+		commonFunction.enterTextboxContains("Additional name(s), if any,","auto_test"+commonFunction.createRandomInteger(1000,9999));
 		commonFunction.screenShot("peor", "Pass", "Professional Employer Organization Registration");
 		commonFunction.clickButtonContains("Save & Continue");
 		sleep(2000);
@@ -86,14 +86,14 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 		commonFunction.screenShot("GI", "PASS", "General Information");
 		commonFunction.clickButtonContains("Save & Continue");
 		sleep(2000);
-		// commonFunction.selectRadio("Select");
-		try {
-			PEOPage.peoRadioButton.click();
-			commonFunction.selectRadioInTable(ernValue, 1, 1, "Unemployment Insurance Account Details");
-		} catch (Exception e) {
-		}
-		commonFunction.screenShot("Unemployment Insurance", "PASS", "Unemployment Insurance Account Details");
-		commonFunction.clickButtonContains("Save & Continue");
+//		commonFunction.selectRadio("Select");
+//		try {
+//			PEOPage.peoRadioButton.click();
+//			commonFunction.selectRadioInTable(ernValue, 1, 1, "Unemployment Insurance Account Details");
+//		} catch (Exception e) {
+//		}
+//		commonFunction.screenShot("Unemployment Insurance", "PASS", "Unemployment Insurance Account Details");
+//		commonFunction.clickButtonContains("Save & Continue");
 		sleep(2000);
 
 		// PEO-003
@@ -293,24 +293,24 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 
 		}
 		sleep(5000);
-		
+
 		// PEO-005
 		commonFunction.screenShot("current additional address", "Pass",
 				"Verify Current Additional Address(es) in New York");
 		commonFunction.clickButtonContains("Continue ");
 		sleep(2000);
-		
+
 		// PEO-006
 		commonFunction.screenShot("Prior Address(es) in New York", "Pass", "Prior Address(es) in New York");
 		commonFunction.clickButtonContains("Save & Continue ");
 		sleep(2000);
-		
+
 		// PEO-007
 		commonFunction.screenShot("Verify Prior Address(es) in New York", "Pass",
 				"Verify Prior Address(es) in New York");
 		commonFunction.clickButtonContains("Continue ");
 		sleep(2000);
-		
+
 		// PEO-015
 		commonFunction.clickButtonContains("Choose File");
 		sleep(2000);
@@ -318,17 +318,17 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 		sleep(4000);
 		commonFunction.clickButtonContains("Continue ");
 		sleep(2000);
-		
+
 		// LEAS-012
 		commonFunction.screenShot("verifyClient", "Pass", "Verify Client List");
 		commonFunction.clickButtonContains("Continue ");
 		sleep(2000);
-		
+
 		// PEOG-003
 		commonFunction.screenShot("List of members", "Pass", "List of Members of PEO Group");
 		commonFunction.clickOnLink1(" + ADD ANOTHER PEO MEMBER ");
 		sleep(2000);
-		
+
 		commonFunction.screenShot("PEO Details", "Pass", "PEO Details Review screen");
 		commonFunction.clickButtonContains("Save & Continue");
 		sleep(2000);
@@ -467,88 +467,90 @@ public class EL_441_004_Verify_PEO_Admin_can_register_PEO_Group extends TestBase
 		commonFunction.screenShot("Success", "Pass", "SuccessPage");
 		commonFunction.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		PEOPage.queue.click();
-	    sleep(15000);
-	    commonFunction.enterTextboxContains("FEIN",feinValue);
-	    commonFunction.screenShot("FeinSearch","Pass","feinSearch");
-	    commonFunction.clickButtonContains("Search");
-	    sleep(2000);
-	    commonFunction.screenShot("Review Peo","Pass","Review Peo");
-	    commonFunction.clickOnLink("Review PEO");
-	    sleep(2000);
-	    commonFunction.clickButtonContains("Open Work Item");
-	    sleep(2000);
-	    commonFunction.screenShot("Review","Pass","Review Peo Registration");
-	    commonFunction.clickButtonContains("Continue");
-	     sleep(2000);	   
-	     
-	     commonFunction.screenShot("GeneralInfo","Pass","General Information");
-	     commonFunction.clickButtonContains("Save & Continue");
-	     sleep(2000);
-	     try {
-		     commonFunction.selectRadioInTable(feinValue,1, 1,"Unemployment Insurance Account Details");
-		     }
-		     catch(Exception e) {}commonFunction.screenShot("Insurance","Pass","UnemploymentInsuranceAccountDetails");
-	     
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);	     
-		     commonFunction.screenShot("AddressInfo","Pass","Address Information");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     PEOPage.uspsAddress.click();
-		     PEOPage.currentAdditionalAddress.click();
-		     commonFunction.screenShot("UspsAddress2","Pass","UspsAddress");
-		     PEOPage.UspsContinueButton.click();
-		     sleep(2000);
-		     commonFunction.screenShot("VerifyCurrentAdd","Pass","Verify Current Additional Address");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);	
-		     commonFunction.screenShot("MailingAddress","Pass","Mailing Address");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("VerifyPriorAdd","Pass","Verify Prior Address");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);	
-		     
-		     
-		     commonFunction.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);
-		     commonFunction.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFunction.createRandomInteger(1000,9999));
-		     commonFunction.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFunction.createRandomInteger(1000,9999));
-		     commonFunction.screenShot("PriorOwner","Pass","Prior Owner Information");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     PEOPage.uspsAddress.click();
-		     commonFunction.screenShot("UspsAddress3","Pass","UspsAddress");
-		     PEOPage.UspsContinueButton.click();	
-		     sleep(2000);
-		     commonFunction.screenShot("VerifyPrioerOwner","Pass","Verify Prior Ownership Information");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("Submission","Pass","Submission");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("UploadDocs","Pass","Upload Documents");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("VerifyClient","Pass","Verify Client List");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);		     
-		     commonFunction.screenShot("PeoDetails","Pass","Peo Details Review");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("Declaration2","Pass","Declaration");
-		     commonFunction.clickButtonContains("Save & Continue");
-		     sleep(2000);
-		     commonFunction.screenShot("StatementAckn","Pass","Statment of Acknowledgment");
-		     commonFunction.clickButtonContains("Continue");
-		     sleep(2000);
-		     
-		     commonFunction.selectRadio("Approved");
-		     commonFunction.screenShot("ApprovalPage","Pass","ApprovalPage");
-		     commonFunction.clickButtonContains("Submit");
-		     sleep(5000);
-		     commonFunction.screenShot("Success","Pass","SuccessPage");
+		sleep(15000);
+		commonFunction.enterTextboxContains("FEIN", feinValue);
+		commonFunction.screenShot("FeinSearch", "Pass", "feinSearch");
+		commonFunction.clickButtonContains("Search");
+		sleep(2000);
+		commonFunction.screenShot("Review Peo", "Pass", "Review Peo");
+		commonFunction.clickOnLink("Review PEO");
+		sleep(2000);
+		commonFunction.clickButtonContains("Open Work Item");
+		sleep(2000);
+		commonFunction.screenShot("Review", "Pass", "Review Peo Registration");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+
+		commonFunction.screenShot("GeneralInfo", "Pass", "General Information");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		try {
+			commonFunction.selectRadioInTable(feinValue, 1, 1, "Unemployment Insurance Account Details");
+		} catch (Exception e) {
+		}
+		commonFunction.screenShot("Insurance", "Pass", "UnemploymentInsuranceAccountDetails");
+
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		commonFunction.screenShot("AddressInfo", "Pass", "Address Information");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		PEOPage.uspsAddress.click();
+		PEOPage.currentAdditionalAddress.click();
+		commonFunction.screenShot("UspsAddress2", "Pass", "UspsAddress");
+		PEOPage.UspsContinueButton.click();
+		sleep(2000);
+		commonFunction.screenShot("VerifyCurrentAdd", "Pass", "Verify Current Additional Address");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+		commonFunction.screenShot("MailingAddress", "Pass", "Mailing Address");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		commonFunction.screenShot("VerifyPriorAdd", "Pass", "Verify Prior Address");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+
+		commonFunction.screenShot("VerifyOwnerInfo", "Pass", "Verify Owner Information");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+		commonFunction.enterTextboxContains("Address Line 1",
+				"PowneraddressLine1" + commonFunction.createRandomInteger(1000, 9999));
+		commonFunction.enterTextboxContains("Address Line 2",
+				"PowneraddressLine2" + commonFunction.createRandomInteger(1000, 9999));
+		commonFunction.screenShot("PriorOwner", "Pass", "Prior Owner Information");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		PEOPage.uspsAddress.click();
+		commonFunction.screenShot("UspsAddress3", "Pass", "UspsAddress");
+		PEOPage.UspsContinueButton.click();
+		sleep(2000);
+		commonFunction.screenShot("VerifyPrioerOwner", "Pass", "Verify Prior Ownership Information");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+		commonFunction.screenShot("Submission", "Pass", "Submission");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+		commonFunction.screenShot("UploadDocs", "Pass", "Upload Documents");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		commonFunction.screenShot("VerifyClient", "Pass", "Verify Client List");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+		commonFunction.screenShot("PeoDetails", "Pass", "Peo Details Review");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		commonFunction.screenShot("Declaration2", "Pass", "Declaration");
+		commonFunction.clickButtonContains("Save & Continue");
+		sleep(2000);
+		commonFunction.screenShot("StatementAckn", "Pass", "Statment of Acknowledgment");
+		commonFunction.clickButtonContains("Continue");
+		sleep(2000);
+
+		commonFunction.selectRadio("Approved");
+		commonFunction.screenShot("ApprovalPage", "Pass", "ApprovalPage");
+		commonFunction.clickButtonContains("Submit");
+		sleep(5000);
+		commonFunction.screenShot("Success", "Pass", "SuccessPage");
 
 	}
 }

@@ -61,7 +61,7 @@ public class EM_443_008_Verify_CSR_Add_POA_Payroll_Agent_Agreement_plus extends 
 
 		// SREG-040
 		cf.screenShot("Search POA/Third Party Representative", "Pass", "Launched to SREG-040");
-		cf.enterTextboxContains("POA/TPR Legal Name", "ABCD");
+		cf.enterTextboxContains("POA/TPR Legal Name", "Test");
 		sleep();
 		cf.clickButtonContains(" Search ");
 		sleep();

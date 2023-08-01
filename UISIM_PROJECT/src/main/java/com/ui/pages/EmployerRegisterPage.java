@@ -178,6 +178,14 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][2]")
 	public WebElement uspsBusinessAddressInnerCircle;
 	
+	// SREG-043
+	@FindBy(how = How.XPATH, using = "//div[contains(@class,'mat-form-field')]//textarea[contains(@id,'comment')]")
+    public WebElement EEWI002CommentsField;
+	
+	// SREG -084
+	@FindBy(how = How.XPATH, using = "(//mat-cell//a//u[contains(text(),'Verify Transfer Failed Rules')])[1]")
+    public WebElement verifyTransferlink;
+	
 	//--- SREG-004 ---
 	//---Contact Person for (Location of Books and Records) & (Notice of Potential Charges (LO400)) Address ---
 	
@@ -286,7 +294,6 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(text(),'123')]/../../span/span[@class='mat-radio-outer-circle'])[1]")
 	public WebElement uspsAddressRadio_123_state;
 	
-	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Indicate your principal')]/../../div/mat-form-field/div/div/div[3]/mat-select")
 	public WebElement individualPrinciple;
 	
@@ -374,8 +381,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//strong[text()='Agent (C/O) address']/../following-sibling::div/app-select/div/mat-label/mat-label[text()='County']/../following-sibling::div/mat-form-field/div/div/div/following-sibling::div[2]/mat-select/div/div[@id]")
 	public WebElement agent_CO_County;
 	
-	//Palak
-	
+	//Palak	
 
 @FindBy(how = How.XPATH, using = "//*[@id='commentid']")
 public WebElement commentid;
@@ -656,6 +662,14 @@ public WebElement transferDetailsTable_checkbox;
 @FindBy(how = How.XPATH, using = "//u[contains(.,'')][1]")
 public WebElement transferDetailsTable_Dateoftransfer_hyperlink;
 
+@FindBy(how = How.XPATH, using = "//*[.='Beginning Liability Date']//following::mat-label[text()='Quarter ']/../mat-form-field/div/div/div[3]/mat-select[1]")
+public WebElement beginningLiableDateQuarter;
+
+@FindBy(how = How.XPATH, using = "(//*[.='Suspension Date']//following::mat-label[text()='Quarter ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
+public WebElement suspensionDateQuarter;
+
+@FindBy(how = How.XPATH, using = "(//mat-label[text()='Year ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
+public WebElement yearDropDown2;
 
 }
 
