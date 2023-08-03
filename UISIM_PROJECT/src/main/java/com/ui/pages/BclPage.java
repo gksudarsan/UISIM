@@ -44,6 +44,30 @@ public class BclPage {
 	
 	@FindBy(how = How.XPATH, using = "//span[.=' Hold Action and/or Another Flag on Account'][1]")
 	public WebElement updateReferralReasonValue;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+	public WebElement menu;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'dataTableId')]//preceding::span[@class='mat-radio-container'][1]")
+	public WebElement dataTableIdRadio;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='noSelected-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	public WebElement noRadioOutCircle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='noSelected-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+	public WebElement noRadioInCircle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='yesSelected-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+	public WebElement yesRadioOutCircle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='yesSelected-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+	public WebElement yesRadioInCircle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='reasonExplanation']")
+	public WebElement reasonExplanation;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'dataTableId_select_0')]//preceding::*[@class='mat-checkbox-inner-container'][1]")
+	public WebElement dataTableId_select_0_checkbox;
 	 
 	
 	
