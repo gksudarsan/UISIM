@@ -67,9 +67,19 @@ public class BCL_855_03_001 extends TestBase {
 			commonFuntions.screenShot("ErrorLabel4","Pass","No Records Found");
 			commonFuntions.errorContent("No Records Found");
 			sleep(2000);
-			 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C'  and EAN = '0464364'","EAN");
+			 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT  B.SSN AS ssn,\r\n"
+			 		+ "                            COALESCE (B.FIRST_NAME, ' ') ||\r\n"
+			 		+ "                    COALESCE (B.MIDDLE_INITIAL, ' ') ||\r\n"
+			 		+ "                    COALESCE (B.LAST_NAME, ' ') ||\r\n"
+			 		+ "                    COALESCE (B.SUFFIX, '') as ownerName,\r\n"
+			 		+ "                            A.FEIN AS fein,\r\n"
+			 		+ "                            A.EAN AS employerRegistrationNo,\r\n"
+			 		+ "                            A.ENTITY_NAME AS legalNameOfBusiness\r\n"
+			 		+ "FROM T_EMPLOYER_ACCOUNT A \r\n"
+			 		+ "                            INNER JOIN T_EMPLOYER_PARTNER B \r\n"
+			 		+ "ON A.EMPLOYER_ACCOUNT_ID=B.EMPLOYER_ACCOUNT_ID","employerRegistrationNo");
 				
-				String eanNumber=databaseResults.get("EAN");//0464364
+				String eanNumber=databaseResults.get("employerRegistrationNo");//0464364
 			commonFuntions.enterTextboxContains("Employer Registration Number", eanNumber);
 			commonFuntions.clickButtonContains("Search");
 			sleep(2000);
@@ -79,7 +89,10 @@ public class BCL_855_03_001 extends TestBase {
 			sleep(2000);
 			commonFuntions.screenShot("NoticeOfPendingReferralList1","Pass","Notice of pending referralList error");
 			commonFuntions.errorContent("Please select a record to proceed.");
-			BclPage.selectRadioButton.click();	
+			try {
+				BclPage.pendingReferralSelectRadioButton.click();
+			}catch(Exception e) {
+			BclPage.selectRadioButton.click();	}
 			commonFuntions.screenShot("NoticeOfPendingReferralList2","Pass","Notice of pending referralList");					
 			commonFuntions.clickButtonContains("Continue");
 			sleep(2000);

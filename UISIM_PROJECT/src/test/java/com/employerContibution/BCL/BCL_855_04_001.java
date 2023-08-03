@@ -93,14 +93,27 @@ public class BCL_855_04_001 extends TestBase {
 			BclPage.updateAllCheckBox.click();
 			sleep(2000);
 			commonFuntions.screenShot("updateNPRReferral4","Pass","Update NPR referral To treasury");					
-			
+			commonFuntions.clickButtonContains("Update");
+			sleep(2000);
+			commonFuntions.waitForLoadingIconToDisappear();
 			sleep(2000);
 			commonFuntions.errorContent("Status and Reason should be selected for selected row(s).");
 			BclPage.updateAllCheckBox.click();
 			sleep(2000);
-			BclPage.viewGenerateLetter.click();
+			BclPage.updateReferralCheckBox.click();
+			BclPage.updateReferralStatus.click();
+			sleep();
+			BclPage.updateReferralStatusValue.click();
+			sleep();
+			BclPage.updateReferralReason.click();
+			sleep();
+			BclPage.updateReferralReasonValue.click();
+			sleep();
+			commonFuntions.clickButtonContains("Update");
 			sleep(2000);
-			commonFuntions.screenShot("Confirmation","Pass","Notice of pending referralList confirmation");					
+			commonFuntions.waitForLoadingIconToDisappear();
+			commonFuntions.screenShot("updateNPRReferral5","Pass","Update NPR referral To treasury");
+			commonFuntions.Label("Changes made to NPR have been saved/updated successfully.");
 			
 		 
 		 
