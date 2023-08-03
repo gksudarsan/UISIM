@@ -54,6 +54,9 @@ public class BCL_855_03_001 extends TestBase {
 			commonFuntions.enterTextboxContains("Employer Registration Number", "");
 			commonFuntions.enterTextboxContains(" FEIN ", "000000000");	
 			
+			
+			
+			
 			commonFuntions.clickButtonContains("Search");
 			sleep(2000);
 			commonFuntions.screenShot("ErrorLabel3","Pass","A value must be provided for either SSN or ERN or FEIN");

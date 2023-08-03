@@ -74,7 +74,9 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase
 			
 			// --- SREG-701 ---
 			cf.screenShot("EE01008", "Pass", "Launched to  SREG-701 page");		
-			cf.selectRadio("Individual");
+			cf.selectRadioQuestions(
+	                " Provide the information requested below for each Corporate Officer/Owner associated with this business. Additional corporate officer/member/owners can be added after validation of address on this screen.",
+	                " Individual");
 			cf.clickButton("Submit ");
 			sleep(10000);
 			cf.screenShot("EE01008", "Pass", "Message 'Required feilds' on SREG-006");
