@@ -24,6 +24,15 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='flagsOnAccount'][1]/mat-row[1]/mat-cell[3]//u[1]")
 	public WebElement viewGenerateLetter;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='If Other, explain in detail']//following::*[@id='otherreason']")
+	public WebElement otherreason_MaintainCollectionHold;
+
+	@FindBy(how = How.XPATH, using = "//*[.='Comments']//following::*[@id='comment']")
+	public WebElement comments_CancelPaymentPlan;
+
+	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_radio_0_1_radio_button']//following::*[@class='mat-radio-input'][1]")
+	public WebElement select_Review_UpdateBankruptcyCaseActivity;
 	
-	
+	@FindBy(how = How.XPATH, using = "//*[text()='Treasury Offset Program'][1]//following::*[text()='Bankruptcy'][1]")
+	public WebElement clickMenu_Bankruptcy;
 }

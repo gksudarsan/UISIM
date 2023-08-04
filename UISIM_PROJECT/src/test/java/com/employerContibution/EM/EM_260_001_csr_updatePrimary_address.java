@@ -34,7 +34,7 @@ public class EM_260_001_csr_updatePrimary_address {
 			System.out.println("EAN_NAME  = " +EAN);
 			
 		
-			cf.login("NDBAS4", "Anay@123456789");
+			cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 			cf.screenShot("ApplicationLogin","Pass","Login is successful");
 			cf.clickMenu("menu");
 			cf.ScrollMenu("Account Maintenance");
@@ -75,11 +75,12 @@ public class EM_260_001_csr_updatePrimary_address {
 			cf.clearTextboxContains("City ");
 			cf.enterTextboxContains("City ", "New York");
 			cf.clearTextboxContains("Zip Code");
-			cf.enterTextboxContains("Zip Code", "10011");
+			cf.enterTextboxContains("Zip Code", "10651");
 			sleep();
 			cf.selectDropdown("State", " New York ");
 			cf.selectDropdown("County", " Albany ");
 			sleep(2000);
+			cf.enterTextboxContains("Number of employees at this location","10");
 			cf.selectDropdown("Source", " NYS-100 (paper) ");
 			sleep(1000);
 			cf.selectDropdown("Source Type", " NYS-100 ");
@@ -94,6 +95,8 @@ public class EM_260_001_csr_updatePrimary_address {
 				
 			empRegPage.uspsBusinessAddressInnerCircle.click();
 			}
+			empRegPage.continueButton_popUp.click();
+
 			sleep(2000);
 			}catch (Exception exception) {}
 			
@@ -104,7 +107,7 @@ public class EM_260_001_csr_updatePrimary_address {
 			cf.selectDropdown("Source", " NYS-100 (paper) ");
 			sleep(1000);
 			cf.selectDropdown("Source Type", " NYS-100 ");
-			sleep(1500);
+			sleep(1000);
 			cf.clickButton("Submit ");
 			sleep(10000);
 			

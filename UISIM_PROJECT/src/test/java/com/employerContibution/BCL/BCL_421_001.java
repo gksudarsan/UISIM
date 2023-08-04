@@ -10,6 +10,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
+import com.ui.pages.BclPage;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
@@ -25,16 +26,16 @@ public class BCL_421_001 extends TestBase {
 	{
 		commonStepDefinitions commonFuntions= new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
+		BclPage BCL = new BclPage(driver);
 		
-        Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT TEA.EMPLOYER_ACCOUNT_ID,* FROM T_EMPLOYER te JOIN T_EMPLOYER_ACCOUNT tea ON TEA.EAN = TE.EAN WHERE TEA.REGISTRATION_STATUS = 'C' AND TE. CHARGEABILITY_TYPE = 'RATD' AND TEA.ACCOUNT_STATUS = 'LIAB' ORDER BY TEA.CREATED_TS DESC","EAN");
+        Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='ACTV' AND EAN LIKE '9%'","EAN");
         String eanValue = databaseEanResult.get("EAN");
         System.out.println(eanValue);
         
 		test = report.createTest("BCL.421.001 - Verify CSR can add a collection hold on the account with reason for hold is Hearing Pending");
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFuntions.login("ndsbb3","Brijen@1234567");
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1,COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
         sleep();
         
@@ -55,17 +56,61 @@ public class BCL_421_001 extends TestBase {
 		commonFuntions.clickButton("Continue ");
 		sleep();
 		commonFuntions.screenShot("Maintain Collection Hold", "Pass", "Message 'The Employer Registration Number is not valid");
-		commonFuntions.enterTextboxContains("Employer Registration Number" ,"9000007");
+		commonFuntions.enterTextboxContains("Employer Registration Number" ,eanValue);
 		commonFuntions.screenShot("Maintain Collection Hold", "Pass", "ERN Entered");
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
 		
-		//---COL-531---
-		commonFuntions.screenShot("Remove Collection Hold", "Pass", "Remove Collection Hold (COL-531)screen launched");
+		//---COL-527---
+		commonFuntions.screenShot("Maintain Collection Hold", "Pass", "Maintain Collection Hold (COL-527)screen launched");
+		sleep(2000);
+		commonFuntions.clickOnLink("Add Collection Hold");
+		sleep();
+		
+		//---COL-528---
+		commonFuntions.screenShot("Add Collection Hold", "Pass", "Add Collection Hold (COL-528)screen launched");
+		sleep(2000);
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
-		commonFuntions.screenShot("Remove Collection Hold", "Pass", "Message 'Required' on COL-531");
-		
+		commonFuntions.screenShot("Add Collection Hold", "Pass", "Message 'Required' on COL-528");
+		commonFuntions.selectDropdown("Reason For Hold", " Hearing Pending ");
+		BCL.otherreason_MaintainCollectionHold.sendKeys("For Testing");
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(2000);
+		commonFuntions.screenShot("Add Collection Hold", "Pass", "Message 'The response to the Hold Start Date is required.' on COL-528");
+		commonFuntions.enterTextboxContains("Hold Start Date","7/2/2023");
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(2000);
+		commonFuntions.screenShot("Add Collection Hold", "Pass", "Message 'The Hold Start Date cannot be a past date.' on COL-528");
+		commonFuntions.clearTextboxContains("Hold Start Date");
+		commonFuntions.selectDropdown("Reason For Hold", " Other ");
+		sleep(2000);
+		BCL.otherreason_MaintainCollectionHold.clear();
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(2000);
+		commonFuntions.screenShot("Add Collection Hold", "Pass", "Message 'The other reason description is required when dropdown reason is selected as “other”' on COL-528");
+		commonFuntions.enterTextboxContains("Hold Start Date","8/2/2023");
+		commonFuntions.selectDropdown("Reason For Hold", " Hearing Pending ");
+		sleep(2000);
+		BCL.otherreason_MaintainCollectionHold.sendKeys("For Testing");
+		commonFuntions.clickButtonContains("Continue ");
+		sleep(2000);
+	
+		//---COL-529---
+	    commonFuntions.screenShot("Add Collection Hold Verification", "Pass", "Add Collection Hold Verification (COL-529)screen launched");
+	    commonFuntions.clickButtonContains("Submit ");
+		sleep(2000);
+	
+		//---SUC-002---
+	    commonFuntions.screenShot("Add Collection Hold Confirmation", "Pass", "Add Collection Hold Confirmation (SUC-002)screen launched");
+	    commonFuntions.clickButtonContains("Home ");
+		sleep(2000);
+	
+		//---HOME---
+	    commonFuntions.screenShot("Home", "Pass", "Home screen launched");
+	    sleep(2000);
+	
+	    //Done
 	}
 	
 	
