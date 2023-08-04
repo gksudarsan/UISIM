@@ -140,6 +140,7 @@ public class EE_10_005 extends TestBase {
 		commonFunction.clickButton("Continue ");
 
 		try {
+		try {
 						empRegPage.bmad_Address.click();
 				} catch (Exception exception) {
 					empRegPage.bmad_AddressInnerCircle.click();
@@ -156,7 +157,7 @@ public class EE_10_005 extends TestBase {
 					}
 					commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection onSREG-004");
 					empRegPage.continueButton_popUp.click();
-
+	} catch (Exception exception) {}
 
 					sleep(2000);
 					commonFunction.clickButton("Continue ");
