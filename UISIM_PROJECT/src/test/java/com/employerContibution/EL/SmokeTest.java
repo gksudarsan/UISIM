@@ -206,6 +206,8 @@ RegistrationResults = "Success";
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("Success","Pass","SuccessPage");
 	     PeoIdGeneratedResults="Success";
+	     PEOPage.successMessage.isDisplayed();
+	     //commonFuntions.Label("PEO Registration Application has been Approved");
 	     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	     
 	}

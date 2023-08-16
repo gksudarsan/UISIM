@@ -171,6 +171,9 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-container'][1]")
 	public WebElement mailingAdditionalAddress;
 	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label-content']//preceding::*[@class='mat-radio-container']")
+	public WebElement approveRadioButton;
+	
 
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
 	public WebElement UspsContinueButton;
@@ -422,5 +425,9 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = ".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")
 	public WebElement managePeoInMenu;
+	
+	@FindBy(how = How.XPATH, using = "//h2[.='Approval Confirmation'][1]")
+	public WebElement successMessage;
 
+	
 }

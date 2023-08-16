@@ -44,9 +44,27 @@ public class BclPage {
 	
 	@FindBy(how = How.XPATH, using = "//span[.=' Hold Action and/or Another Flag on Account'][1]")
 	public WebElement updateReferralReasonValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[.=' Certified'][1]")
+	public WebElement updateReferralStatusCertifiedValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[.=' Hearing Requested'][1]")
+	public WebElement updateReferralReasonHearingRequestedValue;
 	 
+	@FindBy(how = How.XPATH, using = "//span[.=' Generated'][1]")
+	public WebElement updateReferralStatusGeneratedValue;
 	
+	@FindBy(how = How.XPATH, using = "//span[.=' Order to Show Cause Filed'][1]")
+	public WebElement updateReferralReasonOrderShowValue;
 	
+	@FindBy(how = How.XPATH, using = "//span[.=' Voided'][1]")
+	public WebElement updateReferralStatusVoidedValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[.=' Employer Appeal'][1]")
+	public WebElement updateReferralReasonEmployerAppealValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[.=' Pending Income Execution'][1]")
+	public WebElement updateReferralReasonPendingIncomeValue;
 	
 	
 	
