@@ -378,11 +378,15 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     sleep(2000);
 		     
 		     //commonFuntions.selectRadio("Approved");
-		     PEOPage.ApprovePeo.click();
+		     
+		    // PEOPage.ApprovePeo.click();
+		     PEOPage.approveRadioButton.click();
 		     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
 		     commonFuntions.clickButtonContains("Submit");
 		     sleep(5000);
 		     commonFuntions.screenShot("Success","Pass","SuccessPage");
+		     PEOPage.successMessage.isDisplayed();
+		     //commonFuntions.Label("PEO Registration Application has been Approved");
 		     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	     
 	}
