@@ -95,6 +95,8 @@ public class commonStepDefinitions extends TestBase {
 
 			sleep(2000);
 			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
+			
+			
 			//Add this to your TC after login function : test.log(Status.PASS, "Login with userRole is successful");
 			
 			Thread.sleep(3000);
@@ -212,7 +214,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickMenu(String xpathParameter) {
-		By element = By.xpath("//*[text()='" + xpathParameter + "'][1]");
+		By element = By.xpath("//*[text()='" + xpathParameter + "'][@class!='hideview'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -223,7 +225,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectRadio(String xpathParameter) {
-			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']");
+			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::*[@class='mdc-radio__native-control'][1]");
 
 			final WebDriverWait wait = new WebDriverWait(driver, 10);
 			try {
@@ -236,13 +238,14 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
 		
-		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
-				+ "')][1]//preceding::*[@class='mat-radio-container'][1]");
+		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::*[contains(.,'" + xpathParameter
+				+ "')][1]//preceding::input[2][@class='mdc-radio__native-control'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			safeJavaScriptClick(ele);
+			//safeJavaScriptClick(ele);
+			ele.click();
 		} catch (final Exception e) {
 		}
 	}
@@ -258,7 +261,7 @@ public class commonStepDefinitions extends TestBase {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
-			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 		} catch (final Exception e) {
 		}
 
@@ -266,7 +269,7 @@ public class commonStepDefinitions extends TestBase {
 	
 	public void selectDropdownThirdParty(String value) {
 		driver.findElement(By.xpath("//mat-select[@id='designationTypeId']")).click();
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 	}
 	
 	public void selectDropdownUsingSearch(String xpathParameter, String value) throws InterruptedException {
@@ -274,7 +277,7 @@ public class commonStepDefinitions extends TestBase {
 				.click();
 		driver.findElement(By.xpath("//*[@placeholder='search']")).sendKeys(value.trim());
 		sleep(2000);
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	
@@ -765,7 +768,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectDropdownEquals(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
 				.click();
-		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mdc-list-item__primary-text']")).click();
 
 	}
 
@@ -873,7 +876,7 @@ public class commonStepDefinitions extends TestBase {
 	
 
 	public void selectFromDropdown(String xpathParameter) {
-		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	
@@ -985,7 +988,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectDropdownSecondBox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[2]"))
 				.click();
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	public void enterTextboxContainsThirdBox(String xpathParameter, String value) {
