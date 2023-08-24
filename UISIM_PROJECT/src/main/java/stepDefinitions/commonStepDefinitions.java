@@ -100,7 +100,7 @@ public class commonStepDefinitions extends TestBase {
 			Thread.sleep(3000);
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-			Thread.sleep(2000);
+			Thread.sleep(8000);
 
 			screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 
