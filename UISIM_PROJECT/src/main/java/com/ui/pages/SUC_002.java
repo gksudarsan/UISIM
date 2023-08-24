@@ -99,4 +99,8 @@ public class SUC_002 extends TestBase{
 		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
 		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}
+	
+	@FindBy(how = How.XPATH, using = "//*[text()=' Generate Correspondence ']")
+	public WebElement generateCorrespondenceLink;
+	
 }

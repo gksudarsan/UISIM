@@ -68,7 +68,7 @@ public class EE_02_004_CSR_Can_Register_Agriculture extends TestBase {
 
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Landed on SREG-003 page");
 
-		empPage.legalNameTextBox.sendKeys("FUL STUDIO INC");
+		empPage.legalNameTextBox.sendKeys("WT ACH CREDIT 1");
 		commonFuntions.enterTextboxContains("Trade Name or Doing Business As (DBA)", "Other Test");
 		commonFuntions.enterTextboxContains(" Business Phone Number  ", "7687765665");
 		commonFuntions.enterTextboxContains(" Business Fax Number ", "3621231111");

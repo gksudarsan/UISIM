@@ -1142,5 +1142,10 @@ public class commonStepDefinitions extends TestBase {
 			}
 			return actualValue;
 		}
+		
+		public void clickOnLinkfirstItem(String xpathParameter) {
+			driver.findElement(By.xpath("(//u[contains(.,'" + xpathParameter + "')])[1]")).click();
+
+		}
 
 }
