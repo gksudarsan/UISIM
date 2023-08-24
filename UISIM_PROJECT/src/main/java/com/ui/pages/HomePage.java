@@ -218,4 +218,7 @@ public class HomePage extends TestBase {
 		Thread.sleep(2000);
 		stepDef.clickElement(renewPeo);
 	}
+	@FindBy(how = How.XPATH, using = "(//a//u[text()='Delinquency Assignment Task'])[1]")
+	public WebElement delinquencyAssignmentTask;
+	
 }

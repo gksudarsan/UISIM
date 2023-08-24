@@ -1230,6 +1230,12 @@ public class commonStepDefinitions extends TestBase {
 			System.out.println(Child);
 			driver.switchTo().window(Child);
 		}
+		
+		
+		public void clickOnLinkfirstItem(String xpathParameter) {
+			driver.findElement(By.xpath("(//u[contains(.,'" + xpathParameter + "')])[1]")).click();
+
+		}	
 
 		public static int getPageCount(PDDocument doc) {
 			// get the total number of pages in the pdf document
