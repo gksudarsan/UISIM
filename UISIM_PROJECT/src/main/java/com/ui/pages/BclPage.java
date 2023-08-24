@@ -103,6 +103,10 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//span[.=' Generated'][1]")
 	public WebElement updateReferralStatusGeneratedValue;
 	
+	@FindBy(how = How.XPATH, using = "//*[.=' List of Prosecutions ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[1]")
+	public WebElement ListofProsecutions_Radio;
+	
+	
 	
 
 	
