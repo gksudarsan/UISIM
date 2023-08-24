@@ -46,7 +46,7 @@ public class EM_411_001 extends TestBase{
 		
 		//---Menu Click---
 		
-		cf.clickMenu("menu");
+		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.screenShot("Menu", "Pass", "Menu page");
 		sleep();
