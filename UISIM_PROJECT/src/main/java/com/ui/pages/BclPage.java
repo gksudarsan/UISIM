@@ -81,6 +81,14 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[text()='Treasury Offset Program'][1]//following::*[text()='Bankruptcy'][1]")
 	public WebElement clickMenu_Bankruptcy;
 
+	@FindBy(how = How.XPATH, using = "//*[@id='employerRegistrationNoId']")
+	public WebElement EnterERN;
+
+	@FindBy(how = How.XPATH, using = "//*[@aria-label='4. Remarks']")
+	public WebElement EnterRemarks;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='8. Comments']//following::*[@id='comments']")
+	public WebElement Entercomments_COL596;
 	
 	@FindBy(how = How.XPATH, using = "//span[.=' Order to Show Cause Filed'][1]")
 	public WebElement updateReferralReasonOrderShowValue;
