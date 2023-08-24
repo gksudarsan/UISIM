@@ -123,7 +123,7 @@ public class PEOPage {
 	public WebElement filter;
 	
 	
-	@FindBy(how = How.XPATH, using = "//*[.='PEO Individual Registration']//preceding::span[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='PEO Individual Registration']//preceding::*[@class='mdc-radio__native-control'][1]")
 	public WebElement individualPeo;
 
 	@FindBy(how = How.XPATH, using = "//span[@id='ProfessionalEmployerOrganization(PEO)'][1]")
@@ -162,16 +162,16 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='address0_zip']//following::mat-error[contains(.,'Required')][1]")
 	public WebElement addressZipErrorLabel;
 
-	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mat-radio-container'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Primary Physical Address']//following::*[@class='mdc-radio__native-control'][2]")
 	public WebElement uspsAddress;
 
-	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Current Additional Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement currentAdditionalAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement mailingAdditionalAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label-content']//preceding::*[@class='mat-radio-container']")
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label-content']//preceding::*[@class='mdc-radio__native-control']")
 	public WebElement approveRadioButton;
 	
 
@@ -187,13 +187,13 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
 	public WebElement queue;
 
-	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::span[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::*[@class='mdc-radio__native-control'][1]")
 	public WebElement groupRegPeo;
 
-	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='USPS Suggested Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement uspsSuggestedAddress;
 
-	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::span[@class='mat-radio-container'][1]")
+	@FindBy(xpath = "//*[.='PEO Exempt Registration']//preceding::*[@class='mdc-radio__native-control'][1]")
 	public WebElement peoExemptRegisterRadio;
 
 	@FindBy(how = How.XPATH, using = "//a[text()=' ADVANCED SEARCH']")
@@ -205,19 +205,19 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[text()='Federal Employer Identification Number']/../following-sibling::mat-label")
 	public WebElement feinValue;
 
-	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Mailing Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement mailingAddress;
 
 	@FindBy(how = How.XPATH, using = "//a[contains(.,'ADD PEO MEMBER')][1]")
 	public WebElement peoAddMember;
 
-	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_selectedPeoId_0_1_radio_button']//following::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_selectedPeoId_0_1_radio_button']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement peoRenewRadioBtn;
 
 	@FindBy(how = How.XPATH, using = "//a[contains(.,'PEO Registration')][1]")
 	public WebElement peoRegister;
 
-	@FindBy(how = How.XPATH, using = "//*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[@class='mdc-radio__native-control'][1]")
 	public WebElement peoRadioButton;
 
 	@FindBy(how = How.XPATH, using = "//strong[text()='Browse']")
@@ -333,7 +333,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddres.physicaladdress-input'][@name='mat-radio-group-28']")
 	public WebElement PrimaryPhysicalAddress;
 
-	@FindBy(how = How.XPATH, using = "//*[@id='addressTypeId_DIFF-input']//preceding::*[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[@id='addressTypeId_DIFF-input']//preceding::*[@class='mdc-radio__native-control'][1]")
 	public WebElement SameAsPhysicalAddress;
 
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Employer Registration Number']/following-sibling::mat-label")
@@ -354,7 +354,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='email0']")
 	public WebElement email0_PEO003;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')][@class='mat-radio-label']//following::span[@class='mat-radio-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')][@class='mat-radio-label']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement PeoUserSelect;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Federal Employer Identification Number (FEIN)')]//following::input[1]")
@@ -420,7 +420,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[text()='PEO ID']/../following-sibling::mat-label")
 	public WebElement peoIDText;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/span[1][@class='mat-radio-container']")
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/*[@class='mdc-radio__native-control']")
 	public WebElement ApprovePeo;
 	
 	@FindBy(how = How.XPATH, using = ".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")
