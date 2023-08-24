@@ -88,13 +88,13 @@ public class EM_411_001 extends TestBase{
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd info on SREG-435 page");
 		sleep(2000);
 		empManage.suspensionDateQtrDropdown_SREG435.click();
-		sleep();
+		sleep(2000);
 		cf.selectFromDropdown(" 4 ");
-		sleep();
+		sleep(2000);
 		empManage.suspensionDateYearDropdown_SREG435.click(); 
-		sleep();
+		sleep(2000);
 		cf.selectFromDropdown(" 2023 ");
-		sleep();
+		sleep(2000);
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd info on SREG-435 page");
 		sleep(2000);
 		sreg435.enterComments.sendKeys("Testing ");

@@ -69,9 +69,17 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'dataTableId_select_0')]//preceding::*[@class='mat-checkbox-inner-container'][1]")
 	public WebElement dataTableId_select_0_checkbox;
 	 
+	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_radio_0_1_radio_button']//following::*[@class='mat-radio-inner-circle'][1]")
+    public WebElement select_Review_UpdateBankruptcyCaseActivity;
 	
+	@FindBy(how = How.XPATH, using = "//*[text()='Treasury Offset Program'][1]//following::*[text()='Bankruptcy'][1]")
+    public WebElement clickMenu_Bankruptcy;
 	
+	@FindBy(how = How.XPATH, using = "//*[.=' List of Prosecutions ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[1]")
+	public WebElement ListofProsecutions_Radio;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='If Other, explain in detail']//following::*[@id='otherreason']")
+    public WebElement otherreason_MaintainCollectionHold;
 	
 	
 	
