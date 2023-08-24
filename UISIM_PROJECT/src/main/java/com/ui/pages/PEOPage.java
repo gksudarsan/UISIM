@@ -30,6 +30,24 @@ public class PEOPage {
 		PageFactory.initElements(driver, this);
 	}
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId']/mat-row[1]/mat-cell[9]/a/u")
+	public WebElement editLink;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='main-container']/mat-card/div/app-requestcertificatetax/form/div/mat-card/div/div[2]/app-date/div/div/mat-form-field/div/div[1]")
+	public WebElement dateEnter;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='id01']/mat-row/mat-cell[1]/mat-checkbox/label/span[1]")
+	public WebElement selectRadiobutton; 
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_radio_0_1_radio_button']/label/span[1]/span[1]")
+	public WebElement selectRadiobutton1;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_radio_0_1_radio_button']/label/span[1]/span[1]")
+	public WebElement selectRadiobutton2;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='main-container']/mat-card/div/app-requestcertificatetax/form/div/mat-card/div/app-textarea/div/div/mat-form-field/div/div[1]")
+	public WebElement textBox;
+	
 	@FindBy(how = How.XPATH, using = "//*[@id='employerRateDetails']/mat-row[1]/mat-cell[2]/a/u")
 	public WebElement currentYearwages;
 	

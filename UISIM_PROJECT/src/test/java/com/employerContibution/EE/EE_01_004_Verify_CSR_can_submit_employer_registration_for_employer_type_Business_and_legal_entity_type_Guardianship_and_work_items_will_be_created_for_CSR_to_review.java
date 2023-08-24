@@ -47,7 +47,7 @@ package com.employerContibution.EE;
     			commonFunction.clickButtonContains("Continue"); sleep(2000);
 
     			commonFunction.selectDropdown("Employer Type", " Business ");
-    			commonFunction.enterTextboxContains("(FEIN)", "95-9970608"); 
+    			commonFunction.enterTextboxContains("(FEIN)", "50-9970508"); 
     			commonFunction.screenShot("file1","Pass", "Searching with FEIN "); 
     			commonFunction.selectDropdown("*Type of Legal Entity"," Guardianship  Internal User Only "); 
     			commonFunction.selectDropdown("Source", " NYS-100 (paper) ");sleep(2000);
@@ -55,7 +55,7 @@ package com.employerContibution.EE;
     			commonFunction.screenShot("Menu", "Pass", "Employer Registration");
     			commonFunction.clickButtonContains("Continue");sleep(6000);
 
-    			commonFunction.populateListbox("Legal Name", "NORTO-ADJUSTED TAXPAYER");sleep(2000);
+    			commonFunction.populateListbox("Legal Name", "FREDS GAS STATION");sleep(2000);
     			commonFunction.screenShot("Menu", "Pass", "Employer Registration");
     		 	commonFunction.clickButtonContains("Continue");sleep(5000);
 
