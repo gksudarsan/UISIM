@@ -32,8 +32,44 @@ public class EM_005 extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[@id=' EM-005']")
 	public WebElement pageNameText;
 	
-	@FindBy(how = How.XPATH, using = "(//mat-radio-button//input[@class='mat-radio-input'])[2]")
-	public WebElement selectToggle;	
+	@FindBy(how = How.XPATH, using = "(//mat-radio-button[contains(@class,'mat-radio-button')])[1]")
+	public WebElement selectToggle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='noSelected-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+    public WebElement noRadioOutCircle;
+
+    @FindBy(how = How.XPATH, using = "//*[@id='noSelected-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+    public WebElement noRadioInCircle;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='yesSelected-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+    public WebElement yesRadioOutCircle;
+
+    @FindBy(how = How.XPATH, using = "//*[@id='yesSelected-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+    public WebElement yesRadioInCircle;
+    
+    @FindBy(how = How.XPATH, using = "//*[@id='reasonExplanation']")
+    public WebElement reasonExplanation;
+    
+    @FindBy(how = How.XPATH, using = "//*[@id='apprSelected-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+    public WebElement approveRadioOutCircle;
+    
+    @FindBy(how = How.XPATH, using = "//*[@id='apprSelected-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+    public WebElement approveRadioInCircle;
+    
+    @FindBy(how = How.XPATH, using = "//mat-cell[contains(.,'Remove')]")
+    public WebElement removeDoc;
+    
+    @FindBy(how = How.XPATH, using = "//*[@id='sustainCode-input']//preceding::span[@class='mat-radio-inner-circle'][1]")
+    public WebElement sustainRadioInCircle;
+    
+    @FindBy(how = How.XPATH, using = "//*[@id='sustainCode-input']//preceding::span[@class='mat-radio-outer-circle'][1]")
+    public WebElement sustainRadioOutCircle;
+
+    @FindBy(how = How.XPATH, using = "//textarea[@aria-label='Enter Protest Resolution Details']")
+    public WebElement enterProtestCommentField;
+    
+    @FindBy(how = How.XPATH, using = "//textarea[@aria-label='Resolution Details']")
+    public WebElement enterCommentField;
 	
 	public void enterDetailInERNField(String ERN) throws Exception {
 		Thread.sleep(2000);
