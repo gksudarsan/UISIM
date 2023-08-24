@@ -68,7 +68,12 @@ public class SUC_002 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'DOLDTFDiscrepancy Task has been successfully completed. ')]")
 	public WebElement DOLDTFDiscrepancySuccessmsg;
 	
+	//FI TC
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Enter Protest Resolution Details']")
+    public WebElement enterProtestCommentField;
 	
+	@FindBy(how = How.XPATH, using = "//textarea[contains(@aria-label,'I do not believe the business is required to file the')]")
+    public WebElement iDoNotCommentField;
 	
 	public String validateSucessMessage() throws Exception {
 		sleep(2000);

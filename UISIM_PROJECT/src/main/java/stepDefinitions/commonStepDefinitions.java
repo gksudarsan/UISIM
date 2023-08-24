@@ -168,6 +168,12 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[@id='commentId']")).sendKeys(value);
 	}
 	
+	public void addCommentContains(String value) {
+		driver.findElement(By.xpath("//*[@aria-label='Comments']")).clear();
+		driver.findElement(By.xpath("//*[@aria-label='Comments']")).sendKeys(value);
+	}
+	
+	
 	public void clickHyperlink(String xpathParameter) {
 		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]")).click();
 	}
@@ -272,6 +278,18 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
+	// FIS-008
+	public void selectCheckboxSection1(String xpathParameter, int index) throws InterruptedException {
+		driver.findElement(
+				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				.click();
+	}
+	
+	public void selectCheckboxSection2(String xpathParameter, int index) throws InterruptedException {
+		driver.findElement(
+				By.xpath("//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				.click();
+	}
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
@@ -1212,7 +1230,7 @@ public class commonStepDefinitions extends TestBase {
 			driver.findElement(By.xpath("//*[@id='remarksId']")).sendKeys(value);
 		}
 		
-		public void switchTab() {
+		public void switchTab() throws InterruptedException {
 			Set<String> allHandles = driver.getWindowHandles();
 			Iterator<String> l1 = allHandles.iterator();
 			String parent = l1.next();
