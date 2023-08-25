@@ -24,7 +24,6 @@ public class EE_10_005 extends TestBase {
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 
-		
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
@@ -56,11 +55,11 @@ public class EE_10_005 extends TestBase {
 		// --- SREG-025 ---
 		commonFunction.screenShot("MenuPage", "Pass", "Details entered on SREG-025 page");
 		commonFunction.selectDropdown("Employer Type", " Governmental ");
-		//System.out.println("The FIEN is " + feinValue);
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "043132972");
+		// System.out.println("The FIEN is " + feinValue);
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "261035802");
 		commonFunction.selectDropdown("Type of Legal Entity", " County ");
-		commonFunction.enterTextboxContains("Employer Registration Number", "4606990");
-		//System.out.println("The EAN is " + eanValue);
+		commonFunction.enterTextboxContains("Employer Registration Number", "0719526");
+		// System.out.println("The EAN is " + eanValue);
 		sleep();
 		commonFunction.clickButton("Continue ");
 		commonFunction.screenShot("EmpRegister3", "Pass", "Details entered and clicked on CONTINUE button");
@@ -89,12 +88,16 @@ public class EE_10_005 extends TestBase {
 		commonFunction.enterTextboxContains("City ", "New York");
 		commonFunction.enterTextboxContains("Zip Code", "10001");
 		commonFunction.selectDropdown("County", " Albany ");
-		commonFunction.screenShot("EmpRegister5", "Pass","Enter the details on Employer Entity Information page and click continue");
-		commonFunction.selectRadioQuestions("Choose the option you wish to use to discharge your Unemployment Insurance liability.","Contributory");
+		commonFunction.screenShot("EmpRegister5", "Pass",
+				"Enter the details on Employer Entity Information page and click continue");
+		commonFunction.selectRadioQuestions(
+				"Choose the option you wish to use to discharge your Unemployment Insurance liability.",
+				"Contributory");
 		commonFunction.clickButton("Continue ");
 
 		// --- SREG-008 ---
-		commonFunction.screenShot("EmpRegister5", "Pass","Enter the details on Employer Entity Information page and click continue");
+		commonFunction.screenShot("EmpRegister5", "Pass",
+				"Enter the details on Employer Entity Information page and click continue");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street ");
 		commonFunction.enterTextboxContains("City ", "New York");
 		commonFunction.enterTextboxContains("Zip Code", "10011");
@@ -104,10 +107,10 @@ public class EE_10_005 extends TestBase {
 		try {
 			empRegPage.uspsBusinessAddress.click();
 		} catch (Exception exception) {
-			
+
 			empRegPage.uspsBusinessAddressInnerCircle.click();
 		}
-		
+
 		commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection on SREG-008");
 		empRegPage.continueButton_popUp.click();
 		sleep(2000);
@@ -140,94 +143,93 @@ public class EE_10_005 extends TestBase {
 		commonFunction.clickButton("Continue ");
 
 		try {
-		try {
-						empRegPage.bmad_Address.click();
-				} catch (Exception exception) {
-					empRegPage.bmad_AddressInnerCircle.click();
-				}
-				try {
-			empRegPage.lbra_Address.click();
+			try {
+				empRegPage.bmad_Address.click();
+			} catch (Exception exception) {
+				empRegPage.bmad_AddressInnerCircle.click();
+			}
+			try {
+				empRegPage.lbra_Address.click();
+			} catch (Exception exception) {
+				empRegPage.lbra_AddressInnerCircle.click();
+			}
+			try {
+				empRegPage.npca_Address.click();
+			} catch (Exception exception) {
+				empRegPage.npca_AddressInnerCircle.click();
+			}
+			commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection onSREG-004");
+			empRegPage.continueButton_popUp.click();
 		} catch (Exception exception) {
-			empRegPage.lbra_AddressInnerCircle.click();
-					}
-					try {
-						empRegPage.npca_Address.click();
-				} catch (Exception exception) {
-						empRegPage.npca_AddressInnerCircle.click();
-					}
-					commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection onSREG-004");
-					empRegPage.continueButton_popUp.click();
-	} catch (Exception exception) {}
+		}
 
-					sleep(2000);
-					commonFunction.clickButton("Continue ");
-	
-					// --- SREG-007 ---
-					commonFunction.screenShot("EmpRegister5", "Pass",
-							"Successfully launched Business Physical Address Details(SREG-007) page");
-					commonFunction.clickButton("Continue ");	
-					
+		sleep(2000);
+		commonFunction.clickButton("Continue ");
+
+		
+
 		// --- SREG 683 ---
-				sleep(2000);
-				commonFunction.screenShot("EE01007", "Pass", "USPS Business address selection on SREG-683");
-				sleep();
-				commonFunction.selectLink(" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.", "Browse");
-				sleep(2000);
-				commonFunction.uploadDoc("Sample.docx");
-				sleep(2000);
-				commonFunction.screenShot("EE01007", "Pass", "Sample document uploaded");
-				commonFunction.clickButton("Continue ");
-				// --- SREG-800 ---
-				sleep(10000);
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-800 page");
-				commonFunction.clickButton("Continue ");
-			   // --- SREG-043 ---
-				sleep(2000);
-				commonFunction.selectCheckbox("I accept");
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-043 page");
-				commonFunction.clickButton("Submit ");
-				// --- SREG-013 ---
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-800 page");
-				commonFunction.clickButton("Home ");
-				sleep(2000);
+		sleep(2000);
+		commonFunction.screenShot("EE01007", "Pass", "USPS Business address selection on SREG-683");
+		sleep();
+		commonFunction.selectLink(
+				" Supporting documents like 501(c)(3) Exemptions, Lessor contracts, and Religious entity verification document, etc., can be uploaded.",
+				"Browse");
+		sleep(2000);
+		commonFunction.uploadDoc("Sample.docx");
+		sleep(2000);
+		commonFunction.screenShot("EE01007", "Pass", "Sample document uploaded");
+		commonFunction.clickButton("Continue ");
+		// --- SREG-800 ---
+		sleep(10000);
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-800 page");
+		commonFunction.clickButton("Continue ");
+		// --- SREG-043 ---
+		sleep(2000);
+		commonFunction.selectCheckbox("I accept");
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-043 page");
+		commonFunction.clickButton("Submit ");
+		// --- SREG-013 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-800 page");
+		commonFunction.clickButton("Home ");
+		sleep(2000);
 
-				// --- SREG-013 ---
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to Home page");
-				sleep(2000);
-				
+		// --- Home ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to Home page");
+		sleep(2000);
 
-				commonFunction.login("ndsbb3","Brijen@1234567");
-				commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
-				 sleep(10000);
-				 
-				commonFunction.screenShot("EmpRegister13", "Pass", "Navigated on Home page");
-				commonFunction.clickButton(" Go to My Q ");
-			        
-			        sleep(3000);
-				   
-			   // --- WF-001 ---
-				sleep(10000);
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
-				commonFunction.enterTextboxContains("Work Item Description Free Text", "Dol");
-				commonFunction.clickButton(" Search ");
-				commonFunction.clickHyperlink("DOL DTF Discrepancy");
-			  // --- WF-091 ---
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-091 page");
-				commonFunction.clickButton("Open Work Item ");
-		      // --- EEWI-005 ---
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to EEWI-005 page");	
-				empRegPage.Legal_Name_of_business.sendKeys(" TAX");
-				commonFunction.enterTextboxContains("Enter date of first operation in New York State","7/9/2022");
-				commonFunction.selectDropdown("Quarter ", " 3 ");
-				commonFunction.selectDropdown("Year ", " 2023 ");
-				commonFunction.selectDropdown("Account Status", " Liable ");
-				commonFunction.selectRadioQuestions("Suppress Correspondence?", "No ");
-				empRegPage.commentBox_MyQ.sendKeys("for testing");
-				commonFunction.clickButton("Submit ");
-			 // --- SUC-002 ---
-				commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SUC-002 page");
-				commonFunction.clickButton("Home ");
-				commonFunction.clickButton(" Go to My Q ");
+		commonFunction.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1,COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep(10000);
+
+		commonFunction.screenShot("EmpRegister13", "Pass", "Navigated on Home page");
+		commonFunction.clickButton(" Go to My Q ");
+
+		sleep(3000);
+
+		// --- WF-001 ---
+		sleep(10000);
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-001 page");
+		commonFunction.enterTextboxContains("Work Item Description Free Text", "Dol");
+		commonFunction.clickButton(" Search ");
+		commonFunction.clickHyperlink("DOL DTF Discrepancy");
+		// --- WF-091 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to WF-091 page");
+		commonFunction.clickButton("Open Work Item ");
+		// --- EEWI-005 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to EEWI-005 page");
+		empRegPage.Legal_Name_of_business.sendKeys(" TAX");
+		commonFunction.enterTextboxContains("Enter date of first operation in New York State", "7/9/2022");
+		commonFunction.selectDropdown("Quarter ", " 3 ");
+		commonFunction.selectDropdown("Year ", " 2023 ");
+		commonFunction.selectDropdown("Account Status", " Liable ");
+		commonFunction.selectRadioQuestions("Suppress Correspondence?", "No ");
+		empRegPage.commentBox_MyQ.sendKeys("for testing");
+		commonFunction.clickButton("Submit ");
+		// --- SUC-002 ---
+		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SUC-002 page");
+		commonFunction.clickButton("Home ");
+		commonFunction.clickButton(" Go to My Q ");
 
 	}
 

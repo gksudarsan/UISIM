@@ -26,6 +26,7 @@ import com.ui.base.TestBase;
 import com.ui.locators.claimsIntake;
 import com.ui.pages.AddCorporatePage;
 import com.ui.pages.LoginPage;
+import com.ui.utilities.COMMON_CONSTANT;
 import com.ui.utilities.screenShot;
 
 import stepDefinitions.commonStepDefinitions;
@@ -45,7 +46,7 @@ public class EM_321_02_001 extends TestBase
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
-		 commonFuntions.login("manju@2004","Manhar2004@1234");
+		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 sleep(2000);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
