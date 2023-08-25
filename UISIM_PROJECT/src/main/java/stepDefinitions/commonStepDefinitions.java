@@ -238,8 +238,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
 		
-		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::*[contains(.,'" + xpathParameter
-				+ "')][1]//preceding::input[2][@class='mdc-radio__native-control'][1]");
+		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::label[contains(.,'" + xpathParameter
+				+ "')][1]//preceding::input[1][@class='mdc-radio__native-control'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -284,13 +284,13 @@ public class commonStepDefinitions extends TestBase {
 	// FIS-008
 	public void selectCheckboxSection1(String xpathParameter, int index) throws InterruptedException {
 		driver.findElement(
-				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mdc-checkbox__native-control'][ " + index + " ]"))
 				.click();
 	}
 	
 	public void selectCheckboxSection2(String xpathParameter, int index) throws InterruptedException {
 		driver.findElement(
-				By.xpath("//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				By.xpath("//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mdc-checkbox__native-control'][ " + index + " ]"))
 				.click();
 	}
 
@@ -645,7 +645,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectCheckbox(String xpathParameter) {
 
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter
-				+ "')]//preceding::*[@class='mat-checkbox-inner-container'][1]");
+				+ "')]//preceding::*[@class='mdc-checkbox__native-control'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
