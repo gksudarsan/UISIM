@@ -67,12 +67,12 @@ public class EE_12_003_TPR_UserType extends TestBase{
 		commonFuntions.enterRandomStringLegalName("Legal Name");
 		commonFuntions.enterTextboxContains("Business Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
-		commonFuntions.enterPastDate("What is the date of the first payroll", 275);
+		commonFuntions.enterPastDate("What is the date of the first payroll", 276);
 		commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly owned by a federally recognized Indian Tribe?", "Yes");
 		commonFuntions.enterTextboxContains("Enter the name of the federally recognized Indian Tribe.", "TPRUSERAUTO");
 		commonFuntions.selectRadioQuestions("Financing Method", "Reimbursable");
 		commonFuntions.enterTextboxContains("Estimated or approximate number of individuals", "217");
-		commonFuntions.enterPastDate("Date covered employment began?", 183);
+		commonFuntions.enterPastDate("Date covered employment began?", 184);
 		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information:SREG-003");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -152,7 +152,7 @@ public class EE_12_003_TPR_UserType extends TestBase{
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
 
-		//Assigning user to WI Review emp type..................
+		//Assigning user to WI Review emp type...............
 		try {
 		loginPage.okPopUpButton.click();
 		sleep(2000);

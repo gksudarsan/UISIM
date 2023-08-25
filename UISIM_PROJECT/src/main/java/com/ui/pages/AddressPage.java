@@ -238,4 +238,10 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Legal Name of Business']//following::mat-label[1]")
 	public WebElement getLegalName;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='predecessorErn']")
+	public WebElement getPredecessorErn;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='predecessorFein']")
+	public WebElement getPredecessorFein;
 }
