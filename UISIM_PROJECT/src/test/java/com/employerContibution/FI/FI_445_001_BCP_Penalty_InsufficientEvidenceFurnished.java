@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.FIPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -26,7 +26,7 @@ public class FI_445_001_BCP_Penalty_InsufficientEvidenceFurnished extends TestBa
 	public void FI_445_001() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		FIPage fiPage = new FIPage(driver);
+		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.445.001-Verify CSR can view the BCP penalty details and take a decision to abate the BCP penalty in order to determine if it is sustained when sustain code is 'Insufficient Evidence Furnished'");
 		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);

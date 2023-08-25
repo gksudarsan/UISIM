@@ -12,7 +12,6 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.FIPage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;

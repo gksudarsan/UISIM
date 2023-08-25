@@ -12,7 +12,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.FIPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -27,7 +27,7 @@ public class FI_444_001_ReviewPenaltyAbatementRequest extends TestBase {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		FIPage fiPage = new FIPage(driver);
+		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.444.001-Verify CSR can view the Fraud penalty details and take a decision to abate the Fraud penalty.\r\n" + 
 				"(When CSR approved task '“Review Penalty Abatement Request”)");

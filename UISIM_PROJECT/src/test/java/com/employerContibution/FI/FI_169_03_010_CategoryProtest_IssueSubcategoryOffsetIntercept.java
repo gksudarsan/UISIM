@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.FIPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -25,7 +25,7 @@ public class FI_169_03_010_CategoryProtest_IssueSubcategoryOffsetIntercept exten
 	public void FI_169_03_010() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		FIPage fiPage = new FIPage(driver);
+		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.169.03.010-Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - 'Offset_Intercept");
 		cf.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);

@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.FIPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -27,7 +27,7 @@ public class FI_169_03_002_HowdoIProtestthefiftypercentfraudpenaltyassessed exte
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		FIPage fiPage = new FIPage(driver);
+		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.169.03.002-Verify Employer can submit an FI Issue when Issue Category is Review Fraud Penalty Protest,Issue Subcategory is 'How do I Protest the fifty percent fraud penalty assessed' and system create task for CSR review ");
 		cf.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
