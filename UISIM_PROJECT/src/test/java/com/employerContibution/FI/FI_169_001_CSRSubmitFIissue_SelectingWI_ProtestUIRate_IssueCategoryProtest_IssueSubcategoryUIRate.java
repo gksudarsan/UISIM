@@ -33,7 +33,7 @@ public class FI_169_001_CSRSubmitFIissue_SelectingWI_ProtestUIRate_IssueCategory
 		
 		// ---Menu----
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("menu");
+		commonFuntions.clickMenu("Menu");
 		sleep(2000);
 		commonFuntions.clickMenu("Employer Issues");
 		sleep();
