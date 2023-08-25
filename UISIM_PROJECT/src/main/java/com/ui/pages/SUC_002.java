@@ -39,6 +39,9 @@ public class SUC_002 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-card[text()='Employer Registration Number 00-00022 has been closed successfully effective 1/2021']")
 	public WebElement successMessageText;
 	
+	@FindBy(how = How.XPATH, using = ".//p[contains(.,'successfully effective ')]")
+	public WebElement successMessagePatialText;
+	
 	
 	@FindBy(how = How.XPATH, using = "//mat-card[text()='Account flag(s) successfully added.']")
 	public WebElement accountFlagSuccessText;
@@ -65,7 +68,12 @@ public class SUC_002 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-card[contains(text(),'DOLDTFDiscrepancy Task has been successfully completed. ')]")
 	public WebElement DOLDTFDiscrepancySuccessmsg;
 	
+	//FI TC
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Enter Protest Resolution Details']")
+    public WebElement enterProtestCommentField;
 	
+	@FindBy(how = How.XPATH, using = "//textarea[contains(@aria-label,'I do not believe the business is required to file the')]")
+    public WebElement iDoNotCommentField;
 	
 	public String validateSucessMessage() throws Exception {
 		sleep(2000);
@@ -99,4 +107,8 @@ public class SUC_002 extends TestBase{
 		Assert.assertEquals(accountInfoSuccessText.getText(), "The Account Information has been succesfully saved");
 		stepDef.screenShot("SuccessMessage", "Pass", "Success message verified");
 	}
+	
+	@FindBy(how = How.XPATH, using = "//*[text()=' Generate Correspondence ']")
+	public WebElement generateCorrespondenceLink;
+	
 }

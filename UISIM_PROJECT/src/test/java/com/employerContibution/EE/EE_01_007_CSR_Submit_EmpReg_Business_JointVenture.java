@@ -13,8 +13,8 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
-	
+public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase {
+
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can submit employer registration for employer type 'Business' and legal entity type 'Joint Venture' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION})
 	public void TC_EE_01_007() throws Exception {
 		
@@ -39,6 +39,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 		
+		
 		// ---Menu Click---
 		sleep(2000);
 		commonFunction.clickMenu("menu");
@@ -54,14 +55,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		
 		commonFunction.screenShot("EE01007", "Pass", "Data from SREG-001 page");
 		sleep(2000);
-		/*
-		commonFunction.enterTextboxContains("First Name", "AutoTest");
-		commonFunction.enterTextboxContains("Last Name", "AutoSanjay");
-		commonFunction.enterTextboxContains("Job Title", "AutomationEngineer");
-		commonFunction.enterTextboxContains("Contact Telephone Number",Long.toString(commonFunction.createRandomInteger(10000000,99999999))+Long.toString(commonFunction.createRandomInteger(10,99)));
-		commonFunction.enterTextboxContains("Email Address","autoTest"+Long.toString(commonFunction.createRandomInteger(10000,99999))+"@gmail.com");
-		commonFunction.screenShot("Employer Registration", "Pass", "Employer Registration:SREG-001");
-		commonFunction.ScrollMenu("Suppress Correspondence?");*/
+		
 		commonFunction.screenShot("EE01007", "Pass", "Data from SREG-001 page");
 		commonFunction.clickButton("Continue ");
 		
@@ -69,14 +63,14 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		sleep(2000);
 		commonFunction.screenShot("EE01007", "Pass", "Launched the Employer Register(SREG-025) page");
 		commonFunction.selectDropdown("Employer Type", " Business ");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "981719556"); //897397325
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "652986349"); //202298634
 		commonFunction.selectDropdownEquals("Type of Legal Entity", " Joint Venture - Internal User only ");
-		sleep();
-		commonFunction.enterTextboxContains("Employer Registration Number", "9830645"); //4543352
+		sleep(2000);
+		commonFunction.enterTextboxContains("Employer Registration Number", "6594345"); //2070072
 		commonFunction.selectDropdown("Source", " NYS-100 (paper) ");
-		sleep();
+		sleep(2000);
 		commonFunction.selectDropdown("Source Type", " NYS-100 ");
-		sleep();
+		sleep(2000);
 		commonFunction.clickButton("Continue ");
 		commonFunction.screenShot("EE01007", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
@@ -84,7 +78,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		// --- SREG-003 ---
 		sleep(2000);
 		commonFunction.screenShot("EE01007", "Pass", "Launched Employer Entity Information(SREG-003) page");
-		empRegPage.legalNameTextBox.sendKeys("DAVID SINGER & ROBIN SINGERDAVID SINGER & ROBIN SINGER  "); //POWER SOLUTIONS EAST CORP
+		empRegPage.legalNameTextBox.sendKeys("SCOTT MCBRIDE"); //MOCA PIZZA          
 		//empRegPage.legalNameTextBox.sendKeys("B Legal Corp");
 		commonFunction.enterTextboxContains("Trade Name or Doing Business As (DBA)", "test");
 		commonFunction.enterTextboxContains(" Business Phone Number  ", Long.toString(commonFunction.createRandomInteger(10000000, 99999999)) + Long.toString(commonFunction.createRandomInteger(10, 99)));
@@ -133,12 +127,12 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		
 		commonFunction.screenShot("EE01007", "Pass", "USPS Business address selection on SREG-008");
 		empRegPage.continueButton_popUp.click();
-		
+		*/
 		// --- SREG-007 ---
 		sleep(2000);
 		commonFunction.screenShot("EE01007", "Warning", "Successfully launched Business Physical Address Details(SREG-007) page");
 		commonFunction.clickButton("Continue ");
-	*/
+	
 		// --- SREG-004 ---
 		sleep(2000);
 		commonFunction.screenShot("EE01007", "Pass", "Successfully launched Employer Contact Details(SREG-004) page");
@@ -211,38 +205,49 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		sleep(2000);
 		commonFunction.screenShot("EE01007", "Pass", "Launched to  SREG-011 page");
 		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
-		commonFunction.enterTextboxContains("Employer Registration Number", "2485896");
-		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "240933037");
-		empRegPage.tradeNameId_SREG011.sendKeys("Bobst Library");
+		//commonFunction.enterTextboxContains("Employer Registration Number", "2485896");
+		//commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "240933037");
+		empRegPage.tradeNameId_SREG011.sendKeys("upstobst Library");
+		empRegPage.address1_SREG011.sendKeys("5 Washington Square S");
+		empRegPage.city_SREG011.sendKeys("Albany");
+		empRegPage.zip_SREG011.sendKeys("10012");
+		commonFunction.enterPastDate("Acquisition Date", 10);
+		commonFunction.enterPastDate("Notification date of Transfer", 11);
+		//commonFunction.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
+		commonFunction.enterPastDate("Acquisition Date", 90);
+		commonFunction.enterTextboxContains("Notification date of Transfer", "07012023");
+		sleep(3000);
+		commonFunction.screenShot("EE01007", "Pass", "Details entered in SREG-011 page");
+		commonFunction.clickButton("Continue ");
+		
+		
+		// SREG - 012
+		sleep(3000);
+		commonFunction.screenShot("EE01007", "Pass", "Successful launch to (Business Acquisition Details)SREG-012 page");
+		empRegPage.addAnotherAcquisitionLink.click();
+		
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("EE01007", "Pass", "Launched to  SREG-011 page");
+		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
+		commonFunction.enterTextboxContains("Employer Registration Number", "5770072");
+		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "599298634");
+		empRegPage.tradeNameId_SREG011.sendKeys("obtain Library");
 		empRegPage.address1_SREG011.sendKeys("5 Washington Square S");
 		empRegPage.city_SREG011.sendKeys("Albany");
 		empRegPage.zip_SREG011.sendKeys("10012");
 		commonFunction.enterPastDate("Acquisition Date", 10);
 		commonFunction.enterPastDate("Notification date of Transfer", 11);
 		commonFunction.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
-		//commonFunction.enterTextboxContains("Notification date of Transfer", "04012023");
+		commonFunction.enterPastDate("Acquisition Date", 90);
+		commonFunction.enterTextboxContains("Notification date of Transfer", "07012023");
 		sleep(3000);
 		commonFunction.screenShot("EE01007", "Pass", "Details entered in SREG-011 page");
 		commonFunction.clickButton("Continue ");
 		
-		
-		//should be there popup
-		
-		// SREG - 012
-		sleep(3000);
 		commonFunction.screenShot("EE01007", "Pass", "Successful launch to (Business Acquisition Details)SREG-012 page");
 		commonFunction.clickButton("Continue ");
 		
-		sleep(2000);
-		commonFunction.screenShot("EE01007", "Warning", "Expected screen name SREG-011 as on MC");
-		sleep(3000);
-		commonFunction.screenShot("EE01007", "Pass", "Successful launch to (Change in Legal Entity)SREG-012 page");
-//		commonFunction.selectRadioQuestions("Have you changed legal entity?", "Yes ");
-//		commonFunction.enterTextboxContains(" Prior Federal Employer Identification Number (FEIN) ", "321326774");
-//		commonFunction.enterTextboxContains("Prior Employer Registration Number", "2897452");
-//		commonFunction.enterTextboxContains("Date of Legal Entity change", "10012023");
-//		commonFunction.enterTextboxContains("Date of Notification", "05152023");
-//		commonFunction.screenShot("EE01007", "Pass", "Details entered in to SREG-012 page");
+		commonFunction.screenShot("EE01007", "Pass", "legel entity in  SREG-012 page");
 		commonFunction.clickButton("Continue ");
 		
 		// SREG-006
@@ -271,7 +276,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		commonFunction.selectCheckbox("I accept");
 		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-043 page");
 		commonFunction.clickButton("Submit ");
-		
+		commonFunction.waitForLoadingIconToDisappear();
 		// --- SREG-013 ---
 		sleep(10000);
 		commonFunction.screenShot("EE01007", "Pass", "Successfully launched to SREG-800 page");
@@ -317,16 +322,6 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("DOL/DTF Discrepency Task", "Pass", "Successful launch to EEWI-005 page");
 	    sleep(2000);
-	    
-	    //commonFunction.selectDropdown("Account Status", " Liable ");
-	    sleep(2000);
-	    /*
-	    commonFunction.enterTextbox("Date covered employment began? ", "09/05/2023");
-		//commonFunction.enterPastDate("Date covered employment began? ", 270);
-		 sleep(2000);
-	    commonFunction.selectRadioQuestions("Financing Method", "Contributory");
-	    sleep(2000);
-	    */
 	    empRegPage.comment.sendKeys("Test Reveiw");
 	    sleep(2000);
 	    commonFunction.screenShot("Dol DTF e Task Details","Pass","Details entered in to EEWI-005 page");
@@ -352,7 +347,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		commonFunction.screenShot("Individual Work Queue","Pass","Clicked on Work Item - WF-001 ");
 		sleep(3000);
 		commonFunction.clearTextboxContains("Employer Registration Number");
-		commonFunction.enterTextboxContains("FEIN","986432189");
+		commonFunction.enterTextboxContains("FEIN","482298634");
 		sleep(3000);
 	    commonFunction.screenShot("FEINSearch","Pass","FEIN Search for Task");
 	    sleep(3000);
@@ -395,7 +390,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 	    peoPage.queue.click();
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("wiSearch","Pass","Work item ");
-	    commonFunction.enterTextboxContains("FEIN","986432189");
+	    commonFunction.enterTextboxContains("FEIN","482298634");
 	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");
 	    commonFunction.clickButtonContains("Search");
 	    sleep(3000);
@@ -419,7 +414,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 	    //empRegPage.predecessorFein.sendKeys("010085930");
 	    
 	    //commonFunction.enterPastDate("Notification Date  ", 22);
-	    commonFunction.selectDropdownEquals("Decision", " Continue with Transfer ");
+	    //commonFunction.selectDropdownEquals("Decision", " Continue with Transfer ");
 	    empRegPage.comment.sendKeys("test Ok");
 	    sleep(2000);
 	    commonFunction.screenShot("EE01007", "Pass", "Entered data in EEWI-012 page");
@@ -429,35 +424,37 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 	    commonFunction.screenShot("EE01007", "Pass", "Successful launch to Work Item Completed(SUC-002) page");
 	    commonFunction.clickButtonContains("Home ");
 	    
+   
+	   
 	  //------WorkItem -4
 	    peoPage.queue.click();
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("wiSearch","Pass","Work item ");
-	    commonFunction.enterTextboxContains("FEIN","986432189");
+	    commonFunction.enterTextboxContains("FEIN","482298634");
 	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");
 	    commonFunction.clickButtonContains("Search");
 	    sleep(3000);
-	    commonFunction.ScrollMenu("Verify Transfer Failed Rules");
+	    commonFunction.ScrollMenu("VerifypredecessorData");
 	    sleep();
-	    commonFunction.screenShot("WIClick","Pass","Clicked on Work Item - Verify Transfer Failed Rules");
+	    commonFunction.screenShot("WIClick","Pass","Clicked on Work Item - VerifypredecessorData");
 	    sleep();
-	    commonFunction.clickOnLink("Verify Transfer Failed Rules");
+	    commonFunction.clickOnLink("VerifypredecessorData");
 	    // --- WF-091 ---
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("Work Item Details", "Pass", "Successful launch to Work Item Details(WF-091) page");
 	    sleep(3000);
 	    commonFunction.clickButtonContains("Open Work Item ");
-		// --- EEWI-013 ---
+		// --- EEWI-012 ---
 	    commonFunction.waitForLoadingIconToDisappear();
-	    commonFunction.selectDropdown("Account Status", " Liable ");
+	    //commonFunction.selectDropdown("Account Status", " Liable ");
 	    sleep(2000);
-	    commonFunction.screenShot("Verify Predecessor Data", "Pass", "Successful launch to EEWI-013) page");
-	    empRegPage.predecessorFein.sendKeys("986432189");
-	    commonFunction.selectDropdownEquals("Decision", " Continue with Transfer ");
+	    //commonFunction.screenShot("Verify Predecessor Data", "Pass", "Successful launch to EEWI-013) page");
+	    //empRegPage.predecessorFein.sendKeys("986432189");
+	    //commonFunction.selectDropdownEquals("Decision", " Continue with Transfer ");
 	    //commonFunction.selectCheckbox("Transfer Business Rules");
 	    empRegPage.comment.sendKeys("test Ok");
 	    sleep(2000);
-	    commonFunction.screenShot("Verify Predecessor Data", "Pass", "Entered data in EEWI-013 page");
+	    commonFunction.screenShot("Verify Predecessor Data", "Pass", "Entered data in EEWI-012 page");
 	    commonFunction.clickButtonContains("Submit ");
 	    // --- SUC-002 ---
 	    commonFunction.waitForLoadingIconToDisappear();
@@ -471,7 +468,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 	    peoPage.queue.click();
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("wiSearch","Pass","Work item ");
-	    commonFunction.enterTextboxContains("FEIN","986432189");
+	    commonFunction.enterTextboxContains("FEIN","482298634");
 	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");
 	    commonFunction.clickButtonContains("Search");
 	    sleep(3000);
@@ -488,13 +485,13 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		// --- EEWI-014 ---
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("Validate Total/Partial Transfer Failed Rules Task", "Pass", "Successful launch to Verify Transfer Failed Rules Task(EEWI-014) page");
-	    commonFunction.selectDropdown("Account Status", " Liable ");
+	    //commonFunction.selectDropdown("Account Status", " Liable ");
 	    sleep(2000);
-	    commonFunction.selectDropdownEquals("Decision", " No Transfer ");
-	    commonFunction.selectCheckbox("Transfer Business Rules");
+	    //commonFunction.selectDropdownEquals("Decision", " No Transfer ");
+	    //commonFunction.selectCheckbox("Transfer Business Rules");
 	    empRegPage.comment.sendKeys("test Ok");
 	    sleep(2000);
-	    commonFunction.clickOnLinkAnchorTag("Task History (Click here to view details)");
+	    //commonFunction.clickOnLinkAnchorTag("Task History (Click here to view details)");
 	    commonFunction.screenShot("Validate Total/Partial Transfer Failed Rules Task", "Pass", "Entered data in EEWI-014 page");
 	    commonFunction.clickButtonContains("Submit ");
 	 // --- SUC-002 ---
@@ -537,10 +534,8 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
         sleep();
         commonFunction.waitForLoadingIconToDisappear();
         
-      //--------Menu----
-		
+        //--------Menu----
 		commonFunction.clickMenu("menu");
-		commonFunction.ScrollMenu("Inquiry");
 		commonFunction.clickMenu("Inquiry");
 		commonFunction.ScrollMenu("Inquiry");
 		commonFunction.clickMenu("Contribution Inquiry");
@@ -548,21 +543,19 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase{
 		commonFunction.screenShot("Selecting Menu", "Pass", "Successfully selected menu & navigate to next page");
 		commonFunction.ScrollMenu("Inquiry");
 		commonFunction.clickMenu("Inquiry Employer Account");
-		
 		//----------SREG 050
 		sleep(2000);
 		commonFunction.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully landed on SREG 050 page");
-		commonFunction.enterTextboxContains(" FEIN ", "161719556");  //
+		commonFunction.enterTextboxContains(" FEIN ", "202298634");  //
 		//commonFunction.enterTextboxContains("Employer Registration Number", "6070139");
 		sleep(2000);
 		commonFunction.screenShot("Inquiry Employer Account - Enter ERN", "Pass", "Successfully entered deatils and  click on continue");
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
-		
 		//----------SREG 051
 		commonFunction.screenShot("Inquiry Employer Account Information", "Pass", "Successfully landed on SREG 051 page");
 		sleep(2000);
-		commonFunction.screenShot("TC:EE_01_007", "Failed", "Blocked after dol dtf 1st  WorkItem , Resolve data task not coming	");
+		commonFunction.screenShot("TC:EE_01_007", "Passed", "Successfully completed	");
 	}
 
 }

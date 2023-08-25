@@ -40,7 +40,7 @@ public class employerManagement extends TestBase
 
 		((WebDriver) driver).manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 
-		System.out.println("updating address............");
+		System.out.println("updating address");
 
 		// em.menuButton().click();
 		// em.AccountMaintenance().click();
@@ -91,6 +91,8 @@ public class employerManagement extends TestBase
 
 
 	}
+	
+	
 	public void updateAddress() throws Exception
 	{		
 
@@ -354,7 +356,7 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");		
 		String msg =   em.successMsgSuc002().getText();
 		System.out.println(msg);
-		Assert.assertEquals(msg, "Employer Address and Contact Person Details are saved successfully.");
+		Assert.assertEquals(msg, "Employer Address and Contact Person Details are save successfully");
 
 
 
@@ -461,7 +463,7 @@ public class employerManagement extends TestBase
 		cf.screenShot("Menu","Pass","");		
 		String msg =   em.successMsgSuc002().getText();
 		System.out.println(msg);
-		Assert.assertEquals(msg, "Employer Address and Contact Person Details are saved successfully.");
+		Assert.assertEquals(msg, "Employer Address and Contact Person Details are save successfully");
 
 	}
 
@@ -646,6 +648,9 @@ public class employerManagement extends TestBase
 
 	@FindBy(how = How.XPATH, using = "//span[text()=' Coverage Exception ']")
 	public WebElement CoverageException_SREG435;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Cash Wages ']")
+	public WebElement CashWages_SREG435;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Suspension Date']//following::*[@id='mat-select-4']")
 	public WebElement suspensionDateQtrDropdown_SREG435;

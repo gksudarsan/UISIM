@@ -81,11 +81,11 @@ public class EE_07_005_Emp_Register_EmpType_Governmental_County extends TestBase
 		cf.clickButton("Continue ");
 		
 		sleep(4000);
-		cf.screenShot("EmpRegister6", "Pass", "Navigated on SREG-008 page and entering the address");
-		cf.enterTextboxContains("Address Line 1 ", "23 Plaza");
-		cf.enterTextboxContains("City ", "Albany");
-		cf.enterTextboxContains("Zip Code", "34737");
-		cf.clickButton("Continue ");
+//		cf.screenShot("EmpRegister6", "Pass", "Navigated on SREG-008 page and entering the address");
+//		cf.enterTextboxContains("Address Line 1 ", "23 Plaza");
+//		cf.enterTextboxContains("City ", "Albany");
+//		cf.enterTextboxContains("Zip Code", "34737");
+//		cf.clickButton("Continue ");
 
 
 		cf.screenShot("EmpRegister7", "Pass", "Navigated on SREG-007 and click continue");
@@ -179,6 +179,16 @@ public class EE_07_005_Emp_Register_EmpType_Governmental_County extends TestBase
 		cf.screenShot("EmpRegister19", "Pass",
 				"Sucessfully clicked on Submit button and navigated to SUC-002 Page");
 		cf.clickButtonContains("Home ");
+		
+		sleep();
+		cf.clickMenu("Menu");
+		cf.clickMenu("Inquiry");
+		cf.clickMenu("Contribution Inquiry");
+		cf.clickMenu("Inquiry Employer Address History");
+		sleep(2000);
+		cf.screenShot("Inquiry Employer Address History - Enter ERN", "Pass", "Launched to EM-051");
+		cf.enterTextboxContains("Employer Registration Number", "eanValue");
+		cf.clickButtonContains("Continue ");
 
 	}
 }

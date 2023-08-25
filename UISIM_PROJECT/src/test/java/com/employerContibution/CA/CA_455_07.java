@@ -51,6 +51,7 @@ public class CA_455_07 extends TestBase {
 			 commonFuntions.screenShot("AfterSearch","Pass","After Search");
 			CaPage.dueDateFromTable.click();
 			 commonFuntions.screenShot("ValueRetrieved","Pass","Values Retrieved");
+			 commonFuntions.selectActionTableParameterizedId("PAPER IA",1,1,"Deposit Details for Processing Vendor","id02","checkBox","");
 			 commonFuntions.clickButtonContains(" Calculate ");
 				sleep(2000);
 				commonFuntions.waitForLoadingIconToDisappear();

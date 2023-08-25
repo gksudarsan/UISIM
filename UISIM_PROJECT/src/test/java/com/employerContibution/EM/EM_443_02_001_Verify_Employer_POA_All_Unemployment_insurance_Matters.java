@@ -32,7 +32,7 @@ public class EM_443_02_001_Verify_Employer_POA_All_Unemployment_insurance_Matter
 		AddressPage addPage = new AddressPage(driver);
 
 		// login with employer account
-		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMP_USER_2.toUpperCase(), COMMON_CONSTANT.EMP_USER_2_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
@@ -45,31 +45,31 @@ public class EM_443_02_001_Verify_Employer_POA_All_Unemployment_insurance_Matter
 				"Add or Remove Third Party Association to Employer:SREG-537");
 		cf.selectDropdown("Designation Type", " All Unemployment Insurance Matters ");
 		cf.clickButtonContains("Search POA/TPR");
-		cf.screenShot("SearchPOA/ThirdPartyRepresentative", "Pass", "Search POA/Third Party Representative:SREG-040");
-		cf.enterTextboxContains("POA/TPR Legal Name", "ABCD");
+		cf.screenShot("SearchPOA/ThirdPartyRepresentative", "Pass", "Launched to SREG-040");
+		cf.enterTextboxContains("POA/TPR Legal Name", "Test");
 		cf.clickButtonContains("Search");
 		sleep(2000);
-		cf.screenShot("ThirdPartyRepresentativeDetails", "Pass", "Third Party Representative Details:SREG-040");
+		cf.screenShot("ThirdPartyRepresentativeDetails", "Pass", "Launched to SREG-040");
 		cf.selectRadio("Select");
-		cf.screenShot("SelectRadioButtonForTprPoaRepresentative", "Pass", "Selected Radio Botton:SREG-040");
+		cf.screenShot("SelectRadioButtonForTprPoaRepresentative", "Pass", "Launched to SREG-040");
 		cf.clickButtonContains("Continue ");
 		sleep(2000);
 		String Ern = addPage.getERN.getText().trim();
 		Ern = Ern.replace("-", "");
-		System.out.println("Selected ERN is:" + Ern);
+		System.out.println("Selected ERN is: " + Ern);
 		test.log(Status.INFO, "ERN::" + Ern);
 		cf.selectRadio("Select");
 		cf.enterCommentBoxContains("Add the Name");
 		cf.selectCheckbox("Additional authorization");
 		cf.screenShot("ThirdPartyAssociationtoEmployer", "Pass",
-				"Add or Remove Third Party Association to Employer:SREG-537");
+				"Launched to SREG-537");
 		cf.clickButtonContains("Submit ");
 		sleep(2000);
 		cf.screenShot("EmployerConfirmation", "Pass",
-				"POA/Third Party Representative Association to Employer Confirmation:SUC-002");
+				"Launched to SUC-002");
 		cf.clickButtonContains("Home ");
 
-		// login with CSR account ************
+		// login with CSR account 
 
 		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1
 				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='" + Ern

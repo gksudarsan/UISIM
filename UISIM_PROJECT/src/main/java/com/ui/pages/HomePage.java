@@ -26,6 +26,9 @@ public class HomePage extends TestBase {
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Menu']")
 	public WebElement menuButton;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+	public WebElement menuCTA;
 
 	@FindBy(how = How.XPATH, using = "//span[text()='Account Maintenance']")
 	public WebElement accountMaintenance;
@@ -215,4 +218,7 @@ public class HomePage extends TestBase {
 		Thread.sleep(2000);
 		stepDef.clickElement(renewPeo);
 	}
+	@FindBy(how = How.XPATH, using = "(//a//u[text()='Delinquency Assignment Task'])[1]")
+	public WebElement delinquencyAssignmentTask;
+	
 }

@@ -90,6 +90,8 @@ public class COMMON_CONSTANT {
 	public static final String PEO_USER_1 = "peouser";
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
 	
+	public static final String TPR_USER_4 = "thirduseremp";
+	public static final String TPR_USER_4_PASSWORD = "Thirduseremp@1234";
 	
 	
 	public static final String PEO_USER_ADMIN = "Peousersnehal";

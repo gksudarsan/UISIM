@@ -5,7 +5,12 @@ import java.awt.Robot;
 import java.awt.Toolkit;
 import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -13,16 +18,25 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.temporal.IsoFields;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.net.URL;
+import java.net.MalformedURLException;
+import javax.imageio.ImageIO;
 
+import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.text.PDFTextStripper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
@@ -33,17 +47,25 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import com.assertthat.selenium_shutterbug.core.Shutterbug;
+import com.assertthat.selenium_shutterbug.utils.web.ScrollStrategy;
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.HomePage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.screenShot;
+
+import ru.yandex.qatools.ashot.AShot;
+import ru.yandex.qatools.ashot.Screenshot;
+import ru.yandex.qatools.ashot.shooting.ShootingStrategies;
 
 public class commonStepDefinitions extends TestBase {
 
@@ -73,28 +95,30 @@ public class commonStepDefinitions extends TestBase {
 
 			sleep(2000);
 			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
+			
+			
 			//Add this to your TC after login function : test.log(Status.PASS, "Login with userRole is successful");
 			
 			Thread.sleep(3000);
 		driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
-			Thread.sleep(5000);
+			Thread.sleep(8000);
 
 			screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 
-		Thread.sleep(10000);
+		//Thread.sleep(10000);
 		}catch(Exception e) {}
 		
 		try {
 		driver.navigate().refresh();
-		Thread.sleep(10000);
-		waitForLoadingIconToDisappear();
-		driver.navigate().refresh();
-		Thread.sleep(5000);
-		waitForLoadingIconToDisappear();
-		
 		Thread.sleep(2000);
 		waitForLoadingIconToDisappear();
+		driver.navigate().refresh();
+		Thread.sleep(2000);
+		waitForLoadingIconToDisappear();
+		
+		//Thread.sleep(2000);
+		//waitForLoadingIconToDisappear();
 		
 //		loginPage.okPopUpButton.click();
 		if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
@@ -146,6 +170,12 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[@id='commentId']")).sendKeys(value);
 	}
 	
+	public void addCommentContains(String value) {
+		driver.findElement(By.xpath("//*[@aria-label='Comments']")).clear();
+		driver.findElement(By.xpath("//*[@aria-label='Comments']")).sendKeys(value);
+	}
+	
+	
 	public void clickHyperlink(String xpathParameter) {
 		driver.findElement(By.xpath("//a[contains(@aria-label, '" + xpathParameter + "')]")).click();
 	}
@@ -184,7 +214,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void clickMenu(String xpathParameter) {
-		By element = By.xpath("//*[text()='" + xpathParameter + "'][1]");
+		By element = By.xpath("//*[text()='" + xpathParameter + "'][@class!='hideview'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -195,7 +225,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void selectRadio(String xpathParameter) {
-			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-container']");
+			By element = By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-radio-label']//preceding::*[@class='mdc-radio__native-control'][1]");
 
 			final WebDriverWait wait = new WebDriverWait(driver, 10);
 			try {
@@ -208,13 +238,14 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
 		
-		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::span[contains(.,'" + xpathParameter
-				+ "')][1]//preceding::*[@class='mat-radio-container'][1]");
+		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::*[contains(.,'" + xpathParameter
+				+ "')][1]//preceding::input[2][@class='mdc-radio__native-control'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			safeJavaScriptClick(ele);
+			//safeJavaScriptClick(ele);
+			ele.click();
 		} catch (final Exception e) {
 		}
 	}
@@ -230,7 +261,7 @@ public class commonStepDefinitions extends TestBase {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
-			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+			driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 		} catch (final Exception e) {
 		}
 
@@ -238,7 +269,7 @@ public class commonStepDefinitions extends TestBase {
 	
 	public void selectDropdownThirdParty(String value) {
 		driver.findElement(By.xpath("//mat-select[@id='designationTypeId']")).click();
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 	}
 	
 	public void selectDropdownUsingSearch(String xpathParameter, String value) throws InterruptedException {
@@ -246,10 +277,22 @@ public class commonStepDefinitions extends TestBase {
 				.click();
 		driver.findElement(By.xpath("//*[@placeholder='search']")).sendKeys(value.trim());
 		sleep(2000);
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	
+	// FIS-008
+	public void selectCheckboxSection1(String xpathParameter, int index) throws InterruptedException {
+		driver.findElement(
+				By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				.click();
+	}
+	
+	public void selectCheckboxSection2(String xpathParameter, int index) throws InterruptedException {
+		driver.findElement(
+				By.xpath("//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][ " + index + " ]"))
+				.click();
+	}
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
@@ -286,23 +329,59 @@ public class commonStepDefinitions extends TestBase {
 		Thread.sleep(2000);
 	}
 
-/*	public void screenShot(String fileName, String status, String message) throws Exception {
+	public void screenShot(String fileName, String status, String message) throws Exception {
+		String screenshotMode = prop.getProperty("screenshotMode");
+		if(screenshotMode.equalsIgnoreCase("Development")) {
 		screenShot screen = new screenShot();
 		String screenShotPath = screenShot.takeSnapShot(driver,
 				"D:\\AutomationFiles\\Screenshots\\"
 						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
-						+ "_" + fileName + ".jpg");
+						+ "_" + fileName + ".png");
 		if (status.equalsIgnoreCase("Pass")) {
 			test.log(Status.PASS, message);
 		}else {
 			test.log(Status.FAIL, message);
 		}
-		// test.info(message);
 		test.addScreenCaptureFromPath(screenShotPath);
+		}
+		else {
+		//Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(ShootingStrategies.viewportRetina(100,0,0,2), 1000)).takeScreenshot(driver);
+		String screenShotTime=new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()+ "_" + fileName ;
+		String screenShotPath ="D:\\AutomationFiles\\Screenshots\\"+screenShotTime;
+		//ImageIO.write(screenshot.getImage(), "jpg", new File(screenShotPath));
+		Shutterbug.shootPage(driver, ScrollStrategy.WHOLE_PAGE_CHROME, 500, true).withName(screenShotTime).save("D:\\AutomationFiles\\Screenshots");
+					if (status.equalsIgnoreCase("Pass")) {
+			test.log(Status.PASS, message);
+		}else {
+			test.log(Status.FAIL, message);
+		}
+					
+			
+		File scrFile = new File(screenShotPath+".png");
+	    String encodedBase64 = null;
+	    FileInputStream fileInputStreamReader = null;
+	    try {
+	        fileInputStreamReader = new FileInputStream(scrFile);
+	        byte[] bytes = new byte[(int)scrFile.length()];
+	        fileInputStreamReader.read(bytes);
+	        encodedBase64 = new String(Base64.encodeBase64(bytes));
+	    } catch (FileNotFoundException e) {
+	        e.printStackTrace();
+	    } catch (IOException e) {
+	        e.printStackTrace();
+	    }
+	    screenShotPath= "data:image/png;base64,"+encodedBase64;
+			     
+				     
+		// test.info(message);
+		//test.addScreenCaptureFromPath(screenShotPath+".png");
+		test.addScreenCaptureFromPath(screenShotPath);
+		}
+					
 
-	}*/
+	}
 	
-	public void screenShot(String fileName, String status, String message) throws Exception {
+	/*public void screenShot(String fileName, String status, String message) throws Exception {
 		Date currentDate = new Date();
 		String screenShotFileName = currentDate.toString().replace(" ", "-").replace(":", "-");
 		File screenshotFile = ((TakesScreenshot) driver ).getScreenshotAs(OutputType.FILE);
@@ -319,7 +398,7 @@ public class commonStepDefinitions extends TestBase {
 		}
 		test.addScreenCaptureFromPath(absolutePath);
 		
-	}
+	}*/
 	
 	public void selectTable(String ssnValue, int columnValue, int tableId, String tableName) {
 		WebElement table = driver
@@ -689,7 +768,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectDropdownEquals(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]"))
 				.click();
-		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[.='" + value + "'][@class='mdc-list-item__primary-text']")).click();
 
 	}
 
@@ -797,7 +876,7 @@ public class commonStepDefinitions extends TestBase {
 	
 
 	public void selectFromDropdown(String xpathParameter) {
-		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + xpathParameter + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	
@@ -909,7 +988,7 @@ public class commonStepDefinitions extends TestBase {
 	public void selectDropdownSecondBox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[2]"))
 				.click();
-		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mat-option-text']")).click();
+		driver.findElement(By.xpath("//*[contains(.,'" + value + "')][@class='mdc-list-item__primary-text']")).click();
 
 	}
 	public void enterTextboxContainsThirdBox(String xpathParameter, String value) {
@@ -1125,6 +1204,20 @@ public class commonStepDefinitions extends TestBase {
 									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).sendKeys(value);
 							break label1;}
 							}
+						else if(action.equalsIgnoreCase("getText")) {
+							//attributeValue = driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+							//		+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//textarea[1]")).getAttribute("disabled");
+							//if(attributeValue==null) {
+							boolean actualResult;
+							if(value.equalsIgnoreCase("notNull")) {
+							String actualValue=driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[@id='" + tableHtmlId + "']["
+									+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue) + "]//mat-label[1]")).getText();
+							if(actualValue == null || actualValue.length() == 0) {actualResult = false;}
+							else {actualResult=true;}
+							Assert.assertTrue(actualResult, "Interest rate is populated");
+							}
+							//break label1;}
+							}
 					}
 				}
 
@@ -1141,6 +1234,69 @@ public class commonStepDefinitions extends TestBase {
 			} catch (final Exception e) {
 			}
 			return actualValue;
+		}
+		
+		
+		public void addComment(String value) {
+			driver.findElement(By.xpath("//*[@id='remarksId']")).clear();
+			driver.findElement(By.xpath("//*[@id='remarksId']")).sendKeys(value);
+		}
+		
+		public void switchTab() throws InterruptedException {
+			Set<String> allHandles = driver.getWindowHandles();
+			Iterator<String> l1 = allHandles.iterator();
+			String parent = l1.next();
+			System.out.println(parent);
+			String Child = l1.next();
+			System.out.println(Child);
+			driver.switchTo().window(Child);
+		}
+		
+		
+		public void clickOnLinkfirstItem(String xpathParameter) {
+			driver.findElement(By.xpath("(//u[contains(.,'" + xpathParameter + "')])[1]")).click();
+
+		}	
+
+		public static int getPageCount(PDDocument doc) {
+			// get the total number of pages in the pdf document
+			int pageCount = doc.getNumberOfPages();
+			return pageCount;
+
+		}
+
+		public static String readPdfContent(String url) throws IOException {
+
+			URL pdfUrl = new URL(url);
+			InputStream in = pdfUrl.openStream();
+			BufferedInputStream bf = new BufferedInputStream(in);
+			PDDocument doc = PDDocument.load(bf);
+			int numberOfPages = getPageCount(doc);
+			System.out.println("The total number of pages " + numberOfPages);
+			String content = new PDFTextStripper().getText(doc);
+			doc.close();
+
+			return content;
+		}
+
+		public void verifyContentInPDf( String xpathParameter) throws Exception {
+			// specify the url of the pdf file
+			switchTab();
+			screenShot("PDF Screenshot", "Pass", "PDF Document");
+			String pdfUrl = driver.getCurrentUrl();
+			System.out.println(driver.getCurrentUrl());
+			driver.get(pdfUrl);
+			try {
+				String pdfContent = readPdfContent(pdfUrl);
+				Assert.assertTrue(pdfContent.contains(xpathParameter));
+			} catch (MalformedURLException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		
+			
 		}
 
 }

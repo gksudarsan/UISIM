@@ -26,16 +26,17 @@ public class SmokeTest extends TestBase{
 		 sleep(2000);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 //commonFuntions.clickMenu("Menu");
-		 PEOPage.menu.click();	
+		 commonFuntions.clickMenu("Menu");
+		 //PEOPage.menu.click();	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		 applicationLoginResults = "Success";
 				
 		 PEOPage.menuPeo.click();	
 		 commonFuntions.screenShot("Menu","Pass","Register PEO");
-		 commonFuntions.clickMenu("Register PEO");			 
+		 commonFuntions.clickMenu("Register PEO");	
+		 sleep(2000);
 		 commonFuntions.screenShot("PeoRegistration","Pass","PEO Registration - Contact Details");	
-		 driver.navigate().refresh();
+		 
 		 Thread.sleep(3000);
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
@@ -152,7 +153,7 @@ RegistrationResults = "Success";
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
 	    commonFuntions.clickButtonContains("Search");
 	    Thread.sleep(2000);
-	    commonFuntions.screenShot("Review Peo","Pass","Review Peo");
+	    commonFuntions.screenShot("ReviewPeo","Pass","Review Peo");
 	    commonFuntions.clickOnLink("Review PEO");
 	    Thread.sleep(2000);
 	    WorkItemCreatedResults="Success";
@@ -205,6 +206,8 @@ RegistrationResults = "Success";
 	     Thread.sleep(2000);
 	     commonFuntions.screenShot("Success","Pass","SuccessPage");
 	     PeoIdGeneratedResults="Success";
+	     PEOPage.successMessage.isDisplayed();
+	     //commonFuntions.Label("PEO Registration Application has been Approved");
 	     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 	     
 	}

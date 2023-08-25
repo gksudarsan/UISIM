@@ -49,9 +49,9 @@ public class EL_322_05_002 extends TestBase
 		 commonFuntions.screenShot("Menu","Pass","Renew PEO");
 		 commonFuntions.clickMenu("Renew PEO");			 
 		 commonFuntions.screenShot("PeoRenew","Pass","PEO renew");
-		 em.peoName().sendKeys("Individual");sleep();
+		 em.peoName().sendKeys("Test");sleep();
 		 em.search().click();
-		 em.selectpeoName().click();sleep();
+		 //em.selectpeoName().click();sleep();
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(4000);
 	     commonFuntions.clickButtonContains("Save & Continue");

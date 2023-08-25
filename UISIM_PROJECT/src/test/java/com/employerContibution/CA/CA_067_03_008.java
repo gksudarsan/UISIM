@@ -22,7 +22,7 @@ public class CA_067_03_008 extends TestBase {
 	public void CA_067_03_008() throws Exception
 	{
 		
-		 test = report.createTest("CA.067.03.008 -- Verify CSR can add Deposit Details of DTF for deposit type 'E-File' and update interface status 'Overridden'");
+		 test = report.createTest("CA.067.03.001 -- Verify CSR can add Deposit Details of DTF for deposit type 'E-File' and update interface status 'Reconciled'");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 CaPage CaPage = PageFactory.initElements(driver, CaPage.class);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();

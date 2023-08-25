@@ -70,7 +70,8 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		//String legalName="BEECHWOOD CONTINUING CARE INC";
 		//String legalName="HVES ELECTRICAL INC";
 		//String legalName="HVESSEX LLC";
-		String legalName="BEECH AVE OWNERS CORP";
+		//String legalName="BEE CUTTING SERVICE INC";
+		String legalName="BEE CEE EXPRESS INC";
 		/*---------------Legal Name--------------*/
 		
 		

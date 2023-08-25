@@ -216,6 +216,12 @@ public class employerManagementLocators extends TestBase {
 
 	}
 	
+	public WebElement storeEan (){
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//mat-label[@class='employer-registration-number']")));
+		return driver.findElement(By.xpath("//mat-label[@class='employer-registration-number']"));
+
+	}
+	
 	
 }
 

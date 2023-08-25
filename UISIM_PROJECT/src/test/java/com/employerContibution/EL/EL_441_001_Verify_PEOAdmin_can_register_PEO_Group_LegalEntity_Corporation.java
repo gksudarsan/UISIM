@@ -247,7 +247,8 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			//commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 			
 			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinNumber);
-			commonFuntions.selectRadioQuestions("Does this PEO member already have an Unemployment Insurance Account?", "No");
+			//commonFuntions.selectRadioQuestions("Does this PEO member already have an Unemployment Insurance Account?", "No");
+			commonFuntions.selectRadioQuestions("Does this PEO member already have  a New York State Unemployment Insurance Account? and New York State Employer Registration Number", "No");
 			commonFuntions.enterTextboxContains("Address Line 1","ownerAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 			commonFuntions.enterTextboxContains("Address Line 2","ownerAddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 			commonFuntions.enterTextboxContains("City","NewYork");
@@ -312,7 +313,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.screenShot("Statement Of Acknowledgement", "Pass", "Incorrect screen ID - PEO-017");
 			commonFuntions.clickButtonContains("Accept & Submit");
 			sleep(5000);
-			commonFuntions.screenShot("Register/Renew Confirmation", "Pass", "Register/Renew Confirmation");
+			commonFuntions.screenShot("RegisterRenewConfirmation", "Pass", "Register/Renew Confirmation");
 			//commonFuntions.clickButtonContains("Home");
 			sleep(5000);
 			commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
@@ -337,6 +338,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		    commonFuntions.clickButtonContains("Open Work Item");
 		    sleep(5000);
 		    commonFuntions.screenShot("Review","Pass","Review Peo Registration");
+		    commonFuntions.enterTextboxContains("Additional names","auto_test"+commonFuntions.createRandomInteger(1000,9999));
 		    commonFuntions.clickButtonContains("Continue");
 		     sleep(5000);	   
 		     
@@ -421,12 +423,15 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     //commonFuntions.screenShot("StatementAckn","Pass","Statment of Acknowledgment");
 			     //commonFuntions.clickButtonContains("Continue");
 			     //sleep(5000);
-			     
-			     commonFuntions.selectRadio("Approved");
+					PEOPage.approveRadioButton.click();
+					//PEOPage.ApprovePeo.click();
+			     //commonFuntions.selectRadio("Approved");
 			     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
 			     commonFuntions.clickButtonContains("Submit");
 			     sleep(5000);
 			     commonFuntions.screenShot("Success","Pass","SuccessPage");
+			     PEOPage.successMessage.isDisplayed();
+			     //commonFuntions.Label("PEO Registration Application has been Approved");
 			     commonFuntions.logout(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 
 		
