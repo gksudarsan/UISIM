@@ -87,6 +87,7 @@ public class EM_411_001 extends TestBase{
 		sleep(2000);
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd info on SREG-435 page");
 		sleep(2000);
+
 		empManage.suspensionDateQtrDropdown_SREG435.click();
 		sleep(2000);
 		cf.selectFromDropdown(" 4 ");
@@ -95,6 +96,7 @@ public class EM_411_001 extends TestBase{
 		sleep(2000);
 		cf.selectFromDropdown(" 2023 ");
 		sleep(2000);
+		
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd info on SREG-435 page");
 		sleep(2000);
 		sreg435.enterComments.sendKeys("Testing ");
@@ -105,13 +107,13 @@ public class EM_411_001 extends TestBase{
 		sreg435.radioButton.click();
 		sleep(2000);
 		empManage.sourceId_SREG435.click(); 
-		sleep();
+		sleep(1000);
 		empManage.IA602_SREG435.click(); 
-		sleep(2000);
+		sleep(1000);
 		empManage.sourceTypeId_SREG435.click();
-		sleep(); 
+		sleep(1000); 
 		empManage.CashWages_SREG435.click();
-		sleep(); 
+		sleep(1000); 
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd complete info on SREG-435 page");
 		sleep(2000);
 		cf.clickButtonContains("Submit ");
