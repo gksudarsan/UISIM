@@ -130,18 +130,50 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
 		sleep(2000);
 		cf.clickOnLink("Edit");
 		sleep(2000);
+		String ssnValue = String.valueOf((long) (Math.random() * Math.pow(10, 10)));
+		populateFields(ssnValue);
+		ssnValue = StringUtils.left(ssnValue, 3) + "-" + StringUtils.right(StringUtils.left(ssnValue, 5), 2) + "-"
+				+ StringUtils.right(ssnValue, 4);
+		cf.clickButtonContains("Submit");
+		Thread.sleep(2000);
+		cf.selectTable(ssnValue, 11, 1, "Individual as Corporate Officer ");
+		Thread.sleep(2000);
+		verifyFields(ssnValue);
+		Thread.sleep(2000);
+		
+		
+	}
 
-		// ---SREG-701 ---
-		cf.screenShot("EE01008", "Pass", "Launched to  SREG-701 page");
-		cf.clearTextboxContains("City ");
-		cf.enterTextboxContains("City ", "New York");
-		cf.selectDropdown("Source", " NYS-100 (paper) ");
+	public void populateFields(String ssnValue) throws Exception {
+		commonStepDefinitions commonFuntions = new commonStepDefinitions();
+		Thread.sleep(2000);
+		commonFuntions.selectRadioQuestions(
+				" Provide the information requested below for each Corporate Officer/Owner associated with this business. Additional corporate officer/member/owners can be added after validation of address on this screen.",
+				" Individual");
+		Random random = new Random();
+		commonFuntions.enterTextbox("SSN", ssnValue);
+		commonFuntions.enterTextboxContains("Address Line 1", "Added address line 2");
+		
+		commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
 		sleep(1000);
-		cf.selectDropdown("Source Type", " NYS-100 ");
+		commonFuntions.selectDropdown("Source Type", " NYS-100 ");
 		sleep(1000);
-		cf.clickButton("Submit ");
-		sleep(2000);
+		commonFuntions.screenShot("Submit", "Pass", "Submit corporate officer/ownerdetaisl");
+	}
 
+	public void verifyFields(String ssnValue) throws Exception {
+		commonStepDefinitions commonFuntions = new commonStepDefinitions();
+		String Address = commonFuntions.retrieveValueFromTable(ssnValue, 4, 1, "Individual as Corporate Officer ");
+		System.out.println(Address);
+		if(Address.contains("ADDED ADDRESS LINE 2")){
+			commonFuntions.screenShot("Address Edit", "Pass", "Expected Address 1 is ADDED ADDRESS LINE 2 and acrtual is "+Address);
+		}
+		else 
+		{
+			commonFuntions.screenShot("Address Edit", "fail", "Expected Address 1 is ADDED ADDRESS LINE 2 and acrtual is "+Address);
+		}
+		Assert.assertEquals(Address.contains("ADDED ADDRESS LINE 2"), true);
+		
 		// DONE
-}
+	}
 }
