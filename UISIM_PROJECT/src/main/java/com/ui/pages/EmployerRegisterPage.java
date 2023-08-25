@@ -582,7 +582,20 @@ public WebElement predecessorErn;
 @FindBy(how = How.XPATH, using = "//*[@id='predecessorFein']")
 public WebElement predecessorFein;
 
+@FindBy(how = How.XPATH, using = "//span[text()=' 3 ']")
+public WebElement firstCalender_Quater_Value_3;
 
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Reinstate – Qtr. Year')]//following::mat-select[1]")
+public WebElement reInstate_Quater;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Reinstate – Qtr. Year')]//following::mat-select[2]")
+public WebElement reInstate_Year;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Suspended – Qtr. Year')]//following::mat-select[1]")
+public WebElement suspended_Quater;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Suspended – Qtr. Year')]//following::mat-select[2]")
+public WebElement suspended_Year;
 
 }
 

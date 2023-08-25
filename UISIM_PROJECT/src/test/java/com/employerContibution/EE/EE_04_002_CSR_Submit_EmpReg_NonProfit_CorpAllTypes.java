@@ -19,12 +19,65 @@ public class EE_04_002_CSR_Submit_EmpReg_NonProfit_CorpAllTypes extends TestBase
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Corporation (All Types, includes Sub-Chapter S)' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION})
 	public void TC_EE_04_002() throws Exception {
 		
-		test = report.createTest("Verify CSR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Corporation (All Types, includes Sub-Chapter S)' and work items will be created for CSR to review.");
+		test = report.createTest("EE.04.002 : Verify CSR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Corporation (All Types, includes Sub-Chapter S)' and work items will be created for CSR to review.");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		employerManagement empManage = new employerManagement(driver);
+		
+		// ---- WI Check ---
+		
+		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		
+		
+		peoPage.queue.click();
+	    Thread.sleep(15000);
+	    commonFunction.screenShot("wiSearch","Pass","Update Query to bind DOL DTF Descripancy WI: UPDATE T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndsbb3' WHERE PROCESS_DETAIL_ID ='101042' AND WORK_ITEM_NAME = 'DOLDTFDiscrepancy'");
+	    commonFunction.enterTextboxContains("Work Item Description Free Text","DOL");
+	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");
+	    commonFunction.clickButtonContains("Search");
+	    
+	    // --- WI 2. DOL DTF Discrepancy WI ---
+	    
+	    sleep(3000);
+	    commonFunction.ScrollMenu("DOL DTF Discrepancy");
+	    sleep();
+	    commonFunction.screenShot("WIClick","Pass","Clicked on Work Item - 'DOL DTF Discrepancy'");
+	    sleep();
+	    //commonFunction.clickOnLink("DOL DTF Discrepancy");
+		
+	    // --- WF-091 ---
+	    //commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Work Item Details(WF-091) page");
+	    commonFunction.clickButtonContains("Open Work Item ");
+		
+		// --- EEWI-005 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to DOL/DTF Discrepency Task(EEWI-005) page");
+	    commonFunction.selectDropdownEquals("Account Status", " Re-Instated ");
+	    empRegPage.reInstate_Quater.click();
+	    sleep();
+		empRegPage.firstCalender_Quater_Value_2.click();
+		empRegPage.reInstate_Year.click();
+		sleep();
+		empRegPage.firstCalender_Year_Value_2023.click();
+	    
+	    //commonFunction.selectRadioQuestions("Suppress Correspondence?", "No ");
+	    empRegPage.comment.sendKeys("Ok");
+	    sleep(2000);
+	    commonFunction.screenShot("EE04002", "Pass", "Entered data in EEWI-005 page");
+	   // commonFunction.clickButtonContains("Submit ");
+	    
+	    // --- SUC-002 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Work Item Completed(SUC-002) page");
+	    commonFunction.clickButtonContains("Home ");
+	    
+	    commonFunction.selectDropdown("Source Type", " NYS-100N ");
+		
+		// --- WI Check end ---
+	
 		
 		//--- GET Query
 		
@@ -46,8 +99,7 @@ public class EE_04_002_CSR_Submit_EmpReg_NonProfit_CorpAllTypes extends TestBase
 		
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
-		
+		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");		
 		
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
@@ -379,6 +431,8 @@ public class EE_04_002_CSR_Submit_EmpReg_NonProfit_CorpAllTypes extends TestBase
 	    commonFunction.clickButtonContains("Search");
 	    Thread.sleep(2000);
 	    
+	    // --- WI 1. Review Employer Type WI ---
+	    
 	    sleep(3000);
 	    commonFunction.ScrollMenu("Review Employer Type");
 	    sleep();
@@ -393,19 +447,79 @@ public class EE_04_002_CSR_Submit_EmpReg_NonProfit_CorpAllTypes extends TestBase
 	    
 	    // --- EEWI-002 ---
 	    commonFunction.waitForLoadingIconToDisappear();
-	    commonFunction.selectRadioQuestions("Financing Method", "Reimbursable");
-	    empRegPage.commentId_EEWI002.sendKeys("OK tested");
-	    commonFunction.screenShot("EE04002", "Pass", "Selected appropriate options");
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Review Employer Type Task Details(EEWI-002) page");
+	    empRegPage.firstCalender_Quater.click();
+	    sleep();
+		empRegPage.firstCalender_Quater_Value_3.click();
+		empRegPage.firstCalender_Year.click();
+		sleep();
+		empRegPage.firstCalender_Year_Value_2023.click();
+	    empRegPage.commentId_EEWI002.sendKeys("Tested Ok");
+	    commonFunction.screenShot("EE04002", "Pass", "Data input to EEWI-002 page");
 	    commonFunction.clickButtonContains("Submit ");
 	    
 	    // --- SUC-002 ---
 	    commonFunction.waitForLoadingIconToDisappear();
-	    commonFunction.screenShot("EM44303003", "Pass", "Successful launch to Add or Remove POA/Third Party Representative Association to Employer Confirmation(SUC-002) page");
+	    commonFunction.screenShot("EE04002", "Pass", "Successfully launched to SUC-002 page");
+		commonFunction.clickButton("Home ");
+	    
+	    
+		
+	    
+	    
+	    commonFunction.waitForLoadingIconToDisappear();
+	    Thread.sleep(5000);
+	     
+		peoPage.queue.click();
+	    Thread.sleep(15000);
+	    commonFunction.screenShot("wiSearch","Pass","Update Query to bind DOL DTF Descripancy WI: UPDATE T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndsbb3' WHERE PROCESS_DETAIL_ID ='101042' AND WORK_ITEM_NAME = 'DOLDTFDiscrepancy'");
+	    commonFunction.enterTextboxContains("Work Item Description Free Text","DOL");
+	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");
+	    commonFunction.clickButtonContains("Search");
+	    
+	    // --- WI 2. DOL DTF Discrepancy WI ---
+	    
+	    sleep(3000);
+	    commonFunction.ScrollMenu("DOL DTF Discrepancy");
+	    sleep();
+	    commonFunction.screenShot("WIClick","Pass","Clicked on Work Item - 'DOL DTF Discrepancy'");
+	    sleep();
+	    //commonFunction.clickOnLink("DOL DTF Discrepancy");
+		
+	    // --- WF-091 ---
+	    //commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Work Item Details(WF-091) page");
+	    commonFunction.clickButtonContains("Open Work Item ");
+		
+		// --- EEWI-005 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to DOL/DTF Discrepency Task(EEWI-005) page");
+	    commonFunction.selectDropdownEquals("Account Status", " Re-Instated ");
+	    empRegPage.reInstate_Quater.click();
+	    sleep();
+		empRegPage.firstCalender_Quater_Value_2.click();
+		empRegPage.reInstate_Year.click();
+		sleep();
+		empRegPage.firstCalender_Year_Value_2023.click();
+	    
+	    //commonFunction.selectRadioQuestions("Suppress Correspondence?", "No ");
+	    empRegPage.comment.sendKeys("Ok");
+	    sleep(2000);
+	    commonFunction.screenShot("EE04002", "Pass", "Entered data in EEWI-005 page");
+	   // commonFunction.clickButtonContains("Submit ");
+	    
+	    // --- SUC-002 ---
+	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Work Item Completed(SUC-002) page");
 	    commonFunction.clickButtonContains("Home ");
 	    
+	    //Resolve Incomplete Data Transfer task
 	    
+	    //Create Letter Task
 	    
-	    
+	    //
+	    System.out.println("xxx");
+	   
 
 
 	}

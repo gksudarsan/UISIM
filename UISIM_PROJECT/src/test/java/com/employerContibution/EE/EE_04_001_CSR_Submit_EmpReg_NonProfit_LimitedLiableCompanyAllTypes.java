@@ -14,7 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends TestBase {
+public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompanyAllTypes extends TestBase {
 	
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Limited Liability Company (All Types)' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION})
 	public void TC_EE_04_001() throws Exception{
@@ -63,7 +63,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		commonFunction.screenShot("EE04001", "Pass", "Launched the Employer Register(SREG-025) page");
 		commonFunction.selectDropdown("Employer Type", " Non-Profit ");
 		commonFunction.enterTextboxContains("Federal Employer Identification Number (FEIN)", "260437933"); //897397325,260437933
-		commonFunction.selectDropdownEquals("Type of Legal Entity", " Limited Liability Company (All Types) ");
+		commonFunction.selectDropdown("Type of Legal Entity", " Limited Liability Company (All Types) ");
 		//commonFunction.enterTextboxContains("Employer Registration Number", "2897453"); //4543352
 		commonFunction.selectDropdown("Source", " NYS-100 (paper) ");
 		sleep();
@@ -240,7 +240,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 		
 		// SREG-011 expected, SREG-521 coming. 
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.screenShot("EE04001", "Warning", "Launched to  SREG-521 page");
+		commonFunction.screenShot("EE04001", "Pass", "Launched to  SREG-521 page");
 		commonFunction.clickButton("Continue ");
 		
 		// SREG - 011
@@ -361,7 +361,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    commonFunction.clickButtonContains("Search");
 	    
 	    
-	    // WI not getting generated
+	   
 	    commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.ScrollMenu("Review Employer Type");
 	    commonFunction.clickOnLink("Review Employer Type");
@@ -371,6 +371,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompany extends 
 	    
 	    // ---  EEWI-002 ---
 	    commonFunction.waitForLoadingIconToDisappear();
+	    commonFunction.screenShot("EE04002", "Pass", "Successful launch to Review Employer Type Task Details(EEWI-002) page");
 	    empRegPage.firstCalender_Quater.click();
 		empRegPage.firstCalender_Quater_Value.click();
 		empRegPage.firstCalender_Year.click();
