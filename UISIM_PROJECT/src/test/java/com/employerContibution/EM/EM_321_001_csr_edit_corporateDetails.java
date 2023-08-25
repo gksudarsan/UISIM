@@ -53,7 +53,7 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
         cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
         cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
         sleep(3000);
-        cf.clickMenu("menu");
+        cf.clickMenu("Menu");
         cf.ScrollMenu("Account Maintenance");
         cf.clickMenu("Account Maintenance");
         cf.ScrollMenu("Maintain Business Ownership");

@@ -45,7 +45,7 @@ public class EM_310_02_001_Verify_Employer_abletoProcessSaleOfBusinessAndIndicat
 		// Login
 		cf.login(COMMON_CONSTANT.EMP_USER_1.toUpperCase(), COMMON_CONSTANT.EMP_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.clickMenu("menu");
+		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.clickMenu("Account Maintenance");
 		sleep();

@@ -49,7 +49,7 @@ public class EM_260_001_csr_updatePrimary_address {
 
             cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
             cf.screenShot("ApplicationLogin","Pass","Login is successful");
-            cf.clickMenu("menu");
+            cf.clickMenu("Menu");
             cf.ScrollMenu("Account Maintenance");
             cf.clickMenu("Account Maintenance");
             cf.ScrollMenu("Maintain Address");
