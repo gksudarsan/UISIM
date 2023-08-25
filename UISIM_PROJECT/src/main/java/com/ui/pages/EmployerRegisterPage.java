@@ -671,5 +671,19 @@ public WebElement suspensionDateQuarter;
 @FindBy(how = How.XPATH, using = "(//mat-label[text()='Year ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
 public WebElement yearDropDown2;
 
+@FindBy(how = How.XPATH, using = "//span[text()=' 3 ']")
+public WebElement firstCalender_Quater_Value_3;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Reinstate – Qtr. Year')]//following::mat-select[1]")
+public WebElement reInstate_Quater;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Reinstate – Qtr. Year')]//following::mat-select[2]")
+public WebElement reInstate_Year;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Suspended – Qtr. Year')]//following::mat-select[1]")
+public WebElement suspended_Quater;
+
+@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Suspended – Qtr. Year')]//following::mat-select[2]")
+public WebElement suspended_Year;
 }
 
