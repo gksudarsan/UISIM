@@ -650,7 +650,8 @@ public class commonStepDefinitions extends TestBase {
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			safeJavaScriptClick(ele);
+			//safeJavaScriptClick(ele);
+			ele.click();
 		} catch (final Exception e) {
 		}
 	}
