@@ -15,7 +15,7 @@ import stepDefinitions.commonStepDefinitions;
 public class FI_497_003_CSRviewSUTApenaltydetails_takedecisionwithoutabateSUTApenalty extends TestBase {
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can view the SUTA penalty details and take a decision without abate the SUTA penalty", groups = "Regression")
-	public void FI_497_003_() throws Exception {
+	public void FI_497_003() throws Exception {
 
 		test = report.createTest(
 				"FI_497_003_Verify CSR can view the SUTA penalty details and take a decision without abate the SUTA penalty");
