@@ -423,7 +423,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     //commonFuntions.screenShot("StatementAckn","Pass","Statment of Acknowledgment");
 			     //commonFuntions.clickButtonContains("Continue");
 			     //sleep(5000);
-					PEOPage.approveRadioButton.click();
+					PEOPage.ApprovePeo.click();
 					//PEOPage.ApprovePeo.click();
 			     //commonFuntions.selectRadio("Approved");
 			     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");

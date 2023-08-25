@@ -380,7 +380,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     //commonFuntions.selectRadio("Approved");
 		     
 		    // PEOPage.ApprovePeo.click();
-		     PEOPage.approveRadioButton.click();
+		     PEOPage.ApprovePeo.click();
 		     commonFuntions.screenShot("ApprovalPage","Pass","ApprovalPage");
 		     commonFuntions.clickButtonContains("Submit");
 		     sleep(5000);

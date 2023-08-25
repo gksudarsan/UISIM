@@ -203,7 +203,8 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//a[text()=' + ADD PEO MEMBER ']")
 	public WebElement addPeoMember;
 
-	@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
+	//@FindBy(how = How.XPATH, using = "//mat-icon[.='task']")
+	@FindBy(how = How.XPATH, using = "//*[@mattooltip='My Q']")
 	public WebElement queue;
 
 	@FindBy(how = How.XPATH, using = "//*[.='PEO Group Registration']//preceding::*[@class='mdc-radio__native-control'][1]")
@@ -373,7 +374,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='email0']")
 	public WebElement email0_PEO003;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')][@class='mat-radio-label']//following::*[@class='mdc-radio__native-control'][1]")
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'I am a Third Party')]//following::*[@class='mdc-radio__native-control'][@value='3'][1]")
 	public WebElement PeoUserSelect;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Federal Employer Identification Number (FEIN)')]//following::input[1]")
@@ -439,7 +440,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[text()='PEO ID']/../following-sibling::mat-label")
 	public WebElement peoIDText;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,'Approved')][@class='mat-radio-label']/*[@class='mdc-radio__native-control']")
+	@FindBy(how = How.XPATH, using = "//mat-radio-button[@value='ISSD']//following::*[@class='mdc-radio__native-control'][@value='ISSD'][1]")
 	public WebElement ApprovePeo;
 	
 	@FindBy(how = How.XPATH, using = ".//span[@id='ProfessionalEmployerOrganization(PEO)']//following::*[.='Manage PEO'][1]")

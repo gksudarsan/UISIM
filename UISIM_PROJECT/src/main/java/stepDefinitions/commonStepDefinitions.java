@@ -310,7 +310,7 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void errorLabelContains(String xpathParameter, String fieldName) {
-		driver.findElement(By.xpath("//*[.='"+fieldName+"']//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
+		driver.findElement(By.xpath("//*[contains(.,'"+fieldName+"')]//following::mat-error[contains(.,'" + xpathParameter + "')][1]")).isDisplayed();
 	}
 
 	public void errorContent(String xpathParameter) {
@@ -802,9 +802,9 @@ public class commonStepDefinitions extends TestBase {
 		sleep(3000);
 		// driver.navigate().refresh();
 		sleep(3000);
-		sleep(10000);
+		sleep(5000);
 		driver.navigate().refresh();
-		sleep(10000);
+		sleep(5000);
 		driver.navigate().refresh();
 		sleep(5000);
 		waitForLoadingIconToDisappear();

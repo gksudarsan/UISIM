@@ -25,7 +25,7 @@ public class SmokeTest extends TestBase{
 		 commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		 sleep(2000);
 		 commonFuntions.waitForLoadingIconToDisappear();
-		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
+		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");		 
 		 commonFuntions.clickMenu("Menu");
 		 //PEOPage.menu.click();	
 		 commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
