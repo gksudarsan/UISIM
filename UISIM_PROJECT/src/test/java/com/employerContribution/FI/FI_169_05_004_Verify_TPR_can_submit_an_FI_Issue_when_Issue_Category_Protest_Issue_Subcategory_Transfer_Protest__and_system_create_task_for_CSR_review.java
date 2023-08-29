@@ -1,4 +1,4 @@
-package com.fraudInvestigation.FI;
+package com.employerContribution.FI;
 
 import java.util.Map;
 
@@ -13,14 +13,14 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 
-public class FI_169_05_005_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category_Coverage_Issue_Subcategory_Coverage_Protest_and_system_create_task_for_CSR_review extends TestBase {
+public class FI_169_05_004_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category_Protest_Issue_Subcategory_Transfer_Protest__and_system_create_task_for_CSR_review extends TestBase {
 
 	@Test
-	public void FI_169_05_005()throws Exception {
-	test = report.createTest("FI_169_05_005_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category_Coverage_Issue_Subcategory_Coverage_Protest_and_system_create_task_for_CSR_review");
+	public void FI_169_05_004()throws Exception {
+	test = report.createTest("FI_169_05_004_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category_Protest_Issue_Subcategory_Transfer_Protest__and_system_create_task_for_CSR_review");
 
 	commonStepDefinitions commonFunction = new commonStepDefinitions();
-	EmployerRegisterPage FI_169_05_005 = new EmployerRegisterPage(driver);
+	EmployerRegisterPage FI_169_05_004 = new EmployerRegisterPage(driver);
 	PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 	
 	 // Query
@@ -31,7 +31,7 @@ public class FI_169_05_005_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category
     System.out.println("The EAN is " + eanValue);
 
     // -----Login
-    commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+    commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
     sleep(2000);
     commonFunction.waitForLoadingIconToDisappear();
     commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");

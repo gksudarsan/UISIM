@@ -1,4 +1,4 @@
-package com.ITR2.employerContribution.BCL;
+package com.employerContibution.BCL;
 
 import org.testng.annotations.Test;
 
