@@ -1,5 +1,4 @@
-package com.billingCollectionLiens.BCL;
-
+package com.employerContibution.BCL;
 
 import java.util.Map;
 
@@ -13,11 +12,11 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class BCL_159_02_001_Verify_CSR_can_select_one_collection_notices_and_update_the_status_by_selecting_the_appropriate_Status_option extends TestBase {
+public class BCL_807_002_Verify_CSR_can_request_a_Warrant_for_more_than_one_quarter_of_an_Employer_account_ extends TestBase {
 	@Test
-	public void  BCL_159_02_001()throws Exception {
-
-		test = report.createTest("BCL_159_02_001_Verify_CSR_can_select_one_collection_notices_and_update_the_status_by_selecting_the_appropriate_Status_option");
+	public void BCL_807_002()throws Exception {
+		
+		test = report.createTest("BCL_807_002_Verify_CSR_can_request_a_Warrant_for_more_than_one_quarter_of_an_Employer_account_");
 
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
@@ -52,24 +51,41 @@ public class BCL_159_02_001_Verify_CSR_can_select_one_collection_notices_and_upd
 	
 		//---Menu Click---
 		commonFunction.clickMenu("menu");
-		commonFunction.ScrollMenu("Employer Collection");
-		commonFunction.clickMenu("Employer Collection");
-		commonFunction.clickMenu("Collections");
-		
+		commonFunction.ScrollMenu("Contribution Collection");
+		commonFunction.clickMenu("Contribution Collection");
+		commonFunction.clickMenu("Warrant");
 		commonFunction.screenShot("Menu", "Pass", "Warrant page is displayed");
-		commonFunction.clickMenu("Update Collection Notices");
+		commonFunction.clickMenu("Request Warrant");
+		
 sleep(3000);
-commonFunction.screenShot("COL-589", "Pass", "Update Collection Notices page is displayed");
+commonFunction.screenShot("COL-570", "Pass", "Process Partial Transfer page is displayed");
 commonFunction.enterTextboxContains("Employer Registration Number", "0464364");
+commonFunction.screenShot("COL-570", "Pass", "Process Partial Transfer page is displayed");
 commonFunction.clickButton("Continue ");
-commonFunction.screenShot("COL-700", "Pass", "Update Collection Notice Status is displayed");
+commonFunction.screenShot("COL-571", "Pass", "List of warrent is displayed");
 sleep(2000);
-//commonFunction.selectCheckbox("Select");
+peoPage.selectRadiobutton.click();
+peoPage.textBox.sendKeys("ok");
+//peoPage.dateEnter.sendKeys("8/2/2023");
+
+
+commonFunction.screenShot("COL-571", "Pass", "List of warrent is displayed");
 commonFunction.clickButton("Submit ");
 sleep(3000);
-commonFunction.screenShot("SUC-002", "Pass", "details updated successfully");
+commonFunction.screenShot("SUC-002", "Pass", "Request to vacate warrent page is displayed");
 sleep(3000);
+commonFunction.clickButton("Previous ");
 commonFunction.clickButton("Home");
+sleep(3000);
 commonFunction.screenShot("Home", "Pass", "HOME page is dislayed");
+
+
+
 }
+
+
+
 }
+
+
+
