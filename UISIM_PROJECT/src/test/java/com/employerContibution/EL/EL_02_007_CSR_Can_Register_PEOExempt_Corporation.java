@@ -39,7 +39,7 @@ public class EL_02_007_CSR_Can_Register_PEOExempt_Corporation extends TestBase{
 	     commonFuntions.screenShot("EXEMPT", "Pass", "Selecting Exempt and filling the form");
 	     commonFuntions.enterTextbox("Name of Professional Employer Organization", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     sleep(2000);
-	     commonFuntions.enterTextboxContains("Additional name(s), if any,", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
+	     commonFuntions.enterTextboxContains("Additional Name(s), if any,", "Test_Data"+StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),4));
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     commonFuntions.screenShot("address", "Pass", "Address update");
 	     commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "Yes");

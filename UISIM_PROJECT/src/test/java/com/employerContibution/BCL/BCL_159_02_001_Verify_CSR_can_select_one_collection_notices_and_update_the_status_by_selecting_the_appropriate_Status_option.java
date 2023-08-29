@@ -1,4 +1,5 @@
-package com.billingCollectionLiens.BCL;
+package com.employerContibution.BCL;
+
 
 import java.util.Map;
 
@@ -12,12 +13,11 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class BCL_174_02_001_Verify_CSR_can_calculated_the_projected_balance_due_for_single_qtr_when_UI_Contribution_Due_amount_is_not_entered_or_is_zero extends TestBase {
+public class BCL_159_02_001_Verify_CSR_can_select_one_collection_notices_and_update_the_status_by_selecting_the_appropriate_Status_option extends TestBase {
 	@Test
+	public void  BCL_159_02_001()throws Exception {
 
-	public void  BCL_174_02_001()throws Exception {
-
-		test = report.createTest("BCL_174_02_001_Verify_CSR_can_calculated_the_projected_balance_due_for_single_qtr_when_UI_Contribution_Due_amount_is_not_entered_or_is_zero");
+		test = report.createTest("BCL_159_02_001_Verify_CSR_can_select_one_collection_notices_and_update_the_status_by_selecting_the_appropriate_Status_option");
 
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
@@ -54,35 +54,22 @@ public class BCL_174_02_001_Verify_CSR_can_calculated_the_projected_balance_due_
 		commonFunction.clickMenu("menu");
 		commonFunction.ScrollMenu("Employer Collection");
 		commonFunction.clickMenu("Employer Collection");
-		commonFunction.clickMenu("Pay Agreement");
-		commonFunction.clickMenu("Calculate Payoff");
+		commonFunction.clickMenu("Collections");
+		
 		commonFunction.screenShot("Menu", "Pass", "Warrant page is displayed");
+		commonFunction.clickMenu("Update Collection Notices");
 sleep(3000);
-
-commonFunction.screenShot("COL-489", "Pass", "Calculate Payoff is displayed");
-commonFunction.enterTextboxContains("Employer Registration Number", "04-64364");
-commonFunction.enterTextboxContains("Payoff Date", "8/17/2023");
-commonFunction.screenShot("COL-489", "Pass", "Calculate Payoff is displayed");
+commonFunction.screenShot("COL-589", "Pass", "Update Collection Notices page is displayed");
+commonFunction.enterTextboxContains("Employer Registration Number", "0464364");
 commonFunction.clickButton("Continue ");
-
-
+commonFunction.screenShot("COL-700", "Pass", "Update Collection Notice Status is displayed");
+sleep(2000);
+//commonFunction.selectCheckbox("Select");
+commonFunction.clickButton("Submit ");
 sleep(3000);
-commonFunction.screenShot("COL-488", "Pass", "Pay Off Letter Details");
+commonFunction.screenShot("SUC-002", "Pass", "details updated successfully");
 sleep(3000);
-commonFunction.clickButton(" Calculate ");
-sleep(3000);
-commonFunction.screenShot("COL-488", "Pass", "Pay Off Letter Details");
 commonFunction.clickButton("Home");
-sleep(3000);
 commonFunction.screenShot("Home", "Pass", "HOME page is dislayed");
-
-
-
 }
-
-
-
 }
-
-
-
