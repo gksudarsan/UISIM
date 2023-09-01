@@ -50,29 +50,29 @@ public class EE_12_003_TPR_UserType extends TestBase{
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", "Indian Tribe");
-		//      String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSB' AND REGISTRATION_STATUS = 'C'", "FEIN");			
-		String feinValue = databaseResults.get("FEIN"); 
-		//		String feinValue =  prop.getProperty("FeinPresentInDolNotInDtf");
+		//String feinValue=StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,10))),9);
+		//Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSB' AND REGISTRATION_STATUS = 'C'", "FEIN");			
+		//String feinValue = databaseResults.get("FEIN"); 
+		String feinValue =  prop.getProperty("FeinPresentInDolNotInDtf");
 		System.out.println("The FEIN Value is:"+ feinValue);
 		test.log(Status.INFO, "Fein::" + feinValue);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", "School");
-		String ernValue = prop.getProperty("ErnInDolDtfAccoutStatus_SUSD");
-		System.out.println("The EAN Value is:"+ ernValue);
-		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		//String ernValue = prop.getProperty("ErnInDolDtfAccoutStatus_SUSD");
+		//System.out.println("The EAN Value is:"+ ernValue);
+		//commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFuntions.screenShot("GeneralInformationPage", "Pass", "General Information:SREG-025");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.enterRandomStringLegalName("Legal Name");
 		commonFuntions.enterTextboxContains("Business Phone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 		commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
-		commonFuntions.enterPastDate("What is the date of the first payroll", 275);
+		commonFuntions.enterPastDate("What is the date of the first payroll", 276);
 		commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly owned by a federally recognized Indian Tribe?", "Yes");
 		commonFuntions.enterTextboxContains("Enter the name of the federally recognized Indian Tribe.", "TPRUSERAUTO");
 		commonFuntions.selectRadioQuestions("Financing Method", "Reimbursable");
 		commonFuntions.enterTextboxContains("Estimated or approximate number of individuals", "217");
-		commonFuntions.enterPastDate("Date covered employment began?", 183);
+		commonFuntions.enterPastDate("Date covered employment began?", 184);
 		commonFuntions.screenShot("EmployerEntityInformation", "Pass", "Employer Entity Information:SREG-003");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
@@ -152,9 +152,11 @@ public class EE_12_003_TPR_UserType extends TestBase{
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
 
-		//Assigning user to WI Review emp type..................
+		//Assigning user to WI Review emp type...............
+		try {
 		loginPage.okPopUpButton.click();
 		sleep(2000);
+		}catch(Exception e) {}
 		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 

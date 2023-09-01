@@ -37,6 +37,8 @@ public class COMMON_CONSTANT {
 	public static final String CSR_USER_6 = "NDBAS4"; 
 	public static final String CSR_USER_6_PASSWORD = "Anay@123456789";
 
+	public static final String CSR_USER_7 = "nd1sk3"; 
+	public static final String CSR_USER_7_PASSWORD = "uisimtesting@123";
 	
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
@@ -63,7 +65,6 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
-
 	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@123456789"; //Hachiku7533991779
 
 	
@@ -119,4 +120,6 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_MANJU = "manju@2004";
 	public static final String EMPLOYER_PASS_MANJU = "Manhar2004@1234";
 	
+	public static final String OTHER_USER_1 = "VKenyo";
+	public static final String OTHER_USER_PASS_1 = "Test123456?@#%$";
 }

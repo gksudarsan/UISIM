@@ -221,10 +221,9 @@ public class EE_11_003_TPR_UserType extends TestBase{
 		sleep(25000);
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation:SREG-013");
 		sleep(2000);
-		commonFuntions.clickButtonContains("Exit");
+		commonFuntions.clickButtonContains("Home");
 		sleep(4000);
 		
-		/* ------- update CSR User ID in the database -----*/
 		
 		//Assigning user id to WI
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
@@ -232,7 +231,8 @@ public class EE_11_003_TPR_UserType extends TestBase{
 		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		sleep(2000);
 		PEOPage.queue.click();
-		sleep(15000);
+		sleep(5000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		//Review Employer Type Task
 	    commonFuntions.enterTextboxContains("FEIN",feinValue);
 	    commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
@@ -252,11 +252,33 @@ public class EE_11_003_TPR_UserType extends TestBase{
 	    commonFuntions.clickButtonContains("Home");
 	    sleep(2000);
 	    
-	    //Assigning CSR User ID to Other WI
+	    //Assigning user to WI Determine Liability Task.................
 	    commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
-	    sleep(2000);
+	    
+		//Resolving WI Determine Liability Task.................
 	    PEOPage.queue.click();
-		sleep(15000);
+		sleep(5000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		
+		commonFuntions.enterTextboxContains("FEIN",feinValue);
+		commonFuntions.screenShot("FeinSearch","Pass","feinSearch");
+		commonFuntions.clickButtonContains("Search");
+		commonFuntions.screenShot("Search","Pass","Searchbyname");
+		sleep(2000);
+		commonFuntions.screenShot("DetermineLiabilityTask","Fail","Determine Liability Task");
+		commonFuntions.clickOnLink("Unable to Determine Liability Task");
+		sleep(2000);
+		commonFuntions.clickButtonContains("Open Work Item");
+		sleep(2000);
+		commonFuntions.screenShot("Review","Pass","Unable to Determine Liability Task");
+		commonFuntions.selectDropdown("Account Status", "Liable");		
+		commonFuntions.selectRadio("Contributory");
+		commonFuntions.enterTextboxContains("Date covered employment began? ", "1212022");
+		commonFuntions.populateListbox("Comment", "testing");
+		commonFuntions.clickButtonContains("Submit");
+		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.clickButtonContains("Home");
 
 	}
 }
