@@ -40,9 +40,8 @@ public class EE_02_007_CSR_Agricultural_Joint_Venture extends TestBase {
         commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
         commonFuntions.clickButtonContains("Continue ");
         sleep(3000);
-        commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
+        commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 Page");
         commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-        sleep();
 
         sleep();
         /*----------------FEIN----------------*/
