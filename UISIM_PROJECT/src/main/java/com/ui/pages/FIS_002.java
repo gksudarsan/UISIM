@@ -64,6 +64,16 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
     
     @FindBy(how = How.XPATH, using = "(//u[contains(.,'Audit Protest Task')])[1]")
    	public WebElement auditProtestWorkItem;
+    
+    @FindBy(how = How.XPATH, using = "(//input[@class='mdc-checkbox__native-control'])[1]")
+   	public WebElement wf001checkboxFirst;
+    
+    @FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Name')]//following::input[@aria-label='Name']")
+   	public WebElement fis003NameField;
+    
+  
+    
+  
   
 
 

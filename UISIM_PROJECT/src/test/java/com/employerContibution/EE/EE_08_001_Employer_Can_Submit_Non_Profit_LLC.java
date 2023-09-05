@@ -291,12 +291,12 @@ public class EE_08_001_Employer_Can_Submit_Non_Profit_LLC extends TestBase {
 		sleep(2000);
 
 		// Step-26
-		/*
+		
 		sreg084.browseLink.click();
 		Thread.sleep(2000);
 		commonFuntions.uploadDoc("Sample.docx");
 		Thread.sleep(2000);
-		*/
+		
 		commonFuntions.screenShot("Add Power of Attorney/Third Party Representative", "Pass",
 				"Upload Document Section");
 		Assert.assertTrue(sreg084.uploadDocSec.getText().contains("Uploaded Documents"));

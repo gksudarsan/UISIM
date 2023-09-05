@@ -43,7 +43,7 @@ public class FI_405_004 extends TestBase {
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		test.info("Step: 3 -- ");
-		commonFuntions.clickMenu("menu");
+		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Secure Messaging");
 		commonFuntions.clickMenu("Secure Messaging");
@@ -122,6 +122,8 @@ public class FI_405_004 extends TestBase {
 
 		test.info("Step: 7 -- ");
 		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
