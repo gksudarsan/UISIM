@@ -27,7 +27,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name']")
 	public WebElement legalNameTextBox;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
@@ -294,7 +294,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(text(),'123')]/../../span/span[@class='mat-radio-outer-circle'])[1]")
 	public WebElement uspsAddressRadio_123_state;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Indicate your principal')]/../../div/mat-form-field/div/div/div[3]/mat-select")
+	@FindBy(how = How.XPATH, using = "//mat-select[@id='prinActivity1Id']")
 	public WebElement individualPrinciple;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Other ']")
@@ -670,6 +670,13 @@ public WebElement suspensionDateQuarter;
 
 @FindBy(how = How.XPATH, using = "(//mat-label[text()='Year ']/../mat-form-field/div/div/div[3]/mat-select)[2]")
 public WebElement yearDropDown2;
+
+@FindBy(how = How.XPATH, using = "//span[text()=' 3 ']")
+public WebElement firstCalender_Quater_Value_3;
+
+@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name']")
+public WebElement sreg003_legalNameField;
+
 
 }
 

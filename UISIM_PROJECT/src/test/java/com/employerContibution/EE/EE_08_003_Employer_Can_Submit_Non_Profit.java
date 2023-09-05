@@ -16,6 +16,7 @@ import com.ui.pages.SREG_004;
 import com.ui.pages.SREG_008;
 import com.ui.pages.SREG_043;
 import com.ui.pages.SUC_002;
+import com.ui.pages.SREG_084;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -30,14 +31,14 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		SREG_004 sreg004 = new SREG_004(driver);
 		SREG_043 sreg043 = new SREG_043(driver);
 		SUC_002 suc002 = new SUC_002(driver);
-		
+		SREG_084 sreg084 = new SREG_084(driver);
 
 		test = report.createTest(
 				"EE.08.003 Verify employer can submit employer registration for employer type 'Non-Profit' and legal entity type 'Unincorporated Association' and work items will be created for CSR to review.");
 
 		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_6.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_6_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFuntions.clickMenu("menu");
+		commonFuntions.clickMenu("Menu");
 		// homePage.menu.click();
 		commonFuntions.ScrollMenu("Employer Registration");
 		commonFuntions.clickMenu("Employer Registration");
@@ -55,12 +56,12 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.enterTextboxContains("Contact Telephone Number",
 				Long.toString(commonFuntions.createRandomInteger(10000000, 99999999))
 						+ Long.toString(commonFuntions.createRandomInteger(10, 99)));
-		commonFuntions.enterTextboxContains("Email Address", "test@Test.com");
+		commonFuntions.enterTextboxContains("Email Address", "test2@Test.com");
 		sleep();
 		commonFuntions.screenShot("EmpRegister11", "Pass", "Entered the details and click on continue button");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+
 		// Step-5
 		/**************** SREG-025 ************************/
 		String feinValue = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
@@ -74,11 +75,11 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.screenShot("EmpRegister3", "Pass", "Entered the details and clicked on continue button");
 		sleep(3000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+
 		// Step-6
 		/*----------------SREG-003----------------*/
 		commonFuntions.screenShot("EmpRegister4", "Pass", "Navigated on SREG-003 page");
-		empPage.legalNameTextBox.sendKeys("TRANSCOM MEDIA INC"); // LEGAL NAME MULT MATCH in DOl & DTF
+		empPage.sreg003_legalNameField.sendKeys("TRANSCOM MEDIA INC"); // LEGAL NAME MULT MATCH in DOl & DTF
 		commonFuntions.enterTextboxContains(" Business Phone Number  ",
 				Long.toString(commonFuntions.createRandomInteger(10000000, 99999999))
 						+ Long.toString(commonFuntions.createRandomInteger(10, 99)));
@@ -87,7 +88,7 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		// "autoTest" + Long.toString(commonFuntions.createRandomInteger(10000, 99999))
 		// + "@gmail.com");
 
-		commonFuntions.enterTextbox("Enter date of first operations in New York State", "07/21/2021");
+		commonFuntions.enterTextbox("Enter date of first operations in New York State", "07/1/2021");
 
 		sleep(3000);
 
@@ -96,11 +97,12 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		empPage.firstCalender_Year.click();
 		empPage.firstCalender_Year_Value.click();
 		sleep();
-		commonFuntions.selectRadioQuestions("Do persons work for you whom you do", "No ");
+		commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?",
+				"No ");
 
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Entering the details");
 		empPage.What_firstCalender_Quater.click();
-		empPage.firstCalender_Quater_Value_2.click();
+		empPage.firstCalender_Quater_Value_3.click();
 		empPage.What_firstCalender_Year.click();
 		empPage.firstCalender_Year_Value_2022.click();
 
@@ -110,14 +112,18 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		 * commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Radio);
 		 */
 
-		commonFuntions.selectRadioQuestions("If you are not liable under the Unemployment", "No ");
-		commonFuntions.selectRadioQuestions("Does this organization have, or h", "No ");
+		commonFuntions.selectRadioQuestions(
+				"If you are not liable under the Unemployment Insurance law for nonprofit employment, do you wish to elect voluntary coverage?",
+				"No ");
+		commonFuntions.selectRadioQuestions(
+				"Does this organization have, or have they applied for, a Nonprofit 501 (c)(3) exemption with the Internal Revenue Service?",
+				"No ");
 		// commonFuntions.selectRadioQuestions("Choose the option you wish to",
 		// "Contributory");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(3000);
-
+		commonFuntions.screenShot("EmpRegister4", "Pass", "Navigated on SREG-008 page");
 		// Step-7
 		commonFuntions.enterTextboxContains("Address Line 1 ", "123state");
 		commonFuntions.enterTextboxContains("City ", "albany");
@@ -127,9 +133,12 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.selectDropdown("County", " Albany ");
 		sleep(1000);
 		commonFuntions.enterTextboxContains("Number of employees at this location", "87");
-		commonFuntions.enterTextboxContains("Name of Government Agency from which you receive funds", "test");
+		// commonFuntions.enterTextboxContains("Name of Government Agency from which you
+		// receive funds", "test");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(3000);
+		commonFuntions.screenShot("verify address", "Pass", "Navigated on SREG-008 page");
 
 		// Step-8
 		try {
@@ -172,8 +181,9 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "Yes ");
 
 		commonFuntions.selectRadioQuestions("Agent (C/O) address", "Other");
-		sreg004.agadCareOfBtn.sendKeys(commonFuntions.createRandomInteger(10, 99) + "randomCareOf"
-				+ commonFuntions.createRandomInteger(10, 99));
+		// sreg004.agadCareOfBtn.sendKeys(commonFuntions.createRandomInteger(10, 99) +
+		// "randomCareOf"
+		// + commonFuntions.createRandomInteger(10, 99));
 		sreg004.addresslinelist.get(3).sendKeys("123state");
 		sreg004.citylist.get(3).sendKeys("albany");
 		sreg004.zipCodelist.get(3).sendKeys("12012");
@@ -204,7 +214,8 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 				"Yes ");
 
 		/*-----------------Find Valid FEIN----------------*/
-		//String FEIN2 = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		// String FEIN2 = StringUtils.left(String.valueOf((long) (Math.random() *
+		// Math.pow(10, 10))), 9);
 		Map<String, String> FEINOutput = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS ='C' ORDER BY UPDATED_TS ASC;",
 				"FEIN");
@@ -215,7 +226,7 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 
 		/*-----------------Find Valid ERN----------------*/
 		Map<String, String> ERNOutput = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT *  FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='CANE' AND EAN!='NULL' ORDER BY UPDATED_TS",
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='CANE' AND EAN!='NULL' ORDER BY UPDATED_TS",
 				"EAN");
 		String ERN = ERNOutput.get("EAN");
 		System.out.println(ERN);
@@ -228,10 +239,12 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.enterTextboxContains("Address Line 1 ", "123state");
 		commonFuntions.enterTextboxContains("City ", "albany");
 		commonFuntions.enterTextboxContains("Zip Code", "12012");
-		commonFuntions.screenShot("EmpRegister13", "Pass", "Entering the form Details");
 		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "PART");
-		commonFuntions.enterTextboxContains("Acquisition Date", "12/21/2022"); // 2 quaters prior from current quater
-		commonFuntions.enterTextboxContains("Notification date of Transfer", "07/11/2023"); // current date
+		commonFuntions.enterTextboxContains("Acquisition Date", "12/22/2022"); // 2 quaters prior from current quater
+		// commonFuntions.enterTextboxContains("Notification date of Transfer",
+		// "07/11/2023"); // current date
+		commonFuntions.enterCurrentDate("Notification date of Transfer");
+		commonFuntions.screenShot("EmpRegister13", "Pass", "Entering the form Details");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 
@@ -240,14 +253,15 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.screenShot("EmpRegister14", "Pass", "Navigated to SREG-012 page and click on continue");
 		empPage.addAnotherAcquisitionLink.click();
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+
 		// Step-15
 		commonFuntions.selectRadioQuestions(
 				"Have you acquired the business of another employer liable for New York State Unemployment Insurance?",
 				"Yes ");
 		commonFuntions.waitForLoadingIconToDisappear();
 
-		//String feinValue3 = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		// String feinValue3 = StringUtils.left(String.valueOf((long) (Math.random() *
+		// Math.pow(10, 10))), 9);
 		Map<String, String> FEIN2Output = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS ='C' ORDER BY UPDATED_TS DESC;",
 				"FEIN");
@@ -255,9 +269,10 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		System.out.println(feinValue3);
 
 		/*----------------FEIN----------------*/
-		//String eanValue3 = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
-		//System.out.println(eanValue3);
-		//test.log(Status.INFO, "FEIN : : " + eanValue3);
+		// String eanValue3 = StringUtils.left(String.valueOf((long) (Math.random() *
+		// Math.pow(10, 10))), 7);
+		// System.out.println(eanValue3);
+		// test.log(Status.INFO, "FEIN : : " + eanValue3);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue3);
 		// commonFuntions.enterTextboxContains("Employer Registration Number",
 		// eanValue3);
@@ -270,10 +285,12 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.screenShot("EmpRegister13", "Pass", "Entering the form Details");
 		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
 		commonFuntions.enterTextboxContains("Acquisition Date", "12/21/2022"); // 2 quaters prior from current quater
-		commonFuntions.enterTextboxContains("Notification date of Transfer", "07/11/2023");
+		// commonFuntions.enterTextboxContains("Notification date of Transfer",
+		// "07/11/2023");
+		commonFuntions.enterCurrentDate("Notification date of Transfer");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-012 page and click on continue");
 
 		// Step-17
@@ -281,14 +298,14 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and click on continue");
 
 		// Step-18
-		//String ssn = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
-		//System.out.println(ssn);
+		// String ssn = StringUtils.left(String.valueOf((long) (Math.random() *
+		// Math.pow(10, 10))), 9);
+		// System.out.println(ssn);
 		Map<String, String> ssnOutput = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT OWNER_TYPE,* FROM T_Employer_partner WHERE FIRST_NAME ='FN' AND LAST_NAME='LN';",
-				"SSN");
+				"SELECT OWNER_TYPE,* FROM T_Employer_partner WHERE FIRST_NAME ='FN' AND LAST_NAME='LN';", "SSN");
 		String ssn = ssnOutput.get("SSN");
 		System.out.println(ssn);
-		
+
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
 		commonFuntions.selectRadioQuestions("Type of Corporate Officer/Owner", "Individual");
@@ -304,7 +321,8 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		commonFuntions.enterTextboxContains(" Residential Telephone Number ", "1234567890");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+		sleep(3000);
+
 		try {
 			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_123_state);
 			sleep();
@@ -313,23 +331,27 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 			System.out.println("Pop up not displayed");
 		}
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		// Step-20
 		/*-----------------SREG-005----------------*/
 		sleep(4000);
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-005 page");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 
 		/*-----------------SREG-683----------------*/
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister21", "Pass", "Navigated to SREG-683 page and do not upload the document");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		/*-----------------SREG-800----------------*/
 		sleep(5000);
 		commonFuntions.screenShot("EmpRegister22", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 
 		// Step-23
 		/*-----------------SREG-043----------------*/
@@ -340,25 +362,32 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		sleep();
 		commonFuntions.clickButtonContains("Submit ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(15000);
+		// sleep(15000);
 
 		/*-----------------SREG-013----------------*/
 		// Step-24
 		commonFuntions.clickButtonContains("Home ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
-		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
-				+ COMMON_CONSTANT.CSR_USER_1
-				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
-				+ feinValue + "' ORDER BY UPDATED_TS desc)");
 		commonFuntions.screenShot("Homepage", "Pass", "Homapage page displayed");
 
+		/*
+		 * commonFuntions.
+		 * database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" +
+		 * COMMON_CONSTANT.CSR_USER_1 +
+		 * "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
+		 * + feinValue + "' ORDER BY UPDATED_TS desc)");
+		 */
+
 		test.info("Step: 25 -- Login as a CSR and Navigates to Main Menu -> MyQ");
-		// commonFunction.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(),
-		// COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.waitForLoadingIconToDisappear();
+
 		commonFuntions.screenShot("Business Acquisition", "Pass", "logged In");
 		test.info("CSR Navigate to Main Menu -> MyQ");
 		Thread.sleep(5000);
 		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(3000);
 		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 
@@ -367,17 +396,20 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		sleep(2000);
 		commonFuntions.enterTextboxContains("FEIN", feinValue);
 		commonFuntions.clickButtonContains(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 
 		test.info(
 				"Step: 27&28 -- Select  \"Review Employer Type Task\"  from the search result by clicking on Work Item Description hyperlink");
 
-		// sreg084.reviewemployertypelink.click();
+		sreg084.reviewemployertypelink.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		// commonFuntions.clickOnLink("Review Employer Type");
 		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
 		Thread.sleep(2000);
 
 		commonFuntions.clickButtonContains("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
 
@@ -393,6 +425,7 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 
 		sreg043.EEWI002CommentsField.sendKeys("testing work item");
 		commonFuntions.clickButtonContains("Submit ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
 
@@ -426,9 +459,9 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 
 		// Step-41 EEWI-005 Screen
 
-		// empPage.What_firstCalender_Quater.click();
-		// empPage.firstCalender_Quater_Value_2.click();
-		// empPage.whatFirstCalender_YearField.sendKeys("2022");
+		empPage.What_firstCalender_Quater.click();
+		empPage.firstCalender_Quater_Value_3.click();
+		empPage.whatFirstCalender_YearField.sendKeys("2022");
 
 		// empPage.legalNameOfBusinessTextBoxEEWI_005.sendKeys("NEW TRANSCOM MEDIA
 		// INC");
@@ -475,9 +508,8 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		suc002.homeButton.click();
 		Thread.sleep(5000);
 		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
-		
-		
-        //Validate partial transfer failed rules
+
+		// Validate partial transfer failed rules
 		// Step-36&37&38
 		Thread.sleep(2000);
 		PEOPage.queue.click();
@@ -514,12 +546,15 @@ public class EE_08_003_Employer_Can_Submit_Non_Profit extends TestBase {
 		Thread.sleep(5000);
 		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
 
-		/*commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
-				+ COMMON_CONSTANT.CSR_USER_1
-				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
-				+ feinValue + "' ORDER BY UPDATED_TS desc)");*/
-		
-		//4.Resolve incomplete data transfer task
+		/*
+		 * commonFuntions.
+		 * database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" +
+		 * COMMON_CONSTANT.CSR_USER_1 +
+		 * "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"
+		 * + feinValue + "' ORDER BY UPDATED_TS desc)");
+		 */
+
+		// 4.Resolve incomplete data transfer task
 
 	}
 }

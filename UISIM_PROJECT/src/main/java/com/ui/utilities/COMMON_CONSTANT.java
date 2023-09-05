@@ -78,13 +78,18 @@ public class COMMON_CONSTANT {
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
-	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	public static final String TPR_USER_1_PASSWORD = "TprUser@123457";
 	
 	public static final String TPR_USER_2 = "thdprty";
 	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";
 	
 	public static final String TPR_USER_3 = "tpruser121";
 	public static final String TPR_USER_3_PASSWORD = "NewUser@12345678";
+	
+	public static final String TPR_USER_4 = "thirduseremp";
+    public static final String TPR_USER_4_PASSWORD = "Thirduseremp@1234";
+
+
 	//PEO
 	public static final String PEO_USER_1 = "peouser";
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
@@ -93,6 +98,10 @@ public class COMMON_CONSTANT {
 	
 	public static final String PEO_USER_ADMIN = "Peousersnehal";
 	public static final String PEO_USER_ADMIN_PASSWORD = "Snehal@12345678";
+	
+	//Claiment Account
+	public static final String CLAIMENT_USER1 = "Peousersnehal";
+	public static final String CLAIMENT_USER_PASSWORD1 = "Snehal@12345678";
 
 	/* ********* creds end ********* */
 

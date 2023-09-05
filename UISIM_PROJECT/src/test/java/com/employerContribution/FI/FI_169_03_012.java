@@ -42,7 +42,7 @@ public class FI_169_03_012 extends TestBase {
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		test.info("Step: 3 -- ");
-		commonFuntions.clickMenu("menu");
+		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Secure Messaging");
 		commonFuntions.clickMenu("Secure Messaging");

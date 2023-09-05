@@ -24,11 +24,12 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	
 	public void selectCheckboxfis009(String xpathParameter) {
 
-		By element = By.xpath("//mat-checkbox//label//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][1]");
+		By element = By.xpath("//mat-checkbox//label[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mdc-checkbox__native-control'][1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			stepDef.safeJavaScriptClick(ele);
+			//stepDef.safeJavaScriptClick(ele);
+			ele.click();
 		} catch (final Exception e) {
 		}
 	}
@@ -42,6 +43,7 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Resolution Details']")
 	public WebElement commentfieldResolution;
 	
+
 	
 	
 	

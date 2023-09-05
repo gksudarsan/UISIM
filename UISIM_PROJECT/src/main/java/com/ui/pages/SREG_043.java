@@ -26,7 +26,7 @@ public WebDriver driver;
 	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Submitter Comments may be entered below.']")
 	public WebElement submitterCommentsField;
 	
-	@FindBy(how = How.XPATH, using = "//div[contains(@class,'mat-form-field')]//textarea[contains(@id,'comment')]")
+	@FindBy(how = How.XPATH, using = "//textarea[contains(@id,'comment')]")
 	public WebElement EEWI002CommentsField;
 	
 	@FindBy(how = How.XPATH, using = "//input[@aria-label='Comment']")
