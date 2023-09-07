@@ -12,6 +12,7 @@ import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
+import com.ui.pages.SREG_008;
 import com.ui.pages.SUC_002;
 import com.ui.utilities.COMMON_CONSTANT;
 
@@ -27,6 +28,7 @@ public class EE_02_007_CSR_Agricultural_Joint_Venture extends TestBase {
         AddressPage address = new AddressPage(driver);
         EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
         SUC_002 suc002 = new SUC_002(driver);
+        SREG_008 sreg008 = new SREG_008(driver);
         
         test = report.createTest(
                 "EE.02.007 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Joint Venture' and work items will be created for CSR to review.");
@@ -69,19 +71,19 @@ public class EE_02_007_CSR_Agricultural_Joint_Venture extends TestBase {
 
         empPage.legalNameTextBox.sendKeys("Random Legal Name LLPN");
         commonFuntions.enterTextboxContains("Trade Name or Doing Business As (DBA)", "Other Test");
-        commonFuntions.enterTextboxContains(" Business Phone Number  ", "7687765665");
-        commonFuntions.enterTextboxContains(" Business Fax Number ", "3621231111");
-        commonFuntions.enterTextboxContains("Business Email Address", "test@test.com");
-        commonFuntions.enterPastDate("Enter date of first operations in New York State", 365);
-        commonFuntions.enterPastDate("What is the date of the first payroll which you withheld", 330);
+//        commonFuntions.enterTextboxContains(" Business Phone Number  ", "7687765665");
+//        commonFuntions.enterTextboxContains(" Business Fax Number ", "3621231111");
+//        commonFuntions.enterTextboxContains("Business Email Address", "test@test.com");
+//        commonFuntions.enterPastDate("Enter date of first operations in New York State", 365);
+//        commonFuntions.enterPastDate("What is the date of the first payroll which you withheld", 330);
         commonFuntions.selectRadioQuestions("Do persons work for you whom you do not consider to be your employees?",
                 "No ");
-        empPage.firstCalender_Quater.click();
-        empPage.firstCalender_Quater_Value_2.click();
-        empPage.firstCalender_Year.click();
-        empPage.firstCalender_Year_Value_2023.click();
+//        empPage.firstCalender_Quater.click();
+//        empPage.firstCalender_Quater_Value_2.click();
+//        empPage.firstCalender_Year.click();
+//        empPage.firstCalender_Year_Value_2023.click();
         commonFuntions.screenShot("EmpRegister6", "Pass", "Filling the form");
-        commonFuntions.enterTextboxContains("Total number of covered employees", "20");
+//        commonFuntions.enterTextboxContains("Total number of covered employees", "20");
         commonFuntions.selectRadioQuestions(
                 "If you are not liable under the Unemployment Insurance law for agricultural employment, do you wish to elect voluntary coverage?",
                 "No ");
@@ -92,24 +94,22 @@ public class EE_02_007_CSR_Agricultural_Joint_Venture extends TestBase {
 
         sleep(4000);
         commonFuntions.screenShot("EmpRegister7", "Pass", "Navigated on SREG-008 page and entering the address");
-        commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square");
+        commonFuntions.enterTextboxContains("Address Line 1 ", "123State");
         commonFuntions.enterTextboxContains("City ", "NY");
         commonFuntions.enterTextboxContains("Zip Code", "23432");
         commonFuntions.selectDropdown("County", " Albany ");
-        empPage.individualPrinciple.click();
-        empPage.individualPrinciple_value_other.click();
+        commonFuntions.selectDropdown("Indicate your principal activity or farm production that produces the greatest gross sales.", " Other ");
         commonFuntions.enterTextbox("If Other, provide details", "Test");
-
         commonFuntions.clickButtonContains("Continue ");
         sleep(3000);
-
-        sleep(3000);
         try {
-            commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
-            sleep();
-            commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+            sreg008.firstradiobuttonVerifyAddPopup.click();
+            sleep(2000);
+            empPage.continueButton_popUp.click();
+            sleep(2000);
+            commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
         } catch (Exception e) {
-            System.out.println("Pop up not displayed");
+            System.out.println("pop up not appeared");
         }
 
         /*-----------------SREG-007----------------*/
@@ -118,18 +118,30 @@ public class EE_02_007_CSR_Agricultural_Joint_Venture extends TestBase {
         /*-----------------SREG-004----------------*/
         commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
         sleep(3000);
-        commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 2");
+        commonFuntions.enterTextboxContains("Address Line 1 ", "123State");
         commonFuntions.enterTextboxContains("City ", "NY");
         commonFuntions.enterTextboxContains("Zip Code", "23433");
         commonFuntions.selectDropdown("County", " Albany ");
+        
+        commonFuntions.selectRadioQuestions("Location of Books and Records", "Same as Primary Business Physical Address");
+        commonFuntions.enterTextboxContains(" Telephone Number ", "(243)-254-3456");
+		sleep();
+		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Other");
         commonFuntions.clickButtonContains("Continue ");
+        empPage.notice_potential_AddressLine_1.sendKeys("123state");
+		empPage.notice_potential_City.sendKeys("New York");
+		empPage.notice_potential_Zipcode.sendKeys("34784");
+		commonFuntions.safeJavaScriptClick(empPage.notice_potential_county);
+		commonFuntions.safeJavaScriptClick(empPage.countyValue_Form1);
         sleep(4000);
         try {
-            commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_square);
-            sleep();
-            commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+            sreg008.firstradiobuttonVerifyAddPopup.click();
+            sleep(2000);
+            empPage.continueButton_popUp.click();
+            sleep(2000);
+            commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
         } catch (Exception e) {
-            System.out.println("Pop up not displayed");
+            System.out.println("pop up not appeared");
         }
 
         commonFuntions.waitForLoadingIconToDisappear();
