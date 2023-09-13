@@ -30,15 +30,13 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		// DB Query
 		// Valid ERN
 		Map<String, String> databaseEanResult = cf.database_SelectQuerySingleColumn(
-//				"SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
-				
-				"SELECT * FROM T_employer_account WHERE ORGANIZATION_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7",
+				"SELECT * FROM T_employer_account WHERE EMPLOYER_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
 				"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println(eanValue);
 
 		// Login
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		//cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		sleep(2000);
@@ -58,12 +56,15 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes ");
 		cf.selectTableWithoutId("Business Mailing Address", 6, 1, "Maintain Address Details");
+		cf.screenShot("Loading State", "Fail", "Unable to launch SREG-486");
+		cf.addComment("ee");
 
 		// SREG-700
 		cf.screenShot("Maintain Address/Contact Details", "Pass", "Launched to SREG-486");
 		// cf.selectRadioQuestions("Business Mailing Address", "Same as Primary Business
 		// Physical Address");
 		sleep();
+		cf.selectDropdown("County", " Albany ");
 		cf.selectDropdown("Source", "Correspondence/Email");
 		sleep(2000);
 		cf.selectDropdown("Source Type", "Correspondence/Email");
@@ -72,8 +73,8 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		sleep();
-		cf.logoutAndLogin("ndfjp3", "Admin@123456789");
-		// cf.clickButtonContains("home");
+		//cf.logoutAndLogin("ndfjp3", "Admin@123456789");
+		//cf.clickButtonContains("Home ");
 		cf.clickMenu("Menu");
 		cf.clickMenu("Inquiry");
 		cf.clickMenu("Contribution Inquiry");

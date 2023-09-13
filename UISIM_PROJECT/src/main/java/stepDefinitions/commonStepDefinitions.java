@@ -746,8 +746,9 @@ public class commonStepDefinitions extends TestBase {
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next()) {
 
-			results.put("Fein", rs.getString("FEIN"));
+			//results.put("Fein", rs.getString("FEIN"));
 			results.put("Ean", rs.getString("EAN"));
+			results.put("EmployerName", rs.getString("EMPLOYER_NAME"));
 			break;
 		}
 
