@@ -36,6 +36,9 @@ public class COMMON_CONSTANT {
 	
 	public static final String CSR_USER_6 = "NDBAS4"; 
 	public static final String CSR_USER_6_PASSWORD = "Anay@123456789";
+	
+	public static final String CSR_USER_7 = "ndfaxs";
+	public static final String CSR_USER_7_PASSWORD = "Anoop@123456789";
 
 	
 	public static final String EMP_USER_1 = "manju@2004";
@@ -53,7 +56,7 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_1 = "manju@2004"; // Sole Prop
 	public static final String EMPLOYER_USER_1_PASSWORD = "Manhar2004@1234";
 	
-	public static final String EMPLOYER_USER_2 = "ndhav3"; // 
+	public static final String EMPLOYER_USER_2 = "ndhav3"; // Employer MA Role
 	public static final String EMPLOYER_USER_2_PASSWORD = "uisimtesting@123";
 	
 	public static final String EMPLOYER_USER_3 = "Soleprop123"; // 
@@ -63,7 +66,6 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
-
 	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@123456789"; //Hachiku7533991779
 
 	
@@ -78,9 +80,9 @@ public class COMMON_CONSTANT {
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
-	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	public static final String TPR_USER_1_PASSWORD = "TprUser@123457";
 	
-	public static final String TPR_USER_2 = "thdprty";
+	public static final String TPR_USER_2 = "thdprty"; //inactive
 	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";
 	
 	public static final String TPR_USER_3 = "tpruser121";
@@ -95,6 +97,10 @@ public class COMMON_CONSTANT {
 	
 	public static final String PEO_USER_ADMIN = "Peousersnehal";
 	public static final String PEO_USER_ADMIN_PASSWORD = "Snehal@12345678";
+	
+	//External - Employer credential with MA Role
+	public static final String EXTERNAL_USER = "ndhav3";
+	public static final String EXTERNAL_USER_PASSWORD = "uisimtesting@123";
 
 	/* ********* creds end ********* */
 
@@ -118,5 +124,7 @@ public class COMMON_CONSTANT {
 	
 	public static final String EMPLOYER_USER_MANJU = "manju@2004";
 	public static final String EMPLOYER_PASS_MANJU = "Manhar2004@1234";
+	
+	
 	
 }

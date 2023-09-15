@@ -588,7 +588,8 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//input[@id='address0_attention']")
 	public WebElement attentionCareofFieldPEO003;
 	
-	
+	@FindBy(how = How.XPATH, using = "//*[@id='additionalNamesId1']")
+	public WebElement additionalNamesId;
 	
 	
 

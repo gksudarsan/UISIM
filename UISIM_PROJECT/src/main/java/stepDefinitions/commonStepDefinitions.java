@@ -254,7 +254,7 @@ public class commonStepDefinitions extends TestBase {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::textarea[1]")).sendKeys(value);
 	}
 
-	public void selectDropdown(String xpathParameter, String value) {
+	public void selectDropdown(String xpathParameter, String value) throws Exception {
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
 		try {
@@ -331,18 +331,18 @@ public class commonStepDefinitions extends TestBase {
 
 	public void screenShot(String fileName, String status, String message) throws Exception {
 		String screenshotMode = prop.getProperty("screenshotMode");
-		if(screenshotMode.equalsIgnoreCase("Development")) {
-		screenShot screen = new screenShot();
+		if (screenshotMode.equalsIgnoreCase("Development")) {
+			screenShot screen = new screenShot();
 		String screenShotPath = screenShot.takeSnapShot(driver,
 				"D:\\AutomationFiles\\Screenshots\\"
-						+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
-						+ "_" + fileName + ".png");
-		if (status.equalsIgnoreCase("Pass")) {
-			test.log(Status.PASS, message);
-		}else {
-			test.log(Status.FAIL, message);
-		}
-		test.addScreenCaptureFromPath(screenShotPath);
+					+ new SimpleDateFormat("yyyy_MM_dd_HHmmss").format(Calendar.getInstance().getTime()).toString()
+					+ "_" + fileName + ".png");
+			if (status.equalsIgnoreCase("Pass")) {
+				test.log(Status.PASS, message);
+			} else {
+				test.log(Status.FAIL, message);
+			}
+			test.addScreenCaptureFromPath(screenShotPath);
 		}
 		else {
 		//Screenshot screenshot = new AShot().shootingStrategy(ShootingStrategies.viewportPasting(ShootingStrategies.viewportRetina(100,0,0,2), 1000)).takeScreenshot(driver);
@@ -465,7 +465,7 @@ public class commonStepDefinitions extends TestBase {
 				if (celtext.equals(ssnValue)) {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
 							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue)
-							+ "]//following::*[@class='mat-radio-container']")).click();
+							+ "]//following::*[@class='mdc-radio__native-control']")).click();
 					break label1;
 				}
 			}
@@ -685,6 +685,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 	
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -692,10 +694,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
@@ -710,6 +711,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public Map<String, String> database_SelectQuery(String query) throws SQLException {
 
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 		Map<String, String> results = new HashMap<String, String>();
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -717,10 +720,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 
 		Statement stmt = con.createStatement();
@@ -738,6 +740,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public Map<String, String> database_SelectQuerySingleColumn(String query, String ColumnName) throws SQLException {
 
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 		Map<String, String> results = new HashMap<String, String>();
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -745,10 +749,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 
 		Statement stmt = con.createStatement();
@@ -1299,5 +1302,18 @@ public class commonStepDefinitions extends TestBase {
 		
 			
 		}
+		
+		public void enterTextareaContains(String xpathParameter, String value) {
+			By element = By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::textarea[contains(@class,'mdc-text-field__input')]");
+			final WebDriverWait wait = new WebDriverWait(driver, 10);
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+				forceClearText(ele);
+				ele.sendKeys(value);
+			} catch (final Exception e) {
+			}
+		}
+	
 
+		
 }
