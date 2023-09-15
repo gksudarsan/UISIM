@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
@@ -14,6 +15,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompanyAllTypes extends TestBase {
 	
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can submit employer registration for employer type 'Non-Profit' and legal entity type 'Limited Liability Company (All Types)' and work items will be created for CSR to review.", groups = {COMMON_CONSTANT.REGRESSION})
@@ -351,13 +353,13 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompanyAllTypes 
 		commonFunction.screenShot("EE04001", "Pass", "Successfully launched to SREG-013 page");
 		commonFunction.clickButton("Home ");
 		
-		//commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1 + "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='" + feinValue + "' ORDER BY UPDATED_TS desc)");
+		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1 + "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='" + feinValue + "' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(2000);
 	     
 	    peoPage.queue.click();
 	    Thread.sleep(15000);
-//	    commonFunction.enterTextboxContains("FEIN",feinValue);
-//	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
+	    commonFunction.enterTextboxContains("FEIN",feinValue);
+	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
 	    commonFunction.clickButtonContains("Search");
 	    
 	    
@@ -394,7 +396,7 @@ public class EE_04_001_CSR_Submit_EmpReg_NonProfit_LimitedLiableCompanyAllTypes 
 		peoPage.queue.click();
 	    Thread.sleep(15000);
 	    
-	    commonFunction.enterTextboxContains("FEIN",feinValue);
+	    //commonFunction.enterTextboxContains("FEIN",feinValue);
 	    commonFunction.screenShot("FeinSearch","Pass","FEIN Search");
 	    commonFunction.clickButtonContains("Search");
 	    

@@ -6,20 +6,21 @@ import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
+import com.ui.pages.BillingCollectionLiensLocators;
 import com.ui.pages.FIpage;
 import com.ui.pages.FraudInvestigationLocators;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-public class FI_169_05_001_TPRsubmitFIissue_IssueCategory_ReviewFraudPenaltyProtest_IssueSubcategory_Protest50PercentFraudPenaltyAssessed_systemcreatetask_CSRreview
+public class FI_169_05_002_TPRsubmitFIissue_IssueCategory_ReviewFraudPenaltyProtest_IssueSubcategory_Protest50PercentFraudPenaltyAssessed_systemcreatetask_CSRreview
 		extends TestBase {
 
-	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR can submit an FI Issue when Issue Category is Review Fraud Penalty Protest and Issue Subcategory is 'How do I Protest the fifty percent fraud penalty assessed' and system create task for CSR review ", groups = "Regression")
-	public void FI_169_05_001() throws Exception {
+	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify TPR can submit an FI Issue when Issue Category - SUTA Hit Transfer or UIES Transfer , Issue Subcategory - ''SUTA Hit Transfer\" or \"UIES Transfer\" and system create task for CSR review", groups = "Regression")
+	public void FI_169_05_002() throws Exception {
 
 		test = report.createTest(
-				"FI.169.05.001 : Verify TPR can submit an FI Issue when Issue Category is Review Fraud Penalty Protest and Issue Subcategory is 'How do I Protest the fifty percent fraud penalty assessed' and system create task for CSR review ");
+				"FI.169.05.002 : Verify TPR can submit an FI Issue when Issue Category - SUTA Hit Transfer or UIES Transfer , Issue Subcategory - ''SUTA Hit Transfer\" or \"UIES Transfer\" and system create task for CSR review");
 
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		FraudInvestigationLocators fiLocators = new FraudInvestigationLocators(driver);

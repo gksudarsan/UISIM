@@ -480,7 +480,7 @@ public class commonStepDefinitions extends TestBase {
 				if (celtext.equals(ssnValue)) {
 					driver.findElement(By.xpath("//*[.='" + tableName + "']//following::*[contains(@id ,'dataTable')]["
 							+ tableId + "]/mat-row[" + (row + 1) + "]/mat-cell[" + (columnValue)
-							+ "]//following::*[@class='mat-radio-container']")).click();
+							+ "]//following::*[@class='mdc-radio__native-control']")).click();
 					break label1;
 				}
 			}
@@ -704,6 +704,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public void database_UpdateQuery(String query) throws SQLException, InterruptedException {
 
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -711,10 +713,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 		PreparedStatement p = null;
 		// Statement stmt=con.createStatement();
@@ -729,6 +730,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public Map<String, String> database_SelectQuery(String query) throws SQLException {
 
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 		Map<String, String> results = new HashMap<String, String>();
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -736,19 +739,18 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 
 		Statement stmt = con.createStatement();
 		ResultSet rs = stmt.executeQuery(query);
 		while (rs.next()) {
 
-			//results.put("Fein", rs.getString("FEIN"));
+			results.put("Fein", rs.getString("FEIN"));
 			results.put("Ean", rs.getString("EAN"));
-			results.put("EmployerName", rs.getString("EMPLOYER_NAME"));
+//			results.put("EmployerName", rs.getString("EMPLOYER_NAME"));
 			break;
 		}
 
@@ -758,6 +760,8 @@ public class commonStepDefinitions extends TestBase {
 
 	public Map<String, String> database_SelectQuerySingleColumn(String query, String ColumnName) throws SQLException {
 
+		String dbName = prop.getProperty("dbName");
+		String dbPassword = prop.getProperty("dbPassword");
 		System.out.println(query);
 		Map<String, String> results = new HashMap<String, String>();
 		try {// Load the IBM Data Server Driver for JDBC and SQLJ with DriverManager
@@ -765,10 +769,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
-		String password = "Tata@1234";
-		Connection con = (Connection) DriverManager.getConnection(url, user, password);
+		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
 
 		Statement stmt = con.createStatement();
@@ -1348,6 +1351,17 @@ public class commonStepDefinitions extends TestBase {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void enterTextareaContains(String xpathParameter, String value) {
+		By element = By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::textarea[contains(@class,'mdc-text-field__input')]");
+		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		try {
+			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+			forceClearText(ele);
+			ele.sendKeys(value);
+		} catch (final Exception e) {
+		}
 	}
 
 }

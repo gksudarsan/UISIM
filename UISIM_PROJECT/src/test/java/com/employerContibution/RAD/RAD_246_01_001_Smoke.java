@@ -2,7 +2,6 @@ package com.employerContibution.RAD;
 
 import java.util.Map;
 
-import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -12,20 +11,19 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-@Listeners(com.ui.utilities.ListenerTest.class)
-public class RAD_246_001_Smoke extends TestBase {
+public class RAD_246_01_001_Smoke extends TestBase {
 	
-	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR is able to process contribution return adjustment with Return type 'Amended' and Reason for Adjustment 'Fix Return Type'", groups = {COMMON_CONSTANT.REGRESSION})
-	public void TC_RAD_246_001() throws Exception {
+	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can transfer payment when dues available for multiple quarter/year within the same account.", groups = {COMMON_CONSTANT.REGRESSION})
+	public void TC_RAD_246_01_001() throws Exception {
 		
-		test = report.createTest("RAD.246.001 : Verify CSR is able to process contribution return adjustment with Return type 'Amended' and Reason for Adjustment 'Fix Return Type'");
+		test = report.createTest("RAD.246.01.001 : Verify CSR can transfer payment when dues available for multiple quarter/year within the same account.");
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		ReturnAdjustmentDeterminationLocators radLocators = new ReturnAdjustmentDeterminationLocators(driver);
 		
 		//GET method
 		// valid ERN where employer has existing Bankruptcy record
-		/*Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT\r\n" + 
 				"                            te.EMPLOYER_ID AS EMPLOYER_ID ,\r\n" + 
 				"                            te.EAN AS EAN,\r\n" + 
@@ -58,9 +56,8 @@ public class RAD_246_001_Smoke extends TestBase {
 				"                            AND tmqy.YEAR = '2023'\r\n" + 
 				"                            AND ttrd.REPORT_CATEGORY = 'AMD';",
 				"EAN");
-		String eanValue = databaseEanResult.get("EAN"); */
+		String eanValue = databaseEanResult.get("EAN");
 		
-		String eanValue = "";
 		if ((eanValue == null) || eanValue.isEmpty())
 		{
 			System.out.println("EAN value is null");
@@ -73,25 +70,72 @@ public class RAD_246_001_Smoke extends TestBase {
 		test.log(Status.PASS, "Login with CSR is successful");
 		
 		// ---Menu Click---
-		commonFunction.selectDropdown("Reason for Adjustment", " Fix Return Type ");
-		
-		
 		commonFunction.waitForLoadingIconToDisappear();
 		radLocators.menu.click();
-		commonFunction.ScrollMenu("Contribution Return Adjustment");
-		commonFunction.clickMenu("Contribution Return Adjustment");
-		commonFunction.ScrollMenu("Adjust Contribution Return");
+		commonFunction.ScrollMenu("Contribution/Wage Maintenance");
+		commonFunction.clickMenu("Contribution/Wage Maintenance");
+		commonFunction.ScrollMenu("Transfer Payment / Overpayment");
 		sleep();
-		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Contribution Return Adjustment -> Adjust Contribution Return");
-		commonFunction.clickMenu("Adjust Contribution Return");
+		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Contribution/Wage Maintenance -> Transfer Payment / Overpayment");
+		commonFunction.clickMenu("Transfer Payment / Overpayment");
 		
-		// --- TWR-237 ---
+		// --- TWR-205 ---
 		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.screenShot("RAD246001", "Pass", "Successfully launched Contribution Return Adjustment - Select(TWR-237) page");
-		
+		commonFunction.screenShot("RAD24601001", "Pass", "Successfully launched Transfer Payment / Overpayment(TWR-205) page");
 		commonFunction.clickButtonContains(" Search ");
 		sleep(2000);
-		commonFunction.screenShot("RAD246001", "Pass", "Error on blank Search");
+		commonFunction.screenShot("RAD24601001", "Pass", "Error on blank Search of TWR-205 page");
+		
+		commonFunction.enterTextboxContains("From Employer Registration Number", "1111111");
+		commonFunction.enterTextboxContains("To Employer Registration Number", "1111111");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Invalid ERN entered in TWR-205 page");
+		commonFunction.clickButtonContains(" Search ");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Error on Invalid ERN Search in TWR-205 page");
+		
+		commonFunction.enterTextboxContains("From Employer Registration Number", "");
+		commonFunction.enterTextboxContains("To Employer Registration Number", "");
+		sleep();
+		commonFunction.enterTextboxContains("From Employer Registration Number", "9311967");
+		commonFunction.enterTextboxContains("To Employer Registration Number", "9311967");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Different ERN entered in TWR-205 page");
+		commonFunction.clickButtonContains(" Search ");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Error on No payments/overpayment exist-ERN Search in TWR-205 page");
+		
+		commonFunction.enterTextboxContains("From Employer Registration Number", "");
+		commonFunction.enterTextboxContains("To Employer Registration Number", "");
+		sleep();
+		commonFunction.enterTextboxContains("From Employer Registration Number", eanValue);
+		commonFunction.enterTextboxContains("To Employer Registration Number", eanValue);
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Valid ERN entered in TWR-205 page");
+		commonFunction.clickButtonContains(" Search ");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Data fetched on ERN Search in TWR-205 page");
+		
+		commonFunction.clickButtonContains("Continue ");
+		sleep(2000);
+		commonFunction.screenShot("RAD24601001", "Pass", "Error on Continue in TWR-205 page, without any radio selection");
+		
+		commonFunction.selectRadioInTable("Payment", 1, 1, "");
+		sleep(2000);
+		
+		commonFunction.selectRadioQuestions("Do you want to Suspend the payment? ", "No ");
+		
+		
+		
+		
+		
+		
+		//  Need to update query, provied by Alladi, Rohit.
+		
+		
+		
+		
+		
 		
 		commonFunction.enterTextboxContains("Employer Registration Number", "9311967");
 		commonFunction.selectDropdownEquals("Return Type", " Amended ");
@@ -126,15 +170,6 @@ public class RAD_246_001_Smoke extends TestBase {
 		commonFunction.clickButtonContains(" Search ");
 		sleep(2000);
 		commonFunction.screenShot("RAD246001", "Pass", "Error on invalid ERN Search");
-		
-		try {
-		commonFunction.Label("System Failure");
-		commonFunction.screenShot("RAD246001", "Fail", "System Failure at search");
-		} catch(Exception exception) {
-			exception.printStackTrace();
-		}
-		
-		
 		
 		commonFunction.enterTextboxContains("Employer Registration Number", "");
 		commonFunction.enterTextboxContains("Employer Registration Number", eanValue);

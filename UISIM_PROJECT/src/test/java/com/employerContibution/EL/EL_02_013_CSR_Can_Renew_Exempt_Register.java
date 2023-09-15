@@ -22,9 +22,15 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 	@Test
 	public void EL_02_013() throws Exception {
 
-		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
+		test = report.createTest("EL.02.013 : Verify CSR  can renewal PEO Exempt registration.");
+		
+		test.log(Status.INFO, "Script developed by Abhinab");
+		test.log(Status.INFO, "Script developed by Das, Ankan.");
+		
+		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 
+		//GET method
 //		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
 //				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND COMPANY_TYPE = 'PRI' AND FEIN IS NOT FALSE ORDER BY ORGANIZATION_TYPE DESC",
 //				"FEIN");
@@ -34,115 +40,376 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
 		
-
-		test = report.createTest("EL.02.013 .Verify CSR  can renewal PEO Exempt registration.");
-		test.log(Status.INFO, "FEIN : : "+feinValue);
-		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		test.log(Status.INFO, "FEIN : : "+feinValue);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		sleep(2000);
+		if ((feinValue == null) || feinValue.isEmpty())
+		{
+			System.out.println("FEIN value is null");
+		} else {
+			test.log(Status.PASS, "DB Connected successfully & fetched FEIN is " + feinValue + ".");
+		}
+		
+			
+		// --- Login ---
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_7.toUpperCase(), COMMON_CONSTANT.CSR_USER_7_PASSWORD);
+		test.log(Status.PASS, "Login with CSR is successful");
+		
+		
+		
+		// ---Menu Click---
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFuntions.clickMenu("Menu");
-		sleep();
+		peoPage.menu.click();
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
+		peoPage.menuPeo.click();
+		commonFuntions.ScrollMenu("Renew PEO");
 		sleep();
-		PEOPage.menuPeo.click();
-		sleep();
-		commonFuntions.screenShot("Menu", "Pass", "Register PEO");
+		commonFuntions.screenShot("MenuPage", "Pass", "Navigate to Menu -> Professional Employer Organization(PEO) -> Renew PEO");
 		commonFuntions.clickMenu("Renew PEO");
+		
+		// --- MPEO-001 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Search for PEO(MPEO-001) page");
+		commonFuntions.enterTextboxContains("PEO Name", "test");
 		sleep();
-		Thread.sleep(4000);
-//		 commonFuntions.enterTextbox("PEO Name", peoName);
-//		 commonFuntions.clickOnLink(" ADVANCED SEARCH");
-		PEOPage.advancedSearch.click();
-		Thread.sleep(4000);
-		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
-		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");
-		commonFuntions.clickButtonContains("search");
-		Thread.sleep(4000);
-		commonFuntions.selectRadioWithFeinValue(feinValue);
+		commonFuntions.screenShot("EL02013", "Pass", "Entered PEO Name as 'test'");
+		commonFuntions.clickButtonContains(" Search ");
+		
+		sleep(5000);
+		commonFuntions.selectRadioInTable("Issued", 1, 1, "");
 		sleep();
+		commonFuntions.screenShot("EL02013", "Pass", "Selected radio with status- 'Issued' ");
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(4000);
-		commonFuntions.screenShot("file2", "Pass", "Navigating to next page");
+		
+		//--- for advanced search ---
+//		PEOPage.advancedSearch.click();
+//		Thread.sleep(4000);
+//		commonFuntions.enterTextboxContains("(FEIN)", feinValue);
+//		commonFuntions.screenShot("file1", "Pass", "Searching with FEIN ");
+//		commonFuntions.clickButtonContains("search");
+//		Thread.sleep(4000);
+//		commonFuntions.selectRadioInTable("298106328", 1, 1, "");
+//		sleep();
+//		commonFuntions.screenShot("file1", "Pass", "Selected radio for FEIN ");
+//		commonFuntions.clickButton("Continue ");
+		
+		// --- RPEOE-001 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Renew PEO Registration(RPEOE-001) page");
+		commonFuntions.clickOnLinkAnchorTag(" + ADD ANOTHER NAME ");
+		peoPage.additionalNamesId.sendKeys("exempttest");
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Additional name added to RPEOE-001 page");
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(4000);
-
+		
+//		commonFuntions.waitForLoadingIconToDisappear();
+//		commonFuntions.screenShot("file2", "Pass", "Navigating to next page");
+//		commonFuntions.clickButton("Continue ");
+//		Thread.sleep(4000);
+		
+		// --- PEO-002 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to General Information for PEO Exempt Registration(PEO-002) page");
+		commonFuntions.enterTextboxContains("Fiscal Year Start Date", "");
+		commonFuntions.enterPastDate("Fiscal Year Start Date", 11);
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Updated the Fiscal Year Start Date in PEO-002 page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(4000);
-		/* EAS-001 */
-		commonFuntions.screenShot("file3", "Pass", "Navigated to EAS-001 page");
+		
+//		commonFuntions.clickButton("Save & Continue ");
+//		Thread.sleep(4000);
+		
+		// --- EAS-001 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Unemployment Insurance Account Details(EAS-001) page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(4000);
+		
+//		commonFuntions.screenShot("file3", "Pass", "Navigated to EAS-001 page");
+//		commonFuntions.clickButton("Save & Continue ");
+//		Thread.sleep(4000);
 
 		try {
 			commonFuntions.clickButtonContains(" Yes ");
 		} catch (Exception e) {
 			System.out.println("Pop up not displayed");
 		}
-		Thread.sleep(4000);
-		/* PEO - 003 */
-		commonFuntions.screenShot("file4", "Pass", "Navigating to PEO-003  page");
-		PEOPage.addressLine1.clear();
-		Thread.sleep(4000);
-		PEOPage.addressLine1.sendKeys("Test Address Data");
-		Thread.sleep(4000);
-		commonFuntions.screenShot("file5", "Pass", "Entered the address lane 1");
+
+		
+		// --- PEO-003 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Address Information(PEO-003) page");
+		
+		peoPage.addressLine1.clear();
+		sleep();
+		peoPage.addressLine1.sendKeys("20 Cooper Square");
+		peoPage.addressLine2.clear();
+		peoPage.addressZip.clear();
+		sleep();
+		peoPage.addressZip.sendKeys("10003");
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Edited data in PEO-003 page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(4000);
-		commonFuntions.screenShot("file6", "Pass", "Pop up if displayed");
+		
+//		commonFuntions.screenShot("file4", "Pass", "Navigating to PEO-003  page");
+//		peoPage.addressLine1.clear();
+//		Thread.sleep(4000);
+//		peoPage.addressLine1.sendKeys("Test Address Data");
+//		Thread.sleep(4000);
+//		commonFuntions.screenShot("file5", "Pass", "Entered the address lane 1");
+//		commonFuntions.clickButton("Save & Continue ");
+//		Thread.sleep(4000);
+//		commonFuntions.screenShot("file6", "Pass", "Pop up if displayed");
 		try {
-			PEOPage.uspsAddress.click();
-			sleep();
+			peoPage.uspsAddress.click();
+			sleep(2000);
+			commonFuntions.screenShot("EL02013", "Pass", "Selected USPS address radio from Verify Contact Details");
 			commonFuntions.clickButton("Continue ");
 		} catch (Exception e) {
+			test.log(Status.PASS, "Verify Contact Details - Pop up not displayed");
 			System.out.println("Pop up not displayed");
 		}
 
-		Thread.sleep(4000);
-//		 PEOPage.addressLine1.sendKeys("Test Address Data");
-//		 Thread.sleep(4000);
-//		 commonFuntions.clickButton("Continue ");
-		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(3000);
-		commonFuntions.clickButton("Continue ");
-		Thread.sleep(3000);
-		commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
-		Thread.sleep(4000);
-		commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
-		Thread.sleep(4000);
-		commonFuntions.uploadDoc("Sample.docx");
-		Thread.sleep(4000);
+		// --- PEO-005 ---
+		commonFuntions.waitForLoadingIconToDisappear();
 		try {
+			commonFuntions.Label("Verify Current Additional Address(es) in New York");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Current Additional Address(es) in New York (PEO-005) page");
+			commonFuntions.clickButton("Continue ");
+		}
+		 catch(Exception exception) {
+			test.log(Status.PASS, "PEO-005 page not reached"); 
+		 }
+		
+//		Thread.sleep(4000);
+//		PEOPage.addressLine1.sendKeys("Test Address Data");
+//		Thread.sleep(4000);
+//		commonFuntions.clickButton("Continue ");
+//		commonFuntions.clickButton("Save & Continue ");
+		
+		// --- PEOE-004 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Exemption Submission Instructions(PEOE-004) page");
+		commonFuntions.clickButton("Save & Continue ");
+		
+//		Thread.sleep(3000);
+//		commonFuntions.clickButton("Continue ");
+		
+		// --- PEO-006 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Prior Address(es) in New York");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Prior Address(es) in New York(PEO-006) page");
+			commonFuntions.clickButton("Save & Continue ");
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-006 page not reached");
+//			test.log(Status.PASS, "PEO-006 page not reached"); 
+		 }
+		
+		// --- PEO-007 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Verify Prior Address(es) in New York");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Prior Address(es) in New York(PEO-007) page");
+			commonFuntions.clickButton("Continue ");
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-007 page not reached");
+//			test.log(Status.PASS, "PEO-007 page not reached"); 
+		 }
+		
+		// --- PEO-008 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Ownership Information - privately or closely held company");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Ownership Information - privately or closely held company(PEO-008) page");
+			commonFuntions.clickButton("Save & Continue ");
+			try {
+				peoPage.uspsAddress.click();
+				sleep(2000);
+				commonFuntions.screenShot("EL02013", "Pass", "Selected USPS address radio from Verify Contact Details");
+				commonFuntions.clickButton("Continue ");
+	
+			} catch (Exception e) {
+				test.log(Status.PASS, "Verify Contact Details - Pop up not displayed");
+				System.out.println("Pop up not displayed");
+			}
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-008 page not reached");
+//					test.log(Status.PASS, "PEO-007 page not reached"); 
+		 }
+		
+		// --- PEO-009 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Verify Ownership Information");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Ownership Information(PEO-009) page");
+			commonFuntions.clickButton("Continue ");
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-009 page not reached");
+//					test.log(Status.PASS, "PEO-007 page not reached"); 
+		 }
+		
+		// --- PEO-010 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Prior Ownership Information");
+			peoPage.addressLine1.clear();
+			peoPage.addressLine1.sendKeys("Metrotech Center");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Prior Ownership Information(PEO-010) page");
+			commonFuntions.clickButton("Save & Continue ");
+			try {
+				peoPage.uspsAddress.click();
+				sleep(2000);
+				commonFuntions.screenShot("EL02013", "Pass", "Selected USPS address radio from Verify Contact Details");
+				commonFuntions.clickButton("Continue ");
+			} catch (Exception e) {
+				test.log(Status.PASS, "Verify Contact Details - Pop up not displayed");
+				System.out.println("Pop up not displayed");
+			}
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-010 page not reached");
+		 }
+		
+		// --- PEO-011 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Verify Prior Ownership Information");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Prior Ownership Information(PEO-011) page");
+			commonFuntions.clickButton("Continue ");
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-011 page not reached");
+		 }
+		
+		// --- PEO-012 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Ownership Information - Publicly Traded Company");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Ownership Information - Publicly Traded Company(PEO-012) page");
+			peoPage.addressLine1.sendKeys("47 W 13th St");
+			commonFuntions.clickButton("Save & Continue ");
+			try {
+				peoPage.uspsAddress.click();
+				sleep(2000);
+				commonFuntions.screenShot("EL02013", "Pass", "Selected USPS address radio from Verify Contact Details");
+				commonFuntions.clickButton("Continue ");
+	
+			} catch (Exception e) {
+				test.log(Status.PASS, "Verify Contact Details - Pop up not displayed");
+				System.out.println("Pop up not displayed");
+			}
+			
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-012 page not reached");
+//			test.log(Status.PASS, "PEO-012 page not reached"); 
+		 }
+		
+		// --- PEO-013 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.Label("Verify Public Ownership Information");
+			commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Public Ownership Information(PEO-013) page");
+			commonFuntions.clickButton("Continue ");
+		}
+		 catch(Exception exception) {
+			System.out.println("PEO-013 page not reached");
+		 }
+		
+		// --- PEO-014 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Submission Instructions and Responsibilities(PEO-014) page");
+		commonFuntions.clickButton("Continue ");
+		
+		
+		// --- SREG-006 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Upload Documents(SREG-006) page");
+		commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
+		Thread.sleep(2000);
+		commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
+		Thread.sleep(2000);
+		commonFuntions.uploadDoc("Sample.docx");
+		Thread.sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully Uploaded document in SREG-006 page");
+		
+//		Thread.sleep(3000);
+//		commonFuntions.selectCheckbox("Authorization to do business in NYS from the NYS");
+//		Thread.sleep(4000);
+//		commonFuntions.selectLink("Authorization to do business in NYS from the NYS", "Browse");
+//		Thread.sleep(4000);
+//		commonFuntions.uploadDoc("Sample.docx");
+//		Thread.sleep(4000);
+		
+		try {
+			commonFuntions.screenShot("EL02013", "Pass", "Click Yes on Upload pop-up");
 			commonFuntions.clickButtonContains(" Yes ");
 		} catch (Exception e) {
+			commonFuntions.screenShot("EL02013", "Pass", "Click on Upload button");
+			test.log(Status.PASS, "Upload Pop up not displayed");
 			System.out.println("Pop up not displayed");
 		}
-		commonFuntions.clickButtonContains("Upload");
+		commonFuntions.clickButtonContains(" Upload ");
 		Thread.sleep(10000);
 		commonFuntions.clickButton("Save & Continue ");
+		
+		// --- PEO-015 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Upload Client List(PEO-015 ) page");
 		Thread.sleep(4000);
 		commonFuntions.clickButtonContains("Choose File");
 		Thread.sleep(3000);
-		commonFuntions.uploadDoc("PEO Client List template_TestData2");
+		commonFuntions.uploadDoc("PEOClientListTemplate.xls");
 		Thread.sleep(3000);
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully uploaded Client List in PEO-015 page");
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(3000);
+		
+		// --- LEAS-012 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Verify Client List(LEAS-012) page");
 		commonFuntions.clickButton("Continue ");
-		Thread.sleep(3000);
+		
+//		Thread.sleep(3000);
+//		commonFuntions.clickButton("Continue ");
+		
+		// --- PEOR-001 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to PEO Details Review screen(PEOR-001) page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(3000);
-		commonFuntions.enterTextboxContains("Enter name of Officer,", "Test_Data");
-		Thread.sleep(3000);
+		
+//		Thread.sleep(3000);
+//		commonFuntions.clickButton("Save & Continue ");
+		
+		// --- PEO-016 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Declaration(PEO-016) page");
 		commonFuntions.clickButton("Save & Continue ");
-		Thread.sleep(3000);
-		commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
+		
+//		Thread.sleep(3000);
+//		commonFuntions.enterTextboxContains("Enter name of Officer,", "Test_Data");
+//		Thread.sleep(3000);
+//		commonFuntions.clickButton("Save & Continue ");
+		
+		// --- PEO-017 ---
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Statement Of Acknowledgement(PEO-017) page");
 		commonFuntions.clickButton("Accept & Submit ");
+		
+//		Thread.sleep(3000);
+//		commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
+//		commonFuntions.clickButton("Accept & Submit ");
+		
+		commonFuntions.Label("System Failure");
+		
+		commonFuntions.screenShot("EL02013", "Fail", "Unable to submit due to System Failure");
+		
+		
+		
 		Thread.sleep(3000);
 		commonFuntions.clickButtonContains("Home ");
 		Thread.sleep(5000);
-		PEOPage.queue.click();
+		peoPage.queue.click();
 		Thread.sleep(15000);
 		commonFuntions.enterTextboxContains("FEIN", feinValue);
 		commonFuntions.screenShot("FeinSearch", "Pass", "feinSearch");
@@ -176,7 +443,7 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		commonFuntions.clickButton("Save & Continue ");
 		Thread.sleep(3000);
 		try {
-			PEOPage.uspsAddress.click();
+			peoPage.uspsAddress.click();
 		} catch (Exception e) {
 			System.out.println("Pop up not displayed");
 		}

@@ -36,7 +36,7 @@ public class ReturnAdjustmentDeterminationLocators extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[text()=' Unable to locate Employer']")
 	public WebElement unableToLocateEmployer;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'dataTableId002_')]//preceding::*[@class='mat-checkbox-inner-container'][1]")
+	@FindBy(how = How.XPATH, using = "//*[contains(@id, 'dataTableId002_')]//preceding::*[@class='mdc-checkbox__native-control'][1]")
 	public WebElement dataTableId002_checkbox;
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' Outside the Statute']")
