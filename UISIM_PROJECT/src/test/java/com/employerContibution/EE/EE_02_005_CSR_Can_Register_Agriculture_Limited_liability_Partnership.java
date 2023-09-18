@@ -17,6 +17,7 @@ import com.ui.pages.SREG_008;
 import com.ui.pages.SREG_043;
 import com.ui.pages.SREG_084;
 import com.ui.pages.SUC_002;
+import com.ui.pages.employerManagement;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -27,6 +28,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 	public void EE_02_005() throws Exception {
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
+		employerManagement empmanagementPage = new employerManagement(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage address = new AddressPage(driver);
 		SREG_043 sreg043 = new SREG_043(driver);
@@ -55,9 +57,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		sleep(1000);
 		commonFuntions.screenShot("EmpRegister2", "Pass", "Navigated to __ Page");
 		commonFuntions.selectDropdown("Employer Type", " Agricultural ");
-//		sleep();
+		sleep();
 
-//		sleep();
 		/*----------------FEIN----------------*/
 		// Map<String, String> output =
 		// commonFuntions.database_SelectQuerySingleColumn("SELECT FEIN FROM
@@ -158,7 +159,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		// "randomCareOf"
 		// + commonFuntions.createRandomInteger(10, 99));
 
-		sreg004.agadCareOfBtn.sendKeys(careOfValue);
+		sreg004.agadCareOfBtn.sendKeys(careOfValue); //Required as per the new changes in TC
 
 		sreg004.addresslinelist.get(3).sendKeys("123state");
 		sreg004.citylist.get(3).sendKeys("albany");
@@ -214,7 +215,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		Map<String, String> ENTITY_NAMEOutput = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB' AND REGISTRATION_STATUS ='C' ORDER BY UPDATED_TS ASC;",
 				"ENTITY_NAME");
-		String ENTITY_NAMEValue = FEINOutput.get("ENTITY_NAME");
+		String ENTITY_NAMEValue = ENTITY_NAMEOutput.get("ENTITY_NAME");
 		System.out.println(ENTITY_NAMEValue);
 		test.log(Status.INFO, "FEIN used on SREG-011 page : : " + ENTITY_NAMEValue);
 
@@ -228,7 +229,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		/*-----------------Find Valid ERN----------------*/
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue2);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ERN);
-		commonFuntions.enterTextboxContains("Legal Name of Business", ENTITY_NAMEValue);
+		//commonFuntions.enterTextboxContains("Legal Name of Business", ENTITY_NAMEValue);
+		empPage.legalNameOfBusinessTextBox.sendKeys(ENTITY_NAMEValue);
 
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 4");
 		commonFuntions.enterTextboxContains("City ", "NY");
@@ -296,7 +298,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		/*-----------------SREG-012----------------*/
 		/*-----------------Prior FEIN----------------*/
 		Map<String, String> priorFEINOutput = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC;", "FEIN");
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS ASC;", "FEIN");
 		String priorFein = priorFEINOutput.get("FEIN");
 		System.out.println(priorFein);
 		test.log(Status.INFO, "Prior FEIN : : " + priorFein);
@@ -305,7 +307,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		// REGISTRATION_STATUS ='C' ORDER BY UPDATED_TS DESC;
 		/*-----------------Prior FEIN----------------*/
 		Map<String, String> priorERNOutput = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea ORDER BY UPDATED_TS DESC;", "EAN");
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND FEIN IS NOT NULL ORDER BY UPDATED_TS ASC;", "EAN");
 		String priorEan = priorERNOutput.get("EAN");
 		System.out.println(priorEan);
 		test.log(Status.INFO, "Prior ERN : : " + priorEan);
@@ -316,9 +318,9 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes ");
 		commonFuntions.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", priorFein);
 		commonFuntions.enterTextboxContains("Prior Employer Registration Number", priorEan);
-		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Date of Legal Entity change");
+		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Date of Legal Entity change");
 //		commonFuntions.enterTextboxContains("Date of Legal Entity change", "04032023");
-		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Date of Notification");
+		commonFuntions.enterPastDate("Date of Notification",7);
 //		commonFuntions.enterTextboxContains("Date of Notification", "04042023");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -358,7 +360,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.enterTextboxContains("SSN", ssn);
 		commonFuntions.enterTextboxContains("First Name","FNWRONG");
 		commonFuntions.enterTextboxContains("Last Name", "LN");
-		commonFuntions.selectDropdown("Title", " Treasurer ");
+		commonFuntions.selectDropdown("Title", " Partner ");
 
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 6");
 		commonFuntions.enterTextboxContains("City ", "NY");
@@ -394,9 +396,11 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
 		commonFuntions.selectCheckbox("I accept");
 		commonFuntions.clickButtonContains("Submit ");
-//		sleep(15000);
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		/*-----------------SREG-013----------------*/
 		commonFuntions.clickButtonContains("Home ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		/*commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
 				+ COMMON_CONSTANT.CSR_USER_1
@@ -411,22 +415,29 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test.info("CSR Navigate to Main Menu -> MyQ");
 		Thread.sleep(5000);
 		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(3000);
 		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 
+		commonFuntions.forceClearTextWithElement("Employer Registration Number");
+		sleep(1000);
 		commonFuntions.enterTextbox("FEIN", feinValue);
 		commonFuntions.clickButton(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Searched the FEIN and click on review employer type item");
 		sleep();
 		empPage.review_employer_My_Q.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 //		sleep(3000);
 		/*-----------------WF-091----------------*/
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to WF-091 page and click on Open Work Item");
 		commonFuntions.clickButton("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
 		commonFuntions.screenShot("EmpRegister18", "Pass", "Entering comment and click on submit");
 		sreg043.EEWI002CommentsField.sendKeys("Review em comment");
 		commonFuntions.clickButtonContains("Submit ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
 
@@ -434,6 +445,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		Assert.assertTrue(suc002.screenIdText.isDisplayed());
 		Assert.assertTrue(suc002.reviewEmployeerTypeSuccessmsg.isDisplayed());
 		suc002.homeButton.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(5000);
 		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
 
@@ -447,20 +459,34 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test.info("Step: 35 -- ");
 		Thread.sleep(2000);
 		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(3000);
 		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 
 		test.info("Step: 36 -- DOL-DTF");
+		commonFuntions.forceClearTextWithElement("Employer Registration Number");
+		sleep(2000);
+		commonFuntions.enterTextboxContains("Work Item Description Free Text", "DOL");sleep();
+		//PEOPage.workItemDescriptionFieldWF01.sendKeys("DOL");
+		commonFuntions.clickButton(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
-		// sreg084.dolDTFlink.click();
+		commonFuntions.clickOnLinkfirstItem("DOL/DTF Discrepancy Task");
 		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
 		Thread.sleep(2000);
 		commonFuntions.clickButtonContains("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
 		Thread.sleep(2000);
 
 		test.info("Step: 38 -- DOL-DTF");
+		String feinValueRandom = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
+		System.out.println(feinValueRandom);
+		commonFuntions.forceClearTextWithElement("Federal Employer Identification Number (FEIN)");
+		sleep(2000);
+		empmanagementPage.feinEEWI005.sendKeys(feinValueRandom);
+		
 		commonFuntions.selectRadioQuestions(
 				"If you are not liable under the Unemployment Insurance law for agricultural employment, do you wish to elect voluntary coverage?",
 				"No ");
@@ -471,11 +497,13 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		sleep(2000);
 		sreg043.EEWI002CommentsField.sendKeys("Dol DTF Cm");
 		commonFuntions.clickButtonContains("Submit ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
 		//
 		Assert.assertTrue(suc002.screenIdText.isDisplayed());
 		suc002.homeButton.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(5000);
 		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
 		/*commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
@@ -488,36 +516,43 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test.info("Step: 40 -- ");
 		Thread.sleep(2000);
 		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(3000);
 		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 
 		test.info("Step: 41 -- ");
-		commonFuntions.enterTextboxContains("FEIN", feinValue);
+		commonFuntions.forceClearTextWithElement("Employer Registration Number");
+		sleep(1000);
+		commonFuntions.enterTextboxContains("FEIN", feinValueRandom);
 		commonFuntions.clickButtonContains(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 
 		test.info("Step: 42 -- ");
-		sreg084.verifyTransferlink.click();
+		//sreg084.verifyTransferlink.click();
 		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
 		Thread.sleep(2000);
 
 		commonFuntions.clickButtonContains("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
-		commonFuntions.screenShot("Review Employer Type Task Details", "Pass", "EEWI-002 screen is visible");
+		commonFuntions.screenShot("Potential duplicate task", "Pass", "EEWI-002 screen is visible");
 		Thread.sleep(2000);
 
 		test.info("Step: 43 -- ");
-		commonFuntions.selectDropdown("Decision", " Continue with Transfer ");
+		//commonFuntions.selectDropdown("Decision", " Continue with Transfer ");
 		Thread.sleep(2000);
-		commonFuntions.selectCheckbox("Transfer Business Rules");
-		commonFuntions.enterTextboxContains("Comment", "Ok");
+		//commonFuntions.selectCheckbox("Transfer Business Rules");
+		//commonFuntions.enterTextboxContains("Comment", "Ok");
 		commonFuntions.clickButtonContains("Submit ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
 		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
 
 		test.info("Step: 44 -- ");
 		Assert.assertTrue(suc002.screenIdText.isDisplayed());
 		suc002.homeButton.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(5000);
 		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
 		/*commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
@@ -530,13 +565,65 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test.info("Step: 45 -- ");
 		Thread.sleep(2000);
 		PEOPage.queue.click();
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(3000);
 		commonFuntions.screenShot("Business Acquisition", "Pass", "WF-001 screen is visible");
 
 		test.info("Step: 46 -- ");
-		commonFuntions.enterTextboxContains("FEIN", feinValue);
+		commonFuntions.forceClearTextWithElement("Employer Registration Number");
+		sleep(1000);
+		commonFuntions.enterTextboxContains("FEIN", feinValueRandom);
 		commonFuntions.clickButtonContains(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
 		Thread.sleep(2000);
+		
+		//open work item
+		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
+		Thread.sleep(2000);
+
+		commonFuntions.clickButtonContains("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Validate Partial Transfer Failed Rules Task Details", "Pass", "EEWI-002 screen is visible");
+		Thread.sleep(2000);
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+
+		test.info("Step:  -- ");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		suc002.homeButton.click();
+		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		
+		test.info("Step:  -- ");
+		commonFuntions.forceClearTextWithElement("Employer Registration Number");
+		sleep(1000);
+		commonFuntions.enterTextboxContains("FEIN", feinValueRandom);
+		commonFuntions.clickButtonContains(" Search ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(2000);
+		
+		//open work item
+		commonFuntions.screenShot("Work Item Details", "Pass", "WF-091 screen is visible");
+		Thread.sleep(2000);
+
+		commonFuntions.clickButtonContains("Open Work Item ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Create Transfer Letter Task Details", "Pass", "EEWI-002 screen is visible");
+		Thread.sleep(2000);
+		Thread.sleep(2000);
+		commonFuntions.screenShot("Work Item Completed.", "Pass", "SUC-002 screen is visible");
+
+		test.info("Step:  -- ");
+		Assert.assertTrue(suc002.screenIdText.isDisplayed());
+		suc002.homeButton.click();
+		commonFuntions.waitForLoadingIconToDisappear();
+		Thread.sleep(5000);
+		commonFuntions.screenShot("Homepage", "Pass", "Homepage screen is visible");
+		
+		
 
 	}
 }

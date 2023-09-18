@@ -218,7 +218,8 @@ public class commonStepDefinitions extends TestBase {
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			ele.click();
+			//ele.click();
+			safeJavaScriptClick(ele);
 		} catch (final Exception e) {
 		}
 	}
@@ -769,7 +770,9 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+
 		String url = "jdbc:db2://100.96.3.201:55000/"+dbName+":currentSchema=LROUIM;sslConnection=true;";
+
 		String user = prop.getProperty("databaseUserId");
 		Connection con = (Connection) DriverManager.getConnection(url, user, dbPassword);
 		System.out.println("Connected Successfully");
@@ -1353,6 +1356,7 @@ public class commonStepDefinitions extends TestBase {
 
 	}
 	
+
 	public void enterTextareaContains(String xpathParameter, String value) {
 		By element = By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::textarea[contains(@class,'mdc-text-field__input')]");
 		final WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -1362,6 +1366,23 @@ public class commonStepDefinitions extends TestBase {
 			ele.sendKeys(value);
 		} catch (final Exception e) {
 		}
+	}
+
+	public String createRandomString() {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		
+		return randomString;
+		
+
 	}
 
 }

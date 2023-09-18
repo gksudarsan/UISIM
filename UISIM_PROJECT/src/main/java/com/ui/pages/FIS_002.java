@@ -71,6 +71,8 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
     @FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Name')]//following::input[@aria-label='Name']")
    	public WebElement fis003NameField;
     
+    @FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Is this protest a hearing request ?')]")
+   	public WebElement isThisRequestCheckbox;
   
     
   

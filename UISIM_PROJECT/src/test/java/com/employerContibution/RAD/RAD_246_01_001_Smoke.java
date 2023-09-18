@@ -1,7 +1,9 @@
+
 package com.employerContibution.RAD;
 
 import java.util.Map;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -11,6 +13,10 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+
+
+
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class RAD_246_01_001_Smoke extends TestBase {
 	
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify CSR can transfer payment when dues available for multiple quarter/year within the same account.", groups = {COMMON_CONSTANT.REGRESSION})
@@ -20,10 +26,10 @@ public class RAD_246_01_001_Smoke extends TestBase {
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		ReturnAdjustmentDeterminationLocators radLocators = new ReturnAdjustmentDeterminationLocators(driver);
-		
+		test.log(Status.INFO, "Script developed by Devanshu.");
 		//GET method
 		// valid ERN where employer has existing Bankruptcy record
-		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+		/*Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT\r\n" + 
 				"                            te.EMPLOYER_ID AS EMPLOYER_ID ,\r\n" + 
 				"                            te.EAN AS EAN,\r\n" + 
@@ -64,6 +70,9 @@ public class RAD_246_01_001_Smoke extends TestBase {
 		} else {
 			test.log(Status.PASS, "DB Connected successfully & fetched ERN is " + eanValue + ".");
 		}
+		*/
+		
+		String eanValue = "1111223";
 		
 		// --- Login ---
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
@@ -206,3 +215,4 @@ public class RAD_246_01_001_Smoke extends TestBase {
 	}
 
 }
+

@@ -23,6 +23,10 @@ public class RAD_246_001_Smoke extends TestBase {
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		ReturnAdjustmentDeterminationLocators radLocators = new ReturnAdjustmentDeterminationLocators(driver);
 		
+
+
+		test.log(Status.INFO, "Script developed by Das, Ankan.");
+
 		//GET method
 		// valid ERN where employer has existing Bankruptcy record
 		/*Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
