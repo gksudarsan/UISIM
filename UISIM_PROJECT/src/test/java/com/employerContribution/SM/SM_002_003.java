@@ -28,7 +28,7 @@ public class SM_002_003 extends TestBase {
 		test = report.createTest(
 				"SM.002.003-Verify that the system does not display a suggestion and the claimant will be able to write and send a message.(Suggestion Type N)");
 
-		commonFuntions.login(COMMON_CONSTANT.CLAIMENT_USER1.toUpperCase(), COMMON_CONSTANT.CLAIMENT_USER_PASSWORD1);
+		commonFuntions.login(COMMON_CONSTANT.CLAIMENT_USER2.toUpperCase(), COMMON_CONSTANT.CLAIMENT_USER_PASSWORD2);
 		Thread.sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 

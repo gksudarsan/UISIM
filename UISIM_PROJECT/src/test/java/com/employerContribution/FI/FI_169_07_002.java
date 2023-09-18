@@ -37,7 +37,7 @@ public class FI_169_07_002 extends TestBase {
 		test = report.createTest(
 				"FI.169.07.002- 'Verify TPR can submit a IA198.P Failure to File Protest form online, task 'Failure to File Penalty Protest' will create for CSR to review and close task with action taken");
 
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		test.info("Step: 3 -- ");
@@ -53,9 +53,18 @@ public class FI_169_07_002 extends TestBase {
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
 		commonFuntions.screenShot("Write Message - Enter ERN", "Pass", "SM-100 screen is displayed");
+		
+		Map<String, String> ERNOutput = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n"
+						+ "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n"
+						+ "THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'tpruser@123') AND ASSOCIATION_STATUS = 'ACTIVE');",
+				"EAN");
+		String ernNum = ERNOutput.get("EAN");
+		System.out.println(ernNum);
+		test.log(Status.INFO, "Prior ERN : : " + ernNum);
 
 		test.info("Step: 4 -- ");
-		commonFuntions.enterTextboxContains("Write Message - Enter ERN", "0847711"); // 0847711 , 5454645 , 5454645
+		commonFuntions.enterTextboxContains("Write Message - Enter ERN", ernNum); // 0847711 , 5454645 , 5454645
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();

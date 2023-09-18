@@ -218,7 +218,8 @@ public class commonStepDefinitions extends TestBase {
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
-			ele.click();
+			//ele.click();
+			safeJavaScriptClick(ele);
 		} catch (final Exception e) {
 		}
 	}
@@ -764,7 +765,7 @@ public class commonStepDefinitions extends TestBase {
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
 		}
-		String url = "jdbc:db2://100.96.3.201:55000/NYUISTDB:currentSchema=LROUIM;sslConnection=true;";
+		String url = "jdbc:db2://100.96.3.201:55000/NYUIFTDB:currentSchema=LROUIM;sslConnection=true;";
 		String user = prop.getProperty("databaseUserId");
 		String password = "Tata@1234";
 		Connection con = (Connection) DriverManager.getConnection(url, user, password);
@@ -1347,6 +1348,22 @@ public class commonStepDefinitions extends TestBase {
 			e.printStackTrace();
 		}
 
+	}
+	
+	public String createRandomString() {
+		String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		StringBuilder sb = new StringBuilder();
+		Random random = new Random();
+		for (int i = 0; i < 5; i++) {
+			int index = (int) (alphabet.length() * Math.random());
+			char randomChar = alphabet.charAt(index);
+			sb.append(randomChar);
+		}
+		String randomString = sb.toString();
+		System.out.println(randomString);
+		
+		return randomString;
+		
 	}
 
 }

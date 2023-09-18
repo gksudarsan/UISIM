@@ -699,4 +699,8 @@ public class employerManagement extends TestBase
 	
 	@FindBy(how = How.XPATH, using = "//button[@id='CIN-999access.continue']")
 	public WebElement cin999continueButton;
+	
+	@FindBy(how = How.XPATH, using = "//input[@aria-label='Federal Employer Identification Number (FEIN)']")
+	public WebElement feinEEWI005;
+	
 }
