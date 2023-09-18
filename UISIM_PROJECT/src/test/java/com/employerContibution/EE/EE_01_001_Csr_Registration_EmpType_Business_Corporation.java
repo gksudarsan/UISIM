@@ -4,6 +4,7 @@ import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -16,6 +17,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EE_01_001_Csr_Registration_EmpType_Business_Corporation extends TestBase{
 
 	@Test()
@@ -31,7 +33,7 @@ public class EE_01_001_Csr_Registration_EmpType_Business_Corporation extends Tes
 
 		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		commonFunction.clickMenu("menu");
+		commonFunction.clickMenu("Menu");
 		commonFunction.ScrollMenu("Employer Registration");
 	    commonFunction.clickMenu("Employer Registration");
 		commonFunction.ScrollMenu("Register Employer");
@@ -102,61 +104,61 @@ public class EE_01_001_Csr_Registration_EmpType_Business_Corporation extends Tes
         commonFunction.screenShot("EmpRegister3", "Pass", "Details entered and clicked on CONTINUE button");
         commonFunction.clickButton("Continue ");
         sleep();
+        commonFunction.waitForLoadingIconToDisappear();
         
-        //---SREG-008---
-        commonFunction.screenShot("EmpRegister4", "Pass", "Sucessfully launched to SREG-008 page page");
-        commonFunction.clickButton(" Finish Later ");
-		commonFunction.clickButton(" Yes ");
-		sleep();
+        //---SREG-008---(design changed as per design doc)
+        //commonFunction.screenShot("EmpRegister4", "Pass", "Sucessfully launched to SREG-008 page page");
+        //commonFunction.clickButton(" Finish Later ");
+		//commonFunction.clickButton(" Yes ");
+		//sleep();
 		
 		//---Home---
-		commonFunction.clickMenu("menu");
-		commonFunction.ScrollMenu("Employer Registration");
-	    commonFunction.clickMenu("Employer Registration");
-		commonFunction.ScrollMenu("Incomplete Registration");
-		commonFunction.clickMenu("Incomplete Registration");
+		//commonFunction.clickMenu("Menu");
+		//commonFunction.ScrollMenu("Employer Registration");
+	    //commonFunction.clickMenu("Employer Registration");
+		//commonFunction.ScrollMenu("Incomplete Registration");
+		//commonFunction.clickMenu("Incomplete Registration");
 		
 		//---SREG-101---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-101 page");
-		commonFunction.enterTextboxContains("Legal Name of Business", "Laksh Private Limited");
-		commonFunction.clickButton(" Search ");
-		commonFunction.clickOnLink("LAKSH PRIVATE LIMITED");
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-101 page");
+		//commonFunction.enterTextboxContains("Legal Name of Business", "Laksh Private Limited");
+		//commonFunction.clickButton(" Search ");
+		//commonFunction.clickOnLink("LAKSH PRIVATE LIMITED");
 		
 		//---SREG-001---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-001 page");
-		commonFunction.clickButton("Continue ");
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-001 page");
+		//commonFunction.clickButton("Continue ");
 		
 		//---SREG-025---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-025 page");
-		commonFunction.clickButton("Continue ");
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-025 page");
+		//commonFunction.clickButton("Continue ");
         
 		//--- SREG-003 ---
-      	commonFunction.screenShot("EmpRegister4", "Pass", "Launched Employer Entity Information(SREG-003) page");
-		commonFunction.clickButton("Continue ");
-		sleep(2000);
+      	//commonFunction.screenShot("EmpRegister4", "Pass", "Launched Employer Entity Information(SREG-003) page");
+		//commonFunction.clickButton("Continue ");
+		//sleep(2000);
 		
 		// --- SREG-008 ---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
-		commonFunction.clickButton("Continue ");
-		sleep(2000);
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
+		//commonFunction.clickButton("Continue ");
+		//sleep(2000);
 
 		//---SREG-004---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-004 page");
-		commonFunction.clickButton("Continue ");
-		sleep(2000);
-		commonFunction.screenShot("EmpRegister3", "Pass", "Message enter Required field  on SREG-004 page");
-		commonFunction.clickButtonContains("Previous ");
-		sleep(2000);
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-004 page");
+		//commonFunction.clickButton("Continue ");
+		//sleep(2000);
+		//commonFunction.screenShot("EmpRegister3", "Pass", "Message enter Required field  on SREG-004 page");
+		//commonFunction.clickButtonContains("Previous ");
+		//sleep(2000);
 		
 		//---SREG-008---
-		commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
+		//commonFunction.screenShot("EE01008", "Pass", "Sucessfully launched to SREG-008 page");
 		commonFunction.enterTextboxContains("Address Line 2 ", "13th Street");
 		commonFunction.selectDropdown("Principal Business Activity at this location in New York State"," Manufacturing ");
-		commonFunction.clickButton("Continue ");
-		sleep();
+		//commonFunction.clickButton("Continue ");
+		//sleep();
 		commonFunction.screenShot("EE01008", "Pass", "Message for fill details to SREG-008 page");
 		commonFunction.enterTextboxContains("Address Line 1 ", "13th Street");
-		commonFunction.enterTextboxContains("Address Line 2 ", "s");
 		commonFunction.enterTextboxContains("City ", "New York");
 		commonFunction.enterTextboxContains("Zip Code", "10011");
 		sleep();
@@ -171,6 +173,7 @@ public class EE_01_001_Csr_Registration_EmpType_Business_Corporation extends Tes
 		commonFunction.screenShot("EE01008", "Pass", "Enter the details on SREG-008 and click continue");
 		commonFunction.clickButton("Continue ");
 		sleep(2000);
+		
 		commonFunction.screenShot("EmpRegister3", "Pass", "Message enter Required field  If Other, provide details");
 		commonFunction.enterTextboxContains("If Other, provide details","Marketing");
 		commonFunction.clickButton("Continue ");

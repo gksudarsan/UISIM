@@ -31,7 +31,7 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		// commonFuntions.clickMenu("Menu");
+		//commonFuntions.clickMenu("Menu");
 		AddPage.menu.click();
 		sleep();
 		commonFuntions.ScrollMenu("Employer Registration");
@@ -43,36 +43,38 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.clickButtonContains("Continue ");
 		sleep(2000);
 		commonFuntions.selectDropdown("Employer Type", "Business");
-		// String feinValue = prop.getProperty("FeinPresentInDolNotInDtf");
-		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C' AND ACCOUNT_STATUS='LIAB' AND ORGANIZATION_TYPE = 'BUSI' ORDER BY UPDATED_TS DESC",
-				"FEIN");
-		String feinValue = databaseResults.get("FEIN");
+		String feinValue = prop.getProperty("FeinPresentInDolNotInDtf");
+		
+		//Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C' AND ACCOUNT_STATUS='LIAB' AND ORGANIZATION_TYPE = 'BUSI' ORDER BY UPDATED_TS DESC",
+		//		"FEIN");
+		//String feinValue = databaseResults.get("FEIN");
+		
 		System.out.println("FEIN Value is: " + feinValue);
 		test.log(Status.INFO, "ErnValue::" + feinValue);
 		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", "Sole Proprietorship (Individual)");
-		sleep();
-		Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C' AND ACCOUNT_STATUS='LIAB' AND ORGANIZATION_TYPE = 'BUSI' ORDER BY UPDATED_TS DESC",
-				"EAN");
-		String ernValue = databaseResults1.get("EAN");
-		// String ernValue = prop.getProperty("ErnFoundInDolNotInDtf");
+	
+		//Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn(
+		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE REGISTRATION_STATUS = 'C' AND ACCOUNT_STATUS='LIAB' AND ORGANIZATION_TYPE = 'BUSI' ORDER BY UPDATED_TS DESC",
+		//		"EAN");
+		//String ernValue = databaseResults1.get("EAN");
+		
+		String ernValue = prop.getProperty("ErnFoundInDolNotInDtf");
 		System.out.println("ERN Value is: " + ernValue);
 		test.log(Status.INFO, "ErnValue::" + ernValue);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
 		commonFuntions.selectDropdown("Type of Legal Entity", "Sole Proprietorship (Individual)");
-		commonFuntions.selectDropdown("Source", "NYS-100 (paper)");
-		sleep();
-		commonFuntions.selectDropdown("Source Type", "NYS-100");
-		sleep();
+		commonFuntions.selectDropdown("Source", "NYS-100 (paper)");sleep();
+		commonFuntions.selectDropdown("Source Type", "NYS-100");sleep();
 		commonFuntions.screenShot("GeneralInformationPage", "Pass", "General Information (SREG-025)");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
-		Map<String, String> databaseResults3 = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSM' AND REGISTRATION_STATUS = 'C'","ENTITY_NAME");
-	    String legalName = databaseResults3.get("ENTITY_NAME");
-		//String legalName = prop.getProperty("LegalNameFoundInDolNotInDtf");
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		
+		//Map<String, String> databaseResults3 = commonFuntions.database_SelectQuerySingleColumn(
+		//		"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='SUSM' AND REGISTRATION_STATUS = 'C'","ENTITY_NAME");
+	    //String legalName = databaseResults3.get("ENTITY_NAME");
+		String legalName = prop.getProperty("LegalNameFoundInDolNotInDtf");
 		System.out.println("LegalName is: " + legalName);
 		AddPage.legalNameTextBox.sendKeys(legalName);
 		commonFuntions.enterTextboxContains("Trade Name", "testdata");
@@ -89,9 +91,9 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.selectRadioQuestions("Are you registering to remit withholding tax only?", "No");
 		commonFuntions.screenShot("EmployerEntityInformationPage", "Pass", "Employer Entity Information:SREG-003");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
-		/*------------------SREG-008 page primary business physical address -------*/
+		/*--------SREG-008 page primary business physical address -------*/
 		commonFuntions.enterTextboxContains("Address Line 1",
 				commonFuntions.createRandomInteger(10, 99) + "New Madison Street");
 		commonFuntions.enterTextboxContains("City", "Albany");
@@ -99,54 +101,50 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.selectDropdown("County", "Albany");
 		commonFuntions.selectDropdown("Principal Business Activity", "Manufacturing");
 		sleep();
-		AddPage.productsName.sendKeys("50");
+		AddPage.productsName.sendKeys("automation testing");
 		commonFuntions.enterTextboxContains("Percent of Total Sales Value", "40");
 		AddPage.rawMaterialName.sendKeys("test mat");
 		commonFuntions.screenShot("AddPrimaryBussinessPhysicalAddressPage", "Pass",
 				"Add Primary Bussiness Physical Address:SREG-008");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep(2000);
 		try {
-			commonFuntions.safeJavaScriptClick(AddPage.uspsAddress);
-			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
+			 AddPage.uspsAddress.click();sleep();
+			 commonFuntions.screenShot("VerifyAddressPopUp", "Pass", "Verify Address Pop Up displayed");
+			 AddPage.continueButton_popUp.click();
 		} catch (Exception e) {
-			System.out.println("USPS ADDRESS");
+			System.out.println("usps address pop-up");
 		}
 		sleep(2000);
 		commonFuntions.screenShot("BusinessPhysicalAddressDetails", "Pass",
 				"Business Physical Address Details:SREG-007");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
-		/*----------------------SREG-004 employer contact details --------*/
+		/*--------SREG-004 employer contact details--------*/
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Same as Primary Business Physical Address");
-		sleep();
-		commonFuntions.selectRadioQuestions("Location of Books and Records",
-				"Same as Primary Business Physical Address");
-		sleep();
+		commonFuntions.selectRadioQuestions("Location of Books and Records","Same as Primary Business Physical Address");
 		AddPage.firstName_locationOfBooksAndrecords.sendKeys("John");
 		AddPage.lastName_locationOfBooksAndrecords.sendKeys("Terry");
-		// commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400)
-		// Address", "Same as Primary Business Physical Address");
-		sleep();
+		commonFuntions.selectRadioQuestions("Notice of Potential Charges (LO400) Address", "Same as Primary Business Physical Address");
 		commonFuntions.screenShot("EmployerContactDetailsPage", "Pass", "Employer Contact Details:SREG-004");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		try {
-			commonFuntions.safeJavaScriptClick(AddPage.adderessRadioButton1);
-			commonFuntions.safeJavaScriptClick(AddPage.adderessRadioButton2);
-			commonFuntions.safeJavaScriptClick(AddPage.adderessRadioButton3);
+			AddPage.adderessRadioButton1.click();
+			AddPage.adderessRadioButton2.click();
+			AddPage.adderessRadioButton3.click();
 			commonFuntions.screenShot("VerifyAddress", "Pass", "Verify Address Pop-Up");
-			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
+			AddPage.continueButton_popUp.click();
 		} catch (Exception e) {
 			System.out.println("Employer Contact Details Addres Pop Up");
 		}
 		sleep(2000);
 
-		/*-------------------SREG-521:Employer Verify Contact Details ---------*/
+		/*--------SREG-521:Employer Verify Contact Details---------*/
 		commonFuntions.screenShot("EmployerVerificationDetails", "Pass", "Employer Verify Contact Details: SREG-521");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
 		/*-------------------Business Acquisition (SREG-011)---------*/
 		commonFuntions.selectRadioQuestions(
@@ -159,11 +157,10 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.enterCurrentDate("Notification date of Transfer");
 		commonFuntions.screenShot("BusinessAcquisition", "Pass", "Business Acquisition Details :SREG-011");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
 		/*--- Business Acquisition Details :SREG-12----*/
 		commonFuntions.screenShot("BusinessAcquisitionDetails", "Pass", "Business Acquisition Details :SREG-012");
-		sleep(2000);
 		AddPage.clickOnLink("Add Another Acquisition");
 		commonFuntions.selectRadioQuestions(
 				"Have you acquired the business of another employer liable for New York State Unemployment Insurance?",
@@ -174,10 +171,9 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.enterCurrentDate("Notification date of Transfer");
 		commonFuntions.screenShot("BusinessAcquisitionPage2", "Pass", "Business Acquisition Details :SREG-011");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
 		commonFuntions.screenShot("BusinessAcquisitionDetailsPage2", "Pass", "Business Acquisition Details :SREG-012");
-		sleep(2000);
 		AddPage.clickOnLink("Add Another Acquisition");
 		commonFuntions.selectRadioQuestions(
 				"Have you acquired the business of another employer liable for New York State Unemployment Insurance?",
@@ -195,32 +191,13 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.enterCurrentDate("Notification date of Transfer");
 		commonFuntions.screenShot("BusinessAcquisitionPages3", "Pass", "Business Acquisition Details :SREG-011");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
-
-		commonFuntions.screenShot("BusinessAcquisitionDetailsPages3", "Pass", "Business Acquisition Details :SREG-012");
-		sleep();
-//		AddPage.clickOnLink(" Add Another Acquisition");	
-//		commonFuntions.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", 
-//				"Yes");
-//		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", "456789653");
-//		commonFuntions.enterTextboxContains("Employer Registration Number", "0000088");
-//		AddPage.legalNameOfBussiness.sendKeys("legal name solutions");
-//		commonFuntions.enterTextboxContains("Address Line 1", commonFuntions.createRandomInteger(10, 99)+ "Cooper Square");
-//		commonFuntions.enterTextboxContains("City","NEW YORK");
-//		commonFuntions.enterTextboxContains("Zip Code","10013");
-//		commonFuntions.selectDropdown("County", "Albany");
-//		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
-//		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Acquisition Date");
-//		commonFuntions.enterCurrentDate("Notification date of Transfer");
-//		commonFuntions.screenShot("BusinessAcquisitionPages4", "Pass", "Business Acquisition Details :SREG-011");
-//		commonFuntions.clickButtonContains("Continue");
-//		sleep(2000);
-//		commonFuntions.screenShot("BusinessAcquisitionDetailsPages4", "Pass", "Business Acquisition Details :SREG-012");
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("BusinessAcquisitionDetailsPages3", "Pass", "Business Acquisition Details :SREG-012");		
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ChangeInLegalEntity", "Pass", "Change in Legal Entity (SREG-012)");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
 		/*-----SREG:006 -Add Sole Proprietorship Details-------*/
 		String ssn = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9);
@@ -239,112 +216,85 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		try {
-			commonFuntions.safeJavaScriptClick(AddPage.uspsAddress);
-			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
-		} catch (Exception e) {
-			System.out.println("USPS ADDRESS");
+			  AddPage.uspsAddress.click();sleep();
+			  AddPage.continueButton_popUp.click();
+		    } 
+		catch (Exception e) {
+			System.out.println("usps address pop-up");
 		}
 		sleep(2000);
 		commonFuntions.screenShot("SoleProprietorshipDetails", "Pass", "Sole Proprietorship Details:SREG-005");
-		sleep();
-//		commonFuntions.clickButtonContains("Previous");
-//		sleep(2000);
-//		commonFuntions.clickButtonContains("Continue");
-//		sleep(2000);
-//
-//		AddPage.clickOnLink("Add Sole Proprietorship Details");
-//		commonFuntions.enterTextboxContains("SSN", "133447464");
-//		commonFuntions.enterTextboxContains("First Name", "MICHAEL");
-//		commonFuntions.enterTextboxContains("Last Name", "FALLER");
-//		commonFuntions.selectDropdown("Title", "Sole Proprietor");
-//		commonFuntions.enterTextboxContains("Address Line 1",
-//				commonFuntions.createRandomInteger(10, 99) + "Cooper Square");
-//		commonFuntions.enterTextboxContains("City", "NEW YORK");
-//		commonFuntions.enterTextboxContains("Zip Code", "10012");
-//		commonFuntions.enterTextboxContains("Residential Telephone Number",
-//				Long.toString(commonFuntions.createRandomInteger(10000000, 99999999))
-//						+ Long.toString(commonFuntions.createRandomInteger(10, 99)));
-//		commonFuntions.screenShot("AddSoleProprietorshipDetails1", "Pass", "Add Sole Proprietorship Details:SREG-006");
-//		commonFuntions.clickButtonContains("Continue");
-//		sleep(4000);
-//		try {
-//			commonFuntions.safeJavaScriptClick(AddPage.uspsAddress);
-//			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
-//		} catch (Exception e) {
-//			System.out.println("USPS ADDRESS");
-//		}
-//		sleep(2000);
-//
-//		AddPage.clickOnLink("Add Sole Proprietorship Details");
-//		commonFuntions.enterTextboxContains("SSN", "077501281");
-//		commonFuntions.enterTextboxContains("First Name", "Abc");
-//		commonFuntions.enterTextboxContains("Last Name", "Test");
-//		commonFuntions.enterTextboxContains("Address Line 1", commonFuntions.createRandomInteger(10, 99)+ "Cooper Square");
-//		commonFuntions.enterTextboxContains("City","NY");
-//		commonFuntions.enterTextboxContains("Zip Code","84357");
-//		commonFuntions.enterTextboxContains("Residential Telephone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
-//		commonFuntions.screenShot("AddSoleProprietorshipDetails2", "Pass", "Add Sole Proprietorship Details:SREG-006");
-//		commonFuntions.clickButtonContains("Continue");
-//		sleep(4000);
-//		try {
-//			commonFuntions.safeJavaScriptClick(AddPage.uspsAddress);
-//			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
-//		}catch (Exception e) {
-//			System.out.println("USPS ADDRESS");
-//		}
-//		sleep(2000);
-//
+		AddPage.clickOnLink("Add Sole Proprietorship Details");
+		commonFuntions.enterTextboxContains("SSN", "133447464");
+		commonFuntions.enterTextboxContains("First Name", "MICHAEL");
+		commonFuntions.enterTextboxContains("Last Name", "FALLER");
+		commonFuntions.selectDropdown("Title", "Sole Proprietor");
+		commonFuntions.enterTextboxContains("Address Line 1",
+				commonFuntions.createRandomInteger(10, 99) + "Cooper Square");
+		commonFuntions.enterTextboxContains("City", "NEW YORK");
+		commonFuntions.enterTextboxContains("Zip Code", "10012");
+		commonFuntions.enterTextboxContains("Residential Telephone Number",
+				Long.toString(commonFuntions.createRandomInteger(10000000, 99999999))
+						+ Long.toString(commonFuntions.createRandomInteger(10, 99)));
+		commonFuntions.screenShot("AddSoleProprietorshipDetails1", "Pass", "Add Sole Proprietorship Details:SREG-006");
+		commonFuntions.clickButtonContains("Continue");
+		sleep(2000);
+		try {
+			AddPage.uspsAddress.click();sleep();
+			AddPage.continueButton_popUp.click();
+		    } 
+		catch (Exception e) {
+			System.out.println("usps address pop-up");
+		}
+		sleep(2000);
+		
 		// Edit the existing address
 //		AddPage.editLink.click();
-//		sleep();
-//		commonFuntions.enterTextboxContains("SSN", "077501281");
+//		commonFuntions.enterTextboxContains("SSN", "074647986");
 //		commonFuntions.enterTextboxContains("First Name", "John");
 //		commonFuntions.enterTextboxContains("Last Name", "Terry");
 //		commonFuntions.enterTextboxContains("Address Line 1", commonFuntions.createRandomInteger(10, 99)+ "Cooper Square");
-//		commonFuntions.enterTextboxContains("City","NY");
+//		commonFuntions.enterTextboxContains("City","New York");
 //		commonFuntions.enterTextboxContains("Zip Code","65457");
 //		commonFuntions.enterTextboxContains("Residential Telephone Number",Long.toString(commonFuntions.createRandomInteger(10000000,99999999))+Long.toString(commonFuntions.createRandomInteger(10,99)));
 //		commonFuntions.screenShot("AddSoleProprietorshipDetails3", "Pass", "Add Sole Proprietorship Details:SREG-006");
 //		commonFuntions.clickButtonContains("Continue");
 //		sleep(4000);
 //		try {
-//			commonFuntions.safeJavaScriptClick(AddPage.uspsAddress);
-//			commonFuntions.safeJavaScriptClick(AddPage.continueButton_popUp);
+//			AddPage.uspsAddress.click();sleep();
+//		    AddPage.continueButton_popUp.click();
 //		}catch (Exception e) {
 //			System.out.println("USPS ADDRESS");
 //		}
 //		sleep(2000);
 //		commonFuntions.screenShot("SoleProprietorshipDetailsFinal", "Pass", "Sole Proprietorship Details");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
 		/*-----Upload Documents -SREG-683------*/
 		AddPage.browserLink.click();
 		sleep(2000);
-		commonFuntions.uploadDoc("TESTINGEL");
+		commonFuntions.uploadDoc("Sample");
 		sleep(4000);
 		commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents:SREG-683");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ReviewRegistrationDetails", "Pass", "Review Registration Details:SREG-800");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.selectCheckbox("I accept");
 		commonFuntions.screenShot("StatementofAcknowledgement", "Pass", "Statement of Acknowledgement:SREG-043");
 		commonFuntions.clickButtonContains("Submit");
-		sleep(3000);
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass",
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
 		try {
 			loginPage.okPopUpButton.click();
-			sleep(2000);
-			commonFuntions.waitForLoadingIconToDisappear();
+			sleep(3000);
 		} catch (Exception e) {
+			System.out.println("when if ok pop up button appears");
 		}
 
 		// Assigning user to WI DOL-DTF Work item..............
@@ -352,6 +302,7 @@ public class EE_01_011_CSR_Registration extends TestBase {
 		// USER_ID = '"+COMMON_CONSTANT.CSR_USER_5+"' WHERE PROCESS_DETAIL_ID IN (SELECT
 		// PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER
 		// BY UPDATED_TS desc)");
+		
 		sleep(5000);
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();

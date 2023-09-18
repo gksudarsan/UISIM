@@ -19,7 +19,7 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div//textarea")
 	public WebElement legalNameTextBox;
 
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(text(),'Is your entity a legally')]/../following-sibling::div/mat-radio-group/mat-radio-button/label/span[2][text()='Yes ']/../span/span")
@@ -95,13 +95,13 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//button[@id='access.continue']")
 	public WebElement verifyContinueButton;
 
-	@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement adderessRadioButton1;
 
-	@FindBy(how = How.XPATH, using = "//*[.='lbra Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='lbra Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement adderessRadioButton2;
 
-	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement adderessRadioButton3;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='bmad Address']//following::*[@class='mat-radio-outer-circle'][2]")
@@ -122,10 +122,10 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-1]")
 	public WebElement countyDropdown2;
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following-sibling::div/mat-form-field/div/div//textarea")
 	public WebElement productsName;
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div//textarea")
 	public WebElement rawMaterialName;
 	
 	public void requiredError_genInfo() {
@@ -185,7 +185,7 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//textarea[@id='tradeNameId']")
 	public WebElement legalNameOfBussiness;
 
-	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mdc-radio__native-control'][2]")
 	public WebElement uspsAddress;
 
 	@FindBy(how = How.XPATH, using = "(//u[contains(.,\"Edit\")][1])[last()]")
@@ -244,4 +244,11 @@ public class AddressPage {
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='predecessorFein']")
 	public WebElement getPredecessorFein;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Select')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement selectRadio_Button;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'')][@class='mdc-form-field']//input[@class='mdc-radio__native-control']")
+	public WebElement selectRadio_Button1;
+	
 }

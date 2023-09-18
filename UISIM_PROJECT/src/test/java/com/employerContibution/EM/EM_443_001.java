@@ -2,18 +2,14 @@ package com.employerContibution.EM;
 
 import java.util.Map;
 
-import org.apache.commons.lang3.StringUtils;
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.support.PageFactory;
-import org.testng.Assert;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
-import com.ui.pages.HomePage;
-import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
 
@@ -24,17 +20,18 @@ public class EM_443_001 extends TestBase {
 
 	@Test
 	public void EM_443_001() throws Exception {
+		
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		test = report.createTest(
 				"EM.443.001:Verify CSR is able to enter ERN and Add POA/TPR association for designation type \"All Unemployment Insurance Matters\"");
-		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(2000);
-		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("Menu");
+	    commonFuntions.waitForLoadingIconToDisappear();
+	    AddPage.menu.click();
 		sleep();
 		commonFuntions.ScrollMenu("Account Maintenance");
 		commonFuntions.screenShot("Menu", "Pass", "Account Maintenance");
@@ -45,8 +42,10 @@ public class EM_443_001 extends TestBase {
 		sleep();
 		commonFuntions.screenShot("AccountMaintenance", "Pass", "Employer Account Maintenance");
 		commonFuntions.clickMenu("Add or Remove POA/TPR Association");
-		sleep();
-		commonFuntions.screenShot("AddorRemovePOA/TPRAssociation", "Pass", "Add or Remove POA/TPR Association");
+		sleep(2000);
+		
+		//Add or Remove POA/TPR Association – Enter ERN ----------------- SREG-430
+		commonFuntions.screenShot("AddRemovePaoTransaction", "Pass", "Add and Remone Poa Transaction");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.errorLabel("Required");
@@ -62,7 +61,7 @@ public class EM_443_001 extends TestBase {
 
 		// query to fetch ERN number from database
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE EAN IS NOT NULL AND ACCOUNT_STATUS='LIAB' ORDER BY UPDATED_TS DESC",
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS='LIAB'",
 				"EAN");
 		sleep();
 		String ernNumber = databaseResults.get("EAN");
@@ -70,9 +69,9 @@ public class EM_443_001 extends TestBase {
 		test.log(Status.INFO, "EAN::" + ernNumber);
 		commonFuntions.enterTextboxContains("Employer Registration Number", ernNumber);
 		sleep();
-		commonFuntions.screenShot("ERN", "Pass", "Add or Remove POA/TPR Association–Enter ERN");
+		commonFuntions.screenShot("ERN", "Pass", "Add or Remove POA TPR Association–Enter ERN");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep(2000);commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("AddorRemoveThirdPartyAssociationEmployer", "Pass",
 				"Add or Remove Third Party Association Employer");
 		sleep();
@@ -87,22 +86,22 @@ public class EM_443_001 extends TestBase {
 				"Selected the dropdown value for Designation type");
 		commonFuntions.clickButtonContains(" Search POA/TPR ");
 		sleep(2000);
-		commonFuntions.screenShot("SearchPOA/ThirdPartyRepresentative", "Pass",
-				"Search POA/Third Party Representative");
+		commonFuntions.screenShot("SearchPOAThirdPartyRepresentative", "Pass",
+				"Search POAThird Party Representative");
 		commonFuntions.clickButtonContains(" Search ");
-		sleep();
+		sleep(3000);
 		commonFuntions.errorContent("Legal name of business is required.");
 		sleep();
 		commonFuntions.enterTextboxContains("*POA/TPR Legal Name", "test");
 		commonFuntions.clickButtonContains(" Search ");
-		sleep();
+		sleep(3000);
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
-		commonFuntions.screenShot("SearchPOA/ThirdPartyRepresentativeSelectTheRecordError", "Pass",
-				"Search POA/Third Party Representative:Select Record Error Appear");
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("SearchPOAThirdPartyRepresentativeSelectTheRecordError", "Pass",
+				"Search POAThird Party Representative:Select Record Error Appear");
 		commonFuntions.errorContent("Please select a record to proceed further.");
 		sleep();
-		commonFuntions.selectRadio("Select");
+		AddPage.selectRadio_Button.click();
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.clickButton("Submit ");
@@ -120,11 +119,11 @@ public class EM_443_001 extends TestBase {
 		commonFuntions.selectCheckbox("Additional authorization");
 		sleep();
 		commonFuntions.clickButtonContains("Submit");
-		sleep(2000);
+		sleep(2000);commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("DateErrorMessage", "Pass", "DateErrorMessages");
-		commonFuntions.selectRadio("Select");
+		AddPage.selectRadio_Button1.click();
 		commonFuntions.clickButtonContains("Submit");
-		sleep(2000);
+		sleep(2000);commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ConfirmationMessages", "Pass", "TPR Confirmation Messages");
 		commonFuntions.clickButtonContains("Home");
 	}

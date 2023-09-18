@@ -261,7 +261,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()]")
 	public WebElement otherDetails1;
 
-	@FindBy(how = How.XPATH, using = "//*[.='business Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.='business Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement uspsAdd;
 
 	@FindBy(how = How.XPATH, using = "(//input[@type='text'])[last()-1]")
@@ -344,7 +344,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='access.peo.verify.adddress.mailingaddress-input']")
 	public WebElement mailingUspsAddress;
 
-	@FindBy(how = How.XPATH, using = "//*[.=' Address']//following::*[@class='mat-radio-outer-circle'][1]")
+	@FindBy(how = How.XPATH, using = "//*[.=' Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement enteredAddress;
 
 	@FindBy(how = How.XPATH, using = "//*[@id='CIN-999access.continue']")
@@ -383,7 +383,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Employer Registration Number')]//following::input[1]")
 	public WebElement clearErnFieldSection;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Issued']/ancestor::mat-cell/preceding-sibling::mat-cell/mat-radio-group/mat-radio-button//span/span[@class='mat-radio-outer-circle']")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Issued']/ancestor::mat-cell/preceding-sibling::mat-cell/mat-radio-group/mat-radio-button//div/input[@class='mdc-radio__native-control']")
 	public WebElement Issued_RadioButton;
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='InquiryProfessionalEmployerOrganization(PEO)'][1]")
@@ -404,7 +404,7 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//span[text()=' Algeria ']") 
 	public WebElement peoCountryvalue; 
 	
-	@FindBy(how = How.XPATH, using = "(//input[@id='dataTableId'])[last()]") 
+	@FindBy(how = How.XPATH, using = "(//input[@id='dateId'])[last()]") 
 	public WebElement dateFeild;
 	
 	@FindBy(how = How.XPATH, using = "//input[@id='physicalAddressId_address1']") 
@@ -588,8 +588,8 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//input[@id='address0_attention']")
 	public WebElement attentionCareofFieldPEO003;
 	
-	
-	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,' Approved ')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement radioButton_Approved;
 	
 
 	

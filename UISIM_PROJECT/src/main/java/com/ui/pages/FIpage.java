@@ -97,10 +97,10 @@ public class FIpage {
 	@FindBy(how = How.XPATH, using = "//textarea[@id='resolutionDetailsId']")
 	public WebElement resDetails;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,' Sustain BCP')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")
+	@FindBy(how = How.XPATH, using = "//input[@id='sustainCode-input']")
 	public WebElement sustainBCP;
 	
-	@FindBy(how = How.XPATH, using = "//*[contains(.,' Cancel BCP ')][@class='mat-radio-label']//preceding::span[1][@class='mat-radio-outer-circle']")
+	@FindBy(how = How.XPATH, using = "//input[@id='cancelCode-input']")
 	public WebElement cancelBCP;
 	
 	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-1']")
@@ -111,4 +111,17 @@ public class FIpage {
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@id='reasonBasisWageGarnishmentProtestId']")
 	public WebElement offsetInterceptProtestReason;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Select')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement selectRadioButton;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+	public WebElement cancelBcp;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Employer Forgiven ']")
+	public WebElement cancelBcpValue;
+	
+	@FindBy(how = How.XPATH, using = "//a[@class='column-layout-margin']")
+	public WebElement link;
+	
 }

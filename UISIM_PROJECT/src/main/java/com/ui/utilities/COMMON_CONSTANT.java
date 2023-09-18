@@ -79,7 +79,7 @@ public class COMMON_CONSTANT {
 	
 	//TPR
 	public static final String TPR_USER_1 = "tpruser@123";
-	public static final String TPR_USER_1_PASSWORD = "TprUser@123456";
+	public static final String TPR_USER_1_PASSWORD = "TprUser@123457";
 	
 	public static final String TPR_USER_2 = "thdprty";
 	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";

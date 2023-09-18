@@ -8,7 +8,7 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.BclPage;
 import com.ui.pages.FIpage;
-import com.ui.pages.smPage;
+import com.ui.pages.SMPage;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
@@ -22,7 +22,7 @@ public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_received
 				"SM.004.002-Verify that the system allows the CSR to reply (through My Q) to the message received from an employer");
 		String ernNum = "9888277";
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		smPage smlocators = new smPage(driver);
+		SMPage smlocators = new SMPage(driver);
 
 		// ---Login---
 		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
