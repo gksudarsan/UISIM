@@ -1,5 +1,7 @@
 package com.ui.locators;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,7 +11,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.ui.base.TestBase;
 
 public class employerManagementLocators extends TestBase {
-	WebDriverWait wait = new WebDriverWait(driver,30);
+	//WebDriverWait wait = new WebDriverWait(driver,30);
+	/*WebDriverWait not supported in latest version of selenium updated as below*/
+	
+	final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 	
 	public WebElement menuButton (){
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[text()='Menu']")));

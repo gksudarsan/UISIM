@@ -1,5 +1,7 @@
 package com.ui.pages;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -25,7 +27,10 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	public void selectCheckboxfis009(String xpathParameter) {
 
 		By element = By.xpath("//mat-checkbox//label//span[contains(.,'" + xpathParameter + "')]//preceding::*[@class='mat-checkbox-inner-container'][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 			stepDef.safeJavaScriptClick(ele);

@@ -157,6 +157,11 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[.='Write Your Message Here.']//following::*[@class='angular-editor-textarea']")
 	public WebElement write_SecureMessage;
 	
+	@FindBy(how = How.XPATH, using = "//input[@id='dataTableId_addressLine1_0']")
+	public WebElement AddressLine1;
+
+	@FindBy(how = How.XPATH, using = "//input[@id='noticeDateID']")
+	public WebElement noticeDate;
 	
 
 	

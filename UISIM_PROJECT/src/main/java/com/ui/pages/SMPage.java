@@ -18,5 +18,14 @@ public class SMPage {
 	@FindBy(how = How.XPATH, using = "//*[.='Write Your Message Here.']//following::*[@class='angular-editor-textarea']")
     public WebElement write_SecureMessage;
 	
+	@FindBy(how = How.XPATH, using = "//*[@mattooltip='My Q']")
+    public WebElement queue;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='recipientTypeId_1-input']")
+    public WebElement selectEmployer;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='ViewMessageViewMessage']")
+    public WebElement clickViewMessage;
+	
 	
 }

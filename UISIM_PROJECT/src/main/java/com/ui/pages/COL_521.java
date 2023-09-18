@@ -1,5 +1,6 @@
 package com.ui.pages;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -49,7 +50,10 @@ public class COL_521 extends TestBase {
 		
 		By element = By.xpath(
 				"(//mat-label[text()='" + xpathQuestions + "']/following::mat-cell//mat-radio-button[@value='" + xpathParameter+ "']//label//span)[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);

@@ -20,7 +20,7 @@ public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_received
 
 		test = report.createTest(
 				"SM.004.002-Verify that the system allows the CSR to reply (through My Q) to the message received from an employer");
-		String ernNum = "9888277";
+	
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		SMPage smlocators = new SMPage(driver);
 
@@ -31,14 +31,14 @@ public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_received
 		// ---Menu----
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("CSR User Logged In", "Pass", "CSR User logged in Successfully");
-		commonFuntions.clickButton("Go to My Q");
+		//commonFuntions.clickButton("Go to My Q");
+		smlocators.queue.click();
 		sleep(10000);
 		
 		// ---Individual Work Queue-WF-001---//
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("Individual Work Queue", "Pass", "Individual Work Queue launched-WF-001");
 		commonFuntions.enterTextbox("Work Item Description Free Text", "current ui rates");
-	
 		commonFuntions.clickButton(" Search ");
 		commonFuntions.screenShot("Individual Work Queue", "Pass", "Data Searched for 'current ui rates'-WF-001");
 		commonFuntions.clickHyperlink("Current UI Rates");
@@ -61,12 +61,12 @@ public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_received
 		commonFuntions.screenShot("Reply Message", "Pass", "Reply Message page details filled-SM-103");
 		commonFuntions.clickButton("Send ");
 
-		// ---Task Confirmation-SUC-002---//
+		// ---Secure Message Confirmation-SUC-002---//
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.screenShot("Task Confirmation", "Pass", "Task Confirmation page launched Successfully-SUC-002");
+		commonFuntions.screenShot("Secure Message Confirmation", "Pass", "SM Confirmation page launched Successfully-SUC-002");
 		commonFuntions.clickButton("Home ");
 		sleep();
-		commonFuntions.screenShot("FI_497_002", "Pass", "Test Case got Pass FI_497_002");
+		commonFuntions.screenShot("SM_004_002", "Pass", "Test Case got Pass SM_004_002");
 
 	}
 }
