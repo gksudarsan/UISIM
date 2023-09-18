@@ -143,7 +143,10 @@ public class commonStepDefinitions extends TestBase {
 	// Methods
 	public void enterTextbox(String xpathParameter, String value) {
 		By element = By.xpath("//*[.='" + xpathParameter + "']//following::input[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium  updated as below*/
+				
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -155,7 +158,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void enterTextboxContains(String xpathParameter, String value) {
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium  updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -181,7 +187,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void clickButton(String xpathParameter) throws Exception {
 		By element = By.xpath("//button[.='" + xpathParameter + "'][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		// try {
 		WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -194,7 +203,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void clickButtonContains(String xpathParameter) throws InterruptedException {
 		By element = By.xpath("//button[contains(.,'" + xpathParameter + "')][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		// try {
 		WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -214,7 +226,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void clickMenu(String xpathParameter) {
 		By element = By.xpath("//*[text()='" + xpathParameter + "'][@class!='hideview'][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -228,9 +243,12 @@ public class commonStepDefinitions extends TestBase {
 		By element = By.xpath("//*[contains(.,'" + xpathParameter
 				+ "')][@class='mat-radio-label']//preceding::*[@class='mdc-radio__native-control'][1]");
 
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
-		try {
-			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+			//final WebDriverWait wait = new WebDriverWait(driver, 10);
+			/*WebDriverWait not supported in latest version of selenium updated as below*/
+			
+			final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //				highLightWebElement(driver, ele);
 			safeJavaScriptClick(ele);
 		} catch (final Exception e) {
@@ -240,7 +258,10 @@ public class commonStepDefinitions extends TestBase {
 	public void selectRadioQuestions(String xpathQuestions, String xpathParameter) {
 		By element = By.xpath("//*[.='" + xpathQuestions + "']//following::label[contains(.,'" + xpathParameter
 				+ "')][1]//preceding::input[1][@class='mdc-radio__native-control'][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -256,7 +277,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void selectDropdown(String xpathParameter, String value) {
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -662,7 +686,10 @@ public class commonStepDefinitions extends TestBase {
 
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter
 				+ "')]//preceding::*[@class='mdc-checkbox__native-control'][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -694,7 +721,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void clickOnLinkAnchorTag(String xpathParameter) {
 		By element = By.xpath("//a[contains(.,'" + xpathParameter + "')][1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 //			highLightWebElement(driver, ele);
@@ -953,7 +983,10 @@ public class commonStepDefinitions extends TestBase {
 	}
 
 	public void waitForLoadingIconToDisappear() throws InterruptedException {
-		WebDriverWait wait = new WebDriverWait(driver, 30000);
+		//WebDriverWait wait = new WebDriverWait(driver, 30000);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.xpath("//p[text()='Loading...']")));
 		sleep(2000);
 	}
@@ -1179,7 +1212,7 @@ public class commonStepDefinitions extends TestBase {
 	// by Devanshu
 	public String retrieveValue(String xpathParameter) {
 		By element = By.xpath("//mat-label[text()='" + xpathParameter + "']//following::mat-label[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		String actualValue = "";
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
@@ -1189,16 +1222,20 @@ public class commonStepDefinitions extends TestBase {
 		return actualValue;
 	}
 
-	public String retrieveTextboxContains(String xpathParameter) {
-		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
-		String actualValue = "";
-		try {
-			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			actualValue = ele.getAttribute("value");
-		} catch (final Exception e) {
-		}
-		return actualValue;
+		public String retrieveTextboxContains(String xpathParameter) {
+			By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::input[1]");
+			//final WebDriverWait wait = new WebDriverWait(driver, 10);
+			/*WebDriverWait not supported in latest version of selenium updated as below*/
+			
+			final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+			String actualValue="";
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));				
+				actualValue=ele.getAttribute("value");				
+			} catch (final Exception e) {
+			}
+			return actualValue;
+
 	}
 
 	public void selectActionTableParameterizedId(String ssnValue, int columnValue, int tableId, String tableName,
@@ -1285,17 +1322,21 @@ public class commonStepDefinitions extends TestBase {
 		}
 	}
 
-	public String retrieveLabelContains(String xpathParameter) {
-		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-label[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
-		String actualValue = "";
-		try {
-			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
-			actualValue = ele.getText();
-		} catch (final Exception e) {
+		public String retrieveLabelContains(String xpathParameter) {
+			By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-label[1]");
+			//final WebDriverWait wait = new WebDriverWait(driver, 10);
+			/*WebDriverWait not supported in latest version of selenium updated as below*/
+			
+			final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+			String actualValue="";
+			try {
+				WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));				
+				actualValue=ele.getText();				
+			} catch (final Exception e) {
+			}
+			return actualValue;
 		}
-		return actualValue;
-	}
+
 
 	public void addComment(String value) {
 		driver.findElement(By.xpath("//*[@id='remarksId']")).clear();
@@ -1359,7 +1400,7 @@ public class commonStepDefinitions extends TestBase {
 
 	public void enterTextareaContains(String xpathParameter, String value) {
 		By element = By.xpath("//mat-label[contains(.,'"+xpathParameter+"')]//following::textarea[contains(@class,'mdc-text-field__input')]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 			forceClearText(ele);
@@ -1384,5 +1425,23 @@ public class commonStepDefinitions extends TestBase {
 		
 
 	}
-
+	//Ram
+	
+			public void selectRadioQuestionsContains(String xpathQuestions, String xpathParameter) {
+				
+				By element = By.xpath("//*[contains(.,'" + xpathQuestions + "')]//following::label[contains(.,'" + xpathParameter
+						+ "')][1]//preceding::input[1][@class='mdc-radio__native-control'][1]");
+				//final WebDriverWait wait = new WebDriverWait(driver, 10);
+				/*WebDriverWait not supported in latest version of selenium updated as below*/
+				
+				final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+				try {
+					WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//					highLightWebElement(driver, ele);
+					//safeJavaScriptClick(ele);
+					ele.click();
+				} catch (final Exception e) {
+				}
+			}
+	
 }

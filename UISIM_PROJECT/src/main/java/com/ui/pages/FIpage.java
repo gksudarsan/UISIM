@@ -22,7 +22,7 @@ public class FIpage {
 	public WebElement Entercomments;
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='commentsId']")
-	public WebElement Entercomments_497_002;
+	public WebElement enter_resolutionDetails;
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
 	public WebElement ClickMenu;
@@ -34,8 +34,6 @@ public class FIpage {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Resolution Details']//following::*[@id='bankArtryId']")
 	public WebElement Textarea;
-	
-	
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,' Audit Quarter/Year Start ')]//following::mat-select[1]")
     public WebElement Quarter_start;
@@ -124,4 +122,16 @@ public class FIpage {
 	@FindBy(how = How.XPATH, using = "//a[@class='column-layout-margin']")
 	public WebElement link;
 	
+	@FindBy(how = How.XPATH, using = "//p[contains(.,'If Cancel a BCP, Select cancel code ')]//following::mat-select[1]")
+    public WebElement cancelBcpDropdownClick;
+    
+    @FindBy(how = How.XPATH, using = "//span[text()=' Believed Not Covered ']")
+    public WebElement cancelBcpDropdownSelect_Bnc;
+    
+    @FindBy(how = How.XPATH, using = "//span[text()=' Employer in Disaster Area ']")
+    public WebElement cancelBcpDropdownSelect_Eda;
+    
+    @FindBy(how = How.XPATH, using = "//*[.='Reason/basis for Wage Garnishment Protest']//following::*[@id='reasonBasisWageGarnishmentProtestId']")
+	public WebElement Reason_reasonBasisWageGarnishmentProtest;
+
 }

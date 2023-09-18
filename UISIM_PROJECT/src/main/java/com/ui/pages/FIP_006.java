@@ -1,5 +1,6 @@
 package com.ui.pages;
 
+import java.time.Duration;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -28,7 +29,10 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	public void selectRadioWithValue(String xpathParameter) {
 		By element = By.xpath("//mat-radio-button//label//span[contains(text(),'" + xpathParameter + "')]");
 
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 			stepDef.safeJavaScriptClick(ele);
@@ -40,7 +44,10 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	
 	public void selectDropdownWithTagP(String xpathParameter, String value) {
 		By element = By.xpath("//p[contains(.,'" + xpathParameter + "')]//following::mat-select[1]");
-		final WebDriverWait wait = new WebDriverWait(driver, 10);
+		//final WebDriverWait wait = new WebDriverWait(driver, 10);
+		/*WebDriverWait not supported in latest version of selenium updated as below*/
+		
+		final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
 		try {
 			WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
 			stepDef.safeJavaScriptClick(ele);

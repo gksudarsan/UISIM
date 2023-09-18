@@ -39,14 +39,11 @@ public class COMMON_CONSTANT {
 	public static final String CSR_USER_7 = "ndfaxs";
 	public static final String CSR_USER_7_PASSWORD = "Anoop@123456789";
 
-<<<<<<< HEAD
 
 	public static final String CSR_USER_8 = "nd1sk3"; 
 	public static final String CSR_USER_8_PASSWORD = "uisimtesting@123";
 
 	
-=======
->>>>>>> refs/heads/master_18Sep
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
 
@@ -69,17 +66,10 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_4 = "tst_empr"; // member managing
 	public static final String EMPLOYER_USER_4_PASSWORD = "NewUser@123457";
 
-<<<<<<< HEAD
 	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
 	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@123456789"; //Hachiku7533991779
 
 	
-=======
-	public static final String EMPLOYER_USER_5 = "Laxmi@12"; // Partner
-
-	public static final String EMPLOYER_USER_5_PASSWORD = "Laxmi@123456789"; // Hachiku7533991779
-
->>>>>>> refs/heads/master_18Sep
 	public static final String EMPLOYER_USER_6 = "shivam0106"; // Executor
 	public static final String EMPLOYER_USER_6_PASSWORD = "$hivamS01061987";
 
@@ -107,7 +97,12 @@ public class COMMON_CONSTANT {
 	public static final String PEO_USER_1_PASSWORD = "Admin@12345678";
 
 	public static final String PEO_USER_ADMIN = "Peousersnehal";
-	public static final String PEO_USER_ADMIN_PASSWORD = "Snehal@12345678";
+	public static final String PEO_USER_ADMIN_PASSWORD = "Snehal@12345678";	
+		
+	//Claimant
+	
+	public static final String CLAIMANT = "VKenyo";
+	public static final String CLAIMANT_PASSWORD = "Test123456?@#%$";
 
 	// Claiment Account
 	public static final String CLAIMENT_USER1 = "Peousersnehal";
@@ -140,16 +135,12 @@ public class COMMON_CONSTANT {
 	public static final String LOGIN_SUCCESS = "Login is successful";
 
 	/* ********* messages end ********* */
-
+	
 	/* *********Employer Register ********* */
 
 	public static final String EMPLOYER_USER_MANJU = "manju@2004";
 	public static final String EMPLOYER_PASS_MANJU = "Manhar2004@1234";
-<<<<<<< HEAD
 	
 	public static final String OTHER_USER_1 = "VKenyo";
 	public static final String OTHER_USER_PASS_1 = "Test123456?@#%$";
-=======
-
->>>>>>> refs/heads/master_18Sep
 }

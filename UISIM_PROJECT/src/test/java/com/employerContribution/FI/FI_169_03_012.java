@@ -4,8 +4,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.COL_474;
@@ -19,6 +21,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_169_03_012 extends TestBase {
 
 	@Test
@@ -68,8 +71,8 @@ public class FI_169_03_012 extends TestBase {
 		Set<String> allHandles = driver.getWindowHandles();
 		Iterator<String> l1 = allHandles.iterator();
 		String parent = l1.next();
-		System.out.println(parent);
-		String Child = l1.next();
+		System.out.println(parent);sleep();
+		String Child = l1.next();sleep();
 		System.out.println(Child);
 		driver.switchTo().window(Child);
 		sleep(2000);

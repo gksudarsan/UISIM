@@ -221,10 +221,14 @@ public class TestBase {
 		// Opening browser... Hitting URL...
 		initialization(browser);
 		//wait = new WebDriverWait(driver, Duration.ofSeconds(50));
-		
+		if(browser=="chrome")
+		{
 		driver.manage().deleteAllCookies();
 	    driver.get("chrome://settings/clearBrowserData");
 	    driver.findElement(By.xpath("//settings-ui")).sendKeys(Keys.ENTER);
+		}
+	    //driver.findElement(By.xpath("//button[.='Clear now'][1]")).click();
+	    
 		driver.get(prop.getProperty("applicationUrl"));
 
 		// ExtentTest test;
