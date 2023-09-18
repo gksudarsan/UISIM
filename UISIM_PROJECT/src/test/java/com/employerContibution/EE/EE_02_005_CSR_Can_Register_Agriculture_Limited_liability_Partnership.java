@@ -85,7 +85,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 
 		commonFuntions.screenShot("EmpRegister5", "Pass", "Landed on SREG-003 page");
 
-		empPage.legalNameTextBox.sendKeys("Random Legal Name LLP");
+		empPage.legalNameTextBox.sendKeys("Random" + commonFuntions.createRandomString()+ "LLP");
 		commonFuntions.enterTextboxContains("Trade Name or Doing Business As (DBA)", "Other Test");
 		commonFuntions.enterTextboxContains(" Business Phone Number  ", "7687765665");
 		commonFuntions.enterTextboxContains(" Business Fax Number ", "3621231111");
@@ -171,6 +171,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		//.safeJavaScriptClick(empPage.albany_County_Value);
 //		sleep(4000);
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 		sleep(4000);
 		try {
 			commonFuntions.selectRadioQuestions("Agad Address", "123");
@@ -316,6 +318,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 //		sleep(3000);
 		commonFuntions.screenShot("EmpRegister15", "Pass", "Entering the form Details");
 		commonFuntions.selectRadioQuestions("Have you changed legal entity?", "Yes ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 		commonFuntions.enterTextboxContains("Prior Federal Employer Identification Number (FEIN)", priorFein);
 		commonFuntions.enterTextboxContains("Prior Employer Registration Number", priorEan);
 		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Date of Legal Entity change");
@@ -355,7 +359,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
 		commonFuntions.selectRadioQuestions("Type of Partner/Owner", "Individual");
-
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 		// commonFuntions.enterTextboxContains("SSN", ssn);
 		commonFuntions.enterTextboxContains("SSN", ssn);
 		commonFuntions.enterTextboxContains("First Name","FNWRONG");
@@ -368,17 +373,26 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButtonContains("Continue ");
 
 		try {
-			commonFuntions.safeJavaScriptClick(empPage.uspsAddressRadio_20_Cooper);
-			sleep();
-			commonFuntions.safeJavaScriptClick(empPage.continueButton_popUp);
+			commonFuntions.selectRadioQuestions("entered address", "20");
+			sleep(2000);
+			sreg004.popUpContinueButton.click();
+			sleep(2000);
+			commonFuntions.waitForLoadingIconToDisappear();
+			sleep(2000);
+			commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
 		} catch (Exception e) {
-			System.out.println("Pop up not displayed");
+			System.out.println("pop up not appeared");
 		}
+
+		commonFuntions.waitForLoadingIconToDisappear();
+
 
 		/*-----------------SREG-005----------------*/
 //		sleep(4000);
 		commonFuntions.screenShot("EmpRegister17", "Pass", "Navigated to SREG-005 page");
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 
 		/*-----------------SREG-683----------------*/
 //		sleep(3000);
@@ -387,10 +401,14 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.uploadDoc("Sample");
 		sleep(2000);
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		/*-----------------SREG-800----------------*/
 		sleep(5000);
 		commonFuntions.screenShot("EmpRegister19", "Pass", "Navigated to SREG-800 page");
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		/*-----------------SREG-043----------------*/
 //		sleep(3000);
 		commonFuntions.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
