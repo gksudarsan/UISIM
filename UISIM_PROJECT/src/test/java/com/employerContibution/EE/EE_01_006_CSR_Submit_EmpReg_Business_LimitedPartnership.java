@@ -8,6 +8,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
+import com.ui.pages.AddressPage;
 import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -25,6 +26,7 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		/*
 		//--- GET Query
 		
@@ -44,11 +46,11 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 */
 		
 		//FEIN
-		String fein="010104123";
+		String fein="010101010";
 		System.out.println(fein);
 		
 		//EAN
-				String ean="2572896";
+				String ean="4723158";
 				System.out.println(ean);
 		
 		// --- Login ---
@@ -86,7 +88,7 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		commonFunction.selectDropdownEquals("Type of Legal Entity", " Limited Partnership ");
 		sleep();
 		commonFunction.screenShot("EE01006", "Pass", "Entered the details in SREG-025");
-		commonFunction.enterTextboxContains("Employer Registration Number", "2572896"); //4543352
+		commonFunction.enterTextboxContains("Employer Registration Number", ean); //4543352
 		commonFunction.selectDropdown("Source", " NYS-100 (paper) ");
 		sleep();
 		commonFunction.selectDropdown("Source Type", " NYS-100 ");
@@ -96,7 +98,7 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		sleep(3000);
 		
 		// --- SREG-003 ---
-		String legalname="INNER BEAUTY ";
+		String legalname="RIDGEWOOD TRAVEL BUREAU INC";
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE01006", "Pass", "Launched Employer Entity Information(SREG-003) page");
 //		empRegPage.legalNameTextBox.sendKeys(legalName); //TEST REVIEW TASK -- FREDERICK DUNBAR & HELEN MANGANO
@@ -170,23 +172,22 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		commonFunction.screenShot("EE01006", "Pass", "Successfully entered details in SREG-004 page");
 		
 		sleep(2000);
-		
 		commonFunction.clickButton("Continue ");
+		sleep 	(2000);
 		try {
 			empRegPage.uspsBusiAddress1InnerRadio.click();
+			commonFunction.safeJavaScriptClick(AddPage.continueButton_popUp);
 		} catch (Exception exception) {
-			empRegPage.uspsBusiAddress1OuterRadio.click();
 		}
-		commonFunction.clickButton("Continue ");
+		
 		// SREG-521
 		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE01006", "Pass", "Launched to  SREG-521 page");
 		commonFunction.clickButton("Continue ");
-		
+		sleep(3000);
 		// SREG - 011
-		commonFunction.waitForLoadingIconToDisappear();
-		commonFunction.screenShot("EE01006", "Pass", "Launched to  SREG-011 page");
-		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");
+		commonFunction.screenShot("EE01006", "Pass", "Launched to  SREG-011 page");sleep();
+		commonFunction.selectRadioQuestions("Have you acquired the business of another employer liable for New York State Unemployment Insurance?", "Yes ");sleep();
 		empRegPage.tradeNameId_SREG011.sendKeys("TEST EM JAA user dfe".toUpperCase()); //Cooking Inc
 		empRegPage.address1_SREG011.sendKeys("Affinia Manhattan Hotel");
 		empRegPage.city_SREG011.sendKeys("Albany");
@@ -269,7 +270,8 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		commonFunction.clickButton("Submit ");
 		
 		// --- SREG-013 ---
-		sleep(40000);
+		sleep(5000);
+		commonFunction.waitForLoadingIconToDisappear();
 		commonFunction.screenShot("EE01006", "Pass", "Successfully launched to SREG-013 page");
 		commonFunction.clickButton("Home ");
 
@@ -335,7 +337,7 @@ public class EE_01_006_CSR_Submit_EmpReg_Business_LimitedPartnership extends Tes
 		
 		//------WI -2
 		peoPage.queue.click();
-	    Thread.sleep(15000);
+	    sleep(3000);commonFunction.waitForLoadingIconToDisappear();
 	    commonFunction.screenShot("wiSearch","Pass","Update Query: UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = 'ndsbb3' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN = '260525898' ORDER BY UPDATED_TS desc)");
 	    commonFunction.enterTextboxContains("FEIN","260525898");
 	    commonFunction.screenShot("wiSearch","Pass","Searched with Work Item Description Free Text");

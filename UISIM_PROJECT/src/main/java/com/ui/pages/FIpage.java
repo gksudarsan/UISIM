@@ -57,4 +57,71 @@ public class FIpage {
 
     @FindBy(how = How.XPATH, using = "//span[text()= ' 2022 ']")
     public WebElement Value_Year;
+    
+    @FindBy(how = How.XPATH, using = "//textarea[@id='remarksId']")
+	public WebElement remarksReason;
+
+	@FindBy(how = How.XPATH, using = "//u[normalize-space()='Remove']")
+	public WebElement removeLink;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-1']")
+	public WebElement quarter1;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 4 ']")
+	public WebElement quarterValue1;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+	public WebElement year1;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
+	public WebElement yearValue1;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-5']")
+	public WebElement quarter2;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 4 ']")
+	public WebElement quarterValue2;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-7']")
+	public WebElement year2;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
+	public WebElement yearValue2;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='commentsId']")
+	public WebElement comments;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='bankArtryId']")
+	public WebElement resolutionDetails;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='resolutionDetailsId']")
+	public WebElement resDetails;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='sustainCode-input']")
+	public WebElement sustainBCP;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='cancelCode-input']")
+	public WebElement cancelBCP;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-1']")
+	public WebElement sustainBcp;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Insufficient Evidence Furnished ']")
+	public WebElement sustainBcpValue;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='reasonBasisWageGarnishmentProtestId']")
+	public WebElement offsetInterceptProtestReason;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Select')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement selectRadioButton;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+	public WebElement cancelBcp;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Employer Forgiven ']")
+	public WebElement cancelBcpValue;
+	
+	@FindBy(how = How.XPATH, using = "//a[@class='column-layout-margin']")
+	public WebElement link;
+	
 }

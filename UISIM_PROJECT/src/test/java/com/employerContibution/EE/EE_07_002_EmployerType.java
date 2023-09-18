@@ -26,7 +26,7 @@ public class EE_07_002_EmployerType extends TestBase{
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		test = 
 				report.createTest("EE.07.002:Verify employer can submit employer registration for employer type 'Governmental' and legal entity type 'Town' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_1.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_6.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_6_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -121,29 +121,32 @@ public class EE_07_002_EmployerType extends TestBase{
 		} catch (Exception e) {
 			System.out.println("Employer Contact Details Addres Pop Up");
 		}
-		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "Yes ");
+		sleep(2000);
+		commonFuntions.selectRadioQuestions("Do you want all of your mail directed to your Agent – C/O ?", "Yes ");sleep(2000);
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
-		commonFuntions.screenShot("EmployerVerifyContactDetails", "Pass", "Employer Verify Contact Details");
-		commonFuntions.clickButtonContains("Continue");
+		//commonFuntions.screenShot("EmployerVerifyContactDetails", "Pass", "Employer Verify Contact Details");
+		//commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 
 		/*--------Upload Documents(SREG-683)------*/
-		commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents:SREG-683");
+		commonFuntions.screenShot("UploadDocuments", "Pass", "Upload Documents(SREG-683)");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
-		commonFuntions.screenShot("ReviewRegistrationDetails", "Pass", "Review Registration Details:SREG-800");
+		sleep();
+		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.screenShot("ReviewRegistrationDetails", "Pass", "Review Registration Details(SREG-800)");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(3000);
 		commonFuntions.selectCheckbox("I accept");
-		commonFuntions.screenShot("StatementOfAcknowledgement", "Pass", "Statement of Acknowledgement:SREG-043");
+		commonFuntions.screenShot("StatementofAcknowledgement", "Pass", "Statement of Acknowledgement(SREG-043)");
+		sleep(2000);
 		commonFuntions.clickButtonContains("Submit");
-		sleep(3000);
+		sleep(5000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation:SREG-013");
+		commonFuntions.screenShot("EmployerRegistrationConfirmation", "Pass", "Employer Registration Confirmation(SREG-013)");
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
-
+		
 		//Assigning user to WI Review employer type..................
 		try {
 		loginPage.okPopUpButton.click();
@@ -151,9 +154,9 @@ public class EE_07_002_EmployerType extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		}catch(Exception e) {}
 		
+		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		sleep(2000);
-		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		
 		//Resolving WI Review employer type................
 		PEOPage.queue.click(); 
@@ -193,8 +196,8 @@ public class EE_07_002_EmployerType extends TestBase{
 		commonFuntions.screenShot("DOLDTFDiscrepancytasksearch","Pass","DOL-DTF Discrepancy task search");
 		//commonFuntions.clickOnLink("DOL DTF Discrepancy");
 		//cf.clickButtonContains("Search");
-		//sleep(2000);
-		//commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
+		sleep(2000);
+		commonFuntions.screenShot("DOL/DTFDiscrepancytask","Pass","DOL-DTF Discrepancy task");
 		sleep(); 
 		commonFuntions.clickButtonContains("Open Work Item");
 		sleep(2000);
@@ -235,6 +238,19 @@ public class EE_07_002_EmployerType extends TestBase{
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("workitemCompletedDolDtf","Pass","DolDtf work item completed");
 		commonFuntions.clickButtonContains("Home");
+		
+		//Navigating to Inquiry Employer Account 
+		AddPage.menu.click();sleep();
+		commonFuntions.clickMenu("Inquiry");sleep();
+		commonFuntions.clickMenu("Contribution Inquiry");sleep();
+		commonFuntions.screenShot("Inquiry", "Pass", "Navigating to Inquiry Employer Account ");
+		commonFuntions.clickMenu("Inquiry Employer Account");sleep();
+		commonFuntions.enterTextboxContains(" FEIN ", feinValue);
+		commonFuntions.screenShot("InquiryEmployerAccount", "Pass", "Inquiry Employer Account");
+		commonFuntions.clickButtonContains("Continue");
+		sleep(3000);
+		commonFuntions.screenShot("InquiryEmployerAccountInformation", "Pass", "Inquiry Employer Account Information");
+
 
 	}
 }

@@ -26,11 +26,8 @@ public class EmployerRegisterPage extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
-	
 
-	
-
-	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name']")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div/textarea")
 	public WebElement legalNameTextBox;
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name of Business']")
@@ -609,13 +606,13 @@ public WebElement npca_Address;
 @FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-inner-circle'][1]")
 public WebElement npca_AddressInnerCircle;
 
-@FindBy(how = How.XPATH, using = "//mat-label[text()='Type of Establishment']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Type of Establishment']/../following-sibling::div/mat-form-field/div/div/div/textarea")
 public WebElement Type_of_Establishment;
 
-@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Product Sold or Service Rendered']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Product Sold or Service Rendered']/../following-sibling::div/mat-form-field/div/div/div/textarea")
 public WebElement Principal_Product_Sold_or_Service_Rendered;
 
-@FindBy(how = How.XPATH, using = "//mat-label[text()='Percent of Total Revenue']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Percent of Total Revenue']/../following-sibling::div/mat-form-field/div/div/div/textarea")
 public WebElement Percent_of_Total_Revenue;
 
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")

@@ -29,7 +29,7 @@ public class EE_07_004_EmployerType extends TestBase {
 		test = 
 				report.createTest("EE.07.004:Verify employer can submit employer registration for employer type 'Governmental' and legal entity type "
 						+ "'School District' and work items will be created for CSR to review.");
-		commonFuntions.login(COMMON_CONSTANT.EMP_USER_2.toUpperCase(), COMMON_CONSTANT.EMP_USER_2_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_6.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_6_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -143,21 +143,26 @@ public class EE_07_004_EmployerType extends TestBase {
 				"Employer Registration Confirmation:SREG-013");
 		commonFuntions.clickButtonContains("Home");
 
+		try {
+			loginPage.okPopUpButton.click();
+			sleep(2000);
+		}catch(Exception e) {}
+
 		//Assigning user to WI Review emp type..................
 		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
 		commonFuntions.LogoutAndLoginIfOktaPageDisplayed(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		sleep(2000);
-		
+
 		//Resolving WI Review emp type................
 		PEOPage.queue.click(); 
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
+	    PEOPage.clearErnFieldSection.clear();
 		commonFuntions.enterTextboxContains("FEIN",feinValue);
 		commonFuntions.screenShot("FeinSearch","Pass","FeinSearch");
 		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
 		commonFuntions.screenShot("IndividualWorkQueueReviewWorkItem","Pass","Individual Work Queue Review");
-		driver.navigate().refresh();
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickOnLinkAnchorTag("Review Employer Type");
@@ -201,6 +206,19 @@ public class EE_07_004_EmployerType extends TestBase {
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.clickButtonContains("Home");
+
+		//Navigating to Inquiry Employer Account 
+		AddPage.menu.click();sleep();
+		commonFuntions.clickMenu("Inquiry");sleep();
+		commonFuntions.clickMenu("Contribution Inquiry");sleep();
+		commonFuntions.screenShot("Inquiry", "Pass", "Navigating to Inquiry Employer Account ");
+		commonFuntions.clickMenu("Inquiry Employer Account");sleep();
+		commonFuntions.enterTextboxContains(" FEIN ", feinValue);
+		commonFuntions.screenShot("InquiryEmployerAccount", "Pass", "Inquiry Employer Account");
+		commonFuntions.clickButtonContains("Continue");
+		sleep(3000);
+		commonFuntions.screenShot("InquiryEmployerAccountInformation", "Pass", "Inquiry Employer Account Information");
+
 
 
 	}
