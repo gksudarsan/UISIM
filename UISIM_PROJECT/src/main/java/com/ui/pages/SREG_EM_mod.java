@@ -39,6 +39,9 @@ public class SREG_EM_mod {
 	@FindBy(how = How.XPATH, using = "//*[.='Corporate Officer/Owner Details']//following::*[contains(@id ,'dataTableId')][1]/mat-row[3]/mat-cell[9]//a[1]")
 	public WebElement actionEditOfficer;
 	
+	@FindBy(how = How.XPATH, using = "//*[.='Individual as Corporate Officer ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[8]//a[1]")
+	public WebElement actionEditCorprate;
+	
 	@FindBy(how = How.XPATH, using = "//*[.='Individual as Corporate Officer ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[3]")
 	public WebElement actionInactiveCorprate;
 	
@@ -51,7 +54,7 @@ public class SREG_EM_mod {
 	@FindBy(how = How.XPATH, using = "//*[.=' Individual as Trustee ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[2]")
 	public WebElement actionInactiveTrustee;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Member/Managing Member Details']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[9]//a[2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Member/Managing Member Details']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[9]//a[2]//*[.='Member/Managing Member Details']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[9]//a[2]")
 	public WebElement actionInactiveMember;
 	
 	

@@ -42,7 +42,7 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase 
 		
 		// ---Menu Click---
 		sleep(2000);
-		commonFunction.clickMenu("menu");
+		commonFunction.clickMenu("Menu");
 		commonFunction.ScrollMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");
@@ -52,10 +52,8 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase 
 		
 		// --- SREG-001 ---
 		sleep(2000);
-		
 		commonFunction.screenShot("EE01007", "Pass", "Data from SREG-001 page");
 		sleep(2000);
-		
 		commonFunction.screenShot("EE01007", "Pass", "Data from SREG-001 page");
 		commonFunction.clickButton("Continue ");
 		
@@ -211,8 +209,8 @@ public class EE_01_007_CSR_Submit_EmpReg_Business_JointVenture extends TestBase 
 		empRegPage.address1_SREG011.sendKeys("5 Washington Square S");
 		empRegPage.city_SREG011.sendKeys("Albany");
 		empRegPage.zip_SREG011.sendKeys("10012");
-		commonFunction.enterPastDate("Acquisition Date", 10);
-		commonFunction.enterPastDate("Notification date of Transfer", 11);
+		commonFunction.enterPastDate("Acquisition Date", 150);
+		commonFunction.enterPastDate("Notification date of Transfer", 1);
 		//commonFunction.selectRadioQuestions("Did you acquire all or part of the business?", "ALL");
 		commonFunction.enterPastDate("Acquisition Date", 90);
 		commonFunction.enterTextboxContains("Notification date of Transfer", "07012023");

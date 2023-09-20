@@ -53,6 +53,18 @@ public class FraudAndInvestigationPage {
 	//@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-1-input']")
 	@FindBy(how = How.XPATH, using = "//*[@id='mat-checkbox-1']//*[@class='mat-checkbox-inner-container'][1]")
 	public WebElement wedgeInformation_checkBox;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId_select_0-input']")
+	public WebElement table_checkBox;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Remarks/Reasons for submitting Issue']//following::*[@id='remarksId']")
+	public WebElement remarksId;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Is this protest a hearing request ?')]//preceding::*[@class='mdc-checkbox__native-control'][1]")
+	public WebElement selectcheckbox;
+	
+	@FindBy(how = How.XPATH, using = "//textarea[@id='reasonBasisUnsatisfiedJudgProtestId']")
+    public WebElement reasonBasis;
 
 
 }

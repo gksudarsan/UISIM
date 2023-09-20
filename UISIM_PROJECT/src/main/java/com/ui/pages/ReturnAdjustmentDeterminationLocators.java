@@ -77,4 +77,7 @@ public class ReturnAdjustmentDeterminationLocators extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Comments']//following::*[contains(@id,'reasonForAdjustmentOtherId')]")
 	public WebElement reasonForAdjustmentComment;
+	
+	@FindBy(how = How.XPATH, using = "//*[text()='Reason for Update CSR Remarks']//following::*[contains(@id,'reasonForUpdateId')]")
+	public WebElement ReasonforUpdateCSRRemarks;
 }
