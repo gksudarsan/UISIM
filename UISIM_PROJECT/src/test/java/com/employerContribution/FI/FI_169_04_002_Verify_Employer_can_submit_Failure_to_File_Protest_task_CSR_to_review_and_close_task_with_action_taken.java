@@ -13,6 +13,9 @@ import stepDefinitions.commonStepDefinitions;
 
 public class FI_169_04_002_Verify_Employer_can_submit_Failure_to_File_Protest_task_CSR_to_review_and_close_task_with_action_taken
 		extends TestBase {
+	/**
+	 * @throws Exception
+	 */
 	@Test
 	public void FI_169_04_002() throws Exception {
 		test = report.createTest(
@@ -80,12 +83,13 @@ public class FI_169_04_002_Verify_Employer_can_submit_Failure_to_File_Protest_ta
 		Thread.sleep(2000);
 		cf.screenShot("Failure to File Penalty Protest", "Pass", "PFP-002 screen is visible");
 
-		cf.selectRadioQuestions("Close Task with No Action Taken", "Yes ");
-		suc002.enterProtestCommentField.sendKeys("Testing This Field");
-		cf.clickButtonContains("Submit ");
-		cf.waitForLoadingIconToDisappear();
-		sleep(1000);
-		cf.screenShot("Task Confirmation", "Pass", "Message from Webpage popup is visible");
+		
+		  cf.selectRadioQuestions("Close Task with No Action Taken", "Yes ");
+		  suc002.enterProtestCommentField.sendKeys("Testing This Field");
+		  cf.clickButtonContains("Submit "); cf.waitForLoadingIconToDisappear();
+		  sleep(1000); cf.screenShot("Task Confirmation", "Pass",
+		  "Message from Webpage popup is visible");
+		 
 
 		// DTF Pop-Up
 		cf.clickButtonContains(" Yes ");

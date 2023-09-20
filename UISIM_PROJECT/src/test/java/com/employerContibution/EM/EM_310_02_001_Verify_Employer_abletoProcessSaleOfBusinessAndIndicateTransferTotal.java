@@ -1,3 +1,4 @@
+//--------Smoke-----
 package com.employerContibution.EM;
 
 import java.util.Map;
@@ -24,8 +25,10 @@ public class EM_310_02_001_Verify_Employer_abletoProcessSaleOfBusinessAndIndicat
 	@Test(priority = 1, description = "EM.310.02.001  - Verify Employer is able to process sale of business and indicate transfer 'Total'.", groups = {
 			"Regression" })
 	public void EM_310_02_001() throws Exception {
+		
 		test = report.createTest(
 				"EM.310.02.001  - Verify Employer is able to process sale of business and indicate transfer 'Total'.");
+		
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		commonStepDefinitions cf = new commonStepDefinitions();
 		AddressPage addPage = new AddressPage(driver);

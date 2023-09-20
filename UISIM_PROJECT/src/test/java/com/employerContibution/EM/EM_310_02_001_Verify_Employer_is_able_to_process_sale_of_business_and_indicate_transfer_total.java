@@ -59,7 +59,7 @@ public class EM_310_02_001_Verify_Employer_is_able_to_process_sale_of_business_a
 
 		// ---Menu
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.clickMenu("menu");
+		commonFuntions.clickMenu("Menu");
 		sleep(2000);
 		commonFuntions.screenShot("Menu", "Pass", "Menu page");
 		commonFuntions.ScrollMenu("Account Maintenance");

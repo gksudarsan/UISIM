@@ -1,3 +1,4 @@
+//--------Smoke-----
 package com.employerContibution.EM;
 
 import java.util.Map;
@@ -25,9 +26,11 @@ public class EM_411_001 extends TestBase{
 	@Test
 	public void EM_411_001() throws Exception
 	{
+		test = report.createTest("EM.411.001:Verify CSR is able to update account status of employer account 'Liable' ");
+		
 		commonStepDefinitions cf= new commonStepDefinitions();
 		SREG_435 sreg435 = new SREG_435(driver);
-		test = report.createTest("EM.411.001:Verify CSR is able to update account status of employer account 'Liable' ");
+		
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		HomePage home = new HomePage(driver);
 		employerManagement empManage = new employerManagement(driver);
@@ -104,16 +107,17 @@ public class EM_411_001 extends TestBase{
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd info on SREG-435 page");
 		sleep(2000);
 		cf.ScrollMenu("Send a Closure Letter (IA31.6)?");
-		sreg435.radioButton.click();
+		//sreg435.radioButton.click();
+		cf.selectRadioQuestions("Send a Closure Letter (IA31.6)?", "No ");
 		sleep(2000);
 		empManage.sourceId_SREG435.click(); 
-		sleep(1000);
+		sleep(2000);
 		empManage.IA602_SREG435.click(); 
-		sleep(1000);
+		sleep(2000);
 		empManage.sourceTypeId_SREG435.click();
-		sleep(1000); 
+		sleep(2000); 
 		empManage.CashWages_SREG435.click();
-		sleep(1000); 
+		sleep(2000); 
 		cf.screenShot("Update Account Status ", "Pass", "Successfully enterd complete info on SREG-435 page");
 		sleep(2000);
 		cf.clickButtonContains("Submit ");
@@ -121,7 +125,7 @@ public class EM_411_001 extends TestBase{
 		
 		//----SUC 002
 		sleep(2000);
-		cf.screenShot("Modify Employer Account Details", "Pass", "Successfully landed on SUC 002");
+		cf.screenShot("Update Account Status Confirmation", "Pass", "Successfully landed on SUC 002");
 		sleep(2000);
 		suc.successMessagePatialText.isDisplayed();
 		sleep(2000);

@@ -39,7 +39,7 @@ public class SUC_002 extends TestBase{
 	@FindBy(how = How.XPATH, using = "//mat-card[text()='Employer Registration Number 00-00022 has been closed successfully effective 1/2021']")
 	public WebElement successMessageText;
 	
-	@FindBy(how = How.XPATH, using = ".//p[contains(.,'successfully effective ')]")
+	@FindBy(how = How.XPATH, using = ".//p[contains(.,' made liable successfully effective ')]")
 	public WebElement successMessagePatialText;
 	
 	
