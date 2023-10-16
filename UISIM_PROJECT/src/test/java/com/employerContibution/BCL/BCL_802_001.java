@@ -3,6 +3,8 @@ package com.employerContibution.BCL;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
+
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -13,6 +15,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class BCL_802_001 extends TestBase {
 	@Test
 	public void BCL802_001() throws Exception {
@@ -22,9 +25,9 @@ public class BCL_802_001 extends TestBase {
 
 		test = report.createTest(
 				"BCL.802.05.001 - Verify CSR can Search ERN with select bankruptcy case status 'Active' and add Bankruptcy Case Activity for activity type incoming and activity name 'Telephone Call'");
-
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		commonFuntions.clickMenu("menu");
+		sleep(2000);
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree.toUpperCase(), COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree_PASSWORD);
+		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Employer Collection");
 		commonFuntions.clickMenu("Employer Collection");
@@ -141,12 +144,15 @@ public class BCL_802_001 extends TestBase {
 		sleep(1000);
 
 		test.info("Step: 12 -- ");
-		Map<String, String> databaseResults1 = col474.database_SelectQuery(
+		/*Map<String, String> databaseResults1 = col474.database_SelectQuery(
 				"SELECT * FROM T_TX_BANKRUPTCY ttb JOIN T_EMPLOYER_ACCOUNT tea ON ttb.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID WHERE STATUS ='ACTV';");
-
-		String eanValue2 = databaseResults1.get("Ean");
+				
+		String eanValue2 = databaseResults1.get("EAN");
 		System.out.println("The EAN Value is:" + eanValue2);
 		test.log(Status.INFO, "Ean::" + eanValue2);
+		*/
+		
+		String eanValue2 = "0524100";
 
 		commonFuntions.enterTextboxContains("a.Employer Registration Number", eanValue2);
 		commonFuntions.clickButtonContains(" Search ");
@@ -195,7 +201,7 @@ public class BCL_802_001 extends TestBase {
 
 		test.info("Step: 15 -- ");
 		commonFuntions.enterTextboxContains("1.  Bankruptcy Case Number", caseNumber);
-		commonFuntions.selectRadioQuestions("2 Is this a Jointly Administered Claim?", "Yes ");
+		commonFuntions.selectRadioQuestions("2. Is this a Jointly Administered Claim?", "Yes ");
 		commonFuntions.enterTextboxContains("4. Petition File Date", "20/6/2023");
 		commonFuntions.errorLabel(" Please enter a valid date in MM/DD/YYYY format");
 		commonFuntions.screenShot("Enter Bankruptcy Details", "Pass", "Date Error is displayed");
@@ -212,7 +218,7 @@ public class BCL_802_001 extends TestBase {
 		commonFuntions.forceClearTextWithElement("4. Petition File Date");
 		sleep(1000);
 		commonFuntions.enterTextboxContains("4. Petition File Date", "6/20/2023");
-		commonFuntions.enterTextboxContains("3 Jointly Administered Bankruptcy Case Number", "9652");
+		commonFuntions.enterTextboxContains("3. Jointly Administered Bankruptcy Case Number", "9652");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		// commonFuntions.waitForLoadingIconToDisappear();
@@ -224,12 +230,12 @@ public class BCL_802_001 extends TestBase {
 		sleep(1000);
 		commonFuntions.forceClearTextWithElement("4. Petition File Date");
 		sleep(1000);
-		commonFuntions.selectRadioQuestions("6.  Is this an Asset Case", "Yes ");
+		commonFuntions.selectRadioQuestions("6. Is this an Asset Case", "Yes ");
 		commonFuntions.enterFutureDate("4. Petition File Date", 720);
 		sleep(2000);
 		commonFuntions.clickButtonContains("Continue");
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.errorLabel(" Petition File Date cannot be future date.");
+		commonFuntions.errorLabel(" The Petition File Date cannot be future date.");
 		commonFuntions.screenShot("Enter Bankruptcy Details", "Pass", "Required Error is displayed");
 
 		test.info("Step: 18 -- ");
@@ -237,6 +243,7 @@ public class BCL_802_001 extends TestBase {
 		commonFuntions.forceClearTextWithElement("4. Petition File Date");
 		sleep(1000);
 		commonFuntions.enterTextboxContains("4. Petition File Date", "6/20/2023");
+		commonFuntions.screenShot("Enter Bankruptcy Details", "Pass", "complete details is displayed");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
