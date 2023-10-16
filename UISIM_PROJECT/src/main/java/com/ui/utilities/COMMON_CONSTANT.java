@@ -78,6 +78,9 @@ public class COMMON_CONSTANT {
 
 	public static final String EMPLOYER_USER_8 = "asahai1604"; // Corporate Officer/Owner _ new one//MA Specialist role
 	public static final String EMPLOYER_USER_8_PASSWORD = "Anay@123456789";
+	
+	public static final String EMPLOYER_USER_9 = "EmployerUser02"; 
+	public static final String EMPLOYER_USER_9_PASSWORD = "NewUser@123456";
 
 	// TPR
 	public static final String TPR_USER_1 = "tpruser@123";
@@ -87,10 +90,16 @@ public class COMMON_CONSTANT {
 	public static final String TPR_USER_2_PASSWORD = "NewUser@123456";
 
 	public static final String TPR_USER_3 = "tpruser121";
-	public static final String TPR_USER_3_PASSWORD = "NewUser@12345678";
+	public static final String TPR_USER_3_PASSWORD = "Anoop@123456789";
 
 	public static final String TPR_USER_4 = "thirduseremp";
 	public static final String TPR_USER_4_PASSWORD = "Thirduseremp@1234";
+	
+	public static final String TPR_USER_5 = "TPRUser01";
+	public static final String TPR_USER_5_PASSWORD = "NewUser@123456";
+	
+	public static final String TPR_USER_6 = "psTPRUser";
+	public static final String TPR_USER_6_PASSWORD = "NewUser@123456";
 
 	// PEO
 	public static final String PEO_USER_1 = "peouser";
@@ -143,4 +152,21 @@ public class COMMON_CONSTANT {
 	
 	public static final String OTHER_USER_1 = "VKenyo";
 	public static final String OTHER_USER_PASS_1 = "Test123456?@#%$";
+	
+	/* *********Collections Specialist 3 ********* */
+	public static final String Collections_Specialist_3_User = "CollectionsSpecialistThree";
+	public static final String Collections_Specialist_3_pwd = "NewUser@123456";
+	
+	public static final String Collections_Specialist_1_User = "CollectionsSpecialistOne";
+	public static final String Collections_Specialist_1_pwd = "NewUser@123456";
+	
+	public static final String LnDSpecialist_User = "LnDSpecialist";
+	public static final String LnDSpecialist_User_Pwd = "NewUser@123456";
+	
+	public static final String SecureMessagingSpecialist2_User = "SecureMessagingSpecialistSecond";
+	public static final String SecureMessagingSpecialist2_User_pwd = "NewUser@123456";
+	
+	public static final String EmployerAccountManager_User = "EmployerAccountManager";
+	public static final String EmployerAccountManager_User_pwd = "NewUser@123456";
+	
 }

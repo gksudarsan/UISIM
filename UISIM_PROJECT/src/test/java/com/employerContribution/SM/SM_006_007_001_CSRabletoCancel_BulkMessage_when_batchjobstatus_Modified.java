@@ -21,10 +21,10 @@ public class SM_006_007_001_CSRabletoCancel_BulkMessage_when_batchjobstatus_Modi
 		test = report.createTest("SM.006.007.001 Verify that the CSR is able to Cancel the Bulk Message when the batch job status is Modified");
 
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
-
+		// Pre - SecureMessagingSpecialistSecond - write bulk notification
 		// ---Login---
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
+		commonFuntions.login(COMMON_CONSTANT.SecureMessagingSpecialist2_User, COMMON_CONSTANT.SecureMessagingSpecialist2_User_pwd);
+		test.log(Status.PASS, "Login with Secure Messaging Specialist 2 is successful");
 
 		// ---Menu----
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -33,13 +33,13 @@ public class SM_006_007_001_CSRabletoCancel_BulkMessage_when_batchjobstatus_Modi
 		commonFuntions.ScrollMenu("Secure Messaging");
 		commonFuntions.clickMenu("Secure Messaging");
 		sleep();
-		commonFuntions.screenShot("Menu", "Pass", "Click on Write Message - Enter ERN");
+		commonFuntions.screenShot("Menu", "Pass", "Secure Messaging Menu option");
 		commonFuntions.clickMenu("View Bulk Secure Message Summary");
 
 		// ---View Bulk Secure Message Summary-SM–114---//
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("View Bulk Secure Message Summary", "Pass", "Successful launch view Bulk_SM Summary - SM–114");
-		commonFuntions.enterPastDate("From Date", 200);
+		commonFuntions.enterPastDate("From Date", 300);
 		commonFuntions.enterCurrentDate("To Date");
 		commonFuntions.screenShot("View Bulk Secure Message Summary", "Pass", "Date range selected-SM–114");
 		commonFuntions.clickButton(" Search ");
@@ -50,7 +50,7 @@ public class SM_006_007_001_CSRabletoCancel_BulkMessage_when_batchjobstatus_Modi
 		commonFuntions.screenShot("Click on Cancel", "Pass", "Clicked on Cancel, now click on Yes");
 		commonFuntions.clickButton(" Yes ");
 		
-		commonFuntions.screenShot("View Bulk Secure Message Summary", "Pass", "expected Error TC Pass");
+		commonFuntions.screenShot("View Bulk Secure Message Summary", "Pass", "The message was successfully cancelled.");
 
 	}
 }

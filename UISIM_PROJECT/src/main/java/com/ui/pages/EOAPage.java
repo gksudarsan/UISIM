@@ -22,6 +22,21 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='I am a Third Party Representative who needs to create an online account to represent my clients in Unemployment Insurance matters.']")
 	public WebElement tprRepresentativeRadio;
 	
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='I am a Professional Employer Organization that needs to create an online account for maintaining my client’s associations and Professional Employer Organization registration status.']")
+	public WebElement peoRegisteredRadio;
+	
+	@FindBy(how = How.XPATH, using = "//label[contains(.,' Same as Contact Number ')]//preceding::*[@class='mdc-checkbox__native-control'][1]")
+	public WebElement cellSameasContactNumber;
+	
+	@FindBy(how = How.XPATH, using = "//label[contains(.,' TPR - All UI Matters')]//preceding::*[@class='mdc-checkbox__native-control'][1]")
+	public WebElement  tprAllUIMatters;
+	
+	@FindBy(how = How.XPATH, using = "//label[contains(.,' Employer - Contributions')]//preceding::*[@class='mdc-checkbox__native-control'][1]")
+	public WebElement  select_Employer_Contributions;
+	
+	
+	
+	
 	
 	
 	

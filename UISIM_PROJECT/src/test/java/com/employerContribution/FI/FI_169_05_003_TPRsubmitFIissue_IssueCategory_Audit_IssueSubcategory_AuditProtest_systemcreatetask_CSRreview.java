@@ -2,6 +2,7 @@ package com.employerContribution.FI;
 
 import java.util.Map;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -12,6 +13,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_169_05_003_TPRsubmitFIissue_IssueCategory_Audit_IssueSubcategory_AuditProtest_systemcreatetask_CSRreview
 		extends TestBase {
 
@@ -24,22 +26,26 @@ public class FI_169_05_003_TPRsubmitFIissue_IssueCategory_Audit_IssueSubcategory
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		FIpage filocators	= new FIpage(driver);
 		
-		Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn(
+		/*Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n"
 				+ "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n"
-				+ "THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'tpruser121')\r\n"
+				+ "THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'TPRUser01')\r\n"
 				+ "AND ASSOCIATION_STATUS = 'ACTIVE'\r\n"
-				+ ");", "EAN");
+				+ ");", "EAN");*/
+		
+		Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM t_employer WHERE EMPLOYER_ID IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE THIRD_PARTY_CDS_VENDOR_ID = '299')", "EAN");
 		String ernNum = databaseEanResult.get("EAN");
 
 		if ((ernNum == null) || (ernNum.isEmpty())) {
 			System.out.println("ERN Value is null");
+			test.log(Status.FAIL,"ERN Value is null");
 		} else {
 			test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + ernNum + ".");
 		}
+		System.out.println("DB connected successfully and fetched ERN is: " + ernNum + ".");
 
-		// ---Login---
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_3, COMMON_CONSTANT.TPR_USER_3_PASSWORD);
+		// ---Login---TPRUser01
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER_6, COMMON_CONSTANT.TPR_USER_6_PASSWORD);
 		test.log(Status.PASS, "Login with TPR is successful");
 
 		// ---Menu----
@@ -61,6 +67,7 @@ public class FI_169_05_003_TPRsubmitFIissue_IssueCategory_Audit_IssueSubcategory
 
 		// ---Write Message-SM-101---//
 		commonFuntions.waitForLoadingIconToDisappear();
+		//commonFuntions.Label("SM-101");
 		commonFuntions.screenShot("Write Message", "Pass", "Write Message page launched-SM-101");
 		commonFuntions.selectDropdown("Category", "Protest");
 		sleep();
@@ -111,8 +118,8 @@ public class FI_169_05_003_TPRsubmitFIissue_IssueCategory_Audit_IssueSubcategory
 		
 		//--- CSR review Flow Started ---//
 		// ---Login---
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.LnDSpecialist_User, COMMON_CONSTANT.LnDSpecialist_User_Pwd);
+		test.log(Status.PASS, "Login with CSR-LnDSpecialist is successful");
 		
 		 commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"+ernNum+"' ORDER BY UPDATED_TS desc)");
 	     Thread.sleep(2000);

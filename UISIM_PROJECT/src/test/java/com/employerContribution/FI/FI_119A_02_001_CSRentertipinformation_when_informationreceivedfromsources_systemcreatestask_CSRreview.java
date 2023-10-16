@@ -25,7 +25,8 @@ public class FI_119A_02_001_CSRentertipinformation_when_informationreceivedfroms
 		//FIpage filocators	= new FIpage(driver);
 
 		// ---Login---
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		//commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.LnDSpecialist_User, COMMON_CONSTANT.LnDSpecialist_User_Pwd);
 		test.log(Status.PASS, "Login with CSR is successful");
 
 		// ---Menu----
