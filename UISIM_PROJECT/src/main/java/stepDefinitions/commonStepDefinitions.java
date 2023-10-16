@@ -72,11 +72,12 @@ public class commonStepDefinitions extends TestBase {
 	public void login(String userName, String password) throws Exception {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		Thread.sleep(2000);
+		driver.get(prop.getProperty("applicationUrl"));
+		Thread.sleep(15000);
 		screenShot("LoginPage", "Pass", "Home Page");
 		try {
 			loginPage.loginLink.click();
-			Thread.sleep(5000);
+			Thread.sleep(15000);
 
 //		test.log(Status.PASS, "User Launched website");
 //		driver.navigate().refresh();
@@ -99,7 +100,7 @@ public class commonStepDefinitions extends TestBase {
 			// userRole is successful");
 
 			Thread.sleep(3000);
-			driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+//			driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 			Thread.sleep(8000);
 
@@ -138,8 +139,83 @@ public class commonStepDefinitions extends TestBase {
 			}
 		} catch (Exception e) {
 		}
+		
 	}
 
+	public void benefitsLogin(String userName, String password) throws Exception {
+
+		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+		driver.get(prop.getProperty("applicationBenefitsUrl"));
+		Thread.sleep(15000);
+		screenShot("LoginPage", "Pass", "Home Page");
+		try {
+			loginPage.loginLink.click();
+			Thread.sleep(15000);
+
+//		test.log(Status.PASS, "User Launched website");
+//		driver.navigate().refresh();
+//		Thread.sleep(2000);
+//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
+//		driver.navigate().to(driver.getCurrentUrl());
+//		Thread.sleep(5000);
+//		driver.get(driver.getCurrentUrl());
+			Thread.sleep(5000);
+
+			enterTextbox("Username", userName);
+//			test.log(Status.PASS, "User entered Username");
+			enterTextbox("Password", password);
+//			test.log(Status.PASS, "User entered Password");
+
+			sleep(2000);
+			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
+
+			// Add this to your TC after login function : test.log(Status.PASS, "Login with
+			// userRole is successful");
+
+			Thread.sleep(3000);
+//			driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
+
+			Thread.sleep(8000);
+
+			screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
+
+			// Thread.sleep(10000);
+		} catch (Exception e) {
+		}
+
+		try {
+			driver.navigate().refresh();
+			Thread.sleep(2000);
+			waitForLoadingIconToDisappear();
+			driver.navigate().refresh();
+			Thread.sleep(2000);
+			waitForLoadingIconToDisappear();
+
+			// Thread.sleep(2000);
+			// waitForLoadingIconToDisappear();
+
+//		loginPage.okPopUpButton.click();
+			if (driver.findElements(By.xpath("//*[.=' OK '][@class='mdc-button__label']")).size() > 0) {
+				loginPage.okPopUpButton.click();
+//			Thread.sleep(3000);
+				waitForLoadingIconToDisappear();
+			}
+			Thread.sleep(3000);
+			driver.navigate().refresh();
+			Thread.sleep(3000);
+			waitForLoadingIconToDisappear();
+			if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
+				sleep(2000);
+				loginPage.okPopUpButton.click();
+//			Thread.sleep(3000);
+				waitForLoadingIconToDisappear();
+			}
+		} catch (Exception e) {
+		}
+		
+	}
+
+	
 	// Methods
 	public void enterTextbox(String xpathParameter, String value) {
 		By element = By.xpath("//*[.='" + xpathParameter + "']//following::input[1]");
@@ -845,6 +921,7 @@ public class commonStepDefinitions extends TestBase {
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
+		driver.get(prop.getProperty("applicationUrl"));
 		Thread.sleep(2000);
 		screenShot("LoginPage", "Pass", "HomePage");
 		loginPage.loginLink.click();
@@ -1440,6 +1517,18 @@ public class commonStepDefinitions extends TestBase {
 //					highLightWebElement(driver, ele);
 					//safeJavaScriptClick(ele);
 					ele.click();
+				} catch (final Exception e) {
+				}
+			}
+			
+			public void selectRadioIdContains(String xpathParameter) {
+				By element = By.xpath("//*[@class='mdc-radio__native-control']//following::*[contains(@id, '" + xpathParameter + "')][1]");
+
+					final WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+					try {
+						WebElement ele = wait.until(ExpectedConditions.presenceOfElementLocated(element));
+//						highLightWebElement(driver, ele);
+					safeJavaScriptClick(ele);
 				} catch (final Exception e) {
 				}
 			}

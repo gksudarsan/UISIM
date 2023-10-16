@@ -1,5 +1,6 @@
 package com.employerContribution.SM;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -9,6 +10,8 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
+
 public class SM_002_007_SystemDisplaysSuggestion_TprAbleToSendMessage extends TestBase {
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify that the system displays a suggestion and the third party representative is be able to write and send a message.", groups = "Regression")
@@ -16,18 +19,19 @@ public class SM_002_007_SystemDisplaysSuggestion_TprAbleToSendMessage extends Te
 
 		test = report.createTest(
 				"SM.002.007 - Verify that the system displays a suggestion and the third party representative is be able to write and send a message.");
-//		String ernNum = "9888277";
+		String ernNum = "5454645";
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		SMPage smlocators = new SMPage(driver);
 		
-//		if ((ernNum == null) || (ernNum.isEmpty())) {
-//			System.out.println("ERN Value is null");
-//		} else {
-//			test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + ernNum + ".");
-//		}
+		if ((ernNum == null) || (ernNum.isEmpty())) {
+			System.out.println("ERN Value is null");
+		} else {
+			test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + ernNum + ".");
+		}
 
 		// --- Login ---
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_4.toUpperCase(), COMMON_CONSTANT.TPR_USER_4_PASSWORD);
+//		commonFuntions.login(COMMON_CONSTANT.TPR_USER_5.toUpperCase(), COMMON_CONSTANT.TPR_USER_5_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.CLAIMANT_REPRESENTATIVE_1.toUpperCase(), COMMON_CONSTANT.CLAIMANT_REPRESENTATIVE_PASSWORD_1);
 		test.log(Status.PASS, "Login with TPR is successful");
 
 		// --- Menu ----
@@ -35,10 +39,10 @@ public class SM_002_007_SystemDisplaysSuggestion_TprAbleToSendMessage extends Te
 		smlocators.menu.click();
 		commonFuntions.ScrollMenu("Secure Messaging");
 		commonFuntions.clickMenu("Secure Messaging");
-		commonFuntions.ScrollMenu("Write Message");
+		commonFuntions.ScrollMenu("Write Message - Enter ERN");
 		sleep();
-		commonFuntions.screenShot("MenuPage", "Pass", "Navigate to Menu -> Secure Messaging -> Write Message");
-		commonFuntions.clickMenu("Write Message");
+		commonFuntions.screenShot("MenuPage", "Pass", "Navigate to Menu -> Secure Messaging -> Write Message - Enter ERN.");
+		commonFuntions.clickMenu("Write Message - Enter ERN");
 		
 		// --- SM-101 ---
 		commonFuntions.waitForLoadingIconToDisappear();

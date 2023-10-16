@@ -27,7 +27,17 @@ public class CaPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='dataTableId']//mat-row[1]/mat-cell[1]//u[1]")
 	public WebElement currentPaymentAllocationDetailsLink;
 	
+	@FindBy(how = How.XPATH, using = "//*[text()='Menu'][@class='menu-label']")
+	public WebElement menu;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_0_2']")
+	public WebElement remitanceInputBox2;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_0_3']")
+	public WebElement remitanceInputBox3;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_0_4']")
+	public WebElement remitanceInputBox4;
 	
 	
 

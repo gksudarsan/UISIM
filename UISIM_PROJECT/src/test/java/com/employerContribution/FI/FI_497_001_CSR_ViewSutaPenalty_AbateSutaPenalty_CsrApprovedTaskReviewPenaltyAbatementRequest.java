@@ -22,18 +22,31 @@ public class FI_497_001_CSR_ViewSutaPenalty_AbateSutaPenalty_CsrApprovedTaskRevi
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		FraudInvestigationLocators filocators = new FraudInvestigationLocators(driver);
 		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea JOIN T_TX_EMPL_BENEFIT_CLAIM_PENALTY ttebcp ON ttebcp.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID", "EAN");
+				"SELECT\r\n"
+				+ "        count (otherpayme0_.OTHER_PAYMENT_DISTRIBUTION_ID) as COUNT,\r\n"
+				+ "        otherpayme0_.PAYMENT_CATEGORY as PAYMENT_CATEGORY ,\r\n"
+				+ "        E.EAN\r\n"
+				+ "    from\r\n"
+				+ "        T_TX_OTHER_PAYMENT_DISTRIBUTION otherpayme0_,\r\n"
+				+ "        T_TX_OTHER_DUE_TRANSACTION otherduetr3_,\r\n"
+				+ "        T_EMPLOYER E \r\n"
+				+ "    where\r\n"
+				+ "        otherpayme0_.OTHER_DUE_TRANSACTION_ID = otherduetr3_.OTHER_DUE_TRANSACTION_ID \r\n"
+				+ "        and otherduetr3_.EMPLOYER_ID = E.EMPLOYER_ID\r\n"
+				+ "        AND PAYMENT_CATEGORY = 'SUTA'\r\n"
+				+ "    group by\r\n"
+				+ "        otherpayme0_.PAYMENT_CATEGORY,E.EAN;", "EAN");
 		String ernNo = databaseEanResult.get("EAN");
 
 		if ((ernNo == null) || (ernNo.isEmpty())) {
 			System.out.println("ERN Value is null");
 		} else {
-			test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + ernNo + ".");
+			test.log(Status.PASS, "DB connected successfully and fetched EAN is: " + ernNo + ".");
 		}
 
  		//---Login---
-		commonFunction.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
+		commonFunction.login(COMMON_CONSTANT.LND_FRAUD_SPECIALIST, COMMON_CONSTANT.LND_FRAUD_SPECIALIST_PASSWORD_);
+		test.log(Status.PASS, "Login with L&D Fraud Specialist role is successful.");
 
 		// ---Menu----
 		commonFunction.waitForLoadingIconToDisappear();

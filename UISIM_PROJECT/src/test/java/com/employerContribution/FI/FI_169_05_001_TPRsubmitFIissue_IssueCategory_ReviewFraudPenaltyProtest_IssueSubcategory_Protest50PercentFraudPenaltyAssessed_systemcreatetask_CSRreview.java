@@ -2,6 +2,7 @@ package com.employerContribution.FI;
 
 import java.util.Map;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -12,6 +13,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_169_05_001_TPRsubmitFIissue_IssueCategory_ReviewFraudPenaltyProtest_IssueSubcategory_Protest50PercentFraudPenaltyAssessed_systemcreatetask_CSRreview
 		extends TestBase {
 
@@ -26,18 +28,28 @@ public class FI_169_05_001_TPRsubmitFIissue_IssueCategory_ReviewFraudPenaltyProt
 		FIpage filocators	= new FIpage(driver);
 		
 		Map<String, String> databaseEanResult = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='LIAB' AND EAN LIKE '9%';", "EAN");
+				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n"
+				+ "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n"
+				+ "THIRD_PARTY_CDS_VENDOR_ID = '299'\r\n"
+				+ ");", "EAN");
 		String ernNum = databaseEanResult.get("EAN");
 
 		if ((ernNum == null) || (ernNum.isEmpty())) {
-			System.out.println("ERN Value is null");
+			System.out.println("EAN Value is null");
 		} else {
-			test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + ernNum + ".");
+			test.log(Status.PASS, "DB connected successfully and fetched EAN is: " + ernNum + ".");
 		}
 		
 		// ---Login---
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_3, COMMON_CONSTANT.TPR_USER_3_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER_6, COMMON_CONSTANT.TPR_USER_6_PASSWORD);
 		test.log(Status.PASS, "Login with TPR is successful");
+		
+		try {
+			commonFuntions.clickButtonContains("I agree with the Terms and Conditions");
+			test.log(Status.PASS, "Accepted 'Terms and Conditions for TPR'");
+		} catch(Exception exception) {
+			test.log(Status.PASS, "Accepted 'Terms and Conditions for TPR'");
+		}
 
 		// ---Menu----
 		commonFuntions.waitForLoadingIconToDisappear();

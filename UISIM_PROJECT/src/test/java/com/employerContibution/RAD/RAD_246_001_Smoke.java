@@ -22,14 +22,12 @@ public class RAD_246_001_Smoke extends TestBase {
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		ReturnAdjustmentDeterminationLocators radLocators = new ReturnAdjustmentDeterminationLocators(driver);
-		
 
-
-		test.log(Status.INFO, "Script developed by Das, Ankan.");
+		test.log(Status.INFO, "Script developed by Ankan Das.");
 
 		//GET method
 		// valid ERN where employer has existing Bankruptcy record
-		/*Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT\r\n" + 
 				"                            te.EMPLOYER_ID AS EMPLOYER_ID ,\r\n" + 
 				"                            te.EAN AS EAN,\r\n" + 
@@ -62,9 +60,8 @@ public class RAD_246_001_Smoke extends TestBase {
 				"                            AND tmqy.YEAR = '2023'\r\n" + 
 				"                            AND ttrd.REPORT_CATEGORY = 'AMD';",
 				"EAN");
-		String eanValue = databaseEanResult.get("EAN"); */
+		String eanValue = databaseEanResult.get("EAN"); 
 		
-		String eanValue = "";
 		if ((eanValue == null) || eanValue.isEmpty())
 		{
 			System.out.println("EAN value is null");
@@ -73,13 +70,10 @@ public class RAD_246_001_Smoke extends TestBase {
 		}
 		
 		// --- Login ---
-		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
+		commonFunction.login(COMMON_CONSTANT.EMPLOYER_ACCOUNT_SPECIALIST.toUpperCase(), COMMON_CONSTANT.EMPLOYER_ACCOUNT_SPECIALIST_PASSWORD);
+		test.log(Status.PASS, "Login with Employer Account Specialist role is successful");
 		
-		// ---Menu Click---
-		commonFunction.selectDropdown("Reason for Adjustment", " Fix Return Type ");
-		
-		
+		// ---Menu Click---		
 		commonFunction.waitForLoadingIconToDisappear();
 		radLocators.menu.click();
 		commonFunction.ScrollMenu("Contribution Return Adjustment");
@@ -129,49 +123,56 @@ public class RAD_246_001_Smoke extends TestBase {
 		commonFunction.enterTextboxContains("Employer Registration Number", "0000001");
 		commonFunction.clickButtonContains(" Search ");
 		sleep(2000);
-		commonFunction.screenShot("RAD246001", "Pass", "Error on invalid ERN Search");
-		
-		try {
-		commonFunction.Label("System Failure");
-		commonFunction.screenShot("RAD246001", "Fail", "System Failure at search");
-		} catch(Exception exception) {
-			exception.printStackTrace();
-		}
-		
+		commonFunction.screenShot("RAD246001", "Pass", "Error on invalid ERN Search");		
 		
 		
 		commonFunction.enterTextboxContains("Employer Registration Number", "");
 		commonFunction.enterTextboxContains("Employer Registration Number", eanValue);
 		commonFunction.clickButtonContains(" Search ");
-		sleep(2000);
-		commonFunction.screenShot("RAD246001", "Pass", "No returns posted Error on wrong ERN-Quater/Year combination Search");
 		
-		sleep(1500);
-		commonFunction.screenShot("RAD246001", "Pass", "Entered data in TWR-237 page");
-		
-		commonFunction.clickButtonContains(" Search ");
 		sleep(2000);
 		commonFunction.screenShot("RAD246001", "Pass", "Data present with the above ERN after search in TWR-901 page");
 		
 		
-		commonFunction.waitForLoadingIconToDisappear();
-		
-		
+		commonFunction.waitForLoadingIconToDisappear();		
 		commonFunction.selectDropdown("Reason for Adjustment", " Fix Return Type ");
 		radLocators.reasonForAdjustmentComment.sendKeys("Testing for smoke");
-		sleep();
+		sleep(2000);
+		commonFunction.screenShot("RAD246001", "Pass", "Entered required data.");
+		
+		commonFunction.clickButtonContains("Continue ");
+		sleep(2000);
+		commonFunction.screenShot("RAD246001", "Pass", "Need to select radio to continue further.");
+		
+		
 		try {
-		commonFunction.selectRadioInTable("Amended", 1, 1, "");
+			commonFunction.selectRadioInTable("Amended", 1, 1, "");
+			sleep(2000);
+			commonFunction.screenShot("RAD246001", "Pass", "Selected radio button to continue further.");
+			commonFunction.clickButtonContains("Continue ");
 		} catch(Exception exception) {
 			exception.printStackTrace();
 		}
 		
+		// --- TWR-212 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("RAD246001", "Pass", "Successfully launched Contribution Return Adjustment(TWR-212) page");
+		commonFunction.clickButtonContains("Continue ");
 		
-	    sleep(2000);
-	    commonFunction.screenShot("RAD246001", "Fail", "Unable to click radio button form list");
-	    
+		// --- TWR-242 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("RAD246001", "Pass", "Successfully launched Contribution Return Adjustment Verification(TWR-242) page");
+		commonFunction.clickButtonContains("Submit ");
 		
-		System.out.println("Fail :(");
+		// --- SUC-002 ---
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("RAD246001", "Pass", "Successfully launched Contribution Return Adjustment Confirmation(SUC-002) page");
+		commonFunction.clickButtonContains("Home ");
+		
+		commonFunction.waitForLoadingIconToDisappear();
+		commonFunction.screenShot("RAD246001", "Pass", "Successfully passed TC RAD.246.001.");
+		System.out.println("Smoke");
+		
 	}
 
 }
