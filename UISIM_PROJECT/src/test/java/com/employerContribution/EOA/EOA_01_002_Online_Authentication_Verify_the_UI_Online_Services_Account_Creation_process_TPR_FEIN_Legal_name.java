@@ -28,15 +28,6 @@ public class EOA_01_002_Online_Authentication_Verify_the_UI_Online_Services_Acco
 
 	public void EOA_01_002() throws Exception {
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
-		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
-		employerManagement empmanagementPage = new employerManagement(driver);
-		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		AddressPage address = new AddressPage(driver);
-		SREG_043 sreg043 = new SREG_043(driver);
-		SUC_002 suc002 = new SUC_002(driver);
-		SREG_084 sreg084 = new SREG_084(driver);
-		SREG_004 sreg004 = new SREG_004(driver);
-		SREG_008 sreg008 = new SREG_008(driver);
 		EOAPage eoaPage = new EOAPage(driver);
 		
 

@@ -13,9 +13,6 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-
-
-
 @Listeners(com.ui.utilities.ListenerTest.class)
 public class RAD_246_01_001_Smoke extends TestBase {
 	
@@ -26,10 +23,11 @@ public class RAD_246_01_001_Smoke extends TestBase {
 		
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		ReturnAdjustmentDeterminationLocators radLocators = new ReturnAdjustmentDeterminationLocators(driver);
-		test.log(Status.INFO, "Script developed by Devanshu.");
+		test.log(Status.INFO, "Script developed by Ankan Das.");
+		
 		//GET method
 		// valid ERN where employer has existing Bankruptcy record
-		/*Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
+		Map<String, String> databaseEanResult = commonFunction.database_SelectQuerySingleColumn(
 				"SELECT\r\n" + 
 				"                            te.EMPLOYER_ID AS EMPLOYER_ID ,\r\n" + 
 				"                            te.EAN AS EAN,\r\n" + 
@@ -70,13 +68,13 @@ public class RAD_246_01_001_Smoke extends TestBase {
 		} else {
 			test.log(Status.PASS, "DB Connected successfully & fetched ERN is " + eanValue + ".");
 		}
-		*/
 		
-		String eanValue = "1111223";
+		
+//		String eanValue = "1111223";
 		
 		// --- Login ---
-		commonFunction.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
+		commonFunction.login(COMMON_CONSTANT.EMPLOYER_ACCOUNT_SPECIALIST.toUpperCase(), COMMON_CONSTANT.EMPLOYER_ACCOUNT_SPECIALIST_PASSWORD);
+		test.log(Status.PASS, "Login with Employer Account Specialist role is successful");
 		
 		// ---Menu Click---
 		commonFunction.waitForLoadingIconToDisappear();
@@ -106,8 +104,8 @@ public class RAD_246_01_001_Smoke extends TestBase {
 		commonFunction.enterTextboxContains("From Employer Registration Number", "");
 		commonFunction.enterTextboxContains("To Employer Registration Number", "");
 		sleep();
-		commonFunction.enterTextboxContains("From Employer Registration Number", "9311967");
-		commonFunction.enterTextboxContains("To Employer Registration Number", "9311967");
+		commonFunction.enterTextboxContains("From Employer Registration Number", "9310967"); //9311967
+		commonFunction.enterTextboxContains("To Employer Registration Number", "9311067");
 		sleep(2000);
 		commonFunction.screenShot("RAD24601001", "Pass", "Different ERN entered in TWR-205 page");
 		commonFunction.clickButtonContains(" Search ");

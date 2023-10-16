@@ -24,8 +24,8 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 
 		test = report.createTest("EL.02.013 : Verify CSR  can renewal PEO Exempt registration.");
 		
-		test.log(Status.INFO, "Script developed by Abhinab");
-		test.log(Status.INFO, "Script developed by Das, Ankan.");
+		//test.log(Status.INFO, "Script developed by Abhinab");
+		test.log(Status.INFO, "Script updated by Das, Ankan.");
 		
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
@@ -35,28 +35,37 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 //				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND COMPANY_TYPE = 'PRI' AND FEIN IS NOT FALSE ORDER BY ORGANIZATION_TYPE DESC",
 //				"FEIN");
 		Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL  ORDER BY ORGANIZATION_TYPE DESC",
+//				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL  ORDER BY ORGANIZATION_TYPE DESC",
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL AND CREATED_BY IN ('LEGACY') ORDER BY ORGANIZATION_TYPE DESC;",
 				"FEIN");
 		String feinValue = databaseResults.get("FEIN");
 		System.out.println("feinValue is" + feinValue);
+		/*Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn(
+//				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ACCOUNT_STATUS='ISSD' AND TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL  ORDER BY ORGANIZATION_TYPE DESC",
+				"SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE TYPE_OF_REQUEST='PEOER' AND FEIN IS NOT NULL AND CREATED_BY IN ('LEGACY') ORDER BY ORGANIZATION_TYPE DESC;",
+				"EMPLOYER_REGISTRATION_NUMBER");
+		String ernValue = databaseResults.get("EMPLOYER_REGISTRATION_NUMBER");
+		System.out.println("ernValue is " + ernValue);*/
 		
 		if ((feinValue == null) || feinValue.isEmpty())
 		{
 			System.out.println("FEIN value is null");
+//			System.out.println("ERN value is null");
 		} else {
-			test.log(Status.PASS, "DB Connected successfully & fetched FEIN is " + feinValue + ".");
+			test.log(Status.PASS, "DB Connected successfully & fetched FEIN generated is " + feinValue + ".");
+//			test.log(Status.PASS, "DB Connected successfully & fetched ERN generated is " + ernValue + ".");
 		}
 		
 			
 		// --- Login ---
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_7.toUpperCase(), COMMON_CONSTANT.CSR_USER_7_PASSWORD);
-		test.log(Status.PASS, "Login with CSR is successful");
-		
-		
+		commonFuntions.login(COMMON_CONSTANT.PEO_SPECIALIST.toUpperCase(), COMMON_CONSTANT.PEO_SPECIALIST_PASSWORD);
+		test.log(Status.PASS, "Login with Peo Specialist Role is successful");
 		
 		// ---Menu Click---
 		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(3000);
 		peoPage.menu.click();
+		sleep(2000);
 		commonFuntions.ScrollMenu("Professional Employer Organization (PEO)");
 		peoPage.menuPeo.click();
 		commonFuntions.ScrollMenu("Renew PEO");
@@ -71,11 +80,26 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		sleep();
 		commonFuntions.screenShot("EL02013", "Pass", "Entered PEO Name as 'test'");
 		commonFuntions.clickButtonContains(" Search ");
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "No data present with this Peo Name");
 		
+		commonFuntions.enterTextboxContains("PEO Name", "");
+		commonFuntions.clickOnLinkAnchorTag(" ADVANCED SEARCH");
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Clicked on 'Advanced Search' hyperlink");
+		
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", "");
+		commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)", feinValue);
+		
+//		commonFuntions.enterTextboxContains("Employer Registration Number", "");
+//		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Entered ERN to search");
+		commonFuntions.clickButtonContains(" Search ");
 		sleep(5000);
-		commonFuntions.selectRadioInTable("Issued", 1, 1, "");
+		commonFuntions.selectRadioInTable("", 1, 1, "");
 		sleep();
-		commonFuntions.screenShot("EL02013", "Pass", "Selected radio with status- 'Issued' ");
+		commonFuntions.screenShot("EL02013", "Pass", "Selected required radio button.");
 		commonFuntions.clickButton("Continue ");
 		
 		//--- for advanced search ---
@@ -93,8 +117,21 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		// --- RPEOE-001 ---
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Renew PEO Registration(RPEOE-001) page");
-		commonFuntions.clickOnLinkAnchorTag(" + ADD ANOTHER NAME ");
-		peoPage.additionalNamesId.sendKeys("exempttest");
+		try {
+			commonFuntions.enterTextboxContains("Additional names", "");
+			commonFuntions.enterTextboxContains("Additional names", "exempttest");
+		} catch(Exception exception) { 
+			commonFuntions.enterTextboxContains("Additional names if any under which the PEO currently conducts business", "");
+			commonFuntions.enterTextboxContains("Additional names if any under which the PEO currently conducts business", "exempttest");
+		}
+		
+//		try {
+//			commonFuntions.clickOnLinkAnchorTag(" + ADD ANOTHER NAME ");
+//			peoPage.additionalNamesId.clear();
+//			peoPage.additionalNamesId.sendKeys("testpeouser");
+//		} catch(Exception exception) {
+//			exception.printStackTrace();
+//		}
 		sleep(2000);
 		commonFuntions.screenShot("EL02013", "Pass", "Additional name added to RPEOE-001 page");
 		commonFuntions.clickButton("Continue ");
@@ -107,14 +144,25 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		// --- PEO-002 ---
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to General Information for PEO Exempt Registration(PEO-002) page");
+		commonFuntions.selectRadioQuestions("Do you currently have a New York State Unemployment Insurance Account?", "No ");
+//		commonFuntions.selectDropdown("Type of Legal Entity", " Corporation (All Types, includes Sub-Chapter S) ");
+//		commonFuntions.enterTextboxContains(" Federal Employer Identification Number (FEIN) ", "");
+//		commonFuntions.enterTextboxContains(" Federal Employer Identification Number (FEIN) ", "127434898");
 		commonFuntions.enterTextboxContains("Fiscal Year Start Date", "");
-		commonFuntions.enterPastDate("Fiscal Year Start Date", 11);
+		commonFuntions.enterPastDate("Fiscal Year Start Date", 13);
 		sleep(2000);
 		commonFuntions.screenShot("EL02013", "Pass", "Updated the Fiscal Year Start Date in PEO-002 page");
+		
+		//Out-Of-State PEO registration information
+		commonFuntions.selectDropdown("States in which the PEO is licensed or registered as a PEO", " California ");
+		commonFuntions.enterTextboxContains("State agency that issued it.", "exempt");
+		commonFuntions.selectRadioQuestions("Provide Information", "Registration Number");
+		commonFuntions.enterTextboxContains("Registration Number ", "4367572193");
+		sleep(2000);
+		commonFuntions.screenShot("EL02013", "Pass", "Data entered to Out-Of-State PEO registration information PEO-002 page");
+		
 		commonFuntions.clickButton("Save & Continue ");
 		
-//		commonFuntions.clickButton("Save & Continue ");
-//		Thread.sleep(4000);
 		
 		// --- EAS-001 ---
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -412,7 +460,7 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		peoPage.queue.click();
 		Thread.sleep(15000);
 		commonFuntions.enterTextboxContains("FEIN", feinValue);
-		commonFuntions.screenShot("FeinSearch", "Pass", "feinSearch");
+		commonFuntions.screenShot("ErnSearch", "Pass", "ERN enetered in Search");
 		commonFuntions.clickButtonContains("Search");
 		Thread.sleep(4000);
 		commonFuntions.screenShot("Review Peo", "Pass", "Review Peo");
@@ -428,8 +476,9 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		commonFuntions.selectRadioQuestions("Provide Information", "Registration Number");
 		commonFuntions.enterTextbox("Registration Number ", "3458767985");
 		long number = commonFuntions.createRandomInteger(10000, 99999);
-		String ernValue = "12" + Long.toString(number);
-		commonFuntions.enterTextboxContains("Employer Registration Number", ernValue);
+		
+		String eanValue = "12" + Long.toString(number);
+		commonFuntions.enterTextboxContains("Employer Registration Number", eanValue);
 		commonFuntions.clickButton("Save & Continue ");
 		Thread.sleep(3000);
 		try {
