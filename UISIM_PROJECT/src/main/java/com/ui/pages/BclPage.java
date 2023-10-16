@@ -106,9 +106,10 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_radio_0_1_radio_button']//following::*[@class='mat-radio-inner-circle'][1]")
 	public WebElement select_Review_UpdateBankruptcyCaseActivity;
 	
-	@FindBy(how = How.XPATH, using = "//*[text()='Treasury Offset Program'][1]//following::*[text()='Bankruptcy'][1]")
+	//@FindBy(how = How.XPATH, using = "//*[text()='Treasury Offset Program'][1]//following::*[text()='Bankruptcy'][1]")
+	@FindBy(how = How.XPATH, using = "//*[@id='ContributionCollectionBankruptcy']")
 	public WebElement clickMenu_Bankruptcy;
-
+	
 	@FindBy(how = How.XPATH, using = "//*[@id='employerRegistrationNoId']")
 	public WebElement EnterERN;
 

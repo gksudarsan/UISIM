@@ -3,6 +3,7 @@ package com.employerContribution.FI;
 import java.util.Map;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -16,6 +17,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_169_03_009_EmployerSubmitFIIssue_when_IssueCategory_Protest_IssueSubcategory_WageGarnishment
 		extends TestBase {
 
@@ -42,7 +44,7 @@ public class FI_169_03_009_EmployerSubmitFIIssue_when_IssueCategory_Protest_Issu
 		}
 
 		// ---Login---
-		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_8, COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_9, COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
 		test.log(Status.PASS, "Login with Employer is successful");
 
 		// ---Menu----
@@ -57,7 +59,7 @@ public class FI_169_03_009_EmployerSubmitFIIssue_when_IssueCategory_Protest_Issu
 		// ---Write Message-SM-101---//
 		commonFunctions.waitForLoadingIconToDisappear();
 		commonFunctions.screenShot("Write Message", "Pass", "Write Message page launched SM-101");
-		commonFunctions.selectDropdown("Category", " Protest ");sleep();
+		commonFunctions.selectDropdown("Category", " Protest ");sleep(10000);
 		commonFunctions.selectDropdown("Subcategory", "How do I protest a Wage Garnishment?");sleep();
 		commonFunctions.screenShot("Write Message", "Pass", "Category-Subcategory selected");
 		commonFunctions.clickOnLinkAnchorTag("click here");sleep();

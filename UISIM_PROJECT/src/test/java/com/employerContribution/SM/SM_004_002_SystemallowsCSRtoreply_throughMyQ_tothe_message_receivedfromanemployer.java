@@ -2,6 +2,7 @@ package com.employerContribution.SM;
 
 import java.util.Map;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -13,6 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_receivedfromanemployer extends TestBase {
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify that the system allows the CSR to reply (through My Q) to the message received from an employer", groups = "Regression")
@@ -25,7 +27,8 @@ public class SM_004_002_SystemallowsCSRtoreply_throughMyQ_tothe_message_received
 		SMPage smlocators = new SMPage(driver);
 
 		// ---Login---
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		//commonFuntions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.SecureMessagingSpecialist2_User, COMMON_CONSTANT.SecureMessagingSpecialist2_User_pwd);
 		test.log(Status.PASS, "Login with CSR is successful");
 
 		// ---Menu----
