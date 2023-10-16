@@ -5,6 +5,7 @@ import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -22,6 +23,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnership extends TestBase {
 
 	@Test
@@ -39,8 +41,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 
 		test = report.createTest(
 				"EE.02.005 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Limited Liability Partnership' and work items will be created for CSR to review.");
-
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		sleep(2000);
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_9.toUpperCase(), COMMON_CONSTANT.CSR_USER_9_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		sleep(2000);
@@ -93,13 +95,15 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Enter date of first operations in New York State");
 //		commonFuntions.enterTextboxContains("Enter date of first operations in New York State", "01122023");
 		empPage.firstCalender_Quater.click();
-		empPage.firstCalender_Quater_Value_3.click();
+		empPage.firstCalender_Quater_Value_4.click();
 		empPage.firstCalender_Year.click();
 		empPage.firstCalender_Year_Value_2023.click();
 		commonFuntions.screenShot("EmpRegister6", "Pass", "Filling the form");
 		commonFuntions.enterTextboxContains("Total number of covered employees", "10");
 
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 
 		/*-----------------SREG-008----------------*/
 
@@ -120,6 +124,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 			commonFuntions.selectRadioQuestions("business Address", "20");
 			sleep(2000);
 			sreg004.popUpContinueButton.click();
+			commonFuntions.waitForLoadingIconToDisappear();
 			sleep(2000);
 			commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
 		} catch (Exception e) {
@@ -159,7 +164,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		// "randomCareOf"
 		// + commonFuntions.createRandomInteger(10, 99));
 
-		sreg004.agadCareOfBtn.sendKeys(careOfValue); //Required as per the new changes in TC
+		//sreg004.agadCareOfBtn.sendKeys(careOfValue); //Required as per the new changes in TC
 
 		sreg004.addresslinelist.get(3).sendKeys("123state");
 		sreg004.citylist.get(3).sendKeys("albany");
@@ -181,6 +186,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 			commonFuntions.selectRadioQuestions("npca Address", "123");
 			Thread.sleep(2000);
 			sreg004.popUpContinueButton.click();
+			commonFuntions.waitForLoadingIconToDisappear();
+			sleep(1000);
 		} catch (Exception e) {
 			System.out.println("pop up not appeared");
 		}
@@ -188,6 +195,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		/*-----------------SREG-521----------------*/
+		commonFuntions.screenShot("EmpRegister", "Pass", "Navigated to SREG-521 page");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
@@ -350,11 +358,18 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		 * , "T10_SSN"); String ssn = ssnOutput.get("T10_SSN"); System.out.println(ssn);
 		 * test.log(Status.INFO, "SSN : : " + ssn);
 		 */
-		/*----------------------FEIN---------------------*/
-		Map<String, String> ssnOutput = commonFuntions.database_SelectQuerySingleColumn(
-				"SELECT OWNER_TYPE,* FROM T_Employer_partner WHERE FIRST_NAME ='FN' AND LAST_NAME='LN';", "SSN");
-		String ssn = ssnOutput.get("SSN");
+		/*----------------------SSN---------------------*/
+		Map<String, String> ssnValue = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_Employer_partner ORDER BY UPDATED_TS DESC;",
+				"SSN");
+		String ssn = ssnValue.get("SSN");
 		System.out.println(ssn);
+		
+		Map<String, String> lastNameValue = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM T_Employer_partner ORDER BY UPDATED_TS DESC;",
+				"LAST_NAME");
+		String lastName = lastNameValue.get("LAST_NAME");
+		System.out.println(lastName);
 
 		sleep(3000);
 		commonFuntions.screenShot("EmpRegister16", "Pass", "Navigated to SREG-006 page and entering the form details");
@@ -363,14 +378,16 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		sleep(1000);
 		// commonFuntions.enterTextboxContains("SSN", ssn);
 		commonFuntions.enterTextboxContains("SSN", ssn);
-		commonFuntions.enterTextboxContains("First Name","FNWRONG");
-		commonFuntions.enterTextboxContains("Last Name", "LN");
+		commonFuntions.enterTextboxContains("First Name","FN"+commonFuntions.createRandomString());
+		commonFuntions.enterTextboxContains("Last Name",lastName);
 		commonFuntions.selectDropdown("Title", " Partner ");
 
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 6");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "24954");
 		commonFuntions.clickButtonContains("Continue ");
+		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 
 		try {
 			commonFuntions.selectRadioQuestions("entered address", "20");
@@ -416,6 +433,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.clickButtonContains("Submit ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
+		commonFuntions.screenShot("Employer Registration Confirmation", "Pass", "SREG-013 page displayed");
+		sleep(2000);
 		/*-----------------SREG-013----------------*/
 		commonFuntions.clickButtonContains("Home ");
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -429,7 +448,6 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 
 		/*-----------------SREG-013----------------*/
 		// Step-33
-		commonFuntions.screenShot("Business Acquisition", "Pass", "logged In");
 		test.info("CSR Navigate to Main Menu -> MyQ");
 		Thread.sleep(5000);
 		PEOPage.queue.click();

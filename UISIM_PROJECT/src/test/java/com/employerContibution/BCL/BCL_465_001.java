@@ -1,6 +1,7 @@
 package com.employerContibution.BCL;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.ui.base.TestBase;
@@ -12,6 +13,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class BCL_465_001 extends TestBase {
 
 	@Test
@@ -25,7 +27,7 @@ public class BCL_465_001 extends TestBase {
 		test = report.createTest(
 				"BCL.465.001. Verify CSR can review Delinquency Assignment work item and complete the assignment.");
 
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne.toUpperCase(), COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne_PASSWORD);
 
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);

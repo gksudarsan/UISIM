@@ -33,25 +33,27 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	
     //
 	
-	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-1']")
+	//@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-1']")
+	@FindBy(how = How.XPATH, using = "(//mat-select[@aria-label='Please enter quarter'])[1]")
     public WebElement quarter1;
 
     @FindBy(how = How.XPATH, using = "//span[text()=' 2 ']")
     public WebElement quarterValue1;
 
-    @FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+    //@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+    @FindBy(how = How.XPATH, using = "(//mat-select[contains(@aria-label,'Please enter year')])[1]")
     public WebElement year1;
 
     @FindBy(how = How.XPATH, using = "//span[text()=' 2021 ']")
     public WebElement yearValue1;
 
-    @FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-5']")
+    @FindBy(how = How.XPATH, using = "(//mat-select[@aria-label='Please enter quarter'])[2]")
     public WebElement quarter2;
 
     @FindBy(how = How.XPATH, using = "//span[text()=' 1 ']")
     public WebElement quarterValue2;
 
-    @FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-7']")
+    @FindBy(how = How.XPATH, using = "(//mat-select[contains(@aria-label,'Please enter year')])[2]")
     public WebElement year2;
 
     @FindBy(how = How.XPATH, using = "//span[text()=' 2022 ']")

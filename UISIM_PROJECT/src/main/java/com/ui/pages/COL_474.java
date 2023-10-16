@@ -41,7 +41,7 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	@FindBy(how = How.XPATH, using = "//ul//li[text()='Select a record to track the Bankruptcy.']")
 	public WebElement selectARecordErrorMsg;
 	
-	@FindBy(how = How.XPATH, using = "(//mat-radio-button[contains(@class,'mat-radio-button')])[1]")
+	@FindBy(how = How.XPATH, using = "(//mat-radio-button[contains(@class,'radio-button')])[1]")
 	public WebElement selectFirstRadioBtn;
 	
 	@FindBy(how = How.XPATH, using = "//span[@id='ContributionCollectionBankruptcy' and text()='Bankruptcy']")

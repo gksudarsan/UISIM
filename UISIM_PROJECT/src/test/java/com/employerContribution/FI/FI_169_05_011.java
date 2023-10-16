@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -15,7 +16,7 @@ import com.ui.pages.SUC_002;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
-
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_169_05_011 extends TestBase {
 
 	@Test
@@ -30,18 +31,32 @@ public class FI_169_05_011 extends TestBase {
 		SUC_002 suc002 = new SUC_002(driver);
 
 		// -----Login
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_1, COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER_7.toUpperCase(), COMMON_CONSTANT.TPR_USER_7_PASSWORD);
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
+		try {
+			commonFuntions.clickButtonContains(" I agree with the Terms and Conditions ");
+			test.log(Status.PASS, "Accepted 'Terms and Conditions for Businesses'");
+		} catch(Exception exception) {
+			test.log(Status.PASS, "Accepted 'Terms and Conditions for Businesses'");
+		}
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
 		// String ernNum = "5454645";
 
-		Map<String, String> ERNOutput = commonFuntions.database_SelectQuerySingleColumn(
+		/*Map<String, String> ERNOutput = commonFuntions.database_SelectQuerySingleColumn(
 				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n"
 						+ "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n"
 						+ "THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'tpruser@123') AND ASSOCIATION_STATUS = 'ACTIVE');",
+				"EAN");*/
+		
+		Map<String, String> ERNOutput = commonFuntions.database_SelectQuerySingleColumn(
+				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n"
+				+ "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n"
+				+ "THIRD_PARTY_CDS_VENDOR_ID = '299'\r\n"
+				+ ");",
 				"EAN");
+		
 		String ernNum = ERNOutput.get("EAN");
 		System.out.println(ernNum);
 		test.log(Status.INFO, "Prior ERN : : " + ernNum);
@@ -123,13 +138,14 @@ public class FI_169_05_011 extends TestBase {
 		commonFuntions.screenShot("Home page", "Pass", "Home screen is displayed");
 
 		test.info("Step: 7 -- ");
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_EmployerAccountManager.toUpperCase(), COMMON_CONSTANT.CSR_USER_EmployerAccountManager_PASSWORD);
 
 		//
-		commonFuntions.database_UpdateQuery(
-				"UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1
+		/*commonFuntions.database_UpdateQuery(
+				"UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_EmployerAccountManager
 						+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"
 						+ eanvalue + "' ORDER BY UPDATED_TS desc);");
+						*/
 		//
 
 		peopage.queue.click();

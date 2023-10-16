@@ -690,6 +690,8 @@ public WebElement suspended_Year;
 @FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name']")
 public WebElement sreg003_legalNameField;
 
+@FindBy(how = How.XPATH, using = "//span[text()=' 4 ']")
+public WebElement firstCalender_Quater_Value_4;
 
 }
 
