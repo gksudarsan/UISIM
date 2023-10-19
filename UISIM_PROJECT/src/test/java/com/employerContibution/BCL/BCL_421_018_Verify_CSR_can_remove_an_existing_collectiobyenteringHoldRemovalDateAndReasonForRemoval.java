@@ -3,6 +3,7 @@ package com.employerContibution.BCL;
 import java.util.Map;
 import org.testng.annotations.Test;
 
+import org.testng.annotations.Listeners;
 import com.ui.base.TestBase;
 import com.ui.pages.EM_005;
 import com.ui.pages.SUC_002;
@@ -10,6 +11,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class BCL_421_018_Verify_CSR_can_remove_an_existing_collectiobyenteringHoldRemovalDateAndReasonForRemoval
 		extends TestBase {
 	@Test
@@ -29,33 +31,40 @@ public class BCL_421_018_Verify_CSR_can_remove_an_existing_collectiobyenteringHo
 		System.out.println("The EAN is " + eanValue);
 
 		// -----Login
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.CSR_Collection_Specialist_One.toUpperCase(), COMMON_CONSTANT.CSR_Collection_Specialist_One_PASSWORD);
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
-		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
 		// -----Menu
-		cf.clickMenu("menu");
+		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.screenShot("MenuPage", "Pass", "Launched to Menu");
 		cf.ScrollMenu("Contribution Collection");
 		cf.clickMenu("Contribution Collection");
 		sleep(1000);
 		cf.clickMenu("Maintain Collection Hold");
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("Maintain Collection Hold", "Pass", "Launched to COL-527");
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
 		sleep(3000);
 		cf.clickButtonContains("Continue ");
 		sleep(2000);
-		cf.clickOnLinkAnchorTag("Add Collection Hold");
-		cf.screenShot("Add Collection Hold", "Pass", "Launched to COL-528");
-		cf.enterTextboxContains("Hold Start Date", "10/12/2023");
-		cf.selectDropdown("Reason For Hold", " Hold Action on Account ");
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("Remove Collection Hold", "Pass", "Launched to COL-531");
 		cf.clickButtonContains("Continue ");
-		cf.screenShot("Add Collection Hold Verification", "Pass", "Launched to COL-529");
+		cf.errorLabel(" Please provide a reason for removal.");
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("Reason is required", "Pass", "Launched to COL-531");
+		cf.populateListbox("a. Reason for Removal", "Reason for Removing");
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("Remove Collection Hold - Added Removal Reason", "Pass", "Launched to COL-531");
+		cf.clickButtonContains("Continue ");
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("Remove Collection Hold Verification", "Pass", "Launched to COL-532");
 		cf.clickButtonContains("Submit ");
+		cf.waitForLoadingIconToDisappear();
 
-		cf.screenShot("Add Collection Hold Confirmation", "Pass", "Launched to SUC-002");
+		cf.screenShot("Remove Collection Hold Confirmation", "Pass", "Launched to SUC-002");
 		suc002.pOASucessText.isDisplayed();
 		cf.clickButtonContains("Home");
 		cf.screenShot("Home", "Pass", "Home Page");

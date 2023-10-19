@@ -26,13 +26,13 @@ public class BCL_421_009_Verify_CSR_with_reason_for_hold_isReferred_to_Counsel_O
 		System.out.println("The EAN is " + eanValue);
 
 		// -----Login
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.CSR_Collection_Specialist_One.toUpperCase(), COMMON_CONSTANT.CSR_Collection_Specialist_One_PASSWORD);
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
 		// -----Menu
-		cf.clickMenu("menu");
+		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.screenShot("MenuPage", "Pass", "Launched to Menu");
 		cf.ScrollMenu("Contribution Collection");
@@ -45,6 +45,7 @@ public class BCL_421_009_Verify_CSR_with_reason_for_hold_isReferred_to_Counsel_O
 		sleep(3000);
 		cf.clickButtonContains("Continue ");
 		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.clickOnLinkAnchorTag("Add Collection Hold");
 		cf.screenShot("Add Collection Hold", "Pass", "Launched to COL-528");
 		cf.enterTextboxContains("Hold Start Date", "10/12/2023");

@@ -25,25 +25,30 @@ public class FI_169_04_001_Verify_Employer_can_submit_IA198P_task_FailuretoFileP
 
 		// Query
 		Map<String, String> databaseEanResult = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea JOIN T_TX_EMPLOYER_COLLECTION_HOLD ttech ON ttech.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID WHERE ACCOUNT_STATUS = 'ACTV'",
+				"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE THIRD_PARTY_CDS_VENDOR_ID = '299')",
 				"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println("The EAN is " + eanValue);
 
 		// Login
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE.toUpperCase(), COMMON_CONSTANT.EMPLOYER_MA_ROLE_PASSWORD);
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
 		// Menu
-		cf.clickMenu("menu");
+		cf.clickMenu("Menu");
 		sleep(2000);
 		cf.screenShot("MenuPage", "Pass", "Launched to Menu");
 		cf.ScrollMenu("Secure Messaging");
 		cf.clickMenu("Secure Messaging");
 		sleep(1000);
 		cf.clickMenu("Write Message");
+		cf.clickMenu("Write Message - Enter ERN");
+		cf.waitForLoadingIconToDisappear();
+		cf.screenShot("Write Message - Enter ERN", "Pass", "Launched to SM-100");
+		cf.enterTextboxContains("Employer Registration Number", eanValue);
+		cf.clickButtonContains("Continue ");
 		cf.screenShot("Write Message", "Pass", "Launched to SM-101");
 		cf.selectDropdown("Category", " Protest ");
 		cf.selectDropdown("Subcategory", " How do I protest Failure to File Penalties? ");
@@ -61,14 +66,17 @@ public class FI_169_04_001_Verify_Employer_can_submit_IA198P_task_FailuretoFileP
 		cf.enterTextboxContains("ERN", "6835087");
 		cf.enterTextboxContains(" FEIN ", "261484819");
 		cf.enterTextboxContains("Assessment ID", "124323412111");
-		cf.selectCheckboxSection1("Section I", 3);
+		sleep(3000);
+		cf.selectCheckboxSection1("Form NYS-45");
+		sleep(3000);
 		cf.enterTextboxContains("and/or NYS-45 ATT was filed:", "8/15/2023");
-		cf.selectCheckboxSection1("Section I", 2);
+		sleep(2000);
+		cf.selectCheckboxSection1("The return(s) was filed under a different Name, Taxpayer ID and ER No. from that shown on the billing notice.");
 		sleep();
 		cf.enterTextboxContains("Name", "Shanice");
 		cf.enterTextboxContains("ERN", "2345234");
 		cf.enterTextboxContains(" FEIN ", "234253453");
-		cf.selectCheckboxSection1("Section I", 1);
+		cf.selectCheckboxSection1("The business is seasonal. There were no wages paid for the period  shown on the billing notice.");
 		cf.selectCheckboxSection2("The business ceased paying wages.", 1);
 		cf.enterTextboxContains("Enter the last payroll date", "8/2/2023");
 		sleep(2000);
@@ -99,7 +107,7 @@ public class FI_169_04_001_Verify_Employer_can_submit_IA198P_task_FailuretoFileP
 				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='0000368' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(4000);
 
-		cf.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_PenaltyClerical.toUpperCase(), COMMON_CONSTANT.CSR_LnD_PenaltyClerical_PASSWORD);
 		peoPage.queue.click();
 		cf.waitForLoadingIconToDisappear();
 		sleep(1000);

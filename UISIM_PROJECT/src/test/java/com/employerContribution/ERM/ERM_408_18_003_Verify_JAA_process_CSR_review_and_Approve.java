@@ -22,7 +22,7 @@ public class ERM_408_18_003_Verify_JAA_process_CSR_review_and_Approve extends Te
 	public void TC_ERM_408_18_003() throws Exception {
 
 		test = report.createTest(
-				"ERM.408.18.003: Verify system calculated rate when JAA process for adding member of an joint account and the system create task for CSR review and Approve");
+				"ERM.408.18.003: Verify system calculated rate when JAA process for adding member of an ̥ount and the system create task for CSR review and Approve");
 
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);

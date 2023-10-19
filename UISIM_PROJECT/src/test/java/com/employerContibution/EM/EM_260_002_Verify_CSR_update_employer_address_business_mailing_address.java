@@ -14,6 +14,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_address extends TestBase {
 
 	String EAN = prop.getProperty("EAN");
@@ -30,13 +31,13 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		// DB Query
 		// Valid ERN
 		Map<String, String> databaseEanResult = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_employer_account WHERE EMPLOYER_TYPE = 'BUSI' AND EAN IS NOT NULL AND LENGTH(EAN)=7 ORDER BY UPDATED_TS DESC",
+				"SELECT * FROM T_REGULAR_EMPLOYER tre JOIN T_EMPLOYER_ACCOUNT tea ON tea.EMPLOYER_ACCOUNT_ID = tre.EMPLOYER_ACCOUNT_ID WHERE EAN IS NOT NULL AND LENGTH(EAN)=7 AND BUSINESS_TYPE = 'BUSI'",
 				"EAN");
 		String eanValue = databaseEanResult.get("EAN");
 		System.out.println(eanValue);
 
 		// Login
-		//cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.CSR_LnD_Specialist.toUpperCase(), COMMON_CONSTANT.CSR_LnD_Specialist_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		sleep(2000);
@@ -51,24 +52,23 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		// cf.enterTextboxContains("Employer Registration Number", "9300004");
 
 		cf.clickButton("Continue ");
+		cf.waitForLoadingIconToDisappear();
 
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
 		cf.selectRadioQuestions("Do you wish to register for SIDES E-Response?", "Yes ");
 		cf.selectTableWithoutId("Business Mailing Address", 6, 1, "Maintain Address Details");
-		cf.screenShot("Loading State", "Fail", "Unable to launch SREG-486");
-		cf.addComment("ee");
 
 		// SREG-700
 		cf.screenShot("Maintain Address/Contact Details", "Pass", "Launched to SREG-486");
-		// cf.selectRadioQuestions("Business Mailing Address", "Same as Primary Business
-		// Physical Address");
+		cf.selectRadioQuestions("Business Mailing Address", "Other");
 		sleep();
 		cf.selectDropdown("County", " Albany ");
 		cf.selectDropdown("Source", "Correspondence/Email");
 		sleep(2000);
 		cf.selectDropdown("Source Type", "Correspondence/Email");
 		cf.clickButtonContains("Submit ");
+		cf.waitForLoadingIconToDisappear();
 
 		// SREG-486
 		cf.screenShot("Maintain Address Details", "Pass", "Launched to SREG-486");
