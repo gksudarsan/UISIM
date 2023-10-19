@@ -63,6 +63,9 @@ public class SMPage {
 	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_select_5_1_radio_button-input']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement dataTableIdRadio4;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='EMAIL-input']")
+    public WebElement emailCheckBox;
+	
 	
 	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
     public WebElement fraudValueDropdown;

@@ -352,6 +352,10 @@ public class commonStepDefinitions extends TestBase {
 	public void populateListbox(String xpathParameter, String value) {
 		driver.findElement(By.xpath("//*[.='" + xpathParameter + "']//following::textarea[1]")).sendKeys(value);
 	}
+	
+	public void clickOnManageLinkEOA(int index) {
+		driver.findElement(By.xpath("(//a[@aria-label='Manage User'])[" + index +"]"));
+	}
 
 	public void selectDropdown(String xpathParameter, String value) {
 		By element = By.xpath("//mat-label[contains(.,'" + xpathParameter + "')]//following::mat-select[1]");
@@ -407,6 +411,10 @@ public class commonStepDefinitions extends TestBase {
 
 	public void errorLabel(String xpathParameter) {
 		driver.findElement(By.xpath("//mat-error[.='" + xpathParameter + "'][1]")).isDisplayed();
+	}
+	
+	public void smRadioSelect(Integer index) {
+		driver.findElement(By.xpath(".//*[@id='dataTableId_select_1_1_radio_button-input']//following::*[@class='mdc-radio__native-control'][ " + index +"]"));
 	}
 
 	public void Label(String xpathParameter) {
@@ -1421,6 +1429,10 @@ public class commonStepDefinitions extends TestBase {
 	public void addComment(String value) {
 		driver.findElement(By.xpath("//*[@id='remarksId']")).clear();
 		driver.findElement(By.xpath("//*[@id='remarksId']")).sendKeys(value);
+	}
+	
+	public void clickOnHelpIcon() {
+		driver.findElement(By.xpath("//span[@id='helpTextIdicon']")).click();
 	}
 
 	public void switchTab() throws InterruptedException {

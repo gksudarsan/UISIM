@@ -7,17 +7,15 @@ import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.EM_005;
+import com.ui.pages.EmployerRegisterPage;
 import com.ui.pages.HomePage;
 import com.ui.pages.PEOPage;
-import com.ui.pages.SREG_027;
-import com.ui.pages.SREG_030;
-import com.ui.pages.SREG_503;
-import com.ui.pages.SREG_504;
-import com.ui.pages.SUC_002;
+import org.testng.annotations.Listeners;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_business_information_and_the_system_create_task_for_CSR_review_and_Approve
 		extends TestBase {
 	@Test(priority = 1, description = "Test sample", groups = { "Regression" })
@@ -29,8 +27,9 @@ public class EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_busin
 				"EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_business_information_and_the_system_create_task_for_CSR_review_and_Approve");
 		commonStepDefinitions commonFunction = new commonStepDefinitions();
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		EmployerRegisterPage empRegPage = new EmployerRegisterPage(driver);
 
-		commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE.toUpperCase(), COMMON_CONSTANT.EMPLOYER_MA_ROLE_PASSWORD);
 		sleep(2000);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
@@ -41,7 +40,7 @@ public class EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_busin
 		commonFunction.ScrollMenu("Employer Account Maintenance");
 		commonFunction.clickMenu("Employer Account Maintenance");
 		commonFunction.screenShot("SREG-030", "Pass", "Modify Employer Account Details page is displayed");
-		commonFunction.enterTextboxContains("Legal Name of Business", "PREMIER PAYROLL SOLUTIONS LLC CORP");
+		empRegPage.legalNameOfBusinessTextBoxEEWI_005.sendKeys("ST MARYS HOSPITAL FOR CHILDREN CORP");
 		commonFunction.populateListbox("Comment", "Test Automation");
 		commonFuntions.selectLink("Please select a file to upload that provides proof of name change.", "Browse");
 		sleep(2000);
@@ -61,13 +60,12 @@ public class EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_busin
 		commonFunction.screenShot("Home", "Pass", "Home page is displayed");
 		
 		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
-				+ COMMON_CONSTANT.CSR_USER_1
+				+ COMMON_CONSTANT.CSR_LnD_Specialist
 				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='" + eanValue +"' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(4000);
 		
 		
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
-		commonFunction.waitForLoadingIconToDisappear();
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_Specialist.toUpperCase(), COMMON_CONSTANT.CSR_LnD_Specialist);
 		peoPage.queue.click();
 		commonFunction.waitForLoadingIconToDisappear();
 		sleep(1000);

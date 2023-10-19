@@ -26,7 +26,7 @@ import stepDefinitions.commonStepDefinitions;
 
 			// Query
 			Map<String, String> databaseResults1 = cf.database_SelectQuery(
-					"SELECT * FROM T_EMPLOYER te WHERE EMPLOYER_ID IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'tpruser@123') AND ASSOCIATION_STATUS = 'ACTIVE')");
+					"SELECT * FROM t_employer WHERE EMPLOYER_ID IN (SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE THIRD_PARTY_CDS_VENDOR_ID = '299')");
 
 			String eanValue = databaseResults1.get("EAN");
 			System.out.println("The EAN Value is:" + eanValue);
@@ -35,7 +35,8 @@ import stepDefinitions.commonStepDefinitions;
 			System.out.println("The EAN Value is:" + nameValue);
 
 			// -----Login
-			//cf.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+			cf.login(COMMON_CONSTANT.TPR_USER.toUpperCase(), COMMON_CONSTANT.TPR_USER_PASSWORD);
+			cf.waitForLoadingIconToDisappear();
 			cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
 			// -----Menu
@@ -46,10 +47,11 @@ import stepDefinitions.commonStepDefinitions;
 			cf.clickMenu("Secure Messaging");
 			sleep(1000);
 			cf.clickMenu("Write Message - Enter ERN");
+			cf.waitForLoadingIconToDisappear();
 			cf.screenShot("Write Message - Enter ERN", "Pass", "Launched to SM-100");
 			cf.enterTextboxContains("Employer Registration Number", eanValue);
 			cf.clickButtonContains("Continue ");
-			
+			cf.waitForLoadingIconToDisappear();
 			cf.screenShot("Write Message", "Pass", "Launched to SM-101");
 			cf.selectDropdown("Category", " Protest ");
 			sleep(2000);
@@ -57,6 +59,7 @@ import stepDefinitions.commonStepDefinitions;
 			cf.clickOnLinkAnchorTag("Protest Document for Failure to File Penalties");
 			cf.switchTab();
 			// FIS-008
+			cf.waitForLoadingIconToDisappear();
 			cf.screenShot("Protest Document for Failure to File Penalties", "Pass", "Launched to FIS-008");
 			cf.enterTextboxContains("Employer Name", "Sam Hunt");
 			cf.enterTextboxContains("ERN", "6784567");
@@ -110,11 +113,15 @@ import stepDefinitions.commonStepDefinitions;
 			cf.screenShot("Issue Submission Confirmation", "Pass", "Launched to SUC-002");
 			cf.Label("An Issue has been successfully created and will be assigned to the Internal Staff.");
 
-			cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_1
-					+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='" + eanValue + "' ORDER BY UPDATED_TS desc)");
-			Thread.sleep(4000);
+			/*
+			 * cf.
+			 * database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" +
+			 * COMMON_CONSTANT.CSR_USER_1 +
+			 * "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"
+			 * + eanValue + "' ORDER BY UPDATED_TS desc)"); Thread.sleep(4000);
+			 */
 
-			//cf.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+			cf.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_PenaltyClerical.toUpperCase(), COMMON_CONSTANT.CSR_LnD_PenaltyClerical_PASSWORD);
 			peoPage.queue.click();
 			cf.waitForLoadingIconToDisappear();
 			sleep(1000);
