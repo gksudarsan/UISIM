@@ -39,10 +39,8 @@ public class COMMON_CONSTANT {
 	public static final String CSR_USER_7 = "ndfaxs";
 	public static final String CSR_USER_7_PASSWORD = "Anoop@123456789";
 
-
 	public static final String CSR_USER_8 = "nd1sk3"; 
 	public static final String CSR_USER_8_PASSWORD = "uisimtesting@123";
-
 	
 	public static final String EMP_USER_1 = "manju@2004";
 	public static final String EMP_USER_1_PASSWORD = "Manhar2004@1234";
@@ -102,6 +100,8 @@ public class COMMON_CONSTANT {
 	public static final String TPR_USER_6 = "psTPRUser";
 	public static final String TPR_USER_6_PASSWORD = "NewUser@123456";
 	
+	public static final String TPR_USER = "psTPRUser";
+    public static final String TPR_USER_PASSWORD = "NewUser@123456";
 
 	// PEO
 	public static final String PEO_USER_1 = "peouser";
@@ -171,6 +171,9 @@ public class COMMON_CONSTANT {
 	public static final String PEO_SPECIALIST = "PEOSpecialist";
 	public static final String PEO_SPECIALIST_PASSWORD = "NewUser@123456";
 	
+	public static final String SECURE_MESSAGING_SPECIALIST_1 = "SecureMessagingSpecialistFirst";
+	public static final String SECURE_MESSAGING_SPECIALIST_1_PASSWORD = "NewUser@123456";
+	
 	public static final String SECURE_MESSAGING_SPECIALIST_2 = "SecureMessagingSpecialistSecond";
 	public static final String SECURE_MESSAGING_SPECIALIST_2_PASSWORD = "NewUser@123456";
 	
@@ -187,10 +190,23 @@ public class COMMON_CONSTANT {
 	public static final String CLAIMANT_REPRESENTATIVE_PASSWORD_2 = "Test123456?@#%$";
 	
 	public static final String LND_SPECIALIST = "LnDSpecialist";
-	public static final String LND_SPECIALIST_PASSWORD_ = "Test123456?@#%$";
+	public static final String LND_SPECIALIST_PASSWORD = "Test123456?@#%$";
 	
 	public static final String LND_FRAUD_SPECIALIST = "LnDFraudSpecialist";
-	public static final String LND_FRAUD_SPECIALIST_PASSWORD_ = "NewUser@123456";
+	public static final String LND_FRAUD_SPECIALIST_PASSWORD = "NewUser@123456";
+	
+	public static final String REGISTRATION_SPECIALIST = "RegistrationSpecialist";
+	public static final String REGISTRATION_SPECIALIST_PASSWORD = "NewUser@123456";
+	
+	public static final String CSR_Rating_Specialist = "RatingSpecialist";
+	public static final String CSR_Rating_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String CSR_General_Inquiry = "generalinquiry";
+	public static final String CSR_General_Inquiry_PASSWORD = "NewUser@123456";
+	
+	public static final String CSR_LnD_PenaltyClerical = "LnDPenaltyClerical";
+	public static final String CSR_LnD_PenaltyClerical_PASSWORD = "NewUser@123456";
+
 	
 	/* *********Collections Specialist 3 ********* */
 	public static final String Collections_Specialist_3_User = "CollectionsSpecialistThree";
@@ -207,4 +223,8 @@ public class COMMON_CONSTANT {
 	
 	public static final String EmployerAccountManager_User = "EmployerAccountManager";
 	public static final String EmployerAccountManager_User_pwd = "NewUser@123456";
+	
+	/* --- EMPLOYER MA ROLE --- */
+	public static final String EMPLOYER_MA_ROLE = "EmployerUser01";
+    public static final String EMPLOYER_MA_ROLE_PASSWORD = "NewUser@123456";
 }

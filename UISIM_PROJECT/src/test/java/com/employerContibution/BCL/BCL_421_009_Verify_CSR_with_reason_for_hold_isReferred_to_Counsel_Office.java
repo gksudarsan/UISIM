@@ -26,7 +26,7 @@ public class BCL_421_009_Verify_CSR_with_reason_for_hold_isReferred_to_Counsel_O
 		System.out.println("The EAN is " + eanValue);
 
 		// -----Login
-		cf.login(COMMON_CONSTANT.CSR_Collection_Specialist_One.toUpperCase(), COMMON_CONSTANT.CSR_Collection_Specialist_One_PASSWORD);
+		cf.login(COMMON_CONSTANT.Collections_Specialist_1_User.toUpperCase(), COMMON_CONSTANT.Collections_Specialist_1_pwd);
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");

@@ -30,7 +30,7 @@ public class FI_169_03_004 extends TestBase {
 		test = report.createTest(
 				"FI.169.03.004 - Verify Employer can submit an FI Issue when Issue Category - Audit ,Issue Subcategory - 'Audit Protest'  and system create task for CSR review");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_10.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_10_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE.toUpperCase(), COMMON_CONSTANT.EMPLOYER_MA_ROLE_PASSWORD);
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(3000);
 		

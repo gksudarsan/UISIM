@@ -24,7 +24,7 @@ public class BCL_855_08_010 extends TestBase{
 		test = report.createTest(
 				"BCL.855.08.010 - Verify CSR can search ERN details and update existing prosecution for Prosecution Type is 'Other' with comments and status is 'Judgment'");
 
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree.toUpperCase(), COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.COLLECTIONS_SPECIALIST_THREE.toUpperCase(), COMMON_CONSTANT.COLLECTIONS_SPECIALIST_THREE_PASSWORD);
 		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Employer Collection");

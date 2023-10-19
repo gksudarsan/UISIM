@@ -42,7 +42,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		test = report.createTest(
 				"EE.02.005 - Verify CSR can submit employer registration for employer type 'Agricultural (NYS100AG)' and legal entity type 'Limited Liability Partnership' and work items will be created for CSR to review.");
 		sleep(2000);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_9.toUpperCase(), COMMON_CONSTANT.CSR_USER_9_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.REGISTRATION_SPECIALIST.toUpperCase(), COMMON_CONSTANT.REGISTRATION_SPECIALIST_PASSWORD);
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		sleep(2000);

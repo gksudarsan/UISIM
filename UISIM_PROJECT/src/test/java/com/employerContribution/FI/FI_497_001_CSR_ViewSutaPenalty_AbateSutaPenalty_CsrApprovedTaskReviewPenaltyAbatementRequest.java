@@ -45,7 +45,7 @@ public class FI_497_001_CSR_ViewSutaPenalty_AbateSutaPenalty_CsrApprovedTaskRevi
 		}
 
  		//---Login---
-		commonFunction.login(COMMON_CONSTANT.LND_FRAUD_SPECIALIST, COMMON_CONSTANT.LND_FRAUD_SPECIALIST_PASSWORD_);
+		commonFunction.login(COMMON_CONSTANT.LND_FRAUD_SPECIALIST, COMMON_CONSTANT.LND_FRAUD_SPECIALIST_PASSWORD);
 		test.log(Status.PASS, "Login with L&D Fraud Specialist role is successful.");
 
 		// ---Menu----

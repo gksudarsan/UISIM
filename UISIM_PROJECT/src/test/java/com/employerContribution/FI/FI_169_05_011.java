@@ -31,7 +31,7 @@ public class FI_169_05_011 extends TestBase {
 		SUC_002 suc002 = new SUC_002(driver);
 
 		// -----Login
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_7.toUpperCase(), COMMON_CONSTANT.TPR_USER_7_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER.toUpperCase(), COMMON_CONSTANT.TPR_USER_PASSWORD);
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		try {
@@ -138,7 +138,7 @@ public class FI_169_05_011 extends TestBase {
 		commonFuntions.screenShot("Home page", "Pass", "Home screen is displayed");
 
 		test.info("Step: 7 -- ");
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_EmployerAccountManager.toUpperCase(), COMMON_CONSTANT.CSR_USER_EmployerAccountManager_PASSWORD);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.EmployerAccountManager_User.toUpperCase(), COMMON_CONSTANT.EmployerAccountManager_User_pwd);
 
 		//
 		/*commonFuntions.database_UpdateQuery(

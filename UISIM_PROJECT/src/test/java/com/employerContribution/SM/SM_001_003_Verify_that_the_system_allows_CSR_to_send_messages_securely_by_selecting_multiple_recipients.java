@@ -25,8 +25,8 @@ public class SM_001_003_Verify_that_the_system_allows_CSR_to_send_messages_secur
 		test = report.createTest(
 				"SM_001_003_Verify_that_the_system_allows_CSR_to_send_messages_securely_by_selecting_multiple_recipients");
 
-		commonFuntions.login(COMMON_CONSTANT.CSR_Secure_Messaging_Specialist_First.toUpperCase(),
-				COMMON_CONSTANT.CSR_Secure_Messaging_Specialist_First_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.SECURE_MESSAGING_SPECIALIST_1.toUpperCase(),
+				COMMON_CONSTANT.SECURE_MESSAGING_SPECIALIST_1_PASSWORD);
 		Thread.sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 

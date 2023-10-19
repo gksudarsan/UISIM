@@ -60,12 +60,12 @@ public class EM_412_02_001_Verify_Employer_is_able_to_update_legal_name_of_busin
 		commonFunction.screenShot("Home", "Pass", "Home page is displayed");
 		
 		commonFunction.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"
-				+ COMMON_CONSTANT.CSR_LnD_Specialist
+				+ COMMON_CONSTANT.LND_SPECIALIST
 				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='" + eanValue +"' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(4000);
 		
 		
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_Specialist.toUpperCase(), COMMON_CONSTANT.CSR_LnD_Specialist);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.LND_SPECIALIST.toUpperCase(), COMMON_CONSTANT.LND_SPECIALIST_PASSWORD);
 		peoPage.queue.click();
 		commonFunction.waitForLoadingIconToDisappear();
 		sleep(1000);

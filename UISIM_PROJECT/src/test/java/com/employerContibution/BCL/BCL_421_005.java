@@ -25,8 +25,8 @@ public class BCL_421_005 extends TestBase {
 				"BCL.421.005 -   Verify CSR can add a collection hold on the account with reason for hold is Pending Account Adjustment");
 
 		sleep(2000);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne.toUpperCase(),
-				COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.Collections_Specialist_1_User.toUpperCase(),
+				COMMON_CONSTANT.Collections_Specialist_1_pwd);
 		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Contribution Collection");

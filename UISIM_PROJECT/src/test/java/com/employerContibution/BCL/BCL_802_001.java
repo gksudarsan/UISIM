@@ -26,7 +26,7 @@ public class BCL_802_001 extends TestBase {
 		test = report.createTest(
 				"BCL.802.05.001 - Verify CSR can Search ERN with select bankruptcy case status 'Active' and add Bankruptcy Case Activity for activity type incoming and activity name 'Telephone Call'");
 		sleep(2000);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree.toUpperCase(), COMMON_CONSTANT.CSR_USER_CollectionsSpecialistThree_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.COLLECTIONS_SPECIALIST_THREE.toUpperCase(), COMMON_CONSTANT.COLLECTIONS_SPECIALIST_THREE_PASSWORD);
 		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Employer Collection");

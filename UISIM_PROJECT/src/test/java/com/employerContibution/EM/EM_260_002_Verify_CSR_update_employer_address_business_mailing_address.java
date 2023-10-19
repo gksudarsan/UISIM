@@ -37,7 +37,7 @@ public class EM_260_002_Verify_CSR_update_employer_address_business_mailing_addr
 		System.out.println(eanValue);
 
 		// Login
-		cf.login(COMMON_CONSTANT.CSR_LnD_Specialist.toUpperCase(), COMMON_CONSTANT.CSR_LnD_Specialist_PASSWORD);
+		cf.login(COMMON_CONSTANT.LND_SPECIALIST.toUpperCase(), COMMON_CONSTANT.LND_SPECIALIST_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		cf.clickMenu("Menu");
 		sleep(2000);

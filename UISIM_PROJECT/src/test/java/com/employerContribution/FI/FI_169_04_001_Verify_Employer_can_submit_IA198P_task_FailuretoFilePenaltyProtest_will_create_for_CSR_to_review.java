@@ -67,16 +67,18 @@ public class FI_169_04_001_Verify_Employer_can_submit_IA198P_task_FailuretoFileP
 		cf.enterTextboxContains(" FEIN ", "261484819");
 		cf.enterTextboxContains("Assessment ID", "124323412111");
 		sleep(3000);
-		cf.selectCheckboxSection1("Form NYS-45");
+		cf.selectCheckboxSection1("Form NYS-45",1);
 		sleep(3000);
 		cf.enterTextboxContains("and/or NYS-45 ATT was filed:", "8/15/2023");
 		sleep(2000);
-		cf.selectCheckboxSection1("The return(s) was filed under a different Name, Taxpayer ID and ER No. from that shown on the billing notice.");
+		cf.selectCheckboxSection1(
+				"The return(s) was filed under a different Name, Taxpayer ID and ER No. from that shown on the billing notice.",1);
 		sleep();
 		cf.enterTextboxContains("Name", "Shanice");
 		cf.enterTextboxContains("ERN", "2345234");
 		cf.enterTextboxContains(" FEIN ", "234253453");
-		cf.selectCheckboxSection1("The business is seasonal. There were no wages paid for the period  shown on the billing notice.");
+		cf.selectCheckboxSection1(
+				"The business is seasonal. There were no wages paid for the period  shown on the billing notice.", 1);
 		cf.selectCheckboxSection2("The business ceased paying wages.", 1);
 		cf.enterTextboxContains("Enter the last payroll date", "8/2/2023");
 		sleep(2000);
@@ -107,7 +109,8 @@ public class FI_169_04_001_Verify_Employer_can_submit_IA198P_task_FailuretoFileP
 				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='0000368' ORDER BY UPDATED_TS desc)");
 		Thread.sleep(4000);
 
-		cf.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_PenaltyClerical.toUpperCase(), COMMON_CONSTANT.CSR_LnD_PenaltyClerical_PASSWORD);
+		cf.logoutAndLogin(COMMON_CONSTANT.CSR_LnD_PenaltyClerical.toUpperCase(),
+				COMMON_CONSTANT.CSR_LnD_PenaltyClerical_PASSWORD);
 		peoPage.queue.click();
 		cf.waitForLoadingIconToDisappear();
 		sleep(1000);

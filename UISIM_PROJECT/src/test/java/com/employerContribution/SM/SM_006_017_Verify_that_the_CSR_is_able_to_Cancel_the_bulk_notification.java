@@ -25,8 +25,8 @@ public class SM_006_017_Verify_that_the_CSR_is_able_to_Cancel_the_bulk_notificat
 		test = report.createTest(
 				"SM_006_017_Verify_that_the_CSR_is_able_to_Cancel_the_bulk_notification");
 
-		cf.login(COMMON_CONSTANT.CSR_Secure_Messaging_Specialist_Second.toUpperCase(),
-				COMMON_CONSTANT.CSR_Secure_Messaging_Specialist_Second_PASSWORD);
+		cf.login(COMMON_CONSTANT.SECURE_MESSAGING_SPECIALIST_2.toUpperCase(),
+				COMMON_CONSTANT.SECURE_MESSAGING_SPECIALIST_2_PASSWORD);
 		Thread.sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 

@@ -34,7 +34,7 @@ public class FI_169_05_004_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category
 				"FI_169_05_004_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category_Protest_Issue_Subcategory_Transfer_Protest__and_system_create_task_for_CSR_review");
 
 		// -----Login
-		commonFuntions.login(COMMON_CONSTANT.TPR_USER_7.toUpperCase(), COMMON_CONSTANT.TPR_USER_7_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.TPR_USER.toUpperCase(), COMMON_CONSTANT.TPR_USER_PASSWORD);
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		try {

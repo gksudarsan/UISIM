@@ -27,7 +27,7 @@ public class BCL_465_001 extends TestBase {
 		test = report.createTest(
 				"BCL.465.001. Verify CSR can review Delinquency Assignment work item and complete the assignment.");
 
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne.toUpperCase(), COMMON_CONSTANT.CSR_USER_CollectionsSpecialistOne_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.Collections_Specialist_1_User.toUpperCase(), COMMON_CONSTANT.Collections_Specialist_1_pwd);
 
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
