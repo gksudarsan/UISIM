@@ -25,7 +25,7 @@ public class BCL_855_07_001 extends TestBase{
 		test = report.createTest(
 				"BCL.855.07.001.Verify CSR can search the Employer collections and update the outstanding account balance with the TOP Payment.");
 		sleep(2000);
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_TopFinance.toUpperCase(), COMMON_CONSTANT.CSR_USER_TopFinance_PASSWORD);
+		//commonFuntions.login(COMMON_CONSTANT.CSR_USER_TopFinance.toUpperCase(), COMMON_CONSTANT.CSR_USER_TopFinance_PASSWORD);
 		commonFuntions.clickMenu("Menu");
 		sleep(1000);
 		commonFuntions.ScrollMenu("Employer Collection");
