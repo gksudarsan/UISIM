@@ -1,4 +1,4 @@
-package com.secureMessaging.SM;
+package com.employerContribution.SM;
 
 import java.util.Map;
 
@@ -16,18 +16,18 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class SM_006_020_Verify_that_the_CSR_is_able_to_Cancel_the_bulk_notification_when_the_batch_job_status_is_Modified extends TestBase {
+public class SM_006_003_Verify_that_the_system_does_not_allow_CSR_to_Cance_the_BulkMessage_when_the_batch_job_status_is_Cancelled_In_progress_Completed_Recall_Initiated extends TestBase {
 
-	@Test(priority = 1, description = "SM_006_020_Verify_that_the_CSR_is_able_to_Cancel_the_bulk_notification_when_the_batch_job_status_is_Modified", groups = {
+	@Test(priority = 1, description = "SM_006_003_Verify_that_the_system_does_not_allow_CSR_to_Cance_the_BulkMessage_when_the_batch_job_status_is_Cancelled_In_progress_Completed_Recall_Initiated ", groups = {
 	"Regression" })
 	
-public void SM_006_020() throws Exception {
+public void SM_006_003() throws Exception {
 commonStepDefinitions commonFunctions = new commonStepDefinitions();
 SMPage sm = new SMPage(driver);
 
 
 
- test= report.createTest("SM_006_020_Verify_that_the_CSR_is_able_to_Cancel_the_bulk_notification_when_the_batch_job_status_is_Modified");
+ test= report.createTest("SM_006_003_Verify_that_the_system_does_not_allow_CSR_to_Cance_the_BulkMessage_when_the_batch_job_status_is_Cancelled_In_progress_Completed_Recall_Initiated ");
 
 
 // --------Login-------
@@ -53,40 +53,40 @@ commonFunctions.clickMenu("Menu");
 commonFunctions.screenShot("Menu", "Pass", "ClickMenu");
 commonFunctions.ScrollMenu("Secure Messaging");
 commonFunctions.clickMenu("Secure Messaging");
-commonFunctions.ScrollMenu("View Bulk Notification Status");
-commonFunctions.clickMenu("View Bulk Notification Status");
+commonFunctions.ScrollMenu("View Bulk Secure Message Summary");
+commonFunctions.clickMenu("View Bulk Secure Message Summary");
 commonFunctions.waitForLoadingIconToDisappear();
 
-       //---SM-125---
-		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Successfully launched to SM-125 page");
+       //---SM-114---
+		commonFunctions.screenShot("View Bulk Secure Message Summary", "Pass", "Successfully launched to SM-114 page");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("From Date", "7/1/2023");
+		commonFunctions.enterTextboxContains("From Date", "7/25/2023");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("To Date", "8/13/2023");
+		commonFunctions.enterTextboxContains("To Date", "7/25/2023");
 		sleep(1000);
-		//commonFunctions.selectCheckbox("Email");
-		sm.checkboxEmail.click();
-		sleep(1000);
-		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Entered Information on SM-125 page");
-		sleep(1000);
+		commonFunctions.selectDropdown("Category", " Collection Notices ");
+		sleep(2000);
+		commonFunctions.selectDropdown("Sub Category", " Other ");
+		sleep(2000);
+		commonFunctions.screenShot("View Bulk Secure Message Summary", "Pass", "Entered Information on SM-114 page");
+		sleep(2000);
 		commonFunctions.clickButtonContains(" Search ");
 		commonFunctions.waitForLoadingIconToDisappear();
 		
 		sm.dataTableIdRadio1.click();
 		commonFunctions.clickButtonContains("Cancel ");
 		sleep(1000);
-		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "After Clicked on cancel on SM-125 page");
-		sleep(1000);
 		commonFunctions.clickButtonContains(" Yes ");
 		sleep(1000);
-		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Error  Action taken on the selected request is not allowed on SM-125 page");
+		commonFunctions.screenShot("View Bulk Secure Message Summary", "Pass", "Error  Action taken on the selected request is not allowed on SM-114 page");
 		/*
 		sm.dataTableIdRadio2.click();
 		commonFunctions.clickButtonContains("Cancel ");
 		sleep(1000);
-		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Error  Action taken on the selected request is not allowed on SM-114 page");
 		*/
-		commonFunctions.screenShot("TC_SM_006_020", "Pass", "Successfully completed TC_SM_006_020 ");
-	
+		commonFunctions.screenShot("View Bulk Secure Message Summary", "Pass", "Error  Action taken on the selected request is not allowed on SM-114 page");
+		commonFunctions.screenShot("TC_SM_006_003", "Pass", "Successfully completed TC_SM_006_003 ");
+		
+	//--completed by palak
 		
 }}
