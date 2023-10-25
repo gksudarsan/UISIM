@@ -65,6 +65,8 @@ public class FraudAndInvestigationPage {
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@id='reasonBasisUnsatisfiedJudgProtestId']")
     public WebElement reasonBasis;
+	
+	
 
 
 }

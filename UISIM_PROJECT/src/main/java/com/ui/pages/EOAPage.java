@@ -136,4 +136,24 @@ commonStepDefinitions stepDef = new commonStepDefinitions();
 	
 	@FindBy(how = How.XPATH, using = "//span[text()=' 2023 ']")
 	public WebElement yearValue_2023;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='mat-mdc-checkbox-2-input']")
+    public WebElement checkboxContactNumber;
+	
+	
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='tpralluimatters-input']")
+    public WebElement tpralluimatters;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='employercontributions-input']")
+    public WebElement employercontributionsCheckbox;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='employerbenefits-input']")
+    public WebElement employerbenefitsCheckbox;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='useradmin-input']")
+    public WebElement useradminCheckbox;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='User Listing']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[8]//a[1]")
+	public WebElement userListingManageUser;
 }

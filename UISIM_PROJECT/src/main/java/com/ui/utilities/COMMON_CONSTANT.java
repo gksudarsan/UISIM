@@ -195,6 +195,11 @@ public class COMMON_CONSTANT {
 	public static final String LND_FRAUD_SPECIALIST = "LnDFraudSpecialist";
 	public static final String LND_FRAUD_SPECIALIST_PASSWORD = "NewUser@123456";
 	
+	public static final String LND_Clerical_Supervisor = "LnDClericalSupervisor";
+	public static final String LND_Clerical_Supervisor_Password = "NewUser@123456";
+
+	
+	
 	public static final String REGISTRATION_SPECIALIST = "RegistrationSpecialist";
 	public static final String REGISTRATION_SPECIALIST_PASSWORD = "NewUser@123456";
 	
@@ -206,6 +211,14 @@ public class COMMON_CONSTANT {
 	
 	public static final String CSR_LnD_PenaltyClerical = "LnDPenaltyClerical";
 	public static final String CSR_LnD_PenaltyClerical_PASSWORD = "NewUser@123456";
+	
+	public static final String CSR_UI_Services_Specialist = "UIServicesSpecialist";
+	public static final String CSR_UI_Services_Specialist_Pass = "NewUser@123456";
+
+	public static final String CSR_UIES_Audit_Supervisor = "UIESAuditSupervisor";
+	public static final String CSR_UIES_Audit_Supervisor_pass = "NewUser@123456";
+	
+	
 
 	
 	/* *********Collections Specialist 3 ********* */
@@ -224,7 +237,12 @@ public class COMMON_CONSTANT {
 	public static final String EmployerAccountManager_User = "EmployerAccountManager";
 	public static final String EmployerAccountManager_User_pwd = "NewUser@123456";
 	
+	
+	
 	/* --- EMPLOYER MA ROLE --- */
 	public static final String EMPLOYER_MA_ROLE = "EmployerUser01";
     public static final String EMPLOYER_MA_ROLE_PASSWORD = "NewUser@123456";
+    
+    public static final String EMPLOYER_MA_ROLE_User2 = "EmployerUser02";
+    public static final String EMPLOYER_MA_ROLE_User2_PASSWORD = "NewUser@123456";
 }

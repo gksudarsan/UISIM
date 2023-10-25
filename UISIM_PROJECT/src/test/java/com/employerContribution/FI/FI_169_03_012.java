@@ -41,7 +41,7 @@ public class FI_169_03_012 extends TestBase {
 		test = report.createTest(
 				"FI.169.03.012 - Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - ' Interest Assessment Surcharge (IAS) Protest' and system create task for CSR review");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_9.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE_User2.toUpperCase(), COMMON_CONSTANT.EMPLOYER_MA_ROLE_User2_PASSWORD);
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		test.info("Step: 3 -- ");
@@ -61,13 +61,16 @@ public class FI_169_03_012 extends TestBase {
 		test.info("Step: 4 -- ");
 		commonFuntions.selectDropdown("Category", " Protest ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(5000);
-		commonFuntions.selectDropdownUsingSearch("Subcategory", "How do I protest an Interest Assessment Surcharge (IAS)?");
-		sleep(5000);
+		sleep(1000);
+		commonFuntions.selectDropdown("Subcategory", " How do I protest an Interest Assessment Surcharge (IAS)? ");
+		sleep(1000);
 		commonFuntions.screenShot("Write Message", "Pass", "SM-101 with details filled screen is displayed");
 		sleep(2000);
 		commonFuntions.clickOnLinkAnchorTag("click here");
 		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.switchTab();
+		commonFuntions.waitForLoadingIconToDisappear();
+		/*
 		Set<String> allHandles = driver.getWindowHandles();
 		Iterator<String> l1 = allHandles.iterator();
 		String parent = l1.next();
@@ -76,10 +79,10 @@ public class FI_169_03_012 extends TestBase {
 		System.out.println(Child);
 		driver.switchTo().window(Child);
 		sleep(2000);
+		*/
 		commonFuntions.screenShot("Submit Issue", "Pass", "FIS-002 screen is displayed");
 		
 		test.info("Step: 5 -- ");
-		commonFuntions.waitForLoadingIconToDisappear();
 		String ern = commonFuntions.retrieveValue("Employer Registration Number").trim();
 		String correctERN = ern.replace("-", "");
 		
@@ -93,7 +96,7 @@ public class FI_169_03_012 extends TestBase {
 		
 		commonFuntions.clickButtonContains("Submit ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(2000);
+		sleep(1000);
 		commonFuntions.screenShot("Issue Submission Confirmation", "Pass", "SUC-002 screen is displayed");
 	
 		test.info("Step: 6 -- ");
@@ -102,12 +105,12 @@ public class FI_169_03_012 extends TestBase {
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("Home page", "Pass", "Home screen is displayed");
 		
-		// commented the query as we do not have the access to update or insert into db
-		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.EmployerAccountManager_User+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"+correctERN+"' ORDER BY UPDATED_TS desc);");
+		//
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"+correctERN+"' ORDER BY UPDATED_TS desc);");
 		//
 		
 		test.info("Step: 7 -- ");
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.EmployerAccountManager_User.toUpperCase(), COMMON_CONSTANT.EmployerAccountManager_User_pwd);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);

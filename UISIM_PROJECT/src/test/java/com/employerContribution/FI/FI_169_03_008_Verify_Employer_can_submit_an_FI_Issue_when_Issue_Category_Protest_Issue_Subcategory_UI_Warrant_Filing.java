@@ -3,6 +3,7 @@ package com.employerContribution.FI;
 import java.util.Map;
 
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -15,8 +16,8 @@ import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
 
-
-public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Category_Protest_Issue_Subcategory_Miscellaneous_Protest_and_system_create_task_for_CSR_review extends TestBase {
+@Listeners(com.ui.utilities.ListenerTest.class)
+public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Category_Protest_Issue_Subcategory_UI_Warrant_Filing extends TestBase {
 
 	@Test(priority = COMMON_CONSTANT.PRIORITY_1, description = "Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - 'UI Warrant Filing'", groups = "Regression")
 	public void FI_169_03_008()throws Exception {
@@ -25,7 +26,7 @@ public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 	commonStepDefinitions commonFunctions = new commonStepDefinitions();
 	FraudInvestigationLocators fiLocators = new FraudInvestigationLocators(driver);
 	FIpage filocators	= new FIpage(driver);
-	
+	/*
 	// Query
     Map<String, String> databaseEanResult = commonFunctions.database_SelectQuerySingleColumn(
             "SELECT * FROM T_EMPLOYER_ACCOUNT tea JOIN T_TX_EMPLOYER_COLLECTION_HOLD ttech ON ttech.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID WHERE ACCOUNT_STATUS = 'ACTV'",
@@ -37,10 +38,10 @@ public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 		System.out.println("ERN Value is null");
 	} else {
 		test.log(Status.PASS, "DB connected successfully and fetched ERN is: " + eanValue + ".");
-	}
+	}*/
     
     // --- Login ---
-	commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+	commonFunctions.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE_User2.toUpperCase(), COMMON_CONSTANT.EMPLOYER_MA_ROLE_User2_PASSWORD);
 	test.log(Status.PASS, "Login with Employer is successful");
    
 
@@ -58,22 +59,22 @@ public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.screenShot("FI16903008", "Pass", "Successfully launched Write Message (SM-101) screen");
 	commonFunctions.selectDropdown("Category", " Protest ");
-	sleep();
+	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.selectDropdown("Subcategory", " How do I protest a UI Warrant Filing? ");
 	sleep();
 	commonFunctions.screenShot("FI16903008", "Pass", "Data enetered in SM-101 screen");
 	
 	commonFunctions.clickOnLinkAnchorTag("click here");
-	sleep(3000);
+	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.switchTab();
-	
+	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.screenShot("FI16903008", "Pass", "Data enetered in SM-101 screen");
 	
 	// --- FIS-002 ---
 	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.screenShot("FI16903008", "Pass", "Successfully launched Submit Issue(FIS-002) screen");
 	commonFunctions.clickButton("Continue ");
-	sleep(2000);
+	commonFunctions.waitForLoadingIconToDisappear();
 	commonFunctions.screenShot("FI16903008", "Pass", "Error on blank continue for FIS-002 screen");
 	
 	commonFunctions.enterCurrentDate("Warrant File Date");
@@ -106,6 +107,8 @@ public class FI_169_03_008_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 	commonFunctions.screenShot("FI16903008", "Pass", "Successfully passed TC FI.169.03.008");
 	
 	System.out.println("Pass :)");
+	
+	//-----Executed by palak
 	
 }
 

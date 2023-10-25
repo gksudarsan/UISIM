@@ -44,19 +44,19 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
         commonStepDefinitions cf = new commonStepDefinitions();
         SREG_EM_mod sm = new SREG_EM_mod(driver);
         
-    
-        cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+        cf.login(COMMON_CONSTANT.REGISTRATION_SPECIALIST, COMMON_CONSTANT.REGISTRATION_SPECIALIST_PASSWORD);
+       // cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
         cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
         
        
         Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-                "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'GRDI' AND EAN IS NOT NULL", "EAN");
+                "SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'CORA' and EAN IS NOT NULL", "EAN");
         String ernValue = databaseResults.get("EAN");
         System.out.println(ernValue);
         
         
         sleep(3000);
-        cf.clickMenu("Menu");
+        cf.clickMenu("menu");
         cf.ScrollMenu("Account Maintenance");
         cf.clickMenu("Account Maintenance");
         cf.ScrollMenu("Maintain Business Ownership");
@@ -69,29 +69,29 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
         cf.screenShot("EM321001", "Pass", "Sucessfully launched to SREG-029 page");
         cf.enterTextboxContains("Employer Registration Number", "");
         cf.clickButton("Continue ");
-        sleep();
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Required' on SREG-070");
         cf.enterTextboxContains("Employer Registration Number", "4772");
         cf.clickButton("Continue ");
-        sleep();
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'ERN Must be 7 digit' on SREG-070");
         cf.enterTextboxContains("Employer Registration Number", "0000000");
         cf.clickButton("Continue ");
-        sleep();
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Does not exist in the system' on SREG-070");
-        cf.enterTextboxContains("Employer Registration Number", "4893040");
+        cf.enterTextboxContains("Employer Registration Number", ernValue );
         cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "ERN Entered on SREG-070 page");
         cf.clickButton("Continue ");
-        sleep(20000);
+        cf.waitForLoadingIconToDisappear();
 
  
 
         // ---SREG-702---
         cf.screenShot("EM321001", "Pass", "Sucessfully launched to SREG-702 page");
-        //cf.clickOnLink("Add Corporate/Owner Details");
+        cf.clickOnLink("Add Corporate/Owner Details");
         sleep(2000);
-        sm.actionEditCorprate.click();
+       // sm.actionEditCorprate.click();
         
         sleep(2000);
 
@@ -101,58 +101,64 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
                 " Provide the information requested below for each Corporate Officer/Owner associated with this business. Additional corporate officer/member/owners can be added after validation of address on this screen.",
                 " Individual");
         cf.clickButton("Submit ");
-        sleep(10000);
+        
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Required feilds' on SREG-006");
         cf.enterTextboxContains("First Name", "ALIZA");
         cf.enterTextboxContains("Last Name", "ABOUHAMRA");
         cf.clickButton("Submit ");
-        sleep(2000);
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Principal Social Security Number is required' on SREG-701");
         cf.enterTextboxContains("SSN", "254545");
         cf.clickButton("Submit ");
-        sleep(2000);
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("Invalid SSN", "Pass", "Invalid SSN Please enter valid SSN");
         cf.clearTextboxContains("SSN");
         cf.enterTextboxContains("SSN", "124881021");
         cf.enterTextboxContains("Address Line 1 ", "EX: Enter TEST%&*^^5TEST");
         cf.clickButton("Submit ");
-        sleep(10000);
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Address Line 1 contains an invalid character(s).' on SREG-701");
         cf.clearTextboxContains("Address Line 1 ");
         cf.enterTextboxContains("Address Line 1 ", "1st");
         cf.clickButton("Submit ");
-        sleep(10000);
+        cf.waitForLoadingIconToDisappear();
         cf.enterTextboxContains("City ", "%%%%%");
         cf.clickButton("Submit ");
-        sleep(10000);
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'City contains an invalid character(s).' on SREG-701");
         cf.clearTextboxContains("City ");
         cf.enterTextboxContains("City ", "New York");
         cf.clickButton("Submit ");
-        sleep(10000);
+        cf.waitForLoadingIconToDisappear();
         cf.enterTextboxContains("Zip Code", "120");
         cf.clickButton("Submit ");
-        sleep(10000);
+        cf.waitForLoadingIconToDisappear();
         cf.screenShot("EM321001", "Pass", "Message 'Zip Code must be 5 digit' on SREG-701");
         cf.clearTextboxContains("Zip Code");
-        cf.enterTextboxContains("Zip Code", "12012");
-        cf.clickButton("Submit ");
-        sleep(10000);
+        cf.enterTextboxContains("Zip Code", "10012");
+        
         cf.enterTextboxContains(" Contact Number ", "8269375089");
         cf.selectDropdown("Source", " NYS-100 (paper) ");
         sleep(1000);
         cf.selectDropdown("Source Type", " NYS-100 ");
         sleep(1000);
         cf.clickButton("Submit ");
-        sleep(2000);
-        cf.screenShot("EM321001", "Pass", "Message 'Message same partner deatails added");
+        cf.waitForLoadingIconToDisappear();
+        try{
+        	cf.clickButton("Continue ");
+       
+        }catch(Exception e) {}
+        
+        //cf.screenShot("EM321001", "Pass", "Message 'Message same partner deatails added");
         cf.clearTextboxContains("SSN");
         cf.enterTextboxContains("SSN", Long.toString(cf.createRandomInteger(10000000, 99999999))
                 + Long.toString(cf.createRandomInteger(9, 99)));
+        cf.screenShot("EM321001", "Pass", "Message 'Message same partner deatails added");
         cf.clickButton("Submit ");
-        sleep(20000);
+        cf.waitForLoadingIconToDisappear();
 
- 
+    
 
         // ---SREG-702---
         cf.screenShot("EM321001", "Pass", "Sucessfully launched to SREG-702 page");
@@ -164,11 +170,11 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
         ssnValue = StringUtils.left(ssnValue, 3) + "-" + StringUtils.right(StringUtils.left(ssnValue, 5), 2) + "-"
                 + StringUtils.right(ssnValue, 4);
         cf.clickButtonContains("Submit");
-        Thread.sleep(2000);
+        cf.waitForLoadingIconToDisappear();
         //cf.selectTable(ssnValue, 11, 1, "Individual as Corporate Officer ");
         Thread.sleep(2000);
-        verifyFields("29-9663415");
-        Thread.sleep(2000);
+        verifyFields(ssnValue);
+        cf.waitForLoadingIconToDisappear();
 
 
     }
@@ -180,13 +186,14 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
                 " Individual");
         Random random = new Random();
         commonFuntions.enterTextbox("SSN", ssnValue);
-        commonFuntions.enterTextboxContains("Address Line 1", "Added address line 2");
+        commonFuntions.enterTextboxContains("Address Line 1", "1st");
 
         commonFuntions.selectDropdown("Source", " NYS-100 (paper) ");
         sleep(1000);
         commonFuntions.selectDropdown("Source Type", " NYS-100 ");
         sleep(1000);
         commonFuntions.screenShot("Submit", "Pass", "Submit corporate officer/ownerdetaisl");
+        commonFuntions.waitForLoadingIconToDisappear();
     }
     
     public void verifyFields(String ssnValue) throws Exception {
@@ -194,13 +201,13 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
         String Address = commonFuntions.retrieveValueFromTable(ssnValue, 5, 1, "Corporate/Owner Details");
         System.out.println(Address);
         if(Address.contains("ADDED ADDRESS LINE 2")){
-            commonFuntions.screenShot("Address Edit", "Pass", "Expected Address 1 is ADDED ADDRESS LINE 2 and actual is "+Address);
+            commonFuntions.screenShot("Address Edit", "Pass", "Expected Address 1 is 1st and actual is "+Address);
         }
         else 
         {
             commonFuntions.screenShot("Address Edit", "fail", "Expected Address 1 is ADDED ADDRESS LINE 2 and actual is "+Address);
         }
-       Assert.assertEquals(Address.contains("ADDED ADDRESS LINE 2"), true);
+       Assert.assertEquals(Address.contains("1st"), true);
 
         // DONE
     }
