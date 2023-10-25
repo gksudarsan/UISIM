@@ -31,25 +31,11 @@ SMPage sm = new SMPage(driver);
 
 
 // --------Login-------
-		commonFunctions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFunctions.login(COMMON_CONSTANT.Role_SMS2.toUpperCase(), COMMON_CONSTANT.Role_SMS2_Pass);
 		commonFunctions.waitForLoadingIconToDisappear();
-		/*
-		// -------DB---
-		Map<String, String> databaseEanResult = commonFunctions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea JOIN T_TX_EMPL_BENEFIT_CLAIM_PENALTY ttebcp ON ttebcp.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID AND tea.EAN LIKE '9%'", "EAN");
 		
-		
-
-		String eanNumber = databaseEanResult.get("EAN");
-
-		if ((eanNumber == null) || eanNumber.isEmpty()) {
-			System.out.println("EAN value is null");
-		} else {
-			test.log(Status.PASS, "DB Connected successfully & fetched ERN is " + eanNumber + ".");
-		}
-   */
 	//------Menu----	
-commonFunctions.clickMenu("Menu");
+commonFunctions.clickMenu("menu");
 commonFunctions.screenShot("Menu", "Pass", "ClickMenu");
 commonFunctions.ScrollMenu("Secure Messaging");
 commonFunctions.clickMenu("Secure Messaging");
@@ -60,9 +46,9 @@ commonFunctions.waitForLoadingIconToDisappear();
        //---SM-125---
 		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Successfully launched to SM-125 page");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("From Date", "7/27/2023");
+		commonFunctions.enterTextboxContains("From Date", "10/06/2023");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("To Date", "7/31/2023");
+		commonFunctions.enterTextboxContains("To Date", "10/06/2023");
 		sleep(1000);
 		//commonFunctions.selectCheckbox("Email");
 		
@@ -72,14 +58,15 @@ commonFunctions.waitForLoadingIconToDisappear();
 		sleep(2000);
 		commonFunctions.clickButtonContains(" Search ");
 		commonFunctions.waitForLoadingIconToDisappear();
+		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Modified Row visible on SM-125 page");
 		
-		sm.dataTableIdRadio1.click();
+		sm.datatabRadio1.click();
 		commonFunctions.clickButtonContains("modify ");
 		sleep(1000);
 		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "After Clicked on modify on SM-125 page");
 		sleep(1000);
 		commonFunctions.clickButtonContains(" Yes ");
-		sleep(1000);
+		commonFunctions.waitForLoadingIconToDisappear();
 		//commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Error  Action taken on the selected request is not allowed on SM-125 page");
 		/*
 		sm.dataTableIdRadio2.click();
@@ -100,7 +87,7 @@ commonFunctions.waitForLoadingIconToDisappear();
 		commonFunctions.uploadDoc("ERN.xls");
 		sleep(1000);*/
 		sm.write_SecureMessage.sendKeys("Message Send");
-		commonFunctions.enterTextboxContains("Send Notification On", "7/27/2023");
+		//commonFunctions.enterTextboxContains("Send Notification On", "10/06/2023");
 		sleep(1000);
 		commonFunctions.screenShot("Send Bulk Notification", "Pass","Send Bulk Notification page entered information-SM-124");
 		commonFunctions.clickButtonContains("Submit ");

@@ -40,7 +40,7 @@ public class FI_169_03_006_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 				"FI_169_03_006_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Category_Coverage_Issue_Subcategory_Coverage_Protest_and_system_create_task_for_CSR_review");
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_8, COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_User01 , COMMON_CONSTANT.EMPLOYER_PASS_User01 );
 		commonFunctions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 
@@ -59,17 +59,21 @@ public class FI_169_03_006_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 		// ---SM-101---
 		commonFunctions.screenShot("Write Message", "Pass", "Write Message (SM-101)screen launched");
 		commonFunctions.selectDropdown("Category", " Protest ");
+		commonFunctions.waitForLoadingIconToDisappear();
+		commonFunctions.selectDropdown("Subcategory", " How do I protest a determination that an individual is an employee? ");
 		sleep(1000);
-		commonFunctions.selectDropdown("Subcategory", " How do I protest (an) Unsatisfied Judgment(s)? ");
-		sleep(1000);
+		commonFunctions.screenShot("Write Message", "Pass", "Write Message (SM-101) Entered Details");
+		//commonFunctions.enterTextbox("Subject", "testing");
 		commonFunctions.clickOnLinkAnchorTag("click here");
+		commonFunctions.waitForLoadingIconToDisappear();
 		commonFunctions.switchTab();
 		commonFunctions.waitForLoadingIconToDisappear();
 
 		// ----FIS-002---
 		commonFunctions.screenShot("Submit Issue", "Pass", "Successfully launched to FIS_002 page");
-		commonFunctions.enterTextbox("Warrant/Judgment balance due ($)", "testing");
-		FI.reasonBasis.sendKeys("for testing");
+		commonFunctions.enterTextbox("Claimant Name", "Automation");
+		commonFunctions.enterTextbox("Job Title", "testing");
+		FI.remarksId.sendKeys("for testing");
 		//FI.selectcheckbox.click();
 		//commonFunctions.selectLink("Document", "Browse");
 		//commonFunctions.waitForLoadingIconToDisappear();
@@ -82,6 +86,7 @@ public class FI_169_03_006_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 
 		// ---Submit Issue Verification---
 		commonFunctions.screenShot("Submit Issue Verification", "Pass", "Submit Issue Verification screen launched");
+		sleep(2000);
 		commonFunctions.clickButtonContains("Submit ");
 		commonFunctions.waitForLoadingIconToDisappear();
 
@@ -96,7 +101,7 @@ public class FI_169_03_006_Verify_Employer_can_submit_an_FI_Issue_when_Issue_Cat
 				commonFunctions.waitForLoadingIconToDisappear();
 
 				// --------Login Logout-------
-						commonFunctions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1,COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+						commonFunctions.logoutAndLogin(COMMON_CONSTANT.Role_LnDSp,COMMON_CONSTANT.Role_LnDSp_Pass);
 						commonFunctions.waitForLoadingIconToDisappear();
 				
 				// --------WorkItems-------- 

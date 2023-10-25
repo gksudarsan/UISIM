@@ -41,7 +41,7 @@ public class FI_169_03_012 extends TestBase {
 		test = report.createTest(
 				"FI.169.03.012 - Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - ' Interest Assessment Surcharge (IAS) Protest' and system create task for CSR review");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_User02.toUpperCase(), COMMON_CONSTANT.EMPLOYER_PASS_User02);
 		commonFuntions.waitForLoadingIconToDisappear();
 
 		test.info("Step: 3 -- ");
@@ -68,6 +68,9 @@ public class FI_169_03_012 extends TestBase {
 		sleep(2000);
 		commonFuntions.clickOnLinkAnchorTag("click here");
 		commonFuntions.waitForLoadingIconToDisappear();
+		commonFuntions.switchTab();
+		commonFuntions.waitForLoadingIconToDisappear();
+		/*
 		Set<String> allHandles = driver.getWindowHandles();
 		Iterator<String> l1 = allHandles.iterator();
 		String parent = l1.next();
@@ -76,6 +79,7 @@ public class FI_169_03_012 extends TestBase {
 		System.out.println(Child);
 		driver.switchTo().window(Child);
 		sleep(2000);
+		*/
 		commonFuntions.screenShot("Submit Issue", "Pass", "FIS-002 screen is displayed");
 		
 		test.info("Step: 5 -- ");

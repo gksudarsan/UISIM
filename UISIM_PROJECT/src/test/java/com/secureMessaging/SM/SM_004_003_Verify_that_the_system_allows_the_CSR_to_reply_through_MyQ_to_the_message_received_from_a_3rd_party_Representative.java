@@ -87,6 +87,6 @@ public class SM_004_003_Verify_that_the_system_allows_the_CSR_to_reply_through_M
 		commonFuntions.waitForLoadingIconToDisappear();
 		
 		commonFuntions.screenShot("SM_004_003", "Pass", "Test Case got Pass SM_004_003");
-		// ---Executed & completed by Palak
+		//  completed by Palak
 	}
 }

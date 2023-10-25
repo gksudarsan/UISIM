@@ -31,7 +31,7 @@ SMPage sm = new SMPage(driver);
 
 
 // --------Login-------
-		commonFunctions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+ commonFunctions.login(COMMON_CONSTANT.Role_SMS2.toUpperCase(), COMMON_CONSTANT.Role_SMS2_Pass);
 		commonFunctions.waitForLoadingIconToDisappear();
 		/*
 		// -------DB---
@@ -49,7 +49,7 @@ SMPage sm = new SMPage(driver);
 		}
    */
 	//------Menu----	
-commonFunctions.clickMenu("Menu");
+commonFunctions.clickMenu("menu");
 commonFunctions.screenShot("Menu", "Pass", "ClickMenu");
 commonFunctions.ScrollMenu("Secure Messaging");
 commonFunctions.clickMenu("Secure Messaging");
@@ -60,9 +60,9 @@ commonFunctions.waitForLoadingIconToDisappear();
        //---SM-125---
 		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Successfully launched to SM-125 page");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("From Date", "7/1/2023");
+		commonFunctions.enterTextboxContains("From Date", "10/06/2023");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("To Date", "8/13/2023");
+		commonFunctions.enterTextboxContains("To Date", "10/06/2023");
 		sleep(1000);
 		//commonFunctions.selectCheckbox("Email");
 		sm.checkboxEmail.click();
@@ -71,8 +71,9 @@ commonFunctions.waitForLoadingIconToDisappear();
 		sleep(1000);
 		commonFunctions.clickButtonContains(" Search ");
 		commonFunctions.waitForLoadingIconToDisappear();
+		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "Modified Row visible on SM-125 page");
 		
-		sm.dataTableIdRadio1.click();
+		sm.datatabRadio1.click();
 		commonFunctions.clickButtonContains("Cancel ");
 		sleep(1000);
 		commonFunctions.screenShot("View Bulk Notification Status", "Pass", "After Clicked on cancel on SM-125 page");

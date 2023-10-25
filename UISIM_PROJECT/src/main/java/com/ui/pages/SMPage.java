@@ -53,6 +53,9 @@ public class SMPage {
 
 	//@FindBy(how = How.XPATH, using = "//*[.='Message']//following::*[@class='angular-editor-textarea'][1]")
     //public WebElement Message;
+	//
+	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_select_0_1_radio_button-input'][1]")
+	public WebElement datatabRadio1;
 	
 	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_select_0_1_radio_button-input']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement dataTableIdRadio1;

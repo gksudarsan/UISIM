@@ -31,7 +31,7 @@ SMPage sm = new SMPage(driver);
 
 
 // --------Login-------
-		commonFunctions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+ commonFunctions.login(COMMON_CONSTANT.Role_SMS2.toUpperCase(), COMMON_CONSTANT.Role_SMS2_Pass);
 		commonFunctions.waitForLoadingIconToDisappear();
 		/*
 		// -------DB---
@@ -49,7 +49,7 @@ SMPage sm = new SMPage(driver);
 		}
    */
 	//------Menu----	
-commonFunctions.clickMenu("Menu");
+commonFunctions.clickMenu("menu");
 commonFunctions.screenShot("Menu", "Pass", "ClickMenu");
 commonFunctions.ScrollMenu("Secure Messaging");
 commonFunctions.clickMenu("Secure Messaging");
@@ -62,9 +62,9 @@ commonFunctions.waitForLoadingIconToDisappear();
 		sleep(1000);
 		commonFunctions.enterTextboxContains("From Date", "7/25/2023");
 		sleep(1000);
-		commonFunctions.enterTextboxContains("To Date", "7/25/2023");
+		commonFunctions.enterTextboxContains("To Date", "10/06/2023");
 		sleep(1000);
-		commonFunctions.selectDropdown("Category", " Collection Notices ");
+		commonFunctions.selectDropdown("Category", "Account Balance and UI Rate Issues");
 		sleep(2000);
 		commonFunctions.selectDropdown("Sub Category", " Other ");
 		sleep(2000);

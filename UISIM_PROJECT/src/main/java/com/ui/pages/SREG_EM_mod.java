@@ -39,7 +39,7 @@ public class SREG_EM_mod {
 	@FindBy(how = How.XPATH, using = "//*[.='Corporate Officer/Owner Details']//following::*[contains(@id ,'dataTableId')][1]/mat-row[3]/mat-cell[9]//a[1]")
 	public WebElement actionEditOfficer;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Individual as Corporate Officer ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[8]//a[1]")
+	@FindBy(how = How.XPATH, using = "//*[.='Corporate/Owner Details']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[1]")
 	public WebElement actionEditCorprate;
 	
 	@FindBy(how = How.XPATH, using = "//*[.='Individual as Corporate Officer ']//following::*[contains(@id ,'dataTableId')][1]/mat-row[1]/mat-cell[9]//a[3]")
@@ -72,6 +72,9 @@ public WebElement JointEmploymentStartDate1;
 
 @FindBy(how = How.XPATH, using = "//*[.='Joint Employment/Management Agreement Arrangement ']//following::*[contains(@id ,'dataTable')][1]/mat-row[2]/mat-cell[5]//input[1]")
 public WebElement JointEmploymentStartDate2;
+
+@FindBy(how = How.XPATH, using = "//*[.='List of Members of Joint Account']//following::*[contains(@id ,'dataTable')][1]/mat-row[1]/mat-cell[2]")
+public WebElement JointAccountRadio;
 
 }
 
