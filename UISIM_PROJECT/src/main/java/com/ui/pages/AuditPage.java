@@ -23,5 +23,11 @@ public class AuditPage {
 	
 	@FindBy(how = How.XPATH, using = "//*[@id='commentsId']")
 	public WebElement commentsId;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='mat-mdc-checkbox-4-input']//following::*[@class='mdc-checkbox__native-control'][1]")
+		public WebElement Selct_checkbox_tab;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Reason for Transfer Request']//following::*[@class='angular-editor-textarea']")
+    public WebElement Reason_for_Transfer_Requeste;
 }
 
