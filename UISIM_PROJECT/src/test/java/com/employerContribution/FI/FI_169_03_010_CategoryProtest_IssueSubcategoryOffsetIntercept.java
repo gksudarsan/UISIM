@@ -28,25 +28,30 @@ public class FI_169_03_010_CategoryProtest_IssueSubcategoryOffsetIntercept exten
 		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.169.03.010-Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - 'Offset_Intercept");
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMPLOYER_USER_9.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		sleep();
-		cf.waitForLoadingIconToDisappear();
+		sleep();cf.waitForLoadingIconToDisappear();
+		try{
+			cf.clickButtonContains(" I agree with the Terms and Conditions ");
+			sleep();cf.waitForLoadingIconToDisappear();
+		}catch(Exception e) {	
+		}
 		AddPage.menu.click();
 		sleep();
 		cf.clickMenu("Secure Messaging");
 		sleep();
 		cf.screenShot("NavigateToWriteMessage", "Pass", "Navigating to Write Message");
 		cf.clickMenu("Write Message");
-		sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("WriteMessage", "Pass", "Write Message");
 		cf.selectDropdown("Category", " Protest ");
-		sleep(2000);
-		cf.selectDropdown("Subcategory", " How do I protest an Offset/Intercept (SWOP/TOP)? ");
-		sleep(2000);
+		sleep();cf.waitForLoadingIconToDisappear();
+		fiPage.subCategoryDropdown.click();sleep(2000);
+		fiPage.subCategoryValue2.click();sleep(2000);
+		//cf.selectDropdown("Subcategory", " How do I protest an Offset/Intercept (SWOP/TOP)? ");
 		cf.screenShot("WriteMessage1", "Pass", "Write Message1");
 		cf.clickOnLinkAnchorTag("click here");
-		sleep();
+		sleep(5000);
 		cf.waitForLoadingIconToDisappear();
 
 		/*---- Submit Issue ----*/
@@ -56,7 +61,7 @@ public class FI_169_03_010_CategoryProtest_IssueSubcategoryOffsetIntercept exten
 		String parentWindowId = it.next();
 		String childWindowId = it.next();
 		driver.switchTo().window(childWindowId);
-		sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("SubmitIssue", "Pass", "Submit Issue");
 		String eanValue = cf.retrieveValue("Employer Registration Number").trim();
 		eanValue = eanValue.replace("-", "");
@@ -70,7 +75,7 @@ public class FI_169_03_010_CategoryProtest_IssueSubcategoryOffsetIntercept exten
 		fiPage.offsetInterceptProtestReason.sendKeys("testing");
 		AddPage.browserLink.click();
 		sleep(3000);
-		cf.uploadDoc("TESTINGEL");
+		cf.uploadDoc("Sample");
 		sleep(3000);
 		cf.screenShot("SubmitIssueDetailsEntered", "Pass", "Submit Issue Details Entered");
 		cf.clickButtonContains("Continue ");
@@ -78,9 +83,12 @@ public class FI_169_03_010_CategoryProtest_IssueSubcategoryOffsetIntercept exten
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("SubmitIssueVerification", "Pass", "Submit Issue Verification");
 		cf.clickButtonContains("Submit ");
-		cf.waitForLoadingIconToDisappear();sleep();
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("IssueSubmissionConfirmation", "Pass", "Issue Submission Confirmation");
-		cf.clickButtonContains("Home ");sleep(5000);
+		cf.clickButtonContains("Home ");
+		sleep(3000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("homePage", "Pass", "Home Page");
 
 	}

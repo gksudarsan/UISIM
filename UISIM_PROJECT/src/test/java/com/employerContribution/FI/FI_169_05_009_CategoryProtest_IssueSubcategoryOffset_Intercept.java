@@ -28,25 +28,28 @@ public class FI_169_05_009_CategoryProtest_IssueSubcategoryOffset_Intercept exte
 		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.169.05.009-Verify TPR can submit an FI Issue when Issue Category - Protest, Issue Subcategory - 'Offset_Intercept' and system create task for CSR review ");
-		cf.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.TPR_USER_3.toUpperCase(), COMMON_CONSTANT.TPR_USER_3_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		sleep();
-		cf.waitForLoadingIconToDisappear();
+		sleep();cf.waitForLoadingIconToDisappear();
+		try {
+		cf.clickButtonContains(" I agree with the Terms and Conditions ");
+		sleep();cf.waitForLoadingIconToDisappear();
+		}catch(Exception e) {
+		}
 		AddPage.menu.click();
 		sleep();
 		cf.clickMenu("Secure Messaging");
 		sleep();
 		cf.screenShot("NavigateToWriteMessage", "Pass", "Navigating to Write Message");
 		cf.clickMenu("Write Message - Enter ERN");
-		sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("WriteMessageEnterErn", "Pass", "Write Message Enter Ern");
 		
 		// Query
 	    Map<String, String> databaseEanResult = cf.database_SelectQuerySingleColumn(
 	            "SELECT * FROM t_employer WHERE EMPLOYER_ID IN (\r\n" + 
 	            "SELECT EMPLOYER_ID FROM T_THIRD_PARTY_CDS_VENDOR_ASSOCIATION WHERE \r\n" + 
-	            "THIRD_PARTY_CDS_VENDOR_ID = (SELECT THIRD_PARTY_AGENT_ID FROM T_TPR_USER ttu WHERE USER_ID = 'tpruser121')\r\n" + 
-	            "AND ASSOCIATION_STATUS = 'ACTIVE'\r\n" + 
+	            "THIRD_PARTY_CDS_VENDOR_ID = '299'\r\n" + 
 	            ");",
 	            "EAN");
 	    String eanValue = databaseEanResult.get("EAN");
@@ -59,22 +62,23 @@ public class FI_169_05_009_CategoryProtest_IssueSubcategoryOffset_Intercept exte
 	    //Write Message
 	    cf.screenShot("writeMessage", "Pass", "Write Message");
 		cf.selectDropdown("Category", " Protest ");
-		sleep(2000);
-		cf.selectDropdown("Subcategory", " How do I protest an Offset/Intercept (SWOP/TOP)? ");
-		sleep(2000);
+		sleep();cf.waitForLoadingIconToDisappear();
+		fiPage.subCategoryDropdown.click();sleep(2000);
+		fiPage.subCategoryValue2.click();sleep(2000);
+		//cf.selectDropdown("Subcategory", " How do I protest an Offset/Intercept (SWOP/TOP)? ");
 		cf.screenShot("WriteMessage1", "Pass", "Write Message1");
 		cf.clickOnLinkAnchorTag("click here");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
 
 		/*---- Submit Issue ----*/
-
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> it = handles.iterator();
 		String parentWindowId = it.next();
 		String childWindowId = it.next();
 		driver.switchTo().window(childWindowId);
-		sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
+		
 		cf.screenShot("SubmitIssue", "Pass", "Submit Issue");
 		String ernValue = cf.retrieveValue("Employer Registration Number").trim();
 		ernValue = ernValue.replace("-", "");
@@ -96,7 +100,7 @@ public class FI_169_05_009_CategoryProtest_IssueSubcategoryOffset_Intercept exte
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("SubmitIssueVerification", "Pass", "Submit Issue Verification");
 		cf.clickButtonContains("Submit ");
-		cf.waitForLoadingIconToDisappear();sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("IssueSubmissionConfirmation", "Pass", "Issue Submission Confirmation");
 		cf.clickButtonContains("Home ");sleep(5000);
 		cf.screenShot("homePage", "Pass", "Home Page");

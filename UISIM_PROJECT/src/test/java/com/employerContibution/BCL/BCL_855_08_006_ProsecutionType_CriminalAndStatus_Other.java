@@ -18,13 +18,13 @@ import stepDefinitions.commonStepDefinitions;
 public class BCL_855_08_006_ProsecutionType_CriminalAndStatus_Other extends TestBase {
 
 	@Test
-	public void BCL_855_08_005() throws Exception {
+	public void BCL_855_08_006() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		BclPage bclPage = new BclPage(driver);
 		test = report.createTest(
 				"BCL_855_08_006-Verify CSR can search ERN details and add new prosecution for Prosecution Type is 'Criminal' and status is 'Other' with comments");
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.CollectionsSpecialistUser_3.toUpperCase(), COMMON_CONSTANT.CollectionsSpecialistUser_3_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
@@ -43,8 +43,9 @@ public class BCL_855_08_006_ProsecutionType_CriminalAndStatus_Other extends Test
 				"EAN");
 		String eanValue = databaseResults.get("EAN");
 		cf.enterTextboxContains("Employer Registration Number", eanValue);
+		cf.screenShot("Prosecution2", "Pass", "Prosecution2");
 		cf.clickButtonContains("Continue ");
-		cf.waitForLoadingIconToDisappear();
+		sleep();cf.waitForLoadingIconToDisappear();
 		
 		/*------List of Prosecutions (COL-594)------*/
 		
@@ -54,13 +55,8 @@ public class BCL_855_08_006_ProsecutionType_CriminalAndStatus_Other extends Test
 		cf.screenShot("EnterProsecutionDetails", "Pass", "Enter Prosecution Details");
 		
 		/*-------Enter Prosecution Details (COL - 595)-------*/
-		
 		String firstName = cf.enterRandomString("a. First Name");sleep();
 		cf.enterTextboxContains("c. Last Name", "testauto");sleep();
-//		Map<String, String> prosecutionCaseNumber = cf.database_SelectQuerySingleColumn(
-//				"SELECT * FROM T_TX_PROSECUTION ttp JOIN T_EMPLOYER te ON ttp.EMPLOYER_ID = te.EMPLOYER_ID",
-//				"PROSECUTION_CASE_NUMBER");
-//		String pcaseNumber = prosecutionCaseNumber.get("PROSECUTION_CASE_NUMBER");
 		cf.enterTextboxContains("3. Prosecution Case Number", cf.createRandomInteger(10, 99)+"23");
 		cf.selectDropdown("4. Prosecution Type", " Criminal ");sleep();
 		cf.enterFutureDate("5. Date Prosecution Proceedings Commenced",60);sleep();
@@ -83,6 +79,18 @@ public class BCL_855_08_006_ProsecutionType_CriminalAndStatus_Other extends Test
 		cf.clickButtonContains("Home ");
 		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("homePage", "Pass", "Home Page");
+		
+		AddPage.menu.click();
+		sleep();
+		cf.ScrollMenu("Employer Collection");
+		cf.clickMenu("Employer Collection");sleep();
+		cf.screenShot("Prosecution1", "Pass", "Navigating to Prosecution 1");
+		cf.clickMenu("Prosecution");sleep();
+		
+		cf.enterTextboxContains("Employer Registration Number", eanValue);
+		cf.clickButtonContains("Continue ");
+		sleep();cf.waitForLoadingIconToDisappear();
+		cf.screenShot("ListofProsecutions1", "Pass", "List of Prosecutions1");sleep();
 	}
 
 }
