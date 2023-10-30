@@ -20,15 +20,16 @@ import stepDefinitions.commonStepDefinitions;
 public class EL_03_01 extends TestBase {
 
 	@Test
-	public void EL_03_01() throws Exception
+	public void EL_03_01_PEOSpecialist() throws Exception
 
 	{
 		commonStepDefinitions commonFuntions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
+		
 		test = report.createTest(
 				"EL.03.01:Verify CSR can search PEO and update PEO conversion 'PEO Exempt to PEO Individual'");
-		commonFuntions.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.PEO_USER_2.toUpperCase(), COMMON_CONSTANT.PEO_USER_2_PASSWORD);
 		commonFuntions.screenShot("Logging Application", "PASS", "Login is successful");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
@@ -69,6 +70,7 @@ public class EL_03_01 extends TestBase {
 		commonFuntions.enterTextboxContains("PEO Name", PEOName);
 		commonFuntions.clickButtonContains("Search");
 		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.Issued_RadioButton.click();
 		commonFuntions.screenShot("SearchResultsForPeoName", "PASS", "Search For Peo");
 		commonFuntions.clickButtonContains("Continue");
@@ -78,11 +80,15 @@ public class EL_03_01 extends TestBase {
 		commonFuntions.selectDropdown("PEO Conversion", "PEO Exempt to PEO Individual");
 		commonFuntions.screenShot("ManageExemptPEO", "Pass", "Manage Exempt PEO:MPEO-003");
 		commonFuntions.clickButtonContains("CONVERT");
+		
+		/*---General Information---PEO-002*/
 		commonFuntions.selectDropdown("Type of Legal Entity", "Corporation");
 		commonFuntions.selectRadioQuestions("Type of Ownership", "Public");
 		commonFuntions.screenShot("GeneralInformation", "Pass", "General Information:PEO-002");
 		commonFuntions.clickButtonContains("Save & Continue ");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		
+		/*---Unemployment Insurance Account Details---EAS-001*/
 		commonFuntions.screenShot("UnemploymentInsuranceAccountDetails", "Pass",
 				"Unemployment Insurance Account Details:EAS-001");
 		commonFuntions.clickButtonContains("Save & Continue");
@@ -94,9 +100,9 @@ public class EL_03_01 extends TestBase {
 			System.out.println("UI account pop up appears");
 		}
 		
-		//Address Information
+		/*---Address Information---PEO-003*/
 		commonFuntions.enterTextboxContains("Address Line 1",
-				"PrioraddressLine1" + commonFuntions.createRandomInteger(1000, 9999));
+				"NewCity" + commonFuntions.createRandomInteger(1000, 9999));
 		commonFuntions.enterTextboxContains("City", "NewYork");
 		commonFuntions.enterTextboxContains("Zip Code", "13429");
 		commonFuntions.enterTextboxContains(" Phone Number ",
@@ -106,7 +112,7 @@ public class EL_03_01 extends TestBase {
 				"autoTest" + Long.toString(commonFuntions.createRandomInteger(10000, 99999)) + "@gmail.com");
 		commonFuntions.screenShot("AddresInformation", "Pass", "Address Information:PEO-003");
 		commonFuntions.clickButtonContains("Save & Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		try {
 			PEOPage.uspsAddress.click();sleep();
 			commonFuntions.screenShot("VerifyPopUpContactDetails", "Pass", "UspsAddress");
@@ -116,19 +122,18 @@ public class EL_03_01 extends TestBase {
 		}
 		sleep();
 		
-		//Verify Current Additional Address(es) in New York
-		
+		/*---Verify Current Additional  Address(es) in New York---PEO-005*/
 		commonFuntions.screenShot("AdditionalAddress", "Pass", "Verify Current Additional Address(es) in New York");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		
-		//Mailing Address
+		/*---Mailing Address---PEO-004*/
 		commonFuntions.selectRadioQuestions("Mailing Address", "Same As Physical Address");
-//		commonFuntions.enterTextboxContains("Address Line 1",
-//				"MailingAddressLine1" + commonFuntions.createRandomInteger(1000, 9999));
-//		commonFuntions.enterTextboxContains("City","NewYork");
-//		commonFuntions.enterTextboxContains("Zip Code","13429");
-//		commonFuntions.selectDropdown("Country", " Albania ");
+		commonFuntions.enterTextboxContains("Address Line 1",
+				"MailingAddress" + commonFuntions.createRandomInteger(1000, 9999));
+		commonFuntions.enterTextboxContains("City","NewYork");
+		commonFuntions.enterTextboxContains("Zip Code","13429");
+		commonFuntions.selectDropdown("Country", " Albania ");
 		commonFuntions.screenShot("MailingAddress", "PASS", "Mailing Address:PEO-004");
 		commonFuntions.clickButtonContains("Save & Continue");
 		sleep();commonFuntions.waitForLoadingIconToDisappear();
@@ -140,12 +145,13 @@ public class EL_03_01 extends TestBase {
 			System.out.println("USPS Suggested Address");
 		}
 		sleep(3000);
-		//Prior Address(es) in New York
+		
+		/*---Prior Address(es) in New York (PEO-006)---*/
 		commonFuntions.enterTextboxContains("Address Line 1",
-				"PrioraddressLine1" + commonFuntions.createRandomInteger(1000, 9999));
-//		commonFuntions.enterTextboxContains("City","NewYork");
-//		commonFuntions.enterTextboxContains("Zip Code","13429");
-		commonFuntions.enterTextboxContains("other name(s)", "automation");
+				"Prioraddress" + commonFuntions.createRandomInteger(1000, 9999));
+		commonFuntions.enterTextboxContains("City","NewYork");
+		commonFuntions.enterTextboxContains("Zip Code","13429");
+		commonFuntions.enterTextboxContains("Other", "automation");
 		commonFuntions.enterTextboxContains("Predecessor(s) Name", "AutoPredecessor");
 		commonFuntions.enterTextboxContains("Successor(s) Name", "AutoSuccessor");
 		commonFuntions.screenShot("PriorAddress", "Pass", "Prior Address(es) in New York");
@@ -159,9 +165,13 @@ public class EL_03_01 extends TestBase {
 			System.out.println("In case if pop up address populated");
 		}
 		sleep();
+		
+		/*---Verify Prior Address(es) in New York (PEO-007)--*/
 		commonFuntions.screenShot("AdditionalAddress", "PASS", "Verify Current Additional Address(es) in New York");
 		commonFuntions.clickButtonContains("Continue");
 		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		
+		/*---Public Ownership Information(PEO-012)---*/
 		commonFuntions.enterTextboxContains("Entity or Person", "Automation_entity");
 		commonFuntions.enterTextboxContains("Ownership Percentage", "40");
 		commonFuntions.enterTextboxContains("Address Line 1",
@@ -180,58 +190,72 @@ public class EL_03_01 extends TestBase {
 			System.out.println("Primary Physical Address");
 		}
 		sleep();
+		
+		/*---Verify Public Ownership Information (PEC-013)---*/
 		commonFuntions.screenShot("OwnershipInformation", "Pass", "Verify Public Ownership Information:PEO-013");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(2000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		
+		/*---Submission Instruction and Responsibilities  (PEO-014)---*/
 		commonFuntions.screenShot("SubmissonInstructions", "Pass", "Submission Instructions and Responsibilities");
 		commonFuntions.clickButtonContains("Continue");
 		sleep();commonFuntions.waitForLoadingIconToDisappear();
 
-		// Upload Documents
-		commonFuntions.selectCheckbox("Proof of NYS Workers");
-		commonFuntions.selectLink("Proof of NYS Workers", "Browse");
+		/*---Upload Documents (SREG-006)---*/
+		AddPage.browserLink.click();
+		sleep(3000);
 		commonFuntions.uploadDoc("Sample");
-		sleep(4000);
+	    sleep(4000);
+		//commonFuntions.selectCheckbox("Proof of NYS Workers");
+		//commonFuntions.selectLink("Proof of NYS Workers", "Browse");
+		//commonFuntions.uploadDoc("Sample");
+		//sleep(4000);
+	    try {
+			commonFuntions.clickButtonContains(" Yes ");
+			sleep();
+		}catch(Exception e) {
+		}
 		commonFuntions.clickButtonContains("Upload");
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("UploadDocuments", "PASS", "Upload Documents:SREG-006");
 		commonFuntions.clickButtonContains("Save & Continue");
 		sleep(2000);
+		commonFuntions.waitForLoadingIconToDisappear();
 		driver.findElement(By.xpath("//a[text()=' DOWNLOAD TEMPLATE. ']")).click();
 		commonFuntions.clickButtonContains("Choose File");
 		sleep(3000);
-		commonFuntions.uploadDoc("PEO Client List template_TestData2");
+		commonFuntions.uploadDoc("Copy of PEOClientListTemplate (1)");
 		sleep(3000);
+		
+		//Upload Client List -- PEO-015
 		commonFuntions.screenShot("UploadClientList", "PASS", "Upload Client List");
 		commonFuntions.clickButtonContains("Continue");
 		sleep(3000);
 		commonFuntions.screenShot("VerifyClientList2", "PASS", "Verify Client List");
 		commonFuntions.clickButtonContains("Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("PEODetailsReviewScreen", "PASS", "PEO Details Review screen");
 		commonFuntions.clickButtonContains("Save & Continue");
-		sleep(3000);
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.enterTextboxContains("EnternameofOfficePartner, Proprietor or Member", "testing123");
 		commonFuntions.screenShot("Declaration", "PASS", "Declaration");
 		commonFuntions.clickButtonContains("Continue");
-		sleep();
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("StatementOfAcknowledgement", "PASS", "Statement Of Acknowledgement");
 		commonFuntions.clickButtonContains("Accept & Submit");
-		sleep();
-		commonFuntions.waitForLoadingIconToDisappear();
-		sleep();
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		PEOPage.radioButton_Approved.click();sleep();
 		commonFuntions.screenShot("PEORegistrationApproval", "PASS", "PEO Registration Approval");
 		commonFuntions.clickButtonContains("Submit ");
-		sleep();commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ConversionConfirmation", "PASS", "Conversion Confirmation");
 		sleep(2000);
 		commonFuntions.clickButtonContains("Home");
 		sleep(5000);
 
-		// Step 30 - 32 not working
+		// Step 30 - 32 not implemented
 
 		// Finding with PEO Name
 		commonFuntions.clickMenu("Menu");
@@ -251,6 +275,7 @@ public class EL_03_01 extends TestBase {
 		PEOPage.Issued_RadioButton.click();
 		commonFuntions.screenShot("PEOInquirySelectRadioButton", "Pass", "PEO Inquiry Select Radio Button");
 		commonFuntions.clickButtonContains("Continue");
+		sleep();commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("PEOInquiryConfirmatioPage", "Pass", "PEO Inquiry");
 		sleep(2000);
 		commonFuntions.clickButtonContains("Close");

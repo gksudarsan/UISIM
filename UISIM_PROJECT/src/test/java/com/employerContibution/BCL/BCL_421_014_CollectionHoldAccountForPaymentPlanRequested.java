@@ -18,15 +18,13 @@ import stepDefinitions.commonStepDefinitions;
 public class BCL_421_014_CollectionHoldAccountForPaymentPlanRequested extends TestBase {
 
 	@Test
-	public void BCL_421_014() throws Exception {
+	public void BCL_421_014_CSR_CollectionsSpecialist() throws Exception {
 		commonStepDefinitions cf = new commonStepDefinitions();
-		// PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
 		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		// LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		BclPage bclPage = new BclPage(driver);
 		test = report.createTest(
 				"BCL.421.014-Verify CSR can add a collection hold on the account with reason for hold is Payment Plan Requested");
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.CollectionsSpecialistUser_1.toUpperCase(), COMMON_CONSTANT.CollectionsSpecialistUser_1_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
@@ -43,23 +41,24 @@ public class BCL_421_014_CollectionHoldAccountForPaymentPlanRequested extends Te
 
 		cf.screenShot("MaintainCollectionHold1", "Pass", "Maintain Collection Hold");
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='ACTV' AND EAN LIKE '9%'",
+				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='ACTV' AND EAN IS NOT NULL",
 				"EAN");
 		String eanValue = databaseResults.get("EAN");
-		cf.enterTextboxContains("Employer Registration Number", eanValue);
+		cf.enterTextboxContains("Employer Registration Number", "0947549");
 		cf.clickButtonContains("Continue ");
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("MaintainCollectionHold2", "Pass", "Maintain Collection Hold with ERN");
 		sleep();
 		cf.clickOnLinkAnchorTag("Add Collection Hold");
-		sleep(3000);
+		sleep();
+		cf.waitForLoadingIconToDisappear();
 
 		/*---------Add Collection Hold (COL 528)-------*/
 
 		cf.screenShot("AddCollectionHold", "Pass", "Add Collection Hold");
 		cf.enterFutureDate("Hold Start Date", 10);
 		cf.selectDropdown("Reason For Hold", " Payment Plan Requested ");
-		bclPage.otherReason.sendKeys("test");
+		bclPage.otherReason.sendKeys("test automation test");
 		cf.screenShot("AddCollectionHold1", "Pass", "Add Collection Hold with Details");
 		cf.clickButtonContains("Continue ");
 		cf.waitForLoadingIconToDisappear();

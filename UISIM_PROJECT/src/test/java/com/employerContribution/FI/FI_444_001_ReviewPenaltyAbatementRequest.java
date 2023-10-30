@@ -1,23 +1,17 @@
 package com.employerContribution.FI;
 
-import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
-
-import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-
 import com.aventstack.extentreports.Status;
 import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.FIpage;
-import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
-
 import stepDefinitions.commonStepDefinitions;
+
 
 @Listeners(com.ui.utilities.ListenerTest.class)
 public class FI_444_001_ReviewPenaltyAbatementRequest extends TestBase {
@@ -31,7 +25,7 @@ public class FI_444_001_ReviewPenaltyAbatementRequest extends TestBase {
 		test = report.createTest(
 				"FI.444.001-Verify CSR can view the Fraud penalty details and take a decision to abate the Fraud penalty.\r\n" + 
 				"(When CSR approved task '“Review Penalty Abatement Request”)");
-		cf.login(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.LDFraudSpecialist_UserName.toUpperCase(), COMMON_CONSTANT.LDFraudSpecialist_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
@@ -43,23 +37,25 @@ public class FI_444_001_ReviewPenaltyAbatementRequest extends TestBase {
 		sleep();
 		cf.screenShot("NavigateToPenaltyMenu", "Pass", "Navigating to penalty menu");
 		cf.clickMenu("Penalty Menu");
-		sleep();
+		sleep();cf.waitForLoadingIconToDisappear();
 
 		// Penalty Menu - Enter ERN	
 		cf.screenShot("PenaltyMenu-EnterERN", "Pass", "Penalty Menu - Enter ERN");
 		cf.enterTextboxContains("Employer Registration Number", "11-11111");
 		cf.screenShot("enterInvalidErn", "Pass", "Invalid Ern Entered");
-		cf.clickButtonContains("Continue ");sleep(2000);
+		cf.clickButtonContains("Continue ");sleep();
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("penaltyMenuErrorPage", "Pass", "Penalty Menu_Enter ERNErrorPage");
 		cf.errorContent("The Employer Registration Number(ERN) provided does not exist in the system.");
 		cf.enterTextboxContains("Employer Registration Number", "234574");
 		cf.screenShot("enterInvalidErn1", "Pass", "Invalid Ern Entered1");
-		cf.clickButtonContains("Continue ");sleep(2000);
+		cf.clickButtonContains("Continue ");sleep(3000);
 		cf.screenShot("penaltyMenuErrorPage1", "Pass", "Penalty Menu_Enter ERNErrorPage1");
 		
 		//String randomEan = StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 7);
 		cf.enterTextboxContains("Employer Registration Number", "6787878");
-		cf.clickButtonContains("Continue ");sleep(2000);
+		cf.clickButtonContains("Continue ");sleep();
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("penaltyMenuErrorPage2", "Pass", "Penalty Menu_Enter ERNErrorPage2");
 		cf.errorContent("The Employer Registration Number(ERN) provided does not exist in the system.");
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
@@ -175,7 +171,6 @@ public class FI_444_001_ReviewPenaltyAbatementRequest extends TestBase {
 		sleep(5000);
 		cf.screenShot("homePageScreen", "Pass", "home page screen");
 		
-
 	}
 
 }

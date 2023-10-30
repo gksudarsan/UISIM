@@ -42,9 +42,13 @@ public class SMPage {
 	@FindBy(how = How.XPATH, using = "//*[@id='EMAIL-input']")
     public WebElement emailCheckBox;
 
-
-
-
-
+	@FindBy(how = How.XPATH, using = "//input[@id='mat-input-10']")
+	public WebElement filterOption;
+	
+	@FindBy(how = How.XPATH, using = "//input[@id='subjectId']")
+	public WebElement subject;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Select')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement selectRadioButton_SM_102;
 }
 

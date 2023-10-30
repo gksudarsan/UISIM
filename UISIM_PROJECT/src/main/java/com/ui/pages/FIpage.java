@@ -124,4 +124,18 @@ public class FIpage {
 	@FindBy(how = How.XPATH, using = "//a[@class='column-layout-margin']")
 	public WebElement link;
 	
+	@FindBy(how = How.XPATH, using = "//span[text()=' How do I protest the fifty percent fraud penalty assessed? ']")
+	public WebElement subCategoryValue;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' How do I protest State Unemployment Tax Act (SUTA) Dumping Penalties? ']")
+	public WebElement subCategoryValue1;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' How do I protest an Offset/Intercept (SWOP/TOP)? ']")
+	public WebElement subCategoryValue2;
+	
+	@FindBy(how = How.XPATH, using = "//mat-select//div[@id='mat-select-value-3']")
+	public WebElement subCategoryDropdown;
+	
+	@FindBy(how = How.XPATH, using = "//span[text()=' Other ']")
+	public WebElement otherDropdownValue;
 }

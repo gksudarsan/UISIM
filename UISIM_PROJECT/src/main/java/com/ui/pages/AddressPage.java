@@ -113,7 +113,7 @@ public class AddressPage {
 	@FindBy(how = How.XPATH, using = "//*[.='npca Address']//following::*[@class='mat-radio-outer-circle'][2]")
 	public WebElement uspsAddress3;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='Agad Address']//following::*[@class='mat-radio-outer-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='Agad Address']//following::*[@class='mdc-radio__native-control'][1]")
 	public WebElement uspsAddress4;
 
 	@FindBy(how = How.XPATH, using = "(//mat-label[contains(.,\"County\")]//following::mat-select[1])[last()-2]")

@@ -30,10 +30,15 @@ public class FI_169_03_003_SUTAHitTransfer_UIES_Transfer extends TestBase {
 		FIpage fiPage = new FIpage(driver);
 		test = report.createTest(
 				"FI.169.03.003-Verify Employer can submit an FI Issue when Issue Category - SUTA Hit Transfer or UIES Transfer , Issue Subcategory - ''SUTA Hit Transfer\" or \"UIES Transfer\" and system create task for CSR review");
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMPLOYER_USER_9.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
+		try{
+			cf.clickButtonContains(" I agree with the Terms and Conditions ");
+			sleep();cf.waitForLoadingIconToDisappear();
+		}catch(Exception e) {	
+		}
 		AddPage.menu.click();
 		sleep();
 		cf.clickMenu("Secure Messaging");
@@ -41,24 +46,27 @@ public class FI_169_03_003_SUTAHitTransfer_UIES_Transfer extends TestBase {
 		cf.screenShot("NavigateToWriteMessage", "Pass", "Navigating to Write Message");
 		cf.clickMenu("Write Message");
 		sleep();
+		cf.waitForLoadingIconToDisappear();
+		
+		//Write Message 
 		cf.screenShot("WriteMessage", "Pass", "Write Message");
 		cf.selectDropdown("Category", " Protest ");
-		sleep(2000);
-		cf.selectDropdown("Subcategory", " How do I protest State Unemployment Tax Act (SUTA) Dumping Penalties? ");
-		sleep(2000);
+		sleep(2000);cf.waitForLoadingIconToDisappear();
+		fiPage.subCategoryDropdown.click();sleep(2000);
+		fiPage.subCategoryValue1.click();sleep(2000);
 		cf.screenShot("WriteMessage1", "Pass", "Write Message1");
 		cf.clickOnLinkAnchorTag("click here");
-		sleep();
+		sleep(3000);
 		cf.waitForLoadingIconToDisappear();
 
 		/*---- Submit Issue ----*/
-
 		Set<String> handles = driver.getWindowHandles();
 		Iterator<String> it = handles.iterator();
 		String parentWindowId = it.next();
 		String childWindowId = it.next();
 		driver.switchTo().window(childWindowId);
-		sleep();
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("SubmitIssue", "Pass", "Submit Issue");
 		String eanValue = cf.retrieveValue("Employer Registration Number").trim();
 		eanValue = eanValue.replace("-", "");
@@ -85,7 +93,7 @@ public class FI_169_03_003_SUTAHitTransfer_UIES_Transfer extends TestBase {
 		sleep();
 		AddPage.browserLink.click();
 		sleep(3000);
-		cf.uploadDoc("TESTINGEL");
+		cf.uploadDoc("Sample");
 		sleep(3000);
 		cf.clickOnLink("Remove");
 		sleep(2000);
@@ -106,14 +114,18 @@ public class FI_169_03_003_SUTAHitTransfer_UIES_Transfer extends TestBase {
 			sleep(2000);
 		} catch (Exception e) {
 		}
-		cf.logoutAndLogin(COMMON_CONSTANT.CSR_USER_5.toUpperCase(), COMMON_CONSTANT.CSR_USER_5_PASSWORD);
-		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_5
-				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"
-				+ eanValue + "' ORDER BY UPDATED_TS desc)");
+		cf.logoutAndLogin(COMMON_CONSTANT.LDSpecialist_UserName.toUpperCase(), COMMON_CONSTANT.LDSpecialist_PASSWORD);
+//		cf.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '" + COMMON_CONSTANT.CSR_USER_5
+//				+ "' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"
+//				+ eanValue + "' ORDER BY UPDATED_TS desc)");
 		sleep(5000);
 		PEOPage.queue.click();
 		cf.waitForLoadingIconToDisappear();
+		
+		//Individual Work Queue
+		cf.screenShot("IndividualWorkQueue", "Pass", "Individual Work Queue");
 		cf.enterTextboxContains("Work Item Description Free Text", "Review SUTA Transfer Protest");
+		cf.screenShot("IndividualWorkQueue", "Pass", "Enter work item name in the given field");
 		cf.clickButtonContains("Search");
 		sleep();
 		cf.waitForLoadingIconToDisappear();

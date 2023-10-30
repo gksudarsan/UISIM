@@ -594,7 +594,11 @@ public class PEOPage {
 	@FindBy(how = How.XPATH, using = "//*[contains(.,' Approved ')][@class='mdc-form-field']//preceding::*[@class='mdc-radio__native-control'][1]")
 	public WebElement radioButton_Approved;
 
+	@FindBy(how = How.XPATH, using = "(//input[@id='dateId'])[1]") 
+	public WebElement dateFeild1;
 	
+	@FindBy(how = How.XPATH, using = "(//input[@id='dateId'])[2]") 
+	public WebElement dateFeild2;
 
 	
 }

@@ -1,7 +1,9 @@
 package com.employerContibution.EE;
 
 import org.apache.commons.lang3.StringUtils;
+
 import org.openqa.selenium.support.PageFactory;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.aventstack.extentreports.Status;
@@ -12,7 +14,7 @@ import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
 
 import stepDefinitions.commonStepDefinitions;
-
+@Listeners(com.ui.utilities.ListenerTest.class)
 public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 
 	@Test
@@ -20,16 +22,16 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		commonStepDefinitions cf = new commonStepDefinitions();
 		EmployerRegisterPage empPage = new EmployerRegisterPage(driver);
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-
+		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
 		test = report.createTest(
 				"EE.09.002 Verify employer can submit employer registration for employer type 'Indian Tribe' and legal entity type 'Business' and work items will be created for CSR to review.");
 
-		cf.login(COMMON_CONSTANT.EMPLOYER_USER_1.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.EMPLOYER_USER_9.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		cf.safeJavaScriptClick(empPage.menuButtonHomepage);
-//		cf.clickMenu("Menu");
+		//cf.safeJavaScriptClick(empPage.menuButtonHomepage);
+		cf.clickMenu("Menu");
 		sleep();
 		cf.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep();
@@ -45,7 +47,7 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		cf.clickButton("Continue ");
 
 		/*---------------SREG-025--------------*/
-		sleep(4000);
+		sleep();cf.waitForLoadingIconToDisappear();
 		cf.screenShot("EmpRegister2", "Pass", "Navigated to SREG-025 page and enter the details");
 		cf.selectDropdown("Employer Type", " Indian Tribe ");
 		sleep(2000);
@@ -59,7 +61,8 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		/*---------------FEIN--------------*/
 		cf.enterTextboxContains("Federal Employer Identification Number (FEIN)", FEIN);
 		cf.clickButton("Continue ");
-		sleep(5000);
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		/*---------------SREG-003--------------*/
 
 		/*---------------Legal Name--------------*/
@@ -110,9 +113,9 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		}
 		sleep(2000);
 		try {
-			cf.safeJavaScriptClick(empPage.uspsCommonButton);
+			AddPage.uspsAddress.click();
 			sleep();
-			cf.safeJavaScriptClick(empPage.continueButton_popUp);
+			empPage.continueButton_popUp.click();
 		}catch(Exception e ) {
 			System.out.println("Pop up not displayed");
 		}
@@ -121,7 +124,6 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		cf.screenShot("EmpRegister223", "Pass", "Navigated to SREG-007");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
-
 		cf.clickButton("Continue ");
 
 		/*---------------SREG-004--------------*/
@@ -148,9 +150,8 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		cf.selectRadioQuestions("Agent (C/O) address", "Other");
 		String careOf = "aadvhsbhdbsjh" + StringUtils.left(String.valueOf((long) (Math.random() * Math.pow(10, 10))), 9)
 				+ "";
-		cf.enterTextboxContains("Care Of", careOf);
+		empPage.agentCOAddress_CareOf.sendKeys(careOf);
 		sleep();
-
 		cf.forceClearText(empPage.agent_CO_AddresLine1);
 		sleep(3000);
 		cf.forceClearText(empPage.agent_CO_City);
@@ -170,14 +171,15 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		empPage.agent_Co_Last_Name.sendKeys("gfshdj");
 
 		cf.clickButton("Continue ");
-		sleep(3000);
+		sleep(2000);
+		cf.waitForLoadingIconToDisappear();
 		cf.screenShot("EmpRegister225", "Pass", "USPS Pop up");
 		try {
-			cf.safeJavaScriptClick(empPage.uspsCommonButton);
+			AddPage.uspsAddress4.click();
 			sleep();
-			cf.safeJavaScriptClick(empPage.uspsCommonButton2);
+			AddPage.adderessRadioButton1.click();
 			sleep();
-			cf.safeJavaScriptClick(empPage.continueButton_popUp);
+		    empPage.continueButton_popUp.click();
 		} catch (Exception e) {
 			System.out.println("Pop up not displayed");
 		}
@@ -208,12 +210,13 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		cf.clickButton("Continue ");
 		sleep();
 		cf.waitForLoadingIconToDisappear();
-		cf.clickButton("Continue ");
+		//cf.clickButton("Continue ");
 		/*-----------------SREG-043----------------*/
 		sleep(2000);
-		cf.waitForLoadingIconToDisappear();
+		//cf.waitForLoadingIconToDisappear();
+		
+		cf.selectCheckbox("I accept");sleep();
 		cf.screenShot("EmpRegister20", "Pass", "Navigated to SREG-043 page and accept the form and submit");
-		cf.selectCheckbox("I accept");
 		cf.clickButton("Submit ");
 		/*-----------------SREG-013----------------*/
 		sleep(2000);
@@ -222,7 +225,8 @@ public class EE_09_002_Employer_Can_Submit_Indian_Tribe extends TestBase {
 		cf.validateNextPageNumber(" SREG-013");
 		cf.screenShot("EmpRegister21", "Pass", "Navigated to SREG-013 sucess page");
 		
-		cf.logoutAndLogin("ndfjp3", "Admin@1234567891");
+		cf.logoutAndLogin(COMMON_CONSTANT.CSR_USER_9.toUpperCase(), COMMON_CONSTANT.CSR_USER_9_PASSWORD);
+		sleep(10000);
 		PEOPage.queue.click();
 		sleep(2000);
 		cf.waitForLoadingIconToDisappear();
