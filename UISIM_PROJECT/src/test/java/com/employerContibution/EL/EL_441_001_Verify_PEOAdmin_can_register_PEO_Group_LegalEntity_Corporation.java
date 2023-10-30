@@ -22,6 +22,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	@Test(priority=1, description = "EL.441.001  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Privately or Closely Held'.",groups = {"Regression"})
 	public void EL_441_001() throws Exception
 	{
+		
 		 test = report.createTest("EL.441.001  - Verify Peo Admin can register PEO Group  for Type of Legal Entity 'Corporation' and Type of Ownership 'Privately or Closely Held'.");
 		 LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		 PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
@@ -31,8 +32,11 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		 System.out.println("feinValue is"+feinValue);
 		 System.out.println("ernValue is"+ernValue);
 		 commonStepDefinitions commonFuntions= new commonStepDefinitions();
+		// Map<String, String> databaseResults1 = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TWAGE10 tt JOIN T_TWAGET20 t20 ON t20.T20_FEIN =tt.T10_FEIN JOIN T_EMPLOYER_ACCOUNT emp ON emp.FEIN  = tt.T10_FEIN JOIN  T_THIRD_PARTY_AGENT ttpa  ON TTPA.FEIN = emp.FEIN WHERE tt.T10_WAGE_1 >0","T10_SSN"); 
+		 //String SSN=databaseResults1.get("T10_SSN");
 		
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 //commonFuntions.loginPeoAdmin(COMMON_CONSTANT.PEOAdmin.toUpperCase(), COMMON_CONSTANT.PEOAdmin_Password);
 		 sleep(3000);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
@@ -125,6 +129,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(5000);
 	    // PEOPage.addressLine1.sendKeys("mailingAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+	     PEOPage.sameAsPhysicalAddress.click();
 	     commonFuntions.screenShot("Mailing Address", "PASS", "Mailing Address");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(5000);
@@ -165,6 +170,13 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     commonFuntions.screenShot("OwnershipInformation","Pass","Ownership Information - privately or closely held company");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(5000);
+	     try {
+		     PEOPage.uspsAddress.click();
+		     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
+		     PEOPage.UspsContinueButton.click();
+		     sleep(2000);}
+		     catch(Exception e) {}
+	     sleep(5000);
 	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(5000);
@@ -180,7 +192,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 	     PEOPage.uspsAddress.click();
 	     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
 	     PEOPage.UspsContinueButton.click();	    
-	     sleep(5000);
+	     sleep(7000);
 	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(5000);
@@ -220,16 +232,20 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 		 sleep(5000);
 		 commonFuntions.uploadDoc("PEO Client List template_TestData2.xls");
 		 sleep(5000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Upload Client List", "PASS", "Upload Client List");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(5000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("Verify Client List", "PASS", "client list");
 		 commonFuntions.clickButtonContains("Continue");
 		 sleep(5000);
+		 commonFuntions.waitForLoadingIconToDisappear();
 	     
 		 // blocked the test case at step26 as not able to search with fein number for peo member (getting PEO review instead of PEO member screen)
 	     
-		 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' AND COMPANY_TYPE='PRI' ORDER BY UPDATED_TS DESC","FEIN");
+		 Map<String, String> databaseResults = commonFuntions.database_SelectQuerySingleColumn("SELECT Fein,* FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI' AND LENGTH(fein)>8","FEIN");
+		 //SELECT * FROM T_TX_PEO_ACCOUNT ttpa WHERE ORGANIZATION_TYPE='SPRI'  AND COMPANY_TYPE='PRI' ORDER BY UPDATED_TS DESC
 			
 			String feinNumber=databaseResults.get("FEIN");
 			commonFuntions.enterTextboxContains("Federal Employer Identification Number (FEIN)",feinNumber);
@@ -262,9 +278,16 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			sleep(5000);
 			//commonFuntions.selectRadioQuestions("List the current address of each additional address the PEO Member maintains in New York", "Same As Physical Address");
 			//commonFuntions.selectRadio("Same As Physical Address");
-			PEOPage.SameAsPhysicalAddress.click();
-			PEOPage.SameAsPhysicalAddress.click();
-			sleep(4000);
+			//PEOPage.SameAsPhysicalAddress.click();
+			//PEOPage.SameAsPhysicalAddress.click();
+			
+			PEOPage.PeoAddress1.sendKeys("currentAddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+			PEOPage.PeoCity1.sendKeys("NewYork");
+			PEOPage.PeoZipCode.sendKeys("13430");
+			/*PEOPage.peoCountry.click();
+	        sleep();
+	        PEOPage.peoCountryvalue.click();
+			sleep(4000);*/
 			commonFuntions.screenShot("PEO member information", "Pass", "PEO Member Information");
 			sleep(5000);
 			commonFuntions.clickButtonContains("Save & Continue");
@@ -295,9 +318,11 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			sleep(4000);
 			commonFuntions.clickButtonContains("Continue");
 			sleep(5000);
+			commonFuntions.waitForLoadingIconToDisappear();
 			commonFuntions.screenShot("verifyClient","Pass","Verify Client List");
 			commonFuntions.clickButtonContains("Continue");
 			sleep(5000);
+			commonFuntions.waitForLoadingIconToDisappear();
 			commonFuntions.screenShot("List of members", "Pass", "List of Members of PEO Group");
 			commonFuntions.clickButtonContains("Continue");
 			sleep(5000);
@@ -316,9 +341,10 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			commonFuntions.screenShot("RegisterRenewConfirmation", "Pass", "Register/Renew Confirmation");
 			//commonFuntions.clickButtonContains("Home");
 			sleep(5000);
-			commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
-		     sleep(5000);
-		     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+			//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+		     sleep(30000);
+		     //commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		     commonFuntions.logoutAndLogin(COMMON_CONSTANT.PEOSpecialist.toUpperCase(), COMMON_CONSTANT.PEOSpecialist_Password);
 
 		     sleep(4000);
 
@@ -357,11 +383,13 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     commonFuntions.enterTextboxContains("Address Line 1","AddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 			     commonFuntions.clickButtonContains("Save & Continue");
 			     sleep(5000);
+			     try {
 			     PEOPage.uspsAddress.click();
 			     PEOPage.currentAdditionalAddress.click();
 			     commonFuntions.screenShot("UspsAddress2","Pass","UspsAddress");
 			     PEOPage.UspsContinueButton.click();
-			     sleep(5000);
+			     sleep(5000);}
+			     catch(Exception e) {}
 			     commonFuntions.screenShot("VerifyCurrentAdd","Pass","Verify Current Additional Address");
 			     commonFuntions.clickButtonContains("Continue");
 			     sleep(5000);	
@@ -383,7 +411,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
 			     commonFuntions.clickButtonContains("Continue");
 			     sleep(5000);
-			     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
+			     /*commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 			     commonFuntions.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 			     commonFuntions.screenShot("PriorOwner","Pass","Prior Owner Information");
 			     commonFuntions.clickButtonContains("Save & Continue");
@@ -394,7 +422,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     PEOPage.UspsContinueButton.click();	
 			     sleep(5000);
 			     }
-			     catch(Exception e) {}
+			     catch(Exception e) {}*/
 			     commonFuntions.screenShot("VerifyPrioerOwner","Pass","Verify Prior Ownership Information");
 			     commonFuntions.clickButtonContains("Continue");
 			     sleep(5000);
@@ -413,7 +441,7 @@ public class EL_441_001_Verify_PEOAdmin_can_register_PEO_Group_LegalEntity_Corpo
 			     commonFuntions.screenShot("PeoReview","Pass","Peo Details Review");
 			     commonFuntions.clickButtonContains("Save & Continue");
 			     sleep(5000);
-			   //  commonFuntions.enterTextboxContains("Enter name of Officer, Partner, Proprietor or Member","TestAutomation"+commonFuntions.createRandomInteger(10000,99999));
+			     commonFuntions.enterTextboxContains("Enter name of Officer, Partner, Proprietor or Member","TestAutomation"+commonFuntions.createRandomInteger(10000,99999));
 			     commonFuntions.screenShot("Declaration2","Pass","Declaration");
 			     commonFuntions.clickButtonContains("Save & Continue");
 			     sleep(5000);

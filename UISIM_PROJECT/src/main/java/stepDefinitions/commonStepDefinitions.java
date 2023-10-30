@@ -1547,5 +1547,13 @@ public class commonStepDefinitions extends TestBase {
 				} catch (final Exception e) {
 				}
 			}
+
+			public void activeBatchLogin(String upperCase, String csrUser1Password) throws InterruptedException {
+				// TODO Auto-generated method stub
+				
+				LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
+				driver.get(prop.getProperty("activeBatchUrl"));
+				Thread.sleep(15000);
+			}
 	
 }

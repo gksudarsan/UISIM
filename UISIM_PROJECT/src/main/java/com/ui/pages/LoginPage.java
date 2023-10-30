@@ -18,7 +18,16 @@ public class LoginPage {
 	@FindBy(how = How.XPATH, using = "//span[text()='LOG IN ']")
 	public WebElement loginLink;
 
-	@FindBy(how = How.XPATH, using = "//*[.=' OK '][@class='mat-button-wrapper']")
+	@FindBy(how = How.XPATH, using = "//*[.=' OK '][@class='mdc-button__label']")
 	public WebElement okPopUpButton;
+	
+	@FindBy(how = How.XPATH, using = "//span[.='BATCH']//preceding::*[@class=' x-tree-elbow-img x-tree-elbow-plus x-tree-expander'][1]")
+	public WebElement batchFolder;
+	@FindBy(how = How.XPATH, using = "//span[.='DEV ENVIRONMENT']//preceding::*[@class=' x-tree-elbow-img x-tree-elbow-plus x-tree-expander'][1]")
+	public WebElement devEnvironmentFolder;
+	@FindBy(how = How.XPATH, using = "//span[.='EC']//preceding::*[@class=' x-tree-elbow-img x-tree-elbow-plus x-tree-expander'][1]")
+	public WebElement ecFolder;
+	@FindBy(how = How.XPATH, using = "//span[.='CA']//preceding::*[@class=' x-tree-elbow-img x-tree-elbow-plus x-tree-expander'][1]")
+	public WebElement caFolder;
 
 }

@@ -222,6 +222,13 @@ public class COMMON_CONSTANT {
 	public static final String LND_Clerical_Supervisor = "LnDClericalSupervisor";
 	public static final String LND_Clerical_Supervisor_Password = "NewUser@123456";
 
+	public static final String PEOSpecialist = "PEOSpecialist"; 
+	public static final String PEOSpecialist_Password = "NewUser@123456"; 
+	
+	public static final String PEOAdmin = "PEOAdmin"; 
+	public static final String PEOAdmin_Password = "NewUser@123456"; 
+
+
 	
 	
 	public static final String REGISTRATION_SPECIALIST = "RegistrationSpecialist";

@@ -599,6 +599,16 @@ public class PEOPage {
 	
 	@FindBy(how = How.XPATH, using = "(//input[@id='dateId'])[2]") 
 	public WebElement dateFeild2;
+	
+	@FindBy(how = How.XPATH, using = "//mat-label[contains(.,'Same As Physical Address')]//preceding::*[@class='mdc-radio__native-control'][1]")
+	public WebElement sameAsPhysicalAddress;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='System Failure']")
+	public WebElement systemFailure;
+	
+	@FindBy(how = How.XPATH, using = "//*[contains(.,'Error ID: InternalError')]")
+	public WebElement internalError;
+	
 
 	
 }

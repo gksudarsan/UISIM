@@ -164,7 +164,7 @@ public class TestBase {
 			
 //			EdgeOptions opt = new EdgeOptions();
 			//opt.addArguments("--remote-allow-origins=*");
-			//opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
+			opt.setExperimentalOption("debuggerAddress","localhost:9222 ");
 			/// opt.setAcceptInsecureCerts(true);
 			/// opt.setExperimentalOption("excludeSwitches", new
 			/// String[]{"enable-automation"});

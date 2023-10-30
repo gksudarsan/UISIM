@@ -28,7 +28,7 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
-		PEOPage.menu.click();
+		commonFuntions.clickMenu("Menu");
 		sleep(2000);
 		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep(2000);
@@ -67,22 +67,22 @@ public class EE_09_003_CSR_Can_Submit_Indian_Tribe extends TestBase{
 		
 		/*---------------Legal Name--------------*/
 		//SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ENTITY_NAME NOT  IN (SELECT LEGAL_NAME FROM T_EMPLOYER_DOL_DTF tedd)
-		//String legalName="BEECHWOOD CONTINUING CARE INC";
+		String legalName="BEECHWOOD CONTINUING CARE INC";
 		//String legalName="HVES ELECTRICAL INC";
 		//String legalName="HVESSEX LLC";
 		//String legalName="BEE CUTTING SERVICE INC";
-		String legalName="BEE CEE EXPRESS INC";
+		//String legalName="BEE CEE EXPRESS INC";
 		/*---------------Legal Name--------------*/
 		
 		
-		
-		empPage.legalNameTextBox.clear();
-		empPage.legalNameTextBox.sendKeys(legalName);
+		commonFuntions.populateListbox("Legal Name",legalName);
+		//empPage.legalNameTextBox.clear();
+		//empPage.legalNameTextBox.sendKeys(legalName);
 		commonFuntions.enterTextboxContains(" Business Phone Number  ", "7687765665");
 		commonFuntions.enterPastDate("What is the date of the first payroll which", 365);
 		sleep();
-		commonFuntions.safeJavaScriptClick(empPage.are_You_Subsidiary_Yes);
-
+		//commonFuntions.safeJavaScriptClick(empPage.are_You_Subsidiary_Yes);
+		commonFuntions.selectRadioQuestions("Are you a subdivision, subsidiary or business enterprise wholly owned by a federally recognized Indian Tribe?", "Yes");
 		commonFuntions.enterTextboxContains("Enter the name of the federally recogni", "Test Tribe");
 		//commonFuntions.safeJavaScriptClick(empPage.Choose_Option_Reim_Radio);
 		commonFuntions.selectRadioQuestions("Financing Method","Reimbursable");

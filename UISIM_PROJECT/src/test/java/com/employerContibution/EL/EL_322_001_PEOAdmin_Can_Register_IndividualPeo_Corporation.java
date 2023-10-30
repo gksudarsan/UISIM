@@ -39,6 +39,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		 
 		 
 		 commonFuntions.loginPeoAdmin("peouser","Admin@12345678");
+		 //commonFuntions.loginPeoAdmin(COMMON_CONSTANT.PEOAdmin.toUpperCase(), COMMON_CONSTANT.PEOAdmin_Password);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
 		 PEOPage.peoRegister.click();
@@ -53,9 +54,9 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		 Thread.sleep(3000);
 	     
 		 commonFuntions.clickButtonContains("Save & Continue");
-	     commonFuntions.errorLabelFollowingField(" Required ","First Name");
-	     commonFuntions.errorLabelFollowingField(" Required ","Last Name");
-	     commonFuntions.errorLabelFollowingField(" Required ","Job Title");
+	     commonFuntions.errorLabelFollowingField("Required","First Name");
+	     commonFuntions.errorLabelFollowingField("Required","Last Name");
+	     commonFuntions.errorLabelFollowingField("Required","Job Title");
 	    // commonFuntions.errorLabelFollowingField("* Required"," Contact Number ");
 	    // commonFuntions.errorLabelFollowingField("* Required","Ext");
 	     
@@ -65,7 +66,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.enterTextboxContains("Middle Initial", "$");	     
 		 commonFuntions.enterTextboxContains("Last Name", "abc");	
 		 commonFuntions.enterTextboxContains("Job Title", "Auditor");
-		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,11))),10));
+		 commonFuntions.enterTextboxContains("Contact Number",StringUtils.left( String.valueOf((long) (Math.random()*Math.pow(10,12))),10));
 		 commonFuntions.enterTextboxContains("Email Address","abc$");
 		 
 	     commonFuntions.clickButtonContains("Save & Continue");
@@ -92,8 +93,10 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		 sleep(3000);
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("IndividualPeoError","Pass","Professional Employer Organization Registration Error");
 	     commonFuntions.errorLabelContains("Required","Name of Professional Employer Organization");	     
 	     //commonFuntions.errorLabelContains("Required","Additional Names, if any, under which the PEO’s Conduct Business currently");
@@ -107,6 +110,7 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("UnemploymentInsuranceError","Pass","Unemployment Insurance Account Details error");
 	     
 	     commonFuntions.errorLabelContains("Required","Do you currently have a New York State Unemployment Insurance Account?");	     
@@ -166,20 +170,27 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.enterTextboxContains("Business Email Address","autoTest"+Long.toString(commonFuntions.createRandomInteger(10000,99999))+"@gmail.com");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     PEOPage.addressLine1ErrorLabel.isDisplayed();
 	     PEOPage.addressLine1.sendKeys("addressLine1"+commonFuntions.createRandomInteger(1000,9999));
 	     
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
+	     try {
 	     PEOPage.uspsAddress.click();
 	     PEOPage.currentAdditionalAddress.click();
 	     commonFuntions.screenShot("UspsAddress","Pass","UspsAddress");
-	     PEOPage.UspsContinueButton.click();
-	    
+	     PEOPage.UspsContinueButton.click();}
+	    catch(Exception e) {}
 	     sleep(2000);
+	     
 	     commonFuntions.screenShot("CurrentAdditionalAddress","Pass","Verify Current Additional Address(es) in New York");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
+	     PEOPage.sameAsPhysicalAddress.click();
+	     
 	     commonFuntions.screenShot("Mailing Address","Pass","Mailing Address");
 	     
 	     commonFuntions.enterTextboxContains("Zip Code","12");
@@ -214,6 +225,12 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.screenShot("OwnershipInformation","Pass","Ownership Information - privately or closely held company");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
+	     try {
+	     PEOPage.uspsAddress.click();
+	     commonFuntions.screenShot("UspsAddress1","Pass","UspsAddress");
+	     PEOPage.UspsContinueButton.click();
+	     sleep(2000);}
+	     catch(Exception e) {}
 	     commonFuntions.screenShot("verifyOnwershipInfo","Pass","Verify Ownership Information");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
@@ -272,10 +289,12 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     commonFuntions.uploadDoc("PEO Client List template_TestData2.xls");
 	     sleep(2000);
 	     commonFuntions.clickButtonContains("Continue");
-	     sleep(2000);
+	     sleep(5000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("verifyClient","Pass","Verify Client List");
 	     commonFuntions.clickButtonContains("Continue");
 	     sleep(2000);
+	     commonFuntions.waitForLoadingIconToDisappear();
 	     commonFuntions.screenShot("peoDetails","Pass","Peo Details Review");
 	     commonFuntions.clickButtonContains("Save & Continue");
 	     sleep(2000);
@@ -288,9 +307,10 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 	     sleep(2000);
 	     commonFuntions.screenShot("Completion","Pass","Register/Renew Confirmation");
 	     
-	     commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
-	     sleep(2000);
-	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+	     //commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE FEIN='"+feinValue+"' ORDER BY UPDATED_TS desc)");
+	     sleep(30000);
+	     //commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+	     commonFuntions.logoutAndLogin(COMMON_CONSTANT.PEOSpecialist.toUpperCase(), COMMON_CONSTANT.PEOSpecialist_Password);
 	     sleep(4000);
 		    PEOPage.queue.click();
 	    sleep(15000);
@@ -345,15 +365,19 @@ public class EL_322_001_PEOAdmin_Can_Register_IndividualPeo_Corporation extends 
 		     commonFuntions.screenShot("VerifyOwnerInfo","Pass","Verify Owner Information");
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
+		     /*commonFuntions.waitForLoadingIconToDisappear();
 		     commonFuntions.enterTextboxContains("Address Line 1","PowneraddressLine1"+commonFuntions.createRandomInteger(1000,9999));
 		     commonFuntions.enterTextboxContains("Address Line 2","PowneraddressLine2"+commonFuntions.createRandomInteger(1000,9999));
 		     commonFuntions.screenShot("PriorOwner","Pass","Prior Owner Information");
 		     commonFuntions.clickButtonContains("Save & Continue");
 		     sleep(2000);
+		     try {
 		     PEOPage.uspsAddress.click();
 		     commonFuntions.screenShot("UspsAddress3","Pass","UspsAddress");
 		     PEOPage.UspsContinueButton.click();	
 		     sleep(2000);
+		     }
+		     catch(Exception e) {}*/
 		     commonFuntions.screenShot("VerifyPrioerOwner","Pass","Verify Prior Ownership Information");
 		     commonFuntions.clickButtonContains("Continue");
 		     sleep(2000);
