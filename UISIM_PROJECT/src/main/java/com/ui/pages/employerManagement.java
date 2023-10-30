@@ -699,4 +699,13 @@ public class employerManagement extends TestBase
 	
 	@FindBy(how = How.XPATH, using = "//button[@id='CIN-999access.continue']")
 	public WebElement cin999continueButton;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined__0']")
+	public WebElement Attention;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_15_0']")
+	public WebElement  Address_Line_1 ;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_null_0']")
+	public WebElement  Address_Line_2 ;
 }

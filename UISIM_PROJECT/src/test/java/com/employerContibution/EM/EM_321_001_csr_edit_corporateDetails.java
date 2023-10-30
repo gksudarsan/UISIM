@@ -22,22 +22,27 @@ public class EM_321_001_csr_edit_corporateDetails extends TestBase {
 
 	@Test(priority = 1, description = "EM.321.001 - Verify CSR is able to Edit Corporate Officer/Owner Details.", groups = {
 			"Regression" })
+	
+	
 	public void EM_321_001() throws Exception {
+		
+		test = report.createTest("EM.321.001 - Verify CSR is able to Edit Corporate Officer/Owner Details.");
 
 		employerManagementLocators eml = new employerManagementLocators();
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
 		AddCorporatePage addCorporatePage = PageFactory.initElements(driver, AddCorporatePage.class);
 		commonStepDefinitions cf = new commonStepDefinitions();
-		test = report.createTest("EM.321.001 - Verify CSR is able to Edit Corporate Officer/Owner Details.");
+		
 		Map<String, String> databaseResults = cf.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ORGANIZATION_TYPE = 'GRDI' AND EAN IS NOT NULL", "EAN");
 		String ernValue = databaseResults.get("EAN");
 		System.out.println(ernValue);
 
-		cf.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		cf.login(COMMON_CONSTANT.Registration_Specialist, COMMON_CONSTANT.Registration_Specialist_PASSWORD);
 		cf.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep(3000);
-		cf.clickMenu("menu");
+		
+		cf.clickMenu("Menu");
 		cf.ScrollMenu("Account Maintenance");
 		cf.clickMenu("Account Maintenance");
 		cf.ScrollMenu("Maintain Business Ownership");

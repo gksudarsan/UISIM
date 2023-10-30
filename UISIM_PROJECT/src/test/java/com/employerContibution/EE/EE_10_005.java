@@ -25,11 +25,11 @@ public class EE_10_005 extends TestBase {
 		PEOPage peoPage = PageFactory.initElements(driver, PEOPage.class);
 
 		// --- Login ---
-		commonFunction.login(COMMON_CONSTANT.TPR_USER_1.toUpperCase(), COMMON_CONSTANT.TPR_USER_1_PASSWORD);
+		commonFunction.login(COMMON_CONSTANT.TPR_USER_4.toUpperCase(), COMMON_CONSTANT.TPR_USER_4_PASSWORD);
 		commonFunction.screenShot("ApplicationLoginPage", "Pass", "Login is successful");
 
 		// ---Menu Click---
-		commonFunction.clickMenu("menu");
+		commonFunction.clickMenu("Menu");
 		// commonFuntions.clickMenu("Employer Registration");
 		commonFunction.clickMenu("Employer Registration");
 		commonFunction.screenShot("MenuPage", "Pass", "Navigate to Menu -> Employer Registration -> Register Employer");

@@ -20,7 +20,7 @@ import com.ui.utilities.COMMON_CONSTANT;
 import stepDefinitions.commonStepDefinitions;
 
 @Listeners(com.ui.utilities.ListenerTest.class)
-public class SM_004_005 extends TestBase {
+public class SM_004_005_Verify_that_the_CSR_is_able_to_reply_to_received_message_and_then_send_and_close_task_SendCloseTaskButton extends TestBase {
 
 	@Test(priority = 1, description = "SM.004.005-Verify that the CSR is able to reply to a received message and then send and close the task (Send & Close Task Button)", groups = {
 			"Regression" })
@@ -34,7 +34,43 @@ public class SM_004_005 extends TestBase {
 				"SM.004.005-Verify that the CSR is able to reply to a received message and then send and close the task (Send & Close Task Button)");
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFunctions.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
+		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_9, COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
+		commonFunctions.screenShot("ApplicationLogin", "Pass", "Login is successful");
+		sleep();
+
+		commonFunctions.clickMenu("Menu");
+		commonFunctions.ScrollMenu("Secure Messaging");
+		commonFunctions.clickMenu("Secure Messaging");
+		commonFunctions.ScrollMenu("Write Message");
+		commonFunctions.clickMenu("Write Message");
+		commonFunctions.screenShot("Menu", "Pass", "Write Message");
+		commonFunctions.waitForLoadingIconToDisappear();
+
+		// --- SM-101 ---
+		commonFunctions.screenShot("Write Message", "Pass", "Successfully launched to SM-101 page");
+		commonFunctions.selectDropdown("Category", " Audits ");
+		sleep(2000);
+		commonFunctions.selectDropdown("Subcategory", " Other ");
+		sleep(2000);
+		BCL.write_SecureMessage.sendKeys("This testcase is to verify TPR is able to send message 28/08/2023");
+		commonFunctions.selectLink("Document", "Browse");
+		commonFunctions.waitForLoadingIconToDisappear();
+		commonFunctions.uploadDoc("Sample.docx");
+		commonFunctions.waitForLoadingIconToDisappear();
+		commonFunctions.screenShot("Write Message", "Pass", "Write Message Message Entered on SM-101 page");
+		commonFunctions.clickButtonContains("Send ");
+		commonFunctions.waitForLoadingIconToDisappear();
+
+		// ---SUC-002---
+		commonFunctions.screenShot("Secure Message Confirmation", "Pass",
+				"Secure Message Confirmation (SUC-002)screen launched");
+		commonFunctions.clickButtonContains("Home ");
+		commonFunctions.waitForLoadingIconToDisappear();
+
+		// ---HOME---
+		commonFunctions.screenShot("Home", "Pass", "Home screen launched");
+
+		commonFunctions.logoutAndLogin(COMMON_CONSTANT.Collections_Specialist_1, COMMON_CONSTANT.Collections_Specialist_1_PASSWORD);
 		commonFunctions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 

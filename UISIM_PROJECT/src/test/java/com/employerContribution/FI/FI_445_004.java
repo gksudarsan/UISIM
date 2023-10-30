@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.BclPage;
 import com.ui.pages.EmployerRegisterPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -26,8 +27,8 @@ public class FI_445_004 extends TestBase {
 	public void FI_445_004() throws Exception {
 		commonStepDefinitions commonFunctions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		BclPage BCL = new BclPage(driver);
-
+		FIpage FI = new FIpage(driver);
+		
 		 Map<String, String> databaseEanResult =
 		 commonFunctions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea JOIN T_TX_EMPL_BENEFIT_CLAIM_PENALTY ttebcp ON ttebcp.EMPLOYER_ACCOUNT_ID = tea.EMPLOYER_ACCOUNT_ID", "EAN");
 		 String eanValue = databaseEanResult.get("EAN");
@@ -61,7 +62,7 @@ public class FI_445_004 extends TestBase {
 		commonFunctions.screenShot("Select Penalty", "Pass", "Select Penalty (FIP-002)screen launched");
 		try {
 
-			BCL.select_Penalty.click();
+			FI.select_Penalty.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -75,7 +76,7 @@ public class FI_445_004 extends TestBase {
 				"Benefit Claim Penalty Summary (FIP-005)screen launched");
 		try {
 
-			BCL.select_Penalty.click();
+			FI.select_Penalty.click();
 		} catch (Exception e) {
 			e.printStackTrace();
 
@@ -87,9 +88,9 @@ public class FI_445_004 extends TestBase {
 		// ---FIP-006---
 		commonFunctions.screenShot("Benefit Claim Penalty Details", "Pass",
 				"Benefit Claim Penalty Details (FIP-006)screen launched");
-		BCL.select_sustainCode.click();
+		FI.select_sustainCode.click();
 		commonFunctions.selectDropdownUsingSearch("", " Miscellaneous ");
-		BCL.Resolution_Details.sendKeys("For Testing");
+		FI.Resolution_Details.sendKeys("For Testing");
 		commonFunctions.screenShot("Benefit Claim Penalty Details", "Pass", "Details selected on (FIP-006)screen");
 		commonFunctions.clickButtonContains("Continue ");
 		commonFunctions.waitForLoadingIconToDisappear();

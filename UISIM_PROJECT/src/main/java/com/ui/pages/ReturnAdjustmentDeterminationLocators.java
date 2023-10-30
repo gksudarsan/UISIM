@@ -77,4 +77,15 @@ public class ReturnAdjustmentDeterminationLocators extends TestBase {
 	
 	@FindBy(how = How.XPATH, using = "//*[text()='Comments']//following::*[contains(@id,'reasonForAdjustmentOtherId')]")
 	public WebElement reasonForAdjustmentComment;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='dataTableId_radio_0_1_radio_button-input']//following::*[@class='mdc-radio__native-control'][1]")
+	public WebElement Selct_Transfer_Payment_Overpayment;
+	
+	@FindBy(how = How.XPATH, using = ".//*[@id='mat-mdc-checkbox-4-input']//following::*[@class='mdc-checkbox__native-control'][1]")
+	public WebElement Selct_Due_Amount;
+	
+	@FindBy(how = How.XPATH, using = "//*[@id='undefined_null_0'][1]")
+	public WebElement Enter_contribtion;
+	
 }
+	

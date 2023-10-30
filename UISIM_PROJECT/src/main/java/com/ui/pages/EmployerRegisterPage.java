@@ -27,7 +27,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//*[.='Legal Name']//following::*[@id='legalEntityNameId']")
 	public WebElement legalNameTextBox;
 	
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
@@ -83,7 +83,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//button[@id='access.continue']")
 	public WebElement continueButton_popUp;
 	
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Comment']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+	@FindBy(how = How.XPATH, using = "//mat-label[text()='Comment']/../following::*[@id='commentId']")
 	public WebElement commentBox_MyQ;
 
 	@FindBy(how = How.XPATH, using = "//strong[text()='Browse']")
@@ -172,10 +172,10 @@ public class EmployerRegisterPage extends TestBase {
 	public WebElement legalTextInput;
 	
 	//-ankan
-	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-outer-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mdc-radio__outer-circle'][2]")
 	public WebElement uspsBusinessAddress;
 	
-	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mat-radio-inner-circle'][2]")
+	@FindBy(how = How.XPATH, using = "//*[.='usps address']//following::*[@class='mdc-radio__inner-circle'][2]")
 	public WebElement uspsBusinessAddressInnerCircle;
 	
 	// SREG-043
@@ -615,10 +615,10 @@ public WebElement Principal_Product_Sold_or_Service_Rendered;
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Percent of Total Revenue']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 public WebElement Percent_of_Total_Revenue;
 
-@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Products Produced']/../following::*[@id='principalProducts']")
 public WebElement Principal_Products_Produced;
 
-@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
+@FindBy(how = How.XPATH, using = "//mat-label[text()='Principal Raw Materials Used']/../following::*[@id='principalRawMaterial']")
 public WebElement Principal_Raw_Materials_Used;
 
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of Business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
@@ -653,10 +653,10 @@ public WebElement Submitter_Comments_may_be_entered_below;
 @FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name of business']/../following-sibling::div/mat-form-field/div/div/div[3]/textarea")
 public WebElement Legal_Name_of_business;
 
-@FindBy(how = How.XPATH, using = "//*[@id='comments']//following::span[@class='mat-form-field-label-wrapper ng-tns-c126-198']")
+@FindBy(how = How.XPATH, using = ".//*[@id='comments']//following::*[@class='mat-mdc-input-element ng-tns-c28-283 ng-pristine mat-mdc-form-field-textarea-control mat-mdc-form-field-input-control mdc-text-field__input cdk-text-field-autofill-monitored ng-invalid ng-touched'][1]")
 public WebElement Comments;
 
-@FindBy(how = How.XPATH, using = "//div[@class='mat-form-field-infix ng-tns-c126-251']//preceding::*[contains(@id, 'comments')]")
+@FindBy(how = How.XPATH, using = "//div[@class='mdc-checkbox__ripple']//preceding::*[contains(@id, 'transferDetailsTable_select_0-input')]")
 public WebElement transferDetailsTable_checkbox;
 
 @FindBy(how = How.XPATH, using = "//u[contains(.,'')][1]")

@@ -31,7 +31,7 @@ public class FI_169_05_004_Verify_TPR_can_submit_an_FI_Issue_when_Issue_Category
     System.out.println("The EAN is " + eanValue);
 
     // -----Login
-    commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+    commonFunction.login(COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
     sleep(2000);
     commonFunction.waitForLoadingIconToDisappear();
     commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");

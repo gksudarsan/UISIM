@@ -32,7 +32,7 @@ public class FI_169_03_005 extends TestBase {
 		test = report.createTest(
 				"FI.169.03.005 - Verify Employer can submit an FI Issue when Issue Category - Protest , Issue Subcategory - 'Transfer Protest'  and system create task for CSR review");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_8.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
 		commonFuntions.waitForLoadingIconToDisappear();
 		
 		test.info("Step: 3 -- ");

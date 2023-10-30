@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.BclPage;
 import com.ui.pages.EmployerRegisterPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -26,18 +27,13 @@ public class FI_169_03_011 extends TestBase {
 	public void FI_169_03_011() throws Exception {
 		commonStepDefinitions commonFunctions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		BclPage BCL = new BclPage(driver);
-
-		Map<String, String> databaseEanResult = commonFunctions.database_SelectQuerySingleColumn(
-				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='LIAB' AND EAN LIKE '9%'", "EAN");
-		String eanValue = databaseEanResult.get("EAN");
-		System.out.println(eanValue);
+		FIpage FI = new FIpage(driver);
 
 		test = report.createTest(
 				"FI.169.03.011- Verify Employer can submit an FI Issue when Issue Category - Protest, Issue Subcategory - 'Unsatisfied Judgment'");
 
 		LoginPage loginPage = PageFactory.initElements(driver, LoginPage.class);
-		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_8, COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
+		commonFunctions.login(COMMON_CONSTANT.EMPLOYER_USER_9, COMMON_CONSTANT.EMPLOYER_USER_9_PASSWORD);
 		commonFunctions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		sleep();
 
@@ -63,7 +59,7 @@ public class FI_169_03_011 extends TestBase {
 		// ----FIS-002---
 		commonFunctions.screenShot("Submit Issue", "Pass", "Successfully launched to FIS_002 page");
 		commonFunctions.enterTextbox("Warrant/Judgment balance due ($)", "213");
-		BCL.Reason_reasonBasisUnsatisfiedJudgProtest.sendKeys("for testing");
+		FI.Reason_reasonBasisUnsatisfiedJudgProtest.sendKeys("for testing");
 		commonFunctions.selectLink("Document", "Browse");
 		commonFunctions.waitForLoadingIconToDisappear();
 		commonFunctions.uploadDoc("Sample.docx");
