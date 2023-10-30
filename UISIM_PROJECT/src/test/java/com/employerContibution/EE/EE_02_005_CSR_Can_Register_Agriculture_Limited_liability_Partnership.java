@@ -46,11 +46,11 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 		commonFuntions.clickMenu("Menu");
 		sleep(2000);
-		commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
+		/*commonFuntions.safeJavaScriptClick(empPage.employerRegisterMenu);
 		sleep(1000);
 		commonFuntions.ScrollMenu("Register Employer");
 		commonFuntions.screenShot("EmpRegister1", "Pass", "Landed on the Employer Register page");
-		commonFuntions.clickMenu("Register Employer");
+		commonFuntions.clickMenu("Register Employer");*/
 		commonFuntions.screenShot("EmpRegister", "Pass", "Navigated to __ Page");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
@@ -98,9 +98,8 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		empPage.firstCalender_Quater_Value_4.click();
 		empPage.firstCalender_Year.click();
 		empPage.firstCalender_Year_Value_2023.click();
-		commonFuntions.screenShot("EmpRegister6", "Pass", "Filling the form");
 		commonFuntions.enterTextboxContains("Total number of covered employees", "10");
-
+		commonFuntions.screenShot("EmpRegister6", "Pass", "Filling the form");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
@@ -116,11 +115,13 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		empPage.individualPrinciple.click();
 		empPage.individualPrinciple_value_other.click();
 		commonFuntions.enterTextbox("If Other, provide details", "Test");
+		commonFuntions.screenShot("EmpRegister", "Pass", "Navigated on SREG-008 added data");
 		commonFuntions.clickButtonContains("Continue ");
-		commonFuntions.clickButton("Continue ");
+		//commonFuntions.clickButton("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
 		try {
+			commonFuntions.screenShot("EmpRegister", "Pass", "Popup in SREG-008 page and entering the address");
 			commonFuntions.selectRadioQuestions("business Address", "20");
 			sleep(2000);
 			sreg004.popUpContinueButton.click();
@@ -135,18 +136,19 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
 		/*-----------------SREG-004----------------*/
+		commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
 		commonFuntions.selectRadioQuestions("Business Mailing Address", "Other");
 		sreg004.addresslinelist.get(0).sendKeys("123state");
 		sreg004.citylist.get(0).sendKeys("albany");
 		sreg004.zipCodelist.get(0).sendKeys("12012");
-
+		commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
 		commonFuntions.selectRadioQuestions("Location of Books and Records", "Other");
 		sreg004.addresslinelist.get(1).sendKeys("123state");
 		sreg004.citylist.get(1).sendKeys("albany");
-		sreg004.zipCodelist.get(0).sendKeys("12012");
+		sreg004.zipCodelist.get(1).sendKeys("12012");
 		sreg004.listOfFirstname.get(0).sendKeys("FN");
 		sreg004.listOfLastName.get(0).sendKeys("LN");
-
+		commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
 		// commonFuntions.safeJavaScriptClick(empPage.location_Of_Book_County);
 		// commonFuntions.safeJavaScriptClick(empPage.albany_County_Value);
 
@@ -174,16 +176,19 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 
 		//commonFuntions.safeJavaScriptClick(empPage.agent_CO_County);
 		//.safeJavaScriptClick(empPage.albany_County_Value);
-//		sleep(4000);
+		commonFuntions.screenShot("Business Physical Address Details", "Pass", "SREG-007 screen is displayed");
+		sleep(2000);
 		commonFuntions.clickButtonContains("Continue ");
+		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
-		sleep(1000);
-		sleep(4000);
+		sleep(2000);
 		try {
+			commonFuntions.screenShot("Business Physical Address Details", "Pass", "Popup in SREG-007 screen is displayed");
 			commonFuntions.selectRadioQuestions("Agad Address", "123");
 			commonFuntions.selectRadioQuestions("bmad Address", "123");
 			commonFuntions.selectRadioQuestions("lbra Address", "123");
 			commonFuntions.selectRadioQuestions("npca Address", "123");
+			commonFuntions.screenShot("Business Physical Address Details", "Pass", "Popup in SREG-007 screen is displayed");
 			Thread.sleep(2000);
 			sreg004.popUpContinueButton.click();
 			commonFuntions.waitForLoadingIconToDisappear();
@@ -250,6 +255,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 //		commonFuntions.enterTextboxContains("Acquisition Date", "04012023");
 		commonFuntions.enterDateOfCurrentQuaterFirstMonth("Acquisition Date");
 		commonFuntions.enterDateOfCurrentQuaterFirstMonthPlusOneDay("Notification date of Transfer");
+		commonFuntions.screenShot("EmpRegister12", "Pass", "Navigated to SREG-011 page data filled");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
@@ -291,6 +297,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.selectRadioQuestions("Did you acquire all or part of the business?", "PART");
 		commonFuntions.enterFutureDate("Acquisition Date", 7);
 		commonFuntions.enterFutureDate("Notification date of Transfer", 14);
+		commonFuntions.screenShot("EmpRegister", "Pass", "Navigated to SREG-011 page data filled");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
@@ -334,6 +341,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 //		commonFuntions.enterTextboxContains("Date of Legal Entity change", "04032023");
 		commonFuntions.enterPastDate("Date of Notification",7);
 //		commonFuntions.enterTextboxContains("Date of Notification", "04042023");
+		commonFuntions.screenShot("EmpRegister", "Pass", "Details filled");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);
@@ -385,6 +393,7 @@ public class EE_02_005_CSR_Can_Register_Agriculture_Limited_liability_Partnershi
 		commonFuntions.enterTextboxContains("Address Line 1 ", "20 cooper square 6");
 		commonFuntions.enterTextboxContains("City ", "NY");
 		commonFuntions.enterTextboxContains("Zip Code", "24954");
+		commonFuntions.screenShot("EmpRegister", "Pass", "Details Filled");
 		commonFuntions.clickButtonContains("Continue ");
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(2000);

@@ -30,7 +30,7 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div/textarea")
 	public WebElement legalNameTextBox;
 	
-	@FindBy(how = How.XPATH, using = "/textarea[@aria-label='Legal Name']")
+	@FindBy(how = How.XPATH, using = "//textarea[contains(@aria-label,'Legal Name')]")
 	public WebElement legalNameOfBusinessTextBox;
 	
 	@FindBy(how = How.XPATH, using = "//textarea[@aria-label='Legal Name of business']")
