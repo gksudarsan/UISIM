@@ -148,71 +148,38 @@ public class commonStepDefinitions extends TestBase {
 		driver.get(prop.getProperty("applicationBenefitsUrl"));
 		Thread.sleep(15000);
 		screenShot("LoginPage", "Pass", "Home Page");
+		
 		try {
 			loginPage.loginLink.click();
 			Thread.sleep(15000);
 
-//		test.log(Status.PASS, "User Launched website");
-//		driver.navigate().refresh();
-//		Thread.sleep(2000);
-//		screenShot("AfterRefreshPage", "Pass", "AfterRefresh");
-//		driver.navigate().to(driver.getCurrentUrl());
-//		Thread.sleep(5000);
-//		driver.get(driver.getCurrentUrl());
-			Thread.sleep(5000);
-
 			enterTextbox("Username", userName);
-//			test.log(Status.PASS, "User entered Username");
 			enterTextbox("Password", password);
-//			test.log(Status.PASS, "User entered Password");
 
 			sleep(2000);
 			screenShot("LoginPage", "Pass", "Logged in with \"" + userName.toUpperCase() + "\"");
 
-			// Add this to your TC after login function : test.log(Status.PASS, "Login with
-			// userRole is successful");
+			// Add this to your TC after login function : test.log(Status.PASS, "Login with userRole is successful");
 
 			Thread.sleep(3000);
 //			driver.findElement(By.xpath("//button[@name='loginform:altSubmit']//preceding::span[1]")).click();
 
 			Thread.sleep(8000);
-
 			screenShot("okPopUpButton", "Pass", "Clicked on Ok - PopUp button");
 
-			// Thread.sleep(10000);
-		} catch (Exception e) {
-		}
-
-		try {
-			driver.navigate().refresh();
-			Thread.sleep(2000);
 			waitForLoadingIconToDisappear();
 			driver.navigate().refresh();
-			Thread.sleep(2000);
 			waitForLoadingIconToDisappear();
 
-			// Thread.sleep(2000);
-			// waitForLoadingIconToDisappear();
-
-//		loginPage.okPopUpButton.click();
 			if (driver.findElements(By.xpath("//*[.=' OK '][@class='mdc-button__label']")).size() > 0) {
-				loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
+				loginPage.okPopUpButtonBenifit.click();
 				waitForLoadingIconToDisappear();
 			}
-			Thread.sleep(3000);
-			driver.navigate().refresh();
-			Thread.sleep(3000);
-			waitForLoadingIconToDisappear();
-			if (driver.findElements(By.xpath("//*[.=' OK '][@class='mat-button-wrapper']")).size() > 0) {
-				sleep(2000);
-				loginPage.okPopUpButton.click();
-//			Thread.sleep(3000);
-				waitForLoadingIconToDisappear();
-			}
+
 		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		
+
 	}
 
 	
@@ -1532,5 +1499,14 @@ public class commonStepDefinitions extends TestBase {
 				} catch (final Exception e) {
 				}
 			}
+			
+			public void benefitsLogoutAndLogin(String userName, String password) throws Exception {
+				clickMenu("LOG OUT");
+				sleep(10000);
+				benefitsLogin(userName, password);
+				sleep(2000);
+				
+			}
+
 	
 }

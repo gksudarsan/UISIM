@@ -191,4 +191,15 @@ public class COMMON_CONSTANT {
 	
 	public static final String LND_FRAUD_SPECIALIST = "LnDFraudSpecialist";
 	public static final String LND_FRAUD_SPECIALIST_PASSWORD_ = "NewUser@123456";
+	
+	
+	//Benefits
+	public static final String BASIC_BENEFITS_ACCESS = "BasicBenefitsAccess";
+	public static final String BASIC_BENEFITS_ACCESS_PASSWORD = "NewUser@123456";
+	
+	public static final String BASIC_BENEFITS_INQUERY = "BasicBenefitsInquiry";
+	public static final String BASIC_BENEFITS_INQUERY_PASSWORD = "NewUser@123456";
+	
+	public static final String BTQ_SUPERVISOR = "BTQSupervisor";
+	public static final String BTQ_SUPERVISOR_PASSWORD = "NewUser@123456";
 }
