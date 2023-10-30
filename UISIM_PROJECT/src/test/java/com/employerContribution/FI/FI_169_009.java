@@ -13,6 +13,7 @@ import com.ui.base.TestBase;
 import com.ui.pages.AddressPage;
 import com.ui.pages.BclPage;
 import com.ui.pages.EmployerRegisterPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -27,8 +28,7 @@ public class FI_169_009 extends TestBase {
 	public void FI_169_009() throws Exception {
 		commonStepDefinitions commonFunctions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		AddressPage AddPage = PageFactory.initElements(driver, AddressPage.class);
-		BclPage BCL = new BclPage(driver);
+		FIpage FI = new FIpage(driver);
 
 		Map<String, String> databaseEanResult = commonFunctions.database_SelectQuerySingleColumn(
 				"SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='LIAB' AND EAN LIKE '9%'", "EAN");
@@ -82,9 +82,9 @@ public class FI_169_009 extends TestBase {
 		// ---WF-101---
 		commonFunctions.screenShot("Search and Associate Documents", "Pass",
 				"Search and Associate Documents (WF-101)screen launched");
-		commonFunctions.enterTextboxContains("ERN", eanValue);
+		commonFunctions.enterTextboxContains("ERN", "9078236");
 		commonFunctions.clickButtonContains(" Search ");
-		BCL.selectcheckbox_SearchAssociateDocuments.click();
+		FI.selectcheckbox_SearchAssociateDocuments.click();
 		commonFunctions.screenShot("Search and Associate Documents", "Pass", "Record Selected on (FIS-003)screen");
 		commonFunctions.clickButtonContains("Continue ");
 		sleep(2000);
@@ -98,7 +98,7 @@ public class FI_169_009 extends TestBase {
 		sleep(1000);
 		commonFunctions.enterTextboxContains("Garnishee Name", "Bismith");
 		commonFunctions.enterTextboxContains("Wage Garnishment Issue Date", "6/4/2023");
-		BCL.Reasons_AuditProtest.sendKeys("For Testing");
+		FI.Reason_WageGarnishmentProtest.sendKeys("For Testing");
 		commonFunctions.screenShot("Audit Protest", "Pass", "Details Entered on (FIS-003)screen");
 		commonFunctions.clickButtonContains("Continue ");
 		commonFunctions.waitForLoadingIconToDisappear();

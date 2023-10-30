@@ -311,4 +311,99 @@ public class COMMON_CONSTANT {
   	
   	public static final String BTQ_SUPERVISOR = "BTQSupervisor";
   	public static final String BTQ_SUPERVISOR_PASSWORD = "NewUser@123456";
+  	
+  	/* ********* Credentials ********* */
+
+	// Customer Service Representative - CSR
+	
+	public static final String Add_Stop_Demand = "AddStopDemand";
+	public static final String Add_Stop_Demand_PASSWORD = "NewUser@123456";
+	
+	public static final String Add_Remove_Stop_Demand = "AddRemoveStopDemand";
+	public static final String Add_Remove_Stop__PASSWORD = "NewUser@123456";
+	
+	public static final String AG_Inquiry = "AGInquiry";
+	public static final String AG_Inquiry_PASSWORD = "NewUser@123456";
+	
+	public static final String Alpha_Search = "AlphaSearch";
+	public static final String Alpha_Search_PASSWORD = "NewUser@123456";
+	
+	public static final String Bank_Unit_Specialist = "BankUnitSpecialist";
+	public static final String Bank_Unit_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String Benefit_Charging_Specialist = "BenefitChargingSpecialist";
+	public static final String Benefit_Charging_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Clerical_1 = "CollectionsClericalOne";
+	public static final String Collections_Clerical_1_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Clerical_2 = "CollectionsClericalTwo";
+	public static final String Collections_Clerical_2_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Clerical_3 = "CollectionsClericalThird";
+	public static final String Collections_Clerical_3_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Manager = "CollectionsManager";
+	public static final String Collections_Manager_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Specialist_1 = "CollectionsSpecialistOne";
+	public static final String Collections_Specialist_1_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Specialist_2 = "CollectionsSpecialistTwo";
+	public static final String Collections_Specialist_2_PASSWORD = "NewUser@123456";
+	
+	public static final String Collections_Specialist_3 = "CollectionsSpecialistThree";
+	public static final String Collections_Specialist_3_PASSWORD = "NewUser@123456";
+	
+	public static final String Counsel = "Counsel";
+	public static final String Counsel_PASSWORD = "NewUser@123456";
+	
+	public static final String DTF_Specialist = "DTFSpecialist";
+	public static final String DTFSpecialist_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1060_Report_Role = "EATenSixtyReportRole";
+	public static final String EA1060_Report_Role_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1290_Report_Role = "EATwelveNinetyReportRole";
+	public static final String EA1290_Report_Role_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1290TR_Report_Role = "EATwelveNinetyTRReportRole";
+	public static final String EEA1290TR_Report_Role_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1402_Report_Role = "EAFourteenZeroTwoReportRole";
+	public static final String EA1402_Report_Role_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1403_Report_Role = "EAFourteenZeroTwoReportRole";
+	public static final String EA1403_Report_Role_PASSWORD = "NewUser@123456";
+	
+	public static final String EA1501_Report_Role = "EAFifteenZeroOneReportRole";
+	public static final String EA1501_Report_Role_PASSWORD = "NewUser@123456";
+	
+	
+	
+	public static final String Employer_Account_Specialist = "EmployerAccountSpecialist";
+	public static final String Employer_Account_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String Rating_Specialist = "RatingSpecialist";
+	public static final String Rating_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String General_Inquiry = "GeneralInquiry";
+	public static final String General_Inquiry_PASSWORD = "NewUser@123456";
+	
+		
+	public static final String LnD_Specialist = "LnDSpecialist";
+	public static final String LnD_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String Registration_Specialist = "RegistrationSpecialist";
+	public static final String Registration_Specialist_PASSWORD = "NewUser@123456";
+	
+	public static final String Registration_Supervisor = "RegistrationSupervisor";
+	public static final String Registration_Supervisor_PASSWORD = "NewUser@123456";
+
+	public static final String APPEALS_USER2 = "eoatest";
+	public static final String APPEALS_USER2_PASSWORD = "NewUser@123456";
+	
+	public static final String LnD_Fraud_Specialist = "LnDFraudSpecialist";
+	public static final String LnD_Fraud_Specialist_PASSWORD = "NewUser@123456";
+
 }

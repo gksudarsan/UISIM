@@ -33,12 +33,12 @@ public class EE_01_008 extends TestBase {
 
 		//--- Login ---
 
-		commonFunction.login("ndsbb3","Brijen@1234567");
+		commonFunction.login(COMMON_CONSTANT.CSR_USER_1, COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		commonFunction.screenShot("ApplicationLogin", "Pass", "Login is successful");
 	
 		
 		//---Menu Click---
-		commonFunction.clickMenu("menu");
+		commonFunction.clickMenu("Menu");
 		commonFunction.screenShot("Menu", "Pass", "Menu");
 		//commonFuntions.clickMenu("Employer Registration");
 		commonFunction.ScrollMenu("Employer Registration");
@@ -101,11 +101,13 @@ public class EE_01_008 extends TestBase {
 		commonFunction.clickButton("Continue ");
 		
 		sleep(2000);
-		try {
-			empRegPage.uspsBusinessAddress.click();
-		} catch (Exception exception) {
-			empRegPage.uspsBusinessAddressInnerCircle.click();
-		}
+	//	try{try {
+	//		empRegPage.uspsBusinessAddress.click();
+	//	} catch (Exception exception) {
+	//		empRegPage.uspsBusinessAddressInnerCircle.click();
+	//	}}catch(Exception exception) {
+		
+	//	}
 		
 		commonFunction.screenShot("EE01008", "Pass", "USPS Business address selection on SREG-008");
 		empRegPage.continueButton_popUp.click();

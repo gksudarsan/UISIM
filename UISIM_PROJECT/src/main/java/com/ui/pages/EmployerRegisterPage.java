@@ -27,7 +27,9 @@ public class EmployerRegisterPage extends TestBase {
 	@FindBy(how = How.XPATH, using = "//span[@id='EmployerRegistration']")
 	public WebElement employerRegisterMenu;
 
-	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div/textarea")
+//	@FindBy(how = How.XPATH, using = "//mat-label[text()='Legal Name']/../following-sibling::div/mat-form-field/div/div/div/textarea")
+	
+	@FindBy(how = How.XPATH, using = "//*[.='Legal Name']//following::*[@id='legalEntityNameId']")
 	public WebElement legalNameTextBox;
 
 

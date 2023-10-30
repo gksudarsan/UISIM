@@ -186,6 +186,18 @@ public class BclPage {
 	@FindBy(how = How.XPATH, using = "//*[.='Write Your Message Here.']//following::*[@class='angular-editor-textarea']")
 	public WebElement write_SecureMessage;
 	
+	@FindBy(how = How.XPATH, using = "//*[@id='helpTextIdicon']")
+	public WebElement Help;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='View Message']//following::*[@id='ViewMessageViewMessage']")
+	public WebElement click_ViewMessage;
+	
+	@FindBy(how = How.XPATH, using = "//*[.='close']")
+	public WebElement close;
+	
+	
+
+	
 
 
 }

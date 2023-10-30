@@ -12,6 +12,7 @@ import org.testng.annotations.Test;
 import com.ui.base.TestBase;
 import com.ui.pages.BclPage;
 import com.ui.pages.EmployerRegisterPage;
+import com.ui.pages.FIpage;
 import com.ui.pages.LoginPage;
 import com.ui.pages.PEOPage;
 import com.ui.utilities.COMMON_CONSTANT;
@@ -26,7 +27,7 @@ public class FI_169_005 extends TestBase {
 	public void FI_169_005() throws Exception {
 		commonStepDefinitions commonFunctions = new commonStepDefinitions();
 		PEOPage PEOPage = PageFactory.initElements(driver, PEOPage.class);
-		BclPage BCL = new BclPage(driver);
+		FIpage FI = new FIpage(driver);
 
 		 Map<String, String> databaseEanResult =
 				 commonFunctions.database_SelectQuerySingleColumn("SELECT * FROM T_EMPLOYER_ACCOUNT tea WHERE ACCOUNT_STATUS ='LIAB' AND EAN LIKE '9%'", "EAN");
@@ -83,7 +84,7 @@ public class FI_169_005 extends TestBase {
 		commonFunctions.enterTextboxContains("ERN", "4701235");
 		commonFunctions.clickButtonContains(" Search ");
 		commonFunctions.waitForLoadingIconToDisappear();
-		BCL.selectcheckbox_SearchAssociateDocuments.click();
+		FI.selectcheckbox_SearchAssociateDocuments.click();
 		commonFunctions.screenShot("Search and Associate Documents", "Pass", "Record Selected on (FIS-003)screen");
 		commonFunctions.clickButtonContains("Continue ");
 		sleep(2000);
@@ -94,7 +95,7 @@ public class FI_169_005 extends TestBase {
 		sleep(1000);
 		commonFunctions.selectDropdown("Source", " Department Request ");
 		sleep(1000);
-		BCL.Reasons_AuditProtest.sendKeys("For Testing");
+		FI.Reasons_AuditProtest.sendKeys("For Testing");
 		commonFunctions.enterTextboxContains("Effective Date of Transfer", "4/7/2023");
 		commonFunctions.enterTextboxContains("Predecessor ERN", "0123422");
 		commonFunctions.enterTextboxContains("Predecessor Name", "Tester");
@@ -140,7 +141,7 @@ public class FI_169_005 extends TestBase {
 		commonFunctions.selectRadioQuestions("Do you want to reroute this task to another work basket/User?", "No ");
 		commonFunctions.selectRadioQuestions("Do you want to create a Field Audit Request task?", "No ");
 		commonFunctions.selectRadioQuestions("Do you want to place a Hold Action Flag on this account?", "No ");
-		BCL.comment_AuditProtestTask.sendKeys("FOR TESTING");
+		FI.comment_AuditProtestTask.sendKeys("FOR TESTING");
 		commonFunctions.screenShot("Transfer Protest", "Pass", "Details Entered on PFP-050 page");
 		commonFunctions.clickButton("Submit ");
 		commonFunctions.waitForLoadingIconToDisappear();

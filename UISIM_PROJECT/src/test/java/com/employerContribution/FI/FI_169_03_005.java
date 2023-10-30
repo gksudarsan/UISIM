@@ -32,7 +32,7 @@ public class FI_169_03_005 extends TestBase {
 		test = report.createTest(
 				"FI.169.03.005 - Verify Employer can submit an FI Issue when Issue Category - Protest , Issue Subcategory - 'Transfer Protest'  and system create task for CSR review");
 
-		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_MA_ROLE , COMMON_CONSTANT.EMPLOYER_MA_ROLE_PASSWORD );
+		commonFuntions.login(COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD.toUpperCase(), COMMON_CONSTANT.EMPLOYER_USER_8_PASSWORD);
 		commonFuntions.waitForLoadingIconToDisappear();
 		
 		test.info("Step: 3 -- ");
@@ -52,23 +52,21 @@ public class FI_169_03_005 extends TestBase {
 		test.info("Step: 4 -- ");
 		commonFuntions.selectDropdown("Category", " Protest ");
 		commonFuntions.waitForLoadingIconToDisappear();
-		
+		sleep(1000);
 		commonFuntions.selectDropdown("Subcategory", " How do I protest a Transfer of Business? ");
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(1000);
 		commonFuntions.screenShot("Write Message", "Pass", "SM-101 with details filled screen is displayed");
 		sleep(2000);
 		commonFuntions.clickOnLinkAnchorTag("click here");
 		commonFuntions.waitForLoadingIconToDisappear();
-		commonFuntions.switchTab();
-		/*Set<String> allHandles = driver.getWindowHandles();
+		Set<String> allHandles = driver.getWindowHandles();
 		Iterator<String> l1 = allHandles.iterator();
 		String parent = l1.next();
 		System.out.println(parent);
 		String Child = l1.next();
 		System.out.println(Child);
 		driver.switchTo().window(Child);
-		sleep(2000);*/
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		commonFuntions.screenShot("Submit Issue", "Pass", "FIS-002 screen is displayed");
 		
 		//
@@ -110,7 +108,7 @@ public class FI_169_03_005 extends TestBase {
 		commonFuntions.enterTextboxContains("Successor Name", nameValue2);
 		commonFuntions.selectRadioQuestions("Is a contract provided?", "No ");
 		commonFuntions.clickButtonContains("Continue ");
-		commonFuntions.waitForLoadingIconToDisappear();
+		sleep(2000);
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("Submit Issue Verification", "Pass", " screen is displayed");
 		commonFuntions.clickButtonContains("Submit ");
@@ -125,12 +123,12 @@ public class FI_169_03_005 extends TestBase {
 		commonFuntions.screenShot("Home page", "Pass", "Home screen is displayed");
 		
 		//
-		//commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"+eanvalue+"' ORDER BY UPDATED_TS desc);");
+		commonFuntions.database_UpdateQuery("UPDATE LROUIM.T_WFA_WORK_ITEM_DETAIL SET USER_ID = '"+COMMON_CONSTANT.CSR_USER_1+"' WHERE PROCESS_DETAIL_ID IN (SELECT PROCESS_DETAIL_ID FROM T_WFA_PROCESS_DETAIL WHERE EAN='"+eanvalue+"' ORDER BY UPDATED_TS desc);");
 		//
 		
 		
 		test.info("Step: 7 -- ");
-		commonFuntions.logoutAndLogin(COMMON_CONSTANT.LnDSpecialist_User.toUpperCase(), COMMON_CONSTANT.LnDSpecialist_User_Pwd);
+		commonFuntions.logoutAndLogin(COMMON_CONSTANT.CSR_USER_1.toUpperCase(), COMMON_CONSTANT.CSR_USER_1_PASSWORD);
 		PEOPage.queue.click();
 		commonFuntions.waitForLoadingIconToDisappear();
 		sleep(1000);
