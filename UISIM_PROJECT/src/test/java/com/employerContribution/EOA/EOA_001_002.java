@@ -29,7 +29,7 @@ public class EOA_001_002 extends TestBase {
         test = report.createTest(
                 "EOA_01_002_Online_Authentication_Verify_the_UI_Online_Services_Account_Creation_process_TPR_FEIN_Legal_name");
 
-        commonFuntions.login(COMMON_CONSTANT.APPEALS_USER1.toUpperCase(), COMMON_CONSTANT.APPEALS_USER1_PASSWORD);
+        commonFuntions.login(COMMON_CONSTANT.APPEALS_USER2.toUpperCase(), COMMON_CONSTANT.APPEALS_USER2_PASSWORD);
         commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
         commonFuntions.waitForLoadingIconToDisappear();
         sleep(3000);
