@@ -119,4 +119,12 @@ public class COMMON_CONSTANT {
 	public static final String EMPLOYER_USER_MANJU = "manju@2004";
 	public static final String EMPLOYER_PASS_MANJU = "Manhar2004@1234";
 	
+
+	public static final String PEOSpecialist = "PEOSpecialist"; 
+	public static final String PEOSpecialist_Password = "NewUser@123456"; 
+	
+	public static final String PEOAdmin = "PEOAdmin"; 
+	public static final String PEOAdmin_Password = "NewUser@123456"; 
+
+	
 }

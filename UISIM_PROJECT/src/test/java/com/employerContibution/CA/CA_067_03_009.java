@@ -30,7 +30,7 @@ public class CA_067_03_009 extends TestBase {
 		 sleep(2000);
 		 commonFuntions.waitForLoadingIconToDisappear();
 		 commonFuntions.screenShot("ApplicationLogin","Pass","Login is successful");
-		 commonFuntions.clickMenu("menu");
+		 commonFuntions.clickMenu("Menu");
 		 sleep(3000);
 		 
 		 commonFuntions.ScrollMenu("Add Daily Deposits");
@@ -43,6 +43,7 @@ public class CA_067_03_009 extends TestBase {
 			//String ernNumber=databaseResults.get("EAN");
 			commonFuntions.enterTextboxContains("Deposit Date", "6/08/2022");
 			sleep(2000);
+			commonFuntions.screenShot("DepositDate","Pass","Deposit Date Entered");
 			commonFuntions.clickButtonContains("Search");
 			sleep(2000);
 			commonFuntions.waitForLoadingIconToDisappear();
@@ -53,8 +54,12 @@ public class CA_067_03_009 extends TestBase {
 			 
 			 
 commonFuntions.selectActionTableParameterizedId("Bulk File",8,1,"Deposit Details of DTF","id01","listBox","overideComments");
+
 commonFuntions.screenShot("updated","Pass","override Comments Updated");	
+
 			 commonFuntions.selectActionTableParameterizedId("Bulk File",7,1,"Deposit Details of DTF","id01","link","2");
+			 commonFuntions.sleep(2000);
+			 commonFuntions.waitForLoadingIconToDisappear();
 			 commonFuntions.screenShot("Override3","Pass","Clicked on reconcile with comments");
 	
 			
