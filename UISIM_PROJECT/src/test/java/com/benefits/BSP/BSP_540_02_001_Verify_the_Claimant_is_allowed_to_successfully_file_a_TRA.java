@@ -42,7 +42,7 @@ public class BSP_540_02_001_Verify_the_Claimant_is_allowed_to_successfully_file_
 		sleep(2000);
 
 		test.info("Step: 1 -- ");
-		commonFuntions.benefitsLogin(COMMON_CONSTANT.CSR_USER_traspecialist, COMMON_CONSTANT.CSR_USER_traspecialist_PASSWORD);
+		commonFuntions.benefitsLogin(COMMON_CONSTANT.TRASPECIALIST, COMMON_CONSTANT.TRASPECIALIST_PASSWORD);
 		test.log(Status.PASS, "Login with Basic Benefits Inquiry is successful");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 

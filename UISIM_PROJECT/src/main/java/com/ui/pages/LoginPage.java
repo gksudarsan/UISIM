@@ -34,5 +34,4 @@ public class LoginPage {
 	@FindBy(how = How.XPATH, using = "//*[.=' OK '][@class='mdc-button__label']")
 	public WebElement okPopUpButtonBenifit;
 
-
 }

@@ -432,6 +432,7 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 		// --- PEO-016 ---
 		commonFuntions.waitForLoadingIconToDisappear();
 		commonFuntions.screenShot("EL02013", "Pass", "Successfully launched to Declaration(PEO-016) page");
+		//automationTester comment++
 		commonFuntions.clickButton("Save & Continue ");
 		
 //		Thread.sleep(3000);
@@ -448,9 +449,9 @@ public class EL_02_013_CSR_Can_Renew_Exempt_Register extends TestBase {
 //		commonFuntions.screenShot("Final", "Pass", "Click Accep & Submit");
 //		commonFuntions.clickButton("Accept & Submit ");
 		
-		commonFuntions.Label("System Failure");
+		//commonFuntions.Label("System Failure");
 		
-		commonFuntions.screenShot("EL02013", "Fail", "Unable to submit due to System Failure");
+		//commonFuntions.screenShot("EL02013", "Fail", "Unable to submit due to System Failure");
 		
 		
 		

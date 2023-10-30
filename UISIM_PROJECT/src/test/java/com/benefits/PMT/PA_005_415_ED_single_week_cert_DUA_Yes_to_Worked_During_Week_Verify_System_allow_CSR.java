@@ -24,7 +24,7 @@ public class PA_005_415_ED_single_week_cert_DUA_Yes_to_Worked_During_Week_Verify
 		sleep(2000);
 
 		test.info("Step: 1 -- ");
-		commonFuntions.benefitsLogin(COMMON_CONSTANT.CSR_USER_BasicBenefitsAccess, COMMON_CONSTANT.CSR_USER_BasicBenefitsAccess_PASSWORD);
+		commonFuntions.benefitsLogin(COMMON_CONSTANT.BASIC_BENEFITS_ACCESS, COMMON_CONSTANT.BASIC_BENEFITS_ACCESS_PASSWORD);
 		test.log(Status.PASS, "Login with Basic Benefits Inquiry is successful");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 

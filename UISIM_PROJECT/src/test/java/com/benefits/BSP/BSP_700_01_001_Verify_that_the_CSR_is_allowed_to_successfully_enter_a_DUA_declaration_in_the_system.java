@@ -41,7 +41,7 @@ public class BSP_700_01_001_Verify_that_the_CSR_is_allowed_to_successfully_enter
 		sleep(2000);
 
 		test.info("Step: 1 -- ");
-		commonFuntions.benefitsLogin(COMMON_CONSTANT.CSR_USER_dua, COMMON_CONSTANT.CSR_USER_dua_PASSWORD);
+		commonFuntions.benefitsLogin(COMMON_CONSTANT.DUA, COMMON_CONSTANT.DUA_PASSWORD);
 		test.log(Status.PASS, "Login with Basic Benefits Inquiry is successful");
 		commonFuntions.screenShot("ApplicationLogin", "Pass", "Login is successful");
 
